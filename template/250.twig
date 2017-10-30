@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Steam Top 250 Games</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+<body>
+
+<h1>Steam Top 250</h1>
+
+<div class="body">
+<div class="page">
+<p>
+    Top 250 Steam games according to the only source that matters: the players.
+</p>
+<table>
+    <thead>
+        <tr>
+            <td>
+            <td>Rank and title
+            <td>Player rating
+    <tbody>
+{% for game in games %}
+    <tr>
+        <td>
+            <a href="http://store.steampowered.com/app/{{ game.id }}/">
+                <img src="http://cdn.akamai.steamstatic.com/steam/apps/{{ game.id }}/capsule_sm_120.jpg"
+                     width="120" height="45"
+            ></a>
+        </td>
+        <td>
+            {{ loop.index }}.
+            <a href="http://store.steampowered.com/app/{{ game.id }}/">
+                {{ game.game_name }}
+            </a>
+        </td>
+        <td><span class="score">{{ (game.score * 10)|number_format(1) }}</span> ({{ game.total_reviews }} votes)</td>
+    </tr>
+{% endfor %}
+</table>
+</div>
+</div>

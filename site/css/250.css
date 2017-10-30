@@ -1,0 +1,57 @@
+body {
+    color: #c7d5e0;
+    background: #171a21;
+    font: 90% sans-serif;
+}
+
+a {
+    color: burlywood;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+
+h1 {
+    margin: .5em;
+
+    font-weight: bold;
+    font-size: 500%;
+    text-align: center;
+}
+
+p {
+    margin: 1em 0;
+    text-align: center;
+}
+
+img {
+    vertical-align: middle;
+}
+
+table {
+    width: 100%;
+    margin: 2em auto;
+    border-spacing: 4px;
+    border-collapse: separate;
+}
+thead {
+    font-weight: bold;
+}
+tbody > tr:nth-child(2n-1) {
+    background-color: #1a2334;
+}
+
+.body {
+    padding: 2em;
+    background: #1b2838;
+}
+
+.page {
+    margin: 0 auto;
+    width: 800px;
+}
+
+.score {
+    font-weight: bold;
+}
