@@ -26,9 +26,14 @@
     <tr>
         <td>
             <a href="http://store.steampowered.com/app/{{ game.id }}/">
+                {% if loop.index <= 10 %}
+                <img src="http://cdn.akamai.steamstatic.com/steam/apps/{{ game.id }}/capsule_184x69.jpg"
+                     width="{{ min(184, 184 - (184 - 120) / 8 * (loop.index - 3)) }}">
+                {% else %}
                 <img src="http://cdn.akamai.steamstatic.com/steam/apps/{{ game.id }}/capsule_sm_120.jpg"
-                     width="120" height="45"
-            ></a>
+                     width="120" height="45">
+                {% endif -%}
+            </a>
         </td>
         <td>
             {{ loop.index }}.
