@@ -41,6 +41,9 @@ thead {
 tbody > tr:nth-child(2n-1) {
     background-color: #1a2334;
 }
+td:nth-child(3) {
+    white-space: nowrap;
+}
 
 .body {
     padding: 2em;
@@ -54,4 +57,10 @@ tbody > tr:nth-child(2n-1) {
 
 .score {
     font-weight: bold;
+}
+
+.date {
+    margin-left: .25em;
+    white-space: nowrap;
+    color: #9fadb8;
 }

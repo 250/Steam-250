@@ -33,8 +33,9 @@
         <td>
             {{ loop.index }}.
             <a href="http://store.steampowered.com/app/{{ game.id }}/">
-                {{ game.game_name }}
+                {{- game.app_name -}}
             </a>
+            <span class="date">({{ game.release_date|date('M Y') }})</span>
         </td>
         <td><span class="score">{{ (game.score * 10)|number_format(1) }}</span> ({{ game.total_reviews }} votes)</td>
     </tr>
