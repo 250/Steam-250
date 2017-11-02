@@ -23,6 +23,6 @@ class Generator
         $cursor = Queries::fetchTop250Games($this->database);
         $games = $cursor->fetchAll();
 
-        file_put_contents('site/250.html', $this->twig->load('250.twig')->render(compact('games')));
+        file_put_contents('site/index.html', $this->twig->load('250.twig')->render(compact('games')));
     }
 }
