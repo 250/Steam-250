@@ -1,12 +1,12 @@
 <?php
 declare(strict_types=1);
 
-namespace ScriptFUSION\Steam250\Generate;
+namespace ScriptFUSION\Steam250\SiteGenerator;
 
 use Doctrine\DBAL\Connection;
-use ScriptFUSION\Steam250\Queries;
+use ScriptFUSION\Steam250\Database\Queries;
 
-class Generator
+class SiteGenerator
 {
     private $twig;
 
