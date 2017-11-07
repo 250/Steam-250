@@ -1,0 +1,100 @@
+body {
+    color: #c7d5e0;
+    background: #171a21;
+    font: 90%/1 sans-serif;
+}
+
+a {
+    color: #d4bd87;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+a:visited {
+    color: #ab9159;
+}
+
+h1 {
+    margin: .5em;
+
+    font-weight: bold;
+    font-size: 500%;
+    text-align: center;
+}
+
+p {
+    margin: 1em 0;
+    text-align: center;
+}
+
+td {
+    vertical-align: middle;
+}
+
+table {
+    width: 100%;
+    margin: 2em auto;
+    border-spacing: 4px;
+    border-collapse: separate;
+}
+thead {
+    font-weight: bold;
+}
+tbody > tr:nth-child(2n-1) > td:nth-child(n+2) {
+    background-color: #1a2334;
+}
+td:nth-child(1) {
+    text-align: right;
+}
+td:nth-child(3) {
+    white-space: nowrap;
+}
+
+tbody > tr:nth-child(-n+3) > td:nth-child(2) {
+    font-size: 200%;
+}
+tbody > tr:nth-child(4) > td:nth-child(2) {
+    font-size: 187.5%;
+}
+tbody > tr:nth-child(5) > td:nth-child(2) {
+    font-size: 175%;
+}
+tbody > tr:nth-child(6) > td:nth-child(2) {
+    font-size: 162.5%;
+}
+tbody > tr:nth-child(7) > td:nth-child(2) {
+    font-size: 150%;
+}
+tbody > tr:nth-child(8) > td:nth-child(2) {
+    font-size: 137.5%;
+}
+tbody > tr:nth-child(9) > td:nth-child(2) {
+    font-size: 125%;
+}
+tbody > tr:nth-child(10) > td:nth-child(2) {
+    font-size: 112.5%;
+}
+
+.body {
+    padding: 2em;
+    background: #1b2838;
+}
+
+.page {
+    margin: 0 auto;
+    width: 864px;
+}
+
+.score {
+    font-weight: bold;
+}
+
+.date {
+    margin-left: .25em;
+    white-space: nowrap;
+    color: #9fadb8;
+}
+tbody > tr:nth-child(-n+10) .date {
+    font-size: .9rem;
+}
