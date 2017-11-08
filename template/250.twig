@@ -5,41 +5,45 @@
     <title>Steam Top 250 Games</title>
 
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster">
 
 <body>
-
-<h1>Steam Top 250</h1>
+<div class="header">
+    <div class="title" data-title="Steam Top 250">
+        <h1>Steam Top 250</h1>
+    </div>
+</div>
 
 <div class="body">
 <div class="page">
 <p>
-    Top 250 Steam games of all time according to the only source that matters: the players.
+    Top 250 Steam games of all time according to the only source that matters: the players.<br>
+    Because <em>overwhelmingly positive</em> means more than IGN 10/10.
 </p>
 <table>
     <thead>
         <tr>
             <td>
-            <td>Rank and title
+            <td>Rank, title, genre and date
             <td>Player rating
     <tbody>
 {% for game in games %}
     <tr>
-        <td>
-            <a href="http://store.steampowered.com/app/{{ game.id }}/">
-                {% if loop.index <= 10 %}
+        <td><a href="http://store.steampowered.com/app/{{ game.id }}/">
+                {%- if loop.index <= 10 -%}
                 <img src="http://cdn.akamai.steamstatic.com/steam/apps/{{ game.id }}/capsule_184x69.jpg"
                      width="{{ min(184, 184 - (184 - 120) / 8 * (loop.index - 3)) }}">
-                {% else %}
+                {%- else -%}
                 <img src="http://cdn.akamai.steamstatic.com/steam/apps/{{ game.id }}/capsule_sm_120.jpg"
                      width="120" height="45">
-                {% endif -%}
-            </a>
-        </td>
+                {%- endif -%}
+            </a></td>
         <td>
             {{ loop.index }}.
             <a href="http://store.steampowered.com/app/{{ game.id }}/">
                 {{- game.app_name -}}
             </a>
+            <a href="http://store.steampowered.com/tag/en/{{ game.genre|url_encode }}/" class="genre">{{ game.genre }}</a>
             <span class="date">({{ game.release_date|date('M Y') }})</span>
         </td>
         <td><span class="score">{{ (game.score * 10)|number_format(1) }}</span> ({{ game.total_reviews }} votes)</td>
