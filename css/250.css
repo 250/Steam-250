@@ -23,9 +23,9 @@ a:visited {
 .title {
     position: relative;
 
-    margin: .25em;
+    margin: .2em;
 
-    font: 1000%/1 Lobster, cursive;
+    font: 920% Lobster, cursive;
     transform: rotate(-1deg);
 }
 .title:before{
