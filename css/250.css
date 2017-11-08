@@ -1,31 +1,74 @@
 body {
     color: #c7d5e0;
     background: #171a21;
-    font: 90%/1 sans-serif;
+    font: 95%/1.5 sans-serif;
 }
 
 a {
-    color: #d4bd87;
+    color: #e1c386;
     text-decoration: none;
 }
 a:hover {
     text-decoration: underline;
 }
 a:visited {
-    color: #ab9159;
+    color: #9e814c;
 }
 
-h1 {
-    margin: .5em;
+.header {
+    overflow: hidden;
 
-    font-weight: bold;
-    font-size: 500%;
+    background: radial-gradient(30% 45% at center 60%, #212329, transparent);
+}
+.title {
+    position: relative;
+
+    margin: .25em;
+
+    font: 1000%/1 Lobster, cursive;
+    transform: rotate(-1deg);
+}
+.title:before{
+    content: attr(data-title);
+    position: absolute;
+    width: 100%;
+    top: 1px;
+    left: -1px;
+    pointer-events: none;
+
     text-align: center;
+    background: linear-gradient(179deg, #e6c88a 20%, #665233, #9e814c 90%);
+    color:transparent;
+    -webkit-background-clip: text;
+}
+h1 {
+    color: #9e814c;
+
+    text-align: center;
+    text-shadow:
+        0 1px 0 rgb(158, 129, 76),
+        0 2px 0 rgb(143, 116, 70),
+        0 3px 0 rgb(130, 105, 64),
+        0 4px 0 rgb(115, 93, 57),
+        0 5px 0 rgb(102, 82, 51),
+        -1px -1px 1px #fffccc,
+        0 6px 1px rgba(0, 0, 0, 0.0980392),
+        0 0 5px rgba(0, 0, 0, 0.0980392),
+        0 1px 3px rgba(0, 0, 0, 0.298039),
+        0 3px 5px rgba(0, 0, 0, 0.2),
+        0 5px 10px rgba(0, 0, 0, 0.247059),
+        0 10px 10px rgba(0, 0, 0, 0.2),
+        0 20px 20px rgba(0, 0, 0, 0.14902)
+    ;
 }
 
 p {
     margin: 1em 0;
     text-align: center;
+}
+
+em {
+    font-style: italic;
 }
 
 td {
@@ -35,17 +78,29 @@ td {
 table {
     width: 100%;
     margin: 2em auto;
-    border-spacing: 4px;
-    border-collapse: separate;
+    border-collapse: collapse;
+    line-height: 1.2;
 }
 thead {
     font-weight: bold;
 }
+thead td {
+    padding-bottom: .5em;
+}
 tbody > tr:nth-child(2n-1) > td:nth-child(n+2) {
     background-color: #1a2334;
 }
+tbody > tr:nth-child(2n) > td {
+    padding-top: 6px;
+    padding-bottom: 6px;
+}
 td:nth-child(1) {
+    line-height: 0;
     text-align: right;
+}
+td:nth-child(2) {
+    padding-left: 10px;
+    padding-right: 10px;
 }
 td:nth-child(3) {
     white-space: nowrap;
@@ -90,8 +145,26 @@ tbody > tr:nth-child(10) > td:nth-child(2) {
     font-weight: bold;
 }
 
+.genre, .genre:visited {
+    margin-left: .25em;
+    padding: 3px 7px;
+    border-radius: 2px;
+
+    font-size: 11px;
+    color: #67c1f5;
+    background: rgba(103, 193, 245, 0.2);
+    vertical-align: middle;
+}
+.genre:hover {
+    text-decoration: none;
+    color: #fff;
+    background: linear-gradient(135deg, #67c1f5 0, #417a9b 100%);
+}
+
 .date {
     margin-left: .25em;
+
+    vertical-align: middle;
     white-space: nowrap;
     color: #9fadb8;
 }
