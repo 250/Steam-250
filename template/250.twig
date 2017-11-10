@@ -39,7 +39,7 @@
                 {%- endif -%}
             </a></td>
         <td>
-            <span style="font-size: {{ min(200, max(100, 200 - 100 / 13 * (loop.index - 3))) }}%">
+            <span class="title" style="font-size: {{ min(200, max(100, 200 - 100 / 13 * (loop.index - 3))) }}%">
                 {{ loop.index }}.
                 <a href="http://store.steampowered.com/app/{{ game.id }}/">
                     {{- game.app_name -}}
@@ -48,7 +48,10 @@
             <a href="http://store.steampowered.com/tag/en/{{ game.genre|url_encode }}/" class="genre">{{ game.genre }}</a>
             <span class="date">({{ game.release_date|date('M Y') }})</span>
         </td>
-        <td><span class="score">{{ (game.score * 10)|number_format(1) }}</span> ({{ game.total_reviews }} votes)</td>
+        <td>
+            <span class="score">{{ (game.score * 10)|number_format(1) }}</span>
+            <span class="votes">({{ game.total_reviews }} votes)</span>
+        </td>
     </tr>
 {% endfor %}
 </table>
