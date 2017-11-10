@@ -98,6 +98,9 @@ td:nth-child(1) {
     line-height: 0;
     text-align: right;
 }
+td:nth-child(1) > a {
+    display: inline-block;
+}
 td:nth-child(2) {
     padding-left: 10px;
     padding-right: 10px;
@@ -152,4 +155,11 @@ tbody > tr:nth-child(-n+10) .date {
 
 .votes {
     font-size: 85%;
+}
+
+.footer {
+    margin: 1em;
+}
+.footer > * {
+    text-align: left;
 }
