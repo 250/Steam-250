@@ -106,31 +106,6 @@ td:nth-child(3) {
     white-space: nowrap;
 }
 
-tbody > tr:nth-child(-n+3) > td:nth-child(2) {
-    font-size: 200%;
-}
-tbody > tr:nth-child(4) > td:nth-child(2) {
-    font-size: 187.5%;
-}
-tbody > tr:nth-child(5) > td:nth-child(2) {
-    font-size: 175%;
-}
-tbody > tr:nth-child(6) > td:nth-child(2) {
-    font-size: 162.5%;
-}
-tbody > tr:nth-child(7) > td:nth-child(2) {
-    font-size: 150%;
-}
-tbody > tr:nth-child(8) > td:nth-child(2) {
-    font-size: 137.5%;
-}
-tbody > tr:nth-child(9) > td:nth-child(2) {
-    font-size: 125%;
-}
-tbody > tr:nth-child(10) > td:nth-child(2) {
-    font-size: 112.5%;
-}
-
 .body {
     padding: 2em;
     background: #1b2838;
