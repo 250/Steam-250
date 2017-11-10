@@ -1,0 +1,26 @@
+{
+  "name": "250/steam-top-250",
+  "description": "Steam top 250 games as rated by players.",
+  "authors": [
+    {
+      "name": "Bilge",
+      "email": "bilge@scriptfusion.com"
+    }
+  ],
+  "require": {
+    "php": "^7.1",
+    "250/shared": "dev-master",
+    "twig/twig": "^2",
+    "doctrine/dbal": "^2",
+    "monolog/monolog": "^1",
+    "symfony/console": "^3"
+  },
+  "autoload": {
+    "psr-4": {
+      "ScriptFUSION\\Steam250\\SiteGenerator\\": "src"
+    }
+  },
+  "scripts": {
+    "test": "phpunit -c test"
+  }
+}

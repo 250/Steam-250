@@ -3,8 +3,6 @@ declare(strict_types=1);
 
 namespace ScriptFUSION\Steam250\SiteGenerator;
 
-use ScriptFUSION\Steam250\Application;
-
 final class TwigFactory
 {
     public function create(): \Twig_Environment

@@ -3,7 +3,8 @@ declare(strict_types=1);
 
 namespace ScriptFUSION\Steam250\SiteGenerator;
 
-use ScriptFUSION\Steam250\Database\DatabaseFactory;
+use Doctrine\DBAL\DriverManager;
+use Monolog\Logger;
 
 final class SiteGeneratorFactory
 {
@@ -11,7 +12,8 @@ final class SiteGeneratorFactory
     {
         return new SiteGenerator(
             (new TwigFactory)->create(),
-            (new DatabaseFactory)->create("$dbPath/steam.sqlite"),
+            DriverManager::getConnection(['url' => "sqlite:///$dbPath"]),
+            new Logger('Generate'),
             $outPath
         );
     }

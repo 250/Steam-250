@@ -1,0 +1,39 @@
+notifications:
+  email: false
+
+sudo: false
+
+language: php
+
+php:
+  - 7.1
+
+cache:
+  directories:
+    - vendor
+
+install:
+  - alias composer=composer\ -n && composer selfupdate
+  - composer validate
+  - composer install --no-progress --no-suggest
+
+before_script:
+  - git clone --depth=1 https://github.com/250/Steam-data.git ${datadir=~/Steam-data}
+
+  - echo "https://$GITHUB_TOKEN:@github.com" > ~/.git-credentials
+  - git clone --depth=1 -b ${branch=gh-pages} https://github.com/$TRAVIS_REPO_SLUG ${out=~/$branch}
+      -c user.name=Travis
+      -c user.email=bilge+travis@scriptfusion.com
+      -c credential.helper=store
+  - cd "$out" && pwd || exit
+  - rm -rfv * &&
+    cp -va "$TRAVIS_BUILD_DIR"/site/* . &&
+    cd -
+  - latest() { ls -1r "$1" | head -1; }
+
+script:
+  - bin/generate generate "$datadir"/"$(latest "$datadir")"/db/steam.sqlite "$out" || exit
+  - cd "$out" &&
+    git add -A . &&
+    git commit -m "Built from $TRAVIS_COMMIT." &&
+    git push origin HEAD:$branch
