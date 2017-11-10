@@ -8,11 +8,11 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster">
 
 <body>
-<div class="header">
+<section class="header">
     <div class="title" data-title="Steam Top 250">
         <h1>Steam Top 250</h1>
     </div>
-</div>
+</section>
 
 <div class="body">
 <div class="page">
@@ -29,15 +29,18 @@
     <tbody>
 {% for game in games %}
     <tr>
-        <td><a href="http://store.steampowered.com/app/{{ game.id }}/">
+        <td>
+            <a href="http://store.steampowered.com/app/{{ game.id }}/">
                 {%- if loop.index <= 15 -%}
                 <img src="http://cdn.akamai.steamstatic.com/steam/apps/{{ game.id }}/capsule_184x69.jpg"
-                     width="{{ min(184, 184 - (184 - 120) / 13 * (loop.index - 3)) }}">
+                     width="{{ min(184, 184 - (184 - 120) / 13 * (loop.index - 3))|round }}"
                 {%- else -%}
                 <img src="http://cdn.akamai.steamstatic.com/steam/apps/{{ game.id }}/capsule_sm_120.jpg"
-                     width="120" height="45">
-                {%- endif -%}
-            </a></td>
+                     width="120" height="45"
+                {%- endif %}
+                alt="{{ game.app_name }} logo"
+            ></a>
+        </td>
         <td>
             <span class="title" style="font-size: {{ min(200, max(100, 200 - 100 / 13 * (loop.index - 3))) }}%">
                 {{ loop.index }}.
@@ -57,6 +60,10 @@
 </table>
 </div>
 </div>
+
+<section class="footer">
+    <p>Generated on {{ 'now'|date }}.</p>
+</section>
 
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-109307736-1"></script>
 <script>
