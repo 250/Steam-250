@@ -20,7 +20,7 @@ a:visited {
 
     background: radial-gradient(30% 45% at center 60%, #212329, transparent);
 }
-.title {
+.header > .title {
     position: relative;
 
     margin: .2em;
@@ -28,7 +28,7 @@ a:visited {
     font: 920% Lobster, cursive;
     transform: rotate(-1deg);
 }
-.title:before{
+.header > .title:before{
     content: attr(data-title);
     position: absolute;
     width: 100%;
@@ -103,6 +103,7 @@ td:nth-child(2) {
     padding-right: 10px;
 }
 td:nth-child(3) {
+    padding-right: 10px;
     white-space: nowrap;
 }
 
@@ -116,8 +117,8 @@ td:nth-child(3) {
     width: 864px;
 }
 
-.score {
-    font-weight: bold;
+.title {
+    vertical-align: middle;
 }
 
 .genre, .genre:visited {
@@ -128,7 +129,6 @@ td:nth-child(3) {
     font-size: 11px;
     color: #67c1f5;
     background: rgba(103, 193, 245, 0.2);
-    vertical-align: middle;
 }
 .genre:hover {
     text-decoration: none;
@@ -139,10 +139,17 @@ td:nth-child(3) {
 .date {
     margin-left: .25em;
 
-    vertical-align: middle;
     white-space: nowrap;
     color: #9fadb8;
 }
 tbody > tr:nth-child(-n+10) .date {
     font-size: .9rem;
+}
+
+.score {
+    font-weight: bold;
+}
+
+.votes {
+    font-size: 85%;
 }
