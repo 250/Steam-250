@@ -136,7 +136,7 @@ td:nth-child(3) {
 .genre:hover {
     text-decoration: none;
     color: #cef;
-    background: rgba(103, 193, 245, 0.4);
+    background: rgba(103, 193, 245, 0.5);
 }
 
 .date {
@@ -144,7 +144,7 @@ td:nth-child(3) {
     font-size: 90%;
 
     white-space: nowrap;
-    color: #9fadb8;
+    color: #cccecf;
 }
 tbody > tr:nth-child(-n+10) .date {
     font-size: .9rem;
@@ -159,5 +159,14 @@ tbody > tr:nth-child(-n+10) .date {
 }
 
 .footer {
-    margin: 1em;
+    display: flex;
+    justify-content: center;
+    margin: 2em;
+}
+.footer > :nth-child(2) {
+    margin-left: 10em;
+    align-self: center;
+}
+.footer a {
+    color: #9e814c;
 }
