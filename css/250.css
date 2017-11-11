@@ -135,12 +135,13 @@ td:nth-child(3) {
 }
 .genre:hover {
     text-decoration: none;
-    color: #fff;
-    background: linear-gradient(135deg, #67c1f5 0, #417a9b 100%);
+    color: #cef;
+    background: rgba(103, 193, 245, 0.4);
 }
 
 .date {
     margin-left: .25em;
+    font-size: 90%;
 
     white-space: nowrap;
     color: #9fadb8;
@@ -159,7 +160,4 @@ tbody > tr:nth-child(-n+10) .date {
 
 .footer {
     margin: 1em;
-}
-.footer > * {
-    text-align: left;
 }
