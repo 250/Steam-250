@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster">
     <link rel="shortcut icon" href="favicon.png" type="image/png" />
 <body>
-<section class="header">
+<section id="header">
     <div class="title" data-title="Steam Top 250">
         <h1>Steam Top 250</h1>
     </div>
@@ -61,7 +61,7 @@
 </div>
 </div>
 
-<section class="footer">
+<section id="footer">
     <div>
         <h2>Generated {{ 'now'|date }}</h2>
         <ul>
@@ -81,6 +81,11 @@
         </ul>
     </div>
 </section>
+
+<div class="fixedlinks">
+    <a href="#header">Top</a>
+    <a href="#footer">Bottom</a>
+</div>
 
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-109307736-1"></script>
 <script>
