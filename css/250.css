@@ -24,6 +24,7 @@ a:visited {
     position: relative;
 
     margin: .2em;
+    margin-top: .1em;
 
     font: 920% Lobster, cursive;
     transform: rotate(-1deg);
