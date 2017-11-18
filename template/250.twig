@@ -53,7 +53,10 @@
         </td>
         <td>
             <span class="score">{{ (game.score * 10)|number_format(1) }}</span>
-            <span class="votes">({{ game.total_reviews }} votes)</span>
+            <span class="votes">
+                ({{ (game.positive_reviews / game.total_reviews * 100)|round(0, 'floor') }}%
+                {{ game.total_reviews }} votes)
+            </span>
         </td>
     </tr>
 {% endfor %}
