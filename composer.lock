@@ -12,17 +12,17 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/250/Shared.git",
-                "reference": "5546de3ebc1eb2facb31ab3f7555407af95047c6"
+                "reference": "1965f0b8026bf86cd96145b1bf7576eab6690ab6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/250/Shared/zipball/5546de3ebc1eb2facb31ab3f7555407af95047c6",
-                "reference": "5546de3ebc1eb2facb31ab3f7555407af95047c6",
+                "url": "https://api.github.com/repos/250/Shared/zipball/1965f0b8026bf86cd96145b1bf7576eab6690ab6",
+                "reference": "1965f0b8026bf86cd96145b1bf7576eab6690ab6",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.1",
-                "scriptfusion/static-class": "^1"
+                "eloquent/enumeration": "^5",
+                "php": "^7.1"
             },
             "type": "library",
             "autoload": {
@@ -38,7 +38,7 @@
                 }
             ],
             "description": "Top 250 shared code library.",
-            "time": "2017-11-09 15:26:13"
+            "time": "2017-11-19 03:37:26"
         },
         {
             "name": "doctrine/annotations",
@@ -324,16 +324,16 @@
         },
         {
             "name": "doctrine/dbal",
-            "version": "v2.6.2",
+            "version": "v2.6.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/dbal.git",
-                "reference": "1a4ee83a5a709555f2c6f9057a3aacf892451c7e"
+                "reference": "e3eed9b1facbb0ced3a0995244843a189e7d1b13"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/dbal/zipball/1a4ee83a5a709555f2c6f9057a3aacf892451c7e",
-                "reference": "1a4ee83a5a709555f2c6f9057a3aacf892451c7e",
+                "url": "https://api.github.com/repos/doctrine/dbal/zipball/e3eed9b1facbb0ced3a0995244843a189e7d1b13",
+                "reference": "e3eed9b1facbb0ced3a0995244843a189e7d1b13",
                 "shasum": ""
             },
             "require": {
@@ -393,7 +393,7 @@
                 "persistence",
                 "queryobject"
             ],
-            "time": "2017-08-28T11:02:56+00:00"
+            "time": "2017-11-19T13:38:54+00:00"
         },
         {
             "name": "doctrine/inflector",
@@ -515,6 +515,57 @@
                 "parser"
             ],
             "time": "2014-09-09T13:34:57+00:00"
+        },
+        {
+            "name": "eloquent/enumeration",
+            "version": "5.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/eloquent/enumeration.git",
+                "reference": "0242859435d9b135939816858348556d3cde9e3c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/eloquent/enumeration/zipball/0242859435d9b135939816858348556d3cde9e3c",
+                "reference": "0242859435d9b135939816858348556d3cde9e3c",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3"
+            },
+            "require-dev": {
+                "icecave/archer": "dev-develop",
+                "phpunit/phpunit": "^4",
+                "sami/sami": "^3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Eloquent\\Enumeration\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Erin Millard",
+                    "email": "ezzatron@gmail.com",
+                    "homepage": "http://ezzatron.com/"
+                }
+            ],
+            "description": "An enumeration implementation for PHP.",
+            "homepage": "https://github.com/eloquent/enumeration",
+            "keywords": [
+                "class",
+                "enum",
+                "enumeration",
+                "multiton",
+                "set",
+                "type"
+            ],
+            "time": "2015-11-03T22:21:38+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -642,47 +693,17 @@
             "time": "2016-10-10T12:19:37+00:00"
         },
         {
-            "name": "scriptfusion/static-class",
-            "version": "1.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/ScriptFUSION/StaticClass.git",
-                "reference": "87eb29703db3baba09b68d35b739372370bfb5a0"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/ScriptFUSION/StaticClass/zipball/87eb29703db3baba09b68d35b739372370bfb5a0",
-                "reference": "87eb29703db3baba09b68d35b739372370bfb5a0",
-                "shasum": ""
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "ScriptFUSION\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "authors": [
-                {
-                    "name": "Bilge",
-                    "email": "bilge@scriptfusion.com"
-                }
-            ],
-            "description": "Prevents class instantiation.",
-            "time": "2016-06-04T13:42:04+00:00"
-        },
-        {
             "name": "symfony/console",
-            "version": "v3.3.10",
+            "version": "v3.3.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "116bc56e45a8e5572e51eb43ab58c769a352366c"
+                "reference": "63cd7960a0a522c3537f6326706d7f3b8de65805"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/116bc56e45a8e5572e51eb43ab58c769a352366c",
-                "reference": "116bc56e45a8e5572e51eb43ab58c769a352366c",
+                "url": "https://api.github.com/repos/symfony/console/zipball/63cd7960a0a522c3537f6326706d7f3b8de65805",
+                "reference": "63cd7960a0a522c3537f6326706d7f3b8de65805",
                 "shasum": ""
             },
             "require": {
@@ -737,20 +758,20 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
-            "time": "2017-10-02T06:42:24+00:00"
+            "time": "2017-11-16T15:24:32+00:00"
         },
         {
             "name": "symfony/debug",
-            "version": "v3.3.10",
+            "version": "v3.3.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/debug.git",
-                "reference": "eb95d9ce8f18dcc1b3dfff00cb624c402be78ffd"
+                "reference": "74557880e2846b5c84029faa96b834da37e29810"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/debug/zipball/eb95d9ce8f18dcc1b3dfff00cb624c402be78ffd",
-                "reference": "eb95d9ce8f18dcc1b3dfff00cb624c402be78ffd",
+                "url": "https://api.github.com/repos/symfony/debug/zipball/74557880e2846b5c84029faa96b834da37e29810",
+                "reference": "74557880e2846b5c84029faa96b834da37e29810",
                 "shasum": ""
             },
             "require": {
@@ -793,7 +814,7 @@
             ],
             "description": "Symfony Debug Component",
             "homepage": "https://symfony.com",
-            "time": "2017-10-02T06:42:24+00:00"
+            "time": "2017-11-10T16:38:39+00:00"
         },
         {
             "name": "symfony/polyfill-mbstring",

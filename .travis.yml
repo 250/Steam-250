@@ -32,7 +32,8 @@ before_script:
   - latest() { ls -1r "$1" | head -1; }
 
 script:
-  - bin/generate generate "$datadir"/"$(latest "$datadir")"/db/steam.sqlite "$out" || exit
+  - bin/generate generate -w 4.4172 "$datadir"/"$(latest "$datadir")"/steam.sqlite "$out/index.html"
+    || exit
   - cd "$out" &&
     git add -A . &&
     git commit -m "Built from $TRAVIS_COMMIT." &&
