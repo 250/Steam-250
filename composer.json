@@ -9,10 +9,15 @@
   ],
   "require": {
     "php": "^7.1",
-    "250/shared": "dev-master",
+    "provider/steam": "dev-master",
+    "transformers/mapping-transformer": "4.0.x-dev",
+    "scriptfusion/porter": "@dev",
+    "connectors/http": "@dev",
+    "joomla/di": "^2@dev",
     "twig/twig": "^2",
     "doctrine/dbal": "^2",
     "monolog/monolog": "^1",
+    "eloquent/enumeration": "^5",
     "symfony/console": "^3"
   },
   "autoload": {

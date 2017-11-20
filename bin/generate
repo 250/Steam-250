@@ -2,13 +2,8 @@
 <?php
 declare(strict_types=1);
 
-use ScriptFUSION\Steam250\SiteGenerator\GenerateCommand;
-use Symfony\Component\Console\Application;
+use ScriptFUSION\Steam250\SiteGenerator\Application;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
-$app = new Application;
-
-$app->add(new GenerateCommand);
-
-$app->run();
+(new Application)->start();

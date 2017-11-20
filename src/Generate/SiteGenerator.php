@@ -1,11 +1,12 @@
 <?php
 declare(strict_types=1);
 
-namespace ScriptFUSION\Steam250\SiteGenerator;
+namespace ScriptFUSION\Steam250\SiteGenerator\Generate;
 
 use Doctrine\DBAL\Connection;
 use Psr\Log\LoggerInterface;
-use ScriptFUSION\Top250\Shared\Algorithm;
+use ScriptFUSION\Steam250\SiteGenerator\Algorithm;
+use ScriptFUSION\Steam250\SiteGenerator\Database\Queries;
 
 final class SiteGenerator
 {
