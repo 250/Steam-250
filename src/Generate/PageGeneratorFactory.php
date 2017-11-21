@@ -5,20 +5,18 @@ namespace ScriptFUSION\Steam250\SiteGenerator\Generate;
 
 use Doctrine\DBAL\DriverManager;
 use Monolog\Logger;
-use ScriptFUSION\Steam250\SiteGenerator\Algorithm;
+use ScriptFUSION\Steam250\SiteGenerator\Rank\RankerFactory;
 use ScriptFUSION\Steam250\SiteGenerator\TwigFactory;
 
-final class SiteGeneratorFactory
+final class PageGeneratorFactory
 {
-    public function create(string $dbPath, string $outPath, Algorithm $algorithm, float $weight): SiteGenerator
+    public function create(string $dbPath): PageGenerator
     {
-        return new SiteGenerator(
+        return new PageGenerator(
             (new TwigFactory)->create(),
             DriverManager::getConnection(['url' => "sqlite:///$dbPath"]),
-            new Logger('Generate'),
-            $outPath,
-            $algorithm,
-            $weight
+            (new RankerFactory)->create($dbPath),
+            new Logger('Generate')
         );
     }
 }

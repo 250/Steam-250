@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace ScriptFUSION\Steam250\SiteGenerator;
+namespace ScriptFUSION\Steam250\SiteGenerator\Toplist;
 
 use Eloquent\Enumeration\AbstractEnumeration;
 

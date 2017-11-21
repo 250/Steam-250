@@ -3,8 +3,7 @@ declare(strict_types=1);
 
 namespace ScriptFUSION\Steam250\SiteGenerator;
 
-use ScriptFUSION\Steam250\SiteGenerator\Generate\TopCommand;
-use ScriptFUSION\Steam250\SiteGenerator\Rank\RankCommand;
+use ScriptFUSION\Steam250\SiteGenerator\Generate\PageCommand;
 
 final class Application
 {
@@ -14,8 +13,7 @@ final class Application
     {
         $this->cli = $cli = new \Symfony\Component\Console\Application;
 
-        $cli->add(new RankCommand);
-        $cli->add(new TopCommand);
+        $cli->add(new PageCommand);
     }
 
     public function start(): int

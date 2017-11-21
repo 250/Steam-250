@@ -5,26 +5,40 @@ namespace ScriptFUSION\Steam250\SiteGenerator\Database;
 
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\Driver\Statement;
-use ScriptFUSION\Steam250\SiteGenerator\Algorithm;
+use ScriptFUSION\Steam250\SiteGenerator\Toplist\Algorithm;
+use ScriptFUSION\Steam250\SiteGenerator\Toplist\Toplist;
 
 final class Queries
 {
-    private const TOP_250_GAMES = 'SELECT * FROM rank NATURAL JOIN app WHERE algorithm = ? ORDER BY rank';
+    private const RANKED_LIST = 'SELECT * FROM rank NATURAL JOIN app WHERE list_id = ? ORDER BY rank';
 
-    public static function fetchTop250Games(Connection $database, Algorithm $algorithm, float $weight): Statement
+    /**
+     * Fetches a previously saved ranked list.
+     *
+     * @param Connection $database
+     * @param Toplist $toplist List.
+     *
+     * @return Statement
+     */
+    public static function fetchRankedList(Connection $database, Toplist $toplist): Statement
     {
-        return $database->executeQuery(self::TOP_250_GAMES, ["$algorithm$weight"]);
+        return $database->executeQuery(self::RANKED_LIST, [$toplist->generateHash()]);
     }
 
-    public static function fetchAppsSortedByScore(
-        Connection $database,
-        Algorithm $algorithm,
-        float $weight
-    ): Statement {
+    /**
+     * Ranks the specified list according to the list's algorithm and weighting.
+     *
+     * @param Connection $database
+     * @param Toplist $toplist List.
+     *
+     * @return Statement
+     */
+    public static function rankList(Connection $database, Toplist $toplist): Statement
+    {
         return $database->executeQuery(
             'SELECT *, '
-            . self::getQueryFragment($algorithm, $weight)
-            . ' ORDER BY score DESC'
+            . self::getQueryFragment($toplist->getAlgorithm(), $toplist->getWeight())
+            . " WHERE app_type = 'game' ORDER BY score {$toplist->getDirection()} LIMIT {$toplist->getLimit()}"
         );
     }
 

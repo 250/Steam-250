@@ -5,66 +5,44 @@ namespace ScriptFUSION\Steam250\SiteGenerator\Rank;
 
 use Doctrine\DBAL\Connection;
 use Psr\Log\LoggerInterface;
-use ScriptFUSION\Steam250\SiteGenerator\Algorithm;
 use ScriptFUSION\Steam250\SiteGenerator\Database\Queries;
+use ScriptFUSION\Steam250\SiteGenerator\Toplist\Toplist;
 
 final class Ranker
 {
     private $database;
     private $logger;
-    private $algorithm;
-    private $weight;
 
-    public function __construct(
-        Connection $database,
-        LoggerInterface $logger,
-        Algorithm $algorithm,
-        float $weight
-    ) {
+    public function __construct(Connection $database, LoggerInterface $logger)
+    {
         $this->database = $database;
         $this->logger = $logger;
-        $this->algorithm = $algorithm;
-        $this->weight = $weight;
     }
 
-    public function decorate(int $targetCount = 250, string $targetType = 'game'): void
+    public function rank(Toplist $toplist): void
     {
         $this->logger->info(
-            "Decorating up to $targetCount \"$targetType\" apps sorted by \"$this->algorithm\" ($this->weight)."
+            "Ranking up to {$toplist->getLimit()} games"
+                . " sorted by \"{$toplist->getAlgorithm()}\" ({$toplist->getWeight()})"
+                . " in database: \"{$this->database->getParams()['path']}\"."
         );
 
         $matched = 0;
-        $cursor = Queries::fetchAppsSortedByScore($this->database, $this->algorithm, $this->weight);
+        $cursor = Queries::rankList($this->database, $toplist);
 
-        while ($matched < $targetCount && false !== $app = $cursor->fetch()) {
-            if (!isset($app['app_type'])) {
-                $this->logger->debug("Fetching missing info for #$app[id] $app[app_name]");
-
-                // Insert missing data into database.
-                if (!$details = Decorator::decorate($this->database, +$app['id'], $this->logger)) {
-                    continue;
-                }
-
-                // Update local state representation.
-                $app = $details + $app;
-            }
-
-            if ($app['app_type'] === $targetType) {
-                // Insert app rank into database.
-                $this->database->executeQuery(
-                    'INSERT OR REPLACE INTO rank (id, algorithm, rank, score) VALUES (?, ?, ?, ?)',
-                    [
-                        $app['id'],
-                        "$this->algorithm$this->weight",
-                        ++$matched,
-                        $app['score'],
-                    ]
-                );
-            }
-
-            $this->logger->info("$matched/$targetCount #$app[id] ($app[app_name]) is $app[app_type].");
+        while (false !== $app = $cursor->fetch()) {
+            // Insert app rank into database.
+            $this->database->executeQuery(
+                'INSERT OR REPLACE INTO rank (id, list_id, rank, score) VALUES (?, ?, ?, ?)',
+                [
+                    $app['id'],
+                    $toplist->generateHash(),
+                    ++$matched,
+                    $app['score'],
+                ]
+            );
         }
 
-        $this->logger->info('Finished :^)');
+        $this->logger->info("Finished ranking $matched games.");
     }
 }

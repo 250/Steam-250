@@ -16,10 +16,10 @@ final class DatabaseFactory
         $connection->exec(
             'CREATE TABLE IF NOT EXISTS rank (
                 id INTEGER NOT NULL,
-                algorithm TEXT NOT NULL,
+                list_id TEXT NOT NULL,
                 rank INTEGER NOT NULL,
                 score REAL NOT NULL,
-                PRIMARY KEY(algorithm, rank)
+                PRIMARY KEY(list_id, rank)
             );'
         );
 
