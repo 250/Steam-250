@@ -33,7 +33,7 @@ before_script:
   - rm -rfv * &&
     cp -va "$TRAVIS_BUILD_DIR"/site/* . &&
     cd -
-  - latest() { ls -1r "$1" | head -1; }
+  - latest() { ls -1vr "$1" | head -1; }
 
 script:
   - bin/generate rank -w 4.4172 "${db=$datadir/$(latest "$datadir")/steam.sqlite}" || exit
