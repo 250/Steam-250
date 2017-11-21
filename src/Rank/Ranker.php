@@ -24,7 +24,7 @@ final class Ranker
         $this->logger->info(
             "Ranking up to {$toplist->getLimit()} games"
                 . " sorted by \"{$toplist->getAlgorithm()}\" ({$toplist->getWeight()})"
-                . " in database: \"{$this->database->getParams()['path']}\"."
+                . " from database: \"{$this->database->getParams()['path']}\"."
         );
 
         $matched = 0;
@@ -36,7 +36,7 @@ final class Ranker
                 'INSERT OR REPLACE INTO rank (id, list_id, rank, score) VALUES (?, ?, ?, ?)',
                 [
                     $app['id'],
-                    $toplist->generateHash(),
+                    $toplist->getTemplate(),
                     ++$matched,
                     $app['score'],
                 ]

@@ -38,7 +38,7 @@ a:visited {
 
     text-align: center;
     background: linear-gradient(179deg, #e6c88a 20%, #665233, #9e814c 90%);
-    color:transparent;
+    color: transparent;
     -webkit-background-clip: text;
 }
 h1 {
@@ -118,6 +118,15 @@ td:nth-child(3) {
 .page {
     margin: 0 auto;
     width: 864px;
+}
+
+.links {
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 70%;
+}
+.links > a {
+    margin: 0 .5em;
 }
 
 .title {

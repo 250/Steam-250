@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>{{ block('title') }}</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster">
+    <link rel="shortcut icon" href="favicon.png" type="image/png" />
+<body>
+<section id="header">
+    <div class="title" data-title="{{ block('heading') }}">
+        <h1>{{ block('heading') }}</h1>
+    </div>
+</section>
+
+<div class="body">
+<div class="page">
+<div class="links">
+    <a href="/">Top 250</a> &ndash; <a href="bottom100.html">Bottom 100</a>
+</div>
+{{ block('lead') }}
+<table>
+    <thead>
+        <tr>
+            <td>
+            <td>Rank, title, genre and date
+            <td>Player rating
+    <tbody>
+{% for game in games %}
+    <tr>
+        <td>
+            <a href="http://store.steampowered.com/app/{{ game.id }}/">
+                {%- if loop.index <= 15 -%}
+                <img src="http://cdn.akamai.steamstatic.com/steam/apps/{{ game.id }}/capsule_184x69.jpg"
+                     width="{{ min(184, 184 - (184 - 120) / 13 * (loop.index - 3))|round }}"
+                {%- else -%}
+                <img src="http://cdn.akamai.steamstatic.com/steam/apps/{{ game.id }}/capsule_sm_120.jpg"
+                     width="120" height="45"
+                {%- endif %}
+                alt="{{ game.app_name }} logo"
+            ></a>
+        </td>
+        <td>
+            <span class="title" style="font-size: {{ min(200, max(100, 200 - 100 / 13 * (loop.index - 3))) }}%">
+                {{ loop.index }}.
+                <a href="http://store.steampowered.com/app/{{ game.id }}/">
+                    {{- game.app_name -}}
+                </a>
+            </span>
+            <a href="http://store.steampowered.com/tag/en/{{ game.genre|url_encode }}/" class="genre">
+                {{- game.genre -}}
+            </a>
+            {% if game.release_date %}
+            <span class="date">({{ game.release_date|date('M Y') }})</span>
+            {% endif %}
+        </td>
+        <td>
+            <span class="score">{{ (game.score * 10)|number_format(1) }}</span>
+            <span class="votes">
+                ({{ (game.positive_reviews / game.total_reviews * 100)|round(0, 'floor') }}%
+                {{ game.total_reviews }} votes)
+            </span>
+        </td>
+    </tr>
+{% endfor %}
+</table>
+</div>
+</div>
+
+<section id="footer">
+    <div>
+        <h2>Generated {{ 'now'|date }}</h2>
+        <ul>
+            <li><a href="https://github.com/250">Source code</a>
+            <li><a href="mailto:bilge@scriptfusion.com">Contact</a>
+        </ul>
+    </div>
+
+    <div>
+        <h2>Other top lists</h2>
+        <ul>
+            <li><a href="http://store.steampowered.com/search/?sort_by=Reviews_DESC&category1=998">
+                    Official Steam top games list
+                </a>
+            <li><a href="https://steamdb.info/stats/gameratings/">SteamDB top rated games</a>
+            <li><a href="https://steamspy.com/#tab-total">Steam Spy top games by playtime
+            <li><a href="http://www.imdb.com/chart/top">IMDb Top 250 movies</a>
+        </ul>
+    </div>
+</section>
+
+<div class="fixedlinks">
+    <a href="#header">Top</a>
+    <a href="#footer">Bottom</a>
+</div>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-109307736-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-109307736-1');
+</script>

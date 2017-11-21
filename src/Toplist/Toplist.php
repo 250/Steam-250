@@ -27,11 +27,6 @@ class Toplist
         $this->direction = $direction ?: SortDirection::DESC();
     }
 
-    public function generateHash(): string
-    {
-        return "$this->algorithm$this->weight$this->direction";
-    }
-
     public function getTemplate(): string
     {
         return $this->template;

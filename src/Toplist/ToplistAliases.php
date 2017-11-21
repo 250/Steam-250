@@ -12,6 +12,8 @@ final class ToplistAliases
     private const ALIASES = [
         '250' => Top250List::class,
         'top250' => Top250List::class,
+        'bottom' => Bottom100List::class,
+        'b100' => Bottom100List::class,
     ];
 
     public static function createToplist(string $name): Toplist
@@ -19,5 +21,10 @@ final class ToplistAliases
         $name = self::ALIASES[$name];
 
         return new $name;
+    }
+
+    public static function getListClassNames(): array
+    {
+        return array_unique(self::ALIASES);
     }
 }

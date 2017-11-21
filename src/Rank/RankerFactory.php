@@ -13,7 +13,7 @@ final class RankerFactory
     {
         return new Ranker(
             (new DatabaseFactory)->create($dbPath),
-            (new Logger('Decorate'))->pushHandler(new StreamHandler(STDERR, Logger::INFO))
+            (new Logger('Rank'))->pushHandler(new StreamHandler(STDERR, Logger::INFO))
         );
     }
 }

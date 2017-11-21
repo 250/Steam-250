@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace ScriptFUSION\Steam250\SiteGenerator\Generate;
 
-use Doctrine\DBAL\DriverManager;
 use Monolog\Logger;
+use ScriptFUSION\Steam250\SiteGenerator\Database\DatabaseFactory;
 use ScriptFUSION\Steam250\SiteGenerator\Rank\RankerFactory;
 use ScriptFUSION\Steam250\SiteGenerator\TwigFactory;
 
@@ -14,7 +14,7 @@ final class PageGeneratorFactory
     {
         return new PageGenerator(
             (new TwigFactory)->create(),
-            DriverManager::getConnection(['url' => "sqlite:///$dbPath"]),
+            (new DatabaseFactory)->create($dbPath),
             (new RankerFactory)->create($dbPath),
             new Logger('Generate')
         );

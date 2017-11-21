@@ -22,7 +22,7 @@ final class Queries
      */
     public static function fetchRankedList(Connection $database, Toplist $toplist): Statement
     {
-        return $database->executeQuery(self::RANKED_LIST, [$toplist->generateHash()]);
+        return $database->executeQuery(self::RANKED_LIST, [$toplist->getTemplate()]);
     }
 
     /**
