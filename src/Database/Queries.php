@@ -5,6 +5,8 @@ namespace ScriptFUSION\Steam250\SiteGenerator\Database;
 
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\Driver\Statement;
+use Doctrine\DBAL\Query\QueryBuilder;
+use ScriptFUSION\Steam250\SiteGenerator\Rank\RankingQueries;
 use ScriptFUSION\Steam250\SiteGenerator\Toplist\Algorithm;
 use ScriptFUSION\Steam250\SiteGenerator\Toplist\Toplist;
 
@@ -35,36 +37,49 @@ final class Queries
      */
     public static function rankList(Connection $database, Toplist $toplist): Statement
     {
-        return $database->executeQuery(
-            'SELECT *, '
-            . self::getQueryFragment($toplist->getAlgorithm(), $toplist->getWeight())
-            . " WHERE app_type = 'game' ORDER BY score {$toplist->getDirection()} LIMIT {$toplist->getLimit()}"
-        );
+        $query = $database->createQueryBuilder()
+            ->select('*')
+            ->from('app')
+            ->where('app_type = \'game\'')
+            ->orderBy('score', $toplist->getDirection())
+            ->setMaxResults($toplist->getLimit())
+        ;
+
+        self::calculateScore($query, $toplist->getAlgorithm(), $toplist->getWeight());
+
+        return $query->execute();
     }
 
-    private static function getQueryFragment(Algorithm $algorithm, float $weight): string
+    private static function calculateScore(QueryBuilder $builder, Algorithm $algorithm, float $weight): void
     {
         switch ($algorithm) {
             case Algorithm::WILSON:
-                return QueryFragment::calculateWilsonScore($weight);
+                RankingQueries::calculateWilsonScore($builder, $weight);
+                break;
 
             case Algorithm::BAYESIAN:
-                return QueryFragment::calculateBayesianScore($weight);
+                RankingQueries::calculateBayesianScore($builder, $weight);
+                break;
 
             case Algorithm::LAPLACE:
-                return QueryFragment::calculateLaplaceScore($weight);
+                RankingQueries::calculateLaplaceScore($builder, $weight);
+                break;
 
             case Algorithm::LAPLACE_LOG:
-                return QueryFragment::calculateLaplaceLogScore($weight);
+                RankingQueries::calculateLaplaceLogScore($builder, $weight);
+                break;
 
             case Algorithm::DIRICHLET_PRIOR:
-                return QueryFragment::calculateDirichletPriorScore($weight);
+                RankingQueries::calculateDirichletPriorScore($builder, $weight);
+                break;
 
             case Algorithm::DIRICHLET_PRIOR_LOG:
-                return QueryFragment::calculateDirichletPriorLogScore($weight);
+                RankingQueries::calculateDirichletPriorLogScore($builder, $weight);
+                break;
 
             case Algorithm::TORN:
-                return QueryFragment::calculateTornScore($weight);
+                RankingQueries::calculateTornScore($builder, $weight);
+                break;
         }
     }
 }

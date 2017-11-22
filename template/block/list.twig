@@ -58,13 +58,15 @@
         <td>
             <span class="score">{{ (game.score * 10)|number_format(1) }}</span>
             <span class="votes">
-                ({{ (game.positive_reviews / game.total_reviews * 100)|round(0, 'floor') }}%
+                ({{ (game.positive_reviews / game.total_reviews * 100)|round }}%
                 {{ game.total_reviews }} votes)
             </span>
         </td>
     </tr>
 {% endfor %}
 </table>
+
+<div class="algo" title="Ranking algorithm">{{ toplist.algorithm }} {{ toplist.weight }}</div>
 </div>
 </div>
 

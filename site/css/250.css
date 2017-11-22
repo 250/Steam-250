@@ -167,6 +167,13 @@ tbody > tr:nth-child(-n+10) .date {
     font-size: 85%;
 }
 
+.algo {
+    text-transform: lowercase;
+    text-align: center;
+    font-size: 70%;
+    opacity: .15;
+}
+
 #footer {
     display: flex;
     justify-content: center;

@@ -44,7 +44,7 @@ final class PageGenerator
 
         file_put_contents(
             $out = "$outPath/{$toplist->getTemplate()}.html",
-            $this->twig->load("{$toplist->getTemplate()}.twig")->render(compact('games'))
+            $this->twig->load("{$toplist->getTemplate()}.twig")->render(compact('games', 'toplist'))
         );
 
         $this->logger->info("Page generated at: \"$out\".");

@@ -10,7 +10,6 @@
   "require": {
     "php": "^7.1",
     "scriptfusion/static-class": "^1",
-    "joomla/di": "^2@dev",
     "twig/twig": "^2",
     "doctrine/dbal": "^2",
     "monolog/monolog": "^1",
