@@ -12,7 +12,7 @@ use ScriptFUSION\Steam250\SiteGenerator\Toplist\Toplist;
 
 final class Queries
 {
-    private const RANKED_LIST = 'SELECT * FROM rank NATURAL JOIN app WHERE list_id = ? ORDER BY rank';
+    private const RANKED_LIST = 'SELECT * FROM rank NATURAL JOIN app WHERE list_id = ? ORDER BY rank LIMIT ?';
 
     /**
      * Fetches a previously saved ranked list.
@@ -24,7 +24,7 @@ final class Queries
      */
     public static function fetchRankedList(Connection $database, Toplist $toplist): Statement
     {
-        return $database->executeQuery(self::RANKED_LIST, [$toplist->getTemplate()]);
+        return $database->executeQuery(self::RANKED_LIST, [$toplist->getTemplate(), $toplist->getLimit()]);
     }
 
     /**
@@ -46,6 +46,7 @@ final class Queries
         ;
 
         self::calculateScore($query, $toplist->getAlgorithm(), $toplist->getWeight());
+        $toplist->customizeQuery($query);
 
         return $query->execute();
     }

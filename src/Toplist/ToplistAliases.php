@@ -4,6 +4,11 @@ declare(strict_types=1);
 namespace ScriptFUSION\Steam250\SiteGenerator\Toplist;
 
 use ScriptFUSION\StaticClass;
+use ScriptFUSION\Steam250\SiteGenerator\Toplist\Impl\Bottom100List;
+use ScriptFUSION\Steam250\SiteGenerator\Toplist\Impl\ThisMonthList;
+use ScriptFUSION\Steam250\SiteGenerator\Toplist\Impl\ThisQuarterList;
+use ScriptFUSION\Steam250\SiteGenerator\Toplist\Impl\ThisYearList;
+use ScriptFUSION\Steam250\SiteGenerator\Toplist\Impl\Top250List;
 
 final class ToplistAliases
 {
@@ -11,9 +16,10 @@ final class ToplistAliases
 
     private const ALIASES = [
         '250' => Top250List::class,
-        'top250' => Top250List::class,
-        'bottom' => Bottom100List::class,
         'b100' => Bottom100List::class,
+        '30d' => ThisMonthList::class,
+        '90d' => ThisQuarterList::class,
+        '365d' => ThisYearList::class,
     ];
 
     public static function createToplist(string $name): Toplist

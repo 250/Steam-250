@@ -3,9 +3,10 @@ declare(strict_types=1);
 
 namespace ScriptFUSION\Steam250\SiteGenerator\Toplist;
 
+use Doctrine\DBAL\Query\QueryBuilder;
 use ScriptFUSION\Steam250\SiteGenerator\Database\SortDirection;
 
-class Toplist
+abstract class Toplist
 {
     private $template;
     private $algorithm;
@@ -26,6 +27,8 @@ class Toplist
         $this->limit = $limit;
         $this->direction = $direction ?: SortDirection::DESC();
     }
+
+    abstract public function customizeQuery(QueryBuilder $builder): void;
 
     public function getTemplate(): string
     {
