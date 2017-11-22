@@ -137,6 +137,7 @@ td:nth-child(3) {
     margin-left: .25em;
     padding: 3px 7px;
     border-radius: 2px;
+    white-space: nowrap;
 
     font-size: 11px;
     color: #67c1f5;
