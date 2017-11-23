@@ -1,6 +1,6 @@
 {
   "name": "250/steam-top-250",
-  "description": "Steam top 250 games as rated by players.",
+  "description": "Generates the Steam Top 250 website.",
   "authors": [
     {
       "name": "Bilge",
@@ -9,6 +9,7 @@
   ],
   "require": {
     "php": "^7.1",
+    "250/shared": "dev-master",
     "scriptfusion/static-class": "^1",
     "twig/twig": "^2",
     "doctrine/dbal": "^2",

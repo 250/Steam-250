@@ -4,8 +4,42 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "43086ec9628c1d4498a2e9450357551a",
+    "content-hash": "86a4bac95d1dfafa8e89f47312460e4f",
     "packages": [
+        {
+            "name": "250/shared",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/250/Shared.git",
+                "reference": "7b54d15342b0b88477f287637718a20cbe23b4c7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/250/Shared/zipball/7b54d15342b0b88477f287637718a20cbe23b4c7",
+                "reference": "7b54d15342b0b88477f287637718a20cbe23b4c7",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.1",
+                "scriptfusion/static-class": "^1"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "ScriptFUSION\\Top250\\Shared\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Bilge",
+                    "email": "bilge@scriptfusion.com"
+                }
+            ],
+            "description": "Top 250 shared code library.",
+            "time": "2017-11-23 06:35:10"
+        },
         {
             "name": "doctrine/annotations",
             "version": "v1.5.0",
@@ -1365,7 +1399,9 @@
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "250/shared": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

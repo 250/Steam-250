@@ -5,6 +5,8 @@ namespace ScriptFUSION\Steam250\SiteGenerator\Toplist;
 
 use ScriptFUSION\StaticClass;
 use ScriptFUSION\Steam250\SiteGenerator\Toplist\Impl\Bottom100List;
+use ScriptFUSION\Steam250\SiteGenerator\Toplist\Impl\Linux250List;
+use ScriptFUSION\Steam250\SiteGenerator\Toplist\Impl\Mac250List;
 use ScriptFUSION\Steam250\SiteGenerator\Toplist\Impl\ThisMonthList;
 use ScriptFUSION\Steam250\SiteGenerator\Toplist\Impl\ThisQuarterList;
 use ScriptFUSION\Steam250\SiteGenerator\Toplist\Impl\ThisYearList;
@@ -20,6 +22,8 @@ final class ToplistAliases
         '30d' => ThisMonthList::class,
         '90d' => ThisQuarterList::class,
         '365d' => ThisYearList::class,
+        'mac' => Mac250List::class,
+        'linux' => Linux250List::class,
     ];
 
     public static function createToplist(string $name): Toplist

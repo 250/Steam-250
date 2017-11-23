@@ -125,7 +125,7 @@ td:nth-child(3) {
     text-transform: uppercase;
     font-size: 70%;
 }
-.links > a {
+.links a {
     margin: 0 .5em;
 }
 
@@ -158,6 +158,14 @@ td:nth-child(3) {
 }
 tbody > tr:nth-child(-n+10) .date {
     font-size: .9rem;
+}
+
+.platforms {
+    margin-left: .25em;
+    vertical-align: sub;
+    vertical-align: -moz-middle-with-baseline;
+    vertical-align: -webkit-baseline-middle;
+    opacity: .3;
 }
 
 .score {

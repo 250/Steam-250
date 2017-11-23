@@ -16,16 +16,17 @@
 
 <div class="body">
 <div class="page">
-<div class="links">
-    <a href="/">Top 250</a> &ndash; <a href="bottom100.html">Bottom 100</a><br/>
-    <a href="30day.html">30 day</a> &ndash; <a href="90day.html">90 day</a> &ndash; <a href="365day.html">365 day</a>
-</div>
+<ul class="links">
+    <li><a href="/">Top 250</a> &ndash; <a href="bottom100.html">Bottom 100</a>
+    <li><a href="30day.html">30 day</a> &ndash; <a href="90day.html">90 day</a> &ndash; <a href="365day.html">365 day</a>
+    <li><a href="mac250.html">Mac 250</a> &ndash; <a href="linux250.html">Linux 250</a>
+</ul>
 {{ block('lead') }}
 <table>
     <thead>
         <tr>
             <td>
-            <td>Rank, title, genre and date
+            <td>Rank, title, genre, date and platforms
             <td>Player rating
     <tbody>
 {% for game in games %}
@@ -55,6 +56,20 @@
             {% if game.release_date %}
             <span class="date">({{ game.release_date|date('M Y') }})</span>
             {% endif %}
+            <span class="platforms">
+            {%- if game.platforms b-and constant('ScriptFUSION\\Top250\\Shared\\Platform::WINDOWS') -%}
+                <img src="http://store.akamai.steamstatic.com/public/images/v6/icon_platform_win.png?v=3"
+                    alt="Windows" title="Windows">
+            {%- endif -%}
+            {%- if game.platforms b-and constant('ScriptFUSION\\Top250\\Shared\\Platform::MAC') -%}
+                <img src="http://store.akamai.steamstatic.com/public/images/v6/icon_platform_mac.png"
+                    alt="Mac" title="Mac">
+            {%- endif -%}
+            {%- if game.platforms b-and constant('ScriptFUSION\\Top250\\Shared\\Platform::LINUX') -%}
+                <img src="http://store.akamai.steamstatic.com/public/images/v6/icon_platform_linux.png"
+                    alt="Linux" title="Linux">
+            {%- endif -%}
+            </span>
         </td>
         <td>
             <span class="score">{{ (game.score * 10)|number_format(1) }}</span>
