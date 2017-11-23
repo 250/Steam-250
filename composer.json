@@ -13,6 +13,7 @@
     "twig/twig": "^2",
     "doctrine/dbal": "^2",
     "monolog/monolog": "^1",
+    "voku/html-min": "^1",
     "eloquent/enumeration": "^5",
     "symfony/console": "^3"
   },

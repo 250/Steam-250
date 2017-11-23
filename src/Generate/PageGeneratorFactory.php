@@ -16,7 +16,8 @@ final class PageGeneratorFactory
             (new TwigFactory)->create(),
             (new DatabaseFactory)->create($dbPath),
             (new RankerFactory)->create($dbPath),
-            new Logger('Generate')
+            new Logger('Generate'),
+            (new MinifierFactory)->create()
         );
     }
 }

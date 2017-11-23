@@ -41,7 +41,7 @@ script:
   - cd "$out" &&
     git add -A . &&
     git commit -m "Built from $TRAVIS_COMMIT." &&
-    git push origin HEAD:$branch
+    [[ -r index.html ]] && git push origin HEAD:$branch
 
 after_script:
   - cd "$datadir" &&
