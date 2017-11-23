@@ -18,7 +18,7 @@ final class RankingQueries
      *     represents 95% confidence.
      *
      * @see http://www.evanmiller.org/how-not-to-sort-by-average-rating.html
-     * @see https://en.wikipedia.org/wiki/Checking_whether_a_coin_is_fair#Estimator_of_true_probability
+     * @see https://en.wikipedia.org/wiki/Normal_distribution#Quantile_function
      */
     public static function calculateWilsonScore(QueryBuilder $builder, float $weight = 1.96): void
     {
@@ -36,6 +36,8 @@ final class RankingQueries
      *
      * @param QueryBuilder $builder
      * @param float $weight Optional. Lower numbers favour confidence over approval.
+     *
+     * @see https://math.stackexchange.com/a/41513
      */
     public static function calculateBayesianScore(QueryBuilder $builder, float $weight = 1): void
     {
@@ -61,8 +63,10 @@ final class RankingQueries
      *
      * @param QueryBuilder $builder
      * @param float $weight
+     *
+     * @see http://planspace.org/2014/08/17/how-to-sort-by-average-rating/
      */
-    public static function calculateLaplaceScore(QueryBuilder $builder, float $weight): void
+    public static function calculateLaplaceScore(QueryBuilder $builder, float $weight = 1): void
     {
         $builder->addSelect(
             "(positive_reviews + $weight) / (total_reviews + $weight * 2.) AS score"
@@ -78,6 +82,12 @@ final class RankingQueries
         );
     }
 
+    /**
+     * @param QueryBuilder $builder
+     * @param float $weight
+     *
+     * @see http://www.dcs.bbk.ac.uk/%7Edell/publications/dellzhang_ictir2011.pdf
+     */
     public static function calculateDirichletPriorScore(QueryBuilder $builder, float $weight): void
     {
         $builder->addSelect("(positive_reviews + $weight * p) / (total_reviews + $weight) AS score")
@@ -98,6 +108,8 @@ final class RankingQueries
     /**
      * @param QueryBuilder $builder
      * @param float $weight Optional. Weighting. Default value is given by log(10, 2).
+     *
+     * @see https://steamdb.info/blog/steamdb-rating/
      */
     public static function calculateTornScore(QueryBuilder $builder, float $weight = 3.3219280948874): void
     {

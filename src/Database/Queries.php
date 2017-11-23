@@ -40,7 +40,7 @@ final class Queries
         $query = $database->createQueryBuilder()
             ->select('*')
             ->from('app')
-            ->where('app_type = \'game\'')
+            ->where('type = \'game\'')
             ->orderBy('score', $toplist->getDirection())
             ->setMaxResults($toplist->getLimit())
         ;
