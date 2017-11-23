@@ -12,7 +12,7 @@ use ScriptFUSION\Steam250\SiteGenerator\Toplist\Toplist;
 
 final class Queries
 {
-    private const RANKED_LIST = 'SELECT * FROM rank NATURAL JOIN app WHERE list_id = ? ORDER BY rank LIMIT ?';
+    private const RANKED_LIST = 'SELECT * FROM rank JOIN app ON id = app_id WHERE list_id = ? ORDER BY rank LIMIT ?';
 
     /**
      * Fetches a previously saved ranked list.

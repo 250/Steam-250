@@ -15,9 +15,9 @@ final class DatabaseFactory
 
         $connection->exec(
             'CREATE TABLE IF NOT EXISTS rank (
-                id INTEGER NOT NULL,
                 list_id TEXT NOT NULL,
                 rank INTEGER NOT NULL,
+                app_id INTEGER NOT NULL,
                 score REAL NOT NULL,
                 PRIMARY KEY(list_id, rank)
             );'

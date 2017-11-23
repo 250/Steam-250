@@ -33,11 +33,11 @@ final class Ranker
         while (false !== $app = $cursor->fetch()) {
             // Insert app rank into database.
             $this->database->executeQuery(
-                'INSERT OR REPLACE INTO rank (id, list_id, rank, score) VALUES (?, ?, ?, ?)',
+                'INSERT OR REPLACE INTO rank (list_id, rank, app_id, score) VALUES (?, ?, ?, ?)',
                 [
-                    $app['id'],
                     $toplist->getTemplate(),
                     ++$matched,
+                    $app['id'],
                     $app['score'] ?: 0,
                 ]
             );
