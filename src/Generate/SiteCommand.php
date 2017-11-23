@@ -6,6 +6,7 @@ namespace ScriptFUSION\Steam250\SiteGenerator\Generate;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 final class SiteCommand extends Command
@@ -17,15 +18,14 @@ final class SiteCommand extends Command
             ->setDescription('Generate an HTML page from a template and data.')
             ->addArgument('db', InputArgument::REQUIRED, 'Path to database.')
             ->addArgument('out', InputArgument::OPTIONAL, 'Output directory.', 'site')
+            ->addOption('min', null, InputOption::VALUE_NONE, 'Minify output.')
         ;
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): ?int
     {
-        (new SiteGeneratorFactory)->create($input->getArgument('db'))
-            ->generate($input->getArgument('out'))
+        return (new SiteGeneratorFactory)->create($input->getArgument('db'), $input->getOption('min'))
+            ->generate($input->getArgument('out')) ? 0 : 1
         ;
-
-        return 0;
     }
 }

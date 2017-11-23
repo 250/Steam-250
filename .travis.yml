@@ -36,7 +36,7 @@ before_script:
   - latest() { ls -1vr "$1" | head -1; }
 
 script:
-  - bin/generate site "${db=$datadir/$(latest "$datadir")/steam.sqlite}" "$out" || exit
+  - bin/generate site --min "${db=$datadir/$(latest "$datadir")/steam.sqlite}" "$out" || exit
 
   - cd "$out" &&
     git add -A . &&

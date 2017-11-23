@@ -24,6 +24,7 @@ final class PageCommand extends Command
             ->addArgument('out', InputArgument::OPTIONAL, 'Output directory.', 'site')
             ->addOption('algorithm', 'a', InputOption::VALUE_REQUIRED, 'Ranking algorithm')
             ->addOption('weight', 'w', InputOption::VALUE_REQUIRED, 'Algorithm-defined weighting.')
+            ->addOption('min', null, InputOption::VALUE_NONE, 'Minify output.')
         ;
     }
 
@@ -35,10 +36,9 @@ final class PageCommand extends Command
             (float)$input->getOption('weight')
         );
 
-        (new PageGeneratorFactory)->create($input->getArgument('db'))
-            ->generate($toplist, $input->getArgument('out'))
-        ;
+        $generator = (new PageGeneratorFactory)->create($input->getArgument('db'));
+        $generator->setMinify($input->getOption('min'));
 
-        return 0;
+        return $generator->generate($toplist, $input->getArgument('out')) ? 0 : 1;
     }
 }

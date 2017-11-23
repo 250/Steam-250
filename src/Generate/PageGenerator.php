@@ -17,6 +17,7 @@ final class PageGenerator
     private $ranker;
     private $logger;
     private $minifier;
+    private $minify = false;
 
     public function __construct(
         \Twig_Environment $twig,
@@ -32,7 +33,7 @@ final class PageGenerator
         $this->minifier = $minifier;
     }
 
-    public function generate(Toplist $toplist, string $outPath): void
+    public function generate(Toplist $toplist, string $outPath): bool
     {
         $this->ranker->rank($toplist);
 
@@ -47,16 +48,26 @@ final class PageGenerator
         if (!$games) {
             $this->logger->error('No games matching query.');
 
-            return;
+            return false;
         }
 
         $html = $this->twig->load("{$toplist->getTemplate()}.twig")->render(compact('games', 'toplist'));
 
-        file_put_contents(
-            $out = "$outPath/{$toplist->getTemplate()}.html",
-            $this->minifier->minify($html)
-        );
+        if ($this->minify) {
+            $this->logger->debug('Minifying HTML...');
+
+            $html = $this->minifier->minify($html);
+        }
+
+        file_put_contents($out = "$outPath/{$toplist->getTemplate()}.html", $html);
 
         $this->logger->info("Page generated at: \"$out\".");
+
+        return true;
+    }
+
+    public function setMinify(bool $minify)
+    {
+        $this->minify = $minify;
     }
 }
