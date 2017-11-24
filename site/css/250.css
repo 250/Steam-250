@@ -167,6 +167,21 @@ tbody > tr:nth-child(-n+10) .date {
     vertical-align: -webkit-baseline-middle;
     opacity: .3;
 }
+.platforms > span {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    overflow: hidden;
+}
+.platforms > span[title=Windows]:before {
+    content: url(http://store.akamai.steamstatic.com/public/images/v6/icon_platform_win.png?v=3);
+}
+.platforms > span[title=Mac]:before {
+    content: url(http://store.akamai.steamstatic.com/public/images/v6/icon_platform_mac.png);
+}
+.platforms > span[title=Linux]:before {
+    content: url(http://store.akamai.steamstatic.com/public/images/v6/icon_platform_linux.png);
+}
 
 .score {
     font-weight: bold;

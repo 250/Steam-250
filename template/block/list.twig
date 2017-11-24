@@ -58,16 +58,13 @@
             {% endif %}
             <span class="platforms">
             {%- if game.platforms b-and constant('ScriptFUSION\\Top250\\Shared\\Platform::WINDOWS') -%}
-                <img src="http://store.akamai.steamstatic.com/public/images/v6/icon_platform_win.png?v=3"
-                    alt="Windows" title="Windows">
+                <span title="Windows">Windows</span>
             {%- endif -%}
             {%- if game.platforms b-and constant('ScriptFUSION\\Top250\\Shared\\Platform::MAC') -%}
-                <img src="http://store.akamai.steamstatic.com/public/images/v6/icon_platform_mac.png"
-                    alt="Mac" title="Mac">
+                <span title="Mac">Mac</span>
             {%- endif -%}
             {%- if game.platforms b-and constant('ScriptFUSION\\Top250\\Shared\\Platform::LINUX') -%}
-                <img src="http://store.akamai.steamstatic.com/public/images/v6/icon_platform_linux.png"
-                    alt="Linux" title="Linux">
+                <span title="Linux">Linux</span>
             {%- endif -%}
             </span>
         </td>
