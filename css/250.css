@@ -150,10 +150,8 @@ td:nth-child(3) {
     font-weight: bold;
     cursor: default;
 }
-.movement.non {
+.movement.none {
     color: #d3b785;
-    /*color: #756448;*/
-    /*font-size: 14pt;*/
     font-weight: bold;
 }
 .movement.pos, .movement.neg {
@@ -172,6 +170,7 @@ td:nth-child(3) {
     left: 0;
     width: 100%;
     height: 100%;
+    opacity: .9;
 }
 .movement.new:before {
     width: 85%;
@@ -181,9 +180,10 @@ td:nth-child(3) {
     background: #d1c358;
     clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
 }
-.movement.non:before {
-    background: #756448;
-    clip-path: inset(17% 17.5%);
+.movement.none:before {
+    background: #574d3e;
+    clip-path: inset(14% 14.5%);
+    opacity: .5;
 }
 .movement.pos:before {
     top: -3px;
