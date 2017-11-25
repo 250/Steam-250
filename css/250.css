@@ -192,7 +192,7 @@ td:nth-child(3) {
 }
 .movement.neg:before {
     top: 2px;
-    background: #734236;
+    background: #804539;
     clip-path: polygon(20% 0%, 20% 50%, 0% 50%, 50% 100%, 100% 50%, 80% 50%, 80% 0%);
 }
 
