@@ -25,6 +25,7 @@ final class PageCommand extends Command
             ->addOption('algorithm', 'a', InputOption::VALUE_REQUIRED, 'Ranking algorithm')
             ->addOption('weight', 'w', InputOption::VALUE_REQUIRED, 'Algorithm-defined weighting.')
             ->addOption('min', null, InputOption::VALUE_NONE, 'Minify output.')
+            ->addOption('prev-db', null, InputOption::VALUE_REQUIRED, 'Previous database.')
         ;
     }
 
@@ -39,6 +40,6 @@ final class PageCommand extends Command
         $generator = (new PageGeneratorFactory)->create($input->getArgument('db'));
         $generator->setMinify($input->getOption('min'));
 
-        return $generator->generate($toplist, $input->getArgument('out')) ? 0 : 1;
+        return $generator->generate($toplist, $input->getArgument('out'), $input->getOption('prev-db')) ? 0 : 1;
     }
 }

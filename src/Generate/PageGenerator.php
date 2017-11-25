@@ -33,7 +33,7 @@ final class PageGenerator
         $this->minifier = $minifier;
     }
 
-    public function generate(Toplist $toplist, string $outPath): bool
+    public function generate(Toplist $toplist, string $outPath, string $prevDb = null): bool
     {
         $this->ranker->rank($toplist);
 
@@ -42,7 +42,7 @@ final class PageGenerator
                 . " and \"{$toplist->getAlgorithm()}\" algorithm ({$toplist->getWeight()})."
         );
 
-        $cursor = Queries::fetchRankedList($this->database, $toplist);
+        $cursor = Queries::fetchRankedList($this->database, $toplist, $prevDb);
         $games = $cursor->fetchAll();
 
         if (!$games) {

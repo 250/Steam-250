@@ -12,19 +12,42 @@ use ScriptFUSION\Steam250\SiteGenerator\Toplist\Toplist;
 
 final class Queries
 {
-    private const RANKED_LIST = 'SELECT * FROM rank JOIN app ON id = app_id WHERE list_id = ? ORDER BY rank LIMIT ?';
-
     /**
-     * Fetches a previously saved ranked list.
+     * Fetches a previously saved ranked list. If a previous database is specified, ranking movements are calculated
+     * relative to the previous ranking.
      *
      * @param Connection $database
      * @param Toplist $toplist List.
+     * @param string $prevDb Optional. Path to a previous database.
      *
      * @return Statement
      */
-    public static function fetchRankedList(Connection $database, Toplist $toplist): Statement
+    public static function fetchRankedList(Connection $database, Toplist $toplist, string $prevDb = null): Statement
     {
-        return $database->executeQuery(self::RANKED_LIST, [$toplist->getTemplate(), $toplist->getLimit()]);
+        $query = $database->createQueryBuilder()
+            ->select('rank.*, app.*')
+            ->from('rank')
+            ->join('rank', 'app', 'app', 'id = rank.app_id')
+            ->where("rank.list_id = '{$toplist->getTemplate()}'")
+            ->orderBy('rank')
+            ->setMaxResults($toplist->getLimit())
+        ;
+
+        if ($prevDb) {
+            $database->exec("ATTACH '$prevDb' AS prev");
+
+            $query
+                ->addSelect('prank.rank - rank.rank AS movement')
+                ->leftJoin(
+                    'rank',
+                    'prev.rank',
+                    'prank',
+                    'rank.list_id = prank.list_id AND rank.app_id = prank.app_id'
+                )
+            ;
+        }
+
+        return $query->execute();
     }
 
     /**

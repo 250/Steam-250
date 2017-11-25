@@ -44,8 +44,23 @@
             ></a>
         </td>
         <td>
+            {% if game.movement is defined %}
+            <span class="movement
+                {% if game.movement is null %}
+                    new" title="New entry"
+                {% elseif game.movement > 0 %}
+                    pos" title="Moved up "
+                {% elseif game.movement < 0 %}
+                    neg" title="Moved down"
+                {% else %}
+                    non" title="No change"
+                {% endif -%}
+            >
+                {{- game.movement is same as('0') ? '~' : game.movement ? game.movement|abs : null -}}
+            </span>
+            {% endif %}
             <span class="title" style="font-size: {{ min(200, max(100, 200 - 100 / 13 * (loop.index - 3))) }}%">
-                {{ loop.index }}.
+                {{ game.rank }}.
                 <a href="http://store.steampowered.com/app/{{ game.id }}/">
                     {{- game.name -}}
                 </a>
