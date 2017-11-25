@@ -53,7 +53,7 @@
                 {% elseif game.movement < 0 %}
                     neg" title="Moved down"
                 {% else %}
-                    non" title="No change"
+                    none" title="No change"
                 {% endif -%}
             >
                 {{- game.movement is same as('0') ? '~' : game.movement ? game.movement|abs : null -}}
