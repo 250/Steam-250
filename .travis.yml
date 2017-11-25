@@ -33,10 +33,11 @@ before_script:
   - rm -rfv * &&
     cp -va "$TRAVIS_BUILD_DIR"/site/* . &&
     cd -
-  - latest() { ls -1vr "$1" | head -1; }
 
 script:
-  - bin/generate site --min "${db=$datadir/$(latest "$datadir")/steam.sqlite}" "$out" || exit
+  - db=$datadir/$("$datadir/bin/latest") prevdb=$datadir/$("$datadir/bin/latest" -1)
+  - 'echo "db: \"$db\" prevdb: \"$prevdb\""'
+  - bin/generate site --min --prev-db "$prevdb" "$db" "$out" || exit
 
   - cd "$out" &&
     git add -A . &&

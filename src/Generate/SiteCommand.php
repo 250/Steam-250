@@ -19,13 +19,14 @@ final class SiteCommand extends Command
             ->addArgument('db', InputArgument::REQUIRED, 'Path to database.')
             ->addArgument('out', InputArgument::OPTIONAL, 'Output directory.', 'site')
             ->addOption('min', null, InputOption::VALUE_NONE, 'Minify output.')
+            ->addOption('prev-db', null, InputOption::VALUE_REQUIRED, 'Previous database.')
         ;
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): ?int
     {
         return (new SiteGeneratorFactory)->create($input->getArgument('db'), $input->getOption('min'))
-            ->generate($input->getArgument('out')) ? 0 : 1
+            ->generate($input->getArgument('out'), $input->getOption('prev-db')) ? 0 : 1
         ;
     }
 }

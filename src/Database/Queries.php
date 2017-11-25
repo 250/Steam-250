@@ -20,9 +20,9 @@ final class Queries
      * @param Toplist $toplist List.
      * @param string $prevDb Optional. Path to a previous database.
      *
-     * @return Statement
+     * @return array Ranked list of Steam apps.
      */
-    public static function fetchRankedList(Connection $database, Toplist $toplist, string $prevDb = null): Statement
+    public static function fetchRankedList(Connection $database, Toplist $toplist, string $prevDb = null): array
     {
         $query = $database->createQueryBuilder()
             ->select('rank.*, app.*')
@@ -47,7 +47,11 @@ final class Queries
             ;
         }
 
-        return $query->execute();
+        $list = $query->execute()->fetchAll();
+
+        $database->exec('DETACH prev');
+
+        return $list;
     }
 
     /**

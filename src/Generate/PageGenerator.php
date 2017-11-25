@@ -38,14 +38,12 @@ final class PageGenerator
         $this->ranker->rank($toplist);
 
         $this->logger->info(
-            "Generating \"{$toplist->getTemplate()}\" page using database: \"{$this->database->getParams()['path']}\""
-                . " and \"{$toplist->getAlgorithm()}\" algorithm ({$toplist->getWeight()})."
+            "Generating \"{$toplist->getTemplate()}\" page with database: \"{$this->database->getParams()['path']}\""
+                . ($prevDb ? " and previous database: \"$prevDb\"" : '')
+                . " using \"{$toplist->getAlgorithm()}\" algorithm ({$toplist->getWeight()})."
         );
 
-        $cursor = Queries::fetchRankedList($this->database, $toplist, $prevDb);
-        $games = $cursor->fetchAll();
-
-        if (!$games) {
+        if (!$games = Queries::fetchRankedList($this->database, $toplist, $prevDb)) {
             $this->logger->error('No games matching query.');
 
             return false;

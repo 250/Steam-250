@@ -14,12 +14,12 @@ final class SiteGenerator
         $this->generator = $generator;
     }
 
-    public function generate(string $outPath): bool
+    public function generate(string $outPath, string $prevDb = null): bool
     {
         foreach (ToplistAliases::getListClassNames() as $toplistClass) {
             $toplist = new $toplistClass;
 
-            if (!$this->generator->generate($toplist, $outPath)) {
+            if (!$this->generator->generate($toplist, $outPath, $prevDb)) {
                 return false;
             }
         }
