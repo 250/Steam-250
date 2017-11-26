@@ -26,7 +26,7 @@
     <thead>
         <tr>
             <td>
-            <td>Rank, title, genre, date and platforms
+            <td>Movement, rank, title, genre, date and platforms
             <td>Player rating
     <tbody>
 {% for game in games %}
@@ -100,8 +100,21 @@
 
 <section id="footer">
     <div>
-        <h2>Generated {{ 'now'|date }}</h2>
+        <h2>Steam Top 250</h2>
+        <p>The lists are automatically generated at least once a day from live Steam reviews data.</p>
+        {% if games[0].movement is defined %}
+        <p>Movement indicators show the change in position since yesterday.</p>
+        {% endif %}
+    </div>
+
+    <div>
+        <h2>System status</h2>
         <ul>
+            <li>Data <a href="https://travis-ci.org/250/Steam-importer">
+                    <img src="https://travis-ci.org/250/Steam-importer.svg?branch=master"></a>
+                Pages <a href="https://travis-ci.org/250/Steam-Top-250">
+                    <img src="https://travis-ci.org/250/Steam-Top-250.svg?branch=master"></a>
+            <li>Generated {{ 'now'|date }}
             <li><a href="https://github.com/250">Source code</a>
             <li><a href="mailto:bilge@scriptfusion.com">Contact</a>
         </ul>
