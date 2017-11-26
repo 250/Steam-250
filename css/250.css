@@ -151,7 +151,7 @@ td:nth-child(3) {
     cursor: default;
 }
 .movement.none {
-    color: #d3b785;
+    color: #b89f76;
     font-weight: bold;
 }
 .movement.pos, .movement.neg {
