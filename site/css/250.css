@@ -278,10 +278,10 @@ tbody > tr:nth-child(-n+10) .date {
     font-size: 80%;
 }
 #footer img {
-    width: 75px;
+    height: 16px;
     opacity: .6;
 
-    vertical-align: middle;
+    vertical-align: text-top;
 }
 #footer a {
     color: #9e814c;
