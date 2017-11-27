@@ -1,0 +1,13 @@
+<table>
+    <caption>{{ games[0].movement < 0 ? 'Fallers' : 'Risers' }} today</caption>
+    {% for game in games %}
+        <tr>
+            <td><img src="http://cdn.akamai.steamstatic.com/steam/apps/{{ game.id }}/capsule_sm_120.jpg">
+            <td>{{ include('partial/movement.twig', {movement: game.movement}) }}
+                <a href="#{{ game.rank }}">{{ game.rank }}</a>.
+                <a href="http://store.steampowered.com/app/{{ game.id }}/">
+                    {{- game.name -}}
+                </a>
+        </tr>
+    {% endfor %}
+</table>

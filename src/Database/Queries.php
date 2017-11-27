@@ -49,7 +49,7 @@ final class Queries
 
         $list = $query->execute()->fetchAll();
 
-        $database->exec('DETACH prev');
+        $prevDb && $database->exec('DETACH prev');
 
         return $list;
     }

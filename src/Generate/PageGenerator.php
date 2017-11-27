@@ -12,6 +12,8 @@ use voku\helper\HtmlMin;
 
 final class PageGenerator
 {
+    private const RISERS_LIMIT = 5;
+
     private $twig;
     private $database;
     private $ranker;
@@ -49,7 +51,14 @@ final class PageGenerator
             return false;
         }
 
-        $html = $this->twig->load("{$toplist->getTemplate()}.twig")->render(compact('games', 'toplist'));
+        if ($prevDb) {
+            $risers = $this->createRisersList($games);
+            $fallers = $this->createFallersList($games);
+        }
+
+        $html = $this->twig->load("{$toplist->getTemplate()}.twig")->render(
+            compact('games', 'toplist', 'risers', 'fallers')
+        );
 
         if ($this->minify) {
             $this->logger->debug('Minifying HTML...');
@@ -62,6 +71,32 @@ final class PageGenerator
         $this->logger->info("Page generated at: \"$out\".");
 
         return true;
+    }
+
+    private function createRisersList(array $games): array
+    {
+        $games = array_filter($games, function (array $a) {
+            return $a['movement'] > 0;
+        });
+
+        uasort($games, function (array $a, array $b) {
+            return $b['movement'] <=> $a['movement'];
+        });
+
+        return \array_slice($games, 0, self::RISERS_LIMIT);
+    }
+
+    private function createFallersList(array $games): array
+    {
+        $games = array_filter($games, function (array $a) {
+            return $a['movement'] < 0;
+        });
+
+        uasort($games, function (array $a, array $b) {
+            return $a['movement'] <=> $b['movement'];
+        });
+
+        return \array_slice($games, 0, self::RISERS_LIMIT);
     }
 
     public function setMinify(bool $minify)

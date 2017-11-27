@@ -43,21 +43,9 @@
                 alt="{{ game.name }} logo"
             ></a>
         </td>
-        <td>
+        <td id="{{ game.rank }}">
             {% if game.movement is defined %}
-            <span class="movement
-                {% if game.movement is null %}
-                    new" title="New entry"
-                {% elseif game.movement > 0 %}
-                    pos" title="Moved up "
-                {% elseif game.movement < 0 %}
-                    neg" title="Moved down"
-                {% else %}
-                    none" title="No change"
-                {% endif -%}
-            >
-                {{- game.movement is same as('0') ? '~' : game.movement ? game.movement|abs : null -}}
-            </span>
+            {{ include('partial/movement.twig', {movement: game.movement}) }}
             {% endif %}
             <span class="title" style="font-size: {{ min(200, max(100, 200 - 100 / 13 * (loop.index - 3))) }}%">
                 {{ game.rank }}.
@@ -95,6 +83,13 @@
 </table>
 
 <div class="algo" title="Ranking algorithm">{{ toplist.algorithm }} {{ toplist.weight }}</div>
+
+{% if risers is defined and fallers is defined %}
+<div class="r&f">
+    {{ include('partial/risers.twig', {games: risers}) }}
+    {{ include('partial/risers.twig', {games: fallers}) }}
+</div>
+{% endif %}
 </div>
 </div>
 

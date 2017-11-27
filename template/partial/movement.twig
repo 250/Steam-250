@@ -1,0 +1,13 @@
+<span class="movement
+    {% if movement is null %}
+        new" title="New entry"
+    {% elseif movement > 0 %}
+        pos" title="Moved up "
+    {% elseif movement < 0 %}
+        neg" title="Moved down"
+    {% else %}
+        none" title="No change"
+    {% endif -%}
+>
+    {{- movement is same as('0') ? '~' : movement ? movement|abs : null -}}
+</span>
