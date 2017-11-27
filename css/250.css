@@ -254,11 +254,30 @@ tbody > tr:nth-child(-n+10) .date {
     font-size: 85%;
 }
 
+caption {
+    margin-bottom: .5em;
+
+    font-weight: bold;
+}
+
+.r\&f {
+    display: flex;
+}
+.r\&f > * {
+    width: auto;
+}
+.r\&f > :nth-child(2) {
+    margin-left: 1.5em;
+}
+.r\&f img {
+    height: 34px;
+}
+
 .algo {
     text-transform: lowercase;
     text-align: center;
     font-size: 70%;
-    opacity: .15;
+    opacity: .1;
 }
 
 #footer {
@@ -267,8 +286,10 @@ tbody > tr:nth-child(-n+10) .date {
     margin: 2em;
 }
 #footer > * {
-    margin-left: 5em;
     max-width: 18em;
+}
+#footer > :nth-child(n+2) {
+    margin-left: 6em;
 }
 #footer h2 {
     margin-bottom: .8em;
