@@ -140,5 +140,5 @@ final class RankingQueries
                     / total_reviews
             ) / (1 + POWER($wilson_weight, 2) * 1. / total_reviews) AS wilson_score"
         );
-    }    
+    }
 }
