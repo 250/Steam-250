@@ -119,4 +119,26 @@ final class RankingQueries
                 AS score"
         );
     }
+
+    /**
+     * @param QueryBuilder $builder
+     * @param float $weight Optional. Weighting. Default value is given by a previous optimization: pow(10, 6.42).
+     * @param float $wilson_weight Optional. Z value derived from confidence level (see probability table).
+     *      Default value represents 95% confidence.
+     *
+     * @see https://github.com/woctezuma/hidden-gems
+     */
+    public static function calculateHiddenGemScore(QueryBuilder $builder, float $weight = 2630000.0, float $wilson_weight = 1.96): void
+    {
+        $builder->addSelect(
+            "wilson_score * ($weight * 1. / ($weight + players))
+                AS score"
+        )->from(
+            "(
+                (positive_reviews + POWER($wilson_weight, 2) / 2.) / total_reviews - $wilson_weight
+                    * SQRT((positive_reviews * negative_reviews) / total_reviews + POWER($wilson_weight, 2) / 4.)
+                    / total_reviews
+            ) / (1 + POWER($wilson_weight, 2) * 1. / total_reviews) AS wilson_score"
+        );
+    }    
 }
