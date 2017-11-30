@@ -108,6 +108,10 @@ final class Queries
             case Algorithm::TORN:
                 RankingQueries::calculateTornScore($builder, $weight);
                 break;
+
+            case Algorithm::HIDDEN_GEMS:
+                RankingQueries::calculateHiddenGemsScore($builder, $weight);
+                break;
         }
     }
 }

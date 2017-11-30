@@ -17,7 +17,9 @@
 <div class="body">
 <div class="page">
 <ul class="links">
-    <li><a href="/">Top 250</a> &ndash; <a href="bottom100.html">Bottom 100</a>
+    <li><a href="/">Top 250</a>
+        &ndash; <a href="hidden_gems.html">Hidden gems</a>
+        &ndash; <a href="bottom100.html">Bottom 100</a>
     <li><a href="30day.html">30 day</a> &ndash; <a href="90day.html">90 day</a> &ndash; <a href="365day.html">365 day</a>
     <li><a href="mac250.html">Mac 250</a> &ndash; <a href="linux250.html">Linux 250</a>
 </ul>
@@ -84,7 +86,7 @@
 
 <div class="algo" title="Ranking algorithm">{{ toplist.algorithm }} {{ toplist.weight }}</div>
 
-{% if risers is defined and fallers is defined %}
+{% if risers is defined and fallers is defined and risers and fallers %}
 <div class="r&f">
     {{ include('partial/risers.twig', {games: risers}) }}
     {{ include('partial/risers.twig', {games: fallers}) }}
@@ -139,4 +141,11 @@
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'UA-109307736-1');
+</script>
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-8635817990241164",
+        enable_page_level_ads: true
+    });
 </script>

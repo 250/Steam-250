@@ -129,6 +129,21 @@ td:nth-child(3) {
     margin: 0 .5em;
 }
 
+p.note {
+    margin-top: -.75em;
+
+    opacity: .6;
+    font-size: 70%;
+}
+p.note:before {
+    content: 'Note';
+    margin-right: .25em;
+
+    font-size: 90%;
+    text-transform: uppercase;
+    color: #818b91;
+}
+
 .title {
     vertical-align: middle;
 }

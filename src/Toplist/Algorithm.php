@@ -13,6 +13,7 @@ use Eloquent\Enumeration\AbstractEnumeration;
  * @method static LAPLACE_LOG()
  * @method static DIRICHLET_PRIOR()
  * @method static DIRICHLET_PRIOR_LOG()
+ * @method static HIDDEN_GEMS()
  */
 final class Algorithm extends AbstractEnumeration
 {
@@ -23,4 +24,5 @@ final class Algorithm extends AbstractEnumeration
     public const LAPLACE_LOG = 'LAPLACE_LOG';
     public const DIRICHLET_PRIOR = 'DIRICHLET_PRIOR';
     public const DIRICHLET_PRIOR_LOG = 'DIRICHLET_PRIOR_LOG';
+    public const HIDDEN_GEMS = 'HIDDEN_GEMS';
 }
