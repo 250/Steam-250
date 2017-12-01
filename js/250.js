@@ -35,10 +35,10 @@
 
                 let formattedDuration = duration.format('HH:mm.ss');
 
-                div.innerText = 'Next update in ' + (
+                div.innerText = 'Next update ' + (
                     (blink ^= 1)
                         ? formattedDuration
-                        : formattedDuration.replace(/:/g, ' ')
+                        : formattedDuration.replace(/:/, ' ')
                 );
             }, 500)
         }

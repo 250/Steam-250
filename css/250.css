@@ -23,8 +23,8 @@ a:visited {
 }
 #header > .title {
     position: relative;
-
-    margin: .1em .2em .2em;
+    z-index: 1;
+    margin: 0 .2em .16em;
 
     font: 920% Lobster, cursive;
     transform: rotate(-1deg);
@@ -111,17 +111,24 @@ td:nth-child(3) {
     white-space: nowrap;
 }
 
-.countdown {
+.slogan, .countdown {
     position: absolute;
-    right: 50%;
-    bottom: 0;
     padding: .6em;
-    margin-right: -432px;
 
     font: italic 80%/1 Cousine;
     color: #babec2;
     background: #14161a;
     text-transform: uppercase;
+}
+.slogan {
+    bottom: 0;
+    left: 50%;
+    margin-left: -219px;
+}
+.countdown {
+    right: 50%;
+    bottom: 0;
+    margin-right: -432px;
 }
 @keyframes fadeIn {
     from { color: rgba(186, 190, 194, .2); }
