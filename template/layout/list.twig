@@ -5,7 +5,7 @@
     <title>{{ block('title') }}</title>
 
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster|Cousine:400i">
     <link rel="shortcut icon" href="favicon.png" type="image/png" />
 <body>
 <section id="header">
@@ -24,6 +24,8 @@
     <li><a href="mac250.html">Mac 250</a> &ndash; <a href="linux250.html">Linux 250</a>
 </ul>
 {{ block('lead') }}
+<ins class="adsbygoogle" data-ad-client="ca-pub-8635817990241164" data-ad-slot="9535671996" data-ad-format="auto"
+     style="display:block"></ins>
 <table>
     <thead>
         <tr>
@@ -84,6 +86,9 @@
 {% endfor %}
 </table>
 
+<ins class="adsbygoogle" data-ad-client="ca-pub-8635817990241164" data-ad-slot="3002887382" data-ad-format="auto"
+     style="display:block"></ins>
+
 <div class="algo" title="Ranking algorithm">{{ toplist.algorithm }} {{ toplist.weight }}</div>
 
 {% if risers is defined and fallers is defined and risers and fallers %}
@@ -112,7 +117,8 @@
                 Pages <a href="https://travis-ci.org/250/Steam-Top-250">
                     <img src="https://travis-ci.org/250/Steam-Top-250.svg?branch=master"></a>
             <li>Generated {{ 'now'|date }}
-            <li><a href="https://github.com/250">Source code</a>
+            <li><a href="https://github.com/250">Source code</a>,
+                <a href="https://github.com/250/Steam-Top-250/issues">Issues</a>
             <li><a href="mailto:bilge@scriptfusion.com">Contact</a>
         </ul>
     </div>
@@ -135,17 +141,16 @@
     <a href="#footer">Bottom</a>
 </div>
 
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-109307736-1"></script>
 <script>
+    (adsbygoogle = window.adsbygoogle || []).push({}, {});
+
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'UA-109307736-1');
 </script>
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<script>
-    (adsbygoogle = window.adsbygoogle || []).push({
-        google_ad_client: "ca-pub-8635817990241164",
-        enable_page_level_ads: true
-    });
-</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.3/moment.min.js"></script>
+<script src="js/250.js"></script>
