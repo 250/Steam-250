@@ -64,7 +64,7 @@ h1 {
 }
 
 p {
-    margin: 1em 0;
+    margin: 1.5em 0;
     text-align: center;
 }
 
@@ -337,6 +337,7 @@ caption {
     margin-bottom: .8em;
 }
 #footer p, #footer li {
+    margin: 0;
     text-align: left;
     font-size: 80%;
 }
