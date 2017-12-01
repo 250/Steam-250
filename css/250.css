@@ -336,8 +336,10 @@ caption {
 #footer h2 {
     margin-bottom: .8em;
 }
+#footer p {
+    margin: 1em 0;
+}
 #footer p, #footer li {
-    margin: 0;
     text-align: left;
     font-size: 80%;
 }
