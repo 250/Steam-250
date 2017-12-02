@@ -111,7 +111,7 @@ td:nth-child(3) {
     white-space: nowrap;
 }
 td.ad {
-    width: 800px;
+    padding-left: 64px;
 }
 
 .slogan, .countdown {
