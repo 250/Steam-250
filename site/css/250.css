@@ -88,10 +88,10 @@ thead {
 thead td {
     padding-bottom: .5em;
 }
-tbody > tr:nth-child(2n-1) > td:nth-child(n+2) {
+tbody > tr.a > td:nth-child(n+2) {
     background-color: #1a2334;
 }
-tbody > tr:nth-child(2n) > td {
+tbody > tr.a + tr > td {
     padding-top: 6px;
     padding-bottom: 6px;
 }
@@ -109,6 +109,9 @@ td:nth-child(2) {
 td:nth-child(3) {
     padding-right: 10px;
     white-space: nowrap;
+}
+td.ad {
+    padding-left: 64px;
 }
 
 .slogan, .countdown {
@@ -159,7 +162,7 @@ td:nth-child(3) {
 p.note {
     margin-top: -.75em;
 
-    opacity: .6;
+    opacity: .7;
     font-size: 70%;
 }
 p.note:before {
@@ -260,9 +263,6 @@ p.note:before {
 
     white-space: nowrap;
     color: #cccecf;
-}
-tbody > tr:nth-child(-n+10) .date {
-    font-size: .9rem;
 }
 
 .platforms {

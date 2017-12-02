@@ -36,8 +36,7 @@ style="display:none;visibility:hidden"></iframe></noscript>
     <li><a href="mac250.html">Mac 250</a> &ndash; <a href="linux250.html">Linux 250</a>
 </ul>
 {{ block('lead') }}
-<ins class="adsbygoogle" data-ad-client="ca-pub-8635817990241164" data-ad-slot="9535671996" data-ad-format="auto"
-     style="display:block"></ins>
+{{ include('partial/ad.twig', {id: '9535671996'}) }}
 <table>
     <thead>
         <tr>
@@ -45,8 +44,9 @@ style="display:none;visibility:hidden"></iframe></noscript>
             <td>Movement, rank, title, genre, date and platforms
             <td>Player rating
     <tbody>
+{% set split = min(max(games|length / 2, 25), 100) %}
 {% for game in games %}
-    <tr>
+    <tr{{ loop.index % 2 ? ' class="a"' }}>
         <td>
             <a href="http://store.steampowered.com/app/{{ game.id }}/">
                 {%- if loop.index <= 15 -%}
@@ -95,11 +95,17 @@ style="display:none;visibility:hidden"></iframe></noscript>
             </span>
         </td>
     </tr>
+    {% if loop.index % split == 0 and not loop.last %}
+    <tr>
+        <td colspan="3" class="ad">{{ include(
+            'partial/ad_inline.twig',
+            {id: cycle(['2252750798', '7612888680'], loop.index / split - 1)}
+        ) }}</td>
+    </tr>
+    {% endif %}
 {% endfor %}
 </table>
-
-<ins class="adsbygoogle" data-ad-client="ca-pub-8635817990241164" data-ad-slot="3002887382" data-ad-format="auto"
-     style="display:block"></ins>
+{{ include('partial/ad.twig', {id: '3002887382'}) }}
 
 <div class="algo" title="Ranking algorithm">{{ toplist.algorithm }} {{ toplist.weight }}</div>
 
@@ -152,10 +158,6 @@ style="display:none;visibility:hidden"></iframe></noscript>
     <a href="#header">Top</a>
     <a href="#footer">Bottom</a>
 </div>
-
-<script>
-    (adsbygoogle = window.adsbygoogle || []).push({}, {});
-</script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.3/moment.min.js"></script>
 <script src="js/250.js"></script>
