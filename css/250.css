@@ -331,13 +331,16 @@ caption {
     max-width: 18em;
 }
 #footer > :nth-child(n+2) {
-    margin-left: 6em;
+    margin-left: 5%;
 }
 #footer h2 {
     margin-bottom: .8em;
 }
 #footer p {
     margin: 1em 0;
+}
+#footer p:last-of-type {
+    margin-bottom: 0;
 }
 #footer p, #footer li {
     text-align: left;
@@ -354,6 +357,14 @@ caption {
 }
 #footer > :nth-child(2) img:first-of-type {
     margin-right: .25em;
+}
+@media (max-width: 820px) {
+    #footer {
+        flex-direction: column;
+    }
+    #footer > :nth-child(n+2) {
+        margin: 1.5em 0 0;
+    }
 }
 
 .fixedlinks {
