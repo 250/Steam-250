@@ -23,7 +23,6 @@
 
             let timer = setInterval(() => {
                 let duration = moment(moment.duration(nextBuild - moment()).asMilliseconds());
-                // duration = -1;
 
                 if (duration < 0) {
                     clearInterval(timer);
