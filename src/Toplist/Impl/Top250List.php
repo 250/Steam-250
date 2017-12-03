@@ -11,7 +11,7 @@ class Top250List extends Toplist
 {
     public function __construct($template = 'index')
     {
-        parent::__construct($template, Algorithm::LAPLACE_LOG(), .6, 250);
+        parent::__construct($template, Algorithm::LAPLACE_LOG(), .7, 250);
     }
 
     public function customizeQuery(QueryBuilder $builder): void
