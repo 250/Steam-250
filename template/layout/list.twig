@@ -65,7 +65,7 @@ style="display:none;visibility:hidden"></iframe></noscript>
             {% endif %}
             <span class="title" style="font-size: {{ min(200, max(100, 200 - 100 / 13 * (loop.index - 3))) }}%">
                 {{ game.rank }}.
-                <a href="http://store.steampowered.com/app/{{ game.id }}/">
+                <a href="http://store.steampowered.com/app/{{ game.id }}/" data-rank="{{ game.rank }}">
                     {{- game.name -}}
                 </a>
             </span>
