@@ -105,7 +105,6 @@ style="display:none;visibility:hidden"></iframe></noscript>
     {% endif %}
 {% endfor %}
 </table>
-{{ include('partial/ad.twig', {id: '3002887382'}) }}
 
 <div class="algo" title="Ranking algorithm">{{ toplist.algorithm }} {{ toplist.weight }}</div>
 
@@ -115,6 +114,17 @@ style="display:none;visibility:hidden"></iframe></noscript>
     {{ include('partial/risers.twig', {games: fallers}) }}
 </div>
 {% endif %}
+
+<div id="disqus_thread"></div>
+<script>
+    (function() {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://steam250.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+{{ include('partial/ad.twig', {id: '3002887382'}) }}
 </div>
 </div>
 
