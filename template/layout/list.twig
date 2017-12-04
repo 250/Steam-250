@@ -98,8 +98,8 @@ style="display:none;visibility:hidden"></iframe></noscript>
     {% if loop.index % split == 0 and not loop.last %}
     <tr>
         <td colspan="3" class="ad">{{ include(
-            'partial/ad_inline.twig',
-            {id: cycle(['2252750798', '7612888680'], loop.index / split - 1)}
+            'partial/ad.twig',
+            {id: cycle(['6912946882', '4095211858'], loop.index / split - 1)}
         ) }}</td>
     </tr>
     {% endif %}
@@ -107,6 +107,7 @@ style="display:none;visibility:hidden"></iframe></noscript>
 </table>
 
 <div class="algo" title="Ranking algorithm">{{ toplist.algorithm }} {{ toplist.weight }}</div>
+{{ include('partial/ad.twig', {id: '3002887382'}) }}
 
 {% if risers is defined and fallers is defined and risers and fallers %}
 <div class="r&f">
@@ -124,7 +125,6 @@ style="display:none;visibility:hidden"></iframe></noscript>
         (d.head || d.body).appendChild(s);
     })();
 </script>
-{{ include('partial/ad.twig', {id: '3002887382'}) }}
 </div>
 </div>
 
