@@ -1,3 +1,7 @@
+:root {
+    --user-height: 37px;
+}
+
 body {
     color: #c7d5e0;
     background: #171a21;
@@ -18,6 +22,7 @@ a:visited {
 #user {
     position: relative;
     z-index: 2;
+    height: var(--user-height);
     padding: 6px;
 
     text-align: right;
@@ -68,7 +73,7 @@ a:visited {
 }
 .lout #lout, .lin #lin {
     display: block;
-    line-height: 37px;
+    line-height: var(--user-height);
 }
 
 h1 {

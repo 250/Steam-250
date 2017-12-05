@@ -83,35 +83,34 @@ new class {
         ).then(
             response => response.text()
         ).then((data) => {
-                let matches = data.match(/var rgGames = ([^\n]+);/);
+            let matches = data.match(/var rgGames = ([^\n]+);/);
 
-                if (!matches || matches.length !== 2) {
-                    console.error('Failed to find games JSON.');
+            if (!matches || matches.length !== 2) {
+                console.error('Failed to find games JSON.');
 
-                    return;
-                }
-
-                let games = JSON.parse(matches[1]).reduce(
-                    (games, game) => {
-                        games[game['appid']] = game['hours_forever'];
-
-                        return games;
-                    },
-                    {}
-                );
-
-                localStorage.setItem('games', JSON.stringify(games));
-
-                let dom = new DOMParser().parseFromString(data, 'text/html');
-                localStorage.setItem('steam', JSON.stringify({
-                    id: userId,
-                    name: dom.querySelector('.profile_small_header_name').innerText,
-                    avatar: dom.querySelector('.playerAvatar > img')['src'].replace('_medium', ''),
-                }));
-
-                location.replace(location.pathname);
+                return;
             }
-        );
+
+            let games = JSON.parse(matches[1]).reduce(
+                (games, game) => {
+                    games[game['appid']] = game['hours_forever'];
+
+                    return games;
+                },
+                {}
+            );
+
+            localStorage.setItem('games', JSON.stringify(games));
+
+            let dom = new DOMParser().parseFromString(data, 'text/html');
+            localStorage.setItem('steam', JSON.stringify({
+                id: userId,
+                name: dom.querySelector('.profile_small_header_name').innerText,
+                avatar: dom.querySelector('.playerAvatar > img')['src'].replace('_medium', ''),
+            }));
+
+            location.replace(location.pathname);
+        });
     }
 
     startCountdown() {
