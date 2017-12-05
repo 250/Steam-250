@@ -15,9 +15,30 @@ a:visited {
     color: #9e814c;
 }
 
+#user {
+    position: relative;
+    z-index: 2;
+    padding: 6px;
+
+    text-align: right;
+    font-size: 80%;
+}
+#user .avatar {
+    display: inline-block;
+    overflow: hidden;
+    padding: 1px;
+    margin: 0 .5em;
+    line-height: 0;
+    vertical-align: middle;
+
+    background: #3f7085;
+    border: 1px solid #4c92ae;
+}
+
 #header {
     position: relative;
     overflow: hidden;
+    margin-top: -3rem;
 
     background: radial-gradient(30% 45% at center 60%, #212329, transparent);
 }
@@ -42,6 +63,14 @@ a:visited {
     color: transparent;
     -webkit-background-clip: text;
 }
+#lin, #lout {
+    display: none;
+}
+.lout #lout, .lin #lin {
+    display: block;
+    line-height: 37px;
+}
+
 h1 {
     color: #9e814c;
 
@@ -70,6 +99,31 @@ p {
 
 em {
     font-style: italic;
+}
+
+button {
+    margin: 0 .5em;
+    padding: .3em .7em .4em .6em;
+    border: 1px solid #575a80;
+    line-height: 1;
+
+    color: #97a5cf;
+    background: transparent;
+    border-radius: 4px;
+    cursor: pointer;
+}
+button:hover {
+    background: #272a31;
+}
+
+dl {
+    display: inline-block;
+}
+dt, dd {
+    display: inline;
+}
+dt {
+    font-weight: bold;
 }
 
 td {
@@ -113,6 +167,41 @@ td:nth-child(3) {
 }
 td.ad {
     padding-left: 64px;
+}
+
+a.owned {
+    position: relative;
+}
+a.owned > img {
+    opacity: .3;
+}
+a.owned:before {
+    content: attr(data-content);
+    position: absolute;
+    display: block;
+    z-index: 1;
+    left: 0;
+    top: 50%;
+    max-width: 0;
+    height: 18px;
+    line-height: 18px;
+    padding-left: 18px;
+    margin-top: -9px;
+    overflow: hidden;
+    white-space: nowrap;
+
+    color: #111;
+    background: #4F95BD url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="640" height="640">\
+        <path d="M0 0L640 0 640 160 0 160 0 0ZM0 240L640 240 640 400 0 400 0 240ZM0 480L640 480 640 640 0 640 0 480Z"/>\
+        </svg>') no-repeat 5px 50%;
+    background-size: 8px 8px;
+    font-size: 8pt;
+    text-transform: uppercase;
+    transition: max-width .3s, padding .2s;
+}
+a.owned:hover:before {
+    max-width: 100%;
+    padding-right: 5px;
 }
 
 .slogan, .countdown {
