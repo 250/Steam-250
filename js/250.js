@@ -160,15 +160,6 @@ class S250 {
         );
     }
 
-    loadDisqus() {
-        if (!location.host) return;
-
-        let d = document, s = d.createElement('script');
-        s.src = 'https://steam250.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-    }
-
     parseParam(name) {
         let match = RegExp('[?&]' + name + '=([^&]*)').exec(location.search);
 
