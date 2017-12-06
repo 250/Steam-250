@@ -51,6 +51,7 @@ class S250 {
 
         let a = document.querySelector('#lin .avatar');
         a.href = `http://steamcommunity.com/profiles/${steam.id}/`;
+        a.title = steam.name;
 
         let img = document.createElement('img');
         img.src = steam.avatar;
@@ -94,7 +95,7 @@ class S250 {
 
             let games = JSON.parse(matches[1]).reduce(
                 (games, game) => {
-                    games[game['appid']] = game['hours_forever'];
+                    games[game['appid']] = game['hours_forever'] || 0;
 
                     return games;
                 },
