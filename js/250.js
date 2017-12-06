@@ -115,6 +115,8 @@ class S250 {
     }
 
     startCountdown() {
+        let element = BuildMonitor.createElement();
+
         fetch(
             'https://api.travis-ci.org/repo/15937062/builds?event_type=cron&limit=1',
             {
@@ -127,7 +129,7 @@ class S250 {
                 data => data.builds[0].finished_at
             )
         ).then(
-            date => new BuildMonitor(date)
+            date => new BuildMonitor(date, element)
         );
     }
 
@@ -137,62 +139,3 @@ class S250 {
         return match && decodeURIComponent(match[1]);
     }
 } new S250;
-
-class BuildMonitor {
-    constructor(date) {
-        this.nextBuild = date && moment(date).add({days: 1});
-        this.blink = 0;
-
-        this.createElement();
-        this.monitor();
-    }
-
-    createElement() {
-        let element = this.element = document.createElement('div');
-        element.classList.add('countdown');
-        element.innerHTML = 'Initializing...';
-
-        document.getElementById('header').appendChild(element);
-    }
-
-    monitor() {
-        if (!this.nextBuild) {
-            return this.showBuilding();
-        }
-
-        this.timer = setInterval(() => this.showNextUpdate(), 500);
-        this.showNextUpdate();
-    }
-
-    showNextUpdate() {
-        let duration = this.calculateDuration();
-
-        if (duration <= 0) {
-            clearInterval(this.timer);
-
-            return this.showReady();
-        }
-
-        let formattedDuration = duration.format('HH:mm.ss');
-
-        this.element.innerHTML = 'Next update ' + (
-            (this.blink ^= 1)
-                ? formattedDuration
-                : formattedDuration.replace(/:/, ' ')
-        );
-    }
-
-    showBuilding() {
-        this.element.classList.add('ready');
-        this.element.innerHTML = 'Building update...';
-    }
-
-    showReady() {
-        this.element.classList.add('ready');
-        this.element.innerHTML = '<a href="https://youtu.be/Mu0cE9RgK5M">Ready for launch</a>';
-    }
-
-    calculateDuration() {
-        return moment(moment.duration(this.nextBuild - moment()).asMilliseconds());
-    }
-}
