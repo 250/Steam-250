@@ -1,4 +1,4 @@
-new class {
+class S250 {
     constructor() {
         this.initLogInOut();
         this.syncLogInOutState();
@@ -9,7 +9,9 @@ new class {
 
     initLogInOut() {
         let form = document.querySelector('#lout form');
-        form['openid.return_to'].value = this.isLocal() ? 'http://steam250.com' : location.href;
+
+        // Redirect back to same page without query or hash.
+        form['openid.return_to'].value = this.isLocal() ? 'http://steam250.com' : location.origin + location.pathname;
 
         document.querySelector('#lin button').addEventListener('click', () => this.logout());
     }
@@ -18,9 +20,9 @@ new class {
         let classes = document.getElementById('user').classList;
 
         classes.remove('lin', 'lout');
-        classes.add(this.isLoggedIn() ? 'lin' : 'lout');
+        classes.add(S250.isLoggedIn() ? 'lin' : 'lout');
 
-        if (this.isLoggedIn()) {
+        if (S250.isLoggedIn()) {
             this.markOwnedGames();
             this.updateUserBar();
         }
@@ -56,7 +58,7 @@ new class {
         a.appendChild(img);
     }
 
-    isLoggedIn() {
+    static isLoggedIn() {
         return localStorage.hasOwnProperty('steam') && localStorage.hasOwnProperty('games');
     }
 
@@ -172,4 +174,4 @@ new class {
 
         return match && decodeURIComponent(match[1]);
     }
-};
+} new S250;
