@@ -213,7 +213,7 @@ a.owned:hover:before {
     position: absolute;
     padding: .6em;
 
-    font: italic 80%/1 Cousine;
+    font: italic 80%/.8 Cousine;
     color: #babec2;
     background: #14161a;
     text-transform: uppercase;
@@ -231,7 +231,7 @@ a.owned:hover:before {
 @keyframes fadeIn {
     from { color: rgba(186, 190, 194, .2); }
 }
-.countdown.ready > a {
+.countdown.ready, .countdown.ready > a {
     animation: fadeIn .75s infinite alternate;
 }
 
