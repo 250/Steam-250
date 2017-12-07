@@ -129,10 +129,14 @@ style="display:none;visibility:hidden"></iframe></noscript>
 <div class="algo" title="Ranking algorithm">{{ toplist.algorithm }} {{ toplist.weight }}</div>
 {{ include('partial/ad.twig', {id: '3002887382'}) }}
 
-{% if risers is defined and fallers is defined and risers and fallers %}
+{% if risers is defined and risers or fallers is defined and fallers %}
 <div class="r&f">
+    {% if risers is defined and risers %}
     {{ include('partial/risers.twig', {games: risers}) }}
+    {% endif %}
+    {% if fallers is defined and fallers %}
     {{ include('partial/risers.twig', {games: fallers}) }}
+    {% endif %}
 </div>
 {% endif %}
 </div>
