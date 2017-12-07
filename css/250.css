@@ -23,6 +23,7 @@ a:visited {
     position: relative;
     z-index: 2;
     height: var(--user-height);
+    margin-bottom: -3rem;
     padding: 6px;
 
     text-align: right;
@@ -43,7 +44,6 @@ a:visited {
 #header {
     position: relative;
     overflow: hidden;
-    margin-top: -3rem;
 
     background: radial-gradient(30% 45% at center 60%, #212329, transparent);
 }
@@ -257,7 +257,7 @@ a.owned:hover:before {
 p.note {
     margin-top: -.75em;
 
-    opacity: .7;
+    opacity: .8;
     font-size: 70%;
 }
 p.note:before {
@@ -452,7 +452,7 @@ caption {
 }
 #footer img {
     height: 16px;
-    opacity: .6;
+    opacity: .65;
 
     vertical-align: text-top;
 }
