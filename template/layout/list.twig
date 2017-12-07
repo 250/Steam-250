@@ -19,27 +19,27 @@
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PJ9P8B3" height="0" width="0"
 style="display:none;visibility:hidden"></iframe></noscript>
 
-<div id="user">
-    <div id="lout">
-        <form action="https://steamcommunity.com/openid/login" method="post">
-            <button id="login">Sign in to Steam</button>
-            <input type="hidden" name="openid.identity" value="http://specs.openid.net/auth/2.0/identifier_select">
-            <input type="hidden" name="openid.claimed_id" value="http://specs.openid.net/auth/2.0/identifier_select">
-            <input type="hidden" name="openid.ns" value="http://specs.openid.net/auth/2.0">
-            <input type="hidden" name="openid.mode" value="checkid_setup">
-            <input type="hidden" name="openid.realm" value="http://steam250.com">
-            <input type="hidden" name="openid.return_to">
-        </form>
-    </div>
-    <div id="lin">
-        <dl>
-            <dt>owned
-            <dd><span class="owned"></span>
-        </dl>
-        <a class="avatar"></a><button id="logout">Sign out</button>
-    </div>
-</div>
 <section id="header">
+    <div id="user">
+        <div id="lout">
+            <form action="https://steamcommunity.com/openid/login" method="post">
+                <button id="login">Sign in to Steam</button>
+                <input type="hidden" name="openid.identity" value="http://specs.openid.net/auth/2.0/identifier_select">
+                <input type="hidden" name="openid.claimed_id" value="http://specs.openid.net/auth/2.0/identifier_select">
+                <input type="hidden" name="openid.ns" value="http://specs.openid.net/auth/2.0">
+                <input type="hidden" name="openid.mode" value="checkid_setup">
+                <input type="hidden" name="openid.realm" value="http://steam250.com">
+                <input type="hidden" name="openid.return_to">
+            </form>
+        </div>
+        <div id="lin">
+            <dl>
+                <dt>owned
+                <dd><span class="owned"></span>
+            </dl>
+            <a class="avatar"></a><button id="logout">Sign out</button>
+        </div>
+    </div>
     <div class="title" data-title="{{ block('heading') }}">
         <h1>{{ block('heading') }}</h1>
     </div>
@@ -93,7 +93,9 @@ style="display:none;visibility:hidden"></iframe></noscript>
                 {{- game.tags -}}
             </a>
             {% if game.release_date %}
-            <span class="date">({{ game.release_date|date('M Y') }})</span>
+            <span class="date" title="{{ game.release_date|date('j M Y') }}">
+                ({{ game.release_date|date('M Y') }})
+            </span>
             {% endif %}
             <span class="platforms">
             {%- if game.platforms b-and constant('ScriptFUSION\\Top250\\Shared\\Platform::WINDOWS') -%}
