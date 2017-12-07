@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/250/Shared.git",
-                "reference": "7b54d15342b0b88477f287637718a20cbe23b4c7"
+                "reference": "88d7376e48d5d5ca5d8737f4e2249c57e51176fd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/250/Shared/zipball/7b54d15342b0b88477f287637718a20cbe23b4c7",
-                "reference": "7b54d15342b0b88477f287637718a20cbe23b4c7",
+                "url": "https://api.github.com/repos/250/Shared/zipball/88d7376e48d5d5ca5d8737f4e2249c57e51176fd",
+                "reference": "88d7376e48d5d5ca5d8737f4e2249c57e51176fd",
                 "shasum": ""
             },
             "require": {
@@ -38,7 +38,7 @@
                 }
             ],
             "description": "Top 250 shared code library.",
-            "time": "2017-11-23 06:35:10"
+            "time": "2017-12-07 11:18:25"
         },
         {
             "name": "doctrine/annotations",

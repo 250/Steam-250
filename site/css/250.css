@@ -382,6 +382,15 @@ p.note:before {
 .platforms > span[title=Linux]:before {
     content: url(http://store.akamai.steamstatic.com/public/images/v6/icon_platform_linux.png);
 }
+.platforms > span[title='HTC Vive']:before {
+    content: url(http://store.akamai.steamstatic.com/public/images/v6/icon_platform_htcvive.png);
+}
+.platforms > span[title='Occulus Rift']:before {
+    content: url(http://store.akamai.steamstatic.com/public/images/v6/icon_platform_oculusrift.png);
+}
+.platforms > span[title='Windows Mixed Reality']:before {
+    content: url(http://store.akamai.steamstatic.com/public/images/v6/icon_platform_windowsmr.png);
+}
 
 .score {
     font-weight: bold;

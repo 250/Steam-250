@@ -97,13 +97,22 @@ style="display:none;visibility:hidden"></iframe></noscript>
             {% endif %}
             <span class="platforms">
             {%- if game.platforms b-and constant('ScriptFUSION\\Top250\\Shared\\Platform::WINDOWS') -%}
-                <span title="Windows">Windows</span>
+                <span title="Windows"></span>
             {%- endif -%}
             {%- if game.platforms b-and constant('ScriptFUSION\\Top250\\Shared\\Platform::MAC') -%}
-                <span title="Mac">Mac</span>
+                <span title="Mac"></span>
             {%- endif -%}
             {%- if game.platforms b-and constant('ScriptFUSION\\Top250\\Shared\\Platform::LINUX') -%}
-                <span title="Linux">Linux</span>
+                <span title="Linux"></span>
+            {%- endif -%}
+            {%- if game.platforms b-and constant('ScriptFUSION\\Top250\\Shared\\Platform::VIVE') -%}
+                <span title="HTC Vive"></span>
+            {%- endif -%}
+            {%- if game.platforms b-and constant('ScriptFUSION\\Top250\\Shared\\Platform::OCCULUS') -%}
+                <span title="Occulus Rift"></span>
+            {%- endif -%}
+            {%- if game.platforms b-and constant('ScriptFUSION\\Top250\\Shared\\Platform::WMR') -%}
+                <span title="Windows Mixed Reality"></span>
             {%- endif -%}
             </span>
         </td>
@@ -155,9 +164,9 @@ style="display:none;visibility:hidden"></iframe></noscript>
         <h2>System status</h2>
         <ul>
             <li>Data <a href="https://travis-ci.org/250/Steam-importer">
-                    <img src="https://travis-ci.org/250/Steam-importer.svg?branch=master"></a>
+                    <img src="https://travis-ci.org/250/Steam-importer.svg?branch=master" alt="Data build status"></a>
                 Pages <a href="https://travis-ci.org/250/Steam-Top-250">
-                    <img src="https://travis-ci.org/250/Steam-Top-250.svg?branch=master"></a>
+                    <img src="https://travis-ci.org/250/Steam-Top-250.svg?branch=master" alt="Page build status"></a>
             <li>Generated {{ 'now'|date }}
             <li><a href="https://github.com/250">Source code</a>,
                 <a href="https://github.com/250/Steam-Top-250/issues">Issues</a>
