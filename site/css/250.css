@@ -189,14 +189,14 @@ a.owned:before {
     top: 50%;
     max-width: 0;
     height: 18px;
-    line-height: 18px;
+    line-height: 19px;
     padding-left: 18px;
     margin-top: -9px;
     overflow: hidden;
     white-space: nowrap;
 
     color: #111;
-    background: #4F95BD url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="640" height="640">\
+    background: #4F95BD url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="640" height="640">\
         <path d="M0 0L640 0 640 160 0 160 0 0ZM0 240L640 240 640 400 0 400 0 240ZM0 480L640 480 640 640 0 640 0 480Z"/>\
         </svg>') no-repeat 5px 50%;
     background-size: 8px 8px;
@@ -469,6 +469,19 @@ caption {
     #footer > :nth-child(n+2) {
         margin: 1.5em 0 0;
     }
+}
+
+a.twitter {
+    display: inline-block;
+    overflow: hidden;
+    width: 20px;
+    height: 0;
+    margin-left: .25em;
+    padding-top: 20px;
+    vertical-align: text-bottom;
+
+    background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MDAiIGhlaWdodD0iNDAwIj48cGF0aCBmaWxsPSIjMURBMUYyIiBkPSJNMTI1LjY2OSwzNjIuNjI0YzE1MC44NywwLDIzMy4zNzUtMTI0Ljk5MSwyMzMuMzc1LTIzMy4zNzVjMC0zLjU1Mi0wLjA3Mi03LjA4OC0wLjIzNC0xMC42MDQNCiBjMTYuMDE1LTExLjU3NywyOS45MzYtMjYuMDIzLDQwLjkxOS00Mi40NjljLTE0LjY5Niw2LjUyOC0zMC41MTQsMTAuOTI5LTQ3LjEwNCwxMi45MTJjMTYuOTM1LTEwLjE1MywyOS45MzctMjYuMjIxLDM2LjA2Ny00NS4zNzMNCiBjLTE1Ljg1Myw5LjM5Ni0zMy40LDE2LjIyOS01Mi4wODIsMTkuOTA5Yy0xNC45NjgtMTUuOTQyLTM2LjI4NC0yNS45MTQtNTkuODczLTI1LjkxNGMtNDUuMzAxLDAtODIuMDM2LDM2LjczNC04Mi4wMzYsODIuMDE3DQogYzAsNi40MzgsMC43MjIsMTIuNjk3LDIuMTI4LDE4LjcwM2MtNjguMTY4LTMuNDI3LTEyOC42MTYtMzYuMDY4LTE2OS4wNjctODUuNjk3Yy03LjA1MSwxMi4xMTgtMTEuMTEsMjYuMjAyLTExLjExLDQxLjIyNQ0KIGMwLDI4LjQ1NywxNC40ODIsNTMuNTc4LDM2LjUwMSw2OC4yNzVjLTEzLjQ1My0wLjQxNC0yNi4wOTYtNC4xMS0zNy4xNDktMTAuMjYxYy0wLjAxOCwwLjM0Mi0wLjAxOCwwLjY4NS0wLjAxOCwxLjA0Ng0KIGMwLDM5LjcyOSwyOC4yNzcsNzIuODkzLDY1LjgwNiw4MC40MTRjLTYuODksMS44NzUtMTQuMTM5LDIuODg2LTIxLjYyMywyLjg4NmMtNS4yODUsMC0xMC40MjQtMC41MjQtMTUuNDE5LTEuNDgxDQogYzEwLjQ0MSwzMi41ODksNDAuNzIsNTYuMzA0LDc2LjYyNSw1Ni45NzNjLTI4LjA3OCwyMi02My40NDMsMzUuMTExLTEwMS44NzMsMzUuMTExYy02LjYxOSwwLTEzLjE0Ny0wLjM4LTE5LjU2Ni0xLjEzOA0KIEMzNi4yMzksMzQ5LjA0Nyw3OS4zNDEsMzYyLjYyNCwxMjUuNjY5LDM2Mi42MjQiLz48L3N2Zz4NCg');
+    background-size: 20px 20px;
 }
 
 .fixedlinks {
