@@ -23,7 +23,7 @@ a:visited {
     position: relative;
     z-index: 2;
     height: var(--user-height);
-    margin-bottom: -3rem;
+    margin-bottom: -2.5vw;
     padding: 6px;
 
     text-align: right;
@@ -45,15 +45,20 @@ a:visited {
     position: relative;
     overflow: hidden;
 
-    background: radial-gradient(30% 45% at center 60%, #212329, transparent);
+    background: radial-gradient(25% 45% at center 60%, #212329, transparent);
 }
 #header > .title {
     position: relative;
     z-index: 1;
-    margin: 0 .2em .16em;
+    margin-bottom: .16em;
 
-    font: 920% Lobster, cursive;
+    font: calc(30px + 8vw) Lobster, cursive;
     transform: rotate(-1deg);
+}
+@media (min-width: 1160px) {
+    #header > .title {
+        font-size: 123px;
+    }
 }
 #header > .title:before{
     content: attr(data-title);
