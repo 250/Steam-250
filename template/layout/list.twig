@@ -11,7 +11,7 @@
     })(window,document,'script','dataLayer','GTM-PJ9P8B3');</script>
     <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
 
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster|Cousine:400i">
@@ -71,21 +71,16 @@ style="display:none;visibility:hidden"></iframe></noscript>
     <tr{{ loop.index % 2 ? ' class="a"' }}>
         <td>
             <a href="http://store.steampowered.com/app/{{ game.id }}/">
-                {%- if loop.index <= 15 -%}
-                <img src="http://cdn.akamai.steamstatic.com/steam/apps/{{ game.id }}/capsule_184x69.jpg"
-                     width="{{ min(184, 184 - (184 - 120) / 13 * (loop.index - 3))|round }}"
-                {%- else -%}
-                <img src="http://cdn.akamai.steamstatic.com/steam/apps/{{ game.id }}/capsule_sm_120.jpg"
-                     width="120" height="45"
-                {%- endif %}
-                alt="{{ game.name }} logo"
+                <img src="http://cdn.akamai.steamstatic.com/steam/apps/{{ game.id }}/capsule_
+                    {{- loop.index <= 15 ? '184x69.jpg' : 'sm_120.jpg' }}"
+                    alt="{{ game.name }} logo"
             ></a>
         </td>
         <td id="{{ game.rank }}">
             {% if game.movement is defined %}
             {{ include('partial/movement.twig', {movement: game.movement}) }}
             {% endif %}
-            <span class="title" style="font-size: {{ min(200, max(100, 200 - 100 / 13 * (loop.index - 3))) }}%">
+            <span class="title">
                 {{ game.rank }}.
                 <a href="http://store.steampowered.com/app/{{ game.id }}/" data-rank="{{ game.rank }}">
                     {{- game.name -}}
@@ -122,10 +117,8 @@ style="display:none;visibility:hidden"></iframe></noscript>
         </td>
         <td>
             <span class="score">{{ (game.score * 10)|number_format(1) }}</span>
-            <span class="votes">
-                ({{ (game.positive_reviews / game.total_reviews * 100)|round }}%
-                {{ game.total_reviews }} votes)
-            </span>
+            <span class="rating">{{ (game.positive_reviews / game.total_reviews * 100)|round }}%</span>
+            <span class="votes">{{ game.total_reviews }} votes</span>
         </td>
     </tr>
     {% if loop.index % split == 0 and not loop.last %}

@@ -4,8 +4,13 @@
 
 body {
     color: #c7d5e0;
-    background: #171a21;
-    font: 95%/1.5 sans-serif;
+    background: #1b2838;
+    font: 95%/1.4 sans-serif;
+}
+@media (max-width: 380px) {
+    body {
+        font-size: 4vw;
+    }
 }
 
 a {
@@ -46,6 +51,9 @@ a:visited {
     overflow: hidden;
 
     background: radial-gradient(25% 45% at center 60%, #212329, transparent);
+}
+#header, #footer {
+    background: #171a21;
 }
 #header > .title {
     position: relative;
@@ -103,7 +111,9 @@ h1 {
 }
 
 p {
-    margin: 1.5em 0;
+    max-width: 34em;
+    margin: 2.5vh auto;
+
     text-align: center;
 }
 
@@ -142,9 +152,13 @@ td {
 
 table {
     width: 100%;
-    margin: 2em auto;
-    border-collapse: collapse;
-    line-height: 1.2;
+    margin: 1.5em auto;
+    line-height: 1;
+}
+@media (max-width: 599px) {
+    table {
+        font-size: 85%;
+    }
 }
 thead {
     font-weight: bold;
@@ -152,13 +166,17 @@ thead {
 thead td {
     padding-bottom: .5em;
 }
+td img {
+    max-width: 100%;
+    min-width: 80px;
+}
 tbody > tr.a > td:nth-child(n+2),
 .r\&f tr:nth-child(2n-1) > td {
     background-color: #1a2334;
 }
 tbody > tr.a + tr > td {
-    padding-top: 6px;
-    padding-bottom: 6px;
+    padding-top: .5vh;
+    padding-bottom: .5vh;
 }
 td:nth-child(1) {
     line-height: 0;
@@ -168,12 +186,13 @@ td:nth-child(1) > a {
     display: inline-block;
 }
 td:nth-child(2) {
-    padding-left: 10px;
-    padding-right: 10px;
+    padding-left: .5vw;
+    padding-right: .5vw;
 }
 td:nth-child(3) {
-    padding-right: 10px;
-    white-space: nowrap;
+    padding-right: .5vw;
+
+    text-align: center;
 }
 td.ad {
     padding-left: 64px;
@@ -241,19 +260,19 @@ a.owned:hover:before {
 }
 
 .body {
-    padding: 2em;
-    background: #1b2838;
+    padding: 1.5em 0;
 }
 
 .page {
     margin: 0 auto;
-    width: 864px;
+    max-width: 864px;
 }
 
 .links {
     text-align: center;
     text-transform: uppercase;
     font-size: 80%;
+    line-height: 1.5;
 }
 .links a {
     margin: 0 .5em;
@@ -300,7 +319,7 @@ p.note:before {
     font-weight: bold;
 }
 .movement.pos, .movement.neg {
-    font-size: 9pt;
+    font-size: 79%;
     color: #e7f7c8;
 }
 .movement.neg {
@@ -340,14 +359,27 @@ p.note:before {
     background: #804539;
     clip-path: polygon(20% 0%, 20% 50%, 0% 50%, 50% 100%, 100% 50%, 80% 50%, 80% 0%);
 }
+@media (max-width: 599px) {
+    .movement {
+        width: 14px;
+        height: 14px;
+        line-height: 14px;
+    }
+    .movement.pos:before {
+        top: -2px;
+    }
+    .movement.neg:before {
+        top: 1px;
+    }
+}
 
 .genre, .genre:visited {
     margin-left: .25em;
-    padding: 3px 7px;
+    padding: .19em .6em;
     border-radius: 2px;
     white-space: nowrap;
 
-    font-size: 11px;
+    font-size: 70%;
     color: #67c1f5;
     background: rgba(103, 193, 245, 0.2);
 }
@@ -359,7 +391,7 @@ p.note:before {
 
 .date {
     margin-left: .25em;
-    font-size: 90%;
+    font-size: 85%;
 
     white-space: nowrap;
     color: #cccecf;
@@ -376,33 +408,43 @@ p.note:before {
     display: inline-block;
     width: 20px;
     height: 20px;
-    overflow: hidden;
+    background-size: cover;
 }
-.platforms > span[title=Windows]:before {
-    content: url(http://store.akamai.steamstatic.com/public/images/v6/icon_platform_win.png?v=3);
+@media (max-width: 599px) {
+    .platforms > span {
+        width: 15px;
+        height: 15px;
+    }
 }
-.platforms > span[title=Mac]:before {
-    content: url(http://store.akamai.steamstatic.com/public/images/v6/icon_platform_mac.png);
+.platforms > span[title=Windows] {
+    background-image: url(http://store.akamai.steamstatic.com/public/images/v6/icon_platform_win.png?v=3);
 }
-.platforms > span[title=Linux]:before {
-    content: url(http://store.akamai.steamstatic.com/public/images/v6/icon_platform_linux.png);
+.platforms > span[title=Mac] {
+    background-image: url(http://store.akamai.steamstatic.com/public/images/v6/icon_platform_mac.png);
 }
-.platforms > span[title='HTC Vive']:before {
-    content: url(http://store.akamai.steamstatic.com/public/images/v6/icon_platform_htcvive.png);
+.platforms > span[title=Linux] {
+    background-image: url(http://store.akamai.steamstatic.com/public/images/v6/icon_platform_linux.png);
 }
-.platforms > span[title='Occulus Rift']:before {
-    content: url(http://store.akamai.steamstatic.com/public/images/v6/icon_platform_oculusrift.png);
+.platforms > span[title='HTC Vive'] {
+    background-image: url(http://store.akamai.steamstatic.com/public/images/v6/icon_platform_htcvive.png);
 }
-.platforms > span[title='Windows Mixed Reality']:before {
-    content: url(http://store.akamai.steamstatic.com/public/images/v6/icon_platform_windowsmr.png);
+.platforms > span[title='Occulus Rift'] {
+    background-image: url(http://store.akamai.steamstatic.com/public/images/v6/icon_platform_oculusrift.png);
+}
+.platforms > span[title='Windows Mixed Reality'] {
+    background-image: url(http://store.akamai.steamstatic.com/public/images/v6/icon_platform_windowsmr.png);
 }
 
 .score {
     font-weight: bold;
 }
 
+.rating, .votes {
+    font-size: 80%;
+}
 .votes {
-    font-size: 85%;
+    display: inline-block;
+    clear: left;
 }
 
 caption {
@@ -428,13 +470,13 @@ caption {
     text-transform: lowercase;
     text-align: center;
     font-size: 70%;
-    opacity: .1;
+    opacity: .06;
 }
 
 #footer {
     display: flex;
     justify-content: center;
-    margin: 2em;
+    padding: 2em;
 }
 #footer > * {
     max-width: 18em;
@@ -491,14 +533,17 @@ a.twitter {
 
 .fixedlinks {
     position: fixed;
-    bottom: .7em;
-    right: 1em;
+    bottom: .7vh;
+    right: .7vw;
+}
+.fixedlinks > :first-child {
+    margin-right: .2em;
 }
 .fixedlinks > a {
     text-transform: uppercase;
     font-size: 85%;
     color: inherit;
-    opacity: .15;
+    opacity: .2;
     transition: opacity .1s;
 }
 .fixedlinks > a:hover {
