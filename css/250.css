@@ -4,13 +4,8 @@
 
 body {
     color: #c7d5e0;
-    background: #1b2838;
-    font: 95%/1.4 sans-serif;
-}
-@media (max-width: 380px) {
-    body {
-        font-size: 4vw;
-    }
+    background: #171a21;
+    font: 95%/1.5 sans-serif;
 }
 
 a {
@@ -28,7 +23,7 @@ a:visited {
     position: relative;
     z-index: 2;
     height: var(--user-height);
-    margin-bottom: -2.5vw;
+    margin-bottom: -3rem;
     padding: 6px;
 
     text-align: right;
@@ -50,23 +45,15 @@ a:visited {
     position: relative;
     overflow: hidden;
 
-    background: radial-gradient(25% 45% at center 60%, #212329, transparent);
-}
-#header, #footer {
-    background: #171a21;
+    background: radial-gradient(30% 45% at center 60%, #212329, transparent);
 }
 #header > .title {
     position: relative;
     z-index: 1;
-    margin-bottom: .16em;
+    margin: 0 .2em .16em;
 
-    font: calc(30px + 8vw) Lobster, cursive;
+    font: 920% Lobster, cursive;
     transform: rotate(-1deg);
-}
-@media (min-width: 1160px) {
-    #header > .title {
-        font-size: 123px;
-    }
 }
 #header > .title:before{
     content: attr(data-title);
@@ -111,9 +98,7 @@ h1 {
 }
 
 p {
-    max-width: 34em;
-    margin: 2.5vh auto;
-
+    margin: 1.5em 0;
     text-align: center;
 }
 
@@ -152,13 +137,9 @@ td {
 
 table {
     width: 100%;
-    margin: 1.5em auto;
-    line-height: 1;
-}
-@media (max-width: 599px) {
-    table {
-        font-size: 85%;
-    }
+    margin: 2em auto;
+    border-collapse: collapse;
+    line-height: 1.2;
 }
 thead {
     font-weight: bold;
@@ -166,17 +147,13 @@ thead {
 thead td {
     padding-bottom: .5em;
 }
-td img {
-    max-width: 100%;
-    min-width: 80px;
-}
 tbody > tr.a > td:nth-child(n+2),
 .r\&f tr:nth-child(2n-1) > td {
     background-color: #1a2334;
 }
 tbody > tr.a + tr > td {
-    padding-top: .5vh;
-    padding-bottom: .5vh;
+    padding-top: 6px;
+    padding-bottom: 6px;
 }
 td:nth-child(1) {
     line-height: 0;
@@ -186,13 +163,12 @@ td:nth-child(1) > a {
     display: inline-block;
 }
 td:nth-child(2) {
-    padding-left: .5vw;
-    padding-right: .5vw;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 td:nth-child(3) {
-    padding-right: .5vw;
-
-    text-align: center;
+    padding-right: 10px;
+    white-space: nowrap;
 }
 td.ad {
     padding-left: 64px;
@@ -213,14 +189,14 @@ a.owned:before {
     top: 50%;
     max-width: 0;
     height: 18px;
-    line-height: 18px;
+    line-height: 19px;
     padding-left: 18px;
     margin-top: -9px;
     overflow: hidden;
     white-space: nowrap;
 
     color: #111;
-    background: #4F95BD url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="640" height="640">\
+    background: #4F95BD url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="640" height="640">\
         <path d="M0 0L640 0 640 160 0 160 0 0ZM0 240L640 240 640 400 0 400 0 240ZM0 480L640 480 640 640 0 640 0 480Z"/>\
         </svg>') no-repeat 5px 50%;
     background-size: 8px 8px;
@@ -260,19 +236,19 @@ a.owned:hover:before {
 }
 
 .body {
-    padding: 1.5em 0;
+    padding: 2em;
+    background: #1b2838;
 }
 
 .page {
     margin: 0 auto;
-    max-width: 864px;
+    width: 864px;
 }
 
 .links {
     text-align: center;
     text-transform: uppercase;
     font-size: 80%;
-    line-height: 1.5;
 }
 .links a {
     margin: 0 .5em;
@@ -319,7 +295,7 @@ p.note:before {
     font-weight: bold;
 }
 .movement.pos, .movement.neg {
-    font-size: 79%;
+    font-size: 9pt;
     color: #e7f7c8;
 }
 .movement.neg {
@@ -359,27 +335,14 @@ p.note:before {
     background: #804539;
     clip-path: polygon(20% 0%, 20% 50%, 0% 50%, 50% 100%, 100% 50%, 80% 50%, 80% 0%);
 }
-@media (max-width: 599px) {
-    .movement {
-        width: 14px;
-        height: 14px;
-        line-height: 14px;
-    }
-    .movement.pos:before {
-        top: -2px;
-    }
-    .movement.neg:before {
-        top: 1px;
-    }
-}
 
 .genre, .genre:visited {
     margin-left: .25em;
-    padding: .19em .6em;
+    padding: 3px 7px;
     border-radius: 2px;
     white-space: nowrap;
 
-    font-size: 70%;
+    font-size: 11px;
     color: #67c1f5;
     background: rgba(103, 193, 245, 0.2);
 }
@@ -391,7 +354,7 @@ p.note:before {
 
 .date {
     margin-left: .25em;
-    font-size: 85%;
+    font-size: 90%;
 
     white-space: nowrap;
     color: #cccecf;
@@ -408,43 +371,33 @@ p.note:before {
     display: inline-block;
     width: 20px;
     height: 20px;
-    background-size: cover;
+    overflow: hidden;
 }
-@media (max-width: 599px) {
-    .platforms > span {
-        width: 15px;
-        height: 15px;
-    }
+.platforms > span[title=Windows]:before {
+    content: url(http://store.akamai.steamstatic.com/public/images/v6/icon_platform_win.png?v=3);
 }
-.platforms > span[title=Windows] {
-    background-image: url(http://store.akamai.steamstatic.com/public/images/v6/icon_platform_win.png?v=3);
+.platforms > span[title=Mac]:before {
+    content: url(http://store.akamai.steamstatic.com/public/images/v6/icon_platform_mac.png);
 }
-.platforms > span[title=Mac] {
-    background-image: url(http://store.akamai.steamstatic.com/public/images/v6/icon_platform_mac.png);
+.platforms > span[title=Linux]:before {
+    content: url(http://store.akamai.steamstatic.com/public/images/v6/icon_platform_linux.png);
 }
-.platforms > span[title=Linux] {
-    background-image: url(http://store.akamai.steamstatic.com/public/images/v6/icon_platform_linux.png);
+.platforms > span[title='HTC Vive']:before {
+    content: url(http://store.akamai.steamstatic.com/public/images/v6/icon_platform_htcvive.png);
 }
-.platforms > span[title='HTC Vive'] {
-    background-image: url(http://store.akamai.steamstatic.com/public/images/v6/icon_platform_htcvive.png);
+.platforms > span[title='Occulus Rift']:before {
+    content: url(http://store.akamai.steamstatic.com/public/images/v6/icon_platform_oculusrift.png);
 }
-.platforms > span[title='Occulus Rift'] {
-    background-image: url(http://store.akamai.steamstatic.com/public/images/v6/icon_platform_oculusrift.png);
-}
-.platforms > span[title='Windows Mixed Reality'] {
-    background-image: url(http://store.akamai.steamstatic.com/public/images/v6/icon_platform_windowsmr.png);
+.platforms > span[title='Windows Mixed Reality']:before {
+    content: url(http://store.akamai.steamstatic.com/public/images/v6/icon_platform_windowsmr.png);
 }
 
 .score {
     font-weight: bold;
 }
 
-.rating, .votes {
-    font-size: 80%;
-}
 .votes {
-    display: inline-block;
-    clear: left;
+    font-size: 85%;
 }
 
 caption {
@@ -470,13 +423,13 @@ caption {
     text-transform: lowercase;
     text-align: center;
     font-size: 70%;
-    opacity: .06;
+    opacity: .1;
 }
 
 #footer {
     display: flex;
     justify-content: center;
-    padding: 2em;
+    margin: 2em;
 }
 #footer > * {
     max-width: 18em;
@@ -518,19 +471,29 @@ caption {
     }
 }
 
+a.twitter {
+    display: inline-block;
+    overflow: hidden;
+    width: 20px;
+    height: 0;
+    margin-left: .25em;
+    padding-top: 20px;
+    vertical-align: text-bottom;
+
+    background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MDAiIGhlaWdodD0iNDAwIj48cGF0aCBmaWxsPSIjMURBMUYyIiBkPSJNMTI1LjY2OSwzNjIuNjI0YzE1MC44NywwLDIzMy4zNzUtMTI0Ljk5MSwyMzMuMzc1LTIzMy4zNzVjMC0zLjU1Mi0wLjA3Mi03LjA4OC0wLjIzNC0xMC42MDQNCiBjMTYuMDE1LTExLjU3NywyOS45MzYtMjYuMDIzLDQwLjkxOS00Mi40NjljLTE0LjY5Niw2LjUyOC0zMC41MTQsMTAuOTI5LTQ3LjEwNCwxMi45MTJjMTYuOTM1LTEwLjE1MywyOS45MzctMjYuMjIxLDM2LjA2Ny00NS4zNzMNCiBjLTE1Ljg1Myw5LjM5Ni0zMy40LDE2LjIyOS01Mi4wODIsMTkuOTA5Yy0xNC45NjgtMTUuOTQyLTM2LjI4NC0yNS45MTQtNTkuODczLTI1LjkxNGMtNDUuMzAxLDAtODIuMDM2LDM2LjczNC04Mi4wMzYsODIuMDE3DQogYzAsNi40MzgsMC43MjIsMTIuNjk3LDIuMTI4LDE4LjcwM2MtNjguMTY4LTMuNDI3LTEyOC42MTYtMzYuMDY4LTE2OS4wNjctODUuNjk3Yy03LjA1MSwxMi4xMTgtMTEuMTEsMjYuMjAyLTExLjExLDQxLjIyNQ0KIGMwLDI4LjQ1NywxNC40ODIsNTMuNTc4LDM2LjUwMSw2OC4yNzVjLTEzLjQ1My0wLjQxNC0yNi4wOTYtNC4xMS0zNy4xNDktMTAuMjYxYy0wLjAxOCwwLjM0Mi0wLjAxOCwwLjY4NS0wLjAxOCwxLjA0Ng0KIGMwLDM5LjcyOSwyOC4yNzcsNzIuODkzLDY1LjgwNiw4MC40MTRjLTYuODksMS44NzUtMTQuMTM5LDIuODg2LTIxLjYyMywyLjg4NmMtNS4yODUsMC0xMC40MjQtMC41MjQtMTUuNDE5LTEuNDgxDQogYzEwLjQ0MSwzMi41ODksNDAuNzIsNTYuMzA0LDc2LjYyNSw1Ni45NzNjLTI4LjA3OCwyMi02My40NDMsMzUuMTExLTEwMS44NzMsMzUuMTExYy02LjYxOSwwLTEzLjE0Ny0wLjM4LTE5LjU2Ni0xLjEzOA0KIEMzNi4yMzksMzQ5LjA0Nyw3OS4zNDEsMzYyLjYyNCwxMjUuNjY5LDM2Mi42MjQiLz48L3N2Zz4NCg');
+    background-size: 20px 20px;
+}
+
 .fixedlinks {
     position: fixed;
-    bottom: .7vh;
-    right: .7vw;
-}
-.fixedlinks > :first-child {
-    margin-right: .2em;
+    bottom: .7em;
+    right: 1em;
 }
 .fixedlinks > a {
     text-transform: uppercase;
     font-size: 85%;
     color: inherit;
-    opacity: .2;
+    opacity: .15;
     transition: opacity .1s;
 }
 .fixedlinks > a:hover {
