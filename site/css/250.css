@@ -49,17 +49,15 @@ a:visited {
 
 #header {
     position: relative;
-    overflow: hidden;
 
     background: radial-gradient(25% 45% at center 60%, #212329, transparent);
 }
 #header, #footer {
-    background: #171a21;
+    background-color: #171a21;
 }
 #header > .title {
     position: relative;
     z-index: 1;
-    margin-bottom: .16em;
 
     font: calc(30px + 8vw) Lobster, cursive;
     transform: rotate(-1deg);
@@ -234,20 +232,14 @@ a.owned:hover:before {
     padding-right: 5px;
 }
 
-.slogan, .countdown {
-    position: absolute;
-    padding: .6em;
-}
 .slogan {
-    right: 50%;
-    bottom: 0;
-    transform: translate(50%, 0);
+    padding-bottom: .9em;
 
     font: calc(6px + 1vw)/.8 Codystar;
     color: #b3b5bd;
     text-shadow: #000 1px 1px;
     text-transform: uppercase;
-    white-space: nowrap;
+    text-align: center;
 }
 @media (min-width: 1300px) {
     .slogan {
@@ -259,9 +251,16 @@ a.owned:hover:before {
 }
 
 .countdown {
-    right: 50%;
+    position: absolute;
+    padding: .5em;
     bottom: 0;
-    transform: translate(50%, 100%);
+    right: 50%;
+    transform: translate(50%, 99%);
+
+    color: #919599;
+    background: #171b22;
+    font: italic 75%/.8 Cousine;
+    text-transform: uppercase;
 }
 @keyframes fadeIn {
     from { color: rgba(186, 190, 194, .2); }
@@ -269,9 +268,14 @@ a.owned:hover:before {
 .countdown.ready, .countdown.ready > a {
     animation: fadeIn .75s infinite alternate;
 }
+@media (max-width: 860px) {
+    .countdown {
+        font-size: 65%;
+    }
+}
 
 .body {
-    padding: 3vh 0;
+    padding: calc(1em + 1.5vh) 0;
 }
 
 .page {
