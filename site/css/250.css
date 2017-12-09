@@ -1,4 +1,5 @@
 :root {
+    --reading-width: 34em;
     --user-height: 37px;
 }
 
@@ -111,7 +112,7 @@ h1 {
 }
 
 p {
-    max-width: 34em;
+    max-width: var(--reading-width);
     margin: 2.5vh auto;
 
     text-align: center;
@@ -155,7 +156,7 @@ table {
     margin: 1.5em auto;
     line-height: 1;
 }
-@media (max-width: 599px) {
+@media (max-width: 649px) {
     table {
         font-size: 85%;
     }
@@ -359,7 +360,7 @@ p.note:before {
     background: #804539;
     clip-path: polygon(20% 0%, 20% 50%, 0% 50%, 50% 100%, 100% 50%, 80% 50%, 80% 0%);
 }
-@media (max-width: 599px) {
+@media (max-width: 649px) {
     .movement {
         width: 14px;
         height: 14px;
@@ -454,13 +455,17 @@ caption {
 }
 
 .r\&f {
-    display: flex;
+    columns: 2 250px;
+    margin: 0 1.5em;
+    text-align: center;
 }
 .r\&f > * {
     width: auto;
+    max-width: var(--reading-width);
+    text-align: left;
 }
 .r\&f > :nth-child(2) {
-    margin-left: 1.5em;
+    display: inline-block;
 }
 .r\&f img {
     height: 34px;
