@@ -14,7 +14,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
 
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster|Cousine:400i">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster%7cCodystar%7cCousine:400i">
+
     <link rel="shortcut icon" href="favicon.png" type="image/png" />
 
 <body>
@@ -45,7 +46,9 @@ style="display:none;visibility:hidden"></iframe></noscript>
     <div class="title" data-title="{{ block('heading') }}">
         <h1>{{ block('heading') }}</h1>
     </div>
-    <div class="slogan">Open source Steam games ranking curated by the players</div>
+    <div class="slogan">
+        Open source ranking <span class="d">of</span> Steam games <span class="d">curated by</span> the players
+    </div>
 </section>
 
 <div class="body">
@@ -125,7 +128,7 @@ style="display:none;visibility:hidden"></iframe></noscript>
     <tr>
         <td colspan="3" class="ad">{{ include(
             'partial/ad.twig',
-            {id: cycle(['6912946882', '4095211858'], loop.index / split - 1)}
+            {id: cycle(['6706909236', '6885984584'], loop.index / split - 1)}
         ) }}</td>
     </tr>
     {% endif %}
@@ -136,7 +139,7 @@ style="display:none;visibility:hidden"></iframe></noscript>
 {{ include('partial/ad.twig', {id: '3002887382'}) }}
 
 {% if risers is defined and risers or fallers is defined and fallers %}
-<div class="r&f">
+<div class="r&amp;f">
     {% if risers is defined and risers %}
     {{ include('partial/risers.twig', {games: risers}) }}
     {% endif %}
@@ -177,8 +180,8 @@ style="display:none;visibility:hidden"></iframe></noscript>
             <li><a href="http://store.steampowered.com/search/?sort_by=Reviews_DESC&amp;category1=998">
                     Official Steam top games list
                 </a>
-            <li><a href="https://steamdb.info/stats/gameratings/">SteamDB top rated games</a>
             <li><a href="https://steamspy.com/#tab-total">Steam Spy top games by playtime</a>
+            <li><a href="https://steamdb.info/stats/gameratings/">SteamDB top rated games</a>
             <li><a href="http://www.imdb.com/chart/top">IMDb Top 250 movies</a>
         </ul>
     </div>
