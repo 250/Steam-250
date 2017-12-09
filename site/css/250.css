@@ -237,7 +237,7 @@ a.owned:hover:before {
 
     font: calc(6px + 1vw)/.8 Codystar;
     color: #b3b5bd;
-    text-shadow: #000 1px 1px;
+    text-shadow: 0 0 0 #b3b5bd, 0 0 3px #989976, 1px 1px 0 #000;
     text-transform: uppercase;
     text-align: center;
 }
@@ -255,7 +255,7 @@ a.owned:hover:before {
     padding: .5em;
     bottom: 0;
     right: 50%;
-    transform: translate(50%, 99%);
+    transform: translate(50%, 97%);
 
     color: #919599;
     background: #171b22;
@@ -276,6 +276,8 @@ a.owned:hover:before {
 
 .body {
     padding: calc(1em + 1.5vh) 0;
+
+    background: linear-gradient(180deg, #2b4a70, #1f2e40 6px, #1b2838 50px);
 }
 
 .page {
@@ -306,10 +308,6 @@ p.note:before {
     font-size: 90%;
     text-transform: uppercase;
     color: #818b91;
-}
-
-.title {
-    vertical-align: middle;
 }
 
 .movement {
@@ -386,6 +384,10 @@ p.note:before {
     .movement.neg:before {
         top: 1px;
     }
+}
+
+#ranking .title {
+    vertical-align: middle;
 }
 
 .genre, .genre:visited {
