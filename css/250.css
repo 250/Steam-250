@@ -303,6 +303,7 @@ a.owned:hover:before {
 }
 
 p.note {
+    max-width: none;
     margin-top: -.75em;
 
     opacity: .8;
