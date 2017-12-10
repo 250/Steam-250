@@ -278,7 +278,9 @@ a.owned:hover:before {
     position: relative;
     padding: calc(1em + 1.5vh) 0;
 
-    background: linear-gradient(180deg, #2b4a70, #1f2e40 6px, #1b2838 50px);
+    background: linear-gradient(180deg, #263e5c, #22344b 6px, #1e2c3e 20px, #1d2a3c 30px, #1b2939 45px, #1b2838 60px)
+        no-repeat;
+    background-size: 100% 60px;
 }
 
 .page {
