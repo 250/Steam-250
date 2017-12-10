@@ -12,7 +12,7 @@ class BuildMonitor {
         element.classList.add('countdown');
         element.innerHTML = 'Initializing...';
 
-        document.getElementById('header').appendChild(element);
+        document.querySelector('.body').appendChild(element);
 
         return element;
     }
