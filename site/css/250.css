@@ -252,13 +252,16 @@ a.owned:hover:before {
 
 .countdown {
     position: absolute;
-    padding: .5em;
+    padding: .5em .7em;
     top: 0;
     right: 50%;
     transform: translate(50%, 0);
 
     color: #919599;
     background: #171b22;
+    border: 1px solid #22344b;
+    border-top-width: 0;
+    border-left-width: 0;
     font: italic 75%/.8 Cousine;
     text-transform: uppercase;
 }
