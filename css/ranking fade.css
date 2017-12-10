@@ -1,0 +1,96 @@
+#ranking img {
+    max-width: none;
+}
+
+/* Sinusoidal in/out fade. */
+#ranking tr:nth-child(1) img {
+    width: 184px;
+}
+#ranking tr:nth-child(2) img {
+    width: 183px;
+}
+#ranking tr:nth-child(3) img {
+    width: 181px;
+}
+#ranking tr:nth-child(4) img {
+    width: 178px;
+}
+#ranking tr:nth-child(5) img {
+    width: 173px;
+}
+#ranking tr:nth-child(6) img {
+    width: 168px;
+}
+#ranking tr:nth-child(7) img {
+    width: 162px;
+}
+#ranking tr:nth-child(8) img {
+    width: 155px;
+}
+#ranking tr:nth-child(9) img {
+    width: 149px;
+}
+#ranking tr:nth-child(10) img {
+    width: 142px;
+}
+#ranking tr:nth-child(11) img {
+    width: 136px;
+}
+#ranking tr:nth-child(12) img {
+    width: 131px;
+}
+#ranking tr:nth-child(13) img {
+    width: 126px;
+}
+#ranking tr:nth-child(14) img {
+    width: 123px;
+}
+#ranking tr:nth-child(15) img {
+    width: 121px;
+}
+
+#ranking tr:nth-child(1) .title {
+    font-size: 200%;
+}
+#ranking tr:nth-child(2) .title {
+    font-size: 198.91%;
+}
+#ranking tr:nth-child(3) .title {
+    font-size: 195.68%;
+}
+#ranking tr:nth-child(4) .title {
+    font-size: 190.45%;
+}
+#ranking tr:nth-child(5) .title {
+    font-size: 183.46%;
+}
+#ranking tr:nth-child(6) .title {
+    font-size: 175%;
+}
+#ranking tr:nth-child(7) .title {
+    font-size: 165.45%;
+}
+#ranking tr:nth-child(8) .title {
+    font-size: 155.23%;
+}
+#ranking tr:nth-child(9) .title {
+    font-size: 144.77%;
+}
+#ranking tr:nth-child(10) .title {
+    font-size: 134.55%;
+}
+#ranking tr:nth-child(11) .title {
+    font-size: 125%;
+}
+#ranking tr:nth-child(12) .title {
+    font-size: 116.54%;
+}
+#ranking tr:nth-child(13) .title {
+    font-size: 109.55%;
+}
+#ranking tr:nth-child(14) .title {
+    font-size: 104.32%;
+}
+#ranking tr:nth-child(15) .title {
+    font-size: 101.09%;
+}
