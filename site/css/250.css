@@ -248,7 +248,7 @@ a.owned:hover:before {
     }
 }
 .d {
-    font-size: 75%;
+    font-size: 80%;
 }
 
 .countdown {
@@ -303,7 +303,8 @@ a.owned:hover:before {
 }
 
 p.note {
-    margin-top: -.75em;
+    max-width: none;
+    margin-top: -2vh;
 
     opacity: .8;
     font-size: 70%;
