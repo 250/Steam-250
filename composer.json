@@ -14,8 +14,9 @@
     "twig/twig": "^2",
     "doctrine/dbal": "^2",
     "monolog/monolog": "^1",
-    "voku/html-min": "^2",
+    "voku/html-min": "2.0.0",
     "eloquent/enumeration": "^5",
+    "joomla/di": "^2@dev",
     "symfony/console": "^3"
   },
   "autoload": {

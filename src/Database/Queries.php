@@ -28,7 +28,7 @@ final class Queries
             ->select('rank.*, app.*')
             ->from('rank')
             ->join('rank', 'app', 'app', 'id = rank.app_id')
-            ->where("rank.list_id = '{$toplist->getTemplate()}'")
+            ->where("rank.list_id = '{$toplist->getId()}'")
             ->orderBy('rank')
             ->setMaxResults($toplist->getLimit())
         ;
@@ -68,7 +68,7 @@ final class Queries
             ->select('*')
             ->from('app')
             ->where('type = \'game\'')
-            ->orderBy('score', $toplist->getDirection())
+            ->orderBy('score', SortDirection::DESC())
             ->setMaxResults($toplist->getLimit())
         ;
 

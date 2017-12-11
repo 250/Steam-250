@@ -40,7 +40,7 @@ final class PageGenerator
         $this->ranker->rank($toplist);
 
         $this->logger->info(
-            "Generating \"{$toplist->getTemplate()}\" page with database: \"{$this->database->getParams()['path']}\""
+            "Generating \"{$toplist->getId()}\" page with database: \"{$this->database->getParams()['path']}\""
                 . ($prevDb ? " and previous database: \"$prevDb\"" : '')
                 . " using \"{$toplist->getAlgorithm()}\" algorithm ({$toplist->getWeight()})."
         );
@@ -66,7 +66,7 @@ final class PageGenerator
             $html = $this->minifier->minify($html);
         }
 
-        file_put_contents($out = "$outPath/{$toplist->getTemplate()}.html", $html);
+        file_put_contents($out = "$outPath/{$toplist->getId()}.html", $html);
 
         $this->logger->info("Page generated at: \"$out\".");
 

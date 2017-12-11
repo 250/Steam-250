@@ -4,35 +4,37 @@ declare(strict_types=1);
 namespace ScriptFUSION\Steam250\SiteGenerator\Toplist;
 
 use Doctrine\DBAL\Query\QueryBuilder;
-use ScriptFUSION\Steam250\SiteGenerator\Database\SortDirection;
 
 abstract class Toplist
 {
-    private $template;
+    private $id;
     private $algorithm;
     private $weight;
     private $limit;
-    private $direction;
+    private $template;
 
     public function __construct(
-        string $template,
+        string $id,
         Algorithm $algorithm,
         float $weight,
-        int $limit,
-        SortDirection $direction = null
+        int $limit
     ) {
-        $this->template = $template;
+        $this->id = $id;
         $this->algorithm = $algorithm;
         $this->weight = $weight;
         $this->limit = $limit;
-        $this->direction = $direction ?: SortDirection::DESC();
     }
 
     abstract public function customizeQuery(QueryBuilder $builder): void;
 
-    public function getTemplate(): string
+    public function getId(): string
     {
-        return $this->template;
+        return $this->id;
+    }
+
+    protected function setId(string $id)
+    {
+        $this->id = $id;
     }
 
     public function getAlgorithm(): Algorithm
@@ -50,8 +52,13 @@ abstract class Toplist
         return $this->limit;
     }
 
-    public function getDirection(): SortDirection
+    public function getTemplate(): string
     {
-        return $this->direction;
+        return $this->template ?: $this->id;
+    }
+
+    protected function setTemplate(string $template): void
+    {
+        $this->template = $template;
     }
 }

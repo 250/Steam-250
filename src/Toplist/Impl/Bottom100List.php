@@ -12,11 +12,11 @@ class Bottom100List extends Toplist
 {
     public function __construct()
     {
-        parent::__construct('bottom100', Algorithm::BAYESIAN(), 500, 100, SortDirection::ASC());
+        parent::__construct('bottom100', Algorithm::BAYESIAN(), 500, 100);
     }
 
     public function customizeQuery(QueryBuilder $builder): void
     {
-        // Intentionally empty.
+        $builder->orderBy('score', SortDirection::ASC());
     }
 }

@@ -9,9 +9,9 @@ use ScriptFUSION\Steam250\SiteGenerator\Toplist\Toplist;
 
 class Top250List extends Toplist
 {
-    public function __construct($template = 'index')
+    public function __construct($id = 'index')
     {
-        parent::__construct($template, Algorithm::LAPLACE_LOG(), .7, 250);
+        parent::__construct($id, Algorithm::LAPLACE_LOG(), .7, 250);
     }
 
     public function customizeQuery(QueryBuilder $builder): void

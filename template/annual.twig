@@ -1,0 +1,10 @@
+{% extends'layout/list.twig' %}
+
+{% block title %}Top {{ games|length }} Steam Games from {{ toplist.id }}{% endblock %}
+{% block heading %}Top of {{ toplist.id }}{% endblock %}
+
+{% block lead %}
+    <p>
+        Top {{ games|length }} Steam games from the year {{ toplist.id }} according to the players.<br>
+    </p>
+{% endblock %}

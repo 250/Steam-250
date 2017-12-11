@@ -5,7 +5,8 @@ namespace ScriptFUSION\Steam250\SiteGenerator\Generate;
 
 use ScriptFUSION\Steam250\SiteGenerator\Toplist\Algorithm;
 use ScriptFUSION\Steam250\SiteGenerator\Toplist\CustomToplist;
-use ScriptFUSION\Steam250\SiteGenerator\Toplist\ToplistAliases;
+use ScriptFUSION\Steam250\SiteGenerator\Toplist\ToplistFactory;
+use ScriptFUSION\Steam250\SiteGenerator\Toplist\ToplistName;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -31,8 +32,9 @@ final class PageCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output): ?int
     {
+        // Override algorithm and weight.
         $toplist = new CustomToplist(
-            ToplistAliases::createToplist($input->getArgument('list')),
+            (new ToplistFactory)->create()->buildObject($input->getArgument('list')),
             Algorithm::memberOrNullByKey($input->getOption('algorithm'), false),
             (float)$input->getOption('weight')
         );

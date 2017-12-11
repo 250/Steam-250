@@ -12,12 +12,13 @@ final class CustomToplist extends Toplist
     public function __construct(Toplist $parent, Algorithm $algorithm = null, float $weight = null)
     {
         parent::__construct(
-            $parent->getTemplate(),
+            $parent->getId(),
             $algorithm ?: $parent->getAlgorithm(),
             $weight ?: $parent->getWeight(),
-            $parent->getLimit(),
-            $parent->getDirection()
+            $parent->getLimit()
         );
+
+        $this->setTemplate($parent->getTemplate());
 
         $this->toplist = $parent;
     }

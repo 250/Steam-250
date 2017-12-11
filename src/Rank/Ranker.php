@@ -35,7 +35,7 @@ final class Ranker
             $this->database->executeQuery(
                 'INSERT OR REPLACE INTO rank (list_id, rank, app_id, score) VALUES (?, ?, ?, ?)',
                 [
-                    $toplist->getTemplate(),
+                    $toplist->getId(),
                     ++$matched,
                     $app['id'],
                     $app['score'] ?: 0,

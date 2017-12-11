@@ -3,23 +3,25 @@ declare(strict_types=1);
 
 namespace ScriptFUSION\Steam250\SiteGenerator\Generate;
 
-use ScriptFUSION\Steam250\SiteGenerator\Toplist\ToplistAliases;
+use Joomla\DI\Container;
+use ScriptFUSION\Steam250\SiteGenerator\Toplist\Impl\Annual100List;
+use ScriptFUSION\Steam250\SiteGenerator\Toplist\ToplistName;
 
 final class SiteGenerator
 {
     private $generator;
+    private $toplists;
 
-    public function __construct(PageGenerator $generator)
+    public function __construct(PageGenerator $generator, Container $toplists)
     {
         $this->generator = $generator;
+        $this->toplists = $toplists;
     }
 
     public function generate(string $outPath, string $prevDb = null): bool
     {
-        foreach (ToplistAliases::getListClassNames() as $toplistClass) {
-            $toplist = new $toplistClass;
-
-            if (!$this->generator->generate($toplist, $outPath, $prevDb)) {
+        foreach (ToplistName::getClassNames() + range(Annual100List::EARLIEST_YEAR, date('Y')) as $listId) {
+            if (!$this->generator->generate($this->toplists->buildObject($listId), $outPath, $prevDb)) {
                 return false;
             }
         }
