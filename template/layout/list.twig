@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster%7cCodystar%7cCousine:400i">
 
-    <link rel="shortcut icon" href="favicon.png" type="image/png" />
+    <link rel="shortcut icon" href="favicon.png" type="image/png">
 
 <body>
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PJ9P8B3" height="0" width="0"
@@ -60,6 +60,12 @@ style="display:none;visibility:hidden"></iframe></noscript>
     <li><a href="30day.html">30 day</a> &ndash; <a href="90day.html">90 day</a> &ndash; <a href="365day.html">365 day</a>
     <li><a href="mac250.html">Mac 250</a> &ndash; <a href="linux250.html">Linux 250</a>
 </ul>
+<ol class="links">
+    {% for year in range(constant('ScriptFUSION\\Steam250\\SiteGenerator\\Toplist\\Impl\\Annual100List::EARLIEST_YEAR'),
+        'now'|date('Y')) %}
+    <li><a href="{{ year }}.html">{{ year }}</a>
+    {% endfor %}
+</ol>
 {{ block('lead') }}
 {{ include('partial/ad.twig', {id: '9535671996'}) }}
 <table id="ranking">
@@ -74,9 +80,8 @@ style="display:none;visibility:hidden"></iframe></noscript>
     <tr{{ loop.index % 2 ? ' class="a"' }}>
         <td>
             <a href="http://store.steampowered.com/app/{{ game.id }}/">
-                <img src="http://cdn.akamai.steamstatic.com/steam/apps/{{ game.id }}/capsule_
+                <img alt="Logo" src="http://cdn.akamai.steamstatic.com/steam/apps/{{ game.id }}/capsule_
                     {{- loop.index <= 14 ? '184x69.jpg' : 'sm_120.jpg' }}"
-                    alt="{{ game.name }} logo"
             ></a>
         </td>
         <td id="{{ game.rank }}">

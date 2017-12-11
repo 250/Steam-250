@@ -5,6 +5,12 @@
 
 {% block lead %}
     <p>
-        Top {{ games|length }} Steam games from the year {{ toplist.id }} according to the players.<br>
+        Top {{ games|length }} Steam games from the year {{ toplist.id }} according to the players.
     </p>
+    {% if toplist.id != 'now'|date('Y') %}
+    <p class="note">
+        Although representing a historical segment, this list is subject to change as votes change
+        or old games are released on Steam.
+    </p>
+    {% endif %}
 {% endblock %}

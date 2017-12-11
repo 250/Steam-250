@@ -293,6 +293,8 @@ a.owned:hover:before {
 }
 
 .links {
+    margin: 1em auto;
+
     text-align: center;
     text-transform: uppercase;
     font-size: 80%;
@@ -300,6 +302,12 @@ a.owned:hover:before {
 }
 .links a {
     margin: 0 .5em;
+}
+ol.links {
+    display: flex;
+    flex-flow: row-reverse wrap-reverse;
+    justify-content: center;
+    width: 30em;
 }
 
 p.note {
