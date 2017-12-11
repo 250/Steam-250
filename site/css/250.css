@@ -476,8 +476,7 @@ p.note:before {
     font-size: 80%;
 }
 .votes {
-    display: inline-block;
-    clear: left;
+    display: block;
 }
 
 caption {
