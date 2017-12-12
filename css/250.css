@@ -15,7 +15,7 @@ body {
 }
 
 a {
-    color: #e1c386;
+    color: #e0c887;
     text-decoration: none;
 }
 a:hover {
@@ -406,7 +406,8 @@ p.note:before {
     vertical-align: middle;
 }
 
-.genre, .genre:visited {
+.genre, .genre:visited,
+.ref250, .ref250:visited {
     margin-left: .25em;
     padding: .19em .6em;
     border-radius: 2px;
@@ -414,12 +415,22 @@ p.note:before {
 
     font-size: 70%;
     color: #67c1f5;
-    background: rgba(103, 193, 245, 0.2);
+    background: rgba(103, 193, 245, .2);
 }
+.ref250, .ref250:visited {
+    color: #d9cc6c;
+    background: rgba(82, 76, 22, .7);
+}
+
 .genre:hover {
     text-decoration: none;
     color: #e6f7ff;
-    background: rgba(103, 193, 245, 0.5);
+    background: rgba(103, 193, 245, .5);
+}
+.ref250:hover {
+    text-decoration: none;
+    color: #fffce8;
+    background: rgba(171, 152, 9, .7);
 }
 
 .date {
