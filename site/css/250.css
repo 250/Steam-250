@@ -57,9 +57,9 @@ a:visited {
 }
 #header > .title {
     position: relative;
-    z-index: 1;
+    margin: .8vh 0;
 
-    font: calc(30px + 8vw) Lobster, cursive;
+    font: calc(30px + 8vw)/1.1 Lobster, cursive;
     transform: rotate(-1deg);
 }
 @media (min-width: 1160px) {

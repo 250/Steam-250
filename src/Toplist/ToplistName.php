@@ -12,6 +12,7 @@ use ScriptFUSION\Steam250\SiteGenerator\Toplist\Impl\ThisMonthList;
 use ScriptFUSION\Steam250\SiteGenerator\Toplist\Impl\ThisQuarterList;
 use ScriptFUSION\Steam250\SiteGenerator\Toplist\Impl\ThisYearList;
 use ScriptFUSION\Steam250\SiteGenerator\Toplist\Impl\Top250List;
+use ScriptFUSION\Steam250\SiteGenerator\Toplist\Impl\VrTop250List;
 
 final class ToplistName extends AbstractEnumeration
 {
@@ -22,6 +23,7 @@ final class ToplistName extends AbstractEnumeration
     public const D_365 = 'D_365';
     public const MAC = 'MAC';
     public const LINUX = 'LINUX';
+    public const VR = 'VR';
     public const GEMS = 'GEMS';
 
     private static $classes = [
@@ -32,6 +34,7 @@ final class ToplistName extends AbstractEnumeration
         self::D_365 => ThisYearList::class,
         self::MAC => Mac250List::class,
         self::LINUX => Linux250List::class,
+        self::VR => VrTop250List::class,
         self::GEMS => HiddenGemsList::class,
     ];
 
@@ -43,6 +46,7 @@ final class ToplistName extends AbstractEnumeration
         self::D_365 => '365d',
         self::MAC => 'mac',
         self::LINUX => 'linux',
+        self::VR => 'vr',
         self::GEMS => 'gems',
     ];
 
