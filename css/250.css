@@ -305,7 +305,7 @@ a.owned:hover:before {
 }
 ol.links {
     display: flex;
-    flex-flow: row-reverse wrap-reverse;
+    flex-flow: wrap;
     justify-content: center;
     width: 30em;
 }
