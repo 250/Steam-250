@@ -61,8 +61,8 @@ style="display:none;visibility:hidden"></iframe></noscript>
     <li><a href="mac250.html">Mac 250</a> &ndash; <a href="linux250.html">Linux 250</a> &ndash; <a href="vr250.html">VR 250</a>
 </ul>
 <ol class="links">
-    {% for year in range(constant('ScriptFUSION\\Steam250\\SiteGenerator\\Toplist\\Impl\\Annual100List::EARLIEST_YEAR'),
-        'now'|date('Y')) %}
+    {% for year in range('now'|date('Y'),
+        constant('ScriptFUSION\\Steam250\\SiteGenerator\\Toplist\\Impl\\Annual100List::EARLIEST_YEAR')) %}
     <li><a href="{{ year }}.html">{{ year }}</a>
     {% endfor %}
 </ol>
@@ -75,7 +75,6 @@ style="display:none;visibility:hidden"></iframe></noscript>
             <td>Movement, rank, title, date, platforms and tags
             <td>Player rating
     <tbody>
-{% set split = min(max(games|length / 2, 25), 100) %}
 {% for game in games %}
     <tr{{ loop.index % 2 ? ' class="a"' }}>
         <td>
@@ -132,11 +131,11 @@ style="display:none;visibility:hidden"></iframe></noscript>
             <span class="votes">{{ game.total_reviews }} votes</span>
         </td>
     </tr>
-    {% if loop.index % split == 0 and not loop.last %}
+    {% if (loop.index == 25 or loop.index == 50) and not loop.last %}
     <tr>
         <td colspan="3" class="ad">{{ include(
             'partial/ad.twig',
-            {id: cycle(['6706909236', '6885984584'], loop.index / split - 1)}
+            {id: cycle(['6706909236', '6885984584'], loop.index / 25 - 1)}
         ) }}</td>
     </tr>
     {% endif %}

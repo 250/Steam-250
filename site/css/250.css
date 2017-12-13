@@ -194,9 +194,6 @@ td:nth-child(3) {
 
     text-align: center;
 }
-td.ad {
-    padding-left: 64px;
-}
 
 a.owned {
     position: relative;
@@ -305,7 +302,7 @@ a.owned:hover:before {
 }
 ol.links {
     display: flex;
-    flex-flow: row-reverse wrap-reverse;
+    flex-flow: wrap;
     justify-content: center;
     width: 30em;
 }
