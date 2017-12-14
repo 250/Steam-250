@@ -476,12 +476,12 @@ p.note:before {
     background-image: url(http://store.akamai.steamstatic.com/public/images/v6/icon_platform_windowsmr.png);
 }
 
-.score {
-    font-weight: bold;
-}
-
-.rating, .votes {
+td:nth-child(3) > span {
     font-size: 80%;
+}
+td:nth-child(3) > .score {
+    font-size: 100%;
+    font-weight: bold;
 }
 .votes {
     display: block;
