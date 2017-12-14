@@ -11,7 +11,7 @@ class HiddenGemsList extends Toplist
 {
     public function __construct()
     {
-        parent::__construct('hidden_gems', Algorithm::HIDDEN_GEMS(), round(10 ** 6.42), 250);
+        parent::__construct('hidden_gems', 250, Algorithm::HIDDEN_GEMS(), round(10 ** 6.42));
     }
 
     public function customizeQuery(QueryBuilder $builder): void

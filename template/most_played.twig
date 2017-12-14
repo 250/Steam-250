@@ -1,0 +1,15 @@
+{% extends'layout/list.twig' %}
+
+{% block title %}Most Played Steam Games{% endblock %}
+{% block heading %}Most Played{% endblock %}
+
+{% block lead %}
+    <p>
+        Top 250 most played Steam games in the last two weeks based on number of players.
+    </p>
+{% endblock %}
+
+{% block scoring_heading %}Players{% endblock %}
+{% block scoring_criteria %}
+    <span>{{ game.players_2w|number_format }} players</span>
+{% endblock %}

@@ -38,7 +38,7 @@ final class Ranker
                     $toplist->getId(),
                     ++$matched,
                     $app['id'],
-                    $app['score'] ?: 0,
+                    $app['score'] ?? null,
                 ]
             );
         }

@@ -13,9 +13,9 @@ final class CustomToplist extends Toplist
     {
         parent::__construct(
             $parent->getId(),
+            $parent->getLimit(),
             $algorithm ?: $parent->getAlgorithm(),
-            $weight ?: $parent->getWeight(),
-            $parent->getLimit()
+            $weight ?: $parent->getWeight()
         );
 
         $this->setTemplate($parent->getTemplate());

@@ -56,9 +56,10 @@ style="display:none;visibility:hidden"></iframe></noscript>
 <ul class="links">
     <li><a href="/">Top 250</a>
         &ndash; <a href="hidden_gems.html">Hidden gems</a>
+        &ndash; <a href="most_played.html">Most played</a>
         &ndash; <a href="bottom100.html">Bottom 100</a>
+    <li><a href="vr250.html">VR 250</a> &ndash; <a href="mac250.html">Mac 250</a> &ndash; <a href="linux250.html">Linux 250</a>
     <li><a href="30day.html">30 day</a> &ndash; <a href="90day.html">90 day</a> &ndash; <a href="365day.html">365 day</a>
-    <li><a href="mac250.html">Mac 250</a> &ndash; <a href="linux250.html">Linux 250</a> &ndash; <a href="vr250.html">VR 250</a>
 </ul>
 <ol class="links">
     {% for year in range('now'|date('Y'),
@@ -73,7 +74,7 @@ style="display:none;visibility:hidden"></iframe></noscript>
         <tr>
             <td>
             <td>Movement, rank, title, date, platforms and tags
-            <td>Player rating
+            <td>{% block scoring_heading %}Player rating{% endblock %}
     <tbody>
 {% for game in games %}
     <tr{{ loop.index % 2 ? ' class="a"' }}>
@@ -126,9 +127,11 @@ style="display:none;visibility:hidden"></iframe></noscript>
             {% endif %}
         </td>
         <td>
+            {% block scoring_criteria %}
             <span class="score">{{ (game.score * 10)|number_format(1) }}</span>
             <span class="rating">{{ (game.positive_reviews / game.total_reviews * 100)|round }}%</span>
             <span class="votes">{{ game.total_reviews }} votes</span>
+            {% endblock %}
         </td>
     </tr>
     {% if (loop.index == 25 or loop.index == 50) and not loop.last %}
@@ -142,7 +145,9 @@ style="display:none;visibility:hidden"></iframe></noscript>
 {% endfor %}
 </table>
 
+{% if toplist.algorithm %}
 <div class="algo" title="Ranking algorithm">{{ toplist.algorithm }} {{ toplist.weight }}</div>
+{% endif %}
 {{ include('partial/ad.twig', {id: '3002887382'}) }}
 
 {% if risers is defined and risers or fallers is defined and fallers %}
@@ -187,7 +192,7 @@ style="display:none;visibility:hidden"></iframe></noscript>
             <li><a href="http://store.steampowered.com/search/?sort_by=Reviews_DESC&amp;category1=998">
                     Official Steam top games list
                 </a>
-            <li><a href="https://steamspy.com/#tab-total">Steam Spy top games by playtime</a>
+            <li><a href="https://steamspy.com/#tab-trending">Steam Spy tending games</a>
             <li><a href="https://steamdb.info/stats/gameratings/">SteamDB top rated games</a>
             <li><a href="http://www.imdb.com/chart/top">IMDb Top 250 movies</a>
         </ul>

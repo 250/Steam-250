@@ -8,21 +8,17 @@ use Doctrine\DBAL\Query\QueryBuilder;
 abstract class Toplist
 {
     private $id;
+    private $limit;
     private $algorithm;
     private $weight;
-    private $limit;
     private $template;
 
-    public function __construct(
-        string $id,
-        Algorithm $algorithm,
-        float $weight,
-        int $limit
-    ) {
+    public function __construct(string $id, int $limit, Algorithm $algorithm = null, float $weight = null)
+    {
         $this->id = $id;
+        $this->limit = $limit;
         $this->algorithm = $algorithm;
         $this->weight = $weight;
-        $this->limit = $limit;
     }
 
     abstract public function customizeQuery(QueryBuilder $builder): void;
@@ -37,12 +33,12 @@ abstract class Toplist
         $this->id = $id;
     }
 
-    public function getAlgorithm(): Algorithm
+    public function getAlgorithm(): ?Algorithm
     {
         return $this->algorithm;
     }
 
-    public function getWeight(): float
+    public function getWeight(): ?float
     {
         return $this->weight;
     }

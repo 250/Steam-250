@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace ScriptFUSION\Steam250\SiteGenerator\Generate;
 
 use Joomla\DI\Container;
+use ScriptFUSION\Steam250\SiteGenerator\Database\Queries;
 use ScriptFUSION\Steam250\SiteGenerator\Toplist\Impl\Annual100List;
 use ScriptFUSION\Steam250\SiteGenerator\Toplist\ToplistName;
 
@@ -14,6 +15,9 @@ final class SiteGenerator
 
     public function __construct(PageGenerator $generator, Container $toplists)
     {
+        // Drop any existing ranking data and migrate schema.
+        Queries::recreateRankedListTable($generator->getDatabase());
+
         $this->generator = $generator;
         $this->toplists = $toplists;
     }

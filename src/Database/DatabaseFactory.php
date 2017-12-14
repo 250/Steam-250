@@ -12,16 +12,7 @@ final class DatabaseFactory
     {
         $connection = DriverManager::getConnection(['url' => "sqlite:///$path"]);
         self::defineCustomFunctions($connection->getWrappedConnection());
-
-        $connection->exec(
-            'CREATE TABLE IF NOT EXISTS rank (
-                list_id TEXT NOT NULL,
-                rank INTEGER NOT NULL,
-                app_id INTEGER NOT NULL,
-                score REAL NOT NULL,
-                PRIMARY KEY(list_id, rank)
-            );'
-        );
+        Queries::createRankedListTable($connection);
 
         return $connection;
     }

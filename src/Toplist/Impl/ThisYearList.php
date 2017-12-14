@@ -11,7 +11,7 @@ class ThisYearList extends Toplist
 {
     public function __construct()
     {
-        parent::__construct('365day', Algorithm::LAPLACE_LOG(), 1.4, 100);
+        parent::__construct('365day', 100, Algorithm::LAPLACE_LOG(), 1.4);
     }
 
     public function customizeQuery(QueryBuilder $builder): void

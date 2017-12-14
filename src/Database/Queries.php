@@ -12,6 +12,25 @@ use ScriptFUSION\Steam250\SiteGenerator\Toplist\Toplist;
 
 final class Queries
 {
+    public static function createRankedListTable(Connection $database): void
+    {
+        $database->exec(
+            'CREATE TABLE IF NOT EXISTS rank (
+                list_id TEXT NOT NULL,
+                rank INTEGER NOT NULL,
+                app_id INTEGER NOT NULL,
+                score REAL,
+                PRIMARY KEY(list_id, rank)
+            )'
+        );
+    }
+
+    public static function recreateRankedListTable(Connection $database): void
+    {
+        $database->exec('DROP TABLE IF EXISTS rank');
+        self::createRankedListTable($database);
+    }
+
     /**
      * Fetches a previously saved ranked list. If a previous database is specified, ranking movements are calculated
      * relative to the previous ranking.
@@ -69,11 +88,14 @@ final class Queries
             ->select('*')
             ->from('app')
             ->where('type = \'game\'')
-            ->orderBy('score', SortDirection::DESC())
             ->setMaxResults($toplist->getLimit())
         ;
 
-        self::calculateScore($query, $toplist->getAlgorithm(), $toplist->getWeight());
+        if ($toplist->getAlgorithm()) {
+            self::calculateScore($query, $toplist->getAlgorithm(), $toplist->getWeight());
+            $query->orderBy('score', SortDirection::DESC());
+        }
+
         $toplist->customizeQuery($query);
 
         return $query->execute();

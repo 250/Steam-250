@@ -8,6 +8,7 @@ use ScriptFUSION\Steam250\SiteGenerator\Toplist\Impl\Bottom100List;
 use ScriptFUSION\Steam250\SiteGenerator\Toplist\Impl\HiddenGemsList;
 use ScriptFUSION\Steam250\SiteGenerator\Toplist\Impl\Linux250List;
 use ScriptFUSION\Steam250\SiteGenerator\Toplist\Impl\Mac250List;
+use ScriptFUSION\Steam250\SiteGenerator\Toplist\Impl\MostPlayedList;
 use ScriptFUSION\Steam250\SiteGenerator\Toplist\Impl\ThisMonthList;
 use ScriptFUSION\Steam250\SiteGenerator\Toplist\Impl\ThisQuarterList;
 use ScriptFUSION\Steam250\SiteGenerator\Toplist\Impl\ThisYearList;
@@ -25,6 +26,7 @@ final class ToplistName extends AbstractEnumeration
     public const LINUX = 'LINUX';
     public const VR = 'VR';
     public const GEMS = 'GEMS';
+    public const PLAYERS = 'PLAYERS';
 
     private static $classes = [
         self::TOP_250 => Top250List::class,
@@ -36,6 +38,7 @@ final class ToplistName extends AbstractEnumeration
         self::LINUX => Linux250List::class,
         self::VR => VrTop250List::class,
         self::GEMS => HiddenGemsList::class,
+        self::PLAYERS => MostPlayedList::class,
     ];
 
     private static $aliases = [
@@ -48,6 +51,7 @@ final class ToplistName extends AbstractEnumeration
         self::LINUX => 'linux',
         self::VR => 'vr',
         self::GEMS => 'gems',
+        self::PLAYERS => 'players',
     ];
 
     public static function getClassNames(): array

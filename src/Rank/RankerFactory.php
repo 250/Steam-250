@@ -3,16 +3,16 @@ declare(strict_types=1);
 
 namespace ScriptFUSION\Steam250\SiteGenerator\Rank;
 
+use Doctrine\DBAL\Connection;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
-use ScriptFUSION\Steam250\SiteGenerator\Database\DatabaseFactory;
 
 final class RankerFactory
 {
-    public function create(string $dbPath): Ranker
+    public function create(Connection $connection): Ranker
     {
         return new Ranker(
-            (new DatabaseFactory)->create($dbPath),
+            $connection,
             (new Logger('Rank'))->pushHandler(new StreamHandler(STDERR, Logger::INFO))
         );
     }

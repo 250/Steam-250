@@ -103,4 +103,9 @@ final class PageGenerator
     {
         $this->minify = $minify;
     }
+
+    public function getDatabase(): Connection
+    {
+        return $this->database;
+    }
 }

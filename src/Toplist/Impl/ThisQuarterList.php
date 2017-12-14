@@ -11,7 +11,7 @@ class ThisQuarterList extends Toplist
 {
     public function __construct()
     {
-        parent::__construct('90day', Algorithm::LAPLACE_LOG(), 3, 50);
+        parent::__construct('90day', 50, Algorithm::LAPLACE_LOG(), 3);
     }
 
     public function customizeQuery(QueryBuilder $builder): void
