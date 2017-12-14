@@ -1,0 +1,22 @@
+@import "reset.css";
+
+body {
+    background: #403321;
+}
+
+.collage {
+    box-sizing: border-box;
+    width: 1500px;
+    height: 454px;
+    padding: 58px 0;
+    line-height: 0;
+    overflow: hidden;
+
+    mix-blend-mode: luminosity;
+}
+
+img {
+    width: calc(100% / 16);
+
+    opacity: .4;
+}

@@ -5,6 +5,7 @@ namespace ScriptFUSION\Steam250\SiteGenerator\Toplist;
 
 use Eloquent\Enumeration\AbstractEnumeration;
 use ScriptFUSION\Steam250\SiteGenerator\Toplist\Impl\Bottom100List;
+use ScriptFUSION\Steam250\SiteGenerator\Toplist\Impl\CollageList;
 use ScriptFUSION\Steam250\SiteGenerator\Toplist\Impl\HiddenGemsList;
 use ScriptFUSION\Steam250\SiteGenerator\Toplist\Impl\Linux250List;
 use ScriptFUSION\Steam250\SiteGenerator\Toplist\Impl\Mac250List;
@@ -27,6 +28,7 @@ final class ToplistName extends AbstractEnumeration
     public const VR = 'VR';
     public const GEMS = 'GEMS';
     public const PLAYERS = 'PLAYERS';
+    public const COLLAGE = 'COLLAGE';
 
     private static $classes = [
         self::TOP_250 => Top250List::class,
@@ -39,6 +41,7 @@ final class ToplistName extends AbstractEnumeration
         self::VR => VrTop250List::class,
         self::GEMS => HiddenGemsList::class,
         self::PLAYERS => MostPlayedList::class,
+        self::COLLAGE => CollageList::class,
     ];
 
     private static $aliases = [
@@ -52,6 +55,7 @@ final class ToplistName extends AbstractEnumeration
         self::VR => 'vr',
         self::GEMS => 'gems',
         self::PLAYERS => 'players',
+        self::COLLAGE => 'collage',
     ];
 
     public static function getClassNames(): array

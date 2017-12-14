@@ -1,0 +1,15 @@
+{% extends 'layout/template.twig' %}
+
+{% block title %}Collage{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="css/collage.css">
+{% endblock %}
+
+{% block body %}
+<div class="collage">
+{% for game in games -%}
+    <img src="http://cdn.akamai.steamstatic.com/steam/apps/{{ game.id }}/capsule_sm_120.jpg" title="{{ game.rank }}">
+{%- endfor %}
+</div>
+{% endblock %}
