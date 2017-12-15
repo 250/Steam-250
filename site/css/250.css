@@ -110,7 +110,7 @@ h1 {
 }
 
 p {
-    max-width: var(--reading-width);
+    max-width: 94%;
     margin: 3vh auto;
 
     text-align: center;
