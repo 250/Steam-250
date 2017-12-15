@@ -15,14 +15,14 @@ body {
 }
 
 a {
-    color: #d1ba80;
+    color: #ccaa70;
     text-decoration: none;
 }
 a:hover {
     text-decoration: underline;
 }
 a:visited {
-    color: #9e814c;
+    color: #997c4b;
 }
 
 #user {
