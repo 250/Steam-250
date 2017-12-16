@@ -11,7 +11,7 @@ const
 
 let webpage = require('webpage').create();
 
-webpage.viewportSize = {width: screen.width, height: screen.height};
+webpage.viewportSize = {width: 1000, height: screen.height};
 
 (async () => {
     for (let page of PAGES) {

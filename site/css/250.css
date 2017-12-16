@@ -59,7 +59,7 @@ a:visited {
     position: relative;
     margin: .8vh 0;
 
-    font: calc(30px + 8vw)/1.1 Lobster, cursive;
+    font: calc(30px + 8vw)/1.1 Lobster, sans-serif;
     transform: rotate(-1deg);
 }
 @media (min-width: 1160px) {
