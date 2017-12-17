@@ -5,6 +5,7 @@ namespace ScriptFUSION\Steam250\SiteGenerator\Toplist;
 
 use Eloquent\Enumeration\AbstractEnumeration;
 use ScriptFUSION\Steam250\SiteGenerator\Toplist\Impl\Bottom100List;
+use ScriptFUSION\Steam250\SiteGenerator\Toplist\Impl\BuyersRemorseList;
 use ScriptFUSION\Steam250\SiteGenerator\Toplist\Impl\CollageList;
 use ScriptFUSION\Steam250\SiteGenerator\Toplist\Impl\HiddenGemsList;
 use ScriptFUSION\Steam250\SiteGenerator\Toplist\Impl\Linux250List;
@@ -27,6 +28,7 @@ final class ToplistName extends AbstractEnumeration
     public const LINUX = 'LINUX';
     public const VR = 'VR';
     public const GEMS = 'GEMS';
+    public const REMORSE = 'REMORSE';
     public const PLAYERS = 'PLAYERS';
     public const COLLAGE = 'COLLAGE';
 
@@ -40,6 +42,7 @@ final class ToplistName extends AbstractEnumeration
         self::LINUX => Linux250List::class,
         self::VR => VrTop250List::class,
         self::GEMS => HiddenGemsList::class,
+        self::REMORSE => BuyersRemorseList::class,
         self::PLAYERS => MostPlayedList::class,
         self::COLLAGE => CollageList::class,
     ];
@@ -54,6 +57,7 @@ final class ToplistName extends AbstractEnumeration
         self::LINUX => 'linux',
         self::VR => 'vr',
         self::GEMS => 'gems',
+        self::REMORSE => 'remorse',
         self::PLAYERS => 'players',
         self::COLLAGE => 'collage',
     ];

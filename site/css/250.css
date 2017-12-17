@@ -307,20 +307,23 @@ ol.links {
     width: 30em;
 }
 
-p.note {
+p.note, p.tip {
     max-width: none;
     margin-top: -2vh;
 
     opacity: .8;
     font-size: 70%;
 }
-p.note:before {
+p.note:before, p.tip:before {
     content: 'Note';
     margin-right: .25em;
 
     font-size: 90%;
     text-transform: uppercase;
     color: #818b91;
+}
+p.tip:before {
+    content: 'Tip';
 }
 
 .movement {
