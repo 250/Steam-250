@@ -114,7 +114,7 @@
             {% block scoring_criteria %}
             <span class="score">{{ (game.score * 10)|number_format(1) }}</span>
             <span class="rating">{{ (game.positive_reviews / game.total_reviews * 100)|round }}%</span>
-            <span class="votes">{{ game.total_reviews }} votes</span>
+            <span class="votes">{{ game.total_reviews|number_format }} votes</span>
             {% endblock %}
         </td>
     </tr>
