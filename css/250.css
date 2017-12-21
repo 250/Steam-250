@@ -301,7 +301,7 @@ a.owned:hover:before {
 .links a {
     margin: 0 .5em;
 }
-ul.links > li:first-of-type > a {
+ul.links > li:first-of-type > a:nth-of-type(2) {
     padding-left: 15px;
     background: var(--patreon) no-repeat left;
     background-size: 10px 10px;
