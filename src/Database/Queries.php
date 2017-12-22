@@ -74,6 +74,12 @@ final class Queries
         return $list;
     }
 
+    public static function fetchAppTags(Connection $database, int $appId)
+    {
+        return $database->query("SELECT tag FROM app_tag WHERE app_id = $appId ORDER BY `index`")
+            ->fetchAll(\PDO::FETCH_COLUMN);
+    }
+
     /**
      * Ranks the specified list according to the list's algorithm and weighting.
      *

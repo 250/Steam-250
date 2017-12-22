@@ -51,6 +51,11 @@ final class PageGenerator
             return false;
         }
 
+        // Decorate each game with tags.
+        foreach ($games as &$game) {
+            $game['tags'] = Queries::fetchAppTags($this->database, +$game['id']);
+        } unset($game);
+
         if ($prevDb) {
             $risers = $this->createRisersList($games);
             $fallers = $this->createFallersList($games);
