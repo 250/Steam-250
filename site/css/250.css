@@ -378,21 +378,25 @@ p.tip:before {
     left: 7.5%;
     background: #e6d44e;
     clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+    -webkit-clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
 }
 .movement.none:before {
     background: #574d3e;
     clip-path: inset(14% 14.5%);
+    -webkit-clip-path: inset(14% 14.5%);
     opacity: .5;
 }
 .movement.pos:before {
     top: -3px;
     background: #618037;
     clip-path: polygon(20% 100%, 20% 50%, 0% 50%, 50% 0%, 100% 50%, 80% 50%, 80% 100%);
+    -webkit-clip-path: polygon(20% 100%, 20% 50%, 0% 50%, 50% 0%, 100% 50%, 80% 50%, 80% 100%);
 }
 .movement.neg:before {
     top: 2px;
     background: #804539;
     clip-path: polygon(20% 0%, 20% 50%, 0% 50%, 50% 100%, 100% 50%, 80% 50%, 80% 0%);
+    -webkit-clip-path: polygon(20% 0%, 20% 50%, 0% 50%, 50% 100%, 100% 50%, 80% 50%, 80% 0%);
 }
 @media (max-width: 649px) {
     .movement {
