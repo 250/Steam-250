@@ -138,6 +138,10 @@ final class RankingQueries
                         / total_reviews
                 ) / (1 + POWER($wilsonWeight, 2) * 1. / total_reviews)
             ) * ($weight * 1. / ($weight + players)) AS score"
-        )->andWhere('xtags = 0');
+        )
+            ->leftJoin('app', 'app_tag', 'app_tag', 'id = app_id AND tag = \'Visual Novel\'')
+            ->andWhere('tag IS NULL')
+            ->groupBy('id')
+        ;
     }
 }
