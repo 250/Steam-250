@@ -114,6 +114,8 @@ h1 {
 p {
     max-width: 94%;
     margin: 3vh auto;
+
+    text-align: justify;
 }
 
 em {
