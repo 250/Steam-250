@@ -74,10 +74,21 @@ final class Queries
         return $list;
     }
 
-    public static function fetchAppTags(Connection $database, int $appId)
+    public static function fetchAppTags(Connection $database, int $appId): array
     {
         return $database->query("SELECT tag FROM app_tag WHERE app_id = $appId ORDER BY `index`")
             ->fetchAll(\PDO::FETCH_COLUMN);
+    }
+
+    public static function fetchPopularTags(Connection $database, int $threshold = 600): array
+    {
+        return $database->query(
+            "SELECT tag, COUNT(tag) AS count
+            FROM app_tag
+            WHERE tag != 'VR'
+            GROUP BY tag
+            HAVING count >= $threshold"
+        )->fetchAll(\PDO::FETCH_COLUMN);
     }
 
     /**

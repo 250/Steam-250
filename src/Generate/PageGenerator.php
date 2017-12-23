@@ -54,7 +54,7 @@ final class PageGenerator
         // Decorate each game with tags.
         foreach ($games as &$game) {
             $game['tags'] = Queries::fetchAppTags($this->database, +$game['id']);
-        } unset($game);
+        }
 
         if ($prevDb) {
             $risers = $this->createRisersList($games);
@@ -71,11 +71,18 @@ final class PageGenerator
             $html = $this->minifier->minify($html);
         }
 
-        file_put_contents($out = "$outPath/{$toplist->getId()}.html", $html);
-
+        $this->ensurePathExists($out = "$outPath/{$toplist->getId()}.html");
+        file_put_contents($out, $html);
         $this->logger->info("Page generated at: \"$out\".");
 
         return true;
+    }
+
+    private function ensurePathExists(string $path): void
+    {
+        if (!is_dir($dir = \dirname($path)) && !mkdir($dir) && !is_dir($dir)) {
+            throw new \RuntimeException("Could not create directory: \"$dir\".");
+        }
     }
 
     private function createRisersList(array $games): array

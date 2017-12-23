@@ -4,8 +4,9 @@ declare(strict_types=1);
 namespace ScriptFUSION\Steam250\SiteGenerator\Generate;
 
 use ScriptFUSION\Steam250\SiteGenerator\Toplist\Algorithm;
-use ScriptFUSION\Steam250\SiteGenerator\Toplist\CustomToplist;
+use ScriptFUSION\Steam250\SiteGenerator\Toplist\Toplist;
 use ScriptFUSION\Steam250\SiteGenerator\Toplist\ToplistFactory;
+use ScriptFUSION\Steam250\SiteGenerator\Toplist\ToplistViolator;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -31,15 +32,18 @@ final class PageCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output): ?int
     {
+        $generator = (new PageGeneratorFactory)->create($input->getArgument('db'));
+        $generator->setMinify($input->getOption('min'));
+
+        /** @var Toplist $toplist */
+        $toplist = (new ToplistFactory($generator->getDatabase()))->create()->buildObject($input->getArgument('list'));
+
         // Override algorithm and weight.
-        $toplist = new CustomToplist(
-            (new ToplistFactory)->create()->buildObject($input->getArgument('list')),
+        ToplistViolator::violate(
+            $toplist,
             Algorithm::memberOrNullByKey($input->getOption('algorithm'), false),
             (float)$input->getOption('weight')
         );
-
-        $generator = (new PageGeneratorFactory)->create($input->getArgument('db'));
-        $generator->setMinify($input->getOption('min'));
 
         return $generator->generate($toplist, $input->getArgument('out'), $input->getOption('prev-db')) ? 0 : 1;
     }

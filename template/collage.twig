@@ -9,7 +9,7 @@
 {% block body %}
 <div class="collage">
 {% for game in games -%}
-    <img src="http://cdn.akamai.steamstatic.com/steam/apps/{{ game.id }}/capsule_sm_120.jpg" title="{{ game.rank }}">
+    <img src="http://cdn.akamai.steamstatic.com/steam/apps/{{ game.id }}/capsule_sm_120.jpg">
 {%- endfor %}
 </div>
 {% endblock %}

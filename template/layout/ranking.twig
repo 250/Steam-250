@@ -1,7 +1,7 @@
 {% extends'layout/template.twig' %}
 
 {% block css %}
-    <link rel="stylesheet" href="css/ranking.css">
+    <link rel="stylesheet" href="/css/ranking.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster%7cCodystar%7cCousine:400i">
 {% endblock %}
 
@@ -39,7 +39,7 @@
 <div class="page">
 <ul class="links">
     <li><a href="https://www.patreon.com/steam250">About</a>
-        &ndash; <a href="https://www.patreon.com/steam250">Support Steam 250 on Patreon</a>
+        &ndash; <a href="https://www.patreon.com/steam250">Support Me on Patreon</a>
     <li><a href="/">Top 250</a>
         &ndash; <a href="hidden_gems.html">Hidden gems</a>
         &ndash; <a href="most_played.html">Most played</a>
@@ -134,7 +134,6 @@
 {% if toplist.algorithm %}
 <div class="algo" title="Ranking algorithm">{{ toplist.algorithm }} {{ toplist.weight }}</div>
 {% endif %}
-{{ include('partial/ad.twig', {id: '3002887382'}) }}
 
 {% if risers is defined and risers or fallers is defined and fallers %}
 <div class="r&amp;f">
@@ -146,6 +145,7 @@
     {% endif %}
 </div>
 {% endif %}
+{{ include('partial/ad.twig', {id: '3002887382'}) }}
 </div>
 </div>
 

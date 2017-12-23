@@ -12,6 +12,6 @@ final class SiteGeneratorFactory
         $generator = (new PageGeneratorFactory)->create($dbPath);
         $generator->setMinify($minify);
 
-        return new SiteGenerator($generator, (new ToplistFactory)->create());
+        return new SiteGenerator($generator, (new ToplistFactory($generator->getDatabase()))->create());
     }
 }

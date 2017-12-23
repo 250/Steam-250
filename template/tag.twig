@@ -1,0 +1,10 @@
+{% extends'layout/ranking.twig' %}
+
+{% block title %}Top {{ toplist.tag }} Games on Steam{% endblock %}
+{% block heading %}Top {{ toplist.tag }} Games{% endblock %}
+
+{% block lead %}
+    <p>
+        Top {{ games|length }} Steam games tagged with "{{ toplist.tag }}" on Steam, according to the players.
+    </p>
+{% endblock %}
