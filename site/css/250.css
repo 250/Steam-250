@@ -114,8 +114,6 @@ h1 {
 p {
     max-width: 94%;
     margin: 3vh auto;
-
-    text-align: center;
 }
 
 em {
@@ -359,6 +357,9 @@ ol.menu > li ol li a {
     margin: 0 auto;
     max-width: 864px;
 }
+.page > p:first-of-type {
+    text-align: center;
+}
 
 .links {
     margin: 1em auto;
@@ -378,15 +379,16 @@ ul.links > li:first-of-type > a {
 }
 
 p.note, p.tip {
-    max-width: none;
-    margin-top: -2vh;
+    display: table;
+    margin-top: -1vh;
 
     opacity: .8;
     font-size: 70%;
 }
 p.note:before, p.tip:before {
     content: 'Note';
-    margin-right: .25em;
+    display: table-cell;
+    padding-right: .5em;
 
     font-size: 90%;
     text-transform: uppercase;
