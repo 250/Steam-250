@@ -13,7 +13,7 @@ class TagList extends Top250List
     public function __construct(string $tag)
     {
         $tagId = Tag::convertTagToId($tag);
-        parent::__construct("tag/$tagId", 100);
+        parent::__construct("tag/$tagId", 150);
 
         $this->tag = $tag;
 
