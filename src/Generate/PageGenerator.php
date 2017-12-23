@@ -56,13 +56,15 @@ final class PageGenerator
             $game['tags'] = Queries::fetchAppTags($this->database, +$game['id']);
         }
 
+        $tags = Queries::fetchPopularTags($this->database);
+
         if ($prevDb) {
             $risers = $this->createRisersList($games);
             $fallers = $this->createFallersList($games);
         }
 
         $html = $this->twig->load("{$toplist->getTemplate()}.twig")->render(
-            compact('games', 'toplist', 'risers', 'fallers')
+            compact('games', 'toplist', 'tags', 'risers', 'fallers')
         );
 
         if ($this->minify) {

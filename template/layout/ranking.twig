@@ -35,24 +35,49 @@
     </div>
 </section>
 
+<ol class="menu">
+    <li>
+        <a href="#">Featured</a>
+        <ol>
+            <li><a href="/">Top 250</a>
+            <li><a href="/hidden_gems.html">Hidden Gems</a>
+            <li><a href="/most_played.html">Most played</a>
+            <li><a href="/bottom100.html">Bottom 100</a>
+        </ol>
+    <li>
+        <a href="#">Genre</a>
+        <ol>
+            {% for tag in tags %}
+            <li><a href="/tag/{{ tag|tag_id|url_encode }}.html">{{ tag }}</a>
+            {% endfor %}
+        </ol>
+    <li>
+        <a href="#">Year</a>
+        <ol>
+            {% for year in range('now'|date('Y'),
+                constant('ScriptFUSION\\Steam250\\SiteGenerator\\Toplist\\Impl\\Annual100List::EARLIEST_YEAR')) %}
+            <li><a href="/{{ year }}.html">{{ year }}</a>
+            {% endfor %}
+        </ol>
+    <li>
+        <a href="#">Platform</a>
+        <ol>
+            <li><a href="/vr250.html">Virtual Reality</a>
+            <li><a href="/mac250.html">Mac</a>
+            <li><a href="/linux250.html">Linux</a>
+        </ol>
+</ol>
+
 <div class="body">
 <div class="page">
 <ul class="links">
-    <li><a href="https://www.patreon.com/steam250">About</a>
-        &ndash; <a href="https://www.patreon.com/steam250">Support Me on Patreon</a>
+    <li><a href="https://www.patreon.com/steam250">Support Steam 250 on Patreon</a>
     <li><a href="/">Top 250</a>
-        &ndash; <a href="hidden_gems.html">Hidden gems</a>
-        &ndash; <a href="most_played.html">Most played</a>
-        &ndash; <a href="bottom100.html">Bottom 100</a>
-    <li><a href="vr250.html">VR 250</a> &ndash; <a href="mac250.html">Mac 250</a> &ndash; <a href="linux250.html">Linux 250</a>
-    <li><a href="30day.html">30 day</a> &ndash; <a href="90day.html">90 day</a> &ndash; <a href="365day.html">365 day</a>
+        &ndash; <a href="/hidden_gems.html">Hidden gems</a>
+        &ndash; <a href="/most_played.html">Most played</a>
+        &ndash; <a href="/bottom100.html">Bottom 100</a>
+    <li><a href="/30day.html">30 day</a> &ndash; <a href="/90day.html">90 day</a> &ndash; <a href="/365day.html">365 day</a>
 </ul>
-<ol class="links">
-    {% for year in range('now'|date('Y'),
-        constant('ScriptFUSION\\Steam250\\SiteGenerator\\Toplist\\Impl\\Annual100List::EARLIEST_YEAR')) %}
-    <li><a href="{{ year }}.html">{{ year }}</a>
-    {% endfor %}
-</ol>
 {{ block('lead') }}
 {{ include('partial/ad.twig', {id: '9535671996'}) }}
 <table id="ranking">
@@ -195,8 +220,8 @@
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.3/moment.min.js"></script>
-<script src="js/BuildMonitor.js"></script>
-<script src="js/250.js"></script>
+<script src="/js/BuildMonitor.js"></script>
+<script src="/js/250.js"></script>
 
 <script>
     (adsbygoogle = window.adsbygoogle || []).push({
