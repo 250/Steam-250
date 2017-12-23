@@ -1,4 +1,5 @@
 :root {
+    --link: #ccaa70;
     --reading-width: 34em;
     --user-height: 37px;
     --patreon: url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22100%22%20height%3D%2296%22%3E%3Cpath%20fill%3D%22%23fff%22%20d%3D%22M64.1102%2C0.1004%20C44.259%2C0.1004%2028.1086%2C16.2486%2028.1086%2C36.0986%20C28.1086%2C55.8884%2044.259%2C71.989%2064.1102%2C71.989%20C83.9%2C71.989%20100%2C55.8884%20100%2C36.0986%20C100%2C16.2486%2083.9%2C0.1004%2064.1102%2C0.1004%22%2F%3E%3Cpolygon%20fill%3D%22%23F96854%22%20points%3D%22.012%2095.988%2017.59%2095.988%2017.59%20.1%20.012%20.1%22%2F%3E%3C%2Fsvg%3E')
@@ -16,7 +17,7 @@ body {
 }
 
 a {
-    color: #ccaa70;
+    color: var(--link);
     text-decoration: none;
 }
 a:hover {
@@ -249,6 +250,75 @@ a.owned:hover:before {
     font-size: 80%;
 }
 
+ol.menu {
+    text-align: center;
+
+    background: #171a21 linear-gradient(180deg, rgba(0, 0, 0, .15) 70%, rgba(0, 0, 0, 0));
+}
+ol.menu > li {
+    position: relative;
+    display: inline-block;
+    margin: 0 2%;
+    padding: .5em 1%;
+
+    color: #9e814c;
+}
+ol.menu > li {
+    cursor: pointer;
+}
+ol.menu > li:after {
+    content: '▼';
+    position: relative;
+    top: -1px;
+
+    font-size: 50%;
+    transition: top .3s;
+}
+ol.menu > li:hover:after {
+    top: 1px;
+}
+ol.menu > li > a {
+    color: #b3b5bd;
+    text-decoration: none;
+    transition: color .3s;
+}
+ol.menu > li:hover > a {
+    color: var(--link);
+}
+ol.menu > li ol {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    max-height: 0;
+    overflow: hidden;
+    overflow-y: auto;
+    z-index: 1;
+    transform: translate(-50%, 0);
+
+    font-size: 80%;
+    text-align: left;
+    background: #171a21;
+    transition: max-height .3s;
+}
+ol.menu > li:first-of-type ol,
+ol.menu > li:last-of-type ol{
+    font-size: 100%;
+}
+ol.menu > li:hover ol {
+    max-height: 50vh;
+}
+ol.menu > li ol li {
+    line-height: 1;
+    padding: .25em 1em;
+    white-space: nowrap;
+}
+ol.menu > li ol li:last-of-type {
+    margin-bottom: .5em;
+}
+ol.menu > li ol li a {
+    display: block;
+}
+
 .countdown {
     position: absolute;
     padding: .5em .7em;
@@ -301,16 +371,10 @@ a.owned:hover:before {
 .links a {
     margin: 0 .5em;
 }
-ul.links > li:first-of-type > a:nth-of-type(2) {
+ul.links > li:first-of-type > a {
     padding-left: 15px;
     background: var(--patreon) no-repeat left;
     background-size: 10px 10px;
-}
-ol.links {
-    display: flex;
-    flex-flow: wrap;
-    justify-content: center;
-    width: 30em;
 }
 
 p.note, p.tip {
