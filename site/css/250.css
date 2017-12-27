@@ -485,7 +485,8 @@ p.tip:before {
 }
 
 .genre, .genre:visited,
-.ref250, .ref250:visited {
+.ref250, .ref250:visited,
+.discount {
     margin-left: .25em;
     padding: .19em .6em;
     border-radius: 2px;
@@ -509,6 +510,11 @@ p.tip:before {
     text-decoration: none;
     color: #fffce8;
     background: rgba(171, 152, 9, .7);
+}
+.discount {
+    color: #b8e809;
+    background: #4c6b22;
+    border-radius: 0;
 }
 
 .date {

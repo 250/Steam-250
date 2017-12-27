@@ -71,7 +71,7 @@
 <div class="body">
 <div class="page">
 <ul class="links">
-    <li><a href="https://www.patreon.com/steam250">Join The 250 Club on Patreon</a>
+    <li><a href="https://www.patreon.com/steam250">Join Club 250 on Patreon</a>
     <li><a href="/">Top 250</a>
         &ndash; <a href="/hidden_gems.html">Hidden gems</a>
         &ndash; <a href="/most_played.html">Most played</a>
@@ -136,6 +136,9 @@
             {% if game.rank_250 and game.list_id != 'index' %}
             <a href="/#{{ game.rank_250 }}" class="ref250">Top 250 #{{ game.rank_250 }}</a>
             {% endif %}
+            {% if game.discount > 0 %}
+            <span class="discount">-{{ game.discount }}%</span>
+            {% endif %}
         </td>
         <td>
             {% block scoring_criteria %}
@@ -178,7 +181,7 @@
     <div>
         <h2>
             <a href="https://www.patreon.com/steam250">Steam 250</a>
-            <a href="https://twitter.com/SteamTop250" class="twitter">Twitter</a>
+            {#<a href="https://twitter.com/SteamTop250" class="twitter">Twitter</a>#}
             <a href="https://www.patreon.com/steam250" class="patreon">Patreon</a>
         </h2>
         <p>The lists are automatically generated at least once a day from live Steam reviews data.</p>
