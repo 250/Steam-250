@@ -1,0 +1,46 @@
+#header > .title {
+    position: relative;
+    margin: .8vh 0;
+
+    font: calc(30px + 8vw)/1.1 Lobster, sans-serif;
+    transform: rotate(-1deg);
+}
+@media (min-width: 1160px) {
+    #header > .title {
+        font-size: 123px;
+    }
+}
+#header > .title:before{
+    content: attr(data-title);
+    position: absolute;
+    width: 100%;
+    top: 1px;
+    left: -1px;
+    pointer-events: none;
+
+    text-align: center;
+    background: linear-gradient(179deg, #e6c88a 20%, #665233, #9e814c 90%);
+    color: transparent;
+    -webkit-background-clip: text;
+}
+
+h1 {
+    color: #9e814c;
+
+    text-align: center;
+    text-shadow:
+        0 1px 0 rgb(158, 129, 76),
+        0 2px 0 rgb(143, 116, 70),
+        0 3px 0 rgb(130, 105, 64),
+        0 4px 0 rgb(115, 93, 57),
+        0 5px 0 rgb(102, 82, 51),
+        -1px -1px 1px #fffccc,
+        0 6px 1px rgba(0, 0, 0, 0.0980392),
+        0 0 5px rgba(0, 0, 0, 0.0980392),
+        0 1px 3px rgba(0, 0, 0, 0.298039),
+        0 3px 5px rgba(0, 0, 0, 0.2),
+        0 5px 10px rgba(0, 0, 0, 0.247059),
+        0 10px 10px rgba(0, 0, 0, 0.2),
+        0 20px 20px rgba(0, 0, 0, 0.14902)
+    ;
+}
