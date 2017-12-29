@@ -140,7 +140,7 @@ final class RankingQueries
             ) * ($weight * 1. / ($weight + players)) AS score"
         )
             ->leftJoin('app', 'app_tag', 'app_tag', 'id = app_id AND tag = \'Visual Novel\'')
-            ->andWhere('tag IS NULL')
+            ->andWhere('tag IS NULL OR english = 1')
             ->groupBy('id')
         ;
     }
