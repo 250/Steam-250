@@ -4,12 +4,20 @@
 
 {% block css %}
     <link rel="stylesheet" href="css/collage.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster">
 {% endblock %}
 
 {% block body %}
-<div class="collage">
-{% for game in games -%}
-    <img src="http://cdn.akamai.steamstatic.com/steam/apps/{{ game.id }}/capsule_sm_120.jpg">
-{%- endfor %}
-</div>
+<section>
+    <div id="header">
+        <div class="title" data-title="Club 250">
+            <h1>Club 250</h1>
+        </div>
+    </div>
+    <div class="collage">
+    {% for game in games -%}
+        <img src="http://cdn.akamai.steamstatic.com/steam/apps/{{ game.id }}/capsule_sm_120.jpg">
+    {%- endfor %}
+    </div>
+</section>
 {% endblock %}

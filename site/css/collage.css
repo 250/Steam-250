@@ -1,14 +1,13 @@
 @import "reset.css";
+@import "title.css";
 
 body {
     background: #403321;
 }
 
 .collage {
-    box-sizing: border-box;
     width: 1500px;
-    height: 454px;
-    padding: 58px 0;
+    height: 396px;
     line-height: 0;
     overflow: hidden;
 
@@ -19,4 +18,18 @@ img {
     width: calc(100% / 16);
 
     opacity: .4;
+}
+
+section {
+    display: inline-block;
+    position: relative;
+    margin-top: 58px;
+}
+
+#header {
+    position: absolute;
+    z-index: 1;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -55%);
 }
