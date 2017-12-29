@@ -1,5 +1,4 @@
 :root {
-    --link: #ccaa70;
     --reading-width: 34em;
     --user-height: 37px;
     --patreon: url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22100%22%20height%3D%2296%22%3E%3Cpath%20fill%3D%22%23fff%22%20d%3D%22M64.1102%2C0.1004%20C44.259%2C0.1004%2028.1086%2C16.2486%2028.1086%2C36.0986%20C28.1086%2C55.8884%2044.259%2C71.989%2064.1102%2C71.989%20C83.9%2C71.989%20100%2C55.8884%20100%2C36.0986%20C100%2C16.2486%2083.9%2C0.1004%2064.1102%2C0.1004%22%2F%3E%3Cpolygon%20fill%3D%22%23F96854%22%20points%3D%22.012%2095.988%2017.59%2095.988%2017.59%20.1%20.012%20.1%22%2F%3E%3C%2Fsvg%3E')
@@ -13,11 +12,12 @@ body {
 @media (max-width: 380px) {
     body {
         font-size: 4vw;
+        line-height: 1.3;
     }
 }
 
 a {
-    color: var(--link);
+    color: #cfab72;
     text-decoration: none;
 }
 a:hover {
@@ -113,7 +113,7 @@ h1 {
 
 p {
     max-width: 94%;
-    margin: 3vh auto;
+    margin: 1.5em auto;
 
     text-align: justify;
 }
@@ -219,9 +219,7 @@ a.owned:before {
     white-space: nowrap;
 
     color: #111;
-    background: #4F95BD url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="640" height="640">\
-        <path d="M0 0L640 0 640 160 0 160 0 0ZM0 240L640 240 640 400 0 400 0 240ZM0 480L640 480 640 640 0 640 0 480Z"/>\
-        </svg>') no-repeat 5px 50%;
+    background: #4F95BD url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22640%22%20height%3D%22640%22%3E%3Cpath%20d%3D%22M0%200L640%200%20640%20160%200%20160%200%200ZM0%20240L640%20240%20640%20400%200%20400%200%20240ZM0%20480L640%20480%20640%20640%200%20640%200%20480Z%22%2F%3E%3C%2Fsvg%3E') no-repeat 5px 50%;
     background-size: 8px 8px;
     font-size: 8pt;
     text-transform: uppercase;
@@ -283,7 +281,7 @@ ol.menu > li > a {
     transition: color .3s;
 }
 ol.menu > li:hover > a {
-    color: var(--link);
+    color: #cfab72;
 }
 ol.menu > li ol {
     position: absolute;
@@ -408,17 +406,15 @@ p.tip:before {
     line-height: 21px;
     margin-right: 1px;
     vertical-align: middle;
-
     position: relative;
     z-index: 0;
 
-    opacity: .9;
     text-align: center;
     font-weight: bold;
     cursor: default;
 }
 .movement.none {
-    color: #b89f76;
+    color: #a99370;
     font-weight: bold;
 }
 .movement.pos, .movement.neg {
@@ -437,32 +433,33 @@ p.tip:before {
     left: 0;
     width: 100%;
     height: 100%;
-    opacity: .9;
 }
 .movement.new:before {
     width: 85%;
     height: 85%;
     top: 7.5%;
     left: 7.5%;
-    background: #e6d44e;
+    background: #bfb34a;
     clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
     -webkit-clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
 }
 .movement.none:before {
-    background: #574d3e;
+    background: #36383b;
     clip-path: inset(14% 14.5%);
     -webkit-clip-path: inset(14% 14.5%);
-    opacity: .5;
+}
+tr.a .movement.none:before {
+    background: #363638;
 }
 .movement.pos:before {
     top: -3px;
-    background: #618037;
+    background: #546f38;
     clip-path: polygon(20% 100%, 20% 50%, 0% 50%, 50% 0%, 100% 50%, 80% 50%, 80% 100%);
     -webkit-clip-path: polygon(20% 100%, 20% 50%, 0% 50%, 50% 0%, 100% 50%, 80% 50%, 80% 100%);
 }
 .movement.neg:before {
     top: 2px;
-    background: #804539;
+    background: #6d4039;
     clip-path: polygon(20% 0%, 20% 50%, 0% 50%, 50% 100%, 100% 50%, 80% 50%, 80% 0%);
     -webkit-clip-path: polygon(20% 0%, 20% 50%, 0% 50%, 50% 100%, 100% 50%, 80% 50%, 80% 0%);
 }
@@ -512,8 +509,8 @@ p.tip:before {
     background: rgba(171, 152, 9, .7);
 }
 .discount {
-    color: #b8e809;
-    background: #4c6b22;
+    color: #b8d936;
+    background: rgba(76, 107, 34, .7);
     border-radius: 0;
 }
 
