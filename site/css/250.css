@@ -1,5 +1,4 @@
 :root {
-    --link: #ccaa70;
     --reading-width: 34em;
     --user-height: 37px;
     --patreon: url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22100%22%20height%3D%2296%22%3E%3Cpath%20fill%3D%22%23fff%22%20d%3D%22M64.1102%2C0.1004%20C44.259%2C0.1004%2028.1086%2C16.2486%2028.1086%2C36.0986%20C28.1086%2C55.8884%2044.259%2C71.989%2064.1102%2C71.989%20C83.9%2C71.989%20100%2C55.8884%20100%2C36.0986%20C100%2C16.2486%2083.9%2C0.1004%2064.1102%2C0.1004%22%2F%3E%3Cpolygon%20fill%3D%22%23F96854%22%20points%3D%22.012%2095.988%2017.59%2095.988%2017.59%20.1%20.012%20.1%22%2F%3E%3C%2Fsvg%3E')
@@ -13,11 +12,12 @@ body {
 @media (max-width: 380px) {
     body {
         font-size: 4vw;
+        line-height: 1.3;
     }
 }
 
 a {
-    color: var(--link);
+    color: #cfab72;
     text-decoration: none;
 }
 a:hover {
@@ -113,7 +113,7 @@ h1 {
 
 p {
     max-width: 94%;
-    margin: 3vh auto;
+    margin: 1.5em auto;
 
     text-align: justify;
 }
@@ -281,7 +281,7 @@ ol.menu > li > a {
     transition: color .3s;
 }
 ol.menu > li:hover > a {
-    color: var(--link);
+    color: #cfab72;
 }
 ol.menu > li ol {
     position: absolute;
@@ -509,8 +509,8 @@ tr.a .movement.none:before {
     background: rgba(171, 152, 9, .7);
 }
 .discount {
-    color: #b8e809;
-    background: #4c6b22;
+    color: #b8d936;
+    background: rgba(76, 107, 34, .7);
     border-radius: 0;
 }
 
