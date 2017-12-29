@@ -39,10 +39,14 @@ class S250 {
             }
         });
 
+        let current, max;
         document.querySelector('#user .owned').innerText =
-            document.querySelectorAll('#ranking .owned').length
+            (current = document.querySelectorAll('#ranking .owned').length)
             + '/'
-            + document.querySelectorAll('#ranking .title').length
+            + (max = document.querySelectorAll('#ranking .title').length)
+            + ' ('
+            + Math.round(current / max * 100)
+            + '%)'
         ;
     }
 
