@@ -35,7 +35,7 @@ class BuildMonitor {
             return this.showReady();
         }
 
-        let formattedDuration = duration.format('HH:mm.ss');
+        let formattedDuration = duration.format('[<span>]HH:mm.ss[</span>]');
 
         this.element.innerHTML = 'Next update in ' + (
             (this.blink ^= 1)

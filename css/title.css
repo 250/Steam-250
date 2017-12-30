@@ -1,6 +1,6 @@
 #header > .title {
     position: relative;
-    margin: .8vh 0;
+    margin: .072em 0;
 
     font: calc(30px + 8vw)/1.1 Lobster, sans-serif;
     transform: rotate(-1deg);
