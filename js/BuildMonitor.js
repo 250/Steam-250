@@ -37,7 +37,7 @@ class BuildMonitor {
 
         let formattedDuration = duration.format('HH:mm.ss');
 
-        this.element.innerHTML = 'Next update ' + (
+        this.element.innerHTML = 'Next update in ' + (
             (this.blink ^= 1)
                 ? formattedDuration
                 : formattedDuration.replace(/:/, ' ')

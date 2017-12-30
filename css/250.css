@@ -252,25 +252,33 @@ ol.menu > li ol {
     font-size: 80%;
     text-align: left;
     background: #171a21;
+    border-radius: 0 0 1px 1px;
     transition: max-height .3s;
-}
-ol.menu > li:first-of-type ol,
-ol.menu > li:last-of-type ol{
-    font-size: 100%;
 }
 ol.menu > li:hover ol {
     max-height: 50vh;
 }
-ol.menu > li ol li {
-    line-height: 1;
-    padding: .25em 1em;
-    white-space: nowrap;
+ol.menu > li:first-of-type ol,
+ol.menu > li:last-of-type ol {
+    font-size: 100%;
 }
-ol.menu > li ol li:last-of-type {
-    margin-bottom: .5em;
+ol.menu > li ol li:last-of-type a {
+    background: none;
 }
 ol.menu > li ol li a {
     display: block;
+    line-height: 1;
+    padding: calc(.25em + 2px) .8em calc(.25em + 3px);
+    white-space: nowrap;
+
+    background: linear-gradient(90deg, transparent, #07080a, transparent) no-repeat bottom;
+    background-size: 95% 1px;
+}
+ol.menu > li ol li a:hover {
+    color: #07080a;
+    text-shadow: 1px 1px 1px #cfab72;
+    background: linear-gradient(90deg, #9e814c, #cfab72, #9e814c);
+    text-decoration: none;
 }
 
 .countdown {
