@@ -10,7 +10,7 @@ class S250 {
         let form = document.querySelector('#lout form');
 
         // Redirect back to same page without query or hash.
-        form['openid.return_to'].value = this.isLocal() ? 'http://steam250.com' : location.origin + location.pathname;
+        form['openid.return_to'].value = location.origin + location.pathname;
 
         document.querySelector('#lin button').addEventListener('click', () => this.logout());
     }
@@ -64,10 +64,6 @@ class S250 {
 
     static isLoggedIn() {
         return localStorage.hasOwnProperty('steam') && localStorage.hasOwnProperty('games');
-    }
-
-    isLocal() {
-        return !location.host;
     }
 
     logout() {

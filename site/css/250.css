@@ -268,7 +268,7 @@ ol.menu > li ol li:last-of-type a {
 ol.menu > li ol li a {
     display: block;
     line-height: 1;
-    padding: calc(.25em + 2px) .8em calc(.25em + 3px);
+    padding: calc(.2em + 3px) .8em calc(.2em + 4px);
     white-space: nowrap;
 
     background: linear-gradient(90deg, transparent, #07080a, transparent) no-repeat bottom;
@@ -295,6 +295,9 @@ ol.menu > li ol li a:hover {
     border-left-width: 0;
     font: italic 75%/.8 Cousine;
     text-transform: uppercase;
+}
+.countdown > span {
+    color: #9fa6b3;
 }
 @keyframes fadeIn {
     from { color: rgba(186, 190, 194, .2); }
