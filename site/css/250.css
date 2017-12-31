@@ -226,7 +226,7 @@ ol.menu > li:after {
     top: -1px;
 
     font-size: 50%;
-    transition: top .3s;
+    transition: top .2s;
 }
 ol.menu > li:hover:after {
     top: 1px;
@@ -252,7 +252,7 @@ ol.menu > li ol {
     font-size: 80%;
     text-align: left;
     background: #171a21;
-    border-radius: 0 0 1px 1px;
+    border-radius: 0 0 2px 2px;
     transition: max-height .3s;
 }
 ol.menu > li ol.t11g {
@@ -263,7 +263,7 @@ ol.menu > li:hover ol {
 }
 ol.menu > li:first-of-type ol,
 ol.menu > li:last-of-type ol {
-    font-size: 100%;
+    font-size: 95%;
 }
 ol.menu > li ol li:last-of-type a {
     background: none;
@@ -297,6 +297,7 @@ ol.menu > li ol li a:hover {
     border: 1px solid #22344b;
     border-top-width: 0;
     border-left-width: 0;
+    border-radius: 0 0 3px 3px;
     font: italic 75%/.8 Cousine;
     text-transform: uppercase;
 }
