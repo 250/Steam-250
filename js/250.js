@@ -1,6 +1,7 @@
 class S250 {
     constructor() {
         this.initLogInOut();
+        this.initMenuScrollbars();
         this.syncLogInOutState();
         this.tryParseOpenIdPostback();
         this.startCountdown();
@@ -13,6 +14,38 @@ class S250 {
         form['openid.return_to'].value = location.origin + location.pathname;
 
         document.querySelector('#lin button').addEventListener('click', () => this.logout());
+    }
+
+    /**
+     * Apply transitioning (t11g) class whilst menu is opening or closing to prevent scrollbars during this state.
+     */
+    initMenuScrollbars() {
+        const T11G = 't11g';
+
+        // transitionstart event emulation for Chrome.
+        document.querySelectorAll('ol.menu > li').forEach(e => {
+            const ol = e.querySelector('ol');
+
+            e.addEventListener('mouseenter', () => ol.clientHeight === 0 && ol.classList.add(T11G));
+            e.addEventListener('mouseleave', () => ol.classList.add(T11G));
+        });
+
+        document.querySelectorAll('ol.menu > li ol').forEach(e => {
+            e.addEventListener('transitionend', () => e.classList.remove(T11G));
+
+            // Prevent window scrolling whilst over submenu.
+            e.addEventListener('wheel', (event) => {
+                if (e.clientHeight + e.scrollTop + event.deltaY > e.scrollHeight) {
+                    e.scrollTop = e.scrollHeight;
+
+                    event.preventDefault();
+                } else if (e.scrollTop + event.deltaY < 0) {
+                    e.scrollTop = 0;
+
+                    event.preventDefault();
+                }
+            });
+        });
     }
 
     syncLogInOutState() {

@@ -255,6 +255,9 @@ ol.menu > li ol {
     border-radius: 0 0 1px 1px;
     transition: max-height .3s;
 }
+ol.menu > li ol.t11g {
+    overflow: hidden;
+}
 ol.menu > li:hover ol {
     max-height: 50vh;
 }
@@ -270,6 +273,7 @@ ol.menu > li ol li a {
     line-height: 1;
     padding: calc(.2em + 3px) .8em calc(.2em + 4px);
     white-space: nowrap;
+    min-width: 45px;
 
     background: linear-gradient(90deg, transparent, #07080a, transparent) no-repeat bottom;
     background-size: 95% 1px;
