@@ -304,11 +304,26 @@ ol.menu > li ol li a:hover {
 .countdown > span {
     color: #9fa6b3;
 }
-@keyframes fadeIn {
-    from { color: rgba(186, 190, 194, .2); }
-}
 .countdown.ready, .countdown.ready > a {
     animation: fadeIn .75s infinite alternate;
+}
+@keyframes fadeIn {
+    0% { color: rgba(186, 190, 194, .2); }
+}
+.countdown.building > span {
+    position: relative;
+    top: 0;
+    animation: bounce 1.5s ease-out infinite;
+}
+.countdown.building > span:nth-child(2) {
+    animation-delay: .1s;
+}
+.countdown.building > span:nth-child(3) {
+    animation-delay: .2s;
+}
+@keyframes bounce {
+    20% { top: -.5em; }
+    30% { top: 0; }
 }
 @media (max-width: 860px) {
     .countdown {

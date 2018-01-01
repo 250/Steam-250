@@ -45,8 +45,8 @@ class BuildMonitor {
     }
 
     showBuilding() {
-        this.element.classList.add('ready');
-        this.element.innerHTML = 'Building update...';
+        this.element.classList.add('building');
+        this.element.innerHTML = 'Building update<span>.</span><span>.</span><span>.</span>';
     }
 
     showReady() {
