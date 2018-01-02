@@ -1,10 +1,7 @@
 {% extends'layout/ranking.twig' %}
 
 {% block title %}Top {{ toplist.tag }} Games on Steam{% endblock %}
-{% block heading %}
-    {% if toplist.tag|length <= 8 %}Top{% endif %}
-    {{ toplist.tag }} Games
-{% endblock %}
+{% block heading %}{{ toplist.tag }} Games{% endblock %}
 
 {% block lead %}
     <p>

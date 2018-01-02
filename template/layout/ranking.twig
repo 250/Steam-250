@@ -42,6 +42,7 @@
             <li><a href="/">Top 250 Games</a>
             <li><a href="/dlc.html">Top 250 DLC</a>
             <li><a href="/hidden_gems.html">Hidden Gems</a>
+            <li><a href="/hidden_novels.html">Hidden Novels</a>
             <li><a href="/most_played.html">Most played</a>
             <li><a href="/bottom100.html">Bottom 100</a>
         </ol>
@@ -102,7 +103,7 @@
             {% endif %}
             <span class="title">
                 {{ game.rank }}.
-                <a href="http://store.steampowered.com/app/{{ game.id }}/" data-rank="{{ game.rank }}">
+                <a href="http://store.steampowered.com/app/{{ game.id }}/">
                     {{- game.name -}}
                 </a>
             </span>
@@ -228,11 +229,4 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.3/moment.min.js"></script>
 <script src="/js/BuildMonitor.js"></script>
 <script src="/js/250.js"></script>
-
-<script>
-    (adsbygoogle = window.adsbygoogle || []).push({
-        google_ad_client: "ca-pub-8635817990241164",
-        enable_page_level_ads: true
-    });
-</script>
 {% endblock %}
