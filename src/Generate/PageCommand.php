@@ -36,7 +36,10 @@ final class PageCommand extends Command
         $generator->setMinify($input->getOption('min'));
 
         /** @var Toplist $toplist */
-        $toplist = (new ToplistFactory($generator->getDatabase()))->create()->buildObject($input->getArgument('list'));
+        if (!$toplist =
+            (new ToplistFactory($generator->getDatabase()))->create()->buildObject($id = $input->getArgument('list'))) {
+            throw new \InvalidArgumentException("Invalid list ID: \"$id\".");
+        }
 
         // Override algorithm and weight.
         ToplistViolator::violate(

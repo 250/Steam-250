@@ -48,7 +48,8 @@ final class Queries
             ->from('rank')
             ->join('rank', 'app', 'app', 'id = rank.app_id')
             ->leftJoin('rank', 'rank', 't250', 't250.list_id = "index" AND rank.app_id = t250.app_id')
-            ->where("rank.list_id = '{$toplist->getId()}'")
+            ->where('rank.list_id = :list_id')
+                ->setParameter('list_id', $toplist->getId())
             ->orderBy('rank')
             ->setMaxResults($toplist->getLimit())
         ;
@@ -80,7 +81,7 @@ final class Queries
             ->fetchAll(\PDO::FETCH_COLUMN);
     }
 
-    public static function fetchPopularTags(Connection $database, int $threshold = 600): array
+    public static function fetchPopularTags(Connection $database, int $threshold = 500): array
     {
         return $database->query(
             "SELECT tag, COUNT(tag) AS count

@@ -11,6 +11,6 @@ final class Tag
 
     public static function convertTagToId(string $tag): string
     {
-        return strtolower(str_replace(' ', '_', $tag));
+        return strtolower(str_replace([' ', '\''], ['_', ''], $tag));
     }
 }
