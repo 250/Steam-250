@@ -9,6 +9,7 @@ use ScriptFUSION\Steam250\SiteGenerator\Toplist\Impl\BuyersRemorseList;
 use ScriptFUSION\Steam250\SiteGenerator\Toplist\Impl\CollageList;
 use ScriptFUSION\Steam250\SiteGenerator\Toplist\Impl\DlcList;
 use ScriptFUSION\Steam250\SiteGenerator\Toplist\Impl\HiddenGemsList;
+use ScriptFUSION\Steam250\SiteGenerator\Toplist\Impl\HiddenNovelsList;
 use ScriptFUSION\Steam250\SiteGenerator\Toplist\Impl\Linux250List;
 use ScriptFUSION\Steam250\SiteGenerator\Toplist\Impl\Mac250List;
 use ScriptFUSION\Steam250\SiteGenerator\Toplist\Impl\MostPlayedList;
@@ -30,6 +31,7 @@ final class ToplistName extends AbstractEnumeration
     public const MAC = 'MAC';
     public const LINUX = 'LINUX';
     public const VR = 'VR';
+    public const HVN = 'HVN';
     public const REMORSE = 'REMORSE';
     public const PLAYERS = 'PLAYERS';
     public const COLLAGE = 'COLLAGE';
@@ -45,6 +47,7 @@ final class ToplistName extends AbstractEnumeration
         self::MAC => Mac250List::class,
         self::LINUX => Linux250List::class,
         self::VR => VrTop250List::class,
+        self::HVN => HiddenNovelsList::class,
         self::REMORSE => BuyersRemorseList::class,
         self::PLAYERS => MostPlayedList::class,
         self::COLLAGE => CollageList::class,
@@ -61,6 +64,7 @@ final class ToplistName extends AbstractEnumeration
         self::MAC => 'mac',
         self::LINUX => 'linux',
         self::VR => 'vr',
+        self::HVN => 'hvn',
         self::REMORSE => 'remorse',
         self::PLAYERS => 'players',
         self::COLLAGE => 'collage',

@@ -5,7 +5,7 @@ namespace ScriptFUSION\Steam250\SiteGenerator\Toplist\Impl;
 
 use Doctrine\DBAL\Query\QueryBuilder;
 
-class Annual100List extends ThisYearList
+class AnnualList extends ThisYearList
 {
     public const EARLIEST_YEAR = 2000;
 

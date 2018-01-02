@@ -9,13 +9,14 @@ use ScriptFUSION\Steam250\SiteGenerator\Toplist\Toplist;
 
 class HiddenGemsList extends Toplist
 {
-    public function __construct()
+    public function __construct(string $id = 'hidden_gems')
     {
-        parent::__construct('hidden_gems', 250, Algorithm::HIDDEN_GEMS(), round(10 ** 6.42));
+        parent::__construct($id, 250, Algorithm::HIDDEN_GEMS(), round(10 ** 6.42));
     }
 
     public function customizeQuery(QueryBuilder $builder): void
     {
-        // Intentionally empty.
+        // Exclude visual novels.
+        $builder->andWhere('tag IS NULL');
     }
 }

@@ -1,11 +1,14 @@
 {% extends'layout/ranking.twig' %}
 
 {% block title %}Top {{ toplist.tag }} Games on Steam{% endblock %}
-{% block heading %}Top {{ toplist.tag }} Games{% endblock %}
+{% block heading %}
+    {% if toplist.tag|length <= 8 %}Top{% endif %}
+    {{ toplist.tag }} Games
+{% endblock %}
 
 {% block lead %}
     <p>
-        Top {{ games|length }} Steam games of all time, tagged with <em>{{ toplist.tag }}</em>,
+        Top {{ games|length }} Steam games of all time tagged with <em>{{ toplist.tag }}</em>,
         according to the players.
     </p>
 {% endblock %}

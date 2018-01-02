@@ -7,7 +7,7 @@ use Doctrine\DBAL\Connection;
 use ScriptFUSION\Steam250\SiteGenerator\Container\EnumerableContainer;
 use ScriptFUSION\Steam250\SiteGenerator\Database\Queries;
 use ScriptFUSION\Steam250\SiteGenerator\Tag;
-use ScriptFUSION\Steam250\SiteGenerator\Toplist\Impl\Annual100List;
+use ScriptFUSION\Steam250\SiteGenerator\Toplist\Impl\AnnualList;
 use ScriptFUSION\Steam250\SiteGenerator\Toplist\Impl\TagList;
 
 final class ToplistFactory
@@ -27,9 +27,9 @@ final class ToplistFactory
             $container->alias($name->getAlias(), $name->getClassName());
         }
 
-        foreach (range(Annual100List::EARLIEST_YEAR, date('Y')) as $year) {
+        foreach (range(AnnualList::EARLIEST_YEAR, date('Y')) as $year) {
             $container->set($year, function () use ($year): Toplist {
-                return new Annual100List($year);
+                return new AnnualList($year);
             });
         }
 

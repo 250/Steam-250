@@ -11,7 +11,7 @@ class ThisMonthList extends Toplist
 {
     public function __construct()
     {
-        parent::__construct('30day', 25, Algorithm::LAPLACE_LOG(), 4);
+        parent::__construct('30day', 40, Algorithm::LAPLACE_LOG(), 1);
     }
 
     public function customizeQuery(QueryBuilder $builder): void

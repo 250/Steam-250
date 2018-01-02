@@ -56,7 +56,7 @@
         <a href="#">Year</a>
         <ol>
             {% for year in range('now'|date('Y'),
-                constant('ScriptFUSION\\Steam250\\SiteGenerator\\Toplist\\Impl\\Annual100List::EARLIEST_YEAR')) %}
+                constant('ScriptFUSION\\Steam250\\SiteGenerator\\Toplist\\Impl\\AnnualList::EARLIEST_YEAR')) %}
             <li><a href="/{{ year }}.html">{{ year }}</a>
             {% endfor %}
         </ol>
