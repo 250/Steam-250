@@ -226,7 +226,7 @@ ol.menu > li:after {
     top: -1px;
 
     font-size: 50%;
-    transition: top .2s;
+    transition: top .15s;
 }
 ol.menu > li:hover:after {
     top: 1px;
@@ -305,9 +305,9 @@ ol.menu > li ol li a:hover {
     color: #9fa6b3;
 }
 .countdown.ready, .countdown.ready > a {
-    animation: fadeIn .75s infinite alternate;
+    animation: pulse .75s infinite alternate;
 }
-@keyframes fadeIn {
+@keyframes pulse {
     0% { color: rgba(186, 190, 194, .2); }
 }
 .countdown.building > span {
