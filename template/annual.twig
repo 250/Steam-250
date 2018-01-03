@@ -5,7 +5,7 @@
 
 {% block lead %}
     <p>
-        Top {{ games|length }} Steam games from the year {{ toplist.id }} according to the players.
+        Top {{ games|length }} Steam games from {{ toplist.id }} according to the players.
     </p>
     {% if toplist.id != 'now'|date('Y') %}
     <p class="note">
