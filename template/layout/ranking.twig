@@ -40,17 +40,17 @@
         <a href="#">Featured</a>
         <ol>
             <li><a href="/">Top 250 Games</a>
-            <li><a href="/dlc.html">Top 250 DLC</a>
-            <li><a href="/hidden_gems.html">Hidden Gems</a>
-            <li><a href="/hidden_novels.html">Hidden Novels</a>
-            <li><a href="/most_played.html">Most played</a>
-            <li><a href="/bottom100.html">Bottom 100</a>
+            <li><a href="/dlc{{ ext }}">Top 250 DLC</a>
+            <li><a href="/hidden_gems{{ ext }}">Hidden Gems</a>
+            <li><a href="/hidden_novels{{ ext }}">Hidden Novels</a>
+            <li><a href="/most_played{{ ext }}">Most played</a>
+            <li><a href="/bottom100{{ ext }}">Bottom 100</a>
         </ol>
     <li>
         <a href="#">Genre</a>
         <ol>
             {% for tag in tags %}
-            <li><a href="/tag/{{ tag|tag_id|url_encode }}.html">{{ tag }}</a>
+            <li><a href="/tag/{{ tag|tag_id|url_encode }}{{ ext }}">{{ tag }}</a>
             {% endfor %}
         </ol>
     <li>
@@ -58,27 +58,29 @@
         <ol>
             {% for year in range('now'|date('Y'),
                 constant('ScriptFUSION\\Steam250\\SiteGenerator\\Toplist\\Impl\\AnnualList::EARLIEST_YEAR')) %}
-            <li><a href="/{{ year }}.html">{{ year }}</a>
+            <li><a href="/{{ year }}{{ ext }}">{{ year }}</a>
             {% endfor %}
         </ol>
     <li>
         <a href="#">Platform</a>
         <ol>
-            <li><a href="/vr250.html">Virtual Reality</a>
-            <li><a href="/mac250.html">Mac</a>
-            <li><a href="/linux250.html">Linux</a>
+            <li><a href="/vr250{{ ext }}">Virtual Reality</a>
+            <li><a href="/mac250{{ ext }}">Mac</a>
+            <li><a href="/linux250{{ ext }}">Linux</a>
         </ol>
 </ol>
 
 <div class="body">
 <div class="page">
 <ul class="links">
-    <li><a href="https://www.patreon.com/steam250">Join Club 250 and support us!</a>
+    <li><a href="https://www.patreon.com/steam250">Join Club 250 and support us</a>
     <li><a href="/">Top 250</a>
-        &ndash; <a href="/dlc.html">DLC</a>
-        &ndash; <a href="/hidden_gems.html">Hidden gems</a>
-        &ndash; <a href="/most_played.html">Most played</a>
-    <li><a href="/30day.html">30 day</a> &ndash; <a href="/90day.html">90 day</a> &ndash; <a href="/365day.html">365 day</a>
+        &ndash; <a href="/dlc{{ ext }}">DLC</a>
+        &ndash; <a href="/hidden_gems{{ ext }}">Hidden gems</a>
+        &ndash; <a href="/most_played{{ ext }}">Most played</a>
+    <li><a href="/30day{{ ext }}">30 day</a>
+        &ndash; <a href="/90day{{ ext }}">90 day</a>
+        &ndash; <a href="/365day{{ ext }}">365 day</a>
 </ul>
 {{ block('lead') }}
 {{ include('partial/ad.twig', {id: '9535671996'}) }}
@@ -133,7 +135,7 @@
             {%- endif -%}
             </span>
             {% if game.tags|first in tags %}
-                {% set tag_url = "/tag/#{game.tags|first|tag_id|url_encode}.html" %}
+                {% set tag_url = "/tag/#{game.tags|first|tag_id|url_encode}{{ ext }}" %}
             {% else %}
                 {% set tag_url = "http://store.steampowered.com/tag/en/#{game.tags|first|url_encode}/" %}
             {% endif %}

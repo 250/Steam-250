@@ -10,10 +10,10 @@ use ScriptFUSION\Steam250\SiteGenerator\TwigFactory;
 
 final class PageGeneratorFactory
 {
-    public function create(string $dbPath): PageGenerator
+    public function create(string $dbPath, string $extension): PageGenerator
     {
         return new PageGenerator(
-            (new TwigFactory)->create(),
+            (new TwigFactory)->create($extension),
             $db = (new DatabaseFactory)->create($dbPath),
             (new RankerFactory)->create($db),
             new Logger('Generate'),

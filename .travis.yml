@@ -41,7 +41,7 @@ before_script:
 script:
   - db=$datadir/$("$datadir/bin/latest") prevdb=$datadir/$("$datadir/bin/latest" -1)
   - 'echo "db: \"$db\" prevdb: \"$prevdb\""'
-  - bin/generate site --min --prev-db "$prevdb" "$db" "$out" || exit
+  - bin/generate site --min --ext '' --prev-db "$prevdb" "$db" "$out" || exit
 
   - cd "$out" &&
     git add -A . &&

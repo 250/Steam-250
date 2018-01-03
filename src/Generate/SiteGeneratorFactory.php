@@ -7,9 +7,9 @@ use ScriptFUSION\Steam250\SiteGenerator\Toplist\ToplistFactory;
 
 final class SiteGeneratorFactory
 {
-    public function create(string $dbPath, bool $minify): SiteGenerator
+    public function create(string $dbPath, string $extension, bool $minify): SiteGenerator
     {
-        $generator = (new PageGeneratorFactory)->create($dbPath);
+        $generator = (new PageGeneratorFactory)->create($dbPath, $extension);
         $generator->setMinify($minify);
 
         return new SiteGenerator($generator, (new ToplistFactory($generator->getDatabase()))->create());

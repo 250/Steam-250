@@ -5,7 +5,7 @@ namespace ScriptFUSION\Steam250\SiteGenerator;
 
 final class TwigFactory
 {
-    public function create(): \Twig_Environment
+    public function create(string $ext): \Twig_Environment
     {
         $twig = new \Twig_Environment(
             new \Twig_Loader_Filesystem(Application::getAppPath('template')),
@@ -15,6 +15,7 @@ final class TwigFactory
         );
 
         $twig->addFilter(new \Twig_Filter('tag_id', [Tag::class, 'convertTagToId']));
+        $twig->addGlobal('ext', $ext);
 
         return $twig;
     }

@@ -27,12 +27,13 @@ final class PageCommand extends Command
             ->addOption('weight', 'w', InputOption::VALUE_REQUIRED, 'Algorithm-defined weighting.')
             ->addOption('min', null, InputOption::VALUE_NONE, 'Minify output.')
             ->addOption('prev-db', null, InputOption::VALUE_REQUIRED, 'Previous database.')
+            ->addOption('ext', null, InputOption::VALUE_REQUIRED, 'File extension in URLs.', '.html')
         ;
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): ?int
     {
-        $generator = (new PageGeneratorFactory)->create($input->getArgument('db'));
+        $generator = (new PageGeneratorFactory)->create($input->getArgument('db'), $input->getOption('ext'));
         $generator->setMinify($input->getOption('min'));
 
         /** @var Toplist $toplist */
