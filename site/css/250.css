@@ -3,7 +3,23 @@
 :root {
     --reading-width: 34em;
     --user-height: 37px;
-    --patreon: url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22100%22%20height%3D%2296%22%3E%3Cpath%20fill%3D%22%23fff%22%20d%3D%22M64.1102%2C0.1004%20C44.259%2C0.1004%2028.1086%2C16.2486%2028.1086%2C36.0986%20C28.1086%2C55.8884%2044.259%2C71.989%2064.1102%2C71.989%20C83.9%2C71.989%20100%2C55.8884%20100%2C36.0986%20C100%2C16.2486%2083.9%2C0.1004%2064.1102%2C0.1004%22%2F%3E%3Cpolygon%20fill%3D%22%23F96854%22%20points%3D%22.012%2095.988%2017.59%2095.988%2017.59%20.1%20.012%20.1%22%2F%3E%3C%2Fsvg%3E')
+    --patreon: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="96">\
+        <path fill="white" d="M64.11.1C44.26.1 28.11 16.25 28.11 36.1c0 19.79 16.15 35.89 36.001 35.89 19.79 0\
+        35.89-16.1 35.89-35.89C100 16.249 83.9.1 64.11.1"/><path fill="%23F96854" d="M.012 95.988H17.59V.1H.012z"/>\
+        </svg>');
+    --steam: url('data:image/svg+xml,<svg width="256" height="259" xmlns="http://www.w3.org/2000/svg">\
+        <path fill="%23c7d5e0" d="M127.779 0C60.42 0 5.24 52.412 0 119.014l68.724 28.674a35.812 35.812 0 0 1\
+        20.426-6.366c.682 0 1.356.019 2.02.056l30.566-44.71v-.626c0-26.903 21.69-48.796 48.353-48.796 26.662 0 48.352\
+        21.893 48.352 48.796 0 26.902-21.69 48.804-48.352 48.804-.37 0-.73-.009-1.098-.018l-43.593 31.377c.028.582.046\
+        1.163.046 1.735 0 20.204-16.283 36.636-36.294 36.636-17.566 0-32.263-12.658-35.584-29.412L4.41 164.654c15.223\
+        54.313 64.673 94.132 123.369 94.132 70.818 0 128.221-57.938 128.221-129.393C256 57.93 198.597 0 127.779\
+        0zM80.352 196.332l-15.749-6.568c2.787 5.867 7.621 10.775 14.033 13.47 13.857 5.83 29.836-.803\
+        35.612-14.799a27.555 27.555 0 0 0\
+        .046-21.035c-2.768-6.79-7.999-12.086-14.706-14.909-6.67-2.795-13.811-2.694-20.085-.304l16.275 6.79c10.222 4.3\
+        15.056 16.145 10.794 26.46-4.253 10.314-15.998 15.195-26.22\
+        10.895zm121.957-100.29c0-17.925-14.457-32.52-32.217-32.52-17.769 0-32.226 14.595-32.226 32.52 0 17.926 14.457\
+        32.512 32.226 32.512 17.76 0 32.217-14.586 32.217-32.512zm-56.37-.055c0-13.488 10.84-24.42 24.2-24.42 13.368 0\
+        24.208 10.932 24.208 24.42 0 13.488-10.84 24.421-24.209 24.421-13.359 0-24.2-10.933-24.2-24.42z"/></svg>');
 }
 
 body {
@@ -66,6 +82,14 @@ a:visited {
     display: block;
     line-height: var(--user-height);
 }
+#login {
+    padding-left: calc(.6em + 17px);
+
+    background-image: var(--steam);
+    background-repeat: no-repeat;
+    background-position: 7px 51%;
+    background-size: 13px;
+}
 
 p {
     max-width: 94%;
@@ -80,7 +104,7 @@ em {
 
 button {
     margin: 0 .5em;
-    padding: .3em .7em .4em .6em;
+    padding: .3em .6em .4em;
     border: 1px solid #575a80;
     line-height: 1;
 
@@ -90,7 +114,7 @@ button {
     cursor: pointer;
 }
 button:hover {
-    background: #272a31;
+    background-color: #272a31;
 }
 
 dl {
@@ -485,10 +509,18 @@ tr.a .movement.none:before {
     background: rgba(82, 76, 22, .7);
 }
 
+.genre[href*="//store.steampowered.com/"] {
+    padding-left: calc(.25em + 15px);
+
+    background-image: var(--steam);
+    background-size: 10px;
+    background-repeat: no-repeat;
+    background-position: 4px 51%;
+}
 .genre:hover {
     text-decoration: none;
     color: #e6f7ff;
-    background: rgba(103, 193, 245, .5);
+    background-color: rgba(103, 193, 245, .5);
 }
 .ref250:hover {
     text-decoration: none;
