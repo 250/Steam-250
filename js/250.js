@@ -121,7 +121,8 @@ class S250 {
             let matches = data.match(/var rgGames = ([^\n]+);/);
 
             if (!matches || matches.length !== 2) {
-                console.error('Failed to find games JSON.');
+                alert('Unable to load player profile. This is usually because your Steam profile is not public.\n'
+                    + ' Try setting your Steam Community profile status to public and refresh this page to try again.');
 
                 return;
             }
