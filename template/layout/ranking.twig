@@ -50,7 +50,7 @@
         <a href="#">Genre</a>
         <ol>
             {% for tag in tags %}
-            <li><a href="/tag/{{ tag|tag_id|url_encode }}{{ ext }}">{{ tag }}</a>
+            <li><a href="/tag/{{ tag|tag_id|url_encode ~ ext }}">{{ tag }}</a>
             {% endfor %}
         </ol>
     <li>
@@ -135,7 +135,7 @@
             {%- endif -%}
             </span>
             {% if game.tags|first in tags %}
-                {% set tag_url = "/tag/#{game.tags|first|tag_id|url_encode}{{ ext }}" %}
+                {% set tag_url = "/tag/#{game.tags|first|tag_id|url_encode ~ ext}" %}
             {% else %}
                 {% set tag_url = "http://store.steampowered.com/tag/en/#{game.tags|first|url_encode}/" %}
             {% endif %}
