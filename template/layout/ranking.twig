@@ -73,7 +73,7 @@
 <div class="body">
 <div class="page">
 <ul class="links">
-    <li><a href="https://www.patreon.com/steam250">Join Club 250 and support us</a>
+    <li><a href="https://www.patreon.com/steam250">Join Club 250 on Patreon</a>
     <li><a href="/">Top 250</a>
         &ndash; <a href="/dlc{{ ext }}">DLC</a>
         &ndash; <a href="/hidden_gems{{ ext }}">Hidden gems</a>
@@ -149,7 +149,7 @@
         </td>
         <td>
             {% block scoring_criteria %}
-            <span class="score">{{ (game.score * 10)|number_format(1) }}</span>
+            <span class="score">{{ (game.score * 10)|number_format(2) }}</span>
             <span class="rating">{{ (game.positive_reviews / game.total_reviews * 100)|round }}%</span>
             <span class="votes">{{ game.total_reviews|number_format }} votes</span>
             {% endblock %}
