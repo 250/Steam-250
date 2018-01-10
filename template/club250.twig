@@ -1,0 +1,25 @@
+{% extends'layout/ranking.twig' %}
+
+{% block title %}Club 250 Recommended Steam Games{% endblock %}
+{% block heading %}Club 250{% endblock %}
+
+{% block lead %}
+<p>
+    Curated ranking of {{ games|length }} games recommended by
+    <a href="https://www.patreon.com/steam250">Club 250</a> members.
+</p>
+{% endblock %}
+
+{% block reviews %}
+<div class="reviews">
+    <dl>
+        <dt>Reviews
+        {% for review in game.reviews %}
+        <dd>
+            <a href="http://steamcommunity.com/{{ review.profile_id }}/recommended/{{ review.app_id }}/">
+                <img src="{{ review.avatar_url }}">
+            </a>
+    {% endfor %}
+    </dl>
+</div>
+{% endblock %}

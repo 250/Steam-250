@@ -55,6 +55,9 @@ final class PageGenerator
         foreach ($games as &$game) {
             $game['tags'] = Queries::fetchAppTags($this->database, +$game['id']);
         }
+        if ($toplist instanceof CustomizeGames) {
+            $toplist->customizeGames($games, $this->database);
+        }
 
         $tags = Queries::fetchPopularTags($this->database);
 

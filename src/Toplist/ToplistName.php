@@ -6,6 +6,7 @@ namespace ScriptFUSION\Steam250\SiteGenerator\Toplist;
 use Eloquent\Enumeration\AbstractEnumeration;
 use ScriptFUSION\Steam250\SiteGenerator\Toplist\Impl\Bottom100List;
 use ScriptFUSION\Steam250\SiteGenerator\Toplist\Impl\BuyersRemorseList;
+use ScriptFUSION\Steam250\SiteGenerator\Toplist\Impl\Club250List;
 use ScriptFUSION\Steam250\SiteGenerator\Toplist\Impl\CollageList;
 use ScriptFUSION\Steam250\SiteGenerator\Toplist\Impl\DlcList;
 use ScriptFUSION\Steam250\SiteGenerator\Toplist\Impl\HiddenGemsList;
@@ -34,6 +35,7 @@ final class ToplistName extends AbstractEnumeration
     public const HVN = 'HVN';
     public const REMORSE = 'REMORSE';
     public const PLAYERS = 'PLAYERS';
+    public const CLUB_250 = 'CLUB_250';
     public const COLLAGE = 'COLLAGE';
 
     private static $classes = [
@@ -50,6 +52,7 @@ final class ToplistName extends AbstractEnumeration
         self::HVN => HiddenNovelsList::class,
         self::REMORSE => BuyersRemorseList::class,
         self::PLAYERS => MostPlayedList::class,
+        self::CLUB_250 => Club250List::class,
         self::COLLAGE => CollageList::class,
     ];
 
@@ -67,6 +70,7 @@ final class ToplistName extends AbstractEnumeration
         self::HVN => 'hvn',
         self::REMORSE => 'remorse',
         self::PLAYERS => 'players',
+        self::CLUB_250 => 'club',
         self::COLLAGE => 'collage',
     ];
 

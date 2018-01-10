@@ -132,7 +132,7 @@ thead {
 thead td {
     padding-bottom: .5em;
 }
-td img {
+td:first-child img {
     max-width: 100%;
     min-width: 80px;
 }

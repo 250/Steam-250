@@ -6,12 +6,16 @@ namespace ScriptFUSION\Steam250\SiteGenerator\Database;
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\Driver\Statement;
 use Doctrine\DBAL\Query\QueryBuilder;
+use ScriptFUSION\StaticClass;
+use ScriptFUSION\Steam250\SiteGenerator\Rank\CustomRankingFetch;
 use ScriptFUSION\Steam250\SiteGenerator\Rank\RankingQueries;
 use ScriptFUSION\Steam250\SiteGenerator\Toplist\Algorithm;
 use ScriptFUSION\Steam250\SiteGenerator\Toplist\Toplist;
 
 final class Queries
 {
+    use StaticClass;
+
     public static function createRankedListTable(Connection $database): void
     {
         $database->exec(
@@ -68,6 +72,10 @@ final class Queries
             ;
         }
 
+        if ($toplist instanceof CustomRankingFetch) {
+            $toplist->customizeRankingFetch($query);
+        }
+
         $list = $query->execute()->fetchAll();
 
         $prevDb && $database->exec('DETACH prev');
@@ -92,6 +100,15 @@ final class Queries
         )->fetchAll(\PDO::FETCH_COLUMN);
     }
 
+    public static function fetchPatronReviews(Connection $database, int $appId): array
+    {
+        return $database->fetchAll(
+            "SELECT * FROM patron_review
+            INNER JOIN steam_profile ON patron_review.profile_id = steam_profile.profile_id
+            WHERE app_id = $appId"
+        );
+    }
+
     /**
      * Ranks the specified list according to the list's algorithm and weighting.
      *
@@ -110,8 +127,8 @@ final class Queries
         ;
 
         if ($toplist->getAlgorithm()) {
-            self::calculateScore($query, $toplist->getAlgorithm(), $toplist->getWeight());
-            $query->orderBy('score', SortDirection::DESC());
+            self::calculateScore($query, $toplist);
+            $query->orderBy('score', SortDirection::DESC);
         }
 
         $toplist->customizeQuery($query);
@@ -119,39 +136,43 @@ final class Queries
         return $query->execute();
     }
 
-    private static function calculateScore(QueryBuilder $builder, Algorithm $algorithm, float $weight): void
-    {
-        switch ($algorithm) {
+    public static function calculateScore(
+        QueryBuilder $builder,
+        Toplist $toplist,
+        string $prefix = 'app',
+        string $alias = 'score'
+    ): void {
+        switch ($toplist->getAlgorithm()) {
             case Algorithm::WILSON:
-                RankingQueries::calculateWilsonScore($builder, $weight);
+                RankingQueries::calculateWilsonScore($builder, $toplist->getWeight());
                 break;
 
             case Algorithm::BAYESIAN:
-                RankingQueries::calculateBayesianScore($builder, $weight);
+                RankingQueries::calculateBayesianScore($builder, $toplist->getWeight());
                 break;
 
             case Algorithm::LAPLACE:
-                RankingQueries::calculateLaplaceScore($builder, $weight);
+                RankingQueries::calculateLaplaceScore($builder, $toplist->getWeight());
                 break;
 
             case Algorithm::LAPLACE_LOG:
-                RankingQueries::calculateLaplaceLogScore($builder, $weight);
+                RankingQueries::calculateLaplaceLogScore($builder, $toplist->getWeight(), $prefix, $alias);
                 break;
 
             case Algorithm::DIRICHLET_PRIOR:
-                RankingQueries::calculateDirichletPriorScore($builder, $weight);
+                RankingQueries::calculateDirichletPriorScore($builder, $toplist->getWeight());
                 break;
 
             case Algorithm::DIRICHLET_PRIOR_LOG:
-                RankingQueries::calculateDirichletPriorLogScore($builder, $weight);
+                RankingQueries::calculateDirichletPriorLogScore($builder, $toplist->getWeight());
                 break;
 
             case Algorithm::TORN:
-                RankingQueries::calculateTornScore($builder, $weight);
+                RankingQueries::calculateTornScore($builder, $toplist->getWeight());
                 break;
 
             case Algorithm::HIDDEN_GEMS:
-                RankingQueries::calculateHiddenGemsScore($builder, $weight);
+                RankingQueries::calculateHiddenGemsScore($builder, $toplist->getWeight());
                 break;
         }
     }

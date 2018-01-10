@@ -73,12 +73,16 @@ final class RankingQueries
         );
     }
 
-    public static function calculateLaplaceLogScore(QueryBuilder $builder, float $weight): void
-    {
+    public static function calculateLaplaceLogScore(
+        QueryBuilder $builder,
+        float $weight,
+        string $prefix,
+        string $alias
+    ): void {
         $builder->addSelect(
             "(
-                positive_reviews * 1. / total_reviews * LOG10(total_reviews + 1) + $weight
-            ) / (LOG10(total_reviews + 1) + $weight * 2.) AS score"
+                $prefix.positive_reviews * 1. / $prefix.total_reviews * LOG10($prefix.total_reviews + 1) + $weight
+            ) / (LOG10($prefix.total_reviews + 1) + $weight * 2.) AS $alias"
         );
     }
 

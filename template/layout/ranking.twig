@@ -146,6 +146,7 @@
             {% if game.discount > 0 %}
             <span class="discount">-{{ game.discount }}%</span>
             {% endif %}
+            {% block reviews %}{% endblock %}
         </td>
         <td>
             {% block scoring_criteria %}
