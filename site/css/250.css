@@ -329,8 +329,11 @@ ol.menu > li > ol > li > ol {
     left: 99.5%;
     transform: none;
 }
-ol.menu > li > ol > li > ol > li:first-of-type {
-    border-radius: 0 2px 0 0;
+@media (max-width: 569px) {
+    ol.menu > li:nth-child(4) > ol > li > ol {
+        left: auto;
+        right: 99.5%;
+    }
 }
 /** Special **/
 ol.menu > li:nth-child(2) > ol > li:nth-of-type(2) > a {
@@ -753,7 +756,7 @@ caption {
     }
 }
 
-a.twitter, a.patreon {
+a.twitter, a.patreon, a.discord {
     display: inline-block;
     overflow: hidden;
     width: 20px;
@@ -767,8 +770,12 @@ a.twitter, a.patreon {
 }
 a.patreon {
     background: var(--patreon) no-repeat center;
-    background-size: 17px 17px;
+    background-size: 17px;
     background-position-y: calc(100% - 1px);
+}
+a.discord {
+    background: var(--discord) no-repeat 50% 0;
+    background-size: 23px;
 }
 
 .fixedlinks {
