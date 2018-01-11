@@ -37,14 +37,28 @@
 
 <ol class="menu">
     <li>
-        <a href="#">Featured</a>
+        <a href="#">Rankings</a>
         <ol>
             <li><a href="/">Top 250 Games</a>
             <li><a href="/dlc{{ ext }}">Top 250 DLC</a>
             <li><a href="/hidden_gems{{ ext }}">Hidden Gems</a>
             <li><a href="/hidden_novels{{ ext }}">Hidden Novels</a>
-            <li><a href="/most_played{{ ext }}">Most played</a>
+            <li>
+                <a href="#">Platform</a>
+                <ol>
+                    <li><a href="/vr250{{ ext }}">Virtual Reality</a>
+                    <li><a href="/mac250{{ ext }}">Mac</a>
+                    <li><a href="/linux250{{ ext }}">Linux</a>
+                </ol>
+            <li><a href="/most_played{{ ext }}">Most Played</a>
             <li><a href="/bottom100{{ ext }}">Bottom 100</a>
+        </ol>
+    <li>
+        <a href="#">Club 250</a>
+        <ol>
+            <li><a href="/club250{{ ext }}">Recommended Games</a>
+            <li><a href="https://www.patreon.com/steam250">Join Club 250</a>
+            <li><a href="https://discord.gg/8pz5ybv">Chat in Discord</a>
         </ol>
     <li>
         <a href="#">Genre</a>
@@ -54,33 +68,29 @@
             {% endfor %}
         </ol>
     <li>
-        <a href="#">Year</a>
+        <a href="#">Period</a>
         <ol>
-            {% for year in range('now'|date('Y'),
-                constant('ScriptFUSION\\Steam250\\SiteGenerator\\Toplist\\Impl\\AnnualList::EARLIEST_YEAR')) %}
-            <li><a href="/{{ year }}{{ ext }}">{{ year }}</a>
-            {% endfor %}
-        </ol>
-    <li>
-        <a href="#">Platform</a>
-        <ol>
-            <li><a href="/vr250{{ ext }}">Virtual Reality</a>
-            <li><a href="/mac250{{ ext }}">Mac</a>
-            <li><a href="/linux250{{ ext }}">Linux</a>
+            <li>
+                <a href="#">Fixed Year</a>
+                <ol>
+                    {% for year in range('now'|date('Y'),
+                        constant('ScriptFUSION\\Steam250\\SiteGenerator\\Toplist\\Impl\\AnnualList::EARLIEST_YEAR')) %}
+                    <li><a href="/{{ year }}{{ ext }}">{{ year }}</a>
+                    {% endfor %}
+                </ol>
+            <li><a href="/30day{{ ext }}">Rolling Month</a>
+            <li><a href="/90day{{ ext }}">Rolling Quarter</a>
+            <li><a href="/365day{{ ext }}">Rolling Year</a>
         </ol>
 </ol>
 
 <div class="body">
 <div class="page">
 <ul class="links">
-    <li><a href="https://www.patreon.com/steam250">Join Club 250 on Patreon</a>
     <li><a href="/">Top 250</a>
-        &ndash; <a href="/dlc{{ ext }}">DLC</a>
         &ndash; <a href="/hidden_gems{{ ext }}">Hidden gems</a>
-        &ndash; <a href="/most_played{{ ext }}">Most played</a>
-    <li><a href="/30day{{ ext }}">30 day</a>
-        &ndash; <a href="/90day{{ ext }}">90 day</a>
-        &ndash; <a href="/365day{{ ext }}">365 day</a>
+        &ndash; <a href="/{{ ('now'|date('Y') - 1) ~ ext }}">{{ 'now'|date('Y') - 1 }}</a>
+    <li><a href="https://www.patreon.com/steam250">Join Club 250 on Patreon</a>
 </ul>
 {{ block('lead') }}
 {{ include('partial/ad.twig', {id: '9535671996'}) }}

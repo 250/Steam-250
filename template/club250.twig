@@ -5,21 +5,19 @@
 
 {% block lead %}
 <p>
-    Curated ranking of {{ games|length }} games recommended by
+    Games recommended by
     <a href="https://www.patreon.com/steam250">Club 250</a> members.
 </p>
 {% endblock %}
 
 {% block reviews %}
-<div class="reviews">
-    <dl>
-        <dt>Reviews
-        {% for review in game.reviews %}
-        <dd>
-            <a href="http://steamcommunity.com/{{ review.profile_id }}/recommended/{{ review.app_id }}/">
-                <img src="{{ review.avatar_url }}">
-            </a>
-    {% endfor %}
-    </dl>
-</div>
+<dl class="reviews">
+    <dt>Reviews
+    {% for review in game.reviews %}
+    <dd>
+        <a href="http://steamcommunity.com/{{ review.profile_id }}/recommended/{{ review.app_id }}/"
+           {% if not review.positive %}class="n"{% endif %}
+            ><img src="{{ review.avatar_url }}" alt="Review"></a>
+{% endfor %}
+</dl>
 {% endblock %}

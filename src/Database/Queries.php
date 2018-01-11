@@ -105,7 +105,8 @@ final class Queries
         return $database->fetchAll(
             "SELECT * FROM patron_review
             INNER JOIN steam_profile ON patron_review.profile_id = steam_profile.profile_id
-            WHERE app_id = $appId"
+            WHERE app_id = $appId
+            ORDER BY positive DESC"
         );
     }
 
