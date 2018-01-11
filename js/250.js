@@ -2,6 +2,7 @@ class S250 {
     constructor() {
         this.initLogInOut();
         this.initMenuScrollbars();
+        this.initFauxLinks();
         this.syncLogInOutState();
         this.tryParseOpenIdPostback();
         this.startCountdown();
@@ -23,8 +24,9 @@ class S250 {
         const T11G = 't11g';
 
         // transitionstart event emulation for Chrome.
-        document.querySelectorAll('ol.menu > li').forEach(e => {
+        document.querySelectorAll('ol.menu li').forEach(e => {
             const ol = e.querySelector('ol');
+            if (!ol) return;
 
             e.addEventListener('mouseenter', () => ol.clientHeight === 0 && ol.classList.add(T11G));
             e.addEventListener('mouseleave', () => ol.classList.add(T11G));
@@ -46,6 +48,10 @@ class S250 {
                 }
             });
         });
+    }
+
+    initFauxLinks() {
+        document.querySelectorAll('a[href=\\#]').forEach(a => a.addEventListener('click', e => e.preventDefault()));
     }
 
     syncLogInOutState() {
