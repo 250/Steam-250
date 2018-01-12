@@ -580,7 +580,7 @@ tr.a .movement.none:before {
 
 .genre, .genre:visited,
 .ref250, .ref250:visited,
-.discount {
+.discount, .free {
     margin-left: .25em;
     padding: .19em .6em;
     border-radius: 2px;
@@ -613,10 +613,19 @@ tr.a .movement.none:before {
     color: #fffce8;
     background: rgba(171, 152, 9, .7);
 }
-.discount {
+.discount, .free {
+    text-transform: uppercase;
     color: #b8d936;
     background: rgba(76, 107, 34, .7);
     border-radius: 0;
+}
+.free, .free:visited {
+    color: #cad982;
+}
+.free:hover {
+    text-decoration: none;
+    color: #fbffe6;
+    background: #4c6b22;
 }
 
 .date {
