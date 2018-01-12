@@ -158,6 +158,9 @@
             {% if game.discount > 0 %}
             <span class="discount">-{{ game.discount }}%</span>
             {% endif %}
+            {% if game.free %}
+            <a href="/tag/free_to_play{{ ext }}" class="free">Free</a>
+            {% endif %}
             {% block reviews %}{% endblock %}
         </td>
         <td>
