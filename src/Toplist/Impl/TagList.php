@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace ScriptFUSION\Steam250\SiteGenerator\Toplist\Impl;
 
 use Doctrine\DBAL\Query\QueryBuilder;
-use ScriptFUSION\Steam250\SiteGenerator\Tag;
+use ScriptFUSION\Steam250\SiteGenerator\SteamApp\Tag;
 
 class TagList extends Top250List
 {

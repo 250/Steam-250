@@ -7,6 +7,7 @@ use Doctrine\DBAL\Connection;
 use Psr\Log\LoggerInterface;
 use ScriptFUSION\Steam250\SiteGenerator\Database\Queries;
 use ScriptFUSION\Steam250\SiteGenerator\Rank\Ranker;
+use ScriptFUSION\Steam250\SiteGenerator\SteamApp\PrimaryTagChooser;
 use ScriptFUSION\Steam250\SiteGenerator\Toplist\Toplist;
 use voku\helper\HtmlMin;
 
@@ -53,7 +54,9 @@ final class PageGenerator
 
         // Decorate each game with tags.
         foreach ($games as &$game) {
-            $game['tags'] = Queries::fetchAppTags($this->database, +$game['id']);
+            $game['primary_tag'] = PrimaryTagChooser::choose(
+                $game['tags'] = Queries::fetchAppTags($this->database, +$game['id'])
+            );
         }
         if ($toplist instanceof CustomizeGames) {
             $toplist->customizeGames($games, $this->database);

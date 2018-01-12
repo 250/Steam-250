@@ -6,7 +6,7 @@ namespace ScriptFUSION\Steam250\SiteGenerator\Toplist;
 use Doctrine\DBAL\Connection;
 use ScriptFUSION\Steam250\SiteGenerator\Container\EnumerableContainer;
 use ScriptFUSION\Steam250\SiteGenerator\Database\Queries;
-use ScriptFUSION\Steam250\SiteGenerator\Tag;
+use ScriptFUSION\Steam250\SiteGenerator\SteamApp\Tag;
 use ScriptFUSION\Steam250\SiteGenerator\Toplist\Impl\AnnualList;
 use ScriptFUSION\Steam250\SiteGenerator\Toplist\Impl\TagList;
 

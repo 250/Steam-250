@@ -1,7 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace ScriptFUSION\Steam250\SiteGenerator;
+namespace ScriptFUSION\Steam250\SiteGenerator\Generate;
+
+use ScriptFUSION\Steam250\SiteGenerator\Application;
+use ScriptFUSION\Steam250\SiteGenerator\SteamApp\Tag;
 
 final class TwigFactory
 {

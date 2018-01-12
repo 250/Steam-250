@@ -6,7 +6,6 @@ namespace ScriptFUSION\Steam250\SiteGenerator\Generate;
 use Monolog\Logger;
 use ScriptFUSION\Steam250\SiteGenerator\Database\DatabaseFactory;
 use ScriptFUSION\Steam250\SiteGenerator\Rank\RankerFactory;
-use ScriptFUSION\Steam250\SiteGenerator\TwigFactory;
 
 final class PageGeneratorFactory
 {
