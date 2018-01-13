@@ -9,7 +9,7 @@ class DiscountList extends Top250List
 {
     public function __construct()
     {
-        parent::__construct('discount');
+        parent::__construct('discounts');
     }
 
     public function customizeQuery(QueryBuilder $builder): void
