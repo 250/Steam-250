@@ -18,7 +18,7 @@ final class PrimaryTagChooser
         'Indie',
         'Multiplayer',
         'RPGMaker',
-        'VR'
+        'VR',
     ];
 
     public static function choose(array $tags): ?string

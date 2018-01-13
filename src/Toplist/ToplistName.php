@@ -8,6 +8,7 @@ use ScriptFUSION\Steam250\SiteGenerator\Toplist\Impl\Bottom100List;
 use ScriptFUSION\Steam250\SiteGenerator\Toplist\Impl\BuyersRemorseList;
 use ScriptFUSION\Steam250\SiteGenerator\Toplist\Impl\Club250List;
 use ScriptFUSION\Steam250\SiteGenerator\Toplist\Impl\CollageList;
+use ScriptFUSION\Steam250\SiteGenerator\Toplist\Impl\DiscountList;
 use ScriptFUSION\Steam250\SiteGenerator\Toplist\Impl\DlcList;
 use ScriptFUSION\Steam250\SiteGenerator\Toplist\Impl\HiddenGemsList;
 use ScriptFUSION\Steam250\SiteGenerator\Toplist\Impl\HiddenNovelsList;
@@ -26,6 +27,7 @@ final class ToplistName extends AbstractEnumeration
     public const GEMS = 'GEMS';
     public const BOTTOM_100 = 'BOTTOM_100';
     public const DLC = 'DLC';
+    public const DISCOUNT = 'DISCOUNT';
     public const D_30 = 'D_30';
     public const D_90 = 'D_90';
     public const D_365 = 'D_365';
@@ -43,6 +45,7 @@ final class ToplistName extends AbstractEnumeration
         self::GEMS => HiddenGemsList::class,
         self::BOTTOM_100 => Bottom100List::class,
         self::DLC => DlcList::class,
+        self::DISCOUNT => DiscountList::class,
         self::D_30 => ThisMonthList::class,
         self::D_90 => ThisQuarterList::class,
         self::D_365 => ThisYearList::class,
@@ -61,6 +64,7 @@ final class ToplistName extends AbstractEnumeration
         self::GEMS => 'gems',
         self::BOTTOM_100 => 'b100',
         self::DLC => 'dlc',
+        self::DISCOUNT => 'discount',
         self::D_30 => '30d',
         self::D_90 => '90d',
         self::D_365 => '365d',
