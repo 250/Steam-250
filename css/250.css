@@ -229,7 +229,7 @@ ol.menu {
 ol.menu > li {
     position: relative;
     display: inline-block;
-    margin: 0 2%;
+    margin: 0 1%;
     padding: .5em 1%;
 
     color: #9e814c;
@@ -330,38 +330,38 @@ ol.menu > li > ol > li > ol {
     transform: none;
 }
 @media (max-width: 569px) {
-    ol.menu > li:nth-child(4) > ol > li > ol {
+    ol.menu > li:nth-child(5) > ol > li > ol {
         left: auto;
         right: 99.5%;
     }
 }
 /** Special **/
-ol.menu > li:nth-child(2) > ol > li:nth-of-type(2) > a {
+ol.menu > li:nth-child(3) > ol > li:nth-of-type(2) > a {
     padding-left: 2.05em;
 
     background: var(--patreon) no-repeat calc(.8em + 2px) 50%;
     background-size: 13px;
 }
-ol.menu > li:nth-child(2) > ol > li:last-of-type > a {
+ol.menu > li:nth-child(3) > ol > li:last-of-type > a {
     padding-left: 2.05em;
 
     background: var(--discord) no-repeat calc(.8em - 2px) 50%;
     background-size: 19px;
 }
-ol.menu > li:nth-child(2) > ol > li:last-of-type:hover {
+ol.menu > li:nth-child(3) > ol > li:last-of-type:hover {
     background-image: linear-gradient(90deg, #4b60a6, #7289da, #4b60a6);
 }
-ol.menu > li:nth-child(2) > ol > li:last-of-type:hover > a {
+ol.menu > li:nth-child(3) > ol > li:last-of-type:hover > a {
     text-shadow: 1px 1px 1px #7289da;
 }
 
-ol.menu > li:nth-child(3) > ol,
-ol.menu > li:nth-child(4) > ol > li:first-of-type > ol {
+ol.menu > li:nth-child(4) > ol,
+ol.menu > li:nth-child(5) > ol > li:first-of-type > ol {
     overflow-y: auto;
     overflow-x: hidden;
     font-size: 80%;
 }
-ol.menu > li:nth-child(4) > ol > li:first-of-type > ol {
+ol.menu > li:nth-child(5) > ol > li:first-of-type > ol {
     font-size: 90%;
     text-align: center;
 }
