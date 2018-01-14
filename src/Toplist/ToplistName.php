@@ -19,6 +19,10 @@ use ScriptFUSION\Steam250\SiteGenerator\Toplist\Impl\ThisMonthList;
 use ScriptFUSION\Steam250\SiteGenerator\Toplist\Impl\ThisQuarterList;
 use ScriptFUSION\Steam250\SiteGenerator\Toplist\Impl\ThisYearList;
 use ScriptFUSION\Steam250\SiteGenerator\Toplist\Impl\Top250List;
+use ScriptFUSION\Steam250\SiteGenerator\Toplist\Impl\Usd10To15List;
+use ScriptFUSION\Steam250\SiteGenerator\Toplist\Impl\Usd5To10List;
+use ScriptFUSION\Steam250\SiteGenerator\Toplist\Impl\UsdOver15List;
+use ScriptFUSION\Steam250\SiteGenerator\Toplist\Impl\UsdUnder5List;
 use ScriptFUSION\Steam250\SiteGenerator\Toplist\Impl\VrTop250List;
 
 final class ToplistName extends AbstractEnumeration
@@ -28,6 +32,10 @@ final class ToplistName extends AbstractEnumeration
     public const BOTTOM_100 = 'BOTTOM_100';
     public const DLC = 'DLC';
     public const DISCOUNT = 'DISCOUNT';
+    public const USD_UNDER_5 = 'USD_UNDER_5';
+    public const USD5_10 = 'USD5_10';
+    public const USD10_15 = 'USD10_15';
+    public const USD_OVER_15 = 'USD_OVER_15';
     public const D_30 = 'D_30';
     public const D_90 = 'D_90';
     public const D_365 = 'D_365';
@@ -46,6 +54,10 @@ final class ToplistName extends AbstractEnumeration
         self::BOTTOM_100 => Bottom100List::class,
         self::DLC => DlcList::class,
         self::DISCOUNT => DiscountList::class,
+        self::USD_UNDER_5 => UsdUnder5List::class,
+        self::USD5_10 => Usd5To10List::class,
+        self::USD10_15 => Usd10To15List::class,
+        self::USD_OVER_15 => UsdOver15List::class,
         self::D_30 => ThisMonthList::class,
         self::D_90 => ThisQuarterList::class,
         self::D_365 => ThisYearList::class,
@@ -65,6 +77,10 @@ final class ToplistName extends AbstractEnumeration
         self::BOTTOM_100 => 'b100',
         self::DLC => 'dlc',
         self::DISCOUNT => 'discount',
+        self::USD_UNDER_5 => 'u5',
+        self::USD5_10 => '5-15',
+        self::USD10_15 => '10-15',
+        self::USD_OVER_15 => 'o15',
         self::D_30 => '30d',
         self::D_90 => '90d',
         self::D_365 => '365d',
