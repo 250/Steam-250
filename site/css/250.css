@@ -222,14 +222,15 @@ a.owned:hover:before {
 }
 
 ol.menu {
+    white-space: nowrap;
     text-align: center;
 
-    background: #171a21 linear-gradient(180deg, rgba(0, 0, 0, .15) 70%, rgba(0, 0, 0, 0));
+    background: linear-gradient(180deg, #14161c 70%, #171a21);
 }
 ol.menu > li {
     position: relative;
     display: inline-block;
-    margin: 0 1%;
+    margin: 0 1.25%;
     padding: .5em 1%;
 
     color: #9e814c;
@@ -256,7 +257,7 @@ ol.menu > li > a {
 ol.menu > li:hover > a {
     color: #cfab72;
 }
-/** First level **/
+/** First level (some rules cascade to second level) **/
 ol.menu > li ol {
     position: absolute;
     top: 100%;
@@ -270,6 +271,7 @@ ol.menu > li ol {
     background: #171a21;
     border-radius: 0 0 2px 2px;
     transition: max-height .3s .2s;
+    box-shadow: 0 2px 3px rgba(38, 61, 91, .43);
 }
 ol.menu > li:hover > ol,
 ol.menu > li > ol > li:hover > ol {
@@ -283,7 +285,6 @@ ol.menu > li > ol > li {
 ol.menu > li ol li {
     display: block;
     line-height: 1;
-    white-space: nowrap;
 
     background: linear-gradient(90deg, transparent, #07080a, transparent) no-repeat bottom;
     background-size: 95% 1px;
@@ -425,11 +426,11 @@ ol.menu > li ol.t11g {
     background-size: 100% 60px;
 }
 
-.page {
+.content {
     margin: 0 auto;
     max-width: 864px;
 }
-.page > p:first-of-type {
+.content > p:first-of-type {
     text-align: center;
 }
 
@@ -473,6 +474,13 @@ p.note:before, p.tip:before {
 }
 p.tip:before {
     content: 'Tip';
+}
+
+#ranking {
+    max-width: 864px;
+}
+#ranking .title {
+    vertical-align: middle;
 }
 
 .movement {
@@ -572,10 +580,6 @@ tr.a .movement.none:before {
 }
 .reviews .n img {
     border-color: #914747;
-}
-
-#ranking .title {
-    vertical-align: middle;
 }
 
 .genre, .genre:visited,
@@ -713,6 +717,38 @@ caption {
     text-align: center;
     font-size: 70%;
     opacity: .06;
+}
+
+.ranking > :nth-child(3) {
+    max-width: 864px;
+    margin: 0 auto;
+}
+/** 2-column ranking **/
+@media (min-width: 1240px) {
+    .ranking {
+        display: flex;
+        justify-content: center;
+    }
+    .ranking > :nth-child(n+2) {
+        flex-shrink: 0;
+    }
+    .ranking > :nth-child(2n-1) {
+        width: 350px;
+        margin: 0;
+    }
+    .ranking > :nth-child(3) {
+        box-sizing: border-box;
+        padding-left: 34px;
+    }
+    #ranking {
+        margin-top: 0;
+    }
+    .r\&f {
+        margin: 0;
+    }
+    .r\&f > table {
+        width: 100%;
+    }
 }
 
 #footer {
