@@ -7,8 +7,6 @@ class S250 {
         this.syncLogInOutState();
         this.tryParseOpenIdPostback();
         this.startCountdown();
-
-        addEventListener()
     }
 
     initLogInOut() {

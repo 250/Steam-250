@@ -1,17 +1,16 @@
 const
     BASE_URL = 'http://steam250.com/',
     PAGES = [
-        'index.html',
-        'hidden_gems.html',
-        'most_played.html',
-        'bottom100.html',
-        'vr250.html',
+        'index',
+        'hidden_gems',
+        'discounts',
+        '2017',
     ]
 ;
 
 let webpage = require('webpage').create();
 
-webpage.viewportSize = {width: 1160, height: screen.height};
+webpage.viewportSize = {width: 1260, height: screen.height};
 
 (async () => {
     for (let page of PAGES) {
