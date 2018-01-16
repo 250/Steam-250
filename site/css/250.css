@@ -330,7 +330,7 @@ ol.menu > li > ol > li > ol {
     left: 99.5%;
     transform: none;
 }
-@media (max-width: 569px) {
+@media (max-width: 620px) {
     ol.menu > li:nth-child(5) > ol > li > ol {
         left: auto;
         right: 99.5%;

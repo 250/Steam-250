@@ -3,9 +3,12 @@ class S250 {
         this.initLogInOut();
         this.initMenuScrollbars();
         this.initFauxLinks();
+        this.constrainDropdownMenuPositions();
         this.syncLogInOutState();
         this.tryParseOpenIdPostback();
         this.startCountdown();
+
+        addEventListener()
     }
 
     initLogInOut() {
@@ -52,6 +55,23 @@ class S250 {
 
     initFauxLinks() {
         document.querySelectorAll('a[href=\\#]').forEach(a => a.addEventListener('click', e => e.preventDefault()));
+    }
+
+    /**
+     * Ensure each drop-down menu is completely visible within the viewport.
+     */
+    constrainDropdownMenuPositions() {
+        document.querySelectorAll('ol.menu > li > ol').forEach(e => {
+            const rect = e.getBoundingClientRect();
+
+            if (rect.left < 0) {
+                e.style.left = `calc(${getComputedStyle(e).left} - ${rect.left}px)`;
+            }
+            if (rect.right > document.documentElement.clientWidth) {
+                e.style.left =
+                    `calc(${getComputedStyle(e).left} - ${rect.right - document.documentElement.clientWidth}px)`;
+            }
+        });
     }
 
     syncLogInOutState() {
