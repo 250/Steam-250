@@ -149,8 +149,8 @@ tbody > tr.a > td:nth-child(n+2),
     background-color: #1a2334;
 }
 tbody > tr.a + tr > td {
-    padding-top: .5vh;
-    padding-bottom: .5vh;
+    padding-top: 6px;
+    padding-bottom: 6px;
 }
 td:nth-child(1) {
     line-height: 0;
@@ -548,6 +548,11 @@ tr.a .movement.none:before {
     clip-path: polygon(20% 0%, 20% 50%, 0% 50%, 50% 100%, 100% 50%, 80% 50%, 80% 0%);
     -webkit-clip-path: polygon(20% 0%, 20% 50%, 0% 50%, 50% 100%, 100% 50%, 80% 50%, 80% 0%);
 }
+.r\&f .movement {
+    width: 19px;
+    height: 19px;
+    line-height: 19px;
+}
 @media (max-width: 649px) {
     .movement {
         width: 14px;
@@ -615,20 +620,34 @@ tr.a .movement.none:before {
 .ref250:hover {
     text-decoration: none;
     color: #fffce8;
-    background: rgba(171, 152, 9, .7);
+    background: #807d03;
 }
-.discount, .free {
-    text-transform: uppercase;
+.discount, .discount:visited, .free {
     color: #b8d936;
     background: rgba(76, 107, 34, .7);
     border-radius: 0;
 }
+.discount:hover {
+    text-decoration: none;
+    color: #f0ffab;
+    background: #5e802d;
+}
+
 .free, .free:visited {
-    color: #cad982;
+    display: inline-block;
+    font-size: 68%;
+    line-height: 1.24;
+
+    box-shadow: inset 0 0 0 1px #4c6b22;
+    background: rgba(0, 0, 0, .05);
+    text-transform: uppercase;
+    color: #d2d9ad;
 }
 .free:hover {
     text-decoration: none;
     color: #fbffe6;
+    box-shadow: 1px 1px 3px rgba(111, 156, 50, .3);
+    text-shadow: 1px 1px 0 #6f9c32;
     background: #4c6b22;
 }
 

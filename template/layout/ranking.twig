@@ -171,7 +171,7 @@
                     <a href="/#{{ game.rank_250 }}" class="ref250">Top 250 #{{ game.rank_250 }}</a>
                     {% endif %}
                     {% if game.discount > 0 %}
-                    <span class="discount">-{{ game.discount }}%</span>
+                    <a href="/discounts{{ ext }}" class="discount">-{{ game.discount }}%</a>
                     {% endif %}
                     {% if game.price == 0 %}
                     <a href="/tag/free_to_play{{ ext }}" class="free">Free</a>
