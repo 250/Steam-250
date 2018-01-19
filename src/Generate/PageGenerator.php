@@ -13,7 +13,7 @@ use voku\helper\HtmlMin;
 
 final class PageGenerator
 {
-    private const RISERS_LIMIT = 5;
+    private const RISERS_LIMIT = 10;
 
     private $twig;
     private $database;
@@ -67,10 +67,11 @@ final class PageGenerator
         if ($prevDb) {
             $risers = $this->createRisersList($games);
             $fallers = $this->createFallersList($games);
+            $new = $this->createNewEntriesList($games);
         }
 
         $html = $this->twig->load("{$toplist->getTemplate()}.twig")->render(
-            compact('games', 'toplist', 'tags', 'risers', 'fallers')
+            compact('games', 'toplist', 'tags', 'risers', 'fallers', 'new')
         );
 
         if ($this->minify) {
@@ -95,11 +96,11 @@ final class PageGenerator
 
     private function createRisersList(array $games): array
     {
-        $games = array_filter($games, function (array $a) {
+        $games = array_filter($games, function (array $a): bool {
             return $a['movement'] > 0;
         });
 
-        uasort($games, function (array $a, array $b) {
+        uasort($games, function (array $a, array $b): int {
             return $b['movement'] <=> $a['movement'];
         });
 
@@ -108,12 +109,21 @@ final class PageGenerator
 
     private function createFallersList(array $games): array
     {
-        $games = array_filter($games, function (array $a) {
+        $games = array_filter($games, function (array $a): bool {
             return $a['movement'] < 0;
         });
 
-        uasort($games, function (array $a, array $b) {
+        uasort($games, function (array $a, array $b): int {
             return $a['movement'] <=> $b['movement'];
+        });
+
+        return \array_slice($games, 0, self::RISERS_LIMIT);
+    }
+
+    private function createNewEntriesList(array $games): array
+    {
+        $games = array_filter($games, function (array $a): bool {
+            return $a['movement'] === null;
         });
 
         return \array_slice($games, 0, self::RISERS_LIMIT);

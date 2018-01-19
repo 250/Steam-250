@@ -200,19 +200,22 @@
         <div class="algo" title="Ranking algorithm">{{ toplist.algorithm }} {{ toplist.weight }}</div>
         {% endif %}
     </div>
-    <div>
-        {% if risers is defined and risers or fallers is defined and fallers %}
-        <div class="r&amp;f">
-            {% if risers is defined and risers %}
-            {{ include('partial/risers.twig', {games: risers}) }}
-            {% endif %}
-            {% if fallers is defined and fallers %}
-            {{ include('partial/risers.twig', {games: fallers}) }}
-            {% endif %}
-        </div>
+    <section class="r&amp;f">
+    {% if risers is defined and (risers or fallers or new) %}
+        {% if risers %}
+        {{ include('partial/risers.twig', {games: risers}) }}
         {% endif %}
         {{ include('partial/ad.twig', {id: '3002887382'}) }}
-    </div>
+        {% if fallers %}
+        {{ include('partial/risers.twig', {games: fallers, title: 'Fallers'}) }}
+        {% endif %}
+        {% if new %}
+        {{ include('partial/risers.twig', {games: new, title: 'New entries'}) }}
+        {% endif %}
+    {% else %}
+        {{ include('partial/ad.twig', {id: '3002887382'}) }}
+    {% endif %}
+    </section>
 </div>
 </div>
 
@@ -250,7 +253,7 @@
             <li><a href="http://store.steampowered.com/search/?sort_by=Reviews_DESC&amp;category1=998">
                     Official Steam top games list
                 </a>
-            <li><a href="https://steamspy.com/#tab-trending">Steam Spy tending games</a>
+            <li><a href="https://steamspy.com/#tab-trending">Steam Spy trending games</a>
             <li><a href="http://www.imdb.com/chart/top">IMDb Top 250 movies</a>
         </ul>
     </div>
