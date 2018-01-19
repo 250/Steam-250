@@ -887,11 +887,12 @@ a.twitter {
 }
 a.patreon {
     background-image: var(--patreon);
-    background-size: 20px;
+    background-size: 19px;
 }
 a.discord {
     background-image: var(--discord);
-    background-size: 25px;
+    background-size: 22px;
+    background-position-y: -1px;
 }
 
 .fixedlinks {
