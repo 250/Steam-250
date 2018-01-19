@@ -665,36 +665,41 @@ tr.a .movement.none:before {
     vertical-align: sub;
     vertical-align: -moz-middle-with-baseline;
     vertical-align: -webkit-baseline-middle;
-    opacity: .3;
 }
-.platforms > span {
+.platforms > * {
     display: inline-block;
     width: 20px;
     height: 20px;
+
     background-size: cover;
+    opacity: .3;
+    transition: opacity .1s;
+}
+.platforms > a:hover {
+    opacity: .8;
 }
 @media (max-width: 599px) {
-    .platforms > span {
+    .platforms > * {
         width: 15px;
         height: 15px;
     }
 }
-.platforms > span[title=Windows] {
+.platforms > [title=Windows] {
     background-image: url(http://store.akamai.steamstatic.com/public/images/v6/icon_platform_win.png?v=3);
 }
-.platforms > span[title=Mac] {
+.platforms > [title=Mac] {
     background-image: url(http://store.akamai.steamstatic.com/public/images/v6/icon_platform_mac.png);
 }
-.platforms > span[title=Linux] {
+.platforms > [title=Linux] {
     background-image: url(http://store.akamai.steamstatic.com/public/images/v6/icon_platform_linux.png);
 }
-.platforms > span[title='HTC Vive'] {
+.platforms > [title='HTC Vive'] {
     background-image: url(http://store.akamai.steamstatic.com/public/images/v6/icon_platform_htcvive.png);
 }
-.platforms > span[title='Occulus Rift'] {
+.platforms > [title='Occulus Rift'] {
     background-image: url(http://store.akamai.steamstatic.com/public/images/v6/icon_platform_oculusrift.png);
 }
-.platforms > span[title='Windows Mixed Reality'] {
+.platforms > [title='Windows Mixed Reality'] {
     background-image: url(http://store.akamai.steamstatic.com/public/images/v6/icon_platform_windowsmr.png);
 }
 

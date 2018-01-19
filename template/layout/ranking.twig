@@ -144,19 +144,19 @@
                         <span title="Windows"></span>
                     {%- endif -%}
                     {%- if game.platforms b-and constant('ScriptFUSION\\Top250\\Shared\\Platform::MAC') -%}
-                        <span title="Mac"></span>
+                        <a href="/mac250{{ ext }}" title="Mac"></a>
                     {%- endif -%}
                     {%- if game.platforms b-and constant('ScriptFUSION\\Top250\\Shared\\Platform::LINUX') -%}
-                        <span title="Linux"></span>
+                        <a href="/linux250{{ ext }}" title="Linux"></a>
                     {%- endif -%}
                     {%- if game.platforms b-and constant('ScriptFUSION\\Top250\\Shared\\Platform::VIVE') -%}
-                        <span title="HTC Vive"></span>
+                        <a href="/vr250{{ ext }}" title="HTC Vive"></a>
                     {%- endif -%}
                     {%- if game.platforms b-and constant('ScriptFUSION\\Top250\\Shared\\Platform::OCCULUS') -%}
-                        <span title="Occulus Rift"></span>
+                        <a href="/vr250{{ ext }}" title="Occulus Rift"></a>
                     {%- endif -%}
                     {%- if game.platforms b-and constant('ScriptFUSION\\Top250\\Shared\\Platform::WMR') -%}
-                        <span title="Windows Mixed Reality"></span>
+                        <a href="/vr250{{ ext }}" title="Windows Mixed Reality"></a>
                     {%- endif -%}
                     </span>
                     {% if game.primary_tag %}
