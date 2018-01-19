@@ -10,7 +10,7 @@ class S250 {
     }
 
     initLogInOut() {
-        let form = document.querySelector('#lout form');
+        const form = document.querySelector('#lout form');
 
         // Redirect back to same page without query or hash.
         form['openid.return_to'].value = location.origin + location.pathname;
@@ -47,6 +47,9 @@ class S250 {
 
                     event.preventDefault();
                 }
+
+                // Forbid parent from handling event.
+                event.stopPropagation();
             });
         });
     }
@@ -73,7 +76,7 @@ class S250 {
     }
 
     syncLogInOutState() {
-        let classes = document.getElementById('user').classList;
+        const classes = document.getElementById('user').classList;
 
         classes.remove('lin', 'lout');
         classes.add(S250.isLoggedIn() ? 'lin' : 'lout');
@@ -85,10 +88,10 @@ class S250 {
     }
 
     markOwnedGames() {
-        let games = JSON.parse(localStorage.getItem('games'));
+        const games = JSON.parse(localStorage.getItem('games'));
 
         document.querySelectorAll('#ranking > tbody > tr > td:first-of-type > a').forEach(a => {
-            let id = a.href.match(/(\d+)\/?$/)[1];
+            const id = a.href.match(/(\d+)\/?$/)[1];
 
             if (games.hasOwnProperty(id)) {
                 a.classList.add('owned');
@@ -108,13 +111,13 @@ class S250 {
     }
 
     updateUserBar() {
-        let steam = JSON.parse(localStorage.getItem('steam'));
+        const steam = JSON.parse(localStorage.getItem('steam'));
 
-        let a = document.querySelector('#lin .avatar');
+        const a = document.querySelector('#lin .avatar');
         a.href = `http://steamcommunity.com/profiles/${steam.id}/`;
         a.title = steam.name;
 
-        let img = document.createElement('img');
+        const img = document.createElement('img');
         img.src = steam.avatar;
         a.appendChild(img);
     }
@@ -131,18 +134,18 @@ class S250 {
     }
 
     tryParseOpenIdPostback() {
-        let claimdId = this.parseParam('openid.claimed_id');
+        const claimdId = this.parseParam('openid.claimed_id');
 
         if (!claimdId) return;
 
-        let userId = claimdId.replace(/.*\//, '');
+        const userId = claimdId.replace(/.*\//, '');
 
         fetch(
             `http://cors-anywhere.herokuapp.com/http://steamcommunity.com/profiles/${userId}/games/?tab=all`,
         ).then(
             response => response.text()
         ).then((data) => {
-            let matches = data.match(/var rgGames = ([^\n]+);/);
+            const matches = data.match(/var rgGames = ([^\n]+);/);
 
             if (!matches || matches.length !== 2) {
                 alert('Unable to load player profile. This is usually because your Steam profile is not public.\n'
@@ -151,7 +154,7 @@ class S250 {
                 return;
             }
 
-            let games = JSON.parse(matches[1]).reduce(
+            const games = JSON.parse(matches[1]).reduce(
                 (games, game) => {
                     games[game['appid']] = game['hours_forever'] || 0;
 
@@ -162,7 +165,7 @@ class S250 {
 
             localStorage.setItem('games', JSON.stringify(games));
 
-            let dom = new DOMParser().parseFromString(data, 'text/html');
+            const dom = new DOMParser().parseFromString(data, 'text/html');
             localStorage.setItem('steam', JSON.stringify({
                 id: userId,
                 name: dom.querySelector('.profile_small_header_name').innerText,
@@ -174,7 +177,7 @@ class S250 {
     }
 
     startCountdown() {
-        let element = BuildMonitor.createElement();
+        const element = BuildMonitor.createElement();
 
         fetch(
             'https://api.travis-ci.org/repo/15937062/builds?event_type=cron&limit=1',
@@ -193,7 +196,7 @@ class S250 {
     }
 
     parseParam(name) {
-        let match = RegExp('[?&]' + name + '=([^&]*)').exec(location.search);
+        const match = RegExp('[?&]' + name + '=([^&]*)').exec(location.search);
 
         return match && decodeURIComponent(match[1]);
     }
