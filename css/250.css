@@ -145,7 +145,7 @@ td:first-child img {
     min-width: 80px;
 }
 tbody > tr.a > td:nth-child(n+2),
-.r\&f tr:nth-child(2n-1) > td {
+.r\&f li:nth-child(2n-1) > * {
     background-color: #1a2334;
 }
 tbody > tr.a + tr > td {
@@ -159,7 +159,8 @@ td:nth-child(1) {
 td:nth-child(1) > a {
     display: inline-block;
 }
-td:nth-child(2) {
+td:nth-child(2),
+.r\&f li > :nth-child(2) {
     padding-left: .5vw;
     padding-right: .5vw;
 }
@@ -257,7 +258,7 @@ ol.menu > li > a {
 ol.menu > li:hover > a {
     color: #cfab72;
 }
-/** First level (some rules cascade to second level) **/
+/* First level (some rules cascade to second level) */
 ol.menu > li ol {
     position: absolute;
     top: 100%;
@@ -323,7 +324,7 @@ ol.menu > li > ol li:hover > a {
     text-shadow: 1px 1px 1px #cfab72;
     text-decoration: none;
 }
-/** Second level **/
+/* Second level */
 ol.menu > li > ol > li > ol {
     position: absolute;
     top: 0;
@@ -336,7 +337,7 @@ ol.menu > li > ol > li > ol {
         right: 99.5%;
     }
 }
-/** Special **/
+/* Special */
 ol.menu > li:nth-child(3) > ol > li:nth-of-type(2) > a {
     padding-left: 2.05em;
 
@@ -715,23 +716,54 @@ caption {
 }
 
 .r\&f {
-    columns: 2 250px;
-    margin: 0 1.5em;
-    text-align: center;
+    display: flex;
+    flex-flow: wrap;
+    line-height: 1;
 }
+/* Defaults for 2-column layout */
 .r\&f > * {
-    width: auto;
-    max-width: var(--reading-width);
-    text-align: left;
+    margin: 0 23px 23px 23px;
+    min-width: 300px;
+    max-width: calc(50% - 46px);
+    width: 100%;
 }
-.r\&f > :nth-child(2) {
-    display: inline-block;
+.r\&f h2 {
+    margin-bottom: 1em;
+
+    font-size: 105%;
+    font-weight: bold;
+    text-align: center;
 }
 .r\&f img {
     height: 34px;
 }
+.r\&f ol {
+    display: table;
+    width: 100%;
+}
+.r\&f li {
+    display: table-row;
+}
+.r\&f li > * {
+    display: table-cell;
+    vertical-align: middle;
+}
+.r\&f li > :nth-child(2) {
+    width: 100%;
+}
+/* Linked to r&f child min-width + margin, i.e. minimum width for 2-column layout. This is for single-column layout. */
+@media (max-width: 691px) {
+    .r\&f > * {
+        max-width: none;
+    }
+    .r\&f h2 {
+        text-align: left;
+    }
+}
 
 .algo {
+    margin: 1.5rem;
+
     text-transform: lowercase;
     text-align: center;
     font-size: 70%;
@@ -742,7 +774,7 @@ caption {
     max-width: 864px;
     margin: 0 auto;
 }
-/** 2-column ranking **/
+/* 2-column ranking */
 @media (min-width: 1240px) {
     .ranking {
         display: flex;
@@ -756,17 +788,16 @@ caption {
         margin: 0;
     }
     .ranking > :nth-child(3) {
+        flex-direction: column;
         box-sizing: border-box;
         padding-left: 34px;
     }
     #ranking {
         margin-top: 0;
     }
-    .r\&f {
-        margin: 0;
-    }
-    .r\&f > table {
-        width: 100%;
+    .r\&f > * {
+        max-width: none;
+        margin: 23px 0 0;
     }
 }
 
