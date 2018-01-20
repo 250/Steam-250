@@ -115,7 +115,7 @@
                 <tr>
                     <td>
                     <td>Movement, rank, title, date, platforms and tags
-                    <td>{% block scoring_heading %}Player rating{% endblock %}
+                    <td>{% block scoring_heading %}Score{% endblock %}
             <tbody>
         {% for game in games %}
             <tr{{ loop.index % 2 ? ' class="a"' }}>
@@ -174,7 +174,7 @@
                     {% if game.discount > 0 %}
                     <a href="/discounts{{ ext }}" class="discount">-{{ game.discount }}%</a>
                     {% endif %}
-                    {% if game.price == 0 %}
+                    {% if game.price is same as('0') %}
                     <a href="/tag/free_to_play{{ ext }}" class="free">Free</a>
                     {% endif %}
                     {% block reviews %}{% endblock %}
