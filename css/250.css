@@ -433,7 +433,7 @@ ol.menu > li ol.t11g {
 .body {
     flex: 1 0 auto;
     position: relative;
-    padding: calc(1em + 1.5vh) 0;
+    padding: 2em 0;
 
     background: linear-gradient(180deg, #263e5c, #22344b 6px, #1e2c3e 20px, #1d2a3c 30px, #1b2939 45px, #1b2838 60px)
         no-repeat;
@@ -472,9 +472,9 @@ ul.links > li:last-of-type > a {
 
 p.note, p.tip {
     display: table;
-    margin-top: -1vh;
+    margin-top: -1em;
 
-    opacity: .8;
+    opacity: .9;
     font-size: 70%;
 }
 p.note:before, p.tip:before {
@@ -809,9 +809,6 @@ caption {
         flex-direction: column;
         box-sizing: border-box;
         padding-left: 34px;
-    }
-    #ranking {
-        margin-top: 0;
     }
     .r\&f > * {
         max-width: none;
