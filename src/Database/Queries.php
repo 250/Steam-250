@@ -85,7 +85,7 @@ final class Queries
 
     public static function fetchAppTags(Connection $database, int $appId): array
     {
-        return $database->query("SELECT tag FROM app_tag WHERE app_id = $appId ORDER BY `index`")
+        return $database->query("SELECT tag FROM app_tag WHERE app_id = $appId ORDER BY votes DESC")
             ->fetchAll(\PDO::FETCH_COLUMN);
     }
 
