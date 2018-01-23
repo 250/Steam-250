@@ -224,9 +224,11 @@ a.owned:hover:before {
 }
 
 ol.menu {
+    width: 100%;
+    z-index: 1;
+
     white-space: nowrap;
     text-align: center;
-
     background: linear-gradient(180deg, #14161c 70%, #171a21);
 }
 ol.menu > li {
