@@ -1,6 +1,7 @@
 class S250 {
     constructor() {
         this.initLogInOut();
+        this.initStickyMenu();
         this.initMenuScrollbars();
         this.initFauxLinks();
         this.constrainDropdownMenuPositions();
@@ -16,6 +17,20 @@ class S250 {
         form['openid.return_to'].value = location.origin + location.pathname;
 
         document.querySelector('#lin button').addEventListener('click', () => this.logout());
+    }
+
+    initStickyMenu() {
+        const menu = document.querySelector('ol.menu'),
+            newMenu = menu.cloneNode(true);
+
+        newMenu.style.display = 'none';
+        newMenu.style.position = 'fixed';
+
+        addEventListener('scroll', () => {
+            newMenu.style.display = menu.offsetTop < scrollY ? 'block' : 'none';
+        });
+
+        menu.insertAdjacentElement('afterend', newMenu);
     }
 
     /**
