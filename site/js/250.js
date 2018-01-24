@@ -1,10 +1,10 @@
 class S250 {
     constructor() {
         this.initLogInOut();
-        this.initStickyMenu();
         this.initMenuScrollbars();
-        this.initFauxLinks();
         this.constrainDropdownMenuPositions();
+        this.initStickyMenu();
+        this.initCurrentHash();
         this.syncLogInOutState();
         this.tryParseOpenIdPostback();
         this.startCountdown();
@@ -23,14 +23,21 @@ class S250 {
         const menu = document.querySelector('ol.menu'),
             newMenu = menu.cloneNode(true);
 
-        newMenu.style.display = 'none';
-        newMenu.style.position = 'fixed';
+        function updateFixedMenuStyle() {
+            newMenu.style.position = 'fixed';
+            newMenu.style.visibility = menu.offsetTop < scrollY ? 'visible' : 'hidden';
+        }
 
-        addEventListener('scroll', () => {
-            newMenu.style.display = menu.offsetTop < scrollY ? 'block' : 'none';
-        });
-
+        updateFixedMenuStyle();
         menu.insertAdjacentElement('afterend', newMenu);
+
+        addEventListener('scroll', updateFixedMenuStyle);
+
+        this.overrideHashLinks();
+    }
+
+    initCurrentHash() {
+        addEventListener('load', () => this.scrollToHash(location.hash));
     }
 
     /**
@@ -69,10 +76,6 @@ class S250 {
         });
     }
 
-    initFauxLinks() {
-        document.querySelectorAll('a[href=\\#]').forEach(a => a.addEventListener('click', e => e.preventDefault()));
-    }
-
     /**
      * Ensure each drop-down menu is completely visible within the viewport.
      */
@@ -88,6 +91,28 @@ class S250 {
                     `calc(${getComputedStyle(e).left} - ${rect.right - document.documentElement.clientWidth}px)`;
             }
         });
+    }
+
+    overrideHashLinks() {
+        const internalLinks = document.querySelectorAll('a[href^=\\#');
+
+        internalLinks.forEach(a => {
+            a.addEventListener('click', e => {
+                this.scrollToHash(a.hash);
+
+                e.preventDefault();
+            })
+        });
+    }
+
+    /**
+     * Scrolls to an element taking into consideration the fixed navigation menu height.
+     */
+    scrollToHash(hash) {
+        const menuHeight = document.querySelector('ol.menu').getBoundingClientRect().height,
+            target = document.getElementById(hash.substr(1));
+
+        target && scrollTo(pageXOffset, pageYOffset + Math.ceil(target.getBoundingClientRect().top - menuHeight));
     }
 
     syncLogInOutState() {
