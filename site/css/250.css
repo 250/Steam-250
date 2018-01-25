@@ -443,7 +443,7 @@ ol.menu > li ol.t11g {
 
 .content {
     margin: 0 auto;
-    padding: 0 1.25em;
+    padding: 0 1em;
     box-sizing: border-box;
     max-width: 864px;
 }
@@ -710,10 +710,10 @@ tr.a .movement.none:before {
 .platforms > [title=Linux] {
     background-image: url(http://store.akamai.steamstatic.com/public/images/v6/icon_platform_linux.png);
 }
-.platforms > [title='HTC Vive'] {
+.platforms > [title=HTC\ Vive] {
     background-image: url(http://store.akamai.steamstatic.com/public/images/v6/icon_platform_htcvive.png);
 }
-.platforms > [title='Occulus Rift'] {
+.platforms > [title=Occulus\ Rift] {
     background-image: url(http://store.akamai.steamstatic.com/public/images/v6/icon_platform_oculusrift.png);
 }
 .platforms > [title='Windows Mixed Reality'] {
@@ -740,8 +740,8 @@ td:nth-child(3) > .score {
 
     font-size: 80%;
     color: #2f3f4f;
-    background: #d3dfe6;
-    border-bottom: 2px solid #8a99a1;
+    background: #e6eef2;
+    border-bottom: 2px solid #9fa3a6;
     border-radius: 2px;
     box-shadow: 0 1px 2px rgba(0, 0, 0, .125);
 
@@ -756,8 +756,8 @@ td:nth-child(3) > .score {
 }
 .linkbar .prev:active, .linkbar .next:active {
     top: 1px;
-    border-color: transparent;
-    box-shadow: inset 0 2px 3px #44494D;
+    border-bottom-width: 1px;
+    box-shadow: inset 0 1px 3px #44494D;
 }
 .linkbar .prev:before {
     content: '◀ ';
