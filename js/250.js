@@ -1,13 +1,17 @@
 class S250 {
     constructor() {
+        // User stuff.
+        this.tryParseOpenIdPostback();
         this.initLogInOut();
+        this.syncLogInOutState();
+
+        // Menu stuff.
+        this.initStickyMenu();
         this.initMenuScrollbars();
         this.constrainDropdownMenuPositions();
-        this.initStickyMenu();
         this.initCurrentHash();
-        this.syncLogInOutState();
-        this.tryParseOpenIdPostback();
-        this.startCountdown();
+
+        this.initCountdown();
     }
 
     initLogInOut() {
@@ -216,7 +220,7 @@ class S250 {
         });
     }
 
-    startCountdown() {
+    initCountdown() {
         const element = BuildMonitor.createElement();
 
         fetch(

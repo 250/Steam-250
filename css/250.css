@@ -86,7 +86,6 @@ a:visited {
 }
 
 p {
-    max-width: 94%;
     margin: 1.5em auto;
 
     text-align: justify;
@@ -376,7 +375,7 @@ ol.menu > li:nth-child(4) > ol,
 ol.menu > li:nth-child(5) > ol > li:first-of-type > ol {
     overflow-y: auto;
     overflow-x: hidden;
-    font-size: 80%;
+    font-size: 85%;
 }
 ol.menu > li:nth-child(5) > ol > li:first-of-type > ol {
     font-size: 90%;
@@ -444,9 +443,12 @@ ol.menu > li ol.t11g {
 
 .content {
     margin: 0 auto;
+    padding: 0 1.25em;
+    box-sizing: border-box;
     max-width: 864px;
 }
 .content > p:first-of-type {
+    font-size: 107%;
     text-align: center;
 }
 
@@ -729,10 +731,48 @@ td:nth-child(3) > .score {
     display: block;
 }
 
-caption {
-    margin-bottom: .5em;
+.linkbar .prev, .linkbar .next {
+    position: relative;
+    opacity: .8;
+    float: left;
+    margin: 1em .8em;
+    padding: .3em .7em;
 
-    font-weight: bold;
+    font-size: 80%;
+    color: #2f3f4f;
+    background: #d3dfe6;
+    border-bottom: 2px solid #8a99a1;
+    border-radius: 2px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, .125);
+
+    text-decoration: none;
+    text-transform: lowercase;
+    transition: opacity .1s;
+
+    outline: none;
+}
+.linkbar .prev:hover, .linkbar .next:hover {
+    opacity: 1;
+}
+.linkbar .prev:active, .linkbar .next:active {
+    top: 1px;
+    border-color: transparent;
+    box-shadow: inset 0 2px 3px #44494D;
+}
+.linkbar .prev:before {
+    content: '◀ ';
+    font-size: 80%;
+}
+.linkbar .prev {
+    margin-left: 0;
+}
+.linkbar .next {
+    float: right;
+    margin-right: 0;
+}
+.linkbar .next:after {
+    content: ' ▶';
+    font-size: 80%;
 }
 
 .r\&f {
