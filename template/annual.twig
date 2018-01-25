@@ -4,8 +4,10 @@
 {% block heading %}Top of {{ toplist.id }}{% endblock %}
 
 {% block lead %}
+    {{ include('partial/annual_linkbar.twig') }}
     <p>
-        Top {{ games|length }} Steam games from {{ toplist.id }} according to the players.
+        Top {{ games|length }} best Steam games released in {{ toplist.id }},
+        according to player reviews.
     </p>
     {% if toplist.id != 'now'|date('Y') %}
     <p class="note">
@@ -13,4 +15,8 @@
         and old games are released on Steam.
     </p>
     {% endif %}
+{% endblock %}
+
+{% block post %}
+    {{ include('partial/annual_linkbar.twig') }}
 {% endblock %}

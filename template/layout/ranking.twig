@@ -57,15 +57,16 @@
         <a href="#">Price</a>
         <ol>
             <li><a href="/discounts{{ ext }}">Top 250 Discounts</a>
+            <li><a href="/tag/free_to_play{{ ext }}">Free Games</a>
             <li><a href="/price/under5{{ ext }}">Games Under $5</a>
-            <li><a href="/price/5-10{{ ext }}">Games $5 to $10</a>
-            <li><a href="/price/10-15{{ ext }}">Games $10 to $15</a>
+            <li><a href="/price/5-10{{ ext }}">Games $5&ndash;10</a>
+            <li><a href="/price/10-15{{ ext }}">Games $10&ndash;15</a>
             <li><a href="/price/over15{{ ext }}">Games Over $15</a>
         </ol>
     <li>
-        <a href="#">Club 250</a>
+        <a href="#">Steam 250</a>
         <ol>
-            <li><a href="/club250{{ ext }}">Recommended Games</a>
+            <li><a href="/club250{{ ext }}">Club 250 Games</a>
             <li><a href="https://www.patreon.com/steam250">Join Club 250</a>
             <li><a href="https://twitter.com/Steam_250">Follow on Twitter</a>
             <li><a href="https://discord.gg/8pz5ybv">Chat in Discord</a>
@@ -218,6 +219,10 @@
         {{ include('partial/ad.twig', {id: '3002887382'}) }}
     {% endif %}
     </section>
+</div>
+
+<div class="content">
+{% block post %}{% endblock %}
 </div>
 </div>
 
