@@ -148,7 +148,7 @@ tbody > tr.a > td:nth-child(n+2),
 .r\&f li:nth-child(2n-1) > * {
     background-color: #1a2334;
 }
-tbody > tr.a + tr > td {
+tbody > tr:not(.a) > td:not(.ad) {
     padding-top: 6px;
     padding-bottom: 6px;
 }
@@ -224,7 +224,11 @@ a.owned:hover:before {
 
 ol.menu {
     width: 100%;
-    z-index: 1;
+    height: 36px;
+    z-index: 2;
+    flex-shrink: 0;
+    /* Google cache fix for fixed menu. */
+    top: 0;
 
     white-space: nowrap;
     text-align: center;
@@ -232,21 +236,23 @@ ol.menu {
 }
 ol.menu > li {
     position: relative;
-    display: inline-block;
-    margin: 0 1.25%;
-    padding: .5em 1%;
+    display: inline-flex;
+    flex-flow: column;
+    justify-content: center;
+    height: 100%;
+    margin: 0 1.63%;
+    padding: 0 1%;
 
-    color: #9e814c;
-}
-ol.menu > li {
     cursor: pointer;
+    color: #9e814c;
 }
 ol.menu > li:after {
     content: '▼';
     position: relative;
-    top: -1px;
+    top: -2px;
+    line-height: 1;
 
-    font-size: 50%;
+    font-size: 65%;
     transition: top .15s;
 }
 ol.menu > li:hover:after {
@@ -303,11 +309,11 @@ ol.menu > li ol li a[href=\#]:after {
     right: 1em;
     transform: translate(0, -50%);
 
-    font-size: 60%;
+    font-size: 65%;
     transition: right .15s;
 }
 ol.menu > li ol li:hover a[href=\#]:after {
-    right: calc(1em - 2px);
+    right: calc(1em - 3px);
 }
 ol.menu > li > ol li:hover {
     background: linear-gradient(90deg, #9e814c, #cfab72, #9e814c);
