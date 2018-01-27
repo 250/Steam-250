@@ -302,7 +302,7 @@ ol.menu > li > ol li:last-of-type {
     background: none;
     border-radius: 0 0 2px 2px;
 }
-ol.menu > li ol li a[href=\#]:after {
+ol.menu > li ol li a:not([href]):after {
     content: '▶';
     position: absolute;
     top: 50%;
@@ -312,7 +312,7 @@ ol.menu > li ol li a[href=\#]:after {
     font-size: 65%;
     transition: right .15s;
 }
-ol.menu > li ol li:hover a[href=\#]:after {
+ol.menu > li ol li:hover a:not([href]):after {
     right: calc(1em - 3px);
 }
 ol.menu > li > ol li:hover {
@@ -458,7 +458,7 @@ ol.menu > li ol.t11g {
     text-align: center;
 }
 
-.links {
+.quicklinks {
     margin: 1em auto;
 
     text-align: center;
@@ -466,13 +466,13 @@ ol.menu > li ol.t11g {
     font-size: 80%;
     line-height: 1.5;
 }
-.links li {
+.quicklinks li {
     margin: .25em;
 }
-.links a {
+.quicklinks a {
     margin: 0 .5em;
 }
-ul.links > li:last-of-type > a {
+.quicklinks > li:last-of-type > a {
     font-size: 120%;
 
     padding-left: 16px;
@@ -505,6 +505,29 @@ p.tip:before {
 }
 #ranking .title {
     vertical-align: middle;
+}
+#ranking .links {
+    display: inline-block;
+    width: 13px;
+    height: 0;
+    padding: calc(13px / 2 + .1em) .1em;
+    overflow: hidden;
+    vertical-align: inherit;
+    text-indent: -20px;
+    /* Fix offsetParent. */
+    position: relative;
+
+    background: url('/svg/link.svg') no-repeat 70% 50%;
+    background-size: 13px;
+    opacity: 0;
+    transition: opacity .3s;
+}
+#ranking td:nth-child(2):hover .links {
+    opacity: .3;
+}
+#ranking td:nth-child(2):hover .links:hover,
+#ranking td:nth-child(2) .links.show {
+    opacity: .8;
 }
 
 .movement {
@@ -739,8 +762,7 @@ td:nth-child(3) > .score {
 
 .linkbar .prev, .linkbar .next {
     position: relative;
-    opacity: .8;
-    float: left;
+    opacity: .9;
     margin: 1em .8em;
     padding: .3em .7em;
 
@@ -770,6 +792,7 @@ td:nth-child(3) > .score {
     font-size: 80%;
 }
 .linkbar .prev {
+    float: left;
     margin-left: 0;
 }
 .linkbar .next {
@@ -825,6 +848,47 @@ td:nth-child(3) > .score {
     .r\&f h2 {
         text-align: left;
     }
+}
+
+#linkmenu {
+    /*margin-top: 25%;*/
+    /*left: 50%;*/
+    max-height: 0;
+    position: absolute;
+    overflow: hidden;
+    z-index: 2;
+
+    font-size: 90%;
+    background: #2a435b;
+    border-radius: 2px;
+    box-shadow: 1px 1px 5px #141c26;
+    transition: max-height .15s;
+}
+#linkmenu.show {
+    max-height: 99px;
+}
+#linkmenu a {
+    display: block;
+    padding: calc(.2em + 3px) .6em calc(.2em + 4px);
+
+    color: #59cbff;
+    text-decoration: none;
+}
+#linkmenu > li {
+    line-height: 1.1;
+
+    background: linear-gradient(90deg, transparent, #315473, transparent) no-repeat bottom;
+    background-size: 95% 1px;
+}
+#linkmenu > li:last-of-type {
+    background: none;
+}
+#linkmenu > li:hover {
+    background: linear-gradient(90deg, #417295, #498cb8, #417295) no-repeat bottom;
+}
+#linkmenu > li:hover a {
+    color: #d6f3ff;
+    text-shadow: 1px 1px 1px #498cb8;
 }
 
 .algo {

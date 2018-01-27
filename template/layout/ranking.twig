@@ -37,14 +37,14 @@
 
 <ol class="menu">
     <li>
-        <a href="#">Rankings</a>
+        <a>Rankings</a>
         <ol>
             <li><a href="/">Top 250 Games</a>
             <li><a href="/dlc{{ ext }}">Top 250 DLC</a>
             <li><a href="/hidden_gems{{ ext }}">Hidden Gems</a>
             <li><a href="/hidden_novels{{ ext }}">Hidden Novels</a>
             <li>
-                <a href="#">Platform</a>
+                <a>Platform</a>
                 <ol>
                     <li><a href="/vr250{{ ext }}">Virtual Reality</a>
                     <li><a href="/mac250{{ ext }}">Mac</a>
@@ -54,7 +54,7 @@
             <li><a href="/bottom100{{ ext }}">Bottom 100</a>
         </ol>
     <li>
-        <a href="#">Price</a>
+        <a>Price</a>
         <ol>
             <li><a href="/discounts{{ ext }}">Top 250 Discounts</a>
             <li><a href="/tag/free_to_play{{ ext }}">Free Games</a>
@@ -64,7 +64,7 @@
             <li><a href="/price/over15{{ ext }}">Games Over $15</a>
         </ol>
     <li>
-        <a href="#">Steam 250</a>
+        <a>Steam 250</a>
         <ol>
             <li><a href="/club250{{ ext }}">Club 250 Games</a>
             <li><a href="https://www.patreon.com/steam250">Join Club 250</a>
@@ -72,17 +72,17 @@
             <li><a href="https://discord.gg/8pz5ybv">Chat in Discord</a>
         </ol>
     <li>
-        <a href="#">Genre</a>
+        <a>Genre</a>
         <ol>
             {% for tag in tags %}
             <li><a href="/tag/{{ tag|tag_id|url_encode ~ ext }}">{{ tag }}</a>
             {% endfor %}
         </ol>
     <li>
-        <a href="#">Period</a>
+        <a>Period</a>
         <ol>
             <li>
-                <a href="#">Fixed Year</a>
+                <a>Fixed Year</a>
                 <ol>
                     {% for year in range('now'|date('Y'),
                         constant('ScriptFUSION\\Steam250\\SiteGenerator\\Toplist\\Impl\\AnnualList::EARLIEST_YEAR')) %}
@@ -97,13 +97,12 @@
 
 <div class="body">
 <div class="content">
-    <ul class="links">
+    <ul class="quicklinks">
         <li><a href="/">Top 250</a>
             &ndash; <a href="/hidden_gems{{ ext }}">Hidden gems</a>
             &ndash; <a href="/discounts{{ ext }}">Discounts</a>
             &ndash; <a href="/{{ ('now'|date('Y') - 1) ~ ext }}">{{ 'now'|date('Y') - 1 }}</a>
-            &ndash; <a href="/{{ ('now'|date('Y')) ~ ext }}">{{ 'now'|date('Y') }}</a>
-        <li><a href="https://www.patreon.com/steam250">Join Club 250 on Patreon</a>
+        <li><a href="https://www.patreon.com/steam250">Join Club 250</a>
     </ul>
     {{ include('partial/ad.twig', {id: '9535671996'}) }}
     {{ block('lead') }}
@@ -179,6 +178,7 @@
                     {% if game.price is same as('0') %}
                     <a href="/tag/free_to_play{{ ext }}" class="free">Free</a>
                     {% endif %}
+                    <a href="#{{ game.rank }}" class="links" title="Link">▼</a>
                     {% block reviews %}{% endblock %}
                 </td>
                 <td>
@@ -225,6 +225,11 @@
 {% block post %}{% endblock %}
 </div>
 </div>
+
+<ol id="linkmenu">
+    <li><a class="cp rank">Copy link to this rank (#<span>0</span>)</a>
+    <li><a class="cp app">Copy link to track this game</a>
+</ol>
 
 <section id="footer">
     <div>
