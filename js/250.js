@@ -6,11 +6,17 @@ class S250 {
         this.syncLogInOutState();
 
         // Menu stuff.
-        this.initStickyMenu();
-        this.initMenuScrollbars();
+        this.initFixedMenu();
+        this.initMenuScrollbarTransitions();
         this.constrainDropdownMenuPositions();
-        this.initCurrentHash();
 
+        // Hash stuff.
+        this.scrollToCurrentHash();
+        this.overrideHashChange();
+        this.overrideFixedLinks();
+
+        // Fancy stuff.
+        this.initLinkMenu();
         this.initCountdown();
     }
 
@@ -20,10 +26,10 @@ class S250 {
         // Redirect back to same page without query or hash.
         form['openid.return_to'].value = location.origin + location.pathname;
 
-        document.querySelector('#lin button').addEventListener('click', () => this.logout());
+        document.querySelector('#lin button').addEventListener('click', _ => this.logout());
     }
 
-    initStickyMenu() {
+    initFixedMenu() {
         const menu = document.querySelector('ol.menu'),
             newMenu = menu.cloneNode(true);
 
@@ -36,18 +42,12 @@ class S250 {
         menu.insertAdjacentElement('afterend', newMenu);
 
         addEventListener('scroll', updateFixedMenuStyle);
-
-        this.overrideHashLinks();
-    }
-
-    initCurrentHash() {
-        addEventListener('load', () => this.scrollToHash(location.hash));
     }
 
     /**
      * Apply transitioning (t11g) class whilst menu is opening or closing to prevent scrollbars during this state.
      */
-    initMenuScrollbars() {
+    initMenuScrollbarTransitions() {
         const T11G = 't11g';
 
         // transitionstart event emulation for Chrome.
@@ -55,12 +55,12 @@ class S250 {
             const ol = e.querySelector('ol');
             if (!ol) return;
 
-            e.addEventListener('mouseenter', () => ol.clientHeight === 0 && ol.classList.add(T11G));
-            e.addEventListener('mouseleave', () => ol.classList.add(T11G));
+            e.addEventListener('mouseenter', _ => ol.clientHeight === 0 && ol.classList.add(T11G));
+            e.addEventListener('mouseleave', _ => ol.classList.add(T11G));
         });
 
         document.querySelectorAll('ol.menu > li ol').forEach(e => {
-            e.addEventListener('transitionend', () => e.classList.remove(T11G));
+            e.addEventListener('transitionend', _ => e.classList.remove(T11G));
 
             // Prevent window scrolling whilst over submenu.
             e.addEventListener('wheel', (event) => {
@@ -97,10 +97,19 @@ class S250 {
         });
     }
 
-    overrideHashLinks() {
-        const internalLinks = document.querySelectorAll('a[href^=\\#');
+    scrollToCurrentHash() {
+        addEventListener('load', _ => this.scrollToHash(location.hash));
+    }
 
-        internalLinks.forEach(a => {
+    overrideHashChange() {
+        addEventListener('hashchange', _ => this.scrollToHash(location.hash));
+    }
+
+    /**
+     * Prevent fixed links modifying hash.
+     */
+    overrideFixedLinks() {
+        document.querySelectorAll('.fixedlinks a').forEach(a => {
             a.addEventListener('click', e => {
                 this.scrollToHash(a.hash);
 
@@ -113,10 +122,30 @@ class S250 {
      * Scrolls to an element taking into consideration the fixed navigation menu height.
      */
     scrollToHash(hash) {
+        if (!hash) return;
+
         const menuHeight = document.querySelector('ol.menu').getBoundingClientRect().height,
-            target = document.getElementById(hash.substr(1));
+            target = this.resolveHashTarget(hash);
 
         target && scrollTo(pageXOffset, pageYOffset + Math.ceil(target.getBoundingClientRect().top - menuHeight));
+    }
+
+    resolveHashTarget(hash) {
+        // App tracking.
+        if (hash.startsWith('#app/')) {
+            let [_, id, name] = hash.split('/', 3),
+                img = document.querySelector(`#ranking img[src*="/${id}/"]`);
+
+            if (!img) {
+                // TODO: Client flash message error.
+
+                return;
+            }
+
+            return img.closest('tr');
+        }
+
+        return document.getElementById(hash.substr(1));
     }
 
     syncLogInOutState() {
@@ -220,6 +249,51 @@ class S250 {
         });
     }
 
+    initLinkMenu() {
+        const menu = document.getElementById('linkmenu'),
+            ACTIVE = 'show';
+
+        let link;
+
+        document.querySelectorAll('.ranking .links').forEach(a => {
+            a.addEventListener('click', e => {
+                a.offsetParent.appendChild(menu);
+                menu.style.top = a.offsetTop + a.offsetHeight + 5 + 'px';
+                menu.style.left = a.offsetLeft + 'px';
+                menu.querySelector('a:first-of-type > span').innerHTML = a.parentElement.id;
+
+                menu.classList.toggle(ACTIVE, link !== a ? true : undefined);
+                a.classList.toggle(ACTIVE, menu.classList.contains(ACTIVE));
+
+                link = a;
+
+                e.preventDefault();
+            });
+
+            a.addEventListener('blur', _ => {
+                menu.classList.remove(ACTIVE);
+                a.classList.remove(ACTIVE);
+            });
+        });
+
+        document.querySelectorAll('#linkmenu a').forEach(a => {
+            a.addEventListener('click', _ => {
+                if (a.classList.contains('cp')) {
+                    if (a.classList.contains('rank')) {
+                        this.copyToClipboard(link.href);
+                    }
+
+                    if (a.classList.contains('app')) {
+                        const id = this.findSteamAppId(link.closest('tr')),
+                            name = encodeURIComponent(this.findSteamAppName(link.closest('td')));
+
+                        this.copyToClipboard(`${location.origin}${location.pathname}#app/${id}/${name}`)
+                    }
+                }
+            });
+        });
+    }
+
     initCountdown() {
         const element = BuildMonitor.createElement();
 
@@ -243,5 +317,42 @@ class S250 {
         const match = RegExp('[?&]' + name + '=([^&]*)').exec(location.search);
 
         return match && decodeURIComponent(match[1]);
+    }
+
+    findSteamAppId(elem) {
+        const img = elem.querySelector('img[src]');
+
+        if (img) {
+            return img.src.match(/\/(\d+)\//)[1];
+        }
+    }
+
+    findSteamAppName(elem) {
+        return elem.querySelector('.title > a').innerText;
+    }
+
+    copyToClipboard(text) {
+        if (window.clipboardData && window.clipboardData.setData) {
+            // IE specific code path to prevent textarea being shown while dialog is visible.
+            return clipboardData.setData('Text', text);
+        } else if (document.queryCommandSupported && document.queryCommandSupported('copy')) {
+            const textarea = document.createElement('textarea');
+
+            textarea.textContent = text;
+            // Prevent scrolling to bottom of page in Edge.
+            textarea.style.position = 'fixed';
+            document.body.appendChild(textarea);
+            textarea.select();
+
+            try {
+                return document.execCommand('copy');
+            } catch (e) {
+                // TODO: Client error message.
+
+                return false;
+            } finally {
+                document.body.removeChild(textarea);
+            }
+        }
     }
 } new S250;
