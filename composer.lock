@@ -38,7 +38,7 @@
                 }
             ],
             "description": "Top 250 shared code library.",
-            "time": "2017-12-07 11:18:25"
+            "time": "2017-12-07T11:18:25+00:00"
         },
         {
             "name": "doctrine/annotations",
@@ -615,12 +615,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/joomla-framework/di.git",
-                "reference": "5e373c5530d6c8e8ca2cbae3ecadc0314838d2e5"
+                "reference": "dfb066cb3a95754722377c77285df4383710c3c0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/joomla-framework/di/zipball/5e373c5530d6c8e8ca2cbae3ecadc0314838d2e5",
-                "reference": "5e373c5530d6c8e8ca2cbae3ecadc0314838d2e5",
+                "url": "https://api.github.com/repos/joomla-framework/di/zipball/dfb066cb3a95754722377c77285df4383710c3c0",
+                "reference": "dfb066cb3a95754722377c77285df4383710c3c0",
                 "shasum": ""
             },
             "require": {
@@ -647,7 +647,7 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "GPL-2.0+"
+                "GPL-2.0-or-later"
             ],
             "description": "Joomla DI Package",
             "homepage": "https://github.com/joomla-framework/di",
@@ -659,7 +659,7 @@
                 "ioc",
                 "joomla"
             ],
-            "time": "2017-12-02 20:36:16"
+            "time": "2018-01-27T23:43:54+00:00"
         },
         {
             "name": "monolog/monolog",

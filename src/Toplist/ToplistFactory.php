@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace ScriptFUSION\Steam250\SiteGenerator\Toplist;
 
 use Doctrine\DBAL\Connection;
-use ScriptFUSION\Steam250\SiteGenerator\Container\EnumerableContainer;
+use Joomla\DI\Container;
 use ScriptFUSION\Steam250\SiteGenerator\Database\Queries;
 use ScriptFUSION\Steam250\SiteGenerator\SteamApp\Tag;
 use ScriptFUSION\Steam250\SiteGenerator\Toplist\Impl\AnnualList;
@@ -19,10 +19,11 @@ final class ToplistFactory
         $this->database = $database;
     }
 
-    public function create(): EnumerableContainer
+    public function create(): Container
     {
-        $container = new EnumerableContainer;
+        $container = new Container;
 
+        /** @var ToplistName $name */
         foreach (ToplistName::members() as $name) {
             $container->alias($name->getAlias(), $name->getClassName());
         }
