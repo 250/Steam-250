@@ -1,15 +1,15 @@
 {% extends'layout/ranking.twig' %}
 
-{% block title %}Top {{ games|length }} Steam Games from {{ toplist.id }}{% endblock %}
-{% block heading %}Top of {{ toplist.id }}{% endblock %}
+{% block title %}Top {{ games|length }} Steam Games from {{ ranking.id }}{% endblock %}
+{% block heading %}Top of {{ ranking.id }}{% endblock %}
 
 {% block lead %}
     {{ include('partial/annual_linkbar.twig') }}
     <p>
-        Top {{ games|length }} best Steam games released in {{ toplist.id }},
+        Top {{ games|length }} best Steam games released in {{ ranking.id }},
         according to player reviews.
     </p>
-    {% if toplist.id != 'now'|date('Y') %}
+    {% if ranking.id != 'now'|date('Y') %}
     <p class="note">
         Despite representing a historical segment, this ranking is subject to change as votes change
         and old games are released on Steam.

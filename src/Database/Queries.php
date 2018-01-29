@@ -9,8 +9,8 @@ use Doctrine\DBAL\Query\QueryBuilder;
 use ScriptFUSION\StaticClass;
 use ScriptFUSION\Steam250\SiteGenerator\Rank\CustomRankingFetch;
 use ScriptFUSION\Steam250\SiteGenerator\Rank\RankingQueries;
-use ScriptFUSION\Steam250\SiteGenerator\Toplist\Algorithm;
-use ScriptFUSION\Steam250\SiteGenerator\Toplist\Toplist;
+use ScriptFUSION\Steam250\SiteGenerator\Ranking\Algorithm;
+use ScriptFUSION\Steam250\SiteGenerator\Ranking\Ranking;
 
 final class Queries
 {
@@ -40,12 +40,12 @@ final class Queries
      * relative to the previous ranking.
      *
      * @param Connection $database
-     * @param Toplist $toplist List.
+     * @param Ranking $ranking List.
      * @param string $prevDb Optional. Path to a previous database.
      *
      * @return array Ranked list of Steam apps.
      */
-    public static function fetchRankedList(Connection $database, Toplist $toplist, string $prevDb = null): array
+    public static function fetchRankedList(Connection $database, Ranking $ranking, string $prevDb = null): array
     {
         $query = $database->createQueryBuilder()
             ->select('rank.*, app.*, t250.rank as rank_250')
@@ -53,9 +53,9 @@ final class Queries
             ->join('rank', 'app', 'app', 'id = rank.app_id')
             ->leftJoin('rank', 'rank', 't250', 't250.list_id = "index" AND rank.app_id = t250.app_id')
             ->where('rank.list_id = :list_id')
-                ->setParameter('list_id', $toplist->getId())
+                ->setParameter('list_id', $ranking->getId())
             ->orderBy('rank')
-            ->setMaxResults($toplist->getLimit())
+            ->setMaxResults($ranking->getLimit())
         ;
 
         if ($prevDb) {
@@ -72,8 +72,8 @@ final class Queries
             ;
         }
 
-        if ($toplist instanceof CustomRankingFetch) {
-            $toplist->customizeRankingFetch($query);
+        if ($ranking instanceof CustomRankingFetch) {
+            $ranking->customizeRankingFetch($query);
         }
 
         $list = $query->execute()->fetchAll();
@@ -114,66 +114,66 @@ final class Queries
      * Ranks the specified list according to the list's algorithm and weighting.
      *
      * @param Connection $database
-     * @param Toplist $toplist List.
+     * @param Ranking $ranking List.
      *
      * @return Statement
      */
-    public static function rankList(Connection $database, Toplist $toplist): Statement
+    public static function rankList(Connection $database, Ranking $ranking): Statement
     {
         $query = $database->createQueryBuilder()
             ->select('*')
             ->from('app')
             ->where('type = \'game\'')
-            ->setMaxResults($toplist->getLimit())
+            ->setMaxResults($ranking->getLimit())
         ;
 
-        if ($toplist->getAlgorithm()) {
-            self::calculateScore($query, $toplist);
+        if ($ranking->getAlgorithm()) {
+            self::calculateScore($query, $ranking);
             $query->orderBy('score', SortDirection::DESC);
         }
 
-        $toplist->customizeQuery($query);
+        $ranking->customizeQuery($query);
 
         return $query->execute();
     }
 
     public static function calculateScore(
         QueryBuilder $builder,
-        Toplist $toplist,
+        Ranking $ranking,
         string $prefix = 'app',
         string $alias = 'score'
     ): void {
-        switch ($toplist->getAlgorithm()) {
+        switch ($ranking->getAlgorithm()) {
             case Algorithm::WILSON:
-                RankingQueries::calculateWilsonScore($builder, $toplist->getWeight());
+                RankingQueries::calculateWilsonScore($builder, $ranking->getWeight());
                 break;
 
             case Algorithm::BAYESIAN:
-                RankingQueries::calculateBayesianScore($builder, $toplist->getWeight());
+                RankingQueries::calculateBayesianScore($builder, $ranking->getWeight());
                 break;
 
             case Algorithm::LAPLACE:
-                RankingQueries::calculateLaplaceScore($builder, $toplist->getWeight());
+                RankingQueries::calculateLaplaceScore($builder, $ranking->getWeight());
                 break;
 
             case Algorithm::LAPLACE_LOG:
-                RankingQueries::calculateLaplaceLogScore($builder, $toplist->getWeight(), $prefix, $alias);
+                RankingQueries::calculateLaplaceLogScore($builder, $ranking->getWeight(), $prefix, $alias);
                 break;
 
             case Algorithm::DIRICHLET_PRIOR:
-                RankingQueries::calculateDirichletPriorScore($builder, $toplist->getWeight());
+                RankingQueries::calculateDirichletPriorScore($builder, $ranking->getWeight());
                 break;
 
             case Algorithm::DIRICHLET_PRIOR_LOG:
-                RankingQueries::calculateDirichletPriorLogScore($builder, $toplist->getWeight());
+                RankingQueries::calculateDirichletPriorLogScore($builder, $ranking->getWeight());
                 break;
 
             case Algorithm::TORN:
-                RankingQueries::calculateTornScore($builder, $toplist->getWeight());
+                RankingQueries::calculateTornScore($builder, $ranking->getWeight());
                 break;
 
             case Algorithm::HIDDEN_GEMS:
-                RankingQueries::calculateHiddenGemsScore($builder, $toplist->getWeight());
+                RankingQueries::calculateHiddenGemsScore($builder, $ranking->getWeight());
                 break;
         }
     }

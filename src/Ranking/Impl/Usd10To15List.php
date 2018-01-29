@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace ScriptFUSION\Steam250\SiteGenerator\Toplist\Impl;
+namespace ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl;
 
 class Usd10To15List extends PriceRangeList
 {

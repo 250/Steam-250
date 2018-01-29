@@ -85,7 +85,7 @@
                 <a>Fixed Year</a>
                 <ol>
                     {% for year in range('now'|date('Y'),
-                        constant('ScriptFUSION\\Steam250\\SiteGenerator\\Toplist\\Impl\\AnnualList::EARLIEST_YEAR')) %}
+                        constant('ScriptFUSION\\Steam250\\SiteGenerator\\Ranking\\Impl\\AnnualList::EARLIEST_YEAR')) %}
                     <li><a href="/{{ year }}{{ ext }}">{{ year }}</a>
                     {% endfor %}
                 </ol>
@@ -199,8 +199,8 @@
             {% endif %}
         {% endfor %}
         </table>
-        {% if toplist.algorithm %}
-        <div class="algo" title="Ranking algorithm">{{ toplist.algorithm }} {{ toplist.weight }}</div>
+        {% if ranking.algorithm %}
+        <div class="algo" title="Ranking algorithm">{{ ranking.algorithm }} {{ ranking.weight }}</div>
         {% endif %}
     </div>
     <section class="r&amp;f">

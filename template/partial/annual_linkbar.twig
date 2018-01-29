@@ -1,8 +1,8 @@
 <div class="linkbar">
-    {% if toplist.id > constant('ScriptFUSION\\Steam250\\SiteGenerator\\Toplist\\Impl\\AnnualList::EARLIEST_YEAR') %}
-        <a href="{{ (toplist.id - 1) ~ ext }}" class="prev">{{ (toplist.id - 1) }}</a>
+    {% if ranking.id > constant('ScriptFUSION\\Steam250\\SiteGenerator\\Ranking\\Impl\\AnnualList::EARLIEST_YEAR') %}
+        <a href="{{ (ranking.id - 1) ~ ext }}" class="prev">{{ (ranking.id - 1) }}</a>
     {% endif %}
-    {% if toplist.id < 'now'|date('Y') %}
-        <a href="{{ (toplist.id + 1) ~ ext }}" class="next">{{ (toplist.id + 1) }}</a>
+    {% if ranking.id < 'now'|date('Y') %}
+        <a href="{{ (ranking.id + 1) ~ ext }}" class="next">{{ (ranking.id + 1) }}</a>
     {% endif %}
 </div>

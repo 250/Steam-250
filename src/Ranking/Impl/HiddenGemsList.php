@@ -1,13 +1,13 @@
 <?php
 declare(strict_types=1);
 
-namespace ScriptFUSION\Steam250\SiteGenerator\Toplist\Impl;
+namespace ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl;
 
 use Doctrine\DBAL\Query\QueryBuilder;
-use ScriptFUSION\Steam250\SiteGenerator\Toplist\Algorithm;
-use ScriptFUSION\Steam250\SiteGenerator\Toplist\Toplist;
+use ScriptFUSION\Steam250\SiteGenerator\Ranking\Algorithm;
+use ScriptFUSION\Steam250\SiteGenerator\Ranking\Ranking;
 
-class HiddenGemsList extends Toplist
+class HiddenGemsList extends Ranking
 {
     public function __construct(string $id = 'hidden_gems')
     {

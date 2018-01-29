@@ -1,20 +1,20 @@
 <?php
 declare(strict_types=1);
 
-namespace ScriptFUSION\Steam250\SiteGenerator\Toplist\Impl;
+namespace ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl;
 
 use Doctrine\DBAL\Query\QueryBuilder;
 
-class ThisYearList extends Top250List
+class ThisQuarterList extends Top250List
 {
     public function __construct()
     {
-        parent::__construct('365day', 100);
+        parent::__construct('90day', 50);
     }
 
     public function customizeQuery(QueryBuilder $builder): void
     {
-        $time = strtotime('last year');
+        $time = strtotime('-3 month');
         $now = time();
 
         $builder

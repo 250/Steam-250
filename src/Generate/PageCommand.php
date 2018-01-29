@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace ScriptFUSION\Steam250\SiteGenerator\Generate;
 
-use ScriptFUSION\Steam250\SiteGenerator\Toplist\Algorithm;
-use ScriptFUSION\Steam250\SiteGenerator\Toplist\Toplist;
-use ScriptFUSION\Steam250\SiteGenerator\Toplist\ToplistFactory;
-use ScriptFUSION\Steam250\SiteGenerator\Toplist\ToplistViolator;
+use ScriptFUSION\Steam250\SiteGenerator\Ranking\Algorithm;
+use ScriptFUSION\Steam250\SiteGenerator\Ranking\Ranking;
+use ScriptFUSION\Steam250\SiteGenerator\Ranking\PageContainerFactory;
+use ScriptFUSION\Steam250\SiteGenerator\Ranking\RankingViolator;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -36,19 +36,21 @@ final class PageCommand extends Command
         $generator = (new PageGeneratorFactory)->create($input->getArgument('db'), $input->getOption('ext'));
         $generator->setMinify($input->getOption('min'));
 
-        /** @var Toplist $toplist */
-        if (!$toplist =
-            (new ToplistFactory($generator->getDatabase()))->create()->buildObject($id = $input->getArgument('list'))) {
-            throw new \InvalidArgumentException("Invalid list ID: \"$id\".");
+        /** @var Ranking $page */
+        if (!$page = (new PageContainerFactory($generator->getDatabase()))
+                ->create()->buildObject($id = $input->getArgument('list'))) {
+            throw new \InvalidArgumentException("Invalid page ID: \"$id\".");
         }
 
-        // Override algorithm and weight.
-        ToplistViolator::violate(
-            $toplist,
-            Algorithm::memberOrNullByKey($input->getOption('algorithm'), false),
-            (float)$input->getOption('weight')
-        );
+        if ($page instanceof Ranking) {
+            // Override algorithm and weight.
+            RankingViolator::violate(
+                $page,
+                Algorithm::memberOrNullByKey($input->getOption('algorithm'), false),
+                (float)$input->getOption('weight')
+            );
+        }
 
-        return $generator->generate($toplist, $input->getArgument('out'), $input->getOption('prev-db')) ? 0 : 1;
+        return $generator->generate($page, $input->getArgument('out'), $input->getOption('prev-db')) ? 0 : 1;
     }
 }

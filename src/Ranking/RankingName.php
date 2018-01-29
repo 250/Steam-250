@@ -1,31 +1,31 @@
 <?php
 declare(strict_types=1);
 
-namespace ScriptFUSION\Steam250\SiteGenerator\Toplist;
+namespace ScriptFUSION\Steam250\SiteGenerator\Ranking;
 
 use Eloquent\Enumeration\AbstractEnumeration;
-use ScriptFUSION\Steam250\SiteGenerator\Toplist\Impl\Bottom100List;
-use ScriptFUSION\Steam250\SiteGenerator\Toplist\Impl\BuyersRemorseList;
-use ScriptFUSION\Steam250\SiteGenerator\Toplist\Impl\Club250List;
-use ScriptFUSION\Steam250\SiteGenerator\Toplist\Impl\CollageList;
-use ScriptFUSION\Steam250\SiteGenerator\Toplist\Impl\DiscountList;
-use ScriptFUSION\Steam250\SiteGenerator\Toplist\Impl\DlcList;
-use ScriptFUSION\Steam250\SiteGenerator\Toplist\Impl\HiddenGemsList;
-use ScriptFUSION\Steam250\SiteGenerator\Toplist\Impl\HiddenNovelsList;
-use ScriptFUSION\Steam250\SiteGenerator\Toplist\Impl\Linux250List;
-use ScriptFUSION\Steam250\SiteGenerator\Toplist\Impl\Mac250List;
-use ScriptFUSION\Steam250\SiteGenerator\Toplist\Impl\MostPlayedList;
-use ScriptFUSION\Steam250\SiteGenerator\Toplist\Impl\ThisMonthList;
-use ScriptFUSION\Steam250\SiteGenerator\Toplist\Impl\ThisQuarterList;
-use ScriptFUSION\Steam250\SiteGenerator\Toplist\Impl\ThisYearList;
-use ScriptFUSION\Steam250\SiteGenerator\Toplist\Impl\Top250List;
-use ScriptFUSION\Steam250\SiteGenerator\Toplist\Impl\Usd10To15List;
-use ScriptFUSION\Steam250\SiteGenerator\Toplist\Impl\Usd5To10List;
-use ScriptFUSION\Steam250\SiteGenerator\Toplist\Impl\UsdOver15List;
-use ScriptFUSION\Steam250\SiteGenerator\Toplist\Impl\UsdUnder5List;
-use ScriptFUSION\Steam250\SiteGenerator\Toplist\Impl\VrTop250List;
+use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\Bottom100List;
+use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\BuyersRemorseList;
+use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\Club250List;
+use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\CollageList;
+use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\DiscountList;
+use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\DlcList;
+use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\HiddenGemsList;
+use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\HiddenNovelsList;
+use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\Linux250List;
+use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\Mac250List;
+use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\MostPlayedList;
+use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\ThisMonthList;
+use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\ThisQuarterList;
+use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\ThisYearList;
+use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\Top250List;
+use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\Usd10To15List;
+use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\Usd5To10List;
+use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\UsdOver15List;
+use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\UsdUnder5List;
+use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\VrTop250List;
 
-final class ToplistName extends AbstractEnumeration
+final class RankingName extends AbstractEnumeration
 {
     public const TOP_250 = 'TOP_250';
     public const GEMS = 'GEMS';

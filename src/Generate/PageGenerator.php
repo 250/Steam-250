@@ -7,8 +7,8 @@ use Doctrine\DBAL\Connection;
 use Psr\Log\LoggerInterface;
 use ScriptFUSION\Steam250\SiteGenerator\Database\Queries;
 use ScriptFUSION\Steam250\SiteGenerator\Rank\Ranker;
+use ScriptFUSION\Steam250\SiteGenerator\Ranking\Ranking;
 use ScriptFUSION\Steam250\SiteGenerator\SteamApp\PrimaryTagChooser;
-use ScriptFUSION\Steam250\SiteGenerator\Toplist\Toplist;
 use voku\helper\HtmlMin;
 
 final class PageGenerator
@@ -36,17 +36,17 @@ final class PageGenerator
         $this->minifier = $minifier;
     }
 
-    public function generate(Toplist $toplist, string $outPath, string $prevDb = null): bool
+    public function generate(Ranking $ranking, string $outPath, string $prevDb = null): bool
     {
-        $this->ranker->rank($toplist);
+        $this->ranker->rank($ranking);
 
         $this->logger->info(
-            "Generating \"{$toplist->getId()}\" page with database: \"{$this->database->getParams()['path']}\""
+            "Generating \"{$ranking->getId()}\" page with database: \"{$this->database->getParams()['path']}\""
                 . ($prevDb ? " and previous database: \"$prevDb\"" : '')
-                . " using \"{$toplist->getAlgorithm()}\" algorithm ({$toplist->getWeight()})."
+                . " using \"{$ranking->getAlgorithm()}\" algorithm ({$ranking->getWeight()})."
         );
 
-        if (!$games = Queries::fetchRankedList($this->database, $toplist, $prevDb)) {
+        if (!$games = Queries::fetchRankedList($this->database, $ranking, $prevDb)) {
             $this->logger->error('No games matching query.');
 
             return false;
@@ -58,8 +58,8 @@ final class PageGenerator
                 $game['tags'] = Queries::fetchAppTags($this->database, +$game['id'])
             );
         }
-        if ($toplist instanceof CustomizeGames) {
-            $toplist->customizeGames($games, $this->database);
+        if ($ranking instanceof CustomizeGames) {
+            $ranking->customizeGames($games, $this->database);
         }
 
         $tags = Queries::fetchPopularTags($this->database);
@@ -70,8 +70,8 @@ final class PageGenerator
             $new = $this->createNewEntriesList($games);
         }
 
-        $html = $this->twig->load("{$toplist->getTemplate()}.twig")->render(
-            compact('games', 'toplist', 'tags', 'risers', 'fallers', 'new')
+        $html = $this->twig->load("{$ranking->getTemplate()}.twig")->render(
+            compact('games', 'ranking', 'tags', 'risers', 'fallers', 'new')
         );
 
         if ($this->minify) {
@@ -80,7 +80,7 @@ final class PageGenerator
             $html = $this->minifier->minify($html);
         }
 
-        $this->ensurePathExists($out = "$outPath/{$toplist->getId()}.html");
+        $this->ensurePathExists($out = "$outPath/{$ranking->getId()}.html");
         file_put_contents($out, $html);
         $this->logger->info("Page generated at: \"$out\".");
 

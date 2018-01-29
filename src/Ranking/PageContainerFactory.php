@@ -1,16 +1,16 @@
 <?php
 declare(strict_types=1);
 
-namespace ScriptFUSION\Steam250\SiteGenerator\Toplist;
+namespace ScriptFUSION\Steam250\SiteGenerator\Ranking;
 
 use Doctrine\DBAL\Connection;
 use Joomla\DI\Container;
 use ScriptFUSION\Steam250\SiteGenerator\Database\Queries;
 use ScriptFUSION\Steam250\SiteGenerator\SteamApp\Tag;
-use ScriptFUSION\Steam250\SiteGenerator\Toplist\Impl\AnnualList;
-use ScriptFUSION\Steam250\SiteGenerator\Toplist\Impl\TagList;
+use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\AnnualList;
+use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\TagList;
 
-final class ToplistFactory
+final class PageContainerFactory
 {
     private $database;
 
@@ -23,19 +23,19 @@ final class ToplistFactory
     {
         $container = new Container;
 
-        /** @var ToplistName $name */
-        foreach (ToplistName::members() as $name) {
+        /** @var RankingName $name */
+        foreach (RankingName::members() as $name) {
             $container->alias($name->getAlias(), $name->getClassName());
         }
 
         foreach (range(AnnualList::EARLIEST_YEAR, date('Y')) as $year) {
-            $container->set($year, function () use ($year): Toplist {
+            $container->set($year, function () use ($year): Ranking {
                 return new AnnualList($year);
             });
         }
 
         foreach (Queries::fetchPopularTags($this->database) as $tag) {
-            $container->set(Tag::convertTagToId($tag), function () use ($tag): Toplist {
+            $container->set(Tag::convertTagToId($tag), function () use ($tag): Ranking {
                 return new TagList($tag);
             });
         }

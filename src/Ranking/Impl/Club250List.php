@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace ScriptFUSION\Steam250\SiteGenerator\Toplist\Impl;
+namespace ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl;
 
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\Query\QueryBuilder;
