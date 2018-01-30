@@ -1,10 +1,10 @@
-{% extends 'layout/template.twig' %}
+{% extends 'layout/skeleton.twig' %}
 
 {% block title %}Collage{% endblock %}
 
 {% block css %}
     <link rel="stylesheet" href="css/collage.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster">
+    {{ parent() }}
 {% endblock %}
 
 {% block body %}

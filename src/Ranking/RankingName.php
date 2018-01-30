@@ -94,11 +94,6 @@ final class RankingName extends AbstractEnumeration
         self::COLLAGE => 'collage',
     ];
 
-    public static function getClassNames(): array
-    {
-        return self::$classes;
-    }
-
     public function getAlias(): string
     {
         return self::$aliases["$this"];

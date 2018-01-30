@@ -3,7 +3,7 @@
 {% block title %}Top {{ games|length }} Steam Games from {{ ranking.id }}{% endblock %}
 {% block heading %}Top of {{ ranking.id }}{% endblock %}
 
-{% block lead %}
+{% block content %}
     {{ include('partial/annual_linkbar.twig') }}
     <p>
         Top {{ games|length }} best Steam games released in {{ ranking.id }},

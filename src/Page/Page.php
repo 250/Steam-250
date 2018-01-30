@@ -3,16 +3,26 @@ declare(strict_types=1);
 
 namespace ScriptFUSION\Steam250\SiteGenerator\Page;
 
+use Doctrine\DBAL\Connection;
+use ScriptFUSION\Steam250\SiteGenerator\Database\Queries;
+
 abstract class Page
 {
+    private $database;
     private $id;
     private $template;
 
-    abstract public function export(): array;
-
-    public function __construct(string $id)
+    public function __construct(Connection $database, string $id)
     {
+        $this->database = $database;
         $this->id = $id;
+    }
+
+    public function export(): array
+    {
+        $tags = Queries::fetchPopularTags($this->database);
+
+        return compact('tags');
     }
 
     public function getId(): string

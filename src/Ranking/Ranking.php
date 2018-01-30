@@ -28,7 +28,7 @@ abstract class Ranking extends Page
         Algorithm $algorithm = null,
         float $weight = null
     ) {
-        parent::__construct($id);
+        parent::__construct($dependencies->getDatabase(), $id);
 
         $this->ranker = $dependencies->getRanker();
         $this->database = $dependencies->getDatabase();
@@ -66,15 +66,13 @@ abstract class Ranking extends Page
             $this->customizeGames($games, $this->database);
         }
 
-        $tags = Queries::fetchPopularTags($this->database);
-
         if ($this->prevDb) {
             $risers = $this->createRisersList($games);
             $fallers = $this->createFallersList($games);
             $new = $this->createNewEntriesList($games);
         }
 
-        return compact('games', 'tags', 'risers', 'fallers', 'new') + ['ranking' => $this];
+        return compact('games', 'risers', 'fallers', 'new') + ['ranking' => $this] + parent::export();
     }
 
     private function createRisersList(array $games): array

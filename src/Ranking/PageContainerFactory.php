@@ -5,6 +5,7 @@ namespace ScriptFUSION\Steam250\SiteGenerator\Ranking;
 
 use Joomla\DI\Container;
 use ScriptFUSION\Steam250\SiteGenerator\Database\Queries;
+use ScriptFUSION\Steam250\SiteGenerator\Page\StaticPage;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\AnnualList;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\TagList;
 use ScriptFUSION\Steam250\SiteGenerator\SteamApp\Tag;
@@ -14,6 +15,11 @@ final class PageContainerFactory
     public function create(Container $parent): Container
     {
         $container = new Container($parent);
+
+        /** @var StaticPage $name */
+        foreach (StaticPage::members() as $name) {
+            $container->alias($name->getAlias(), $name->getClassName());
+        }
 
         /** @var RankingName $name */
         foreach (RankingName::members() as $name) {

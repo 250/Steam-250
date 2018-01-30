@@ -5,6 +5,7 @@ namespace ScriptFUSION\Steam250\SiteGenerator\Generate;
 
 use Joomla\DI\Container;
 use ScriptFUSION\Steam250\SiteGenerator\Database\Queries;
+use ScriptFUSION\Steam250\SiteGenerator\Page\Page;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Ranking;
 
 final class SiteGenerator
@@ -24,11 +25,14 @@ final class SiteGenerator
     public function generate(string $outPath, string $prevDb = null): bool
     {
         foreach ($this->pages->getKeys() as $pageId) {
-            /** @var Ranking $ranking */
-            $ranking = $this->pages->buildObject($pageId);
-            $ranking->setPrevDb($prevDb);
+            /** @var Page $page */
+            $page = $this->pages->buildObject($pageId);
 
-            if (!$this->generator->generate($ranking, $outPath)) {
+            if ($page instanceof Ranking) {
+                $page->setPrevDb($prevDb);
+            }
+
+            if (!$this->generator->generate($page, $outPath)) {
                 return false;
             }
         }

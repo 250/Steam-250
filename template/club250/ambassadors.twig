@@ -1,0 +1,29 @@
+{% extends'layout/template.twig' %}
+
+{% block css %}
+<link rel="stylesheet" href="/css/ambassadors.css">
+{{ parent() }}
+{% endblock %}
+
+{% block title %}
+Steam 250 Ambassadors
+{% endblock %}
+
+{% block heading %}
+Ambassadors
+{% endblock %}
+
+{% block content %}
+<p>Club 250 Ambassadors are elite members who support Steam 250 for at least $10 per month.</p>
+
+<p>
+    This page serves as a special thankyou to those that have made the largest contributions to Steam 250's
+    growth. You can join them via our <a href="https://www.patreon.com/steam250">Patreon page</a>, help make
+    this site better and collect other rewards, too!
+</p>
+
+<div>
+    <a href="http://steamcommunity.com/id/63456473346236/"><img src="/img/amb/esper.jpg"></a>
+    <a href="http://steamcommunity.com/id/63456473346236/" data-title="Esper">Esper</a>
+</div>
+{% endblock %}
