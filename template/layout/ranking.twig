@@ -2,112 +2,10 @@
 
 {% block css %}
     <link rel="stylesheet" href="/css/ranking.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster%7cCodystar%7cCousine:400i">
+    {{ parent() }}
 {% endblock %}
 
 {% block body %}
-<section id="header">
-    <div id="user">
-        <div id="lout">
-            <form action="https://steamcommunity.com/openid/login" method="post">
-                <button id="login">Sign in to Steam</button>
-                <input type="hidden" name="openid.identity" value="http://specs.openid.net/auth/2.0/identifier_select">
-                <input type="hidden" name="openid.claimed_id" value="http://specs.openid.net/auth/2.0/identifier_select">
-                <input type="hidden" name="openid.ns" value="http://specs.openid.net/auth/2.0">
-                <input type="hidden" name="openid.mode" value="checkid_setup">
-                <input type="hidden" name="openid.realm" value="http://steam250.com">
-                <input type="hidden" name="openid.return_to">
-            </form>
-        </div>
-        <div id="lin">
-            <dl>
-                <dt>owned
-                <dd><span class="owned"></span>
-            </dl>
-            <a class="avatar"></a><button id="logout">Sign out</button>
-        </div>
-    </div>
-    <div class="title" data-title="{{ block('heading') }}">
-        <h1>{{ block('heading') }}</h1>
-    </div>
-    <div class="slogan">
-        Open source rankings <span class="d">of</span> Steam games <span class="d">curated by</span> the players
-    </div>
-</section>
-
-<ol class="menu">
-    <li>
-        <a>Rankings</a>
-        <ol>
-            <li><a href="/">Top 250 Games</a>
-            <li><a href="/dlc{{ ext }}">Top 250 DLC</a>
-            <li><a href="/hidden_gems{{ ext }}">Hidden Gems</a>
-            <li><a href="/hidden_novels{{ ext }}">Hidden Novels</a>
-            <li>
-                <a>Platform</a>
-                <ol>
-                    <li><a href="/vr250{{ ext }}">Virtual Reality</a>
-                    <li><a href="/mac250{{ ext }}">Mac</a>
-                    <li><a href="/linux250{{ ext }}">Linux</a>
-                </ol>
-            <li><a href="/most_played{{ ext }}">Most Played</a>
-            <li><a href="/bottom100{{ ext }}">Bottom 100</a>
-        </ol>
-    <li>
-        <a>Price</a>
-        <ol>
-            <li><a href="/discounts{{ ext }}">Top 250 Discounts</a>
-            <li><a href="/tag/free_to_play{{ ext }}">Free Games</a>
-            <li><a href="/price/under5{{ ext }}">Games Under $5</a>
-            <li><a href="/price/5-10{{ ext }}">Games $5&ndash;10</a>
-            <li><a href="/price/10-15{{ ext }}">Games $10&ndash;15</a>
-            <li><a href="/price/over15{{ ext }}">Games Over $15</a>
-        </ol>
-    <li>
-        <a>Steam 250</a>
-        <ol>
-            <li><a href="/club250{{ ext }}">Club 250 Games</a>
-            <li><a href="https://www.patreon.com/steam250">Join Club 250</a>
-            <li><a href="https://twitter.com/Steam_250">Follow on Twitter</a>
-            <li><a href="https://discord.gg/8pz5ybv">Chat in Discord</a>
-        </ol>
-    <li>
-        <a>Genre</a>
-        <ol>
-            {% for tag in tags %}
-            <li><a href="/tag/{{ tag|tag_id|url_encode ~ ext }}">{{ tag }}</a>
-            {% endfor %}
-        </ol>
-    <li>
-        <a>Period</a>
-        <ol>
-            <li>
-                <a>Fixed Year</a>
-                <ol>
-                    {% for year in range('now'|date('Y'),
-                        constant('ScriptFUSION\\Steam250\\SiteGenerator\\Ranking\\Impl\\AnnualList::EARLIEST_YEAR')) %}
-                    <li><a href="/{{ year }}{{ ext }}">{{ year }}</a>
-                    {% endfor %}
-                </ol>
-            <li><a href="/30day{{ ext }}">Rolling Month</a>
-            <li><a href="/90day{{ ext }}">Rolling Quarter</a>
-            <li><a href="/365day{{ ext }}">Rolling Year</a>
-        </ol>
-</ol>
-
-<div class="body">
-<div class="content">
-    <ul class="quicklinks">
-        <li><a href="/">Top 250</a>
-            &ndash; <a href="/hidden_gems{{ ext }}">Hidden gems</a>
-            &ndash; <a href="/discounts{{ ext }}">Discounts</a>
-            &ndash; <a href="/{{ ('now'|date('Y') - 1) ~ ext }}">{{ 'now'|date('Y') - 1 }}</a>
-        <li><a href="https://www.patreon.com/steam250">Join Club 250</a>
-    </ul>
-    {{ include('partial/ad.twig', {id: '9535671996'}) }}
-    {{ block('lead') }}
-</div>
-
 <div class="ranking">
     <div>{#Virtual#}</div>
     <div>
@@ -221,66 +119,8 @@
     </section>
 </div>
 
-<div class="content">
-{% block post %}{% endblock %}
-</div>
-</div>
-
 <ol id="linkmenu">
     <li><a class="cp rank">Copy link to this rank (#<span>0</span>)</a>
     <li><a class="cp app">Copy link to track this game</a>
 </ol>
-
-<section id="footer">
-    <div>
-        <h2>
-            <a href="https://www.patreon.com/steam250">Club 250</a>
-            <a href="https://www.patreon.com/steam250" class="patreon" title="Patreon">Patreon</a>
-            <a href="https://discord.gg/8pz5ybv" class="discord" title="Discord">Discord</a>
-            <a href="https://twitter.com/Steam_250" class="twitter" title="Twitter">Twitter</a>
-        </h2>
-        <p>
-            Club 250 is the Steam 250 member's club. If we've helped you find a good game on Steam,
-            why not <a href="https://www.patreon.com/steam250">become a member</a>.
-        </p>
-        <p>The rankings are automatically updated at least once a day from live Steam reviews data.</p>
-        {% if games[0].movement is defined %}
-        <p>Movement indicators show the change in position since yesterday.</p>
-        {% endif %}
-    </div>
-
-    <div>
-        <h2>System status</h2>
-        <ul>
-            <li>Data <a href="https://travis-ci.org/250/Steam-importer">
-                    <img src="https://travis-ci.org/250/Steam-importer.svg?branch=master" alt="Data build status"></a>
-                Pages <a href="https://travis-ci.org/250/Steam-Top-250">
-                    <img src="https://travis-ci.org/250/Steam-Top-250.svg?branch=master" alt="Page build status"></a>
-            <li>Generated {{ 'now'|date }}
-            <li><a href="https://github.com/250">Source code</a>,
-                <a href="https://github.com/250/Steam-Top-250/issues">Issues</a>
-            <li><a href="mailto:bilge@scriptfusion.com">Contact</a>
-        </ul>
-    </div>
-
-    <div>
-        <h2>External rankings</h2>
-        <ul>
-            <li><a href="http://store.steampowered.com/search/?sort_by=Reviews_DESC&amp;category1=998">
-                    Official Steam top games list
-                </a>
-            <li><a href="https://steamspy.com/#tab-trending">Steam Spy trending games</a>
-            <li><a href="http://www.imdb.com/chart/top">IMDb Top 250 movies</a>
-        </ul>
-    </div>
-</section>
-
-<div class="fixedlinks">
-    <a href="#header">Top</a>
-    <a href="#footer">Bottom</a>
-</div>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.3/moment.min.js"></script>
-<script src="/js/BuildMonitor.js"></script>
-<script src="/js/250.js"></script>
 {% endblock %}
