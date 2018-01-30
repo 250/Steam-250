@@ -5,6 +5,7 @@ namespace ScriptFUSION\Steam250\SiteGenerator\Generate;
 
 use Joomla\DI\Container;
 use ScriptFUSION\Steam250\SiteGenerator\Database\Queries;
+use ScriptFUSION\Steam250\SiteGenerator\Ranking\Ranking;
 
 final class SiteGenerator
 {
@@ -14,7 +15,7 @@ final class SiteGenerator
     public function __construct(PageGenerator $generator, Container $pages)
     {
         // Drop any existing ranking data and migrate schema.
-        Queries::recreateRankedListTable($generator->getDatabase());
+        Queries::recreateRankedListTable($pages->get('db'));
 
         $this->generator = $generator;
         $this->pages = $pages;
@@ -23,7 +24,11 @@ final class SiteGenerator
     public function generate(string $outPath, string $prevDb = null): bool
     {
         foreach ($this->pages->getKeys() as $pageId) {
-            if (!$this->generator->generate($this->pages->buildObject($pageId), $outPath, $prevDb)) {
+            /** @var Ranking $ranking */
+            $ranking = $this->pages->buildObject($pageId);
+            $ranking->setPrevDb($prevDb);
+
+            if (!$this->generator->generate($ranking, $outPath)) {
                 return false;
             }
         }

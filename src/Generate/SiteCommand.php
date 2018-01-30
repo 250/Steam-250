@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace ScriptFUSION\Steam250\SiteGenerator\Generate;
 
+use ScriptFUSION\Steam250\SiteGenerator\Application;
+use ScriptFUSION\Steam250\SiteGenerator\ApplicationConfig;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -11,6 +13,15 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 final class SiteCommand extends Command
 {
+    private $application;
+
+    public function __construct(Application $application)
+    {
+        parent::__construct();
+
+        $this->application = $application;
+    }
+
     protected function configure(): void
     {
         $this
@@ -26,8 +37,10 @@ final class SiteCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output): ?int
     {
+        $this->application->setConfig(new ApplicationConfig($input->getArgument('db')));
+
         return (new SiteGeneratorFactory)->create(
-            $input->getArgument('db'),
+            $this->application->getContainer(),
             $input->getOption('ext'),
             $input->getOption('min')
         )

@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl;
 
 use Doctrine\DBAL\Query\QueryBuilder;
+use ScriptFUSION\Steam250\SiteGenerator\Ranking\RankingDependencies;
 
 class AnnualList extends ThisYearList
 {
@@ -11,9 +12,9 @@ class AnnualList extends ThisYearList
 
     private $year;
 
-    public function __construct(int $year)
+    public function __construct(RankingDependencies $dependencies, int $year)
     {
-        parent::__construct();
+        parent::__construct($dependencies);
 
         $this->year = $year;
 

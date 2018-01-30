@@ -6,12 +6,13 @@ namespace ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl;
 use Doctrine\DBAL\Query\QueryBuilder;
 use ScriptFUSION\Steam250\SiteGenerator\Database\SortDirection;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Ranking;
+use ScriptFUSION\Steam250\SiteGenerator\Ranking\RankingDependencies;
 
 class MostPlayedList extends Ranking
 {
-    public function __construct()
+    public function __construct(RankingDependencies $dependencies)
     {
-        parent::__construct('most_played', 250);
+        parent::__construct($dependencies, 'most_played', 250);
     }
 
     public function customizeQuery(QueryBuilder $builder): void

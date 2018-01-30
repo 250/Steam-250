@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace ScriptFUSION\Steam250\SiteGenerator\Generate;
 
+use ScriptFUSION\Steam250\SiteGenerator\Application;
+use ScriptFUSION\Steam250\SiteGenerator\ApplicationConfig;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Algorithm;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Ranking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\PageContainerFactory;
@@ -15,6 +17,15 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 final class PageCommand extends Command
 {
+    private $application;
+
+    public function __construct(Application $application)
+    {
+        parent::__construct();
+
+        $this->application = $application;
+    }
+
     protected function configure(): void
     {
         $this
@@ -33,12 +44,14 @@ final class PageCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output): ?int
     {
-        $generator = (new PageGeneratorFactory)->create($input->getArgument('db'), $input->getOption('ext'));
+        $this->application->setConfig(new ApplicationConfig($input->getArgument('db')));
+
+        $generator = (new PageGeneratorFactory)->create($input->getOption('ext'));
         $generator->setMinify($input->getOption('min'));
 
         /** @var Ranking $page */
-        if (!$page = (new PageContainerFactory($generator->getDatabase()))
-                ->create()->buildObject($id = $input->getArgument('list'))) {
+        if (!$page = (new PageContainerFactory)->create($this->application->getContainer())
+            ->buildObject($id = $input->getArgument('list'))) {
             throw new \InvalidArgumentException("Invalid page ID: \"$id\".");
         }
 
@@ -49,8 +62,10 @@ final class PageCommand extends Command
                 Algorithm::memberOrNullByKey($input->getOption('algorithm'), false),
                 (float)$input->getOption('weight')
             );
+
+            $page->setPrevDb($input->getOption('prev-db'));
         }
 
-        return $generator->generate($page, $input->getArgument('out'), $input->getOption('prev-db')) ? 0 : 1;
+        return $generator->generate($page, $input->getArgument('out')) ? 0 : 1;
     }
 }

@@ -9,6 +9,7 @@ use ScriptFUSION\Steam250\SiteGenerator\Database\Queries;
 use ScriptFUSION\Steam250\SiteGenerator\Database\SortDirection;
 use ScriptFUSION\Steam250\SiteGenerator\Generate\CustomizeGames;
 use ScriptFUSION\Steam250\SiteGenerator\Rank\CustomRankingFetch;
+use ScriptFUSION\Steam250\SiteGenerator\Ranking\RankingDependencies;
 
 class Club250List extends Top250List implements CustomRankingFetch, CustomizeGames
 {
@@ -25,9 +26,9 @@ class Club250List extends Top250List implements CustomRankingFetch, CustomizeGam
             GROUP BY pr.app_id
         )';
 
-    public function __construct()
+    public function __construct(RankingDependencies $dependencies)
     {
-        parent::__construct('club250');
+        parent::__construct($dependencies, 'club250');
     }
 
     public function customizeQuery(QueryBuilder $builder): void

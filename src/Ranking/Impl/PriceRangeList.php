@@ -4,15 +4,16 @@ declare(strict_types=1);
 namespace ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl;
 
 use Doctrine\DBAL\Query\QueryBuilder;
+use ScriptFUSION\Steam250\SiteGenerator\Ranking\RankingDependencies;
 
 abstract class PriceRangeList extends Top250List
 {
     private $min;
     private $max;
 
-    public function __construct(string $id, int $min, int $max)
+    public function __construct(RankingDependencies $dependencies, string $id, int $min, int $max)
     {
-        parent::__construct($id);
+        parent::__construct($dependencies, $id);
 
         $this->min = $min;
         $this->max = $max;

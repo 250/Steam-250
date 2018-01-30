@@ -4,16 +4,17 @@ declare(strict_types=1);
 namespace ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl;
 
 use Doctrine\DBAL\Query\QueryBuilder;
+use ScriptFUSION\Steam250\SiteGenerator\Ranking\RankingDependencies;
 use ScriptFUSION\Steam250\SiteGenerator\SteamApp\Tag;
 
 class TagList extends Top250List
 {
     private $tag;
 
-    public function __construct(string $tag)
+    public function __construct(RankingDependencies $dependencies, string $tag)
     {
         $tagId = Tag::convertTagToId($tag);
-        parent::__construct("tag/$tagId", 150);
+        parent::__construct($dependencies, "tag/$tagId", 150);
 
         $this->tag = $tag;
 

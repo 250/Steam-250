@@ -4,12 +4,13 @@ declare(strict_types=1);
 namespace ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl;
 
 use Doctrine\DBAL\Query\QueryBuilder;
+use ScriptFUSION\Steam250\SiteGenerator\Ranking\RankingDependencies;
 
 class HiddenNovelsList extends HiddenGemsList
 {
-    public function __construct()
+    public function __construct(RankingDependencies $dependencies)
     {
-        parent::__construct('hidden_novels');
+        parent::__construct($dependencies, 'hidden_novels');
     }
 
     public function customizeQuery(QueryBuilder $builder): void

@@ -13,7 +13,7 @@ final class RankerFactory
     {
         return new Ranker(
             $connection,
-            (new Logger('Rank'))->pushHandler(new StreamHandler(STDERR, Logger::INFO))
+            (new Logger('Ranker'))->pushHandler(new StreamHandler(STDERR, Logger::INFO))
         );
     }
 }
