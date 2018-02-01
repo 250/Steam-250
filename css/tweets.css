@@ -1,0 +1,36 @@
+@import "reset.css";
+@import "250.css";
+
+.tweets {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.tweets > * {
+    max-width: 500px;
+    margin: 1em;
+}
+.tweets blockquote {
+    margin-top: 10px;
+    padding: 20px;
+    box-sizing: border-box;
+
+    color: #1c2022;
+    background: #fff;
+    border-radius: 5px;
+}
+
+h2 {
+    display: table;
+    width: 100%;
+
+    font-size: 150%;
+}
+h2 > span {
+    display: table-cell;
+    padding: 0 0 .2em 1em;
+    vertical-align: bottom;
+    text-align: right;
+
+    font-size: 60%;
+}

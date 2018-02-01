@@ -346,34 +346,34 @@ ol.menu > li > ol > li > ol {
     }
 }
 /* Special */
-ol.menu > li:nth-child(3) > ol > li:nth-of-type(3) > a {
+ol.menu > li:nth-child(2) > ol > li:nth-last-of-type(3) > a {
     padding-left: 2.05em;
 
     background: var(--patreon) no-repeat calc(.8em + 2px) 50%;
     background-size: 13px;
 }
-ol.menu > li:nth-child(3) > ol > li:nth-of-type(4) > a {
+ol.menu > li:nth-child(2) > ol > li:nth-last-of-type(2) > a {
     padding-left: 2.05em;
 
     background: var(--twitter) no-repeat calc(.8em - 2px) 50%;
     background-size: 18px;
 }
-ol.menu > li:nth-child(3) > ol > li:nth-of-type(4):hover {
+ol.menu > li:nth-child(2) > ol > li:nth-last-of-type(2):hover {
     background-image: linear-gradient(90deg, #1572a3, #309bd9, #1572a3);
 }
-ol.menu > li:nth-child(3) > ol > li:nth-of-type(4):hover > a {
+ol.menu > li:nth-child(2) > ol > li:nth-last-of-type(2):hover > a {
     text-shadow: 1px 1px 1px #309bd9;
 }
-ol.menu > li:nth-child(3) > ol > li:last-of-type > a {
+ol.menu > li:nth-child(2) > ol > li:last-of-type > a {
     padding-left: 2.05em;
 
     background: var(--discord) no-repeat calc(.8em - 2px) 50%;
     background-size: 19px;
 }
-ol.menu > li:nth-child(3) > ol > li:last-of-type:hover {
+ol.menu > li:nth-child(2) > ol > li:last-of-type:hover {
     background-image: linear-gradient(90deg, #4b60a6, #7289da, #4b60a6);
 }
-ol.menu > li:nth-child(3) > ol > li:last-of-type:hover > a {
+ol.menu > li:nth-child(2) > ol > li:last-of-type:hover > a {
     text-shadow: 1px 1px 1px #7289da;
 }
 

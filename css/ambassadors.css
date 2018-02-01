@@ -51,5 +51,4 @@
 .content > div img:hover {
     opacity: 1;
     border-color: rgba(45, 90, 135, .4);
-    /*box-shadow: inset 0 0 10px #e6c88a;*/
 }
