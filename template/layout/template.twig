@@ -49,6 +49,16 @@
             <li><a href="/bottom100{{ ext }}">Bottom 100</a>
         </ol>
     <li>
+        <a>Steam 250</a>
+        <ol>
+            <li><a href="/club250{{ ext }}">Club 250 Games</a>
+            <li><a href="/club250/ambassadors{{ ext }}">Club Ambassadors</a>
+            <li><a href="/cosmic_tweets{{ ext }}">Cosmic Tweets</a>
+            <li><a href="https://www.patreon.com/steam250">Join Club 250</a>
+            <li><a href="https://twitter.com/Steam_250">Follow on Twitter</a>
+            <li><a href="https://discord.gg/8pz5ybv">Chat in Discord</a>
+        </ol>
+    <li>
         <a>Price</a>
         <ol>
             <li><a href="/discounts{{ ext }}">Top 250 Discounts</a>
@@ -57,15 +67,6 @@
             <li><a href="/price/5-10{{ ext }}">Games $5&ndash;10</a>
             <li><a href="/price/10-15{{ ext }}">Games $10&ndash;15</a>
             <li><a href="/price/over15{{ ext }}">Games Over $15</a>
-        </ol>
-    <li>
-        <a>Steam 250</a>
-        <ol>
-            <li><a href="/club250{{ ext }}">Club 250 Games</a>
-            <li><a href="/club250/ambassadors{{ ext }}">Club Ambassadors</a>
-            <li><a href="https://www.patreon.com/steam250">Join Club 250</a>
-            <li><a href="https://twitter.com/Steam_250">Follow on Twitter</a>
-            <li><a href="https://discord.gg/8pz5ybv">Chat in Discord</a>
         </ol>
     <li>
         <a>Genre</a>
@@ -160,7 +161,9 @@
     <a href="#footer">Bottom</a>
 </div>
 
+{% block js %}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.3/moment.min.js"></script>
 <script src="/js/BuildMonitor.js"></script>
 <script src="/js/250.js"></script>
+{% endblock %}
 {% endblock %}

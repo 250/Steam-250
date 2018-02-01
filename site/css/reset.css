@@ -43,3 +43,7 @@ table {
 a {
     cursor: pointer;
 }
+sup {
+    vertical-align: super;
+    font-size: 50%;
+}
