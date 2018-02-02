@@ -17,7 +17,7 @@ class HiddenGemsList extends Ranking
 
     public function customizeQuery(QueryBuilder $builder): void
     {
-        // Exclude visual novels.
-        $builder->andWhere('tag IS NULL');
+        // Exclude visual novels, adjusted by tag confidence threshold.
+        $builder->andWhere('tag IS NULL OR votes < avg * .5');
     }
 }

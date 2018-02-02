@@ -143,8 +143,17 @@ final class RankingQueries
                 ) / (1 + POWER($wilsonWeight, 2) * 1. / total_reviews)
             ) * ($weight * 1. / ($weight + players)) AS score"
         )
-            ->leftJoin('app', 'app_tag', 'app_tag', 'id = app_id AND tag = \'Visual Novel\'')
-            ->groupBy('id')
+            ->leftJoin('app', 'app_tag', 'app_tag', 'id = app_tag.app_id AND tag = \'Visual Novel\'')
+            ->join(
+                'app',
+                '(
+                    SELECT app_id, AVG(votes) as avg
+                    FROM app_tag
+                    GROUP BY app_id
+                )',
+                'avg',
+                'id = avg.app_id'
+            )
         ;
     }
 }

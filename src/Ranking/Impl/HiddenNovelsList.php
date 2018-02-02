@@ -15,7 +15,7 @@ class HiddenNovelsList extends HiddenGemsList
 
     public function customizeQuery(QueryBuilder $builder): void
     {
-        // Include only visual novels.
-        $builder->andWhere('tag IS NOT NULL');
+        // Include only visual novels, adjusted by tag confidence threshold.
+        $builder->andWhere('tag IS NOT NULL AND votes >= avg * .5');
     }
 }
