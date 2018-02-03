@@ -1,5 +1,5 @@
-@import "reset.css";
-@import "250.css";
+@import "inc/reset.css";
+@import "inc/250.css";
 
 .tweets {
     display: flex;

@@ -1,0 +1,17 @@
+{% extends'layout/template.twig' %}
+
+{% block css %}
+<link rel="stylesheet" href="/css/404.css">
+{{ parent() }}
+{% endblock %}
+
+{% block title %}404 Not found{% endblock %}
+{% block heading %}Not found{% endblock %}
+
+{% block content %}
+<p>
+    Whatever you were looking for, it's not here now :(<br>
+    Try searching through the menus.
+</p>
+<h2>404</h2>
+{% endblock %}
