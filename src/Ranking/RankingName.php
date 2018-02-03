@@ -15,6 +15,7 @@ use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\HiddenNovelsList;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\Linux250List;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\Mac250List;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\MostPlayedList;
+use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\OldList;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\ThisMonthList;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\ThisQuarterList;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\ThisYearList;
@@ -39,6 +40,7 @@ final class RankingName extends AbstractEnumeration
     public const D_30 = 'D_30';
     public const D_90 = 'D_90';
     public const D_365 = 'D_365';
+    public const OLD = 'OLD';
     public const MAC = 'MAC';
     public const LINUX = 'LINUX';
     public const VR = 'VR';
@@ -61,6 +63,7 @@ final class RankingName extends AbstractEnumeration
         self::D_30 => ThisMonthList::class,
         self::D_90 => ThisQuarterList::class,
         self::D_365 => ThisYearList::class,
+        self::OLD => OldList::class,
         self::MAC => Mac250List::class,
         self::LINUX => Linux250List::class,
         self::VR => VrTop250List::class,
@@ -84,6 +87,7 @@ final class RankingName extends AbstractEnumeration
         self::D_30 => '30d',
         self::D_90 => '90d',
         self::D_365 => '365d',
+        self::OLD => 'old',
         self::MAC => 'mac',
         self::LINUX => 'linux',
         self::VR => 'vr',

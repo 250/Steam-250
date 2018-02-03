@@ -8,7 +8,7 @@ use ScriptFUSION\Steam250\SiteGenerator\Ranking\RankingDependencies;
 
 class AnnualList extends ThisYearList
 {
-    public const EARLIEST_YEAR = 2000;
+    public const EARLIEST_YEAR = 2006;
 
     private $year;
 

@@ -1,12 +1,14 @@
 {% extends'layout/ranking.twig' %}
 
-{% block title %}Top {{ games|length }} Steam Games from {{ ranking.id }}{% endblock %}
-{% block heading %}Best of {{ ranking.id }}{% endblock %}
+{% set first_year = constant('ScriptFUSION\\Steam250\\SiteGenerator\\Ranking\\Impl\\AnnualList::EARLIEST_YEAR') %}
+
+{% block title %}Top {{ games|length }} Steam Games released before {{ first_year }}{% endblock %}
+{% block heading %}Best Pre-{{ first_year }}{% endblock %}
 
 {% block content %}
     {{ include('partial/annual_linkbar.twig') }}
     <p>
-        Top {{ games|length }} best Steam games released in {{ ranking.id }},
+        Top {{ games|length }} best Steam games released before {{ first_year }},
         according to player reviews.
     </p>
     {% if ranking.id != 'now'|date('Y') %}

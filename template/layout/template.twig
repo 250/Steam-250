@@ -81,10 +81,12 @@
             <li>
                 <a>Fixed Year</a>
                 <ol>
-                    {% for year in range('now'|date('Y'),
-                        constant('ScriptFUSION\\Steam250\\SiteGenerator\\Ranking\\Impl\\AnnualList::EARLIEST_YEAR')) %}
+                    {% set first =
+                        constant('ScriptFUSION\\Steam250\\SiteGenerator\\Ranking\\Impl\\AnnualList::EARLIEST_YEAR') %}
+                    {% for year in range('now'|date('Y'), first) %}
                     <li><a href="/{{ year }}{{ ext }}">{{ year }}</a>
-                        {% endfor %}
+                    {% endfor %}
+                    <li><a href="/old{{ ext }}">Pre-{{ first }}</a>
                 </ol>
             <li><a href="/30day{{ ext }}">Rolling Month</a>
             <li><a href="/90day{{ ext }}">Rolling Quarter</a>
@@ -98,7 +100,7 @@
             <li><a href="/">Top 250</a>
                 &ndash; <a href="/hidden_gems{{ ext }}">Hidden gems</a>
                 &ndash; <a href="/discounts{{ ext }}">Discounts</a>
-                &ndash; <a href="/{{ ('now'|date('Y') - 1) ~ ext }}">{{ 'now'|date('Y') - 1 }}</a>
+                &ndash; <a href="/{{ 'now'|date('Y') ~ ext }}">{{ 'now'|date('Y') }}</a>
             <li><a href="https://www.patreon.com/steam250">Join Club 250</a>
         </ul>
         {{ include('partial/ad.twig', {id: '9535671996'}) }}
