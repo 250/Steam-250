@@ -1,0 +1,10 @@
+@import "inc/reset.css";
+@import "inc/250.css";
+
+.content > h2 {
+    text-align: center;
+    font-size: 2000%;
+    font-weight: bold;
+    line-height: 1;
+    opacity: .05;
+}
