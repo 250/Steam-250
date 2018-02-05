@@ -133,6 +133,7 @@ td {
 
 a.owned {
     position: relative;
+    display: inline-block;
 }
 a.owned > img {
     opacity: .3;
@@ -200,7 +201,7 @@ ol.menu > li {
     flex-flow: column;
     justify-content: center;
     height: 100%;
-    margin: 0 1.63%;
+    margin: 0 1.74%;
     padding: 0 1%;
 
     cursor: pointer;
@@ -463,6 +464,7 @@ p.tip:before {
 }
 
 .ranking {
+    max-width: 950px;
     line-height: 1;
 }
 @media (max-width: 649px) {
@@ -493,6 +495,9 @@ p.tip:before {
     align-items: center;
     width: 100%;
     margin: 6px 0 6px auto;
+}
+.ranking > div:first-of-type {
+    margin-top: 0;
 }
 .ranking > div:nth-of-type(2n-1),
 .r\&f li:nth-child(2n-1) > * {
@@ -575,7 +580,21 @@ p.tip:before {
 }
 
 .highlight {
-    box-shadow: 0 0 3px 2px #49a0cc;
+    animation: highlight 2s .1s forwards;
+}
+@keyframes highlight {
+    25% {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+    60% {
+        box-shadow: 0 0 8px 3px #49a0cc;
+    }
+    100% {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        box-shadow: 0 0 3px 2px #49a0cc;
+    }
 }
 
 .movement {
@@ -662,7 +681,7 @@ tr.a .movement.none:before {
     }
 }
 
-.reviews {
+.ranking > div dl.reviews {
     display: block;
 
     font-size: 80%;
@@ -859,7 +878,7 @@ tr.a .movement.none:before {
     width: 100%;
 }
 .r\&f > div:first-of-type {
-    margin-top: 7px;
+    margin-top: 0;
 }
 .r\&f h2 {
     text-align: center;
