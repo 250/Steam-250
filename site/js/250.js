@@ -16,7 +16,7 @@ class S250 {
         this.overrideFixedLinks();
 
         // Fancy stuff.
-        this.initLinkMenu();
+        this.initAppLinkMenu();
         this.initCountdown();
     }
 
@@ -122,27 +122,48 @@ class S250 {
      * Scrolls to an element taking into consideration the fixed navigation menu height.
      */
     scrollToHash(hash) {
+        const HIGHLIGHT = 'highlight',
+            games = document.querySelectorAll('.ranking [id]');
+
+        games.forEach(e => e.classList.remove(HIGHLIGHT));
+
         if (!hash) return;
 
         const menuHeight = document.querySelector('ol.menu').getBoundingClientRect().height,
             target = this.resolveHashTarget(hash);
 
-        target && scrollTo(pageXOffset, pageYOffset + Math.ceil(target.getBoundingClientRect().top - menuHeight));
+        if (target) {
+            // Highlight ranking element.
+            if (document.querySelector('.ranking').contains(target)) {
+                target.classList.add(HIGHLIGHT);
+            }
+
+            scrollTo(
+                pageXOffset,
+                pageYOffset + Math.ceil(
+                    target.getBoundingClientRect().top
+                    + target.getBoundingClientRect().height / 2
+                    - menuHeight
+                    - innerHeight / 3
+                )
+            );
+        }
     }
 
     resolveHashTarget(hash) {
         // App tracking.
         if (hash.startsWith('#app/')) {
             let [_, id, name] = hash.split('/', 3),
-                img = document.querySelector(`#ranking img[src*="/${id}/"]`);
+                img = document.querySelector(`.ranking img[src*="/${id}/"]`);
 
             if (!img) {
                 // TODO: Client flash message error.
+                console.error(`Couldn't find game on this ranking: "${decodeURIComponent(name)}".`);
 
                 return;
             }
 
-            return img.closest('tr');
+            return img.closest('[id]');
         }
 
         return document.getElementById(hash.substr(1));
@@ -163,7 +184,7 @@ class S250 {
     markOwnedGames() {
         const games = JSON.parse(localStorage.getItem('games'));
 
-        document.querySelectorAll('#ranking > tbody > tr > td:first-of-type > a').forEach(a => {
+        document.querySelectorAll('.ranking > div > div:first-of-type > a').forEach(a => {
             const id = a.href.match(/(\d+)\/?$/)[1];
 
             if (games.hasOwnProperty(id)) {
@@ -174,9 +195,9 @@ class S250 {
 
         let current, max;
         document.querySelector('#user .owned').innerText =
-            (current = document.querySelectorAll('#ranking .owned').length)
+            (current = document.querySelectorAll('.ranking .owned').length)
             + '/'
-            + (max = document.querySelectorAll('#ranking .title').length)
+            + (max = document.querySelectorAll('.ranking .title').length)
             + ' ('
             + Math.round(current / max * 100)
             + '%)'
@@ -249,7 +270,7 @@ class S250 {
         });
     }
 
-    initLinkMenu() {
+    initAppLinkMenu() {
         const menu = document.getElementById('linkmenu'),
             ACTIVE = 'show';
 
@@ -257,10 +278,9 @@ class S250 {
 
         document.querySelectorAll('.ranking .links').forEach(a => {
             a.addEventListener('click', e => {
-                a.offsetParent.appendChild(menu);
                 menu.style.top = a.offsetTop + a.offsetHeight + 5 + 'px';
                 menu.style.left = a.offsetLeft + 'px';
-                menu.querySelector('a:first-of-type > span').innerHTML = a.parentElement.id;
+                menu.querySelector('a:first-of-type > span').innerHTML = a.closest('[id]').id;
 
                 menu.classList.toggle(ACTIVE, link !== a ? true : undefined);
                 a.classList.toggle(ACTIVE, menu.classList.contains(ACTIVE));
@@ -284,8 +304,8 @@ class S250 {
                     }
 
                     if (a.classList.contains('app')) {
-                        const id = this.findSteamAppId(link.closest('tr')),
-                            name = encodeURIComponent(this.findSteamAppName(link.closest('td')));
+                        const id = this.findSteamAppId(link.closest('[id]')),
+                            name = encodeURIComponent(this.findSteamAppName(link.closest('div')));
 
                         this.copyToClipboard(`${location.origin}${location.pathname}#app/${id}/${name}`)
                     }
