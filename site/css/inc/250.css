@@ -38,6 +38,13 @@ a:visited {
     color: #9e814c;
 }
 
+h2 {
+    margin-bottom: .7em;
+
+    font-size: 105%;
+    font-weight: bold;
+}
+
 #user {
     position: relative;
     z-index: 2;
@@ -122,53 +129,6 @@ dt {
 
 td {
     vertical-align: middle;
-}
-
-table {
-    width: 100%;
-    margin: 1.5em auto;
-    line-height: 1;
-}
-@media (max-width: 649px) {
-    table {
-        font-size: 85%;
-    }
-}
-thead {
-    font-weight: bold;
-}
-thead td {
-    padding-bottom: .5em;
-}
-td:first-child img {
-    max-width: 100%;
-    min-width: 80px;
-}
-tbody > tr.a > td:nth-child(n+2),
-.r\&f li:nth-child(2n-1) > * {
-    background-color: #1a2334;
-}
-tbody > tr:not(.a) > td:not(.ad) {
-    padding-top: 6px;
-    padding-bottom: 6px;
-}
-td:nth-child(1) {
-    line-height: 0;
-    text-align: right;
-}
-td:nth-child(1) > a {
-    display: inline-block;
-}
-td:nth-child(2),
-.r\&f li > :nth-child(2) {
-    padding-left: .5vw;
-    padding-right: .5vw;
-}
-td:nth-child(3) {
-    min-width: 4em; /* Fix row spacing issue on Chrome mobile. */
-    padding-right: .5vw;
-
-    text-align: center;
 }
 
 a.owned {
@@ -452,6 +412,8 @@ ol.menu > li ol.t11g {
     padding: 0 1em;
     box-sizing: border-box;
     max-width: 864px;
+    /* Force margins to be enclosed. */
+    overflow: hidden;
 }
 .content > p:first-of-type {
     font-size: 107%;
@@ -500,34 +462,120 @@ p.tip:before {
     content: 'Tip';
 }
 
-#ranking {
-    max-width: 864px;
+.ranking {
+    line-height: 1;
 }
-#ranking .title {
+@media (max-width: 649px) {
+    .ranking {
+        font-size: 85%;
+    }
+}
+.ranking > header {
+    display: flex;
+    align-items: flex-end;
+}
+.ranking > header > h2:first-child {
+    margin-left: 120px;
+    padding-left: .5em;
+}
+@media (max-width: 520px) {
+    .ranking > header > h2:first-child {
+        /* Just an estimate since we can't measure it, but works surprisingly well. */
+        margin-left: 23.5%;
+    }
+}
+.ranking > header > h2:nth-child(2) {
+    margin-left: auto;
+}
+
+.ranking > div {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin: 6px 0 6px auto;
+}
+.ranking > div:nth-of-type(2n-1),
+.r\&f li:nth-child(2n-1) > * {
+    background-color: #1a2334;
+}
+.ranking > div > div:first-child img {
+    max-width: 100%;
+}
+
+.ranking > div > div:first-child {
+    flex-shrink: 0;
+    width: 25%;
+    max-width: 120px;
+    min-width: 80px;
+
+    line-height: 0;
+}
+.ranking > div > div:nth-child(2) {
+    flex-grow: 1;
+}
+.ranking > div > div:nth-child(2),
+.r\&f li > :nth-child(2) {
+    padding-left: .5vw;
+    padding-right: .5vw;
+}
+.ranking > div > div:nth-child(2) > * {
+    display: inline-block;
     vertical-align: middle;
 }
-#ranking .links {
-    display: inline-block;
+.ranking > div > div:nth-child(3),
+.ranking > header > h2:nth-child(2) {
+    max-width: 10%;
+    min-width: 4em;
+    padding-right: 1vw;
+
+    text-align: center;
+}
+.ranking > div > div:nth-child(3) > span {
+    font-size: 80%;
+}
+.ranking > div > div:nth-child(3) > .score {
+    font-size: 100%;
+    font-weight: bold;
+}
+.votes {
+    display: block;
+}
+
+.ranking > div > div > .title {
+    /* Prevent breaking around title at small resolutions. */
+    display: inline;
+}
+.ranking .links {
     width: 13px;
     height: 0;
     padding: calc(13px / 2 + .1em) .1em;
     overflow: hidden;
-    vertical-align: inherit;
     text-indent: -20px;
-    /* Fix offsetParent. */
-    position: relative;
 
     background: url('/svg/link.svg') no-repeat 70% 50%;
     background-size: 13px;
     opacity: 0;
     transition: opacity .3s;
 }
-#ranking td:nth-child(2):hover .links {
+.ranking > div > div:nth-child(2):hover .links {
     opacity: .3;
 }
-#ranking td:nth-child(2):hover .links:hover,
-#ranking td:nth-child(2) .links.show {
+.ranking > div > div:nth-child(2):hover .links:hover,
+.ranking > div > div:nth-child(2) .links.show {
     opacity: .8;
+}
+
+.ranking > footer {
+    margin: 1.5rem;
+
+    text-transform: lowercase;
+    text-align: center;
+    font-size: 70%;
+    opacity: .06;
+}
+
+.highlight {
+    box-shadow: 0 0 3px 2px #49a0cc;
 }
 
 .movement {
@@ -641,6 +689,7 @@ tr.a .movement.none:before {
     padding: .19em .6em;
     border-radius: 2px;
     white-space: nowrap;
+    line-height: 1.24;
 
     font-size: 70%;
     color: #67c1f5;
@@ -657,7 +706,7 @@ tr.a .movement.none:before {
     background-image: var(--steam);
     background-size: 10px;
     background-repeat: no-repeat;
-    background-position: 4px 51%;
+    background-position: 4px 45%;
 }
 .genre:hover {
     text-decoration: none;
@@ -681,11 +730,9 @@ tr.a .movement.none:before {
 }
 
 .free, .free:visited {
-    display: inline-block;
     font-size: 68%;
-    line-height: 1.24;
 
-    box-shadow: inset 0 0 0 1px #4c6b22;
+    border: 1px solid #4c6b22;
     background: rgba(0, 0, 0, .05);
     text-transform: uppercase;
     color: #d2d9ad;
@@ -708,9 +755,6 @@ tr.a .movement.none:before {
 
 .platforms {
     margin-left: .25em;
-    vertical-align: sub;
-    vertical-align: -moz-middle-with-baseline;
-    vertical-align: -webkit-baseline-middle;
 }
 .platforms > * {
     display: inline-block;
@@ -747,17 +791,6 @@ tr.a .movement.none:before {
 }
 .platforms > [title='Windows Mixed Reality'] {
     background-image: url(http://store.akamai.steamstatic.com/public/images/v6/icon_platform_windowsmr.png);
-}
-
-td:nth-child(3) > span {
-    font-size: 80%;
-}
-td:nth-child(3) > .score {
-    font-size: 100%;
-    font-weight: bold;
-}
-.votes {
-    display: block;
 }
 
 .linkbar .prev, .linkbar .next {
@@ -825,11 +858,10 @@ td:nth-child(3) > .score {
     max-width: calc(50% - 46px);
     width: 100%;
 }
+.r\&f > div:first-of-type {
+    margin-top: 7px;
+}
 .r\&f h2 {
-    margin-bottom: 1em;
-
-    font-size: 105%;
-    font-weight: bold;
     text-align: center;
 }
 .r\&f img {
@@ -860,8 +892,6 @@ td:nth-child(3) > .score {
 }
 
 #linkmenu {
-    /*margin-top: 25%;*/
-    /*left: 50%;*/
     max-height: 0;
     position: absolute;
     overflow: hidden;
@@ -900,33 +930,30 @@ td:nth-child(3) > .score {
     text-shadow: 1px 1px 1px #498cb8;
 }
 
-.algo {
-    margin: 1.5rem;
-
-    text-transform: lowercase;
-    text-align: center;
-    font-size: 70%;
-    opacity: .06;
+.ranking-layout {
+    margin-top: 1em;
 }
-
-.ranking > :nth-child(3) {
+.ranking-layout > :nth-child(3) {
     max-width: 864px;
     margin: 0 auto;
 }
 /* 2-column ranking */
-@media (min-width: 1240px) {
-    .ranking {
+@media (min-width: 1198px) {
+    .ranking-layout {
         display: flex;
         justify-content: center;
     }
-    .ranking > :nth-child(n+2) {
-        flex-shrink: 0;
+    .ranking-layout > :first-child {
+        flex-shrink: 10;
     }
-    .ranking > :nth-child(2n-1) {
+    .ranking-layout > :nth-child(n+2) {
+        flex-shrink: 1;
+    }
+    .ranking-layout > :nth-child(2n-1) {
         width: 350px;
         margin: 0;
     }
-    .ranking > :nth-child(3) {
+    .ranking-layout > :nth-child(3) {
         flex-direction: column;
         box-sizing: border-box;
         padding-left: 34px;

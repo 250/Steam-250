@@ -1,96 +1,142 @@
-#ranking img {
-    max-width: none;
+.ranking > header > h2:first-child {
+    margin-left: 184px;
 }
 
 /* Sinusoidal in/out fade. */
-#ranking tr:nth-child(1) > td:first-child img {
-    width: 184px;
+.ranking > div:nth-of-type(1) {
+    width: 100%;
 }
-#ranking tr:nth-child(2) > td:first-child img {
-    width: 183px;
+.ranking > div:nth-of-type(2) {
+    width: calc(100% - 1px);
 }
-#ranking tr:nth-child(3) > td:first-child img {
-    width: 181px;
+.ranking > div:nth-of-type(3) {
+    width: calc(100% - 3px);
 }
-#ranking tr:nth-child(4) > td:first-child img {
-    width: 178px;
+.ranking > div:nth-of-type(4) {
+    width: calc(100% - 6px);
 }
-#ranking tr:nth-child(5) > td:first-child img {
-    width: 173px;
+.ranking > div:nth-of-type(5) {
+    width: calc(100% - 11px);
 }
-#ranking tr:nth-child(6) > td:first-child img {
-    width: 168px;
+.ranking > div:nth-of-type(6) {
+    width: calc(100% - 16px);
 }
-#ranking tr:nth-child(7) > td:first-child img {
-    width: 162px;
+.ranking > div:nth-of-type(7) {
+    width: calc(100% - 22px);
 }
-#ranking tr:nth-child(8) > td:first-child img {
-    width: 155px;
+.ranking > div:nth-of-type(8) {
+    width: calc(100% - 29px);
 }
-#ranking tr:nth-child(9) > td:first-child img {
-    width: 149px;
+.ranking > div:nth-of-type(9) {
+    width: calc(100% - 35px);
 }
-#ranking tr:nth-child(10) > td:first-child img {
-    width: 142px;
+.ranking > div:nth-of-type(10) {
+    width: calc(100% - 42px);
 }
-#ranking tr:nth-child(11) > td:first-child img {
-    width: 136px;
+.ranking > div:nth-of-type(11) {
+    width: calc(100% - 48px);
 }
-#ranking tr:nth-child(12) > td:first-child img {
-    width: 131px;
+.ranking > div:nth-of-type(12) {
+    width: calc(100% - 53px);
 }
-#ranking tr:nth-child(13) > td:first-child img {
-    width: 126px;
+.ranking > div:nth-of-type(13) {
+    width: calc(100% - 58px);
 }
-#ranking tr:nth-child(14) > td:first-child img {
-    width: 123px;
+.ranking > div:nth-of-type(14) {
+    width: calc(100% - 61px);
 }
-#ranking tr:nth-child(15) > td:first-child img {
-    width: 121px;
+.ranking > div:nth-of-type(n+15) {
+    width: calc(100% - 64px);
 }
 
-#ranking tr:nth-child(1) .title {
+.ranking > div:nth-of-type(1) > div:first-child {
+    max-width: 184px;
+}
+.ranking div:nth-of-type(2) > div:first-child {
+    max-width: 183px;
+}
+.ranking div:nth-of-type(3) > div:first-child {
+    max-width: 181px;
+}
+.ranking div:nth-of-type(4) > div:first-child {
+    max-width: 178px;
+}
+.ranking div:nth-of-type(5) > div:first-child {
+    max-width: 173px;
+}
+.ranking div:nth-of-type(6) > div:first-child {
+    max-width: 168px;
+}
+.ranking div:nth-of-type(7) > div:first-child {
+    max-width: 162px;
+}
+.ranking div:nth-of-type(8) > div:first-child {
+    max-width: 155px;
+}
+.ranking div:nth-of-type(9) > div:first-child {
+    max-width: 149px;
+}
+.ranking div:nth-of-type(10) > div:first-child {
+    max-width: 142px;
+}
+.ranking div:nth-of-type(11) > div:first-child {
+    max-width: 136px;
+}
+.ranking div:nth-of-type(12) > div:first-child {
+    max-width: 131px;
+}
+.ranking div:nth-of-type(13) > div:first-child {
+    max-width: 126px;
+}
+.ranking div:nth-of-type(14) > div:first-child {
+    max-width: 123px;
+}
+.ranking div:nth-of-type(15) > div:first-child {
+    max-width: 121px;
+}
+
+.ranking > div:nth-of-type(1) .title {
     font-size: 200%;
 }
-#ranking tr:nth-child(2) .title {
+.ranking > div:nth-of-type(2) .title {
     font-size: 198.91%;
 }
-#ranking tr:nth-child(3) .title {
+.ranking > div:nth-of-type(3) .title {
     font-size: 195.68%;
 }
-#ranking tr:nth-child(4) .title {
+.ranking > div:nth-of-type(4) .title {
     font-size: 190.45%;
 }
-#ranking tr:nth-child(5) .title {
+.ranking > div:nth-of-type(5) .title {
     font-size: 183.46%;
 }
-#ranking tr:nth-child(6) .title {
+.ranking > div:nth-of-type(6) .title {
     font-size: 175%;
 }
-#ranking tr:nth-child(7) .title {
+.ranking > div:nth-of-type(7) .title {
     font-size: 165.45%;
 }
-#ranking tr:nth-child(8) .title {
+.ranking > div:nth-of-type(8) .title {
     font-size: 155.23%;
 }
-#ranking tr:nth-child(9) .title {
+.ranking > div:nth-of-type(9) .title {
     font-size: 144.77%;
 }
-#ranking tr:nth-child(10) .title {
+.ranking > div:nth-of-type(10) .title {
     font-size: 134.55%;
 }
-#ranking tr:nth-child(11) .title {
+.ranking > div:nth-of-type(11) .title {
     font-size: 125%;
 }
-#ranking tr:nth-child(12) .title {
+.ranking > div:nth-of-type(12) .title {
     font-size: 116.54%;
 }
-#ranking tr:nth-child(13) .title {
+.ranking > div:nth-of-type(13) .title {
     font-size: 109.55%;
 }
-#ranking tr:nth-child(14) .title {
+.ranking > div:nth-of-type(14) .title {
     font-size: 104.32%;
 }
-#ranking tr:nth-child(15) .title {
+.ranking > div:nth-of-type(15) .title {
     font-size: 101.09%;
 }

@@ -6,99 +6,90 @@
 {% endblock %}
 
 {% block fullwidth %}
-<div class="ranking">
+<div class="ranking-layout">
     <div>{#Virtual#}</div>
-    <div>
-        <table id="ranking">
-            <thead>
-                <tr>
-                    <td>
-                    <td>Movement, rank, title, date, platforms and tags
-                    <td>{% block scoring_heading %}Score{% endblock %}
-            <tbody>
+    <div class="ranking">
+        <header>
+            <h2>Movement, rank, title, date, platforms and tags</h2>
+            <h2>{% block scoring_heading %}Score{% endblock %}</h2>
+        </header>
         {% for game in games %}
-            <tr{{ loop.index % 2 ? ' class="a"' }}>
-                <td>
+        <div id="{{ game.rank }}">
+            <div>
+                <a href="http://store.steampowered.com/app/{{ game.id }}/">
+                    <img alt="Logo" src="http://cdn.akamai.steamstatic.com/steam/apps/{{ game.id }}/capsule_
+                        {{- loop.index <= 14 ? '184x69.jpg' : 'sm_120.jpg' }}"
+                ></a>
+            </div>
+            <div>
+                {% if game.movement is defined %}
+                {{ include('partial/movement.twig', {movement: game.movement}) }}
+                {% endif %}
+                <span class="title">
+                    {{ game.rank }}.
                     <a href="http://store.steampowered.com/app/{{ game.id }}/">
-                        <img alt="Logo" src="http://cdn.akamai.steamstatic.com/steam/apps/{{ game.id }}/capsule_
-                            {{- loop.index <= 14 ? '184x69.jpg' : 'sm_120.jpg' }}"
-                    ></a>
-                </td>
-                <td id="{{ game.rank }}">
-                    {% if game.movement is defined %}
-                    {{ include('partial/movement.twig', {movement: game.movement}) }}
-                    {% endif %}
-                    <span class="title">
-                        {{ game.rank }}.
-                        <a href="http://store.steampowered.com/app/{{ game.id }}/">
-                            {{- game.name -}}
-                        </a>
-                    </span>
-                    {% if game.release_date %}
-                    <span class="date" title="{{ game.release_date|date('j M Y') }}">
-                        ({{ game.release_date|date('M Y') }})
-                    </span>
-                    {% endif %}
-                    <span class="platforms">
-                    {%- if game.platforms b-and constant('ScriptFUSION\\Top250\\Shared\\Platform::WINDOWS') -%}
-                        <span title="Windows"></span>
-                    {%- endif -%}
-                    {%- if game.platforms b-and constant('ScriptFUSION\\Top250\\Shared\\Platform::MAC') -%}
-                        <a href="/mac250{{ ext }}" title="Mac"></a>
-                    {%- endif -%}
-                    {%- if game.platforms b-and constant('ScriptFUSION\\Top250\\Shared\\Platform::LINUX') -%}
-                        <a href="/linux250{{ ext }}" title="Linux"></a>
-                    {%- endif -%}
-                    {%- if game.platforms b-and constant('ScriptFUSION\\Top250\\Shared\\Platform::VIVE') -%}
-                        <a href="/vr250{{ ext }}" title="HTC Vive"></a>
-                    {%- endif -%}
-                    {%- if game.platforms b-and constant('ScriptFUSION\\Top250\\Shared\\Platform::OCCULUS') -%}
-                        <a href="/vr250{{ ext }}" title="Occulus Rift"></a>
-                    {%- endif -%}
-                    {%- if game.platforms b-and constant('ScriptFUSION\\Top250\\Shared\\Platform::WMR') -%}
-                        <a href="/vr250{{ ext }}" title="Windows Mixed Reality"></a>
-                    {%- endif -%}
-                    </span>
-                    {% if game.primary_tag %}
-                        {% if game.primary_tag in tags %}
-                            {% set tag_url = "/tag/#{game.primary_tag|tag_id|url_encode ~ ext}" %}
-                        {% else %}
-                            {% set tag_url = "http://store.steampowered.com/tag/en/#{game.primary_tag|url_encode}/" %}
-                        {% endif %}
-                        <a href="{{ tag_url }}" class="genre">{{- game.primary_tag -}}</a>
-                    {% endif %}
-                    {% if game.rank_250 and game.list_id != 'index' %}
-                    <a href="/#{{ game.rank_250 }}" class="ref250">Top 250 #{{ game.rank_250 }}</a>
-                    {% endif %}
-                    {% if game.discount > 0 %}
-                    <a href="/discounts{{ ext }}" class="discount">-{{ game.discount }}%</a>
-                    {% endif %}
-                    {% if game.price is same as('0') %}
-                    <a href="/tag/free_to_play{{ ext }}" class="free">Free</a>
-                    {% endif %}
-                    <a href="#{{ game.rank }}" class="links" title="Link">▼</a>
-                    {% block reviews %}{% endblock %}
-                </td>
-                <td>
-                    {% block scoring_criteria %}
-                    <span class="score">{{ (game.score * 10)|number_format(2) }}</span>
-                    <span class="rating">{{ (game.positive_reviews / game.total_reviews * 100)|round }}%</span>
-                    <span class="votes">{{ game.total_reviews|number_format }} votes</span>
-                    {% endblock %}
-                </td>
-            </tr>
-            {% if (loop.index == 25 or loop.index == 50) and not loop.last %}
-            <tr>
-                <td colspan="3" class="ad">{{ include(
-                    'partial/ad.twig',
-                    {id: cycle(['6706909236', '6885984584'], loop.index / 25 - 1)}
-                ) }}</td>
-            </tr>
-            {% endif %}
+                        {{- game.name -}}
+                    </a>
+                </span>
+                {% if game.release_date %}
+                <span class="date" title="{{ game.release_date|date('j M Y') }}">
+                    {{ game.release_date|date('M Y') }}
+                </span>
+                {% endif %}
+                <span class="platforms">
+                {%- if game.platforms b-and constant('ScriptFUSION\\Top250\\Shared\\Platform::WINDOWS') -%}
+                <span title="Windows"></span>
+                {%- endif -%}
+                {%- if game.platforms b-and constant('ScriptFUSION\\Top250\\Shared\\Platform::MAC') -%}
+                <a href="/mac250{{ ext }}" title="Mac"></a>
+                {%- endif -%}
+                {%- if game.platforms b-and constant('ScriptFUSION\\Top250\\Shared\\Platform::LINUX') -%}
+                <a href="/linux250{{ ext }}" title="Linux"></a>
+                {%- endif -%}
+                {%- if game.platforms b-and constant('ScriptFUSION\\Top250\\Shared\\Platform::VIVE') -%}
+                <a href="/vr250{{ ext }}" title="HTC Vive"></a>
+                {%- endif -%}
+                {%- if game.platforms b-and constant('ScriptFUSION\\Top250\\Shared\\Platform::OCCULUS') -%}
+                <a href="/vr250{{ ext }}" title="Occulus Rift"></a>
+                {%- endif -%}
+                {%- if game.platforms b-and constant('ScriptFUSION\\Top250\\Shared\\Platform::WMR') -%}
+                <a href="/vr250{{ ext }}" title="Windows Mixed Reality"></a>
+                {%- endif -%}
+                </span>
+                {% if game.primary_tag %}
+                {% if game.primary_tag in tags %}
+                    {% set tag_url = "/tag/#{game.primary_tag|tag_id|url_encode ~ ext}" %}
+                {% else %}
+                    {% set tag_url = "http://store.steampowered.com/tag/en/#{game.primary_tag|url_encode}/" %}
+                {% endif %}
+                <a href="{{ tag_url }}" class="genre">{{- game.primary_tag -}}</a>
+                {% endif %}
+                {% if game.rank_250 and game.list_id != 'index' %}
+                <a href="/#{{ game.rank_250 }}" class="ref250">Top 250 #{{ game.rank_250 }}</a>
+                {% endif %}
+                {% if game.discount > 0 %}
+                <a href="/discounts{{ ext }}" class="discount">-{{ game.discount }}%</a>
+                {% endif %}
+                {% if game.price is same as('0') %}
+                <a href="/tag/free_to_play{{ ext }}" class="free">Free</a>
+                {% endif %}
+                <a href="#{{ game.rank }}" class="links" title="Link">▼</a>
+                {% block reviews %}{% endblock %}
+            </div>
+            <div>
+                {% block scoring_criteria %}
+                <span class="score">{{ (game.score * 10)|number_format(2) }}</span>
+                <span class="rating">{{ (game.positive_reviews / game.total_reviews * 100)|round }}%</span>
+                <span class="votes">{{ game.total_reviews|number_format }} votes</span>
+                {% endblock %}
+            </div>
+        </div>
+        {% if (loop.index == 25 or loop.index == 50) and not loop.last %}
+        {{ include('partial/ad.twig', {id: cycle(['6706909236', '6885984584'], loop.index / 25 - 1)}) }}
+        {% endif %}
         {% endfor %}
-        </table>
         {% if ranking.algorithm %}
-        <div class="algo" title="Ranking algorithm">{{ ranking.algorithm }} {{ ranking.weight }}</div>
+        <footer title="Ranking algorithm">{{ ranking.algorithm }} {{ ranking.weight }}</footer>
         {% endif %}
     </div>
     <section class="r&amp;f">
