@@ -32,4 +32,9 @@ class AnnualList extends ThisYearList
             ->andWhere("release_date < {$yearEnd->getTimestamp()}")
         ;
     }
+
+    public function getYear(): int
+    {
+        return $this->year;
+    }
 }

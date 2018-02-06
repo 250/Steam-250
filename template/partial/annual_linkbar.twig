@@ -1,15 +1,16 @@
 <div class="linkbar">
     {% set first = constant('ScriptFUSION\\Steam250\\SiteGenerator\\Ranking\\Impl\\AnnualList::EARLIEST_YEAR') %}
-    {% if ranking.id == first %}
-        <a href="/old{{ ext }}" class="prev">Pre-{{ ranking.id }}</a>
-    {% endif %}
-    {% if ranking.id > first %}
-        <a href="{{ (ranking.id - 1) ~ ext }}" class="prev">{{ (ranking.id - 1) }}</a>
-    {% endif %}
-    {% if ranking.id < 'now'|date('Y') %}
-        <a href="{{ (ranking.id + 1) ~ ext }}" class="next">{{ (ranking.id + 1) }}</a>
-    {% endif %}
-    {% if ranking.id == 'old' %}
+    {% if ranking.year is not defined %}
         <a href="{{ first ~ ext }}" class="next">{{ first }}</a>
+    {% else %}
+        {% if ranking.year == first %}
+        <a href="/old{{ ext }}" class="prev">Pre-{{ ranking.year }}</a>
+        {% endif %}
+        {% if ranking.year > first %}
+        <a href="{{ (ranking.year - 1) ~ ext }}" class="prev">{{ (ranking.year - 1) }}</a>
+        {% endif %}
+        {% if ranking.year < 'now'|date('Y') %}
+        <a href="{{ (ranking.year + 1) ~ ext }}" class="next">{{ (ranking.year + 1) }}</a>
+        {% endif %}
     {% endif %}
 </div>

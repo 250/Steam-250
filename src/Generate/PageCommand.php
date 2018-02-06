@@ -8,7 +8,6 @@ use ScriptFUSION\Steam250\SiteGenerator\ApplicationConfig;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Algorithm;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\PageContainerFactory;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Ranking;
-use ScriptFUSION\Steam250\SiteGenerator\Ranking\RankingViolator;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -56,14 +55,15 @@ final class PageCommand extends Command
         }
 
         if ($page instanceof Ranking) {
-            // Override algorithm and weight.
-            RankingViolator::violate(
-                $page,
-                Algorithm::memberOrNullByKey($input->getOption('algorithm'), false),
-                (float)$input->getOption('weight')
-            );
-
             $page->setPrevDb($input->getOption('prev-db'));
+
+            // Override algorithm and weight.
+            if ($algorithm = $input->getOption('algorithm')) {
+                $page->setAlgorithm(Algorithm::memberOrNullByKey($algorithm, false));
+            }
+            if ($weight = $input->getOption('weight')) {
+                $page->setWeight((float)$weight);
+            }
         }
 
         return $generator->generate($page, $input->getArgument('out')) ? 0 : 1;

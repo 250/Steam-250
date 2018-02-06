@@ -115,9 +115,19 @@ abstract class Ranking extends Page
         return $this->algorithm;
     }
 
+    public function setAlgorithm(?Algorithm $algorithm): void
+    {
+        $this->algorithm = $algorithm;
+    }
+
     public function getWeight(): ?float
     {
         return $this->weight;
+    }
+
+    public function setWeight(float $weight): void
+    {
+        $this->weight = $weight;
     }
 
     public function getLimit(): int

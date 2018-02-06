@@ -7,6 +7,7 @@ use Joomla\DI\Container;
 use ScriptFUSION\Steam250\SiteGenerator\Database\Queries;
 use ScriptFUSION\Steam250\SiteGenerator\Page\StaticPageName;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\AnnualList;
+use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\OwnersRanking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\TagList;
 use ScriptFUSION\Steam250\SiteGenerator\SteamApp\Tag;
 
@@ -29,6 +30,10 @@ final class PageContainerFactory
         foreach (range(AnnualList::EARLIEST_YEAR, date('Y')) as $year) {
             $container->set($year, function () use ($year, $parent): Ranking {
                 return new AnnualList($parent->get(RankingDependencies::class), $year);
+            });
+
+            $container->set("owners/$year", function () use ($year, $parent): Ranking {
+                return new OwnersRanking($parent->get(RankingDependencies::class), $year);
             });
         }
 
