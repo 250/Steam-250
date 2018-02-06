@@ -488,6 +488,7 @@ p.tip:before {
 }
 .ranking > header > h2:nth-child(2) {
     margin-left: auto;
+    padding: 0;
 }
 
 .ranking > div {
@@ -529,16 +530,17 @@ p.tip:before {
 }
 .ranking > div > div:nth-child(3),
 .ranking > header > h2:nth-child(2) {
-    max-width: 10%;
-    min-width: 4em;
-    padding-right: 1vw;
+    width: 10%;
+    min-width: 4.5em;
+    padding-right: .5vw;
+    flex-shrink: 0;
 
     text-align: center;
 }
 .ranking > div > div:nth-child(3) > span {
     font-size: 80%;
 }
-.ranking > div > div:nth-child(3) > .score {
+.ranking > div > div:nth-child(3) > span:first-child {
     font-size: 100%;
     font-weight: bold;
 }
@@ -863,6 +865,10 @@ tr.a .movement.none:before {
 .linkbar .next:after {
     content: ' ▶';
     font-size: 80%;
+}
+
+.owners + .rating {
+    display: inline-block;
 }
 
 .r\&f {
