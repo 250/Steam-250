@@ -1,5 +1,7 @@
 {% extends 'layout/skeleton.twig' %}
 
+{% set earliest_year = constant('ScriptFUSION\\Steam250\\SiteGenerator\\Ranking\\Impl\\AnnualList::EARLIEST_YEAR') %}
+
 {% block body %}
 <section id="header">
     <div id="user">
@@ -38,6 +40,14 @@
             <li><a href="/dlc{{ ext }}">Top 250 DLC</a>
             <li><a href="/hidden_gems{{ ext }}">Hidden Gems</a>
             <li><a href="/hidden_novels{{ ext }}">Hidden Novels</a>
+            <li>
+                <a>Best Sellers</a>
+                <ol class="annual">
+                    {% for year in range('now'|date('Y'), earliest_year) %}
+                    <li><a href="/owners/{{ year ~ ext }}">{{ year }}</a>
+                    {% endfor %}
+                    <li><a href="/owners/old{{ ext }}">Pre-{{ earliest_year }}</a>
+                </ol>
             <li>
                 <a>Platform</a>
                 <ol>
@@ -80,13 +90,11 @@
         <ol>
             <li>
                 <a>Fixed Year</a>
-                <ol>
-                    {% set first =
-                        constant('ScriptFUSION\\Steam250\\SiteGenerator\\Ranking\\Impl\\AnnualList::EARLIEST_YEAR') %}
-                    {% for year in range('now'|date('Y'), first) %}
-                    <li><a href="/{{ year }}{{ ext }}">{{ year }}</a>
+                <ol class="annual">
+                    {% for year in range('now'|date('Y'), earliest_year) %}
+                    <li><a href="/{{ year ~ ext }}">{{ year }}</a>
                     {% endfor %}
-                    <li><a href="/old{{ ext }}">Pre-{{ first }}</a>
+                    <li><a href="/old{{ ext }}">Pre-{{ earliest_year }}</a>
                 </ol>
             <li><a href="/30day{{ ext }}">Rolling Month</a>
             <li><a href="/90day{{ ext }}">Rolling Quarter</a>
@@ -102,7 +110,7 @@
                 &ndash; <a href="/discounts{{ ext }}">Discounts</a>
                 &ndash; <a href="/{{ 'now'|date('Y') ~ ext }}">{{ 'now'|date('Y') }}</a>
             <li><a href="https://www.patreon.com/steam250">
-                Join Club 250 <span class="d">and</span> make this site better</a>
+                Join Club 250 <span class="d">on</span> Patreon</a>
         </ul>
         {{ include('partial/ad.twig', {id: '9535671996'}) }}
         {{ block('content') }}

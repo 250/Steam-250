@@ -240,7 +240,7 @@ ol.menu > li ol {
     text-align: left;
     background: #171a21;
     border-radius: 0 0 2px 2px;
-    transition: max-height .3s .2s;
+    transition: max-height .3s .15s;
     box-shadow: 0 2px 3px rgba(38, 61, 91, .43);
 }
 ol.menu > li:hover > ol,
@@ -339,12 +339,12 @@ ol.menu > li:nth-child(2) > ol > li:last-of-type:hover > a {
 }
 
 ol.menu > li:nth-child(4) > ol,
-ol.menu > li:nth-child(5) > ol > li:first-of-type > ol {
+ol.menu .annual {
     overflow-y: auto;
     overflow-x: hidden;
     font-size: 85%;
 }
-ol.menu > li:nth-child(5) > ol > li:first-of-type > ol {
+ol.menu .annual {
     font-size: 90%;
     text-align: center;
 }
@@ -541,8 +541,12 @@ p.tip:before {
     font-size: 80%;
 }
 .ranking > div > div:nth-child(3) > span:first-child {
-    font-size: 100%;
     font-weight: bold;
+}
+@media (min-width: 850px) {
+    .ranking > div > div:nth-child(3) > span:first-child {
+        font-size: 100%;
+    }
 }
 .votes {
     display: block;
@@ -867,6 +871,7 @@ tr.a .movement.none:before {
     font-size: 80%;
 }
 
+.players + .rating,
 .owners + .rating {
     display: inline-block;
 }

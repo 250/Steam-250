@@ -11,6 +11,8 @@ class OldList extends Top250List
     public function __construct(RankingDependencies $dependencies)
     {
         parent::__construct($dependencies, 'old', 100);
+
+        $this->setTemplate('annual');
     }
 
     public function customizeQuery(QueryBuilder $builder): void

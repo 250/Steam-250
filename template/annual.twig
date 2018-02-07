@@ -1,20 +1,28 @@
 {% extends'layout/ranking.twig' %}
 
-{% block title %}Top {{ games|length }} Steam Games from {{ ranking.id }}{% endblock %}
-{% block heading %}Best of {{ ranking.id }}{% endblock %}
+{% set earliest_year = constant('ScriptFUSION\\Steam250\\SiteGenerator\\Ranking\\Impl\\AnnualList::EARLIEST_YEAR') %}
+{% set year = ranking.year ?? earliest_year %}
+{% set when = ranking.year ?? ('pre-' ~ year) %}
+{% set desc = ranking.year is defined ? 'in ' ~ year : 'before ' ~ year %}
+
+{% block title %}Top {{ games|length }} best Steam Games released {{ desc }}{% endblock %}
+{% block heading %}Top Rated {{ when }}{% endblock %}
 
 {% block content %}
     {{ include('partial/annual_linkbar.twig') }}
     <p>
-        Top {{ games|length }} best Steam games released in {{ ranking.id }},
+        Top {{ games|length }} best Steam games released {{ desc }},
         according to player reviews.
     </p>
-    {% if ranking.id != 'now'|date('Y') %}
+    {% if year != 'now'|date('Y') %}
     <p class="note">
         Despite representing a historical segment, this ranking is subject to change as votes change
         and old games are released on Steam.
     </p>
     {% endif %}
+    <p class="tip">
+        Compare with <a href="/owners/{{ (ranking.year ?? 'old') ~ ext }}">best sellers {{ desc }}</a>.
+    </p>
 {% endblock %}
 
 {% block post %}

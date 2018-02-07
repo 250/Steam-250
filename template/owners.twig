@@ -1,17 +1,25 @@
 {% extends'layout/ranking.twig' %}
 
-{% block title %}Top {{ games|length }} Steam Games sold in {{ ranking.year }}{% endblock %}
-{% block heading %}Best Sellers {{ ranking.year }}{% endblock %}
+{% set earliest_year = constant('ScriptFUSION\\Steam250\\SiteGenerator\\Ranking\\Impl\\AnnualList::EARLIEST_YEAR') %}
+{% set year = ranking.year ?? earliest_year %}
+{% set when = ranking.year ?? ('pre-' ~ year) %}
+{% set desc = ranking.year is defined ? 'in ' ~ year : 'before ' ~ year %}
+
+{% block title %}Top {{ games|length }} Best Sellers on Steam {{ desc }}{% endblock %}
+{% block heading %}Best Sellers {{ when }}{% endblock %}
 
 {% block content %}
     {{ include('partial/annual_linkbar.twig') }}
     <p>
-        Top {{ games|length }} best sellers on Steam released in {{ ranking.year }}.
+        Top {{ games|length }} best sellers on Steam released {{ desc }}.
     </p>
-    <p class="note">
-        These figures based on estimates of total ownership and may have up to a 10% error margin.
+    <p>
+        Figures are based on estimates of total ownership and may have up to a 10% error margin.
         Whilst ownership and sales are often correlated, this data is strictly based on ownership,
-        which includes any free copies. However, completely free games are excluded.
+        which includes any free copies. Free-to-play games are excluded.
+    </p>
+    <p class="tip">
+        Compare with <a href="/{{ (ranking.year ?? 'old') ~ ext }}">top rated games {{ desc }}</a>.
     </p>
 {% endblock %}
 
