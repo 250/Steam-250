@@ -6,7 +6,7 @@
 {% set desc = ranking.year is defined ? 'in ' ~ year : 'before ' ~ year %}
 
 {% block title %}Top {{ games|length }} best Steam Games released {{ desc }}{% endblock %}
-{% block heading %}Top Rated {{ when }}{% endblock %}
+{% block heading %}Best of {{ when }}{% endblock %}
 
 {% block content %}
     {{ include('partial/annual_linkbar.twig') }}

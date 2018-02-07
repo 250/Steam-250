@@ -36,14 +36,14 @@ final class Queries
     }
 
     /**
-     * Fetches a previously saved ranked list. If a previous database is specified, ranking movements are calculated
-     * relative to the previous ranking.
+     * Fetches a previously saved ranking. If a previous database is specified, ranking movements are calculated
+     * relative to the previous ranking position.
      *
      * @param Connection $database
-     * @param Ranking $ranking List.
+     * @param Ranking $ranking Ranking.
      * @param string $prevDb Optional. Path to a previous database.
      *
-     * @return array Ranked list of Steam apps.
+     * @return array Ranking of Steam apps.
      */
     public static function fetchRankedList(Connection $database, Ranking $ranking, string $prevDb = null): array
     {

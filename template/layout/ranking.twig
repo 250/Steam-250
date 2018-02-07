@@ -33,7 +33,16 @@
                 </span>
                 {% if game.release_date %}
                 <span class="date" title="{{ game.release_date|date('j M Y') }}">
-                    {{ game.release_date|date('M Y') }}
+                    {% set year = game.release_date|date('Y') %}
+                    {% if year <= 'now'|date('Y') %}
+                    {% set earliest_year =
+                        constant('ScriptFUSION\\Steam250\\SiteGenerator\\Ranking\\Impl\\AnnualList::EARLIEST_YEAR') %}
+                    <a href="/{{ (year < earliest_year ? 'old' : game.release_date|date('Y')) ~ ext }}">
+                    {% endif %}
+                        {{ game.release_date|date('M Y') }}
+                    {% if year <= 'now'|date('Y') %}
+                    </a>
+                    {% endif %}
                 </span>
                 {% endif %}
                 <span class="platforms">
