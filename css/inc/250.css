@@ -243,8 +243,7 @@ ol.menu > li ol {
     transition: max-height .3s .15s;
     box-shadow: 0 2px 3px rgba(38, 61, 91, .43);
 }
-ol.menu > li:hover > ol,
-ol.menu > li > ol > li:hover > ol {
+ol.menu li:hover > ol {
     overflow: visible;
     max-height: 50vh;
     transition-delay: 0s;
@@ -301,10 +300,22 @@ ol.menu > li > ol > li > ol {
     transform: none;
 }
 @media (max-width: 620px) {
-    ol.menu > li:nth-child(5) > ol > li > ol {
+    /* Second-level of final menu item expands to the left at small resolutions. */
+    ol.menu > li:last-of-type > ol > li > ol {
         left: auto;
         right: 99.5%;
     }
+}
+/* Long second-level menus with smaller fonts and scrollbars. */
+ol.menu > li:nth-child(4) > ol,
+ol.menu ol ol.annual {
+    overflow-y: auto;
+    overflow-x: hidden;
+    font-size: 85%;
+}
+ol.menu ol ol.annual {
+    font-size: 90%;
+    text-align: center;
 }
 /* Special */
 ol.menu > li:nth-child(2) > ol > li:nth-last-of-type(3) > a {
@@ -336,17 +347,6 @@ ol.menu > li:nth-child(2) > ol > li:last-of-type:hover {
 }
 ol.menu > li:nth-child(2) > ol > li:last-of-type:hover > a {
     text-shadow: 1px 1px 1px #7289da;
-}
-
-ol.menu > li:nth-child(4) > ol,
-ol.menu .annual {
-    overflow-y: auto;
-    overflow-x: hidden;
-    font-size: 85%;
-}
-ol.menu .annual {
-    font-size: 90%;
-    text-align: center;
 }
 ol.menu > li ol.t11g {
     overflow: hidden !important;
@@ -772,10 +772,12 @@ tr.a .movement.none:before {
 
 .date {
     margin-left: .25em;
-    font-size: 85%;
-
     white-space: nowrap;
+    font-size: 85%;
+}
+.date, .date > a {
     color: #cccecf;
+    text-decoration: none;
 }
 
 .platforms {
@@ -834,12 +836,12 @@ tr.a .movement.none:before {
     text-shadow: 0 1px 2px #467899;
     text-decoration: none;
     text-transform: lowercase;
-    transition: opacity .1s;
+    transition: all .1s;
 
     outline: none;
 }
 .linkbar .prev:hover, .linkbar .next:hover {
-    color: #beddf7;
+    color: #bfedff;
     background: #3a6185;
     border-top-color: #48718c;
     border-bottom-color: #26415e;
@@ -853,6 +855,7 @@ tr.a .movement.none:before {
     border-bottom-width: 1px;
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, .5);
     text-shadow: none;
+    transition: none;
 }
 .linkbar .prev:before {
     content: '◀ ';
