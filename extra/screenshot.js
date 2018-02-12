@@ -13,7 +13,7 @@ let webpage = require('webpage').create();
 webpage.viewportSize = {width: 1260, height: screen.height};
 
 (async () => {
-    for (let page of PAGES) {
+    for (const page of PAGES) {
         await webpage.open(BASE_URL + page, () => {
             webpage.evaluate(() => {
                 // Remove ads.

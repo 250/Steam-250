@@ -10,6 +10,32 @@
     <div>{#Virtual#}</div>
     <div class="ranking">
         <header>
+            <button type="button">filters</button>
+            <form>
+                <fieldset>
+                    <legend>Platforms</legend>
+                    <p>Include games from these platforms.</p>
+                    <label>
+                        <input type="checkbox" name="win" checked>
+                        <span>Windows</span>
+                    </label>
+                    <label>
+                        <input type="checkbox" name="mac" checked>
+                        <span>Mac</span>
+                    </label>
+                    <label>
+                        <input type="checkbox" name="nix" checked>
+                        <span>Linux</span>
+                    </label>
+                    <label>
+                        <input type="checkbox" name="vr" checked>
+                        <span>Virtual reality</span>
+                    </label>
+                </fieldset>
+                <button class="button ok">OK</button>
+                <button class="button cancel">Cancel</button>
+                <button class="button reset" type="reset">Reset</button>
+            </form>
             <h2>Movement, rank, title, date, platforms and tags</h2>
             <h2>{% block scoring_heading %}Score{% endblock %}</h2>
         </header>
@@ -47,22 +73,22 @@
                 {% endif %}
                 <span class="platforms">
                 {%- if game.platforms b-and constant('ScriptFUSION\\Top250\\Shared\\Platform::WINDOWS') -%}
-                <span title="Windows"></span>
+                <span title="Windows" class="win"></span>
                 {%- endif -%}
                 {%- if game.platforms b-and constant('ScriptFUSION\\Top250\\Shared\\Platform::MAC') -%}
-                <a href="/mac250{{ ext }}" title="Mac"></a>
+                <a href="/mac250{{ ext }}" title="Mac" class="mac"></a>
                 {%- endif -%}
                 {%- if game.platforms b-and constant('ScriptFUSION\\Top250\\Shared\\Platform::LINUX') -%}
-                <a href="/linux250{{ ext }}" title="Linux"></a>
+                <a href="/linux250{{ ext }}" title="Linux" class="nix"></a>
                 {%- endif -%}
                 {%- if game.platforms b-and constant('ScriptFUSION\\Top250\\Shared\\Platform::VIVE') -%}
-                <a href="/vr250{{ ext }}" title="HTC Vive"></a>
+                <a href="/vr250{{ ext }}" title="HTC Vive" class="vive"></a>
                 {%- endif -%}
                 {%- if game.platforms b-and constant('ScriptFUSION\\Top250\\Shared\\Platform::OCCULUS') -%}
-                <a href="/vr250{{ ext }}" title="Occulus Rift"></a>
+                <a href="/vr250{{ ext }}" title="Occulus Rift" class="rift"></a>
                 {%- endif -%}
                 {%- if game.platforms b-and constant('ScriptFUSION\\Top250\\Shared\\Platform::WMR') -%}
-                <a href="/vr250{{ ext }}" title="Windows Mixed Reality"></a>
+                <a href="/vr250{{ ext }}" title="Windows Mixed Reality" class="wmr"></a>
                 {%- endif -%}
                 </span>
                 {% if game.primary_tag %}
@@ -123,4 +149,9 @@
     <li><a class="cp rank">Copy link to this rank (#<span>0</span>)</a>
     <li><a class="cp app">Copy link to track this game</a>
 </ol>
+{% endblock %}
+
+{% block js %}
+{{ parent() }}
+<script src="/js/Filter.js"></script>
 {% endblock %}

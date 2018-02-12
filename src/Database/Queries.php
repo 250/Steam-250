@@ -123,7 +123,8 @@ final class Queries
         $query = $database->createQueryBuilder()
             ->select('*')
             ->from('app')
-            ->where('type = \'game\'')
+            // Ensure platforms are defined to exclude discontinued apps.
+            ->where('type = \'game\' AND platforms > 0')
             ->setMaxResults($ranking->getLimit())
         ;
 

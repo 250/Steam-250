@@ -15,6 +15,6 @@ class DlcList extends Top250List
 
     public function customizeQuery(QueryBuilder $builder): void
     {
-        $builder->where('type = \'dlc\'');
+        $builder->where('type = \'dlc\' AND platforms > 0');
     }
 }
