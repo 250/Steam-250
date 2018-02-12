@@ -3,10 +3,6 @@
 :root {
     --reading-width: 34em;
     --user-height: 37px;
-    --patreon: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 96"><path fill="white" d="M64.11.1C44.26.1 28.11 16.25 28.11 36.1c0 19.79 16.15 35.89 36.001 35.89 19.79 0 35.89-16.1 35.89-35.89C100 16.249 83.9.1 64.11.1"/><path fill="%23F96854" d="M.012 95.988H17.59V.1H.012z"/></svg>');
-    --steam: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><path fill="%23c7d5e0" d="M127.779 0C60.42 0 5.24 52.412 0 119.014l68.724 28.674a35.812 35.812 0 0 1 20.426-6.366c.682 0 1.356.019 2.02.056l30.566-44.71v-.626c0-26.903 21.69-48.796 48.353-48.796 26.662 0 48.352 21.893 48.352 48.796 0 26.902-21.69 48.804-48.352 48.804-.37 0-.73-.009-1.098-.018l-43.593 31.377c.028.582.046 1.163.046 1.735 0 20.204-16.283 36.636-36.294 36.636-17.566 0-32.263-12.658-35.584-29.412L4.41 164.654c15.223 54.313 64.673 94.132 123.369 94.132 70.818 0 128.221-57.938 128.221-129.393C256 57.93 198.597 0 127.779 0zM80.352 196.332l-15.749-6.568c2.787 5.867 7.621 10.775 14.033 13.47 13.857 5.83 29.836-.803 35.612-14.799a27.555 27.555 0 0 0 .046-21.035c-2.768-6.79-7.999-12.086-14.706-14.909-6.67-2.795-13.811-2.694-20.085-.304l16.275 6.79c10.222 4.3 15.056 16.145 10.794 26.46-4.253 10.314-15.998 15.195-26.22 10.895zm121.957-100.29c0-17.925-14.457-32.52-32.217-32.52-17.769 0-32.226 14.595-32.226 32.52 0 17.926 14.457 32.512 32.226 32.512 17.76 0 32.217-14.586 32.217-32.512zm-56.37-.055c0-13.488 10.84-24.42 24.2-24.42 13.368 0 24.208 10.932 24.208 24.42 0 13.488-10.84 24.421-24.209 24.421-13.359 0-24.2-10.933-24.2-24.42z"/></svg>');
-    --discord: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 245 240'%3e%3cpath fill='white' d='M104.4 103.9c-5.7 0-10.2 5-10.2 11.1s4.6 11.1 10.2 11.1c5.7 0 10.2-5 10.2-11.1.1-6.1-4.5-11.1-10.2-11.1zm36.5 0c-5.7 0-10.2 5-10.2 11.1s4.6 11.1 10.2 11.1c5.7 0 10.2-5 10.2-11.1s-4.5-11.1-10.2-11.1z'/%3e%3cpath fill='white' d='M189.5 20h-134C44.2 20 35 29.2 35 40.6v135.2c0 11.4 9.2 20.6 20.5 20.6h113.4l-5.3-18.5 12.8 11.9 12.1 11.2 21.5 19V40.6c0-11.4-9.2-20.6-20.5-20.6zm-38.6 130.6s-3.6-4.3-6.6-8.1c13.1-3.7 18.1-11.9 18.1-11.9-4.1 2.7-8 4.6-11.5 5.9-5 2.1-9.8 3.5-14.5 4.3-9.6 1.8-18.4 1.3-25.9-.1-5.7-1.1-10.6-2.7-14.7-4.3-2.3-.9-4.8-2-7.3-3.4-.3-.2-.6-.3-.9-.5-.2-.1-.3-.2-.4-.3-1.8-1-2.8-1.7-2.8-1.7s4.8 8 17.5 11.8c-3 3.8-6.7 8.3-6.7 8.3-22.1-.7-30.5-15.2-30.5-15.2 0-32.2 14.4-58.3 14.4-58.3 14.4-10.8 28.1-10.5 28.1-10.5l1 1.2c-18 5.2-26.3 13.1-26.3 13.1s2.2-1.2 5.9-2.9c10.7-4.7 19.2-6 22.7-6.3.6-.1 1.1-.2 1.7-.2 6.1-.8 13-1 20.2-.2 9.5 1.1 19.7 3.9 30.1 9.6 0 0-7.9-7.5-24.9-12.7l1.4-1.6s13.7-.3 28.1 10.5c0 0 14.4 26.1 14.4 58.3 0 0-8.5 14.5-30.6 15.2z'/%3e%3c/svg%3e");
-    --twitter: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3e%3cpath fill='%231da1f3' d='M30.063 7.313c-.813 1.125-1.75 2.125-2.875 2.938v.75c0 1.563-.188 3.125-.688 4.625a15.088 15.088 0 0 1-2.063 4.438c-.875 1.438-2 2.688-3.25 3.813a15.015 15.015 0 0 1-4.625 2.563c-1.813.688-3.75 1-5.75 1-3.25 0-6.188-.875-8.875-2.625.438.063.875.125 1.375.125 2.688 0 5.063-.875 7.188-2.5-1.25 0-2.375-.375-3.375-1.125s-1.688-1.688-2.063-2.875c.438.063.813.125 1.125.125.5 0 1-.063 1.5-.25-1.313-.25-2.438-.938-3.313-1.938a5.673 5.673 0 0 1-1.313-3.688v-.063c.813.438 1.688.688 2.625.688a5.228 5.228 0 0 1-1.875-2c-.5-.875-.688-1.813-.688-2.75 0-1.063.25-2.063.75-2.938 1.438 1.75 3.188 3.188 5.25 4.25s4.313 1.688 6.688 1.813a5.579 5.579 0 0 1 1.5-5.438c1.125-1.125 2.5-1.688 4.125-1.688s3.063.625 4.188 1.813a11.48 11.48 0 0 0 3.688-1.375c-.438 1.375-1.313 2.438-2.563 3.188 1.125-.125 2.188-.438 3.313-.875z'/%3e%3c/svg%3e");
 }
 
 html, body {
@@ -66,6 +62,20 @@ h2 {
     background: #3f7085;
     border: 1px solid #4c92ae;
 }
+#user button {
+    margin: 0 .5em;
+    padding: .3em .6em .4em;
+    border: 1px solid #575a80;
+    line-height: 1;
+
+    color: #97a5cf;
+    background: transparent;
+    border-radius: 4px;
+    cursor: pointer;
+}
+#user button:hover {
+    background-color: #272a31;
+}
 
 #header {
     overflow: hidden;
@@ -86,7 +96,7 @@ h2 {
 #login {
     padding-left: calc(.6em + 17px);
 
-    background-image: var(--steam);
+    background-image: url('/svg/steam.svg');
     background-repeat: no-repeat;
     background-position: 7px 51%;
     background-size: 13px;
@@ -102,21 +112,6 @@ em {
     font-style: italic;
 }
 
-button {
-    margin: 0 .5em;
-    padding: .3em .6em .4em;
-    border: 1px solid #575a80;
-    line-height: 1;
-
-    color: #97a5cf;
-    background: transparent;
-    border-radius: 4px;
-    cursor: pointer;
-}
-button:hover {
-    background-color: #272a31;
-}
-
 dl {
     display: inline-block;
 }
@@ -127,8 +122,69 @@ dt {
     font-weight: bold;
 }
 
-td {
-    vertical-align: middle;
+fieldset {
+    margin: 1em .9em;
+    padding: 1em;
+
+    border: 1px solid #577083;
+    border-radius: 3px;
+}
+legend {
+    margin-left: -.3em;
+    padding: 0 .3em;
+
+    font-size: 60%;
+    text-transform: uppercase;
+}
+
+input[type=checkbox] {
+    position: absolute;
+    opacity: 0;
+}
+input[type=checkbox] + span {
+    position: relative;
+    padding-left: 2.6em;
+
+    transition: color .15s;
+}
+input[type=checkbox]:checked + span {
+    color: #a4c2b9;
+}
+input[type=checkbox] + span:before,
+input[type=checkbox] + span:after {
+    content: '';
+    position: absolute;
+}
+input[type=checkbox] + span:before {
+    height: .7em;
+    width: 2em;
+    top: 2px;
+    left: 1px;
+
+    background: #172230;
+    border: 1px solid #718fa5;
+    border-radius: 1em;
+    transition: all .15s;
+}
+input[type=checkbox] + span:after {
+    height: .71em;
+    width: .75em;
+    top: 3px;
+    left: 1px;
+
+    background: #a0b7c3;
+    border-radius: 1em;
+    transition: all .15s;
+}
+input[type=checkbox]:checked + span:before {
+    background: #172730;
+    border-color: #5d8bad;
+}
+input[type=checkbox]:checked + span:after {
+    left: 2.2em;
+    transform: translate(-100%, 0);
+
+    background: #34c99f;
 }
 
 a.owned {
@@ -154,7 +210,7 @@ a.owned:before {
     white-space: nowrap;
 
     color: #111;
-    background: #4F95BD url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22640%22%20height%3D%22640%22%3E%3Cpath%20d%3D%22M0%200L640%200%20640%20160%200%20160%200%200ZM0%20240L640%20240%20640%20400%200%20400%200%20240ZM0%20480L640%20480%20640%20640%200%20640%200%20480Z%22%2F%3E%3C%2Fsvg%3E') no-repeat 5px 50%;
+    background: #4F95BD url('/svg/burger.svg') no-repeat 5px 50%;
     background-size: 8px 8px;
     font-size: 8pt;
     text-transform: uppercase;
@@ -186,7 +242,7 @@ a.owned:hover:before {
 ol.menu {
     width: 100%;
     height: 36px;
-    z-index: 2;
+    z-index: 10;
     flex-shrink: 0;
     /* Google cache fix for fixed menu. */
     top: 0;
@@ -234,7 +290,7 @@ ol.menu > li ol {
     left: 50%;
     max-height: 0;
     overflow: hidden;
-    z-index: 1;
+    z-index: 10;
     transform: translate(-50%, 0);
 
     text-align: left;
@@ -321,13 +377,13 @@ ol.menu ol ol.annual {
 ol.menu > li:nth-child(2) > ol > li:nth-last-of-type(3) > a {
     padding-left: 2.05em;
 
-    background: var(--patreon) no-repeat calc(.8em + 2px) 50%;
+    background: url('/svg/patreon.svg') no-repeat calc(.8em + 2px) 50%;
     background-size: 13px;
 }
 ol.menu > li:nth-child(2) > ol > li:nth-last-of-type(2) > a {
     padding-left: 2.05em;
 
-    background: var(--twitter) no-repeat calc(.8em - 2px) 50%;
+    background: url('/svg/twitter.svg') no-repeat calc(.8em - 2px) 50%;
     background-size: 18px;
 }
 ol.menu > li:nth-child(2) > ol > li:nth-last-of-type(2):hover {
@@ -339,7 +395,7 @@ ol.menu > li:nth-child(2) > ol > li:nth-last-of-type(2):hover > a {
 ol.menu > li:nth-child(2) > ol > li:last-of-type > a {
     padding-left: 2.05em;
 
-    background: var(--discord) no-repeat calc(.8em - 2px) 50%;
+    background: url('/svg/discord.svg') no-repeat calc(.8em - 2px) 50%;
     background-size: 19px;
 }
 ol.menu > li:nth-child(2) > ol > li:last-of-type:hover {
@@ -439,7 +495,7 @@ ol.menu > li ol.t11g {
     font-size: 120%;
 
     padding-left: 16px;
-    background: var(--patreon) no-repeat left 45%;
+    background: url('/svg/patreon.svg') no-repeat left 45%;
     background-size: 12px;
 }
 
@@ -472,21 +528,71 @@ p.tip:before {
         font-size: 85%;
     }
 }
+
 .ranking > header {
+    position: relative;
     display: flex;
     align-items: flex-end;
 }
-.ranking > header > h2:first-child {
+
+.ranking > header > button:first-child {
+    position: absolute;
+    left: .5em;
+    bottom: .7em;
+    padding-left: 1.3em;
+    height: 1.3em;
+
+    background: url("/svg/settings.svg") no-repeat left;
+    background-size: 1.2em .8em;
+}
+.ranking > header > button:first-child:after {
+    content: attr(data-filtered);
+    margin-left: .5em;
+    position: relative;
+    top: -.07em;
+
+    color: #c9b734;
+    font-size: 75%;
+}
+.ranking > header > form {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 2;
+    max-height: 0;
+    overflow: hidden;
+    text-align: center;
+
+    background: rgba(27, 40, 56, .98);
+    box-shadow: 3px 3px 5px rgba(18, 24, 35, .4);
+    border-radius: 5px;
+    transition: max-height .3s;
+}
+.ranking > header > form.open {
+    max-height: 200px;
+}
+.ranking fieldset {
+    background: #1b2838;
+}
+.ranking label {
+    margin: .5em;
+    white-space: nowrap;
+}
+.ranking > header > form > fieldset > legend + * {
+    margin-top: 0;
+}
+
+.ranking > header > h2:first-of-type {
     margin-left: 120px;
     padding-left: .5em;
 }
 @media (max-width: 520px) {
-    .ranking > header > h2:first-child {
+    .ranking > header > h2:first-of-type {
         /* Just an estimate since we can't measure it, but works surprisingly well. */
         margin-left: 23.5%;
     }
 }
-.ranking > header > h2:nth-child(2) {
+.ranking > header > h2:last-child {
     margin-left: auto;
     padding: 0;
 }
@@ -495,14 +601,23 @@ p.tip:before {
     display: flex;
     align-items: center;
     width: 100%;
-    margin: 6px 0 6px auto;
+    margin: 6px 0 0 auto;
+}
+.ranking > .filtered {
+    max-height: 0;
+    margin: 0;
+    overflow: hidden;
 }
 .ranking > div:first-of-type {
     margin-top: 0;
 }
 .ranking > div:nth-of-type(2n-1),
+.ranking > div.primary,
 .r\&f li:nth-child(2n-1) > * {
     background-color: #1a2334;
+}
+.ranking > div.secondary {
+    background-color: transparent;
 }
 .ranking > div > div:first-child img {
     max-width: 100%;
@@ -529,7 +644,7 @@ p.tip:before {
     vertical-align: middle;
 }
 .ranking > div > div:nth-child(3),
-.ranking > header > h2:nth-child(2) {
+.ranking > header > h2:last-child {
     width: 10%;
     min-width: 4.5em;
     padding-right: .5vw;
@@ -728,7 +843,7 @@ tr.a .movement.none:before {
 .genre[href*="//store.steampowered.com/"] {
     padding-left: calc(.25em + 15px);
 
-    background-image: var(--steam);
+    background-image: url('/svg/steam.svg');
     background-size: 10px;
     background-repeat: no-repeat;
     background-position: 4px 45%;
@@ -820,34 +935,32 @@ tr.a .movement.none:before {
     background-image: url(http://store.akamai.steamstatic.com/public/images/v6/icon_platform_windowsmr.png);
 }
 
-.linkbar .prev, .linkbar .next {
-    position: relative;
+.button, .button:visited {
     margin: 1em .8em;
+    min-width: 5em;
     padding: .3em .7em;
 
-    font-size: 80%;
+    font-size: 90%;
     color: #b7d0e8;
     background: #2f4e6c;
     border-top: 1px solid #37576e;
     border-bottom: 2px solid #233852;
     border-radius: 2px;
     box-shadow: 0 1px 2px rgba(0, 0, 0, .125);
-
+    text-align: center;
     text-shadow: 0 1px 2px #467899;
-    text-decoration: none;
-    text-transform: lowercase;
     transition: all .1s;
-
     outline: none;
 }
-.linkbar .prev:hover, .linkbar .next:hover {
+.button:hover {
     color: #bfedff;
     background: #3a6185;
     border-top-color: #48718c;
     border-bottom-color: #26415e;
     text-shadow: 0 1px 2px #5b94b3;
+    text-decoration: none;
 }
-.linkbar .prev:active, .linkbar .next:active {
+.button:active {
     top: 1px;
     color: #abc2d9;
     background: #2f4e6c;
@@ -856,6 +969,11 @@ tr.a .movement.none:before {
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, .5);
     text-shadow: none;
     transition: none;
+}
+
+.linkbar > .button {
+    font-size: 80%;
+    min-width: auto;
 }
 .linkbar .prev:before {
     content: '◀ ';
@@ -1060,15 +1178,15 @@ a.twitter, a.patreon, a.discord {
     background: no-repeat center;
 }
 a.twitter {
-    background-image: var(--twitter);
+    background-image: url('/svg/twitter.svg');
     background-size: 24px;
 }
 a.patreon {
-    background-image: var(--patreon);
+    background-image: url('/svg/patreon.svg');
     background-size: 19px;
 }
 a.discord {
-    background-image: var(--discord);
+    background-image: url('/svg/discord.svg');
     background-size: 22px;
     background-position-y: -1px;
 }

@@ -1,4 +1,4 @@
-.ranking > header > h2:first-child {
+.ranking > header > h2:first-of-type {
     margin-left: 184px;
 }
 
