@@ -39,26 +39,34 @@ new class {
     }
 
     filterApps() {
-        const ranks = document.querySelectorAll('.ranking > div[id]');
+        const ranks = document.querySelectorAll('.ranking > div[id]'),
+            checkedChecks = this.checks.filter(check => check.checked);
+
         let kept = 0;
 
-        ranks.forEach(rank => {
-            let keep = this.checks.filter(check => check.checked).some(check => {
-                if (check.name === 'vr') {
-                    return !!rank.querySelector('.platforms > .vive, .platforms > .rift, .platforms > .wmr')
+        // Only filter when previously filtered or less than all checks enabled (optimization to speed loading).
+        if (this.filtersButton.getAttribute('data-filtered') || checkedChecks.length < this.checks.length) {
+            ranks.forEach(rank => {
+                let keep = checkedChecks.some(check => {
+                    if (check.name === 'vr') {
+                        return !!rank.querySelector('.platforms > .vive, .platforms > .rift, .platforms > .wmr')
+                    }
+
+                    return !!rank.querySelector('.platforms > .' + check.name);
+                });
+
+                rank.classList.toggle('filtered', !keep);
+
+                if (keep) {
+                    rank.classList.remove('primary', 'secondary');
+                    rank.classList.add(++kept & 1 ? 'primary' : 'secondary');
                 }
-
-                return !!rank.querySelector('.platforms > .' + check.name);
             });
+        } else {
+            kept = ranks.length;
+        }
 
-            rank.classList.toggle('filtered', !keep);
-
-            if (keep) {
-               rank.classList.remove('primary', 'secondary');
-               rank.classList.add(++kept & 1 ? 'primary' : 'secondary');
-            }
-        });
-
+        // Update UI filter count.
         const filteredCount = ranks.length - kept;
         this.filtersButton.setAttribute('data-filtered', filteredCount ? `[-${filteredCount}]` : '');
     }
