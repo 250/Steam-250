@@ -367,45 +367,45 @@ ol.menu > li > ol > li > ol {
     }
 }
 /* Long second-level menus with smaller fonts and scrollbars. */
-ol.menu > li:nth-child(4) > ol,
+ol.menu > li:nth-child(3) > ol,
 ol.menu ol ol.annual {
     overflow-y: auto;
     overflow-x: hidden;
-    font-size: 85%;
+    font-size: 90%;
 }
 ol.menu ol ol.annual {
     font-size: 90%;
     text-align: center;
 }
 /* Special */
-ol.menu > li:nth-child(2) > ol > li:nth-last-of-type(3) > a {
+ol.menu > li:nth-child(5) > ol > li:nth-last-of-type(3) > a {
     padding-left: 2.05em;
 
     background: url('/svg/patreon.svg') no-repeat calc(.8em + 2px) 50%;
     background-size: 13px;
 }
-ol.menu > li:nth-child(2) > ol > li:nth-last-of-type(2) > a {
+ol.menu > li:nth-child(5) > ol > li:nth-last-of-type(2) > a {
     padding-left: 2.05em;
 
     background: url('/svg/twitter.svg') no-repeat calc(.8em - 2px) 50%;
     background-size: 18px;
 }
-ol.menu > li:nth-child(2) > ol > li:nth-last-of-type(2):hover {
+ol.menu > li:nth-child(5) > ol > li:nth-last-of-type(2):hover {
     background-image: linear-gradient(90deg, #1572a3, #309bd9, #1572a3);
 }
-ol.menu > li:nth-child(2) > ol > li:nth-last-of-type(2):hover > a {
+ol.menu > li:nth-child(5) > ol > li:nth-last-of-type(2):hover > a {
     text-shadow: 1px 1px 1px #309bd9;
 }
-ol.menu > li:nth-child(2) > ol > li:last-of-type > a {
+ol.menu > li:nth-child(5) > ol > li:last-of-type > a {
     padding-left: 2.05em;
 
     background: url('/svg/discord.svg') no-repeat calc(.8em - 2px) 50%;
     background-size: 19px;
 }
-ol.menu > li:nth-child(2) > ol > li:last-of-type:hover {
+ol.menu > li:nth-child(5) > ol > li:last-of-type:hover {
     background-image: linear-gradient(90deg, #4b60a6, #7289da, #4b60a6);
 }
-ol.menu > li:nth-child(2) > ol > li:last-of-type:hover > a {
+ol.menu > li:nth-child(5) > ol > li:last-of-type:hover > a {
     text-shadow: 1px 1px 1px #7289da;
 }
 ol.menu > li ol.t11g {
@@ -1135,7 +1135,10 @@ tr.a .movement.none:before {
 }
 #footer h2 {
     font-size: 120%;
-    margin-bottom: .7em;
+    margin: .7em 0;
+}
+#footer h2:first-child {
+    margin-top: 0;
 }
 #footer p {
     margin: 1em 0;
