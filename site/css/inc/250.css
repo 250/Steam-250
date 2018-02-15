@@ -1135,7 +1135,10 @@ tr.a .movement.none:before {
 }
 #footer h2 {
     font-size: 120%;
-    margin-bottom: .7em;
+    margin: .7em 0;
+}
+#footer h2:first-child {
+    margin-top: 0;
 }
 #footer p {
     margin: 1em 0;

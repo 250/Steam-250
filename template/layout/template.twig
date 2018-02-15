@@ -127,22 +127,18 @@
 <section id="footer">
     <div>
         <h2>
-            <a href="https://www.patreon.com/steam250">Club 250</a>
-            <a href="https://www.patreon.com/steam250" class="patreon" title="Patreon">Patreon</a>
+            <a href="about{{ ext }}">Steam 250</a>
             <a href="https://discord.gg/8pz5ybv" class="discord" title="Discord">Discord</a>
             <a href="https://twitter.com/Steam_250" class="twitter" title="Twitter">Twitter</a>
         </h2>
         <p>
-            Club 250 is the Steam 250 member's club. If we've helped you find a good game on Steam,
-            why not <a href="https://www.patreon.com/steam250">become a member</a>.
+            Rankings are automatically updated at least once a day from live Steam reviews data.
+            <a href="about{{ ext }}">Learn more</a>.
         </p>
-        <p>The rankings are automatically updated at least once a day from live Steam reviews data.</p>
         {% if games[0].movement is defined %}
-            <p>Movement indicators show the change in position since yesterday.</p>
+        <p>Movement indicators show the change in position since yesterday.</p>
         {% endif %}
-    </div>
 
-    <div>
         <h2>System status</h2>
         <ul>
             <li>Data <a href="https://travis-ci.org/250/Steam-importer">
@@ -154,6 +150,22 @@
                 <a href="https://github.com/250/Steam-Top-250/issues">Issues</a>
             <li><a href="mailto:bilge@scriptfusion.com">Contact</a>
         </ul>
+    </div>
+
+    <div>
+        <h2>
+            <a href="https://www.patreon.com/steam250">Club 250</a>
+            <a href="https://www.patreon.com/steam250" class="patreon" title="Patreon">Patreon</a>
+        </h2>
+        <p>
+            Club 250 is the Steam 250 members club. If we've helped you find good games on Steam,
+            why not <a href="https://www.patreon.com/steam250">become a member</a> and help us grow?
+        </p>
+        <p>
+            Receive rewards based on your pledge level, including
+            <a href="/club250{{ ext }}">your Steam reviews on an exclusive games ranking</a> or
+            <a href="/club250/ambassadors{{ ext }}">your name etched into the site</a>!
+        </p>
     </div>
 
     <div>
