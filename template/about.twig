@@ -27,6 +27,20 @@
     purchasing decisions.
 </p>
 
+<h2 id="ranking">Ranking games</h2>
+<p>
+    Most of our rankings use player votes to determine rank order.
+    These <em>votes</em> are the thumbs up or down given with each game review on Steam.
+    Any gamer can vote, as long as they own the game on Steam and have played it for
+    at least five minutes, by visiting the game's store page on Steam and logging in.
+</p>
+<p>
+    At least once per day, the latest positive and negative review totals are collected by
+    scanning each game's Steam store page. When this completes, each ranking is updated with the
+    latest data and scored using various algorithms.
+    The countdown shown at the top of each page estimates when the next update will finish.
+</p>
+
 <h2 id="algorithm">The algorithm</h2>
 <p>
     A ranking algorithm determines the order of each game relative to every other game.
@@ -53,6 +67,18 @@
     impossible task. Ultimately the algorithm is blind: it knows nothing about the games other than
     the two inputs we feed it, and we must maintain the purity of its ignorance by discarding our biases
     and only examining these same figures when making decisions about how we think a ranking should look.
+</p>
+<p>
+    On a few occasions we have adjusted the weighting to fix a specific problem. We prefer to modify
+    the ranking algorithm and weighting as little as possible, because even small changes can
+    cause a drastic shift in the rankings. An example of a specific problem we faced was two adjacent
+    games both with the same approval rating percentage, but a game with half as many votes was ranked
+    above one with double the number of votes. This happened because the game with more votes also
+    had a lot more negative votes, but proportionally, they were almost the same. It seemed the algorithm
+    was too sensitive to fractional differences in the overall approval rating so we modified the weighting
+    to favour the game with a lot more votes in this situation. It is important to emphasize the
+    specific games involved are not important; we only look at the numbers when considering
+    making a change to fix ranking anomalies.
 </p>
 
 <h2 id="opensource">Open source</h2>

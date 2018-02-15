@@ -133,19 +133,20 @@ class S250 {
             target = this.resolveHashTarget(hash);
 
         if (target) {
-            // Highlight ranking element.
-            if (document.querySelector('.ranking').contains(target)) {
+            let yOffset = target.getBoundingClientRect().top - menuHeight;
+
+            // Highlight ranking element if it exists.
+            const ranking = document.querySelector('.ranking');
+            if (ranking && ranking.contains(target)) {
                 target.classList.add(HIGHLIGHT);
+
+                // Place target element at 1/3rd viewport height instead of at the very top.
+                yOffset += target.getBoundingClientRect().height / 2 - innerHeight / 3;
             }
 
             scrollTo(
                 pageXOffset,
-                pageYOffset + Math.ceil(
-                    target.getBoundingClientRect().top
-                    + target.getBoundingClientRect().height / 2
-                    - menuHeight
-                    - innerHeight / 3
-                )
+                pageYOffset + Math.ceil(yOffset)
             );
         }
     }
