@@ -112,6 +112,10 @@ em {
     font-style: italic;
 }
 
+strong {
+    font-weight: bold;
+}
+
 dl {
     display: inline-block;
 }

@@ -1,6 +1,3 @@
-@import "inc/reset.css";
-@import "inc/250.css";
-
 .content > div {
     background: rgba(0, 0, 0, .1) linear-gradient(0deg, rgba(156, 245, 255, .05), transparent 35%);
     border-radius: 10px;
