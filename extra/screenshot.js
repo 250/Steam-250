@@ -2,20 +2,16 @@ const
     BASE_URL = 'http://steam250.com/',
     PAGES = [
         'index',
-        'hidden_gems',
-        'discounts',
-        '2017',
-    ]
+    ],
+    webpage = require('webpage').create()
 ;
-
-let webpage = require('webpage').create();
 
 webpage.viewportSize = {width: 1260, height: screen.height};
 
-(async () => {
+(async _ => {
     for (const page of PAGES) {
-        await webpage.open(BASE_URL + page, () => {
-            webpage.evaluate(() => {
+        await webpage.open(BASE_URL + page, _ => {
+            webpage.evaluate(_ => {
                 // Remove ads.
                 document.querySelectorAll('ins').forEach(e => e.remove());
 
@@ -26,4 +22,4 @@ webpage.viewportSize = {width: 1260, height: screen.height};
             webpage.render(`${page}.png`);
         });
     }
-})().then(() => slimer.exit());
+})().then(_ => slimer.exit());

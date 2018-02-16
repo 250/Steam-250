@@ -41,6 +41,7 @@
             <li>
                 <a>Best Sellers</a>
                 <ol class="annual">
+                    <li><a href="/owners{{ ext }}">All time</a>
                     {% for year in range('now'|date('Y'), earliest_year) %}
                     <li><a href="/owners/{{ year ~ ext }}">{{ year }}</a>
                     {% endfor %}

@@ -1,0 +1,21 @@
+{% extends'layout/ranking.twig' %}
+
+{% block title %}Top 250 bestselling Steam Games{% endblock %}
+{% block heading %}Best Selling 250{% endblock %}
+
+{% block content %}
+    <p>
+        Top {{ games|length }} best sellers of all time on Steam.
+    </p>
+    <p>
+        Figures are based on estimates of total ownership and may have up to a 10% error margin.
+        Whilst ownership and sales are often correlated, this data is strictly based on ownership,
+        which includes any free copies. Free-to-play games are excluded.
+    </p>
+{% endblock %}
+
+{% block scoring_heading %}Owners{% endblock %}
+{% block scoring_criteria %}
+    <span class="owners">{{ game.owners|number_format }}</span>
+    <span class="rating">rated {{ (game.positive_reviews / game.total_reviews * 100)|round }}%</span>
+{% endblock %}
