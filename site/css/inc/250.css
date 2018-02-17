@@ -14,7 +14,7 @@ body {
     flex-direction: column;
     color: #c7d5e0;
     background: #1b2838;
-    font: 95%/1.4 sans-serif;
+    font: 100%/1.4 sans-serif;
 }
 @media (max-width: 380px) {
     body {
@@ -107,6 +107,13 @@ p {
 
     text-align: justify;
 }
+p > img {
+    float: right;
+    max-width: 23%;
+    min-width: 150px;
+    margin: 0 0 .5em 1em;
+    opacity: .85;
+}
 
 em {
     font-style: italic;
@@ -114,6 +121,13 @@ em {
 
 strong {
     font-weight: bold;
+}
+
+mark {
+    padding: .15em;
+
+    color: #b9ecf5;
+    background-color: #325a71;
 }
 
 dl {
@@ -261,7 +275,7 @@ ol.menu > li {
     flex-flow: column;
     justify-content: center;
     height: 100%;
-    margin: 0 1.74%;
+    margin: 0 1.66%;
     padding: 0 1%;
 
     cursor: pointer;
@@ -1087,6 +1101,8 @@ tr.a .movement.none:before {
 
 .ranking-layout {
     margin-top: 1em;
+
+    font-size: 95%;
 }
 .ranking-layout > :nth-child(3) {
     max-width: 864px;
@@ -1125,6 +1141,7 @@ tr.a .movement.none:before {
     justify-content: center;
     padding: 2em 1.5em;
 
+    font-size: 95%;
     line-height: 1.5;
 }
 #footer > * {
