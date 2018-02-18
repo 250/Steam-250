@@ -140,6 +140,12 @@ class S250 {
             if (ranking && ranking.contains(target)) {
                 target.classList.add(HIGHLIGHT);
 
+                // Will never be true for hash change events because browser has already scrolled.
+                if (isInViewport(target)) {
+                    // No need to scroll to visible element.
+                    return;
+                }
+
                 // Place target element at 1/3rd viewport height instead of at the very top.
                 yOffset += target.getBoundingClientRect().height / 2 - innerHeight / 3;
             }
@@ -147,6 +153,17 @@ class S250 {
             scrollTo(
                 pageXOffset,
                 pageYOffset + Math.ceil(yOffset)
+            );
+        }
+
+        function isInViewport(elem) {
+            const rect = elem.getBoundingClientRect();
+
+            return (
+                rect.top >= menuHeight &&
+                rect.left >= 0 &&
+                rect.bottom <= innerHeight &&
+                rect.right <= innerWidth
             );
         }
     }
