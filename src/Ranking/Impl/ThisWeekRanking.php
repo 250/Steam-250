@@ -5,10 +5,12 @@ namespace ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl;
 
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\RankingDependencies;
 
-class ThisQuarterList extends RollingRanking
+class ThisWeekRanking extends RollingRanking
 {
     public function __construct(RankingDependencies $dependencies)
     {
-        parent::__construct($dependencies, '90day', '-3 month', 50);
+        parent::__construct($dependencies, '7day', 'last week', 20);
+
+        $this->setWeight(4);
     }
 }

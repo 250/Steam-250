@@ -20,6 +20,7 @@ use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\OwnersFullRanking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\OwnersOldRanking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\ThisMonthList;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\ThisQuarterList;
+use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\ThisWeekRanking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\ThisYearList;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\Top250List;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\Usd10To15List;
@@ -39,6 +40,7 @@ final class RankingName extends AbstractEnumeration
     public const USD5_10 = 'USD5_10';
     public const USD10_15 = 'USD10_15';
     public const USD_OVER_15 = 'USD_OVER_15';
+    public const D_7 = 'D_7';
     public const D_30 = 'D_30';
     public const D_90 = 'D_90';
     public const D_365 = 'D_365';
@@ -64,6 +66,7 @@ final class RankingName extends AbstractEnumeration
         self::USD5_10 => Usd5To10List::class,
         self::USD10_15 => Usd10To15List::class,
         self::USD_OVER_15 => UsdOver15List::class,
+        self::D_7 => ThisWeekRanking::class,
         self::D_30 => ThisMonthList::class,
         self::D_90 => ThisQuarterList::class,
         self::D_365 => ThisYearList::class,
@@ -90,6 +93,7 @@ final class RankingName extends AbstractEnumeration
         self::USD5_10 => '5-15',
         self::USD10_15 => '10-15',
         self::USD_OVER_15 => 'o15',
+        self::D_7 => '7d',
         self::D_30 => '30d',
         self::D_90 => '90d',
         self::D_365 => '365d',

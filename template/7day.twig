@@ -1,0 +1,11 @@
+{% extends'layout/ranking.twig' %}
+
+{% block title %}Top {{ games|length }} best Steam Games this week{% endblock %}
+{% block heading %}Week Top {{ games|length }}{% endblock %}
+
+{% block content %}
+    <p>
+        Top {{ games|length }} best Steam games released in the last 7 days,
+        according to gamer reviews.
+    </p>
+{% endblock %}
