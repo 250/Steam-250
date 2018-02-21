@@ -28,6 +28,7 @@ use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\Usd5To10List;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\UsdOver15List;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\UsdUnder5List;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\VrTop250List;
+use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\VrxRanking;
 
 final class RankingName extends AbstractEnumeration
 {
@@ -50,6 +51,7 @@ final class RankingName extends AbstractEnumeration
     public const MAC = 'MAC';
     public const LINUX = 'LINUX';
     public const VR = 'VR';
+    public const VRX = 'VRX';
     public const HVN = 'HVN';
     public const REMORSE = 'REMORSE';
     public const PLAYERS = 'PLAYERS';
@@ -76,6 +78,7 @@ final class RankingName extends AbstractEnumeration
         self::MAC => Mac250List::class,
         self::LINUX => Linux250List::class,
         self::VR => VrTop250List::class,
+        self::VRX => VrxRanking::class,
         self::HVN => HiddenNovelsList::class,
         self::REMORSE => BuyersRemorseList::class,
         self::PLAYERS => MostPlayedList::class,
@@ -103,6 +106,7 @@ final class RankingName extends AbstractEnumeration
         self::MAC => 'mac',
         self::LINUX => 'linux',
         self::VR => 'vr',
+        self::VRX => 'vrx',
         self::HVN => 'hvn',
         self::REMORSE => 'remorse',
         self::PLAYERS => 'players',

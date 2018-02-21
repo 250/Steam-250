@@ -102,6 +102,9 @@
                 {% if game.rank_250 and game.list_id != 'index' %}
                 <a href="/#{{ game.rank_250 }}" class="ref250">Top 250 #{{ game.rank_250 }}</a>
                 {% endif %}
+                {% if game.vrx %}
+                <a href="/vr_exclusives{{ ext }}" class="vrx" title="VR exclusive">VRX</a>
+                {% endif %}
                 {% if game.discount > 0 %}
                 <a href="/discounts{{ ext }}" class="discount">-{{ game.discount }}%</a>
                 {% endif %}

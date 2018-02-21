@@ -9,9 +9,9 @@ use ScriptFUSION\Top250\Shared\Platform;
 
 class VrTop250List extends Top250List
 {
-    public function __construct(RankingDependencies $dependencies)
+    public function __construct(RankingDependencies $dependencies, $id = 'vr250')
     {
-        parent::__construct($dependencies, 'vr250');
+        parent::__construct($dependencies, $id);
     }
 
     public function customizeQuery(QueryBuilder $builder): void
