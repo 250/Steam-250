@@ -9,7 +9,7 @@ class ThisWeekRanking extends RollingRanking
 {
     public function __construct(RankingDependencies $dependencies)
     {
-        parent::__construct($dependencies, '7day', 'last week', 20);
+        parent::__construct($dependencies, '7day', '-7 day', 20);
 
         $this->setWeight(4);
     }

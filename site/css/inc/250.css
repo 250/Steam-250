@@ -556,7 +556,7 @@ p.tip:before {
 .ranking > header > button:first-child {
     position: absolute;
     left: .5em;
-    bottom: .7em;
+    bottom: .6em;
     padding-left: 1.3em;
     height: 1.3em;
 
