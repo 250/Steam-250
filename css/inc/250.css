@@ -1082,6 +1082,20 @@ tr.a .movement.none:before {
     }
 }
 
+.more, .more:visited {
+    float: right;
+    margin-top: .5em;
+
+    color: inherit;
+    font-size: 80%;
+    font-weight: bold;
+}
+.more:hover {
+    color: #e6f5ff;
+    text-decoration: none;
+    border-bottom: 1px solid #cfab72;
+}
+
 #linkmenu {
     max-height: 0;
     position: absolute;
