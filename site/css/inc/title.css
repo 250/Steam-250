@@ -1,4 +1,4 @@
-#header > .title {
+div.title {
     position: relative;
     margin: .072em 0;
 
@@ -6,12 +6,12 @@
     transform: rotate(-1deg);
 }
 @media (min-width: 1160px) {
-    #header > .title {
+    div.title {
         font-size: 123px;
     }
 }
-#header > .title:before,
-#header > .title:after {
+div.title:before,
+div.title:after {
     content: attr(data-title);
     position: absolute;
     width: 100%;
@@ -25,7 +25,7 @@
     background: linear-gradient(179deg, #e6c88a 20%, #665233, #9e814c 90%);
     -webkit-background-clip: text;
 }
-#header > .title:after {
+div.title:after {
     background: linear-gradient(103deg, transparent 30px, #fff 40px, transparent 45px, transparent 55px, #fff 60px, transparent 100px) no-repeat -90px 0;
     background-size: 100px 100%;
     -webkit-background-clip: text;
@@ -35,9 +35,11 @@
     to { background-position-x: calc(100% + 100px); }
 }
 
-h1 {
+h1, div.title > h2 {
     color: #9e814c;
 
+    font-size: inherit;
+    font-weight: inherit;
     text-align: center;
     text-shadow:
         0 1px 0 rgb(158, 129, 76),
@@ -54,4 +56,19 @@ h1 {
         0 10px 10px rgba(0, 0, 0, 0.2),
         0 20px 20px rgba(0, 0, 0, 0.14902)
     ;
+}
+div.title.h2 {
+    font-size: 100px;
+}
+div.title > h2 {
+    margin: 0;
+}
+div.title > h2 > a {
+    text-decoration: none;
+}
+div.title.h2:after {
+    animation: none;
+}
+div.title.h2:hover:after {
+    animation: quing .7s;
 }
