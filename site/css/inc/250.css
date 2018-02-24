@@ -124,10 +124,10 @@ strong {
 }
 
 mark {
-    padding: .15em;
+    padding: .045em;
 
     color: #a4e8f5;
-    background-color: #293d56;
+    background-color: #25374e;
 }
 
 dl {
@@ -1186,16 +1186,31 @@ tr.a .movement.none:before {
 #footer > :nth-child(n+2) {
     margin-left: 4%;
 }
+#footer > :last-child > a:first-of-type {
+    display: block;
+    padding-top: 2em;
+    height: 0;
+    overflow: hidden;
+    text-indent: -99%;
+
+    background: url("/svg/discord text.svg") no-repeat -5%;
+    background-size: auto calc(2em + 10px);
+    opacity: .85;
+    transition: opacity .15s;
+}
+#footer > :last-child > a:first-of-type:hover {
+    opacity: 1;
+}
 #footer h2 {
     margin-bottom: .7em;
 
     font-size: 120%;
 }
 #footer h3 {
-    margin: .7em 0;
+    margin: 1em 0 .5em;
 
-    font-size: 110%;
-    font-weight: bold;
+    font: bold 80% Cousine, sans-serif;
+    text-transform: uppercase;
 }
 #footer p {
     margin: 1em 0;
@@ -1215,9 +1230,6 @@ tr.a .movement.none:before {
 }
 #footer a {
     color: #9e814c;
-}
-#footer > :nth-child(2) img:first-of-type {
-    margin-right: .25em;
 }
 @media (max-width: 780px) {
     #footer {
