@@ -124,10 +124,10 @@ strong {
 }
 
 mark {
-    padding: .15em;
+    padding: .045em;
 
     color: #a4e8f5;
-    background-color: #293d56;
+    background-color: #25374e;
 }
 
 dl {
@@ -1188,13 +1188,13 @@ tr.a .movement.none:before {
 }
 #footer > :last-child > a:first-of-type {
     display: block;
-    padding-top: 2.5em;
+    padding-top: 2em;
     height: 0;
     overflow: hidden;
     text-indent: -99%;
 
-    background: url("/svg/discord text.svg") no-repeat -9%;
-    background-size: auto calc(2.5em + 10px);
+    background: url("/svg/discord text.svg") no-repeat -5%;
+    background-size: auto calc(2em + 10px);
     opacity: .85;
     transition: opacity .15s;
 }
