@@ -1188,15 +1188,15 @@ tr.a .movement.none:before {
 }
 #footer > :last-child > a:first-of-type {
     display: block;
-    padding-top: 2em;
+    padding-top: 1.2em;
     height: 0;
     overflow: hidden;
     text-indent: -99%;
 
-    background: url("/svg/discord text.svg") no-repeat -5%;
-    background-size: auto calc(2em + 10px);
+    background: url("/svg/discord text.svg") no-repeat -1%;
+    background-size: auto 1.4em;
     opacity: .85;
-    transition: opacity .15s;
+    transition: opacity .2s;
 }
 #footer > :last-child > a:first-of-type:hover {
     opacity: 1;
@@ -1209,7 +1209,8 @@ tr.a .movement.none:before {
 #footer h3 {
     margin: 1em 0 .5em;
 
-    font: bold 80% Cousine, sans-serif;
+    font-size: 80%;
+    font-weight: bold;
     text-transform: uppercase;
 }
 #footer p {
