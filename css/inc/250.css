@@ -439,7 +439,7 @@ ol.menu > li ol.t11g {
     border-top-width: 0;
     border-left-width: 0;
     border-radius: 0 0 3px 3px;
-    font: italic 75%/.8 Cousine;
+    font: italic 72%/.8 Cousine;
     text-transform: uppercase;
 }
 .countdown > span {
@@ -720,7 +720,7 @@ p.tip:before {
 .highlight {
     animation: forwards;
     animation-name: highlight, highlight-bg;
-    animation-delay: .1s, .51s;
+    animation-delay: 0s, .50s;
     animation-duration: 2s, 1.5s;
 }
 @keyframes highlight {
@@ -1084,7 +1084,7 @@ tr.a .movement.none:before {
 
 .more, .more:visited {
     float: right;
-    margin-top: .5em;
+    margin: .5em;
 
     color: inherit;
     font-size: 80%;
