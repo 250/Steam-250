@@ -13,11 +13,19 @@ final class PrimaryTagChooser
     use StaticClass;
 
     private const BLACKLIST = [
+        'Co-op',
+        'Dark Humor',
         'Early Access',
+        'Female Protagonist',
         'Free to Play',
+        'Great Soundtrack',
         'Indie',
         'Multiplayer',
+        'Nudity',
+        'Pixel Graphics',
         'RPGMaker',
+        'Sexual Content',
+        'Singleplayer',
         'VR',
     ];
 
