@@ -82,7 +82,7 @@ abstract class Ranking extends Page
         });
 
         uasort($games, function (array $a, array $b): int {
-            return $b['movement'] <=> $a['movement'];
+            return $b['movement'] <=> $a['movement'] ?: $a['rank'] <=> $b['rank'];
         });
 
         return \array_slice($games, 0, self::RISERS_LIMIT);
@@ -95,7 +95,7 @@ abstract class Ranking extends Page
         });
 
         uasort($games, function (array $a, array $b): int {
-            return $a['movement'] <=> $b['movement'];
+            return $a['movement'] <=> $b['movement'] ?: $a['rank'] <=> $b['rank'];
         });
 
         return \array_slice($games, 0, self::RISERS_LIMIT);
