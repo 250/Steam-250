@@ -89,12 +89,13 @@ final class Queries
             ->fetchAll(\PDO::FETCH_COLUMN);
     }
 
-    public static function fetchPopularTags(Connection $database, int $threshold = 500): array
+    public static function fetchPopularTags(Connection $database, int $threshold = 400): array
     {
         return $database->query(
             "SELECT tag, COUNT(tag) AS count
             FROM app_tag
-            WHERE tag != 'VR'
+            LEFT JOIN app ON id = app_id
+            WHERE type = 'game' AND tag != 'VR'
             GROUP BY tag
             HAVING count >= $threshold"
         )->fetchAll(\PDO::FETCH_COLUMN);
