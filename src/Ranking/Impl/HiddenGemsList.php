@@ -12,7 +12,7 @@ class HiddenGemsList extends Ranking
 {
     public function __construct(RankingDependencies $dependencies, string $id = 'hidden_gems')
     {
-        parent::__construct($dependencies, $id, 250, Algorithm::HIDDEN_GEMS(), round(10 ** 6.42));
+        parent::__construct($dependencies, $id, 250, Algorithm::HIDDEN_GEMS(), 45000.);
     }
 
     public function customizeQuery(QueryBuilder $builder): void

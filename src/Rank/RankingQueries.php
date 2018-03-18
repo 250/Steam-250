@@ -126,11 +126,11 @@ final class RankingQueries
 
     /**
      * @param QueryBuilder $builder
-     * @param float $weight Optional. Weighting. Default value is given by a previous optimization: pow(10, 6.42).
+     * @param float $weight Weighting.
      *
      * @see https://github.com/woctezuma/hidden-gems
      */
-    public static function calculateHiddenGemsScore(QueryBuilder $builder, float $weight = 2630268): void
+    public static function calculateHiddenGemsScore(QueryBuilder $builder, float $weight): void
     {
         $wilsonWeight = 1.96;
 
@@ -141,7 +141,7 @@ final class RankingQueries
                         * SQRT((positive_reviews * negative_reviews) / total_reviews + POWER($wilsonWeight, 2) / 4.)
                         / total_reviews
                 ) / (1 + POWER($wilsonWeight, 2) * 1. / total_reviews)
-            ) * ($weight * 1. / ($weight + players)) AS score"
+            ) * ($weight * 1. / ($weight + total_reviews)) AS score"
         )
             ->leftJoin('app', 'app_tag', 'app_tag', 'id = app_tag.app_id AND tag = \'Visual Novel\'')
             ->join(
