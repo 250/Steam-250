@@ -37,7 +37,8 @@
         <a>Rankings</a>
         <ol>
             <li><a href="/">Top 250 Games</a>
-            <li><a href="/dlc{{ ext }}">Top 250 DLC</a>
+            <li><a href="/hidden_gems{{ ext }}">Hidden Gems</a>
+            <li><a href="/hidden_novels{{ ext }}">Hidden Novels</a>
             <li>
                 <a>Best Sellers</a>
                 <ol class="annual">
@@ -47,8 +48,7 @@
                     {% endfor %}
                     <li><a href="/owners/old{{ ext }}">Pre-{{ earliest_year }}</a>
                 </ol>
-            <li><a href="/hidden_gems{{ ext }}">Hidden Gems</a>
-            <li><a href="/hidden_novels{{ ext }}">Hidden Novels</a>
+            <li><a href="/most_played{{ ext }}">Most Played</a>
             <li>
                 <a>Platform</a>
                 <ol>
@@ -57,25 +57,8 @@
                     <li><a href="/linux250{{ ext }}">Linux</a>
                     <li><a href="/mac250{{ ext }}">Mac</a>
                 </ol>
-            <li><a href="/most_played{{ ext }}">Most Played</a>
+            <li><a href="/dlc{{ ext }}">Top 250 DLC</a>
             <li><a href="/bottom100{{ ext }}">Bottom 100</a>
-        </ol>
-    <li>
-        <a>Price</a>
-        <ol>
-            <li><a href="/discounts{{ ext }}">Top 250 Discounts</a>
-            <li><a href="/tag/free_to_play{{ ext }}">Free Games</a>
-            <li><a href="/price/under5{{ ext }}">Games Under $5</a>
-            <li><a href="/price/5-10{{ ext }}">Games $5&ndash;10</a>
-            <li><a href="/price/10-15{{ ext }}">Games $10&ndash;15</a>
-            <li><a href="/price/over15{{ ext }}">Games Over $15</a>
-        </ol>
-    <li>
-        <a>Tag</a>
-        <ol>
-            {% for tag in tags %}
-            <li><a href="/tag/{{ tag|tag_id|url_encode ~ ext }}">{{ tag }}</a>
-                {% endfor %}
         </ol>
     <li>
         <a>Period</a>
@@ -92,6 +75,23 @@
             <li><a href="/30day{{ ext }}">Rolling Month</a>
             <li><a href="/90day{{ ext }}">Rolling Quarter</a>
             <li><a href="/365day{{ ext }}">Rolling Year</a>
+        </ol>
+    <li>
+        <a>Tag</a>
+        <ol>
+            {% for tag in tags %}
+            <li><a href="/tag/{{ tag|tag_id|url_encode ~ ext }}">{{ tag }}</a>
+            {% endfor %}
+        </ol>
+    <li>
+        <a>Price</a>
+        <ol>
+            <li><a href="/discounts{{ ext }}">Top 250 Discounts</a>
+            <li><a href="/tag/free_to_play{{ ext }}">Free Games</a>
+            <li><a href="/price/under5{{ ext }}">Games Under $5</a>
+            <li><a href="/price/5-10{{ ext }}">Games $5&ndash;10</a>
+            <li><a href="/price/10-15{{ ext }}">Games $10&ndash;15</a>
+            <li><a href="/price/over15{{ ext }}">Games Over $15</a>
         </ol>
     <li>
         <a>Steam 250</a>
