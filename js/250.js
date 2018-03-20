@@ -15,6 +15,9 @@ class S250 {
         this.overrideHashChange();
         this.overrideFixedLinks();
 
+        // Search stuff.
+        this.initSearchValue();
+
         // Fancy stuff.
         this.initAppLinkMenu();
         this.initCountdown();
@@ -286,6 +289,14 @@ class S250 {
 
             location.replace(location.pathname);
         });
+    }
+
+    initSearchValue() {
+        const q = this.parseParam('q');
+
+        if (q !== null) {
+            document.querySelector('#user > form').q.value = q;
+        }
     }
 
     initAppLinkMenu() {

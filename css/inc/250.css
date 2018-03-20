@@ -41,6 +41,17 @@ h2 {
     font-weight: bold;
 }
 
+
+#header {
+    overflow: hidden;
+    flex-shrink: 0;
+
+    background: radial-gradient(25% 45% at center 60%, #212329, #171a21);
+}
+#header, #footer {
+    background-color: #171a21;
+}
+
 #user {
     position: relative;
     z-index: 2;
@@ -51,6 +62,40 @@ h2 {
     text-align: right;
     font-size: 80%;
 }
+
+#user > form {
+    display: inline-block;
+}
+#user > form input:not(type) {
+    color: #97a5cf;
+    border: 0 solid #97a5cf;
+    background: transparent;
+    max-width: 0;
+
+    transition: border-width .05s, max-width .2s;
+
+    /* Firefox UA validation style override. */
+    box-shadow: none;
+    /* Chrome UA focus style override. */
+    outline: none;
+}
+#user > form input:not(type):focus,
+#user > form input:not(type):valid {
+    max-width: 10em;
+
+    border-bottom-width: 2px;
+}
+#user > form > label > span {
+    display: inline-block;
+    overflow: hidden;
+    width: 15px;
+    height: 15px;
+    vertical-align: middle;
+    text-indent: 100%;
+
+    background: url('/svg/search.svg') no-repeat;
+}
+
 #user .avatar {
     display: inline-block;
     overflow: hidden;
@@ -69,37 +114,27 @@ h2 {
     line-height: 1;
 
     color: #97a5cf;
-    background: transparent;
+    background-color: transparent;
     border-radius: 4px;
     cursor: pointer;
 }
 #user button:hover {
     background-color: #272a31;
 }
-
-#header {
-    overflow: hidden;
-    flex-shrink: 0;
-
-    background: radial-gradient(25% 45% at center 60%, #212329, #171a21);
-}
-#header, #footer {
-    background-color: #171a21;
-}
 #lin, #lout {
     display: none;
 }
 .lout #lout, .lin #lin {
-    display: block;
+    display: inline-block;
     line-height: var(--user-height);
 }
-#login {
-    padding-left: calc(.6em + 17px);
+#user #login {
+    padding-left: calc(.6em + 15px);
 
     background-image: url('/svg/steam.svg');
     background-repeat: no-repeat;
-    background-position: 7px 51%;
-    background-size: 13px;
+    background-position: 7px 45%;
+    background-size: 13px 11px;
 }
 
 p {
@@ -119,11 +154,11 @@ em {
     font-style: italic;
 }
 
-strong {
+strong, b {
     font-weight: bold;
 }
 
-mark {
+mark, b {
     padding: .045em;
 
     color: #a4e8f5;
