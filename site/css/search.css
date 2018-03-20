@@ -1,0 +1,26 @@
+.gsc-orderby-container {
+    display: none;
+}
+
+.body .gsc-result-info {
+    color: #93a1ad;
+}
+
+.body .gsc-above-wrapper-area {
+    border-color: #475269;
+}
+
+.body .gsc-thumbnail-inside,
+.body .gsc-url-top {
+    padding: 0;
+}
+
+.body .gsc-results .gsc-cursor-box .gsc-cursor-current-page {
+    background: transparent;
+}
+
+#___gcse_1 a,
+.body .gs-result .gs-title,
+.body .gs-result .gs-title * {
+    text-decoration: none;
+}

@@ -5,6 +5,12 @@
 {% block body %}
 <section id="header">
     <div id="user">
+        <form action="/search{{ ext }}">
+            <label>
+                <span title="Search">Search</span>
+                <input name="q" required>
+            </label>
+        </form>
         <div id="lout">
             <form action="https://steamcommunity.com/openid/login" method="post">
                 <button id="login">Sign in to Steam</button>

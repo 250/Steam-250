@@ -1,0 +1,24 @@
+{% extends'layout/template.twig' %}
+
+{% block css %}
+{{ parent() }}
+<link rel="stylesheet" href="/css/search.css">
+{% endblock %}
+
+{% block title %}Search Results{% endblock %}
+{% block heading %}Search Results{% endblock %}
+
+{% block content %}
+<script>
+    (function() {
+        const cx = '011583981192525293814:qdo4dain6zq',
+            gcse = document.createElement('script'),
+            s = document.getElementsByTagName('script')[0];
+        gcse.type = 'text/javascript';
+        gcse.async = true;
+        gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+        s.parentNode.insertBefore(gcse, s);
+    })();
+</script>
+<div class="gcse-searchresults-only" data-linktarget>Searching...</div>
+{% endblock %}
