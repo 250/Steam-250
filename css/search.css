@@ -6,21 +6,47 @@
     color: #93a1ad;
 }
 
+/* Horizontal rule */
 .body .gsc-above-wrapper-area {
     border-color: #475269;
 }
 
+/* Result link and URL */
 .body .gsc-thumbnail-inside,
 .body .gsc-url-top {
     padding: 0;
 }
 
+/* Current page */
 .body .gsc-results .gsc-cursor-box .gsc-cursor-current-page {
+    color: #93a1ad;
     background: transparent;
+    cursor: pointer;
+}
+.body .gsc-results .gsc-cursor-box .gsc-cursor-current-page:hover {
+    text-decoration: none;
 }
 
-#___gcse_1 a,
-.body .gs-result .gs-title,
-.body .gs-result .gs-title * {
+/* Links */
+.body .gs-result .gs-title {
     text-decoration: none;
+}
+.body .gs-result a.gs-title:hover {
+    text-decoration: underline;
+}
+.body .gs-result .gs-title:visited:hover {
+    color: #9e814c;
+}
+
+/* No results */
+.body .gs-no-results-result .gs-snippet {
+    background: none;
+    border: none;
+    text-transform: lowercase;
+}
+.body .gs-no-results-result .gs-snippet:first-letter {
+    text-transform: uppercase;
+}
+.body .gs-no-results-result .gs-snippet:after {
+    content: '.';
 }
