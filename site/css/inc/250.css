@@ -63,6 +63,7 @@ h2 {
     font-size: 80%;
 }
 
+/* Search */
 #user > form {
     display: inline-block;
 }
@@ -87,13 +88,14 @@ h2 {
 }
 #user > form > label > span {
     display: inline-block;
-    overflow: hidden;
     width: 15px;
     height: 15px;
+    padding: 0 .25em;
+    overflow: hidden;
+    text-indent: 200%;
     vertical-align: middle;
-    text-indent: 100%;
 
-    background: url('/svg/search.svg') no-repeat;
+    background: url('/svg/search.svg') no-repeat center;
 }
 
 #user .avatar {
