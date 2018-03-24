@@ -295,7 +295,7 @@ class S250 {
         const q = this.parseParam('q');
 
         if (q !== null) {
-            document.querySelector('#user > form').q.value = q;
+            document.querySelector('#user > form').q.value = q.replace(/\+/g, ' ');
         }
     }
 
