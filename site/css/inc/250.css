@@ -541,10 +541,16 @@ ol.menu > li ol.t11g {
     line-height: 1.5;
 }
 .quicklinks li {
-    margin: .25em;
+    margin: .25em 0;
+}
+.quicklinks a:first-of-type {
+    margin-left: 0;
+}
+.quicklinks a:last-of-type {
+    margin-right: 0;
 }
 .quicklinks a {
-    margin: 0 .5em;
+    margin: 0 .3em;
 }
 .quicklinks > li:last-of-type > a {
     font-size: 120%;
