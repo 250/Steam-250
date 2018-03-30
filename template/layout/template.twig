@@ -13,12 +13,12 @@
         </form>
         <div id="lout">
             <form action="https://steamcommunity.com/openid/login" method="post">
-                <button id="login">Sign in to Steam</button>
+                <button id="login">Sign in via Steam</button>
                 <input type="hidden" name="openid.identity" value="http://specs.openid.net/auth/2.0/identifier_select">
                 <input type="hidden" name="openid.claimed_id" value="http://specs.openid.net/auth/2.0/identifier_select">
                 <input type="hidden" name="openid.ns" value="http://specs.openid.net/auth/2.0">
                 <input type="hidden" name="openid.mode" value="checkid_setup">
-                <input type="hidden" name="openid.realm" value="http://steam250.com">
+                <input type="hidden" name="openid.realm" value="https://steam250.com">
                 <input type="hidden" name="openid.return_to">
             </form>
         </div>
@@ -34,7 +34,8 @@
         <h1>{{ block('heading') }}</h1>
     </div>
     <div class="slogan">
-        Impartial rankings <span class="d">of</span> Steam games <span class="d">compiled from</span> gamer reviews
+        Impartial rankings <span class="d">of</span> Steam games <span class="d">compiled from</span>
+        gamer reviews
     </div>
 </section>
 
@@ -118,6 +119,7 @@
             <li><a href="/">Top 250</a>
                 &ndash; <a href="/hidden_gems{{ ext }}">Hidden gems</a>
                 &ndash; <a href="/discounts{{ ext }}">Discounts</a>
+                &ndash; <a href="/7day{{ ext }}">New</a>
                 &ndash; <a href="/{{ 'now'|date('Y') ~ ext }}">{{ 'now'|date('Y') }}</a>
             <li><a href="https://www.patreon.com/steam250">
                 Join Club 250 <span class="d">on</span> Patreon</a>
@@ -167,7 +169,7 @@
         <p>
             Club 250 is the Steam 250 members club. Consider
             <a href="https://www.patreon.com/steam250">becoming a member</a>
-            so we can continue helping you find good games on Steam.
+            so we can continue helping you find good games on Steam in new and better ways.
         </p>
         <p>
             Receive rewards based on your pledge level, including

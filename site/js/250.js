@@ -256,7 +256,8 @@ class S250 {
         const userId = claimdId.replace(/.*\//, '');
 
         fetch(
-            `http://cors-anywhere.herokuapp.com/http://steamcommunity.com/profiles/${userId}/games/?tab=all`,
+            location.protocol +
+            `//cors-anywhere.herokuapp.com/http://steamcommunity.com/profiles/${userId}/games/?tab=all`,
         ).then(
             response => response.text()
         ).then((data) => {
