@@ -4,7 +4,7 @@
         {% for game in games %}
         <li>
             <a href="http://store.steampowered.com/app/{{ game.id }}/">
-                <img alt="Logo" src="http://cdn.akamai.steamstatic.com/steam/apps/{{ game.id }}/capsule_sm_120.jpg"
+                <img alt="Logo" src="https://steamcdn-a.akamaihd.net/steam/apps/{{ game.id }}/capsule_sm_120.jpg"
             ></a>
             <span>
                 {{ include('partial/movement.twig', {movement: game.movement}) }}

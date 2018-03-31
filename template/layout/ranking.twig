@@ -43,7 +43,7 @@
         <div id="{{ game.rank }}">
             <div>
                 <a href="http://store.steampowered.com/app/{{ game.id }}/">
-                    <img alt="Logo" src="http://cdn.akamai.steamstatic.com/steam/apps/{{ game.id }}/capsule_
+                    <img alt="Logo" src="https://steamcdn-a.akamaihd.net/steam/apps/{{ game.id }}/capsule_
                         {{- loop.index <= 14 ? '184x69.jpg' : 'sm_120.jpg' }}"
                 ></a>
             </div>
@@ -84,8 +84,8 @@
                 {%- if game.platforms b-and constant('ScriptFUSION\\Top250\\Shared\\Platform::VIVE') -%}
                 <a href="/vr250{{ ext }}" title="HTC Vive" class="vive"></a>
                 {%- endif -%}
-                {%- if game.platforms b-and constant('ScriptFUSION\\Top250\\Shared\\Platform::OCCULUS') -%}
-                <a href="/vr250{{ ext }}" title="Occulus Rift" class="rift"></a>
+                {%- if game.platforms b-and constant('ScriptFUSION\\Top250\\Shared\\Platform::OCULUS') -%}
+                <a href="/vr250{{ ext }}" title="Oculus Rift" class="rift"></a>
                 {%- endif -%}
                 {%- if game.platforms b-and constant('ScriptFUSION\\Top250\\Shared\\Platform::WMR') -%}
                 <a href="/vr250{{ ext }}" title="Windows Mixed Reality" class="wmr"></a>
