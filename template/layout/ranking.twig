@@ -103,13 +103,16 @@
                 <a href="/#{{ game.rank_250 }}" class="ref250">Top 250 #{{ game.rank_250 }}</a>
                 {% endif %}
                 {% if game.vrx %}
-                <a href="/vr_exclusives{{ ext }}" class="vrx" title="VR exclusive">VRX</a>
+                <a href="/vr_exclusives{{ ext }}" class="vrx" title="VR Exclusive">VRX</a>
                 {% endif %}
                 {% if game.discount > 0 %}
                 <a href="/discounts{{ ext }}" class="discount">-{{ game.discount }}%</a>
                 {% endif %}
                 {% if game.price is same as('0') %}
                 <a href="/tag/free_to_play{{ ext }}" class="free">Free</a>
+                {% endif %}
+                {% if 'Early Access' in game.tags %}
+                <a href="/tag/early_access{{ ext }}" class="ea" title="Early Access">EA</a>
                 {% endif %}
                 <a href="#{{ game.rank }}" class="links" title="Link">▼</a>
                 {% block reviews %}{% endblock %}
