@@ -986,7 +986,7 @@ tr.a .movement.none:before {
     width: 20px;
     height: 20px;
 
-    background-size: cover;
+    background: no-repeat center;
     opacity: .3;
     transition: opacity .1s;
 }
@@ -1000,22 +1000,28 @@ tr.a .movement.none:before {
     }
 }
 .platforms > [title=Windows] {
-    background-image: url(http://store.akamai.steamstatic.com/public/images/v6/icon_platform_win.png?v=3);
+    background: url(/svg/windows.svg) no-repeat 50% 55%;
+    background-size: 75%;
 }
 .platforms > [title=Mac] {
-    background-image: url(http://store.akamai.steamstatic.com/public/images/v6/icon_platform_mac.png);
+    background-image: url(/svg/apple.svg);
+    background-size: 70%;
 }
 .platforms > [title=Linux] {
-    background-image: url(http://store.akamai.steamstatic.com/public/images/v6/icon_platform_linux.png);
+    background-image: url(/svg/tux.svg);
+    background-size: 85%;
 }
 .platforms > [title=HTC\ Vive] {
-    background-image: url(http://store.akamai.steamstatic.com/public/images/v6/icon_platform_htcvive.png);
+    background-image: url(/svg/vive.svg);
+    background-size: 80%;
 }
-.platforms > [title=Occulus\ Rift] {
-    background-image: url(http://store.akamai.steamstatic.com/public/images/v6/icon_platform_oculusrift.png);
+.platforms > [title=Oculus\ Rift] {
+    background-image: url(/svg/oculus.svg);
+    background-size: 85%;
 }
 .platforms > [title='Windows Mixed Reality'] {
-    background-image: url(http://store.akamai.steamstatic.com/public/images/v6/icon_platform_windowsmr.png);
+    background-image: url(/img/wmr.png);
+    background-size: cover;
 }
 
 .button, .button:visited {
