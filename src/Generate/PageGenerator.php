@@ -27,7 +27,7 @@ final class PageGenerator
     public function generate(Page $page, string $outPath): bool
     {
         try {
-            $export = $page->export();
+            $export = $page->export() + compact('page');
         } catch (\Exception $exception) {
             $this->logger->error("Exception encountered: \"$exception\"");
 

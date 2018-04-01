@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>{{ block('title') }}</title>
+    {% set page_title = block('title') ~ ' – Steam 250' %}
+    <title>{{ page_title }}</title>
 
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1">
     {% block meta %}{% endblock %}
@@ -21,6 +22,12 @@
     {% endblock %}
 
     <link rel="shortcut icon" href="/favicon.png" type="image/png">
+
+    <meta property="og:title" content="{{ page_title }}">
+    <meta property="og:site_name" content="Steam 250" />
+    <meta property="og:image" content="https://steam250.com/img/open%20graph/logo.png">
+    <meta property="og:url" content="https://steam250.com/{{ page.id|replace({'index': ''}) }}">
+    <meta property="og:description" content="Steam 250 provides impartial rankings of Steam games compiled from gamer reviews and other criteria: a better way to find good games on Steam.">
 
 <body>
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PJ9P8B3" height="0" width="0"
