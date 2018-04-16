@@ -49,13 +49,11 @@
             <li>
                 <a>Best Sellers</a>
                 <ol class="annual">
-                    <li><a href="/owners{{ ext }}">All time</a>
-                    {% for year in range('now'|date('Y'), earliest_year) %}
+                    {% for year in range(2017, earliest_year) %}
                     <li><a href="/owners/{{ year ~ ext }}">{{ year }}</a>
                     {% endfor %}
                     <li><a href="/owners/old{{ ext }}">Pre-{{ earliest_year }}</a>
                 </ol>
-            <li><a href="/most_played{{ ext }}">Most Played</a>
             <li>
                 <a>Platform</a>
                 <ol>
@@ -118,9 +116,9 @@
         <ul class="quicklinks">
             <li><a href="/">Top 250</a>
                 &ndash; <a href="/hidden_gems{{ ext }}">Hidden gems</a>
-                &ndash; <a href="/discounts{{ ext }}">Discounts</a>
-                &ndash; <a href="/7day{{ ext }}">New</a>
                 &ndash; <a href="/{{ 'now'|date('Y') ~ ext }}">{{ 'now'|date('Y') }}</a>
+                &ndash; <a href="/7day{{ ext }}">New</a>
+                &ndash; <a href="/discounts{{ ext }}">Discounts</a>
             <li><a href="https://www.patreon.com/steam250">
                 Join Club 250 <span class="d">on</span> Patreon</a>
         </ul>

@@ -14,9 +14,7 @@ use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\HiddenGemsList;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\HiddenNovelsList;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\Linux250List;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\Mac250List;
-use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\MostPlayedList;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\OldList;
-use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\OwnersFullRanking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\OwnersOldRanking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\ThisMonthList;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\ThisQuarterList;
@@ -46,7 +44,6 @@ final class RankingName extends AbstractEnumeration
     public const D_90 = 'D_90';
     public const D_365 = 'D_365';
     public const OLD = 'OLD';
-    public const OWNERS = 'OWNERS';
     public const OLD_OWN = 'OLD_OWN';
     public const MAC = 'MAC';
     public const LINUX = 'LINUX';
@@ -54,7 +51,7 @@ final class RankingName extends AbstractEnumeration
     public const VRX = 'VRX';
     public const HVN = 'HVN';
     public const REMORSE = 'REMORSE';
-    public const PLAYERS = 'PLAYERS';
+//    public const PLAYERS = 'PLAYERS';
     public const CLUB_250 = 'CLUB_250';
     public const COLLAGE = 'COLLAGE';
 
@@ -73,7 +70,6 @@ final class RankingName extends AbstractEnumeration
         self::D_90 => ThisQuarterList::class,
         self::D_365 => ThisYearList::class,
         self::OLD => OldList::class,
-        self::OWNERS => OwnersFullRanking::class,
         self::OLD_OWN => OwnersOldRanking::class,
         self::MAC => Mac250List::class,
         self::LINUX => Linux250List::class,
@@ -81,7 +77,7 @@ final class RankingName extends AbstractEnumeration
         self::VRX => VrxRanking::class,
         self::HVN => HiddenNovelsList::class,
         self::REMORSE => BuyersRemorseList::class,
-        self::PLAYERS => MostPlayedList::class,
+//        self::PLAYERS => MostPlayedList::class,
         self::CLUB_250 => Club250List::class,
         self::COLLAGE => CollageList::class,
     ];
@@ -101,7 +97,6 @@ final class RankingName extends AbstractEnumeration
         self::D_90 => '90d',
         self::D_365 => '365d',
         self::OLD => 'old',
-        self::OWNERS => 'owners',
         self::OLD_OWN => 'oold',
         self::MAC => 'mac',
         self::LINUX => 'linux',
@@ -109,7 +104,7 @@ final class RankingName extends AbstractEnumeration
         self::VRX => 'vrx',
         self::HVN => 'hvn',
         self::REMORSE => 'remorse',
-        self::PLAYERS => 'players',
+//        self::PLAYERS => 'players',
         self::CLUB_250 => 'club',
         self::COLLAGE => 'collage',
     ];

@@ -32,9 +32,12 @@ final class PageContainerFactory
                 return new AnnualList($parent->get(RankingDependencies::class), $year);
             });
 
-            $container->set("owners/$year", function () use ($year, $parent): Ranking {
-                return new OwnersRanking($parent->get(RankingDependencies::class), $year);
-            });
+            // Owners data is no longer current, so only show historical rankings.
+            if ($year <= 2017) {
+                $container->set("owners/$year", function () use ($year, $parent): Ranking {
+                    return new OwnersRanking($parent->get(RankingDependencies::class), $year);
+                });
+            }
         }
 
         foreach (Queries::fetchPopularTags($container->get('db')) as $tag) {
