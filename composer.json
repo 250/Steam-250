@@ -11,7 +11,7 @@
     "php": "^7.1",
     "250/shared": "dev-master",
     "scriptfusion/static-class": "^1",
-    "twig/twig": "2.4.4",
+    "twig/twig": "^2",
     "doctrine/dbal": "^2",
     "monolog/monolog": "^1",
     "voku/html-min": "2.0.0",

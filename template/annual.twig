@@ -20,7 +20,7 @@
         and old games are released on Steam.
     </p>
     {% endif %}
-    {% if ranking.year < 2018 %}
+    {% if ranking.year is defined and ranking.year < 2018 %}
     <p class="tip">
         Compare with <a href="/owners/{{ (ranking.year ?? 'old') ~ ext }}">best sellers {{ desc }}</a>.
     </p>
