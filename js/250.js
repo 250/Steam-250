@@ -264,8 +264,9 @@ class S250 {
             const matches = data.match(/var rgGames = ([^\n]+);/);
 
             if (!matches || matches.length !== 2) {
-                alert('Unable to load player profile. This is usually because your Steam profile is not public.\n'
-                    + ' Try setting your Steam Community profile status to public and refresh this page to try again.');
+                alert('Unable to load your profile. This is usually because your Steam profile is not public.\n'
+                    + 'Try setting your Steam Community profile visibility to public, then refresh this page to '
+                    + 'try again.');
 
                 return;
             }
@@ -278,6 +279,14 @@ class S250 {
                 },
                 {}
             );
+
+            if (!Object.keys(games).length) {
+                alert('No games found in your account! This is usually because your game details are not public.\n'
+                    + 'Try setting your game details to public on your Steam Community privacy settings page, then '
+                    + 'refresh this page to try again.');
+
+                return;
+            }
 
             localStorage.setItem('games', JSON.stringify(games));
 
