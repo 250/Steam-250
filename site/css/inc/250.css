@@ -161,10 +161,8 @@ strong, b {
 }
 
 mark, b {
-    padding: .045em;
-
-    color: #a4e8f5;
-    background-color: #25374e;
+    color: #70c3ff;
+    background-color: transparent;
 }
 
 dl {
@@ -578,6 +576,24 @@ p.note:before, p.tip:before {
 }
 p.tip:before {
     content: 'Tip';
+}
+
+p.notice {
+    padding: 1em;
+    font-size: 80%;
+    line-height: 1.2;
+    text-align: center;
+
+    color: #70c3ff;
+    background: #131e2c;
+    border: 1px dotted #5c7495;
+    border-radius: 4px;
+}
+p.notice::before {
+    content: 'NOTICE';
+    font-size: 80%;
+
+    color: #c5e4fb;
 }
 
 .ranking {
