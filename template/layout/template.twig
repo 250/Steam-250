@@ -141,7 +141,7 @@
         </h2>
         <p>
             Rankings are automatically updated at least once a day from live Steam reviews data.
-            <a href="about{{ ext }}">About us</a>.
+            <a href="about{{ ext }}">Learn more</a>.
         </p>
         {% if games[0].movement is defined %}
         <p>Movement indicators show the change in position since yesterday.</p>
@@ -152,8 +152,8 @@
             <li>Data <a href="https://travis-ci.org/250/Steam-importer">
                     <img src="https://travis-ci.org/250/Steam-importer.svg?branch=master" alt="Data build status"></a>
                 Pages <a href="https://travis-ci.org/250/Steam-Top-250">
-                    <img src="https://travis-ci.org/250/Steam-Top-250.svg?branch=master" alt="Page build status"></a>
-            <li>Generated {{ 'now'|date }}
+                    <img src="https://travis-ci.org/250/Steam-250.svg?branch=master" alt="Page build status"></a>
+            <li>Generated {{ 'now'|date }} {{ tz() }}
             <li><a href="https://github.com/250">Source code</a>,
                 <a href="https://github.com/250/Steam-Top-250/issues">Issues</a>
         </ul>
