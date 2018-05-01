@@ -52,3 +52,11 @@ after_script:
   - cd "$datadir" &&
     git commit -am "Added ranks for $TRAVIS_COMMIT." &&
     git push
+
+  # Trigger foreign repository build to sync curator reviews.
+  - 'curl -sf
+      -H ''Content-Type: application/json''
+      -H ''Travis-API-Version: 3''
+      -H "Authorization: token $TRAVIS_TOKEN"
+      -d ''{"request": {"branch": "master"}}''
+      https://api.travis-ci.org/repo/250%2FSteam-curator/requests'
