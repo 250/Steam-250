@@ -116,7 +116,6 @@ h2 {
     line-height: 1;
 
     color: #97a5cf;
-    background-color: transparent;
     border-radius: 4px;
     cursor: pointer;
 }
@@ -131,12 +130,10 @@ h2 {
     line-height: var(--user-height);
 }
 #user #login {
-    padding-left: calc(.6em + 15px);
+    padding-left: calc(.6em + 14px);
 
-    background-image: url('/svg/steam.svg');
-    background-repeat: no-repeat;
-    background-position: 7px 45%;
-    background-size: 13px 11px;
+    background: url('/svg/steam.svg') no-repeat 6px 45%;
+    background-size: 14px 11px;
 }
 
 p {
@@ -1262,19 +1259,21 @@ tr.a .movement.none:before {
 #footer > :nth-child(n+2) {
     margin-left: 4%;
 }
-#footer > :last-child > a:first-of-type {
-    display: block;
+#footer > :last-child > p:first-of-type > a {
+    display: inline-block;
     padding-top: 1.2em;
+    width: 69px;
     height: 0;
     overflow: hidden;
     text-indent: -99%;
+    vertical-align: sub;
 
     background: url("/svg/discord text.svg") no-repeat -1%;
     background-size: auto 1.4em;
-    opacity: .85;
+    opacity: .75;
     transition: opacity .2s;
 }
-#footer > :last-child > a:first-of-type:hover {
+#footer > :last-child > p:first-of-type > a:hover {
     opacity: 1;
 }
 #footer h2 {
@@ -1319,7 +1318,7 @@ tr.a .movement.none:before {
     }
 }
 
-a.twitter, a.patreon, a.discord {
+a.twitter, a.patreon, a.discord, a.steam {
     display: inline-block;
     overflow: hidden;
     width: 20px;
@@ -1335,6 +1334,8 @@ a.twitter {
     background-size: 24px;
 }
 a.patreon {
+    opacity: .9;
+
     background-image: url('/svg/patreon.svg');
     background-size: 19px;
 }
@@ -1342,6 +1343,11 @@ a.discord {
     background-image: url('/svg/discord.svg');
     background-size: 22px;
     background-position-y: -1px;
+}
+a.steam {
+    background-image: url('/svg/steam.svg');
+    background-size: 70px 17px;
+    background-position-y: 1px;
 }
 
 .fixedlinks {
