@@ -5,8 +5,7 @@ sudo: false
 
 language: php
 
-php:
-  - 7.1
+php: 7.1
 
 branches:
   only:

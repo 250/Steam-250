@@ -3,13 +3,13 @@
     <ol>
         {% for game in games %}
         <li>
-            <a href="http://store.steampowered.com/app/{{ game.id }}/">
+            <a href="http://store.steampowered.com/app/{{ game.id }}/?curator_clanid=32686107">
                 <img alt="Logo" src="https://steamcdn-a.akamaihd.net/steam/apps/{{ game.id }}/capsule_sm_120.jpg"
             ></a>
             <span>
                 {{ include('partial/movement.twig', {movement: game.movement}) }}
                 <a href="#{{ game.rank }}">{{ game.rank }}</a>.
-                <a href="http://store.steampowered.com/app/{{ game.id }}/">{{- game.name -}}</a>
+                <a href="http://store.steampowered.com/app/{{ game.id }}/?curator_clanid=32686107">{{- game.name -}}</a>
             </span>
         {% endfor %}
     </ol>
