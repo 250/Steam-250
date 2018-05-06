@@ -8,6 +8,7 @@ use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\Bottom100List;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\BuyersRemorseList;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\Club250List;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\CollageList;
+use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\DeveloperRanking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\DiscountList;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\DlcList;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\HiddenGemsList;
@@ -52,6 +53,7 @@ final class RankingName extends AbstractEnumeration
     public const HVN = 'HVN';
     public const REMORSE = 'REMORSE';
 //    public const PLAYERS = 'PLAYERS';
+    public const DEVELOPERS = 'DEVELOPERS';
     public const CLUB_250 = 'CLUB_250';
     public const COLLAGE = 'COLLAGE';
 
@@ -78,6 +80,7 @@ final class RankingName extends AbstractEnumeration
         self::HVN => HiddenNovelsList::class,
         self::REMORSE => BuyersRemorseList::class,
 //        self::PLAYERS => MostPlayedList::class,
+        self::DEVELOPERS => DeveloperRanking::class,
         self::CLUB_250 => Club250List::class,
         self::COLLAGE => CollageList::class,
     ];
@@ -105,6 +108,7 @@ final class RankingName extends AbstractEnumeration
         self::HVN => 'hvn',
         self::REMORSE => 'remorse',
 //        self::PLAYERS => 'players',
+        self::DEVELOPERS => 'devs',
         self::CLUB_250 => 'club',
         self::COLLAGE => 'collage',
     ];
