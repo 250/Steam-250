@@ -135,7 +135,7 @@ abstract class Ranking extends Page
         return $this->limit;
     }
 
-    public function setPrevDb(string $prevDb): void
+    public function setPrevDb(?string $prevDb): void
     {
         $this->prevDb = $prevDb;
     }

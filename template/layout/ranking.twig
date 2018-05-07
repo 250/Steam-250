@@ -51,6 +51,7 @@
                 {% if game.movement is defined %}
                 {{ include('partial/movement.twig', {movement: game.movement}) }}
                 {% endif %}
+                {% block game %}
                 <span class="title">
                     {{ game.rank }}.
                     <a href="http://store.steampowered.com/app/{{ game.id }}/?curator_clanid=32686107">
@@ -116,6 +117,7 @@
                 {% endif %}
                 <a href="#{{ game.rank }}" class="links" title="Link">▼</a>
                 {% block reviews %}{% endblock %}
+                {% endblock %}
             </div>
             <div>
                 {% block scoring_criteria %}

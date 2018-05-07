@@ -58,7 +58,7 @@ class Club250List extends Top250List implements CustomRankingFetch, CustomizeGam
     {
         // Override app review counts with patron review counts.
         $builder
-            ->addSelect('pr.*, pr.total_reviews - pr.positive_reviews as negative_reviews')
+            ->addSelect('pr.*, pr.total_reviews - pr.positive_reviews AS negative_reviews')
             ->innerJoin('rank', self::PATRON_REVIEW_AGGREGATION, 'pr', 'rank.app_id = pr.app_id')
         ;
     }

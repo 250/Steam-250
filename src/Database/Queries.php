@@ -24,6 +24,7 @@ final class Queries
                 rank INTEGER NOT NULL,
                 app_id INTEGER NOT NULL,
                 score REAL,
+                owner TEXT,
                 PRIMARY KEY(list_id, rank)
             )'
         );
@@ -67,7 +68,8 @@ final class Queries
                     'rank',
                     'prev.rank',
                     'prank',
-                    'rank.list_id = prank.list_id AND rank.app_id = prank.app_id'
+                    'rank.list_id = prank.list_id AND
+                        (rank.owner = prank.owner OR (rank.owner IS NULL AND rank.app_id = prank.app_id))'
                 )
             ;
         }

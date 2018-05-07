@@ -719,7 +719,6 @@ p.notice::before {
     padding-right: .5vw;
 }
 .ranking > div > div:nth-child(2) > * {
-    display: inline-block;
     vertical-align: middle;
 }
 .ranking > div > div:nth-child(3),
@@ -1009,6 +1008,7 @@ tr.a .movement.none:before {
 }
 
 .platforms {
+    display: inline-block;
     margin-left: .25em;
 }
 .platforms > * {
