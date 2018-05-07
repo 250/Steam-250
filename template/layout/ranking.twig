@@ -1,4 +1,5 @@
 {% extends'layout/template.twig' %}
+{% import 'macro/steam.twig' as steam %}
 
 {% block css %}
 {{ parent() }}
@@ -42,7 +43,7 @@
         {% for game in games %}
         <div id="{{ game.rank }}">
             <div>
-                <a href="http://store.steampowered.com/app/{{ game.id }}/?curator_clanid=32686107">
+                <a href="{{ steam.app_url(game.id) }}">
                     <img alt="Logo" src="https://steamcdn-a.akamaihd.net/steam/apps/{{ game.id }}/capsule_
                         {{- loop.index <= 14 ? '184x69.jpg' : 'sm_120.jpg' }}"
                 ></a>
@@ -54,7 +55,7 @@
                 {% block game %}
                 <span class="title">
                     {{ game.rank }}.
-                    <a href="http://store.steampowered.com/app/{{ game.id }}/?curator_clanid=32686107">
+                    <a href="{{ steam.app_url(game.id) }}">
                         {{- game.name -}}
                     </a>
                 </span>
