@@ -11,7 +11,11 @@
             <span>
                 {{ include('partial/movement.twig', {movement: game.movement}) }}
                 <a href="#{{ game.rank }}">{{ game.rank }}</a>.
-                <a href="{{ steam.app_url(game.id) }}">{{- game.name -}}</a>
+                {% if game.developer is defined %}
+                <a href="{{ steam.developer_url(game.developer) }}">{{ game.developer }}</a>
+                {% else %}
+                <a href="{{ steam.app_url(game.id) }}">{{ game.name }}</a>
+                {% endif %}
             </span>
         {% endfor %}
     </ol>

@@ -149,14 +149,19 @@
         {% endif %}
 
         <h3>System status</h3>
-        <ul>
-            <li>Data <a href="https://travis-ci.org/250/Steam-importer">
+        <ul class="status">
+            <li><span>Data <a href="https://travis-ci.org/250/Steam-importer">
                     <img src="https://travis-ci.org/250/Steam-importer.svg?branch=master" alt="Data build status"></a>
-                Pages <a href="https://travis-ci.org/250/Steam-Top-250">
+                </span>
+                <span>Pages <a href="https://travis-ci.org/250/Steam-250">
                     <img src="https://travis-ci.org/250/Steam-250.svg?branch=master" alt="Page build status"></a>
+                </span>
+                <span>Curator <a href="https://travis-ci.org/250/Steam-curator">
+                    <img src="https://travis-ci.org/250/Steam-curator.svg?branch=master" alt="Curator build status"></a>
+                </span>
             <li>Generated {{ 'now'|date }} {{ tz() }}
             <li><a href="https://github.com/250">Source code</a>,
-                <a href="https://github.com/250/Steam-Top-250/issues">Issues</a>
+                <a href="https://github.com/250/Steam-250/issues">Issues</a>
         </ul>
     </div>
 

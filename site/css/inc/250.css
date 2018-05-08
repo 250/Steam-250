@@ -1323,6 +1323,10 @@ tr.a .movement.none:before {
         margin: 1.5em 0 0;
     }
 }
+#footer .status > li:first-of-type > span {
+    display: inline-block;
+    margin: 0 .25em .2em 0;
+}
 
 a.twitter, a.patreon, a.discord, a.steam {
     display: inline-block;

@@ -8,7 +8,6 @@
     <p>
         Top 250 best Steam Developers of all time according to gamer reviews.
     </p>
-
     <p>
         Developers are ranked across all games released on Steam, excluding DLC and discontinued titles.
         A small preference is given to consistent developers such that those near the top of the ranking
@@ -20,23 +19,15 @@
 {% block game %}
     <span class="title">
         {{ game.rank }}.
-        <a href="https://store.steampowered.com/search/?sort_by=Reviews_DESC&category1=998&developer={{ game.owner }}">
-            {{- game.owner -}}
-        </a> /
+        <a href="{{ steam.developer_url(game.owner) }}">{{- game.owner -}}</a> /
     </span>
     <span class="knownfor">
         <a href="{{ steam.app_url(game.id) }}">{{ game.name }}</a>
         {% if game.release_date %}
-        <span class="date">({{ game.release_date|date('Y') }})</span>
+        <span class="date">{{ game.release_date|date('Y') }}</span>
         {% endif %}
     </span>
     {% if game.games > 1 %}
     <span class="games">+{{ game.games - 1 }} more</span>
     {% endif %}
-{% endblock %}
-
-{% block scoring_criteria %}
-    <span class="score">{{ (game.score * 10)|number_format(2) }}</span>
-    <span class="rating">{{ (game.positive_reviews_sum / game.total_reviews_sum * 100)|round }}%</span>
-    <span class="votes">{{ game.total_reviews_sum|number_format }} votes</span>
 {% endblock %}

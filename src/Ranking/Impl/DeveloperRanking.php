@@ -13,6 +13,8 @@ class DeveloperRanking extends Top250List implements CustomRankingFetch
     public function __construct(RankingDependencies $dependencies)
     {
         parent::__construct($dependencies, 'developer');
+
+        $this->setWeight(2);
     }
 
     public function customizeQuery(QueryBuilder $builder): void
@@ -26,13 +28,16 @@ class DeveloperRanking extends Top250List implements CustomRankingFetch
         ;
         $builder->resetQueryParts();
 
+        // More weight prefers more games.
+        $weight = 1;
+
         $builder
             // Calculate Bayesian average. https://en.wikipedia.org/wiki/Bayesian_average
-            ->select('*, (global_score_avg + score_sum) / (1 + games) AS score, developer AS owner')
+            ->select("*, ($weight * global_score_avg + score_sum) / ($weight + games) AS score, developer AS owner")
             ->from(
                 "(
                     SELECT app.id, app.name, app_developer.name AS developer,
-                        --MAX(score) forces the top scoring app ID into the aggregate row.
+                        -- MAX(score) forces the top scoring app ID into the aggregate row.
                         MAX(score), SUM(score) AS score_sum, COUNT(*) AS games
                     FROM app
                     INNER JOIN app_developer ON app_id = app.id
@@ -59,7 +64,8 @@ class DeveloperRanking extends Top250List implements CustomRankingFetch
                 'rank',
                 '(
                     SELECT app_developer.name AS developer, COUNT(*) AS games,
-                        SUM(total_reviews) AS total_reviews_sum, SUM(positive_reviews) AS positive_reviews_sum
+                        -- Override review totals with developer aggregate totals.
+                        SUM(total_reviews) AS total_reviews, SUM(positive_reviews) AS positive_reviews
                     FROM app
                     INNER JOIN app_developer ON app_id = id
                     WHERE type = \'game\' AND platforms > 0
