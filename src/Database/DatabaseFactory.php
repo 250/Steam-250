@@ -22,5 +22,7 @@ final class DatabaseFactory
         $pdo->sqliteCreateFunction('log10', 'log10', 1, \PDO::SQLITE_DETERMINISTIC);
         $pdo->sqliteCreateFunction('log', 'log', 2, \PDO::SQLITE_DETERMINISTIC);
         $pdo->sqliteCreateFunction('power', 'pow', 2, \PDO::SQLITE_DETERMINISTIC);
+        $pdo->sqliteCreateFunction('sin', 'sin', 1, \PDO::SQLITE_DETERMINISTIC);
+        $pdo->sqliteCreateFunction('pi', 'pi', 0, \PDO::SQLITE_DETERMINISTIC);
     }
 }

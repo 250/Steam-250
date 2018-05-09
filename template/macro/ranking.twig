@@ -1,0 +1,27 @@
+{% macro tag(tag, tags) %}
+{% if tag %}
+    {% if tag in tags %}
+        {% set tag_url = '/tag/' ~ tag|tag_id|url_encode ~ ext %}
+    {% else %}
+        {% set tag_url = "https://store.steampowered.com/tag/en/#{tag|url_encode}/" %}
+    {% endif -%}
+    <a href="{{ tag_url }}" class="genre">{{ tag }}</a>
+{%- endif %}
+{% endmacro %}
+
+{% macro date(date, caption) %}
+{% if date %}
+<span class="date" title="{{ date|date('j M Y') }}">
+    {% set year = date|date('Y') %}
+    {% if year <= 'now'|date('Y') %}
+    {% set earliest_year =
+        constant('ScriptFUSION\\Steam250\\SiteGenerator\\Ranking\\Impl\\AnnualList::EARLIEST_YEAR') %}
+    <a href="/{{ (year < earliest_year ? 'old' : date|date('Y')) ~ ext }}">
+    {% endif %}
+        {{ caption }}
+    {% if year <= 'now'|date('Y') %}
+    </a>
+    {% endif %}
+</span>
+{% endif %}
+{% endmacro %}

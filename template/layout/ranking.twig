@@ -1,5 +1,6 @@
 {% extends'layout/template.twig' %}
 {% import 'macro/steam.twig' as steam %}
+{% import 'macro/ranking.twig' as macro %}
 
 {% block css %}
 {{ parent() }}
@@ -37,7 +38,7 @@
                 <button class="button cancel">Cancel</button>
                 <button class="button reset" type="reset">Reset</button>
             </form>
-            <h2>Movement, rank, title, date, platforms and tags</h2>
+            <h2>{% block game_row_heading %}Movement, rank, title, date, platforms and tag{% endblock %}</h2>
             <h2>{% block scoring_heading %}Score{% endblock %}</h2>
         </header>
         {% for game in games %}
@@ -52,27 +53,14 @@
                 {% if game.movement is defined %}
                 {{ include('partial/movement.twig', {movement: game.movement}) }}
                 {% endif %}
-                {% block game %}
+                {% block game_row %}
                 <span class="title">
                     {{ game.rank }}.
                     <a href="{{ steam.app_url(game.id) }}">
                         {{- game.name -}}
                     </a>
                 </span>
-                {% if game.release_date %}
-                <span class="date" title="{{ game.release_date|date('j M Y') }}">
-                    {% set year = game.release_date|date('Y') %}
-                    {% if year <= 'now'|date('Y') %}
-                    {% set earliest_year =
-                        constant('ScriptFUSION\\Steam250\\SiteGenerator\\Ranking\\Impl\\AnnualList::EARLIEST_YEAR') %}
-                    <a href="/{{ (year < earliest_year ? 'old' : game.release_date|date('Y')) ~ ext }}">
-                    {% endif %}
-                        {{ game.release_date|date('M Y') }}
-                    {% if year <= 'now'|date('Y') %}
-                    </a>
-                    {% endif %}
-                </span>
-                {% endif %}
+                {{ macro.date(game.release_date, game.release_date|date('M Y')) }}
                 <span class="platforms">
                 {%- if game.platforms b-and constant('ScriptFUSION\\Top250\\Shared\\Platform::WINDOWS') -%}
                 <span title="Windows" class="win"></span>
@@ -93,14 +81,7 @@
                 <a href="/vr250{{ ext }}" title="Windows Mixed Reality" class="wmr"></a>
                 {%- endif -%}
                 </span>
-                {% if game.primary_tag %}
-                {% if game.primary_tag in tags %}
-                    {% set tag_url = "/tag/#{game.primary_tag|tag_id|url_encode ~ ext}" %}
-                {% else %}
-                    {% set tag_url = "http://store.steampowered.com/tag/en/#{game.primary_tag|url_encode}/" %}
-                {% endif %}
-                <a href="{{ tag_url }}" class="genre">{{- game.primary_tag -}}</a>
-                {% endif %}
+                {{ macro.tag(game.primary_tag, tags) }}
                 {% if game.rank_250 and game.list_id != 'index' %}
                 <a href="/#{{ game.rank_250 }}" class="ref250">Top 250 #{{ game.rank_250 }}</a>
                 {% endif %}

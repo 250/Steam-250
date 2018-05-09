@@ -32,8 +32,14 @@ class DeveloperRanking extends Top250List implements CustomRankingFetch
         $weight = 1;
 
         $builder
-            // Calculate Bayesian average. https://en.wikipedia.org/wiki/Bayesian_average
-            ->select("*, ($weight * global_score_avg + score_sum) / ($weight + games) AS score, developer AS owner")
+            ->select('*, developer AS owner')
+            ->addSelect(
+                // Calculate Bayesian average (https://en.wikipedia.org/wiki/Bayesian_average) and scale scores up.
+                "SIN(1.2 * (PI() *
+                    -- Bayesian average.
+                    (($weight * global_score_avg + score_sum) / ($weight + games))
+                - .5 * PI())) * .5 + .5 AS score"
+            )
             ->from(
                 "(
                     SELECT app.id, app.name, app_developer.name AS developer,

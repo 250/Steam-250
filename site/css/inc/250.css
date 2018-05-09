@@ -750,6 +750,7 @@ p.notice::before {
     display: inline;
 }
 .ranking .links {
+    display: inline-block;
     width: 13px;
     height: 0;
     padding: calc(13px / 2 + .1em) .1em;
@@ -914,7 +915,8 @@ tr.a .movement.none:before {
 
 .genre, .genre:visited,
 .ref250, .ref250:visited,
-.discount, .free, .vrx, .ea {
+.discount, .free, .vrx, .ea,
+.games, .games:visited {
     margin-left: .25em;
     padding: .19em .6em;
     border-radius: 2px;
@@ -995,6 +997,20 @@ tr.a .movement.none:before {
     box-shadow: rgba(78, 129, 174, .3);
     text-shadow: #65a7e0;
     background: #4e81ae;
+}
+
+.games {
+    margin: 0 .25em;
+
+    font-size: 75%;
+    font-weight: bold;
+    background: rgba(107, 255, 239, .1);
+    transition: all .1s;
+}
+.games:hover {
+    color: #abdcf5;
+    background-color: rgba(103, 193, 245, .2);
+    text-decoration: none;
 }
 
 .date {
