@@ -4,34 +4,35 @@ declare(strict_types=1);
 namespace ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl;
 
 use Doctrine\DBAL\Query\QueryBuilder;
+use ScriptFUSION\Steam250\SiteGenerator\Database\Queries;
 use ScriptFUSION\Steam250\SiteGenerator\Database\SortDirection;
 use ScriptFUSION\Steam250\SiteGenerator\Rank\CustomRankingFetch;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\RankingDependencies;
 
 class DeveloperRanking extends Top250List implements CustomRankingFetch
 {
+    private $dependencies;
+
     public function __construct(RankingDependencies $dependencies)
     {
-        parent::__construct($dependencies, 'developer');
+        parent::__construct($this->dependencies = $dependencies, 'developer');
 
         $this->setWeight(2);
     }
 
     public function customizeQuery(QueryBuilder $builder): void
     {
-        $limit = $builder->getMaxResults();
+        // Score games for each developer using this ranking's algorithm and weights.
+        $ownerScorer = Queries::createScorer($builder->getConnection(), $this);
 
-        // Convert current builder into scorer and clear it ready for wrapping in outer query.
-        $scorer = clone $builder
-            ->setMaxResults(null)
-            ->resetQueryPart('orderBy')
-        ;
-        $builder->resetQueryParts();
+        // Score individual games as if they were on the top 250 (used to pick most popular game).
+        $gameScorer = Queries::createScorer($builder->getConnection(), new Top250List($this->dependencies));
 
         // More weight prefers more games.
         $weight = 1;
 
         $builder
+            ->resetQueryParts()
             ->select('*, developer AS owner')
             ->addSelect(
                 // Calculate Bayesian average (https://en.wikipedia.org/wiki/Bayesian_average) and scale scores up.
@@ -43,22 +44,23 @@ class DeveloperRanking extends Top250List implements CustomRankingFetch
             ->from(
                 "(
                     SELECT app.id, app.name, app_developer.name AS developer,
-                        -- MAX(score) forces the top scoring app ID into the aggregate row.
-                        MAX(score), SUM(score) AS score_sum, COUNT(*) AS games
+                        -- MAX(game.score) forces the top scoring app ID into the aggregate row.
+                        MAX(game.score), SUM(owner.score) AS score_sum, COUNT(*) AS games
                     FROM app
                     INNER JOIN app_developer ON app_id = app.id
-                    INNER JOIN ($scorer) self ON self.id = app.id
+                    INNER JOIN ($ownerScorer) owner ON owner.id = app.id
+                    INNER JOIN ($gameScorer) game ON game.id = app.id
                     GROUP BY developer
                 )"
             )
             ->from(
                 "(
                     SELECT AVG(score) AS global_score_avg
-                    FROM ($scorer)
+                    FROM ($ownerScorer)
                 )"
             )
             ->orderBy('score', SortDirection::DESC)
-            ->setMaxResults($limit)
+            ->setMaxResults($this->getLimit())
         ;
     }
 

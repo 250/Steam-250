@@ -123,22 +123,28 @@ final class Queries
      */
     public static function rankList(Connection $database, Ranking $ranking): Statement
     {
-        $query = $database->createQueryBuilder()
-            ->select('*')
-            ->from('app')
-            // Ensure platforms are defined to exclude discontinued apps.
-            ->where('type = \'game\' AND platforms > 0')
+        $query = self::createScorer($database, $ranking)
+            ->orderBy('score', SortDirection::DESC)
             ->setMaxResults($ranking->getLimit())
         ;
-
-        if ($ranking->getAlgorithm()) {
-            self::calculateScore($query, $ranking);
-            $query->orderBy('score', SortDirection::DESC);
-        }
 
         $ranking->customizeQuery($query);
 
         return $query->execute();
+    }
+
+    public static function createScorer(Connection $database, Ranking $ranking): QueryBuilder
+    {
+        $query = $database->createQueryBuilder()
+            ->addSelect('*')
+            ->from('app')
+            // Ensure platforms are defined to exclude discontinued apps.
+            ->where('type = \'game\' AND platforms > 0')
+        ;
+
+        self::calculateScore($query, $ranking);
+
+        return $query;
     }
 
     public static function calculateScore(
