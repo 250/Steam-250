@@ -206,7 +206,7 @@ class S250 {
         const games = JSON.parse(localStorage.getItem('games'));
 
         document.querySelectorAll('.ranking > div > div:first-of-type > a').forEach(a => {
-            const id = a.href.match(/(\d+)\/?$/)[1];
+            const id = a.href.match(/\/app\/(\d+)/)[1];
 
             if (games.hasOwnProperty(id)) {
                 a.classList.add('owned');
