@@ -915,8 +915,7 @@ tr.a .movement.none:before {
 
 .genre, .genre:visited,
 .ref250, .ref250:visited,
-.discount, .free, .vrx, .ea,
-.games, .games:visited {
+.discount, .free, .vrx, .ea {
     margin-left: .25em;
     padding: .19em .6em;
     border-radius: 2px;
@@ -999,17 +998,23 @@ tr.a .movement.none:before {
     background: #4e81ae;
 }
 
-.games {
+.games, .games:visited {
+    display: inline-block;
     margin: 0 .25em;
+    width: 1.75em;
+    line-height: 1.75em;
 
-    font-size: 75%;
-    font-weight: bold;
-    background: rgba(107, 255, 239, .1);
+    color: #d1d1cb;
+    border: 1px solid #bdbdbd;
+    font-size: 80%;
+    text-align: center;
+    border-radius: 2em;
     transition: all .1s;
 }
 .games:hover {
-    color: #abdcf5;
-    background-color: rgba(103, 193, 245, .2);
+    color: #1c272d;
+    background-color: #ddd9d0;
+    border-color: #ddd9d0;
     text-decoration: none;
 }
 

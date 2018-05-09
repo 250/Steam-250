@@ -29,7 +29,7 @@ class DeveloperRanking extends Top250List implements CustomRankingFetch
         $gameScorer = Queries::createScorer($builder->getConnection(), new Top250List($this->dependencies));
 
         // More weight prefers more games.
-        $weight = 1;
+        $weight = 1.11;
 
         $builder
             ->resetQueryParts()
