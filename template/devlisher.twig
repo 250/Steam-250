@@ -1,0 +1,61 @@
+{% extends 'layout/ranking.twig' %}
+{% import 'macro/steam.twig' as steam %}
+{% import 'macro/ranking.twig' as ranking_macro %}
+
+{% set mode = ranking.id %}
+{% set mode_c = mode|capitalize %}
+
+{% block title %}Top 250 best Steam {{ mode_c }}s{% endblock %}
+{% block heading %}{{ mode_c }} 250{% endblock %}
+
+{% block content %}
+    <p>
+        Top 250 best Steam {{ mode_c }}s of all time according to gamer reviews.
+    </p>
+    <p>
+        This ranking is designed to highlight {{ mode }}s consistently releasing good games on Steam.
+        {{ mode_c }}s are ranked across all games, excluding DLC and discontinued titles.
+        The game shown next to each {{ mode }} is the one they are most well known for, based on gamer reviews.
+        {% if mode == 'developer' %}
+        A small preference is given to developers with more games such that those near the top of the
+        ranking typically have more than one release.
+        {% else %}
+        A moderate preference is given to publishers with more games such that those near the top of the
+        ranking typically have at least 10 releases.
+        {% endif %}
+    </p>
+    <p class="tip">
+        See also:
+        {% if mode == 'developer' %}
+            <a href="/publisher{{ ext }}">Publisher 250</a>.
+        {% else %}
+            <a href="/developer{{ ext }}">Developer 250</a>.
+        {% endif %}
+    </p>
+{% endblock %}
+
+{% block game_row_heading %}
+    Movement, rank, {{ mode }}, game total, top game, year and tag
+{% endblock %}
+
+{% block game_row %}
+    {% if mode == 'developer' %}
+        {% set steam_url = steam.developer_url(game.owner) %}
+    {% else %}
+        {% set steam_url = steam.publisher_url(game.owner) %}
+    {% endif %}
+
+    <span class="title">
+        {{ game.rank }}.
+        <a href="{{ steam_url }}">{{- game.owner -}}</a>
+    </span>
+    <a href="{{ steam_url }}" class="games"
+       title="{{ game.games }} game{% if game.games > 1 %}s{% endif %}">{{ game.games }}</a>
+    <span class="knownfor">
+        <a href="{{ steam.app_url(game.id) }}">{{ game.name }}</a>
+    </span>
+    {% if game.release_date %}
+    {{ ranking_macro.date(game.release_date, game.release_date|date('Y')) }}
+    {% endif %}
+    {{ ranking_macro.tag(game.primary_tag, tags) }}
+{% endblock %}

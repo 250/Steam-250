@@ -13,6 +13,8 @@
                 <a href="#{{ game.rank }}">{{ game.rank }}</a>.
                 {% if game.developer is defined %}
                 <a href="{{ steam.developer_url(game.developer) }}">{{ game.developer }}</a>
+                {% elseif game.publisher is defined %}
+                <a href="{{ steam.publisher_url(game.publisher) }}">{{ game.publisher }}</a>
                 {% else %}
                 <a href="{{ steam.app_url(game.id) }}">{{ game.name }}</a>
                 {% endif %}

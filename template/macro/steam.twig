@@ -5,3 +5,7 @@ https://store.steampowered.com/app/{{ app_id }}/?curator_clanid=32686107
 {% macro developer_url(developer) %}
 https://store.steampowered.com/search/?sort_by=Reviews_DESC&category1=998&developer={{ developer|e('url') }}
 {% endmacro %}
+
+{% macro publisher_url(publisher) %}
+https://store.steampowered.com/search/?sort_by=Reviews_DESC&category1=998&publisher={{ publisher|e('url') }}
+{% endmacro %}

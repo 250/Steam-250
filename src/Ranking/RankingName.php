@@ -17,6 +17,7 @@ use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\Linux250List;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\Mac250List;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\OldList;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\OwnersOldRanking;
+use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\PublisherRanking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\ThisMonthList;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\ThisQuarterList;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\ThisWeekRanking;
@@ -52,8 +53,9 @@ final class RankingName extends AbstractEnumeration
     public const VRX = 'VRX';
     public const HVN = 'HVN';
     public const REMORSE = 'REMORSE';
+    public const DEVELOPER = 'DEVELOPER';
+    public const PUBLISHER = 'PUBLISHER';
 //    public const PLAYERS = 'PLAYERS';
-    public const DEVELOPERS = 'DEVELOPERS';
     public const CLUB_250 = 'CLUB_250';
     public const COLLAGE = 'COLLAGE';
 
@@ -79,8 +81,9 @@ final class RankingName extends AbstractEnumeration
         self::VRX => VrxRanking::class,
         self::HVN => HiddenNovelsList::class,
         self::REMORSE => BuyersRemorseList::class,
+        self::DEVELOPER => DeveloperRanking::class,
+        self::PUBLISHER => PublisherRanking::class,
 //        self::PLAYERS => MostPlayedList::class,
-        self::DEVELOPERS => DeveloperRanking::class,
         self::CLUB_250 => Club250List::class,
         self::COLLAGE => CollageList::class,
     ];
@@ -107,8 +110,9 @@ final class RankingName extends AbstractEnumeration
         self::VRX => 'vrx',
         self::HVN => 'hvn',
         self::REMORSE => 'remorse',
+        self::DEVELOPER => 'devs',
+        self::PUBLISHER => 'pubs',
 //        self::PLAYERS => 'players',
-        self::DEVELOPERS => 'devs',
         self::CLUB_250 => 'club',
         self::COLLAGE => 'collage',
     ];
