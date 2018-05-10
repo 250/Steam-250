@@ -750,6 +750,7 @@ p.notice::before {
     display: inline;
 }
 .ranking .links {
+    display: inline-block;
     width: 13px;
     height: 0;
     padding: calc(13px / 2 + .1em) .1em;
@@ -995,6 +996,26 @@ tr.a .movement.none:before {
     box-shadow: rgba(78, 129, 174, .3);
     text-shadow: #65a7e0;
     background: #4e81ae;
+}
+
+.games, .games:visited {
+    display: inline-block;
+    margin: 0 .25em;
+    width: 1.75em;
+    line-height: 1.75em;
+
+    color: #d1d1cb;
+    border: 1px solid #bdbdbd;
+    font-size: 80%;
+    text-align: center;
+    border-radius: 2em;
+    transition: all .1s;
+}
+.games:hover {
+    color: #1c272d;
+    background-color: #ddd9d0;
+    border-color: #ddd9d0;
+    text-decoration: none;
 }
 
 .date {
@@ -1322,6 +1343,10 @@ tr.a .movement.none:before {
     #footer > :nth-child(n+2) {
         margin: 1.5em 0 0;
     }
+}
+#footer .status > li:first-of-type > span {
+    display: inline-block;
+    margin: 0 .25em .2em 0;
 }
 
 a.twitter, a.patreon, a.discord, a.steam {
