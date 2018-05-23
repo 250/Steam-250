@@ -4,8 +4,7 @@ declare(strict_types=1);
 namespace ScriptFUSION\Steam250\SiteGenerator\Rank;
 
 use Doctrine\DBAL\Connection;
-use Monolog\Handler\StreamHandler;
-use Monolog\Logger;
+use ScriptFUSION\Steam250\Shared\Log\LoggerFactory;
 
 final class RankerFactory
 {
@@ -13,7 +12,7 @@ final class RankerFactory
     {
         return new Ranker(
             $connection,
-            (new Logger('Ranker'))->pushHandler(new StreamHandler(STDERR, Logger::INFO))
+            (new LoggerFactory)->create('Ranker', false)
         );
     }
 }

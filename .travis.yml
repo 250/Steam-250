@@ -23,10 +23,13 @@ install:
 before_script:
   - echo "https://$GITHUB_TOKEN:@github.com" > ~/.git-credentials
 
-  - git clone --depth=1 https://github.com/250/Steam-data.git ${datadir=~/Steam-data}
-      -c user.name=Travis
-      -c user.email=bilge+travis@scriptfusion.com
-      -c credential.helper=store
+  - data() { vendor/bin/250\ data "$@"; }
+  - snapshots=$(data download-last2) && echo "$snapshots"
+  - |
+    todayDb=$(sed 1!d <<<"$snapshots" | cut -f3)
+    todayDir=$(sed 1!d <<<"$snapshots" | cut -f2)
+    yesterdayDb=$(sed 2!d <<<"$snapshots" | cut -f3)
+    echo -e "Today:\t$todayDb\t($todayDir)\nYesterday:\t$yesterdayDb"
 
   - git clone --depth=1 -b ${branch=gh-pages} https://github.com/$TRAVIS_REPO_SLUG ${out=~/$branch}
       -c user.name=Travis
@@ -38,9 +41,7 @@ before_script:
     cd -
 
 script:
-  - db=$datadir/$("$datadir/bin/latest") prevdb=$datadir/$("$datadir/bin/latest" -1)
-  - 'echo "db: \"$db\" prevdb: \"$prevdb\""'
-  - bin/generate site --min --ext '' --prev-db "$prevdb" "$db" "$out" || exit
+  - bin/generate site -v --min --ext '' --prev-db "$yesterdayDb" "$todayDb" "$out" || exit
 
   - cd "$out" &&
     git add -A . &&
@@ -48,9 +49,10 @@ script:
     [[ -r index.html ]] && git push origin HEAD:$branch
 
 after_script:
-  - cd "$datadir" &&
-    git commit -am "Added ranks for $TRAVIS_COMMIT." &&
-    git push
+  - cd "$TRAVIS_BUILD_DIR"
+  - mv "$todayDb" steam.sqlite
+  - data upload steam.sqlite "$todayDir"
+  - data move "$todayDir"
 
   # Trigger foreign repository build to sync curator reviews.
   - 'curl -sf

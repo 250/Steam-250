@@ -62,22 +62,22 @@
                 </span>
                 {{ macro.date(game.release_date, game.release_date|date('M Y')) }}
                 <span class="platforms">
-                {%- if game.platforms b-and constant('ScriptFUSION\\Top250\\Shared\\Platform::WINDOWS') -%}
+                {%- if game.platforms b-and constant('ScriptFUSION\\Steam250\\Shared\\Platform::WINDOWS') -%}
                 <span title="Windows" class="win"></span>
                 {%- endif -%}
-                {%- if game.platforms b-and constant('ScriptFUSION\\Top250\\Shared\\Platform::MAC') -%}
+                {%- if game.platforms b-and constant('ScriptFUSION\\Steam250\\Shared\\Platform::MAC') -%}
                 <a href="/mac250{{ ext }}" title="Mac" class="mac"></a>
                 {%- endif -%}
-                {%- if game.platforms b-and constant('ScriptFUSION\\Top250\\Shared\\Platform::LINUX') -%}
+                {%- if game.platforms b-and constant('ScriptFUSION\\Steam250\\Shared\\Platform::LINUX') -%}
                 <a href="/linux250{{ ext }}" title="Linux" class="nix"></a>
                 {%- endif -%}
-                {%- if game.platforms b-and constant('ScriptFUSION\\Top250\\Shared\\Platform::VIVE') -%}
+                {%- if game.platforms b-and constant('ScriptFUSION\\Steam250\\Shared\\Platform::VIVE') -%}
                 <a href="/vr250{{ ext }}" title="HTC Vive" class="vive"></a>
                 {%- endif -%}
-                {%- if game.platforms b-and constant('ScriptFUSION\\Top250\\Shared\\Platform::OCULUS') -%}
+                {%- if game.platforms b-and constant('ScriptFUSION\\Steam250\\Shared\\Platform::OCULUS') -%}
                 <a href="/vr250{{ ext }}" title="Oculus Rift" class="rift"></a>
                 {%- endif -%}
-                {%- if game.platforms b-and constant('ScriptFUSION\\Top250\\Shared\\Platform::WMR') -%}
+                {%- if game.platforms b-and constant('ScriptFUSION\\Steam250\\Shared\\Platform::WMR') -%}
                 <a href="/vr250{{ ext }}" title="Windows Mixed Reality" class="wmr"></a>
                 {%- endif -%}
                 </span>

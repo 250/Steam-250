@@ -5,7 +5,7 @@ namespace ScriptFUSION\Steam250\SiteGenerator;
 
 use Doctrine\DBAL\Connection;
 use Joomla\DI\Container;
-use Monolog\Logger;
+use ScriptFUSION\Steam250\Shared\Log\LoggerFactory;
 use ScriptFUSION\Steam250\SiteGenerator\Database\DatabaseFactory;
 use ScriptFUSION\Steam250\SiteGenerator\Generate\PageCommand;
 use ScriptFUSION\Steam250\SiteGenerator\Generate\SiteCommand;
@@ -47,7 +47,7 @@ final class Application
             new RankingDependencies(
                 $container->get(Ranker::class),
                 $container->get('db'),
-                new Logger('Ranking')
+                (new LoggerFactory)->create('Ranking', false)
             ),
             true
         );

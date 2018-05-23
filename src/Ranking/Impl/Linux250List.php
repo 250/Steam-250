@@ -4,8 +4,8 @@ declare(strict_types=1);
 namespace ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl;
 
 use Doctrine\DBAL\Query\QueryBuilder;
+use ScriptFUSION\Steam250\Shared\Platform;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\RankingDependencies;
-use ScriptFUSION\Top250\Shared\Platform;
 
 class Linux250List extends Top250List
 {

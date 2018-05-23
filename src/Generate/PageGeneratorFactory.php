@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace ScriptFUSION\Steam250\SiteGenerator\Generate;
 
-use Monolog\Logger;
+use ScriptFUSION\Steam250\Shared\Log\LoggerFactory;
 
 final class PageGeneratorFactory
 {
@@ -11,7 +11,7 @@ final class PageGeneratorFactory
     {
         return new PageGenerator(
             (new TwigFactory)->create($extension),
-            new Logger('Generator'),
+            (new LoggerFactory)->create('Generator', false),
             (new MinifierFactory)->create()
         );
     }
