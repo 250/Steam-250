@@ -1001,8 +1001,8 @@ tr.a .movement.none:before {
 .games, .games:visited {
     display: inline-block;
     margin: 0 .25em;
-    width: 1.75em;
-    line-height: 1.75em;
+    width: 1.7em;
+    line-height: 1.7em;
 
     color: #d1d1cb;
     border: 1px solid #bdbdbd;
