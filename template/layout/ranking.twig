@@ -123,11 +123,11 @@
         {{ include('partial/risers.twig', {games: risers}) }}
         {% endif %}
         {{ include('partial/ad.twig', {id: '3002887382'}) }}
-        {% if fallers %}
-        {{ include('partial/risers.twig', {games: fallers, title: 'Fallers'}) }}
-        {% endif %}
         {% if new %}
         {{ include('partial/risers.twig', {games: new, title: 'New entries'}) }}
+        {% endif %}
+        {% if fallers %}
+        {{ include('partial/risers.twig', {games: fallers, title: 'Fallers'}) }}
         {% endif %}
     {% else %}
         {{ include('partial/ad.twig', {id: '3002887382'}) }}
