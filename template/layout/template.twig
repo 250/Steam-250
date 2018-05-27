@@ -106,7 +106,7 @@
             <li><a href="/club250{{ ext }}">Club 250 Games</a>
             <li><a href="/club250/ambassadors{{ ext }}">Club Ambassadors</a>
             <li><a href="/cosmic_tweets{{ ext }}">Cosmic Tweets</a>
-            <li><a href="https://www.patreon.com/steam250">Join Club 250</a>
+            <li><a href="{{ patreon }}">Join Club 250</a>
             <li><a href="https://twitter.com/Steam_250">Follow on Twitter</a>
             <li><a href="https://discord.gg/8pz5ybv">Chat in Discord</a>
             <li><a href="https://store.steampowered.com/curator/32686107/">Follow on Steam</a>
@@ -121,7 +121,7 @@
                 &ndash; <a href="/{{ 'now'|date('Y') ~ ext }}">{{ 'now'|date('Y') }}</a>
                 &ndash; <a href="/7day{{ ext }}">New</a>
                 &ndash; <a href="/developer{{ ext }}">Developers</a>
-            <li><a href="https://www.patreon.com/steam250">
+            <li><a href="{{ patreon }}">
                 Join Club 250 <span class="d">on</span> Patreon</a>
         </ul>
         {{ include('partial/ad.twig', {id: '9535671996'}) }}
@@ -168,12 +168,12 @@
 
     <div>
         <h2>
-            <a href="https://www.patreon.com/steam250">Club 250</a>
-            <a href="https://www.patreon.com/steam250" class="patreon" title="Patreon">Patreon</a>
+            <a href="{{ patreon }}">Club 250</a>
+            <a href="{{ patreon }}" class="patreon" title="Patreon">Patreon</a>
         </h2>
         <p>
             Club 250 is the Steam 250 members club. Consider
-            <a href="https://www.patreon.com/steam250">becoming a member</a>
+            <a href="{{ patreon }}">becoming a member</a>
             so we can continue helping you find good games on Steam in new and better ways.
         </p>
         <p>

@@ -22,6 +22,7 @@ final class TwigFactory
             return date_default_timezone_get();
         }));
         $twig->addGlobal('ext', $ext);
+        $twig->addGlobal('patreon', 'https://www.patreon.com/steam250/overview');
 
         return $twig;
     }
