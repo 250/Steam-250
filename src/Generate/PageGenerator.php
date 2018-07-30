@@ -37,7 +37,7 @@ final class PageGenerator
         $html = $this->twig->load("{$page->getTemplate()}.twig")->render($export);
 
         if ($this->minify) {
-            $this->logger->debug('Minifying HTML...');
+            $this->logger->info('Minifying HTML...');
 
             $html = $this->minifier->minify($html);
         }

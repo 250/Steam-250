@@ -94,7 +94,7 @@
                 {% if game.price is same as('0') %}
                 <a href="/tag/free_to_play{{ ext }}" class="free">Free</a>
                 {% endif %}
-                {% if 'Early Access' in game.tags %}
+                {% if game.ea %}
                 <a href="/tag/early_access{{ ext }}" class="ea" title="Early Access">EA</a>
                 {% endif %}
                 <a href="#{{ game.rank }}" class="links" title="Link">▼</a>

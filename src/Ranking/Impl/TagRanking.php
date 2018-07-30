@@ -7,7 +7,7 @@ use Doctrine\DBAL\Query\QueryBuilder;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\RankingDependencies;
 use ScriptFUSION\Steam250\SiteGenerator\SteamApp\Tag;
 
-class TagList extends Top250List
+class TagRanking extends Top250List
 {
     private $tag;
 

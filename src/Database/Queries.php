@@ -97,7 +97,7 @@ final class Queries
             "SELECT tag, COUNT(tag) AS count
             FROM app_tag
             LEFT JOIN app ON id = app_id
-            WHERE type = 'game' AND tag != 'VR'
+            WHERE type = 'game' AND tag != 'VR' AND tag != 'Early Access'
             GROUP BY tag
             HAVING count >= $threshold"
         )->fetchAll(\PDO::FETCH_COLUMN);

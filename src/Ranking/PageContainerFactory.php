@@ -7,8 +7,9 @@ use Joomla\DI\Container;
 use ScriptFUSION\Steam250\SiteGenerator\Database\Queries;
 use ScriptFUSION\Steam250\SiteGenerator\Page\StaticPageName;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\AnnualList;
+use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\EarlyAccessRanking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\OwnersRanking;
-use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\TagList;
+use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\TagRanking;
 use ScriptFUSION\Steam250\SiteGenerator\SteamApp\Tag;
 
 final class PageContainerFactory
@@ -28,23 +29,29 @@ final class PageContainerFactory
         }
 
         foreach (range(AnnualList::EARLIEST_YEAR, date('Y')) as $year) {
-            $container->set($year, function () use ($year, $parent): Ranking {
+            $container->set($year, static function () use ($year, $parent): Ranking {
                 return new AnnualList($parent->get(RankingDependencies::class), $year);
             });
 
             // Owners data is no longer current, so only show historical rankings.
             if ($year <= 2017) {
-                $container->set("owners/$year", function () use ($year, $parent): Ranking {
+                $container->set("owners/$year", static function () use ($year, $parent): Ranking {
                     return new OwnersRanking($parent->get(RankingDependencies::class), $year);
                 });
             }
         }
 
+        // Tags.
         foreach (Queries::fetchPopularTags($container->get('db')) as $tag) {
-            $container->set(Tag::convertTagToId($tag), function () use ($tag, $parent): Ranking {
-                return new TagList($parent->get(RankingDependencies::class), $tag);
+            $container->set(Tag::convertTagToId($tag), static function () use ($tag, $parent): Ranking {
+                return new TagRanking($parent->get(RankingDependencies::class), $tag);
             });
         }
+
+        // Early Access special-cased tag.
+        $container->set(Tag::convertTagToId(EarlyAccessRanking::TAG), static function () use ($parent): Ranking {
+            return new EarlyAccessRanking($parent->get(RankingDependencies::class));
+        });
 
         return $container;
     }
