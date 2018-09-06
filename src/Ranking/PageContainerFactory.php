@@ -48,7 +48,7 @@ final class PageContainerFactory
             });
         }
 
-        // Early Access special-cased tag.
+        // Replace Early Access tag using special-cased implementation.
         $container->set(Tag::convertTagToId(EarlyAccessRanking::TAG), static function () use ($parent): Ranking {
             return new EarlyAccessRanking($parent->get(RankingDependencies::class));
         });

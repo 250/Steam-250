@@ -30,7 +30,7 @@ abstract class Page
         return $this->id;
     }
 
-    protected function setId(string $id)
+    protected function setId(string $id): void
     {
         $this->id = $id;
     }

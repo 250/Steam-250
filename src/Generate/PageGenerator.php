@@ -56,7 +56,7 @@ final class PageGenerator
         }
     }
 
-    public function setMinify(bool $minify)
+    public function setMinify(bool $minify): void
     {
         $this->minify = $minify;
     }

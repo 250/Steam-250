@@ -9,6 +9,7 @@
   ],
   "require": {
     "php": "^7.1",
+    "ext-pdo": "*",
     "250/shared": "dev-master",
     "scriptfusion/static-class": "^1",
     "twig/twig": "^2",

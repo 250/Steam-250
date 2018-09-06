@@ -6,6 +6,12 @@ namespace ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl;
 use Doctrine\DBAL\Query\QueryBuilder;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\RankingDependencies;
 
+/**
+ * Defines a ranking for early access games using the dedicated "ea" field instead of relying on tags.
+ *
+ * Due to a long-standing bug that appeared in the Steam store, games that have left early access may continue to be
+ * tagged as such, and thus tags are no longer a reliable indicator of whether a game is currently in early access.
+ */
 class EarlyAccessRanking extends TagRanking
 {
     public const TAG = 'Early Access';
