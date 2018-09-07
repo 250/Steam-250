@@ -18,10 +18,10 @@ use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\Mac250Ranking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\OldRanking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\OwnersOldRanking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\PublisherRanking;
-use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\ThisMonthRanking;
-use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\ThisQuarterRanking;
-use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\ThisWeekRanking;
-use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\ThisYearRanking;
+use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\RollingMonthRanking;
+use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\RollingQuarterRanking;
+use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\RollingWeekRanking;
+use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\RollingYearRanking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\Top250Ranking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\Usd10To15List;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\Usd5To10List;
@@ -69,10 +69,10 @@ final class RankingName extends AbstractEnumeration
         self::USD5_10 => Usd5To10List::class,
         self::USD10_15 => Usd10To15List::class,
         self::USD_OVER_15 => UsdOver15Ranking::class,
-        self::D_7 => ThisWeekRanking::class,
-        self::D_30 => ThisMonthRanking::class,
-        self::D_90 => ThisQuarterRanking::class,
-        self::D_365 => ThisYearRanking::class,
+        self::D_7 => RollingWeekRanking::class,
+        self::D_30 => RollingMonthRanking::class,
+        self::D_90 => RollingQuarterRanking::class,
+        self::D_365 => RollingYearRanking::class,
         self::OLD => OldRanking::class,
         self::OLD_OWN => OwnersOldRanking::class,
         self::MAC => Mac250Ranking::class,
