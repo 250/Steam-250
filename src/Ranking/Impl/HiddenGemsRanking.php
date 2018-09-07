@@ -4,20 +4,20 @@ declare(strict_types=1);
 namespace ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl;
 
 use Doctrine\DBAL\Query\QueryBuilder;
-use ScriptFUSION\Steam250\SiteGenerator\Database\SortDirection;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Algorithm;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Ranking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\RankingDependencies;
 
-class Bottom100List extends Ranking
+class HiddenGemsRanking extends Ranking
 {
-    public function __construct(RankingDependencies $dependencies, string $id = 'bottom100', float $weight = 4000)
+    public function __construct(RankingDependencies $dependencies, string $id = 'hidden_gems')
     {
-        parent::__construct($dependencies, $id, 100, Algorithm::BAYESIAN(), $weight);
+        parent::__construct($dependencies, $id, 250, Algorithm::HIDDEN_GEMS(), 45000.);
     }
 
     public function customizeQuery(QueryBuilder $builder): void
     {
-        $builder->orderBy('score', SortDirection::ASC());
+        // Exclude visual novels, adjusted by tag confidence threshold.
+        $builder->andWhere('tag IS NULL OR votes < avg * .5');
     }
 }

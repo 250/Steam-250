@@ -6,7 +6,7 @@ namespace ScriptFUSION\Steam250\SiteGenerator\Ranking;
 use Joomla\DI\Container;
 use ScriptFUSION\Steam250\SiteGenerator\Database\Queries;
 use ScriptFUSION\Steam250\SiteGenerator\Page\StaticPageName;
-use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\AnnualList;
+use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\AnnualRanking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\EarlyAccessRanking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\OwnersRanking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\TagRanking;
@@ -28,9 +28,9 @@ final class PageContainerFactory
             $container->alias($name->getAlias(), $name->getClassName());
         }
 
-        foreach (range(AnnualList::EARLIEST_YEAR, date('Y')) as $year) {
+        foreach (range(AnnualRanking::EARLIEST_YEAR, date('Y')) as $year) {
             $container->set($year, static function () use ($year, $parent): Ranking {
-                return new AnnualList($parent->get(RankingDependencies::class), $year);
+                return new AnnualRanking($parent->get(RankingDependencies::class), $year);
             });
 
             // Owners data is no longer current, so only show historical rankings.

@@ -15,7 +15,7 @@
     {% set year = date|date('Y') %}
     {% if year <= 'now'|date('Y') %}
     {% set earliest_year =
-        constant('ScriptFUSION\\Steam250\\SiteGenerator\\Ranking\\Impl\\AnnualList::EARLIEST_YEAR') %}
+        constant('ScriptFUSION\\Steam250\\SiteGenerator\\Ranking\\Impl\\AnnualRanking::EARLIEST_YEAR') %}
     <a href="/{{ (year < earliest_year ? 'old' : date|date('Y')) ~ ext }}">
     {% endif %}
         {{ caption }}

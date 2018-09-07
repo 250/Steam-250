@@ -33,7 +33,7 @@ abstract class DevlisherRanking extends Ranking implements CustomRankingFetch
         $ownerScorer = Queries::createScorer($builder->getConnection(), $this);
 
         // Score individual games as if they were on the top 250 (used to pick most popular game).
-        $gameScorer = Queries::createScorer($builder->getConnection(), new Top250List($this->dependencies));
+        $gameScorer = Queries::createScorer($builder->getConnection(), new Top250Ranking($this->dependencies));
 
         $mode = $this->getId();
 

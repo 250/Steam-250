@@ -1,5 +1,5 @@
 <div class="linkbar">
-    {% set first = constant('ScriptFUSION\\Steam250\\SiteGenerator\\Ranking\\Impl\\AnnualList::EARLIEST_YEAR') %}
+    {% set first = constant('ScriptFUSION\\Steam250\\SiteGenerator\\Ranking\\Impl\\AnnualRanking::EARLIEST_YEAR') %}
     {% if ranking.year is not defined %}
         <a href="{{ first ~ ext }}" class="next button">{{ first }}</a>
     {% else %}

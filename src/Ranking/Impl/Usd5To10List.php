@@ -5,7 +5,7 @@ namespace ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl;
 
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\RankingDependencies;
 
-class Usd5To10List extends PriceRangeList
+class Usd5To10List extends PriceRangeRanking
 {
     public function __construct(RankingDependencies $dependencies)
     {

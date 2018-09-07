@@ -7,7 +7,7 @@ use Doctrine\DBAL\Query\QueryBuilder;
 use ScriptFUSION\Steam250\SiteGenerator\Database\SortDirection;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\RankingDependencies;
 
-class OwnersRanking extends AnnualList
+class OwnersRanking extends AnnualRanking
 {
     public function __construct(RankingDependencies $dependencies, int $year)
     {

@@ -6,7 +6,7 @@ namespace ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl;
 use Doctrine\DBAL\Query\QueryBuilder;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\RankingDependencies;
 
-class VrxRanking extends VrTop250List
+class VrxRanking extends VrTop250Ranking
 {
     public function __construct(RankingDependencies $dependencies)
     {

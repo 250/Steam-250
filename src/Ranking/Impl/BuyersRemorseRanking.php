@@ -5,10 +5,10 @@ namespace ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl;
 
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\RankingDependencies;
 
-class CollageList extends Top250List
+class BuyersRemorseRanking extends Bottom100Ranking
 {
     public function __construct(RankingDependencies $dependencies)
     {
-        parent::__construct($dependencies, 'collage');
+        parent::__construct($dependencies, 'buyers_remorse', 25);
     }
 }

@@ -6,16 +6,17 @@ namespace ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl;
 use Doctrine\DBAL\Query\QueryBuilder;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\RankingDependencies;
 
-class HiddenNovelsList extends HiddenGemsList
+class OldRanking extends Top250Ranking
 {
     public function __construct(RankingDependencies $dependencies)
     {
-        parent::__construct($dependencies, 'hidden_novels');
+        parent::__construct($dependencies, 'old', 100);
+
+        $this->setTemplate('annual');
     }
 
     public function customizeQuery(QueryBuilder $builder): void
     {
-        // Include only visual novels, adjusted by tag confidence threshold.
-        $builder->andWhere('tag IS NOT NULL AND votes >= avg * .5');
+        $builder->andWhere('release_date < ' . strtotime(AnnualRanking::EARLIEST_YEAR . '-1-1'));
     }
 }

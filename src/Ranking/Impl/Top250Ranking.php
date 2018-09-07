@@ -8,16 +8,15 @@ use ScriptFUSION\Steam250\SiteGenerator\Ranking\Algorithm;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Ranking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\RankingDependencies;
 
-class HiddenGemsList extends Ranking
+class Top250Ranking extends Ranking
 {
-    public function __construct(RankingDependencies $dependencies, string $id = 'hidden_gems')
+    public function __construct(RankingDependencies $dependencies, $id = 'index', $limit = 250)
     {
-        parent::__construct($dependencies, $id, 250, Algorithm::HIDDEN_GEMS(), 45000.);
+        parent::__construct($dependencies, $id, $limit, Algorithm::LAPLACE_LOG(), .7);
     }
 
     public function customizeQuery(QueryBuilder $builder): void
     {
-        // Exclude visual novels, adjusted by tag confidence threshold.
-        $builder->andWhere('tag IS NULL OR votes < avg * .5');
+        // Intentionally empty.
     }
 }

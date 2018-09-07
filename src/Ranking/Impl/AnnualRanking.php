@@ -6,7 +6,7 @@ namespace ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl;
 use Doctrine\DBAL\Query\QueryBuilder;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\RankingDependencies;
 
-class AnnualList extends ThisYearList
+class AnnualRanking extends ThisYearRanking
 {
     public const EARLIEST_YEAR = 2006;
 

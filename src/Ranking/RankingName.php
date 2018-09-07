@@ -4,30 +4,30 @@ declare(strict_types=1);
 namespace ScriptFUSION\Steam250\SiteGenerator\Ranking;
 
 use Eloquent\Enumeration\AbstractEnumeration;
-use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\Bottom100List;
-use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\BuyersRemorseList;
-use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\Club250List;
-use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\CollageList;
+use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\Bottom100Ranking;
+use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\BuyersRemorseRanking;
+use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\Club250Ranking;
+use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\CollageRanking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\DeveloperRanking;
-use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\DiscountList;
-use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\DlcList;
-use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\HiddenGemsList;
-use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\HiddenNovelsList;
-use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\Linux250List;
-use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\Mac250List;
-use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\OldList;
+use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\DiscountRanking;
+use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\DlcRanking;
+use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\HiddenGemsRanking;
+use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\HiddenNovelsRanking;
+use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\Linux250Ranking;
+use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\Mac250Ranking;
+use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\OldRanking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\OwnersOldRanking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\PublisherRanking;
-use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\ThisMonthList;
-use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\ThisQuarterList;
+use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\ThisMonthRanking;
+use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\ThisQuarterRanking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\ThisWeekRanking;
-use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\ThisYearList;
-use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\Top250List;
+use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\ThisYearRanking;
+use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\Top250Ranking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\Usd10To15List;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\Usd5To10List;
-use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\UsdOver15List;
+use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\UsdOver15Ranking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\UsdUnder5List;
-use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\VrTop250List;
+use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\VrTop250Ranking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\VrxRanking;
 
 final class RankingName extends AbstractEnumeration
@@ -60,32 +60,32 @@ final class RankingName extends AbstractEnumeration
     public const COLLAGE = 'COLLAGE';
 
     private static $classes = [
-        self::TOP_250 => Top250List::class,
-        self::GEMS => HiddenGemsList::class,
-        self::BOTTOM_100 => Bottom100List::class,
-        self::DLC => DlcList::class,
-        self::DISCOUNT => DiscountList::class,
+        self::TOP_250 => Top250Ranking::class,
+        self::GEMS => HiddenGemsRanking::class,
+        self::BOTTOM_100 => Bottom100Ranking::class,
+        self::DLC => DlcRanking::class,
+        self::DISCOUNT => DiscountRanking::class,
         self::USD_UNDER_5 => UsdUnder5List::class,
         self::USD5_10 => Usd5To10List::class,
         self::USD10_15 => Usd10To15List::class,
-        self::USD_OVER_15 => UsdOver15List::class,
+        self::USD_OVER_15 => UsdOver15Ranking::class,
         self::D_7 => ThisWeekRanking::class,
-        self::D_30 => ThisMonthList::class,
-        self::D_90 => ThisQuarterList::class,
-        self::D_365 => ThisYearList::class,
-        self::OLD => OldList::class,
+        self::D_30 => ThisMonthRanking::class,
+        self::D_90 => ThisQuarterRanking::class,
+        self::D_365 => ThisYearRanking::class,
+        self::OLD => OldRanking::class,
         self::OLD_OWN => OwnersOldRanking::class,
-        self::MAC => Mac250List::class,
-        self::LINUX => Linux250List::class,
-        self::VR => VrTop250List::class,
+        self::MAC => Mac250Ranking::class,
+        self::LINUX => Linux250Ranking::class,
+        self::VR => VrTop250Ranking::class,
         self::VRX => VrxRanking::class,
-        self::HVN => HiddenNovelsList::class,
-        self::REMORSE => BuyersRemorseList::class,
+        self::HVN => HiddenNovelsRanking::class,
+        self::REMORSE => BuyersRemorseRanking::class,
         self::DEVELOPER => DeveloperRanking::class,
         self::PUBLISHER => PublisherRanking::class,
-//        self::PLAYERS => MostPlayedList::class,
-        self::CLUB_250 => Club250List::class,
-        self::COLLAGE => CollageList::class,
+//        self::PLAYERS => MostPlayedRanking::class,
+        self::CLUB_250 => Club250Ranking::class,
+        self::COLLAGE => CollageRanking::class,
     ];
 
     private static $aliases = [

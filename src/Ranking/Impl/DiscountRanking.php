@@ -6,15 +6,15 @@ namespace ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl;
 use Doctrine\DBAL\Query\QueryBuilder;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\RankingDependencies;
 
-class DlcList extends Top250List
+class DiscountRanking extends Top250Ranking
 {
     public function __construct(RankingDependencies $dependencies)
     {
-        parent::__construct($dependencies, 'dlc');
+        parent::__construct($dependencies, 'discounts');
     }
 
     public function customizeQuery(QueryBuilder $builder): void
     {
-        $builder->where('type = \'dlc\' AND platforms > 0');
+        $builder->andWhere('discount > 0');
     }
 }

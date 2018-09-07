@@ -7,17 +7,15 @@ use Doctrine\DBAL\Query\QueryBuilder;
 use ScriptFUSION\Steam250\Shared\Platform;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\RankingDependencies;
 
-class Linux250List extends Top250List
+class VrTop250Ranking extends Top250Ranking
 {
-    public function __construct(RankingDependencies $dependencies)
+    public function __construct(RankingDependencies $dependencies, $id = 'vr250')
     {
-        parent::__construct($dependencies, 'linux250');
+        parent::__construct($dependencies, $id);
     }
 
     public function customizeQuery(QueryBuilder $builder): void
     {
-        parent::customizeQuery($builder);
-
-        $builder->andWhere('platforms & ' . Platform::LINUX);
+        $builder->andWhere('platforms & ' . (Platform::VIVE | Platform::OCULUS | Platform::WMR));
     }
 }
