@@ -9,7 +9,6 @@
 {% block heading %}Best of {{ when }}{% endblock %}
 
 {% block content %}
-    {{ include('partial/annual_linkbar.twig') }}
     <p>
         Top {{ games|length }} best Steam games released {{ desc }},
         according to gamer reviews.
@@ -25,6 +24,7 @@
         Compare with <a href="/owners/{{ (ranking.year ?? 'old') ~ ext }}">best sellers {{ desc }}</a>.
     </p>
     {% endif %}
+    {{ include('partial/annual_linkbar.twig') }}
 {% endblock %}
 
 {% block post %}
