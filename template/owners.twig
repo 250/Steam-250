@@ -9,7 +9,6 @@
 {% block heading %}Best Sellers {{ when }}{% endblock %}
 
 {% block content %}
-    {{ include('partial/annual_linkbar.twig') }}
     <p>
         Top {{ games|length }} best sellers on Steam released {{ desc }}.
     </p>
@@ -27,6 +26,7 @@
     <p class="tip">
         Compare with <a href="/{{ (ranking.year ?? 'old') ~ ext }}">top rated games {{ desc }}</a>.
     </p>
+    {{ include('partial/annual_linkbar.twig') }}
 {% endblock %}
 
 {% block post %}

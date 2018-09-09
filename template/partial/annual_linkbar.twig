@@ -4,7 +4,8 @@
         <li {{ ranking.year is not defined ? 'class="cur"' }}>
             <a href="old{{ ext }}">Pre-<wbr>{{ first }}</a>
         </li>
-        {% for year in range(earliest_year, 'now'|date('Y')) %}
+        {% set latest_year = ranking.template == 'owners' ? 2017 : 'now'|date('Y') %}
+        {% for year in earliest_year..latest_year %}
         <li {{ ranking.year is defined and ranking.year == year ? 'class="cur"' }}>
             <a href="{{ year ~ ext }}">{{ year }}
         </a>
