@@ -607,7 +607,7 @@ p.notice::before {
 
     font-size: 95%;
     line-height: 1.2;
-    color: #d5d1cc;
+    color: #d2d0ce;
     background: #232b35;
     border: 1px dotted #754000;
     border-top-color: #a86009;
@@ -623,7 +623,7 @@ p.notice::before {
     font: 270%/65px Lobster;
     clip-path: polygon(50% 0, 100% 90%, 0 90%);
     -webkit-clip-path: polygon(50% 0, 100% 90%, 0 90%);
-    color: #d2d0ce;
+    color: #ffe9ce;
     text-shadow: 2px 2px 0 #d57500;
     background: #e0990b;
 
