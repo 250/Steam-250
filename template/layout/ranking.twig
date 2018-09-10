@@ -98,7 +98,7 @@
                 <a href="/discounts{{ ext }}" class="discount">-{{ game.discount }}%</a>
                 {%- endif %}
                 {%- if ranking.shouldShowPrices -%}
-                <span class="price">${{ (game.price / 100)|number_format(2) }}</span>
+                <span class="price">${{ (game.discount_price / 100)|number_format(2) }}</span>
                 {% endif %}
                 <a href="#{{ game.rank }}" class="links" title="Link">▼</a>
                 {% block reviews %}{% endblock %}
