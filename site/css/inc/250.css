@@ -562,10 +562,12 @@ ol.menu > li ol.t11g {
 
 p.note, p.tip {
     display: table;
-    margin-top: -1.5em;
 
     opacity: .9;
     font-size: 70%;
+}
+p + p.note, p + p.tip {
+    margin-top: -1.5em;
 }
 p.note:before, p.tip:before {
     content: 'Note';
@@ -596,6 +598,44 @@ p.notice::before {
     font-size: 80%;
 
     color: #c5e4fb;
+}
+
+.warning {
+    margin: 1em auto;
+    padding: 1em;
+    width: 86%;
+
+    font-size: 95%;
+    line-height: 1.2;
+    color: #d5d1cc;
+    background: #232b35;
+    border: 1px dotted #754000;
+    border-top-color: #a86009;
+    border-radius: 6px;
+}
+.warning:before {
+    content: '!';
+    float: left;
+    margin: 0 1rem 1rem 0;
+    width: 60px;
+    height: 60px;
+
+    font: 270%/65px Lobster;
+    clip-path: polygon(50% 0, 100% 90%, 0 90%);
+    -webkit-clip-path: polygon(50% 0, 100% 90%, 0 90%);
+    color: #d2d0ce;
+    text-shadow: 2px 2px 0 #d57500;
+    background: #e0990b;
+
+    /* Manually center text */
+    box-sizing: border-box;
+    padding-left: 23px;
+}
+.warning > p:first-child {
+    margin-top: 0;
+}
+.warning > p:last-child {
+    margin-bottom: 0;
 }
 
 .ranking {
@@ -917,7 +957,7 @@ tr.a .movement.none:before {
 
 .genre, .genre:visited,
 .ref250, .ref250:visited,
-.discount, .free, .vrx, .ea {
+.discount, .free, .vrx, .ea, .price {
     margin-left: .25em;
     padding: .19em .6em;
     border-radius: 2px;
@@ -951,8 +991,8 @@ tr.a .movement.none:before {
     color: #fffce8;
     background: #807d03;
 }
-.discount, .discount:visited, .free, .vrx, .ea {
-    color: #b8d936;
+.discount, .discount:visited, .free, .vrx, .ea, .price {
+    color: #c3d964;
     background: rgba(76, 107, 34, .7);
     border-radius: 0;
 }
@@ -960,6 +1000,13 @@ tr.a .movement.none:before {
     text-decoration: none;
     color: #f0ffab;
     background: #5e802d;
+}
+.price {
+    margin: 0;
+
+    color: inherit;
+    background: #000;
+    box-shadow: inset 0 0 0 1px #4c6b22b4;
 }
 
 .free, .free:visited,

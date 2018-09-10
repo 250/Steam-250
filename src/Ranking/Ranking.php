@@ -20,6 +20,7 @@ abstract class Ranking extends Page
     private $algorithm;
     private $weight;
     private $prevDb;
+    private $showPrices = false;
 
     public function __construct(
         RankingDependencies $dependencies,
@@ -138,5 +139,15 @@ abstract class Ranking extends Page
     public function setPrevDb(?string $prevDb): void
     {
         $this->prevDb = $prevDb;
+    }
+
+    public function shouldShowPrices(): bool
+    {
+        return $this->showPrices;
+    }
+
+    protected function setShowPrices(bool $showPrices): void
+    {
+        $this->showPrices = $showPrices;
     }
 }
