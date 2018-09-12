@@ -37,14 +37,14 @@ final class PageGenerator
         $html = $this->twig->load("{$page->getTemplate()}.twig")->render($export);
 
         if ($this->minify) {
-            $this->logger->info('Minifying HTML...');
+            $this->logger->info('Minifying HTML...', compact('page'));
 
             $html = $this->minifier->minify($html);
         }
 
         $this->ensurePathExists($out = "$outPath/{$page->getId()}.html");
         file_put_contents($out, $html);
-        $this->logger->info("Page generated at: \"$out\".");
+        $this->logger->info("Page generated at: \"$out\".", compact('page'));
 
         return true;
     }

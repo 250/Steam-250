@@ -24,7 +24,8 @@ final class Ranker
         $this->logger->info(
             "Ranking up to {$ranking->getLimit()} games"
                 . " sorted by \"{$ranking->getAlgorithm()}\" ({$ranking->getWeight()})"
-                . " from database: \"{$this->database->getParams()['path']}\"."
+                . " from database: \"{$this->database->getParams()['path']}\".",
+            $context = ['page' => $ranking]
         );
 
         $matched = 0;
@@ -44,6 +45,6 @@ final class Ranker
             );
         }
 
-        $this->logger->info("Finished ranking $matched games.");
+        $this->logger->info("Finished ranking $matched games.", $context);
     }
 }

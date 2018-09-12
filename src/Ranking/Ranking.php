@@ -46,9 +46,10 @@ abstract class Ranking extends Page
         $this->ranker->rank($this);
 
         $this->logger->info(
-            "Generating \"{$this->getId()}\" page with database: \"{$this->database->getParams()['path']}\""
+            "Generating page with database: \"{$this->database->getParams()['path']}\""
             . ($this->prevDb ? " and previous database: \"$this->prevDb\"" : '')
-            . " using \"{$this->getAlgorithm()}\" algorithm ({$this->getWeight()})."
+            . " using \"{$this->getAlgorithm()}\" algorithm ({$this->getWeight()}).",
+            ['page' => $this]
         );
 
         if (!$games = Queries::fetchRankedList($this->database, $this, $this->prevDb)) {

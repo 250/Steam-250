@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace ScriptFUSION\Steam250\SiteGenerator\Rank;
 
 use Doctrine\DBAL\Connection;
-use ScriptFUSION\Steam250\Shared\Log\LoggerFactory;
+use ScriptFUSION\Steam250\SiteGenerator\Log\LoggerFactory;
 
 final class RankerFactory
 {

@@ -5,10 +5,10 @@ namespace ScriptFUSION\Steam250\SiteGenerator;
 
 use Doctrine\DBAL\Connection;
 use Joomla\DI\Container;
-use ScriptFUSION\Steam250\Shared\Log\LoggerFactory;
 use ScriptFUSION\Steam250\SiteGenerator\Database\DatabaseFactory;
 use ScriptFUSION\Steam250\SiteGenerator\Generate\PageCommand;
 use ScriptFUSION\Steam250\SiteGenerator\Generate\SiteCommand;
+use ScriptFUSION\Steam250\SiteGenerator\Log\LoggerFactory;
 use ScriptFUSION\Steam250\SiteGenerator\Rank\Ranker;
 use ScriptFUSION\Steam250\SiteGenerator\Rank\RankerFactory;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\RankingDependencies;
