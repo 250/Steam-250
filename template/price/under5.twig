@@ -14,4 +14,9 @@
         If a game is on sale, its discount price will be used instead.
         For top discounts see <a href="/discounts{{ ext }}">Top 250 Discounts</a>.
     </p>
+    {{ include('partial/price_button_group.twig') }}
+{% endblock %}
+
+{% block post %}
+    {{ include('partial/price_button_group.twig') }}
 {% endblock %}

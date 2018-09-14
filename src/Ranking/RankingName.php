@@ -95,7 +95,7 @@ final class RankingName extends AbstractEnumeration
         self::DLC => 'dlc',
         self::DISCOUNT => 'discount',
         self::USD_UNDER_5 => 'u5',
-        self::USD5_10 => '5-15',
+        self::USD5_10 => '5-10',
         self::USD10_15 => '10-15',
         self::USD_OVER_15 => 'o15',
         self::D_7 => '7d',

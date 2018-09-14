@@ -8,4 +8,13 @@
         Top {{ games|length }} best Steam games of all time tagged with <em>{{ ranking.tag }}</em>,
         according to gamer reviews.
     </p>
+    {% if ranking.id == 'tag/free_to_play' %}
+    {{ include('partial/price_button_group.twig') }}
+    {% endif %}
+{% endblock %}
+
+{% block post %}
+    {% if ranking.id == 'tag/free_to_play' %}
+    {{ include('partial/price_button_group.twig') }}
+    {% endif %}
 {% endblock %}

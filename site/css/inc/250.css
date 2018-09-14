@@ -616,13 +616,13 @@ p.notice::before {
 .warning:before {
     content: '!';
     float: left;
-    margin: 0 1rem 1rem 0;
+    margin: 0 .7rem .5rem 0;
     width: 60px;
-    height: 60px;
+    height: 54px;
 
     font: 270%/65px Lobster;
-    clip-path: polygon(50% 0, 100% 90%, 0 90%);
-    -webkit-clip-path: polygon(50% 0, 100% 90%, 0 90%);
+    clip-path: polygon(50% 0, 100% 100%, 0 100%);
+    -webkit-clip-path: polygon(50% 0, 100% 100%, 0 100%);
     color: #ffe9ce;
     text-shadow: 2px 2px 0 #d57500;
     background: #e0990b;
@@ -1191,9 +1191,18 @@ tr.a .movement.none:before {
     margin: 1.5em 0;
 
     --radius: 5px;
+    --padding: 2vw;
+}
+@media (min-width: 1200px) {
+    .button-group {
+        --padding: 24px;
+    }
 }
 .button-group > .button {
+    min-width: 3.5em;
     margin: 0;
+    padding-left: var(--padding);
+    padding-right: var(--padding);
     border-radius: 0;
 }
 .button-group > .button:first-child {
