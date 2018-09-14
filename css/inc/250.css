@@ -616,13 +616,13 @@ p.notice::before {
 .warning:before {
     content: '!';
     float: left;
-    margin: 0 1rem 1rem 0;
+    margin: 0 .7rem .5rem 0;
     width: 60px;
-    height: 60px;
+    height: 54px;
 
     font: 270%/65px Lobster;
-    clip-path: polygon(50% 0, 100% 90%, 0 90%);
-    -webkit-clip-path: polygon(50% 0, 100% 90%, 0 90%);
+    clip-path: polygon(50% 0, 100% 100%, 0 100%);
+    -webkit-clip-path: polygon(50% 0, 100% 100%, 0 100%);
     color: #ffe9ce;
     text-shadow: 2px 2px 0 #d57500;
     background: #e0990b;
@@ -1133,6 +1133,7 @@ tr.a .movement.none:before {
     color: #b7d0e8;
     background: #2f4e6c;
     border-top: 1px solid #37576e;
+    border-left: 1px solid #37576e;
     border-bottom: 2px solid #233852;
     border-radius: 2px;
     box-shadow: 0 1px 2px rgba(0, 0, 0, .125);
@@ -1142,10 +1143,11 @@ tr.a .movement.none:before {
     outline: none;
 }
 .button:hover {
-    color: #bfedff;
-    background: #3a6185;
+    color: #d9f5ff;
+    background: #3c6f96;
     border-top-color: #48718c;
-    border-bottom-color: #26415e;
+    border-left-color: transparent;
+    border-bottom-color: #2b4969;
     text-shadow: 0 1px 2px #5b94b3;
     text-decoration: none;
 }
@@ -1154,13 +1156,63 @@ tr.a .movement.none:before {
     color: #abc2d9;
     background: #2f4e6c;
     border-top-color: #1f354d;
+    border-left-color: #1f354d;
     border-bottom-width: 1px;
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, .5);
     text-shadow: none;
     transition: none;
 }
 
-.linkbar {
+.button.cur {
+    color: #b5e6d8;
+    background: #316b59;
+    border-top: 1px solid #38705e;
+    border-left: 1px solid #38705e;
+    border-bottom: 2px solid #235244;
+    text-shadow: 0 1px 2px #469982;
+}
+.button.cur:hover {
+    color: #dbfff5;
+    background: #38856c;
+    border-top-color: #488a77;
+    border-bottom-color: #296150;
+    text-shadow: 0 1px 2px #5bb39a;
+}
+.button.cur:active {
+    color: #b5e6d8;
+    background: #316b59;
+    border-top-color: #1f4d3e;
+    border-left-color: #1f4d3e;
+}
+
+.button-group {
+    display: flex;
+    justify-content: center;
+    margin: 1.5em 0;
+
+    --radius: 5px;
+    --padding: 2vw;
+}
+@media (min-width: 1200px) {
+    .button-group {
+        --padding: 24px;
+    }
+}
+.button-group > .button {
+    min-width: 3.5em;
+    margin: 0;
+    padding-left: var(--padding);
+    padding-right: var(--padding);
+    border-radius: 0;
+}
+.button-group > .button:first-child {
+    border-radius: var(--radius) 0 0 var(--radius);
+}
+.button-group > .button:last-child {
+    border-radius: 0 var(--radius) var(--radius) 0;
+}
+
+.timeline {
     position: relative;
     height: 5em;
     line-height: 1;
@@ -1181,22 +1233,22 @@ tr.a .movement.none:before {
     --transition: .1s;
 }
 @media (min-width: 1610px) {
-    .linkbar {
+    .timeline {
         --padding: 21px;
     }
 }
-.linkbar > ol {
+.timeline > ol {
     position: absolute;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%) rotate(-90deg);
 }
-.linkbar > ol > li {
+.timeline > ol > li {
     position: relative;
 }
 /* Track */
-.linkbar > ol > li:before,
-.linkbar > ol > li:after {
+.timeline > ol > li:before,
+.timeline > ol > li:after {
     content: '';
     position: absolute;
     background: var(--primary);
@@ -1207,23 +1259,23 @@ tr.a .movement.none:before {
 
     transition: background var(--transition);
 }
-.linkbar > ol > li:before {
+.timeline > ol > li:before {
     left: calc(var(--offset) + .2em);
     transform: skew(0, -45deg);
 }
-.linkbar > ol > li:after {
+.timeline > ol > li:after {
     transform: skew(0, 45deg);
 }
-.linkbar > ol > li:hover:before,
-.linkbar > ol > li:hover:after {
+.timeline > ol > li:hover:before,
+.timeline > ol > li:hover:after {
     background: var(--primary-hi);
 }
-.linkbar > ol > li.cur:before,
-.linkbar > ol > li.cur:after {
+.timeline > ol > li.cur:before,
+.timeline > ol > li.cur:after {
     background: var(--current);
 }
 /* Text and pole */
-.linkbar > ol > li > a {
+.timeline > ol > li > a {
     display: inline-block;
     width: 3em;
     padding: var(--padding) 0 var(--padding) calc(var(--offset) + 2em);
@@ -1237,18 +1289,18 @@ tr.a .movement.none:before {
 
     transition: color var(--transition);
 }
-.linkbar > ol > li > a:hover {
+.timeline > ol > li > a:hover {
     text-decoration: none;
     color: var(--highlight);
     background-image: linear-gradient(transparent 47%, var(--primary-hi) 47%, var(--primary-hi) 53%, transparent 53%);
 }
-.linkbar > ol > li.cur > a,
-.linkbar > ol > li.cur > a:hover {
+.timeline > ol > li.cur > a,
+.timeline > ol > li.cur > a:hover {
     color: var(--current-hi);
     background-image: linear-gradient(transparent 47%, var(--current) 47%, var(--current) 53%, transparent 53%);
 }
 /* Spot */
-.linkbar > ol > li > a:before {
+.timeline > ol > li > a:before {
     content: '';
     position: absolute;
     width: 5px;
@@ -1261,12 +1313,12 @@ tr.a .movement.none:before {
 
     background: #1b2838;
 }
-.linkbar > ol > li > a:hover:before {
+.timeline > ol > li > a:hover:before {
     background: var(--spot);
     box-shadow: 0 0 0 3px var(--primary-hi);
 }
-.linkbar > ol > li.cur > a:before,
-.linkbar > ol > li.cur > a:hover:before {
+.timeline > ol > li.cur > a:before,
+.timeline > ol > li.cur > a:hover:before {
     background: var(--spot);
     box-shadow: 0 0 0 3px var(--current), 0 0 3px 3px #0003;
 }
