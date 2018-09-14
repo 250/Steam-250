@@ -8,4 +8,9 @@
         Top {{ games|length }} best Steam games released in the last 365 days,
         according to gamer reviews.
     </p>
+    {{ include('partial/rolling_button_bar.twig') }}
+{% endblock %}
+
+{% block post %}
+    {{ include('partial/rolling_button_bar.twig') }}
 {% endblock %}
