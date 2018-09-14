@@ -1212,7 +1212,7 @@ tr.a .movement.none:before {
     border-radius: 0 var(--radius) var(--radius) 0;
 }
 
-.linkbar {
+.timeline {
     position: relative;
     height: 5em;
     line-height: 1;
@@ -1233,22 +1233,22 @@ tr.a .movement.none:before {
     --transition: .1s;
 }
 @media (min-width: 1610px) {
-    .linkbar {
+    .timeline {
         --padding: 21px;
     }
 }
-.linkbar > ol {
+.timeline > ol {
     position: absolute;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%) rotate(-90deg);
 }
-.linkbar > ol > li {
+.timeline > ol > li {
     position: relative;
 }
 /* Track */
-.linkbar > ol > li:before,
-.linkbar > ol > li:after {
+.timeline > ol > li:before,
+.timeline > ol > li:after {
     content: '';
     position: absolute;
     background: var(--primary);
@@ -1259,23 +1259,23 @@ tr.a .movement.none:before {
 
     transition: background var(--transition);
 }
-.linkbar > ol > li:before {
+.timeline > ol > li:before {
     left: calc(var(--offset) + .2em);
     transform: skew(0, -45deg);
 }
-.linkbar > ol > li:after {
+.timeline > ol > li:after {
     transform: skew(0, 45deg);
 }
-.linkbar > ol > li:hover:before,
-.linkbar > ol > li:hover:after {
+.timeline > ol > li:hover:before,
+.timeline > ol > li:hover:after {
     background: var(--primary-hi);
 }
-.linkbar > ol > li.cur:before,
-.linkbar > ol > li.cur:after {
+.timeline > ol > li.cur:before,
+.timeline > ol > li.cur:after {
     background: var(--current);
 }
 /* Text and pole */
-.linkbar > ol > li > a {
+.timeline > ol > li > a {
     display: inline-block;
     width: 3em;
     padding: var(--padding) 0 var(--padding) calc(var(--offset) + 2em);
@@ -1289,18 +1289,18 @@ tr.a .movement.none:before {
 
     transition: color var(--transition);
 }
-.linkbar > ol > li > a:hover {
+.timeline > ol > li > a:hover {
     text-decoration: none;
     color: var(--highlight);
     background-image: linear-gradient(transparent 47%, var(--primary-hi) 47%, var(--primary-hi) 53%, transparent 53%);
 }
-.linkbar > ol > li.cur > a,
-.linkbar > ol > li.cur > a:hover {
+.timeline > ol > li.cur > a,
+.timeline > ol > li.cur > a:hover {
     color: var(--current-hi);
     background-image: linear-gradient(transparent 47%, var(--current) 47%, var(--current) 53%, transparent 53%);
 }
 /* Spot */
-.linkbar > ol > li > a:before {
+.timeline > ol > li > a:before {
     content: '';
     position: absolute;
     width: 5px;
@@ -1313,12 +1313,12 @@ tr.a .movement.none:before {
 
     background: #1b2838;
 }
-.linkbar > ol > li > a:hover:before {
+.timeline > ol > li > a:hover:before {
     background: var(--spot);
     box-shadow: 0 0 0 3px var(--primary-hi);
 }
-.linkbar > ol > li.cur > a:before,
-.linkbar > ol > li.cur > a:hover:before {
+.timeline > ol > li.cur > a:before,
+.timeline > ol > li.cur > a:hover:before {
     background: var(--spot);
     box-shadow: 0 0 0 3px var(--current), 0 0 3px 3px #0003;
 }

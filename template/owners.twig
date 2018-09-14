@@ -26,11 +26,11 @@
     <p class="tip">
         Compare with <a href="/{{ (ranking.year ?? 'old') ~ ext }}">top rated games {{ desc }}</a>.
     </p>
-    {{ include('partial/annual_linkbar.twig') }}
+    {{ include('partial/timeline.twig') }}
 {% endblock %}
 
 {% block post %}
-    {{ include('partial/annual_linkbar.twig') }}
+    {{ include('partial/timeline.twig') }}
 {% endblock %}
 
 {% block scoring_heading %}Owners{% endblock %}

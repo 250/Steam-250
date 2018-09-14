@@ -24,9 +24,9 @@
         Compare with <a href="/owners/{{ (ranking.year ?? 'old') ~ ext }}">best sellers {{ desc }}</a>.
     </p>
     {% endif %}
-    {{ include('partial/annual_linkbar.twig') }}
+    {{ include('partial/timeline.twig') }}
 {% endblock %}
 
 {% block post %}
-    {{ include('partial/annual_linkbar.twig') }}
+    {{ include('partial/timeline.twig') }}
 {% endblock %}
