@@ -1,9 +1,5 @@
 @import "title.css";
 
-:root {
-    --user-height: 37px;
-}
-
 html, body {
     height: 100%;
 }
@@ -40,7 +36,6 @@ h2 {
     font-weight: bold;
 }
 
-
 #header {
     overflow: hidden;
     flex-shrink: 0;
@@ -60,6 +55,8 @@ h2 {
 
     text-align: right;
     font-size: 80%;
+
+    --user-height: 37px;
 }
 
 /* Search */
@@ -1512,9 +1509,18 @@ tr.a .movement.none:before {
 #footer p:last-of-type {
     margin-bottom: 0;
 }
-#footer p, #footer li {
+#footer p, #footer li, #footer table {
     text-align: left;
     font-size: 80%;
+}
+#footer table {
+    margin-bottom: .4em;
+}
+#footer td {
+    padding-left: .8em;
+}
+#footer td:first-child {
+    padding: 0;
 }
 #footer img {
     height: 16px;

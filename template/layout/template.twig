@@ -150,16 +150,23 @@
         {% endif %}
 
         <h3>System status</h3>
+        <table>
+            <tr>
+                <td>Data
+                <td>Pages
+                <td>Curator
+            <tr>
+                <td><a href="https://travis-ci.org/250/Steam-importer">
+                        <img src="https://travis-ci.org/250/Steam-importer.svg?branch=master" alt="Data build status">
+                    </a>
+                <td><a href="https://travis-ci.org/250/Steam-250">
+                        <img src="https://travis-ci.org/250/Steam-250.svg?branch=master" alt="Page build status">
+                    </a>
+                <td><a href="https://travis-ci.org/250/Steam-curator">
+                        <img src="https://travis-ci.org/250/Steam-curator.svg?branch=master" alt="Curator build status">
+                    </a>
+        </table>
         <ul class="status">
-            <li><span>Data <a href="https://travis-ci.org/250/Steam-importer">
-                    <img src="https://travis-ci.org/250/Steam-importer.svg?branch=master" alt="Data build status"></a>
-                </span>
-                <span>Pages <a href="https://travis-ci.org/250/Steam-250">
-                    <img src="https://travis-ci.org/250/Steam-250.svg?branch=master" alt="Page build status"></a>
-                </span>
-                <span>Curator <a href="https://travis-ci.org/250/Steam-curator">
-                    <img src="https://travis-ci.org/250/Steam-curator.svg?branch=master" alt="Curator build status"></a>
-                </span>
             <li>Generated {{ 'now'|date }} {{ tz() }}
             <li><a href="https://github.com/250">Source code</a>,
                 <a href="https://github.com/250/Steam-250/issues">Issues</a>
@@ -194,7 +201,7 @@
         <p>
             Chat on <a href="https://discord.gg/8pz5ybv" title="Discord">Discord</a>
             from the web, your desktop, mobile or all three at once!
-            Join our small, friendly community and chat about games and rankings.
+            Join our friendly little community and chat about games and rankings.
         </p>
         <p>
             Follow our official <a href="https://store.steampowered.com/curator/32686107/">Steam curator</a>
