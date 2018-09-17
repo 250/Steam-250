@@ -34,9 +34,7 @@ h2 {
 
     font-size: 105%;
     font-weight: bold;
-    color: transparent;
-    background: linear-gradient(#bcd1e0, #d3e2ed);
-    -webkit-background-clip: text;
+    color: #c5d6e0;
 }
 
 #header {
@@ -891,7 +889,7 @@ p.notice::before {
     height: 88%;
     top: 7.5%;
     left: 7.5%;
-    background: linear-gradient(#f0e37f, #bfb34a);
+    background: linear-gradient(#e3d778, #bfb34a);
     clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
     -webkit-clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
 }
@@ -982,8 +980,8 @@ tr.a .movement.none:before {
 }
 .genre:hover {
     text-decoration: none;
-    color: #e6f7ff;
-    background-color: rgba(103, 193, 245, .5);
+    color: #b8fbff;
+    background-color: rgba(87, 199, 255, 0.5);
 }
 .ref250:hover {
     text-decoration: none;
@@ -1364,7 +1362,7 @@ tr.a .movement.none:before {
     line-height: .9;
     padding: 4px;
     border-radius: 4px;
-    background: linear-gradient(94deg, #2f3e5a, #4c5b78, #2f3e5a);
+    background: linear-gradient(88deg, #2f3e5a 25%, #4b5a75, #2f3e5a 75%);
 
     --image-height: 34px;
 }
@@ -1567,9 +1565,8 @@ tr.a .movement.none:before {
 }
 #footer img {
     height: 16px;
-    opacity: .7;
 
-    vertical-align: text-top;
+    filter: saturate(.8) brightness(.75);
 }
 #footer a {
     color: #9e814c;
