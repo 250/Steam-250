@@ -1,9 +1,5 @@
 @import "title.css";
 
-:root {
-    --user-height: 37px;
-}
-
 html, body {
     height: 100%;
 }
@@ -23,7 +19,7 @@ body {
 }
 
 a {
-    color: #cfab72;
+    color: #cfad74;
     text-decoration: none;
 }
 a:hover {
@@ -38,8 +34,8 @@ h2 {
 
     font-size: 105%;
     font-weight: bold;
+    color: #c5d6e0;
 }
-
 
 #header {
     overflow: hidden;
@@ -60,6 +56,8 @@ h2 {
 
     text-align: right;
     font-size: 80%;
+
+    --user-height: 37px;
 }
 
 /* Search */
@@ -730,9 +728,8 @@ p.notice::before {
     margin-top: 0;
 }
 .ranking > div:nth-of-type(2n-1),
-.ranking > div.primary,
-.r\&f li:nth-child(2n-1) > * {
-    background-color: #1a2334;
+.ranking > div.primary {
+    background-color: #162433;
 }
 .ranking > div.secondary {
     background-color: transparent;
@@ -808,7 +805,7 @@ p.notice::before {
 .ranking > div > div:nth-child(2) .links.show {
     opacity: .8;
 }
-.ranking > :last-child {
+.main.ranking > :last-child {
     margin-bottom: 1.5rem;
 }
 
@@ -888,11 +885,11 @@ p.notice::before {
     height: 100%;
 }
 .movement.new:before {
-    width: 85%;
-    height: 85%;
+    width: 88%;
+    height: 88%;
     top: 7.5%;
     left: 7.5%;
-    background: #bfb34a;
+    background: linear-gradient(#e3d778, #bfb34a);
     clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
     -webkit-clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
 }
@@ -906,13 +903,13 @@ tr.a .movement.none:before {
 }
 .movement.pos:before {
     top: -3px;
-    background: #546f38;
+    background: linear-gradient(#698a48, #546f38);
     clip-path: polygon(20% 100%, 20% 50%, 0% 50%, 50% 0%, 100% 50%, 80% 50%, 80% 100%);
     -webkit-clip-path: polygon(20% 100%, 20% 50%, 0% 50%, 50% 0%, 100% 50%, 80% 50%, 80% 100%);
 }
 .movement.neg:before {
     top: 2px;
-    background: #6d4039;
+    background: linear-gradient(#824e46, #6d4039);
     clip-path: polygon(20% 0%, 20% 50%, 0% 50%, 50% 100%, 100% 50%, 80% 50%, 80% 0%);
     -webkit-clip-path: polygon(20% 0%, 20% 50%, 0% 50%, 50% 100%, 100% 50%, 80% 50%, 80% 0%);
 }
@@ -969,7 +966,7 @@ tr.a .movement.none:before {
     background: rgba(103, 193, 245, .2);
 }
 .ref250, .ref250:visited {
-    color: #d9cc77;
+    color: #cfba74;
     background: rgba(82, 76, 22, .7);
 }
 
@@ -983,13 +980,13 @@ tr.a .movement.none:before {
 }
 .genre:hover {
     text-decoration: none;
-    color: #e6f7ff;
-    background-color: rgba(103, 193, 245, .5);
+    color: #b8fbff;
+    background-color: rgba(87, 199, 255, 0.5);
 }
 .ref250:hover {
     text-decoration: none;
-    color: #fffce8;
-    background: #807d03;
+    color: #ffef84;
+    background: #94800f;
 }
 .discount, .discount:visited, .free, .vrx, .ea, .price {
     color: #c3d964;
@@ -1331,7 +1328,7 @@ tr.a .movement.none:before {
 .r\&f {
     display: flex;
     flex-flow: wrap;
-    line-height: 1;
+    line-height: 1.2;
 }
 /* Defaults for 2-column layout */
 .r\&f > * {
@@ -1346,23 +1343,6 @@ tr.a .movement.none:before {
 .r\&f h2 {
     text-align: center;
 }
-.r\&f img {
-    height: 34px;
-}
-.r\&f ol {
-    display: table;
-    width: 100%;
-}
-.r\&f li {
-    display: table-row;
-}
-.r\&f li > * {
-    display: table-cell;
-    vertical-align: middle;
-}
-.r\&f li > :nth-child(2) {
-    width: 100%;
-}
 /* Linked to r&f child min-width + margin, i.e. minimum width for 2-column layout. This is for single-column layout. */
 @media (max-width: 691px) {
     .r\&f > * {
@@ -1371,6 +1351,64 @@ tr.a .movement.none:before {
     .r\&f h2 {
         text-align: left;
     }
+}
+
+/* Compact ranking. */
+.r\&f > .ranking > ol {
+    position: relative;
+    width: 100%;
+
+    font-size: 90%;
+    line-height: .9;
+    padding: 4px;
+    border-radius: 4px;
+    background: linear-gradient(88deg, #2f3e5a 25%, #4b5a75, #2f3e5a 75%);
+
+    --image-height: 34px;
+}
+.r\&f > .ranking > ol:before {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    bottom: 2px;
+    right: 2px;
+
+    border-radius: 4px;
+    background: #121d29;
+}
+.r\&f > .ranking li {
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: calc(var(--image-height) + 1px);
+    margin-bottom: 1px;
+}
+.r\&f > .ranking li:last-child {
+    height: var(--image-height);
+    margin: 0;
+}
+.r\&f > .ranking li:nth-child(2n) {
+    background: #1f2d3f;
+}
+.r\&f > .ranking li:nth-child(2n-1) {
+    background: linear-gradient(#1f2d3f, #192839 5%);
+}
+.r\&f > .ranking li > a {
+    line-height: 0;
+}
+.r\&f > .ranking li a[href^=\#] {
+    color: inherit;
+}
+.r\&f > .ranking li a[href^=\#]:hover {
+    color: #67dbb6;
+    text-decoration: none;
+}
+.r\&f > .ranking li > :last-child {
+    width: 100%;
+}
+.r\&f > .ranking img {
+    height: var(--image-height);
 }
 
 .more, .more:visited {
@@ -1512,15 +1550,23 @@ tr.a .movement.none:before {
 #footer p:last-of-type {
     margin-bottom: 0;
 }
-#footer p, #footer li {
+#footer p, #footer li, #footer table {
     text-align: left;
     font-size: 80%;
 }
+#footer table {
+    margin-bottom: .4em;
+}
+#footer td {
+    padding-left: .8em;
+}
+#footer td:first-child {
+    padding: 0;
+}
 #footer img {
     height: 16px;
-    opacity: .7;
 
-    vertical-align: text-top;
+    filter: saturate(.8) brightness(.75);
 }
 #footer a {
     color: #9e814c;
