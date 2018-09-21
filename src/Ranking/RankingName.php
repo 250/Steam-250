@@ -15,6 +15,7 @@ use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\HiddenGemsRanking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\HiddenNovelsRanking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\Linux250Ranking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\Mac250Ranking;
+use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\MostPlayedRanking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\OldRanking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\OwnersOldRanking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\PublisherRanking;
@@ -55,7 +56,7 @@ final class RankingName extends AbstractEnumeration
     public const REMORSE = 'REMORSE';
     public const DEVELOPER = 'DEVELOPER';
     public const PUBLISHER = 'PUBLISHER';
-//    public const PLAYERS = 'PLAYERS';
+    public const PLAYERS = 'PLAYERS';
     public const CLUB_250 = 'CLUB_250';
     public const COLLAGE = 'COLLAGE';
 
@@ -83,7 +84,7 @@ final class RankingName extends AbstractEnumeration
         self::REMORSE => BuyersRemorseRanking::class,
         self::DEVELOPER => DeveloperRanking::class,
         self::PUBLISHER => PublisherRanking::class,
-//        self::PLAYERS => MostPlayedRanking::class,
+        self::PLAYERS => MostPlayedRanking::class,
         self::CLUB_250 => Club250Ranking::class,
         self::COLLAGE => CollageRanking::class,
     ];
@@ -112,7 +113,7 @@ final class RankingName extends AbstractEnumeration
         self::REMORSE => 'remorse',
         self::DEVELOPER => 'devs',
         self::PUBLISHER => 'pubs',
-//        self::PLAYERS => 'players',
+        self::PLAYERS => 'players',
         self::CLUB_250 => 'club',
         self::COLLAGE => 'collage',
     ];
