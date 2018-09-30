@@ -1,6 +1,6 @@
 class BuildMonitor {
     constructor(date, element) {
-        this.nextBuild = date && moment(date).add({days: 1});
+        this.nextBuild = date && moment.utc(date).add({days: 1}).local();
         this.element = element;
         this.blink = 0;
 
