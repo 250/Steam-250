@@ -357,7 +357,7 @@ class S250 {
         const element = BuildMonitor.createElement();
 
         fetch(
-            'https://api.travis-ci.org/repo/15937062/builds?event_type=cron&limit=1',
+            'https://api.travis-ci.org/repo/16111880/builds?created_by=Azure-Cron&limit=1',
             {
                 headers: {
                     'Travis-API-Version': 3,
