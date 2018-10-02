@@ -8,7 +8,7 @@ class BuildMonitor {
     }
 
     static createElement() {
-        let element = document.createElement('div');
+        return element = document.createElement('div');
         element.classList.add('countdown');
         element.innerHTML = 'Initializing...';
 
