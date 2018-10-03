@@ -1,14 +1,25 @@
 class BuildMonitor {
     constructor(date, element) {
-        this.nextBuild = date && moment.utc(date).add({days: 1});
+        this.nextBuild = date && moment(date).add({days: 1});
         this.element = element;
         this.blink = 0;
 
+        // Build is pending.
+        if (!this.nextBuild) {
+            return this.showBuilding();
+        }
+
+        // Build is overdue.
+        if (this.nextBuild <= moment()) {
+            return this.showOverdue();
+        }
+
+        // Time remains on the clock.
         this.monitor();
     }
 
     static createElement() {
-        return element = document.createElement('div');
+        let element = document.createElement('div');
         element.classList.add('countdown');
         element.innerHTML = 'Initializing...';
 
@@ -18,10 +29,6 @@ class BuildMonitor {
     }
 
     monitor() {
-        if (!this.nextBuild) {
-            return this.showBuilding();
-        }
-
         this.timer = setInterval(() => this.showNextUpdate(), 500);
         this.showNextUpdate();
     }
@@ -45,8 +52,11 @@ class BuildMonitor {
     }
 
     showBuilding() {
-        this.element.classList.add('building');
-        this.element.innerHTML = 'Building update<span>.</span><span>.</span><span>.</span>';
+        this.showBuildingMessage('Building update');
+    }
+
+    showOverdue() {
+        this.showBuildingMessage('Next update any second now');
     }
 
     showReady() {
@@ -54,7 +64,12 @@ class BuildMonitor {
         this.element.innerHTML = '<a href="https://youtu.be/Mu0cE9RgK5M">Ready for launch</a>';
     }
 
+    showBuildingMessage(message) {
+        this.element.classList.add('building');
+        this.element.innerHTML = message + '<span>.</span>'.repeat(3);
+    }
+
     calculateDuration() {
-        return moment.utc(moment.duration(this.nextBuild - moment.utc()).asMilliseconds());
+        return moment.utc(moment.duration(this.nextBuild - moment()).asMilliseconds());
     }
 }
