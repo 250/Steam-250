@@ -11,7 +11,8 @@ class BuildMonitor {
 
         // Build is overdue.
         if (this.nextBuild <= moment()) {
-            return this.showOverdue();
+            // Remove clock because scheduled build has failed to start on time, usually due to scheduled import error.
+            this.element.remove()
         }
 
         // Time remains on the clock.
@@ -52,21 +53,13 @@ class BuildMonitor {
     }
 
     showBuilding() {
-        this.showBuildingMessage('Building update');
-    }
-
-    showOverdue() {
-        this.showBuildingMessage('Next update any second now');
+        this.element.classList.add('building');
+        this.element.innerHTML = 'Building update' + '<span>.</span>'.repeat(3);
     }
 
     showReady() {
         this.element.classList.add('ready');
         this.element.innerHTML = '<a href="https://youtu.be/Mu0cE9RgK5M">Ready for launch</a>';
-    }
-
-    showBuildingMessage(message) {
-        this.element.classList.add('building');
-        this.element.innerHTML = message + '<span>.</span>'.repeat(3);
     }
 
     calculateDuration() {
