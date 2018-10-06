@@ -12,7 +12,7 @@ class BuildMonitor {
         // Build is overdue.
         if (this.nextBuild <= moment()) {
             // Remove clock because scheduled build has failed to start on time, usually due to scheduled import error.
-            this.element.remove()
+            return this.element.remove();
         }
 
         // Time remains on the clock.
