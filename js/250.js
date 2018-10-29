@@ -225,6 +225,12 @@ class S250 {
         ;
     }
 
+    unmarkOwnedGames() {
+        document.querySelectorAll('.ranking a.owned').forEach(a => {
+            a.classList.remove('owned');
+        })
+    }
+
     updateUserBar() {
         const steam = JSON.parse(localStorage.getItem('steam'));
 
@@ -245,6 +251,7 @@ class S250 {
         localStorage.removeItem('steam');
         localStorage.removeItem('games');
 
+        this.unmarkOwnedGames();
         this.syncLogInOutState();
     }
 
