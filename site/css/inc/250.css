@@ -421,23 +421,11 @@ ol.menu ol ol.annual {
     text-align: center;
 }
 /* Special */
-ol.menu > li:nth-child(5) > ol > li:nth-last-of-type(4) > a {
+ol.menu > li:nth-child(5) > ol > li:nth-last-of-type(3) > a {
     padding-left: 2.05em;
 
     background: url('/svg/patreon.svg') no-repeat calc(.8em + 2px) 50%;
     background-size: 13px;
-}
-ol.menu > li:nth-child(5) > ol > li:nth-last-of-type(3) > a {
-    padding-left: 2.05em;
-
-    background: url('/svg/twitter.svg') no-repeat calc(.8em - 2px) 50%;
-    background-size: 18px;
-}
-ol.menu > li:nth-child(5) > ol > li:nth-last-of-type(3):hover {
-    background-image: linear-gradient(90deg, #1572a3, #309bd9, #1572a3);
-}
-ol.menu > li:nth-child(5) > ol > li:nth-last-of-type(3):hover > a {
-    text-shadow: 1px 1px 1px #309bd9;
 }
 ol.menu > li:nth-child(5) > ol > li:nth-last-of-type(2) > a {
     padding-left: 2.05em;
@@ -1411,20 +1399,6 @@ tr.a .movement.none:before {
     height: var(--image-height);
 }
 
-.more, .more:visited {
-    float: right;
-    margin: .5em;
-
-    color: inherit;
-    font-size: 80%;
-    font-weight: bold;
-}
-.more:hover {
-    color: #e6f5ff;
-    text-decoration: none;
-    border-bottom: 1px solid #cfab72;
-}
-
 #linkmenu {
     max-height: 0;
     position: absolute;
@@ -1586,7 +1560,7 @@ tr.a .movement.none:before {
     margin: 0 .25em .2em 0;
 }
 
-a.twitter, a.patreon, a.discord, a.steam {
+a.patreon, a.discord, a.steam {
     display: inline-block;
     overflow: hidden;
     width: 20px;
@@ -1596,10 +1570,6 @@ a.twitter, a.patreon, a.discord, a.steam {
     vertical-align: text-bottom;
 
     background: no-repeat center;
-}
-a.twitter {
-    background-image: url('/svg/twitter.svg');
-    background-size: 24px;
 }
 a.patreon {
     opacity: .9;
