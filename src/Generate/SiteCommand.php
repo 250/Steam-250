@@ -26,7 +26,7 @@ final class SiteCommand extends Command
     {
         $this
             ->setName('site')
-            ->setDescription('Generate an HTML page from a template and data.')
+            ->setDescription('Generates the entire site using a database.')
             ->addArgument('db', InputArgument::REQUIRED, 'Path to database.')
             ->addArgument('out', InputArgument::OPTIONAL, 'Output directory.', 'site')
             ->addOption('min', null, InputOption::VALUE_NONE, 'Minify output.')
