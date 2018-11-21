@@ -9,10 +9,12 @@ class BuildMonitor {
             return this.showBuilding();
         }
 
+        const now = moment();
+
         // Build is overdue.
-        if (this.nextBuild <= moment()) {
-            // Remove clock because scheduled build has failed to start on time, usually due to scheduled import error.
-            return this.element.remove();
+        if (this.nextBuild <= now) {
+            // Estimate next build based on time of last successful build, even though the last scheduled build failed.
+            this.nextBuild.add({days: moment.duration(now - this.nextBuild).days() + 1});
         }
 
         // Time remains on the clock.
