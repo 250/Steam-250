@@ -142,9 +142,28 @@ final class Queries
             ->where('type = \'game\' AND platforms > 0')
         ;
 
+        self::removeBannedGames($query);
         self::calculateScore($query, $ranking);
 
         return $query;
+    }
+
+    /**
+     * Removes banned games the specified query.
+     *
+     * For now, in the interests of time, banned games are hard coded. However, a heuristic is preferred to treat all
+     * games fairly and catch any new offenders. The proposed heuristic selects non-free games that are still available
+     * to purchase but have less than 1% of their total reviews from verified Steam purchasers, where total reviews
+     * exceed 1,000.
+     *
+     * This heuristic has already been run in the selection of currently banned games and only found one real offender
+     * that is systematically abusing bot accounts to inflate review scores.
+     *
+     * @param QueryBuilder $query Query.
+     */
+    private static function removeBannedGames(QueryBuilder $query): void
+    {
+        $query->andWhere('id != 252150');
     }
 
     public static function calculateScore(
