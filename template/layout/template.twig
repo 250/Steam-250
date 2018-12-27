@@ -48,14 +48,6 @@
             <li><a href="/hidden_novels{{ ext }}">Hidden Novels</a>
             <li><a href="/most_played{{ ext }}">Most Played</a>
             <li>
-                <a>Best Sellers</a>
-                <ol class="annual">
-                    {% for year in range(2017, earliest_year) %}
-                    <li><a href="/owners/{{ year ~ ext }}">{{ year }}</a>
-                    {% endfor %}
-                    <li><a href="/owners/old{{ ext }}">Pre-{{ earliest_year }}</a>
-                </ol>
-            <li>
                 <a>Platform</a>
                 <ol>
                     <li><a href="/vr_exclusives{{ ext }}">VR Exclusives</a>
