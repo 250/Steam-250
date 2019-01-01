@@ -1,0 +1,40 @@
+.content > div {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 1em;
+    padding: 1em;
+
+    background: rgba(0, 0, 0, .09) linear-gradient(0deg, rgba(156, 245, 255, .04), transparent 30%);
+    border-top: 1px solid #263c4f;
+    box-shadow: 3px 3px 7px #131d29;
+    border-radius: 10px;
+}
+
+.content > div > img {
+    max-width: 100px;
+    margin-right: 2em;
+
+    border-radius: 10px;
+}
+
+.content > div > div > p {
+    margin-top: 1em;
+    margin-bottom: 0;
+
+    font-size: 95%;
+    line-height: 1.2;
+}
+
+.content h2 {
+    font: 200%/1 Lobster, sans-serif;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, .8);
+}
+
+.subtitle {
+    display: block;
+    margin-top: -1rem;
+
+    color: #70c3ff;
+    font-variant: petite-caps;
+    font-size: 92.5%;
+}
