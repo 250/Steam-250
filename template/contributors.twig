@@ -1,0 +1,51 @@
+{% extends'layout/template.twig' %}
+
+{% block css %}
+<link rel="stylesheet" href="/css/contributors.css">
+{{ parent() }}
+{% endblock %}
+
+{% block title %}Steam 250 Contributors{% endblock %}
+{% block heading %}Contributors{% endblock %}
+
+{% block content %}
+<p>People whom shaped Steam 250 into what it is today.</p>
+
+<div>
+    <img src="/img/contrib/bilge.jpg" alt="Bilge's photo">
+    <div>
+        <h2><a href="{{ patreon }}">Bilge</a></h2>
+        <span class="subtitle">Creator &amp; Product Owner</span>
+        <p>
+            Site coder and designer except where otherwise noted.
+        </p>
+    </div>
+</div>
+<div>
+    <img src="/img/contrib/torn.png" alt="Torn's avatar">
+    <div>
+        <h2><a href="http://steamleaderboards.herokuapp.com" rel="nofollow noopener">Torn</a></h2>
+        <span class="subtitle">Algorithm Design Consultant</span>
+        <p>
+            Coder of all ranking algorithms except where otherwise noted.
+            Designer of <a href="https://steamdb.info/blog/steamdb-rating/">Torn's algorithm</a>.
+        </p>
+    </div>
+</div>
+<div>
+    <img src="/img/contrib/wok.jpg" alt="Wok's avatar">
+    <div>
+        <h2>Wok</h2>
+        <span class="subtitle">Algorithm Design Consultant</span>
+        <p>
+            Creator of the
+            <a href="https://github.com/woctezuma/hidden-gems" rel="nofollow noopener">Hidden Gems algorithm</a>
+            as featured in
+            <a href="https://www.pcgamer.com/this-algorithm-picks-out-steams-best-hidden-gems/" rel="nofollow noopener">
+                PC Gamer</a>.
+            Consultant for the <a href="developer{{ ext }}">developers</a> and
+            <a href="publisher{{ ext }}">publishers</a> ranking algorithm.
+        </p>
+    </div>
+</div>
+{% endblock %}

@@ -9,6 +9,7 @@ final class StaticPageName extends AbstractEnumeration
 {
     public const ABOUT = 'ABOUT';
     public const AMBASSADORS = 'AMBASSADORS';
+    public const CONTRIBUTORS = 'CONTRIBUTORS';
     public const TWEETS = 'TWEETS';
     public const SEARCH = 'SEARCH';
     public const HTTP_404 = 'HTTP_404';
@@ -16,6 +17,7 @@ final class StaticPageName extends AbstractEnumeration
     private static $classes = [
         self::ABOUT => AboutPage::class,
         self::AMBASSADORS => AmbassadorsPage::class,
+        self::CONTRIBUTORS => ContributorsPage::class,
         self::TWEETS => TweetsPage::class,
         self::SEARCH => SearchPage::class,
         self::HTTP_404 => Http404Page::class,
@@ -24,6 +26,7 @@ final class StaticPageName extends AbstractEnumeration
     private static $aliases = [
         self::ABOUT => 'about',
         self::AMBASSADORS => 'amb',
+        self::CONTRIBUTORS => 'contrib',
         self::TWEETS => 'tweets',
         self::SEARCH => 'search',
         self::HTTP_404 => '404',
