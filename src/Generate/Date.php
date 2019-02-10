@@ -22,7 +22,7 @@ final class Date
         $diff = $date->diff(new \DateTime);
 
         // Absolute.
-        if ($diff->m) {
+        if ($diff->days > 30) {
             return $date->format('M Y');
         }
 
