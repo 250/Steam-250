@@ -18,6 +18,7 @@ final class TwigFactory
         );
 
         $twig->addFilter(new \Twig_Filter('tag_id', [Tag::class, 'convertTagToId']));
+        $twig->addFilter(new \Twig_Filter('adaptive_date', [Date::class, 'adapt']));
         $twig->addFunction(new \Twig_Function('tz', static function (): string {
             return date_default_timezone_get();
         }));

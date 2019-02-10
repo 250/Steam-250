@@ -60,7 +60,7 @@
                         {{- game.name -}}
                     </a>
                 </span>
-                {{ macro.date(game.release_date, game.release_date|date('M Y')) }}
+                {{ macro.date(game.release_date, game.release_date|date|adaptive_date) }}
                 <span class="platforms">
                     {%- if game.platforms b-and constant('ScriptFUSION\\Steam250\\Shared\\Platform::WINDOWS') -%}
                     <span title="Windows" class="win"></span>

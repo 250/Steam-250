@@ -24,14 +24,14 @@
         ranking typically have at least 10 releases.
         {% endif %}
     </p>
-    {#<p class="tip">#}
-        {#See also:#}
-        {#{% if mode == 'developer' %}#}
-            {#<a href="/publisher{{ ext }}">Publisher 250</a>.#}
-        {#{% else %}#}
-            {#<a href="/developer{{ ext }}">Developer 250</a>.#}
-        {#{% endif %}#}
-    {#</p>#}
+    <p class="tip">
+        See also:
+        {% if mode == 'developer' %}
+            <a href="/publisher{{ ext }}">Publisher 250</a>.
+        {% else %}
+            <a href="/developer{{ ext }}">Developer 250</a>.
+        {% endif %}
+    </p>
 {% endblock %}
 
 {% block game_row_heading %}
