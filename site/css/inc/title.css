@@ -22,7 +22,7 @@ div.title:after {
 
     text-align: center;
     color: transparent;
-    background: linear-gradient(179deg, #ebcb85 20%, #685330, #a28347 90%);
+    background: linear-gradient(179deg, #ebca85 20%, #685230, #a28247 90%);
     -webkit-background-clip: text;
 }
 div.title:after {

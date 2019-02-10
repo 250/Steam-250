@@ -26,7 +26,7 @@ Note that cloning might take a little while because we push the built pages back
 After installation `bin/generate` can be run: this is the main entry point into the application, used to generate the website. Running the command without arguments will show usage information. Two commands are currently available.
 
 * page – generates a single page.
-* site - generates the entire website (every page).
+* site – generates the entire website (every page).
 
 The defaults for each command are intended to be suitable for development.
 
