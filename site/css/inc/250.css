@@ -1350,7 +1350,7 @@ tr.a .movement.none:before {
     line-height: .9;
     padding: 4px;
     border-radius: 4px;
-    background: linear-gradient(88deg, #2f3e5a 25%, #4b5a75, #2f3e5a 75%);
+    background: linear-gradient(92deg, #424f66, #29354d, #424f66);
 
     --image-height: 34px;
 }
