@@ -3,211 +3,216 @@
 {% set earliest_year = constant('ScriptFUSION\\Steam250\\SiteGenerator\\Ranking\\Impl\\AnnualRanking::EARLIEST_YEAR') %}
 
 {% block body %}
-<section id="header">
-    <div id="user">
-        <form action="/search{{ ext }}">
-            <label>
-                <span title="Search">Search</span
-                ><input name="q" required>
-            </label>
-        </form>
-        <div id="lout">
-            <form action="https://steamcommunity.com/openid/login" method="post">
-                <button id="login">Sign in via Steam</button>
-                <input type="hidden" name="openid.identity" value="http://specs.openid.net/auth/2.0/identifier_select">
-                <input type="hidden" name="openid.claimed_id" value="http://specs.openid.net/auth/2.0/identifier_select">
-                <input type="hidden" name="openid.ns" value="http://specs.openid.net/auth/2.0">
-                <input type="hidden" name="openid.mode" value="checkid_setup">
-                <input type="hidden" name="openid.realm" value="https://steam250.com">
-                <input type="hidden" name="openid.return_to">
+<div id="page">
+    <section id="header">
+        <div id="user">
+            <form action="/search{{ ext }}">
+                <label>
+                    <span title="Search">Search</span
+                    ><input name="q" required>
+                </label>
             </form>
+            <div id="lout">
+                <form action="https://steamcommunity.com/openid/login" method="post">
+                    <button id="login">Sign in via Steam</button>
+                    <input type="hidden" name="openid.identity"
+                        value="http://specs.openid.net/auth/2.0/identifier_select">
+                    <input type="hidden" name="openid.claimed_id"
+                        value="http://specs.openid.net/auth/2.0/identifier_select">
+                    <input type="hidden" name="openid.ns" value="http://specs.openid.net/auth/2.0">
+                    <input type="hidden" name="openid.mode" value="checkid_setup">
+                    <input type="hidden" name="openid.realm" value="https://steam250.com">
+                    <input type="hidden" name="openid.return_to">
+                </form>
+            </div>
+            <div id="lin">
+                <dl>
+                    <dt>owned
+                    <dd><span class="owned"></span>
+                </dl>
+                <a class="avatar"></a><button id="logout">Sign out</button>
+            </div>
         </div>
-        <div id="lin">
-            <dl>
-                <dt>owned
-                <dd><span class="owned"></span>
-            </dl>
-            <a class="avatar"></a><button id="logout">Sign out</button>
+        <div class="title" data-title="{{ block('heading') }}">
+            <h1>{{ block('heading') }}</h1>
+        </div>
+        <div class="slogan">
+            Impartial Steam games rankings <span class="d">compiled from</span> gamer reviews
+        </div>
+    </section>
+
+    <ol class="menu">
+        <li>
+            <a>Rankings</a>
+            <ol>
+                <li><a href="/">Top 250 Games</a>
+                <li><a href="/hidden_gems{{ ext }}">Hidden Gems</a>
+                <li><a href="/hidden_novels{{ ext }}">Hidden Novels</a>
+                <li><a href="/most_played{{ ext }}">Most Played</a>
+                <li>
+                    <a>Platform</a>
+                    <ol>
+                        <li><a href="/vr_exclusives{{ ext }}">VR Exclusives</a>
+                        <li><a href="/vr250{{ ext }}">Virtual Reality</a>
+                        <li><a href="/linux250{{ ext }}">Linux</a>
+                        <li><a href="/mac250{{ ext }}">Mac</a>
+                    </ol>
+                <li><a href="/developer{{ ext }}">Top 250 Developers</a>
+                <li><a href="/publisher{{ ext }}">Top 250 Publishers</a>
+                <li><a href="/dlc{{ ext }}">Top 250 DLC</a>
+                <li><a href="/bottom100{{ ext }}">Bottom 100</a>
+            </ol>
+        <li>
+            <a>Period</a>
+            <ol>
+                <li>
+                    <a>Fixed Year</a>
+                    <ol class="annual">
+                        {% for year in range('now'|date('Y'), earliest_year) %}
+                        <li><a href="/{{ year ~ ext }}">{{ year }}</a>
+                        {% endfor %}
+                        <li><a href="/old{{ ext }}">Pre-{{ earliest_year }}</a>
+                    </ol>
+                <li><a href="/7day{{ ext }}">Rolling Week</a>
+                <li><a href="/30day{{ ext }}">Rolling Month</a>
+                <li><a href="/90day{{ ext }}">Rolling Quarter</a>
+                <li><a href="/365day{{ ext }}">Rolling Year</a>
+            </ol>
+        <li>
+            <a>Tag</a>
+            <ol>
+                {% for tag in tags %}
+                <li><a href="/tag/{{ tag|tag_id|url_encode ~ ext }}">{{ tag }}</a>
+                {% endfor %}
+            </ol>
+        <li>
+            <a>Price</a>
+            <ol>
+                <li><a href="/discounts{{ ext }}">Top 250 Discounts</a>
+                <li><a href="/tag/free_to_play{{ ext }}">Free Games</a>
+                <li><a href="/price/under5{{ ext }}">Games Under $5</a>
+                <li><a href="/price/5-10{{ ext }}">Games $5&ndash;10</a>
+                <li><a href="/price/10-15{{ ext }}">Games $10&ndash;15</a>
+                <li><a href="/price/over15{{ ext }}">Games Over $15</a>
+            </ol>
+        <li>
+            <a>Steam 250</a>
+            <ol>
+                <li><a href="/about{{ ext }}">About Steam 250</a>
+                <li><a href="/club250{{ ext }}">Club 250 Games</a>
+                <li><a href="/club250/ambassadors{{ ext }}">Club Ambassadors</a>
+                <li><a href="/cosmic_tweets{{ ext }}">Cosmic Tweets</a>
+                <li><a href="/contributors{{ ext }}">Contributors</a>
+                <li><a href="{{ patreon }}">Join Club 250</a>
+                <li><a href="https://discord.gg/8pz5ybv">Chat in Discord</a>
+                <li><a href="https://store.steampowered.com/curator/32686107/">Follow on Steam</a>
+            </ol>
+    </ol>
+
+    <div class="body">
+        <div class="content">
+            <ul class="quicklinks">
+                <li><a href="/">Top 250</a>
+                    &ndash; <a href="/hidden_gems{{ ext }}">Hidden gems</a>
+                    &ndash; <a href="/2019{{ ext }}">2019</a>
+                    &ndash; <a href="/7day{{ ext }}">New</a>
+                    &ndash; <a href="/most_played{{ ext }}">Players</a>
+                <li><a href="{{ patreon }}">
+                    Join Club 250 <span class="d">on</span> Patreon</a>
+            </ul>
+            {{ include('partial/ad.twig', {id: '9535671996'}) }}
+            {{ block('content') }}
+        </div>
+
+        {% block fullwidth %}{% endblock %}
+
+        <div class="content">
+            {% block post %}{% endblock %}
         </div>
     </div>
-    <div class="title" data-title="{{ block('heading') }}">
-        <h1>{{ block('heading') }}</h1>
-    </div>
-    <div class="slogan">
-        Impartial Steam games rankings <span class="d">compiled from</span> gamer reviews
-    </div>
-</section>
 
-<ol class="menu">
-    <li>
-        <a>Rankings</a>
-        <ol>
-            <li><a href="/">Top 250 Games</a>
-            <li><a href="/hidden_gems{{ ext }}">Hidden Gems</a>
-            <li><a href="/hidden_novels{{ ext }}">Hidden Novels</a>
-            <li><a href="/most_played{{ ext }}">Most Played</a>
-            <li>
-                <a>Platform</a>
-                <ol>
-                    <li><a href="/vr_exclusives{{ ext }}">VR Exclusives</a>
-                    <li><a href="/vr250{{ ext }}">Virtual Reality</a>
-                    <li><a href="/linux250{{ ext }}">Linux</a>
-                    <li><a href="/mac250{{ ext }}">Mac</a>
-                </ol>
-            <li><a href="/developer{{ ext }}">Top 250 Developers</a>
-            <li><a href="/publisher{{ ext }}">Top 250 Publishers</a>
-            <li><a href="/dlc{{ ext }}">Top 250 DLC</a>
-            <li><a href="/bottom100{{ ext }}">Bottom 100</a>
-        </ol>
-    <li>
-        <a>Period</a>
-        <ol>
-            <li>
-                <a>Fixed Year</a>
-                <ol class="annual">
-                    {% for year in range('now'|date('Y'), earliest_year) %}
-                    <li><a href="/{{ year ~ ext }}">{{ year }}</a>
-                    {% endfor %}
-                    <li><a href="/old{{ ext }}">Pre-{{ earliest_year }}</a>
-                </ol>
-            <li><a href="/7day{{ ext }}">Rolling Week</a>
-            <li><a href="/30day{{ ext }}">Rolling Month</a>
-            <li><a href="/90day{{ ext }}">Rolling Quarter</a>
-            <li><a href="/365day{{ ext }}">Rolling Year</a>
-        </ol>
-    <li>
-        <a>Tag</a>
-        <ol>
-            {% for tag in tags %}
-            <li><a href="/tag/{{ tag|tag_id|url_encode ~ ext }}">{{ tag }}</a>
-            {% endfor %}
-        </ol>
-    <li>
-        <a>Price</a>
-        <ol>
-            <li><a href="/discounts{{ ext }}">Top 250 Discounts</a>
-            <li><a href="/tag/free_to_play{{ ext }}">Free Games</a>
-            <li><a href="/price/under5{{ ext }}">Games Under $5</a>
-            <li><a href="/price/5-10{{ ext }}">Games $5&ndash;10</a>
-            <li><a href="/price/10-15{{ ext }}">Games $10&ndash;15</a>
-            <li><a href="/price/over15{{ ext }}">Games Over $15</a>
-        </ol>
-    <li>
-        <a>Steam 250</a>
-        <ol>
-            <li><a href="/about{{ ext }}">About Steam 250</a>
-            <li><a href="/club250{{ ext }}">Club 250 Games</a>
-            <li><a href="/club250/ambassadors{{ ext }}">Club Ambassadors</a>
-            <li><a href="/cosmic_tweets{{ ext }}">Cosmic Tweets</a>
-            <li><a href="/contributors{{ ext }}">Contributors</a>
-            <li><a href="{{ patreon }}">Join Club 250</a>
-            <li><a href="https://discord.gg/8pz5ybv">Chat in Discord</a>
-            <li><a href="https://store.steampowered.com/curator/32686107/">Follow on Steam</a>
-        </ol>
-</ol>
+    <section id="footer">
+        <div>
+            <h2>
+                <a href="/about{{ ext }}">Steam 250</a>
+            </h2>
+            <p>
+                Rankings are automatically updated at least once a day from live Steam reviews data.
+                <a href="about{{ ext }}">Learn more</a>.
+            </p>
+            {% if games[0].movement is defined %}
+            <p>Movement indicators show the change in position since yesterday.</p>
+            {% endif %}
 
-<div class="body">
-    <div class="content">
-        <ul class="quicklinks">
-            <li><a href="/">Top 250</a>
-                &ndash; <a href="/hidden_gems{{ ext }}">Hidden gems</a>
-                &ndash; <a href="/2019{{ ext }}">2019</a>
-                &ndash; <a href="/7day{{ ext }}">New</a>
-                &ndash; <a href="/most_played{{ ext }}">Players</a>
-            <li><a href="{{ patreon }}">
-                Join Club 250 <span class="d">on</span> Patreon</a>
-        </ul>
-        {{ include('partial/ad.twig', {id: '9535671996'}) }}
-        {{ block('content') }}
-    </div>
+            <h3>System status</h3>
+            <table>
+                <tr>
+                    <td>Data
+                    <td>Pages
+                    <td>Curator
+                <tr>
+                    <td>
+                        <a href="https://dev.azure.com/ScriptFUSION/Steam%20250/_build/latest?definitionId=1">
+                            <img src="https://dev.azure.com/ScriptFUSION/Steam%20250/_apis/build/status/250.Steam-importer?branchName=master"
+                                 alt="Data build status">
+                        </a>
+                    <td>
+                        <a href="https://travis-ci.org/250/Steam-250">
+                            <img src="https://travis-ci.org/250/Steam-250.svg?branch=master" alt="Page build status">
+                        </a>
+                    <td>
+                        <a href="https://travis-ci.org/250/Steam-curator">
+                            <img src="https://travis-ci.org/250/Steam-curator.svg?branch=master"
+                                alt="Curator build status">
+                        </a>
+            </table>
+            <ul class="status">
+                <li>Generated {{ 'now'|date }} {{ tz() }}
+                <li><a href="https://github.com/250">Source code</a>,
+                    <a href="https://github.com/250/Steam-250/issues">Issues</a>
+            </ul>
+        </div>
 
-    {% block fullwidth %}{% endblock %}
+        <div>
+            <h2>
+                <a href="{{ patreon }}">Club 250</a>
+                <a href="{{ patreon }}" class="patreon" title="Patreon">Patreon</a>
+            </h2>
+            <p>
+                Club 250 is the Steam 250 members club. Consider
+                <a href="{{ patreon }}">becoming a member</a>
+                so we can continue helping you find good games on Steam in new and better ways.
+            </p>
+            <p>
+                Receive rewards based on your pledge level, including
+                <a href="/club250{{ ext }}">your Steam reviews on an exclusive ranking</a> and
+                <a href="/club250/ambassadors{{ ext }}">your name etched into the site</a>!
+            </p>
+        </div>
 
-    <div class="content">
-        {% block post %}{% endblock %}
-    </div>
+        <div>
+            <h2>
+                <a href="https://discord.gg/8pz5ybv">Community</a>
+                <a href="https://discord.gg/8pz5ybv" class="discord" title="Discord">Discord</a
+                ><a href="https://store.steampowered.com/curator/32686107/" class="steam" title="Steam curator">
+                    Steam curator
+                </a>
+            </h2>
+            <p>
+                Chat on <a href="https://discord.gg/8pz5ybv" title="Discord">Discord</a>
+                from the web, your desktop, mobile or all three at once!
+                Join our friendly little community and chat about games and rankings.
+            </p>
+            <p>
+                Follow our official <a href="https://store.steampowered.com/curator/32686107/">Steam curator</a>
+                page to access game rankings directly from the Steam store! Automatically updated every day.
+            </p>
+            <p>
+                <a href="mailto:bilge@steam250.com">Contact by email</a>
+            </p>
+        </div>
+    </section>
 </div>
-
-<section id="footer">
-    <div>
-        <h2>
-            <a href="/about{{ ext }}">Steam 250</a>
-        </h2>
-        <p>
-            Rankings are automatically updated at least once a day from live Steam reviews data.
-            <a href="about{{ ext }}">Learn more</a>.
-        </p>
-        {% if games[0].movement is defined %}
-        <p>Movement indicators show the change in position since yesterday.</p>
-        {% endif %}
-
-        <h3>System status</h3>
-        <table>
-            <tr>
-                <td>Data
-                <td>Pages
-                <td>Curator
-            <tr>
-                <td>
-                    <a href="https://dev.azure.com/ScriptFUSION/Steam%20250/_build/latest?definitionId=1">
-                        <img src="https://dev.azure.com/ScriptFUSION/Steam%20250/_apis/build/status/250.Steam-importer?branchName=master"
-                             alt="Data build status">
-                    </a>
-                <td>
-                    <a href="https://travis-ci.org/250/Steam-250">
-                        <img src="https://travis-ci.org/250/Steam-250.svg?branch=master" alt="Page build status">
-                    </a>
-                <td>
-                    <a href="https://travis-ci.org/250/Steam-curator">
-                        <img src="https://travis-ci.org/250/Steam-curator.svg?branch=master" alt="Curator build status">
-                    </a>
-        </table>
-        <ul class="status">
-            <li>Generated {{ 'now'|date }} {{ tz() }}
-            <li><a href="https://github.com/250">Source code</a>,
-                <a href="https://github.com/250/Steam-250/issues">Issues</a>
-        </ul>
-    </div>
-
-    <div>
-        <h2>
-            <a href="{{ patreon }}">Club 250</a>
-            <a href="{{ patreon }}" class="patreon" title="Patreon">Patreon</a>
-        </h2>
-        <p>
-            Club 250 is the Steam 250 members club. Consider
-            <a href="{{ patreon }}">becoming a member</a>
-            so we can continue helping you find good games on Steam in new and better ways.
-        </p>
-        <p>
-            Receive rewards based on your pledge level, including
-            <a href="/club250{{ ext }}">your Steam reviews on an exclusive ranking</a> and
-            <a href="/club250/ambassadors{{ ext }}">your name etched into the site</a>!
-        </p>
-    </div>
-
-    <div>
-        <h2>
-            <a href="https://discord.gg/8pz5ybv">Community</a>
-            <a href="https://discord.gg/8pz5ybv" class="discord" title="Discord">Discord</a
-            ><a href="https://store.steampowered.com/curator/32686107/" class="steam" title="Steam curator">
-                Steam curator
-            </a>
-        </h2>
-        <p>
-            Chat on <a href="https://discord.gg/8pz5ybv" title="Discord">Discord</a>
-            from the web, your desktop, mobile or all three at once!
-            Join our friendly little community and chat about games and rankings.
-        </p>
-        <p>
-            Follow our official <a href="https://store.steampowered.com/curator/32686107/">Steam curator</a>
-            page to access game rankings directly from the Steam store! Automatically updated every day.
-        </p>
-        <p>
-            <a href="mailto:bilge@steam250.com">Contact by email</a>
-        </p>
-    </div>
-</section>
 
 <div class="fixedlinks">
     <a href="#header">Top</a>

@@ -44,7 +44,11 @@
         {% for game in games %}
         <div id="{{ game.rank }}">
             <div>
-                <a href="{{ steam.app_url(game.id) }}">
+                <a
+                    {%- if game.videos %}
+                    data-video="{{ game.videos|split(',')|first }}"
+                    {% endif -%}
+                >
                     <img alt="Logo" src="https://steamcdn-a.akamaihd.net/steam/apps/{{ game.id }}/capsule_
                         {{- loop.index <= 14 ? '184x69.jpg' : 'sm_120.jpg' }}"
                 ></a>
@@ -162,4 +166,5 @@
 {% block js %}
 {{ parent() }}
 <script src="/js/Filter.js"></script>
+<script src="/js/VideoPlayer.js"></script>
 {% endblock %}
