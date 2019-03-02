@@ -1,0 +1,28 @@
+#video-player {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 854px;
+    transform: translate(-50%, -60%);
+    z-index: 20;
+}
+#video-player.active {
+    display: block;
+}
+
+video {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+
+    border-radius: 6px;
+    border: 5px solid #000;
+}
+
+#page {
+    transition: filter .5s;
+}
+#page.video {
+    filter: saturate(15%) brightness(25%);
+}
