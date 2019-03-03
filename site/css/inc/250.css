@@ -741,6 +741,8 @@ p.notice::before {
     line-height: 0;
 }
 .ranking > div > div:first-child > a {
+    display: block;
+
     cursor: not-allowed;
 }
 .ranking > div > div:first-child > a[data-video] {
