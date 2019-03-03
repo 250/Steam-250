@@ -29,6 +29,7 @@ new class {
         this.video.muted = volume.muted;
 
         this.video.addEventListener('volumechange', _ => this.saveVolumeState());
+        this.video.addEventListener('click', e => e.stopPropagation());
     }
 
     initVideoLinks() {
