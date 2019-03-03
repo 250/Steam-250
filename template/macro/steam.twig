@@ -9,3 +9,9 @@ https://store.steampowered.com/search/?sort_by=Reviews_DESC&category1=998&develo
 {% macro publisher_url(publisher) %}
 https://store.steampowered.com/search/?sort_by=Reviews_DESC&category1=998&publisher={{ publisher|e('url') }}
 {% endmacro %}
+
+{% macro video_attr(videos) %}
+{% if videos -%}
+    data-video="{{ videos|split(',')|first }}"
+{%- endif %}
+{% endmacro %}

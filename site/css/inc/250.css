@@ -740,12 +740,13 @@ p.notice::before {
 
     line-height: 0;
 }
-.ranking > div > div:first-child > a {
+.ranking > div > div:first-child > a,
+.r\&f > .ranking li > a {
     display: block;
 
     cursor: not-allowed;
 }
-.ranking > div > div:first-child > a[data-video] {
+#page a[data-video] {
     cursor: zoom-in;
 }
 .ranking > div > div:nth-child(2) {
