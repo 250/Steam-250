@@ -10,9 +10,10 @@
 {% block fullwidth %}
 <div class="ranking-layout">
     <div>{#Virtual#}</div>
+
     <div class="main ranking">
-        <header>
-            <button type="button">filters</button>
+        <div class="filter">
+            <button type="button">platform filters</button>
             <form method="post">
                 <fieldset>
                     <legend>Platforms</legend>
@@ -38,6 +39,9 @@
                 <button class="button cancel">Cancel</button>
                 <button class="button reset" type="reset">Reset</button>
             </form>
+        </div>
+        <header>
+            <h2>Trailers</h2>
             <h2>{% block game_row_heading %}Movement, rank, title, date, platforms and tag{% endblock %}</h2>
             <h2>{% block scoring_heading %}Score{% endblock %}</h2>
         </header>

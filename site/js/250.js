@@ -228,7 +228,7 @@ class S250 {
     unmarkOwnedGames() {
         document.querySelectorAll('.ranking a.owned').forEach(a => {
             a.classList.remove('owned');
-        })
+        });
     }
 
     updateUserBar() {
@@ -264,7 +264,7 @@ class S250 {
 
         fetch(
             location.protocol +
-            `//cors-anywhere.herokuapp.com/http://steamcommunity.com/profiles/${userId}/games/?tab=all`,
+            `//cors-anywhere.herokuapp.com/https://steamcommunity.com/profiles/${userId}/games/?tab=all`,
         ).then(
             response => response.text()
         ).then((data) => {
