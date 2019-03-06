@@ -1,142 +1,142 @@
 .ranking > header > h2:first-of-type {
-    margin-left: 184px;
+    width: 184px;
 }
 
 /* Sinusoidal in/out fade. */
-.ranking > div:nth-of-type(1) {
+.ranking > div[id='1'] {
     width: 100%;
 }
-.ranking > div:nth-of-type(2) {
+.ranking > div[id='2'] {
     width: calc(100% - 1px);
 }
-.ranking > div:nth-of-type(3) {
+.ranking > div[id='3'] {
     width: calc(100% - 3px);
 }
-.ranking > div:nth-of-type(4) {
+.ranking > div[id='4'] {
     width: calc(100% - 6px);
 }
-.ranking > div:nth-of-type(5) {
+.ranking > div[id='5'] {
     width: calc(100% - 11px);
 }
-.ranking > div:nth-of-type(6) {
+.ranking > div[id='6'] {
     width: calc(100% - 16px);
 }
-.ranking > div:nth-of-type(7) {
+.ranking > div[id='7'] {
     width: calc(100% - 22px);
 }
-.ranking > div:nth-of-type(8) {
+.ranking > div[id='8'] {
     width: calc(100% - 29px);
 }
-.ranking > div:nth-of-type(9) {
+.ranking > div[id='9'] {
     width: calc(100% - 35px);
 }
-.ranking > div:nth-of-type(10) {
+.ranking > div[id='10'] {
     width: calc(100% - 42px);
 }
-.ranking > div:nth-of-type(11) {
+.ranking > div[id='11'] {
     width: calc(100% - 48px);
 }
-.ranking > div:nth-of-type(12) {
+.ranking > div[id='12'] {
     width: calc(100% - 53px);
 }
-.ranking > div:nth-of-type(13) {
+.ranking > div[id='13'] {
     width: calc(100% - 58px);
 }
-.ranking > div:nth-of-type(14) {
+.ranking > div[id='14'] {
     width: calc(100% - 61px);
 }
-.ranking > div:nth-of-type(n+15) {
+.ranking > div:nth-of-type(n+16) {
     width: calc(100% - 64px);
 }
 
-.ranking > div:nth-of-type(1) > div:first-child {
+.ranking > div[id='1'] > div:first-child {
     max-width: 184px;
 }
-.ranking div:nth-of-type(2) > div:first-child {
+.ranking > div[id='2'] > div:first-child {
     max-width: 183px;
 }
-.ranking div:nth-of-type(3) > div:first-child {
+.ranking > div[id='3'] > div:first-child {
     max-width: 181px;
 }
-.ranking div:nth-of-type(4) > div:first-child {
+.ranking > div[id='4'] > div:first-child {
     max-width: 178px;
 }
-.ranking div:nth-of-type(5) > div:first-child {
+.ranking > div[id='5'] > div:first-child {
     max-width: 173px;
 }
-.ranking div:nth-of-type(6) > div:first-child {
+.ranking > div[id='6'] > div:first-child {
     max-width: 168px;
 }
-.ranking div:nth-of-type(7) > div:first-child {
+.ranking > div[id='7'] > div:first-child {
     max-width: 162px;
 }
-.ranking div:nth-of-type(8) > div:first-child {
+.ranking > div[id='8'] > div:first-child {
     max-width: 155px;
 }
-.ranking div:nth-of-type(9) > div:first-child {
+.ranking > div[id='9'] > div:first-child {
     max-width: 149px;
 }
-.ranking div:nth-of-type(10) > div:first-child {
+.ranking > div[id='10'] > div:first-child {
     max-width: 142px;
 }
-.ranking div:nth-of-type(11) > div:first-child {
+.ranking > div[id='11'] > div:first-child {
     max-width: 136px;
 }
-.ranking div:nth-of-type(12) > div:first-child {
+.ranking > div[id='12'] > div:first-child {
     max-width: 131px;
 }
-.ranking div:nth-of-type(13) > div:first-child {
+.ranking > div[id='13'] > div:first-child {
     max-width: 126px;
 }
-.ranking div:nth-of-type(14) > div:first-child {
+.ranking > div[id='14'] > div:first-child {
     max-width: 123px;
 }
-.ranking div:nth-of-type(15) > div:first-child {
+.ranking > div[id='15'] > div:first-child {
     max-width: 121px;
 }
 
-.ranking > div:nth-of-type(1) .title {
+.ranking > div[id='1'] .title {
     font-size: 200%;
 }
-.ranking > div:nth-of-type(2) .title {
+.ranking > div[id='2'] .title {
     font-size: 198.91%;
 }
-.ranking > div:nth-of-type(3) .title {
+.ranking > div[id='3'] .title {
     font-size: 195.68%;
 }
-.ranking > div:nth-of-type(4) .title {
+.ranking > div[id='4'] .title {
     font-size: 190.45%;
 }
-.ranking > div:nth-of-type(5) .title {
+.ranking > div[id='5'] .title {
     font-size: 183.46%;
 }
-.ranking > div:nth-of-type(6) .title {
+.ranking > div[id='6'] .title {
     font-size: 175%;
 }
-.ranking > div:nth-of-type(7) .title {
+.ranking > div[id='7'] .title {
     font-size: 165.45%;
 }
-.ranking > div:nth-of-type(8) .title {
+.ranking > div[id='8'] .title {
     font-size: 155.23%;
 }
-.ranking > div:nth-of-type(9) .title {
+.ranking > div[id='9'] .title {
     font-size: 144.77%;
 }
-.ranking > div:nth-of-type(10) .title {
+.ranking > div[id='10'] .title {
     font-size: 134.55%;
 }
-.ranking > div:nth-of-type(11) .title {
+.ranking > div[id='11'] .title {
     font-size: 125%;
 }
-.ranking > div:nth-of-type(12) .title {
+.ranking > div[id='12'] .title {
     font-size: 116.54%;
 }
-.ranking > div:nth-of-type(13) .title {
+.ranking > div[id='13'] .title {
     font-size: 109.55%;
 }
-.ranking > div:nth-of-type(14) .title {
+.ranking > div[id='14'] .title {
     font-size: 104.32%;
 }
-.ranking > div:nth-of-type(15) .title {
+.ranking > div[id='15'] .title {
     font-size: 101.09%;
 }

@@ -4,7 +4,6 @@ new class {
         this.video = this.container.appendChild(document.createElement('video'));
         this.page = document.querySelector('#page');
 
-        this.deactivate();
         this.init();
     }
 

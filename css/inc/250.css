@@ -646,17 +646,29 @@ p.notice::before {
     align-items: flex-end;
 }
 
-.ranking > header > button:first-child {
-    position: absolute;
-    left: .5em;
-    bottom: .6em;
-    padding-left: 1.3em;
+.ranking > .filter {
+    position: relative;
+    right: .5em;
+    margin-bottom: .5em;
+    margin-top: -1.5em;
+    padding-bottom: .5em;
+    text-align: right;
+}
+.ranking > .filter > button {
+    padding-right: 1.2em;
     height: 1.3em;
 
-    background: url("/svg/settings.svg") no-repeat left;
-    background-size: 1.2em .8em;
+    font-size: 85%;
+    color: #607b9c;
+    background: url('/svg/settings.svg') no-repeat right;
+    background-size: 1.2em .9em;
+    opacity: .5;
+    transition: opacity .1s;
 }
-.ranking > header > button:first-child:after {
+.ranking > .filter > button:hover {
+    opacity: 1;
+}
+.ranking > .filter > button:after {
     content: attr(data-filtered);
     margin-left: .5em;
     position: relative;
@@ -665,20 +677,21 @@ p.notice::before {
     color: #c9b734;
     font-size: 75%;
 }
-.ranking > header > form {
+.ranking > .filter > form {
     position: absolute;
     top: 100%;
-    left: 0;
+    right: 0;
     z-index: 2;
     max-height: 0;
     overflow: hidden;
     text-align: center;
 
-    background: rgba(27, 40, 56, .98);
-    box-shadow: 3px 3px 5px rgba(18, 24, 35, .4);
+    background: #1b2838;
+    border-radius: 4px;
+    box-shadow: 3px 3px 5px rgba(18, 24, 35, .5), inset 0 0 0 1px #3b4b60;
     transition: max-height .3s;
 }
-.ranking > header > form.open {
+.ranking > .filter > form.open {
     max-height: 200px;
 }
 .ranking fieldset {
@@ -688,18 +701,23 @@ p.notice::before {
     margin: .5em;
     white-space: nowrap;
 }
-.ranking > header > form > fieldset > legend + * {
+.ranking > .filter > form > fieldset > legend + * {
     margin-top: 0;
 }
 
 .ranking > header > h2:first-of-type {
-    margin-left: 120px;
-    padding-left: .5em;
+    width: 120px;
+    box-sizing: border-box;
+    padding-left: 1.5em;
+    margin-left: .5em;
+
+    background: url('/svg/filmstrip.svg') no-repeat left;
+    background-size: 1.2em .9em;
 }
 @media (max-width: 520px) {
     .ranking > header > h2:first-of-type {
         /* Just an estimate since we can't measure it, but works surprisingly well. */
-        margin-left: 23.5%;
+        width: 9em;
     }
 }
 .ranking > header > h2:last-child {
@@ -707,7 +725,7 @@ p.notice::before {
     padding: 0;
 }
 
-.ranking > div {
+.ranking > div[id] {
     display: flex;
     align-items: center;
     width: 100%;
@@ -718,21 +736,21 @@ p.notice::before {
     margin: 0;
     overflow: hidden;
 }
-.ranking > div:first-of-type {
+.ranking > div[id='1'] {
     margin-top: 0;
 }
-.ranking > div:nth-of-type(2n-1),
+.ranking > div[id]:nth-of-type(2n-1),
 .ranking > div.primary {
     background-color: #162433;
 }
 .ranking > div.secondary {
     background-color: transparent;
 }
-.ranking > div > div:first-child img {
+.ranking > div[id] > div:first-child img {
     max-width: 100%;
 }
 
-.ranking > div > div:first-child {
+.ranking > div[id] > div:first-child {
     flex-shrink: 0;
     width: 25%;
     max-width: 120px;
@@ -740,27 +758,27 @@ p.notice::before {
 
     line-height: 0;
 }
-.ranking > div > div:first-child > a,
+.ranking > div[id] > div:first-child > a,
 .r\&f > .ranking li > a {
     display: block;
-
-    cursor: not-allowed;
 }
-#page a[data-video] {
-    cursor: zoom-in;
+.ranking > div[id] > div:first-child > a:not([data-video]),
+.r\&f > .ranking li > a:not([data-video]) {
+    cursor: not-allowed;
+
 }
 .ranking > div > div:nth-child(2) {
     flex-grow: 1;
 }
-.ranking > div > div:nth-child(2),
+.ranking > div[id] > div:nth-child(2),
 .r\&f li > :nth-child(2) {
     padding-left: .5vw;
     padding-right: .5vw;
 }
-.ranking > div > div:nth-child(2) > * {
+.ranking > div[id] > div:nth-child(2) > * {
     vertical-align: middle;
 }
-.ranking > div > div:nth-child(3),
+.ranking > div[id] > div:nth-child(3),
 .ranking > header > h2:last-child {
     width: 10%;
     min-width: 4.5em;
@@ -769,14 +787,14 @@ p.notice::before {
 
     text-align: center;
 }
-.ranking > div > div:nth-child(3) > span {
+.ranking > div[id] > div:nth-child(3) > span {
     font-size: 80%;
 }
-.ranking > div > div:nth-child(3) > span:first-child {
+.ranking > div[id] > div:nth-child(3) > span:first-child {
     font-weight: bold;
 }
 @media (min-width: 850px) {
-    .ranking > div > div:nth-child(3) > span:first-child {
+    .ranking > div[id] > div:nth-child(3) > span:first-child {
         font-size: 100%;
     }
 }
@@ -798,15 +816,12 @@ p.notice::before {
 
     background: url('/svg/link.svg') no-repeat 70% 50%;
     background-size: 13px;
-    opacity: 0;
-    transition: opacity .3s;
+    opacity: .15;
+    transition: opacity .15s;
 }
-.ranking > div > div:nth-child(2):hover .links {
-    opacity: .3;
-}
-.ranking > div > div:nth-child(2):hover .links:hover,
-.ranking > div > div:nth-child(2) .links.show {
-    opacity: .8;
+.ranking > div[id] > div:nth-child(2):hover .links:hover,
+.ranking > div[id] > div:nth-child(2) .links.show {
+    opacity: .7;
 }
 .main.ranking > :last-child {
     margin-bottom: 1.5rem;

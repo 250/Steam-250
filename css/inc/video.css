@@ -23,9 +23,9 @@ video {
     max-height: 100%;
     transform: translate(-50%, -50%);
 
+    outline: none;
     border-radius: 6px;
     border: 5px solid #000;
-
 }
 
 #page {
