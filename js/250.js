@@ -205,8 +205,8 @@ class S250 {
     markOwnedGames() {
         const games = JSON.parse(localStorage.getItem('games'));
 
-        document.querySelectorAll('.ranking > div > div:first-of-type > a').forEach(a => {
-            const id = a.href.match(/\/app\/(\d+)/)[1];
+        document.querySelectorAll('.ranking > div[id] > div:first-of-type > a').forEach(a => {
+            const id = a.firstElementChild.src.match(/\/apps\/(\d+)/)[1];
 
             if (games.hasOwnProperty(id)) {
                 a.classList.add('owned');
