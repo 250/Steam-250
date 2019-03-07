@@ -720,6 +720,16 @@ p.notice::before {
         width: 9em;
     }
 }
+.ranking > header > h2:first-of-type:after {
+    content: '';
+    display: inline-block;
+    width: 1.2em;
+    height: 1em;
+    margin-left: .2em;
+    vertical-align: middle;
+
+    background: url('/svg/arrow.svg') no-repeat bottom;
+}
 .ranking > header > h2:last-child {
     margin-left: auto;
     padding: 0;
