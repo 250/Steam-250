@@ -6,8 +6,6 @@ html, body {
 }
 
 body {
-    display: flex;
-    flex-direction: column;
     color: #c7d5e0;
     background: #1b2838;
     font: 100%/1.4 sans-serif;
@@ -22,6 +20,11 @@ body {
 #page {
     /* Must match body. */
     background: #1b2838;
+
+    /* Sticky footer. */
+    height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 a {

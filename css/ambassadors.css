@@ -2,16 +2,17 @@
     background: rgba(0, 0, 0, .1) linear-gradient(0deg, rgba(156, 245, 255, .05), transparent 35%);
     border-radius: 10px;
 }
-.content > div > a:nth-of-type(2) {
+.content > div > a[data-title] {
     position: relative;
+    left: 1rem;
     font: 500% Lobster;
 
     color: transparent;
     text-decoration: none;
     text-shadow: 1px 1px 4px #080b0d;
 }
-.content > div > a:nth-of-type(2):before,
-.content > div > a:nth-of-type(2):after {
+.content > div > a[data-title]:before,
+.content > div > a[data-title]:after {
     content: attr(data-title);
     position: absolute;
     top: 0;
@@ -22,14 +23,14 @@
     text-shadow: none;
     transition: text-shadow .2s;
 }
-.content > div > a:nth-of-type(2):before {
+.content > div > a[data-title]:before {
     text-shadow: 0 -1px 1px #fffccc;
 }
-.content > div > a:nth-of-type(2):after {
+.content > div > a[data-title]:after {
     background: linear-gradient(179deg, #e6c88a 20%, #665233, #9e814c 90%);
     -webkit-background-clip: text;
 }
-.content > div > a:nth-of-type(2):hover:after {
+.content > div > a[data-title]:hover:after {
     text-shadow: 0 0 3px rgba(230, 200, 138, .5);
 }
 
@@ -38,8 +39,6 @@
 }
 
 .content > div img {
-    margin-right: 1em;
-
     opacity: .8;
     border: 4px solid rgba(0, 0, 0, .2);
     border-radius: 10px;
