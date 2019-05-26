@@ -5,7 +5,7 @@
     <ol>
         {% for game in games %}
         <li>
-            <a {{ steam.video_attr(game.videos) }}>
+            <a {{ steam.video_attr(game.id, game.videos) }}>
                 <img alt="Logo" src="https://steamcdn-a.akamaihd.net/steam/apps/{{ game.id }}/capsule_sm_120.jpg"
             ></a>
             <span>

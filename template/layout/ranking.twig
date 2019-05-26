@@ -17,7 +17,7 @@
             <form method="post">
                 <fieldset>
                     <legend>Platforms</legend>
-                    <p>Include games from these platforms.</p>
+                    <p>Include games supporting these platforms.</p>
                     <label>
                         <input type="checkbox" name="win" checked>
                         <span>Windows</span>
@@ -48,7 +48,7 @@
         {% for game in games %}
         <div id="{{ game.rank }}">
             <div>
-                <a {{ steam.video_attr(game.videos) }}>
+                <a {{ steam.video_attr(game.id, game.videos) }}>
                     <img alt="Logo" src="https://steamcdn-a.akamaihd.net/steam/apps/{{ game.id }}/capsule_
                         {{- loop.index <= 14 ? '184x69.jpg' : 'sm_120.jpg' }}"
                 ></a>

@@ -10,8 +10,11 @@ https://store.steampowered.com/search/?sort_by=Reviews_DESC&category1=998&develo
 https://store.steampowered.com/search/?sort_by=Reviews_DESC&category1=998&publisher={{ publisher|e('url') }}
 {% endmacro %}
 
-{% macro video_attr(videos) %}
+{% macro video_attr(game_id, videos) %}
+{# TODO: Remove import since Twig 2.11. #}
+{% import _self as steam %}
 {% if videos -%}
     data-video="{{ videos|split(',')|first }}"
+    href="{{ steam.app_url(game_id) }}"
 {%- endif %}
 {% endmacro %}
