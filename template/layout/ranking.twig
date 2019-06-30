@@ -84,6 +84,9 @@
                     {%- if game.platforms b-and constant('ScriptFUSION\\Steam250\\Shared\\Platform::WMR') -%}
                     <a href="/vr250{{ ext }}" title="Windows Mixed Reality" class="wmr"></a>
                     {%- endif -%}
+                    {%- if game.platforms b-and constant('ScriptFUSION\\Steam250\\Shared\\Platform::INDEX') -%}
+                    <a href="/vr250{{ ext }}" title="Valve Index" class="index"></a>
+                    {%- endif -%}
                 </span>
                 {{ macro.tag(game.primary_tag, tags) }}
                 {% if game.rank_250 and game.list_id != 'index' %}

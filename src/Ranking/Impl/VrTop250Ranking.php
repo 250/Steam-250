@@ -16,6 +16,6 @@ class VrTop250Ranking extends Top250Ranking
 
     public function customizeQuery(QueryBuilder $builder): void
     {
-        $builder->andWhere('platforms & ' . (Platform::VIVE | Platform::OCULUS | Platform::WMR));
+        $builder->andWhere('platforms & ' . (Platform::VIVE | Platform::OCULUS | Platform::WMR | Platform::INDEX));
     }
 }

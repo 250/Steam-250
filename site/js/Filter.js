@@ -49,7 +49,9 @@ new class {
             ranks.forEach(rank => {
                 let keep = checkedChecks.some(check => {
                     if (check.name === 'vr') {
-                        return !!rank.querySelector('.platforms > .vive, .platforms > .rift, .platforms > .wmr')
+                        return !!rank.querySelector(
+                            '.platforms > .vive, .platforms > .rift, .platforms > .wmr, .platforms > .index'
+                        )
                     }
 
                     return !!rank.querySelector('.platforms > .' + check.name);

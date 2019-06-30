@@ -182,7 +182,7 @@ fieldset {
     margin: 1em .9em;
     padding: 1em;
 
-    border: 1px solid #577083;
+    border: 1px solid #395e7b;
     border-radius: 3px;
 }
 legend {
@@ -689,7 +689,7 @@ p.notice::before {
     overflow: hidden;
     text-align: center;
 
-    background: #1b2838;
+    background: #192533;
     border-radius: 4px;
     box-shadow: 3px 3px 5px rgba(18, 24, 35, .5), inset 0 0 0 1px #3b4b60;
     transition: max-height .3s;
@@ -744,10 +744,8 @@ p.notice::before {
     width: 100%;
     margin: 6px 0 0 auto;
 }
-.ranking > .filtered {
-    max-height: 0;
-    margin: 0;
-    overflow: hidden;
+.ranking > div.filtered {
+    display: none;
 }
 .ranking > div[id='1'] {
     margin-top: 0;
@@ -756,7 +754,8 @@ p.notice::before {
 .ranking > div.primary {
     background-color: #162433;
 }
-.ranking > div.secondary {
+/* Specificity hack to force alternation override. */
+.ranking > div.secondary:nth-child(n) {
     background-color: transparent;
 }
 .ranking > div[id] > div:first-child img {
@@ -1127,29 +1126,33 @@ tr.a .movement.none:before {
         height: 15px;
     }
 }
-.platforms > [title=Windows] {
+.platforms > .win {
     background: url(/svg/windows.svg) no-repeat 50% 55%;
     background-size: 75%;
 }
-.platforms > [title=Mac] {
+.platforms > .mac {
     background-image: url(/svg/apple.svg);
     background-size: 70%;
 }
-.platforms > [title=Linux] {
+.platforms > .nix {
     background-image: url(/svg/tux.svg);
     background-size: 85%;
 }
-.platforms > [title=HTC\ Vive] {
+.platforms > .vive {
     background-image: url(/svg/vive.svg);
     background-size: 80%;
 }
-.platforms > [title=Oculus\ Rift] {
+.platforms > .rift {
     background-image: url(/svg/oculus.svg);
     background-size: 85%;
 }
-.platforms > [title='Windows Mixed Reality'] {
+.platforms > .wmr {
     background-image: url(/img/wmr.png);
     background-size: cover;
+}
+.platforms > .index {
+    background-image: url(/img/index.png);
+    background-size: 95%;
 }
 
 .button, .button:visited {
