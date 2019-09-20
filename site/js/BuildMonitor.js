@@ -61,7 +61,7 @@ class BuildMonitor {
 
     showReady() {
         this.element.classList.add('ready');
-        this.element.innerHTML = '<a href="https://youtu.be/Mu0cE9RgK5M">Ready for launch</a>';
+        this.element.innerHTML = '<a onclick="location.reload()">Ready for launch</a>';
     }
 
     calculateDuration() {
