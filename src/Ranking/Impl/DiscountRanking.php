@@ -11,8 +11,6 @@ class DiscountRanking extends Top250Ranking
     public function __construct(RankingDependencies $dependencies)
     {
         parent::__construct($dependencies, 'discounts');
-
-        $this->setShowPrices(true);
     }
 
     public function customizeQuery(QueryBuilder $builder): void

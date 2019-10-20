@@ -79,11 +79,11 @@ abstract class Ranking extends Page
 
     private function createRisersList(array $games): array
     {
-        $games = array_filter($games, function (array $a): bool {
+        $games = array_filter($games, static function (array $a): bool {
             return $a['movement'] > 0;
         });
 
-        uasort($games, function (array $a, array $b): int {
+        uasort($games, static function (array $a, array $b): int {
             return $b['movement'] <=> $a['movement'] ?: $a['rank'] <=> $b['rank'];
         });
 
@@ -92,11 +92,11 @@ abstract class Ranking extends Page
 
     private function createFallersList(array $games): array
     {
-        $games = array_filter($games, function (array $a): bool {
+        $games = array_filter($games, static function (array $a): bool {
             return $a['movement'] < 0;
         });
 
-        uasort($games, function (array $a, array $b): int {
+        uasort($games, static function (array $a, array $b): int {
             return $a['movement'] <=> $b['movement'] ?: $a['rank'] <=> $b['rank'];
         });
 
@@ -105,7 +105,7 @@ abstract class Ranking extends Page
 
     private function createNewEntriesList(array $games): array
     {
-        $games = array_filter($games, function (array $a): bool {
+        $games = array_filter($games, static function (array $a): bool {
             return $a['movement'] === null;
         });
 
@@ -140,15 +140,5 @@ abstract class Ranking extends Page
     public function setPrevDb(?string $prevDb): void
     {
         $this->prevDb = $prevDb;
-    }
-
-    public function shouldShowPrices(): bool
-    {
-        return $this->showPrices;
-    }
-
-    protected function setShowPrices(bool $showPrices): void
-    {
-        $this->showPrices = $showPrices;
     }
 }
