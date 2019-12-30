@@ -5,6 +5,7 @@ namespace ScriptFUSION\Steam250\SiteGenerator\Generate;
 
 use Psr\Log\LoggerInterface;
 use ScriptFUSION\Steam250\SiteGenerator\Page\Page;
+use Twig\Environment;
 use voku\helper\HtmlMin;
 
 final class PageGenerator
@@ -15,7 +16,7 @@ final class PageGenerator
     private $minify = false;
 
     public function __construct(
-        \Twig_Environment $twig,
+        Environment $twig,
         LoggerInterface $logger,
         HtmlMin $minifier
     ) {
@@ -29,7 +30,7 @@ final class PageGenerator
         try {
             $export = $page->export() + compact('page');
         } catch (\Exception $exception) {
-            $this->logger->error("Exception encountered: \"$exception\"");
+            $this->logger->error("Exception occurred: \"$exception\"");
 
             return false;
         }

@@ -20,7 +20,6 @@ abstract class Ranking extends Page
     private $algorithm;
     private $weight;
     private $prevDb;
-    private $showPrices = false;
 
     public function __construct(
         RankingDependencies $dependencies,
