@@ -8,15 +8,17 @@
     }
   ],
   "require": {
-    "php": "^7.1",
+    "php": "7.3.*",
     "ext-pdo": "*",
+    "250/log": "dev-master",
     "250/shared": "dev-master",
+    "250/storage": "dev-master",
     "scriptfusion/static-class": "^1",
     "twig/twig": "^2",
     "doctrine/dbal": "^2",
     "monolog/monolog": "^1",
     "voku/html-min": "2.0.0",
-    "eloquent/enumeration": "^5",
+    "eloquent/enumeration": "^6",
     "joomla/di": "^1.5",
     "symfony/console": "^3"
   },

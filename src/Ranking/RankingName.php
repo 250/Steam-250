@@ -24,6 +24,7 @@ use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\RollingQuarterRanking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\RollingWeekRanking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\RollingYearRanking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\Top250Ranking;
+use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\TrendRanking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\Usd10To15List;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\Usd5To10List;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\UsdOver15Ranking;
@@ -57,6 +58,7 @@ final class RankingName extends AbstractEnumeration
     public const DEVELOPER = 'DEVELOPER';
     public const PUBLISHER = 'PUBLISHER';
     public const PLAYERS = 'PLAYERS';
+    public const TREND = 'TREND';
     public const CLUB_250 = 'CLUB_250';
     public const COLLAGE = 'COLLAGE';
 
@@ -85,6 +87,7 @@ final class RankingName extends AbstractEnumeration
         self::DEVELOPER => DeveloperRanking::class,
         self::PUBLISHER => PublisherRanking::class,
         self::PLAYERS => MostPlayedRanking::class,
+        self::TREND => TrendRanking::class,
         self::CLUB_250 => Club250Ranking::class,
         self::COLLAGE => CollageRanking::class,
     ];
@@ -114,6 +117,7 @@ final class RankingName extends AbstractEnumeration
         self::DEVELOPER => 'dev',
         self::PUBLISHER => 'pub',
         self::PLAYERS => 'players',
+        self::TREND => 'trend',
         self::CLUB_250 => 'club',
         self::COLLAGE => 'collage',
     ];

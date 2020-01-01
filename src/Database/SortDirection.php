@@ -6,8 +6,8 @@ namespace ScriptFUSION\Steam250\SiteGenerator\Database;
 use Eloquent\Enumeration\AbstractEnumeration;
 
 /**
- * @method static ASC()
- * @method static DESC()
+ * @method static self ASC
+ * @method static self DESC
  */
 final class SortDirection extends AbstractEnumeration
 {
