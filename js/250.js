@@ -26,11 +26,6 @@ class S250 {
     initLogInOut() {
         const form = document.querySelector('#lout form');
 
-        if (!form) {
-            console.debug('Steam user area unavailable: skipped.');
-            return;
-        }
-
         // Redirect back to same page without query or hash.
         form['openid.return_to'].value = location.origin + location.pathname;
 
@@ -366,11 +361,6 @@ class S250 {
     }
 
     initCountdown() {
-        if (typeof BuildMonitor !== 'function') {
-            console.debug('BuildMonitor unavailable: skipping.')
-            return;
-        }
-
         const element = BuildMonitor.createElement();
 
         fetch(
