@@ -818,30 +818,31 @@ p.notice::before {
     /* Prevent breaking around title at small resolutions. */
     display: inline;
 }
-.ranking .links {
-    display: inline-block;
+.ranking .store {
+    overflow: hidden;
+    margin-left: 2px;
+    text-indent: -10em;
+
+    background: url('/svg/steam.svg') no-repeat center;
+    background-size: 80%;
 }
-.ranking .links > * {
+.ranking .links {
     display: inline-block;
     width: 13px;
     height: 0;
+    margin-left: 1px;
     padding: calc(13px / 2 + .1em) .1em;
     overflow: hidden;
     text-indent: -20px;
-    opacity: .15;
-    transition: opacity .15s;
-}
-.ranking > div[id] > div:nth-child(2):hover .links a:hover,
-.ranking > div[id] > div:nth-child(2) .links .show {
-    opacity: .7;
-}
-.ranking .links > .anchor {
+
     background: url('/svg/link.svg') no-repeat 70% 50%;
     background-size: 13px;
+    opacity: .2;
+    transition: opacity .15s;
 }
-.ranking .links > .store {
-    background: url('/svg/steam.svg') no-repeat 70% 50%;
-    background-size: 13px;
+.ranking > div[id] > div:nth-child(2):hover .links:hover,
+.ranking > div[id] > div:nth-child(2) .links.show {
+    opacity: .7;
 }
 .main.ranking > :last-child {
     margin-bottom: 1.5rem;
@@ -1118,20 +1119,22 @@ tr.a .movement.none:before {
     display: inline-block;
     margin-left: .25em;
 }
-.platforms > * {
+.platforms > *, .ranking .store {
     display: inline-block;
     width: 20px;
     height: 20px;
 
-    background: no-repeat center;
+    background-repeat: no-repeat;
+    background-position: center;
     opacity: .3;
     transition: opacity .1s;
 }
-.platforms > a:hover {
+.platforms > a:hover, .ranking .store:hover {
     opacity: .8;
 }
 @media (max-width: 599px) {
-    .platforms > * {
+    .platforms > *,
+    .ranking .store {
         width: 15px;
         height: 15px;
     }
