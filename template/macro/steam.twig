@@ -2,12 +2,16 @@
 https://club.steam250.com/app/{{ app_id }}
 {% endmacro %}
 
+{% macro store_url(app_id) %}
+https://store.steampowered.com/app/{{ app_id }}/?curator_clanid=32686107
+{% endmacro %}
+
 {% macro developer_url(developer) %}
-https://store.steampowered.com/search/?sort_by=Reviews_DESC&category1=998&developer={{ developer|e('url') }}
+https://store.steampowered.com/search/?sort_by=Reviews_DESC&amp;category1=998&amp;developer={{ developer|e('url') }}
 {% endmacro %}
 
 {% macro publisher_url(publisher) %}
-https://store.steampowered.com/search/?sort_by=Reviews_DESC&category1=998&publisher={{ publisher|e('url') }}
+https://store.steampowered.com/search/?sort_by=Reviews_DESC&amp;category1=998&amp;publisher={{ publisher|e('url') }}
 {% endmacro %}
 
 {% macro video_attr(game_id, videos) %}

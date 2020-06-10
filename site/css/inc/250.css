@@ -820,20 +820,28 @@ p.notice::before {
 }
 .ranking .links {
     display: inline-block;
+}
+.ranking .links > * {
+    display: inline-block;
     width: 13px;
     height: 0;
     padding: calc(13px / 2 + .1em) .1em;
     overflow: hidden;
     text-indent: -20px;
-
-    background: url('/svg/link.svg') no-repeat 70% 50%;
-    background-size: 13px;
     opacity: .15;
     transition: opacity .15s;
 }
-.ranking > div[id] > div:nth-child(2):hover .links:hover,
-.ranking > div[id] > div:nth-child(2) .links.show {
+.ranking > div[id] > div:nth-child(2):hover .links a:hover,
+.ranking > div[id] > div:nth-child(2) .links .show {
     opacity: .7;
+}
+.ranking .links > .anchor {
+    background: url('/svg/link.svg') no-repeat 70% 50%;
+    background-size: 13px;
+}
+.ranking .links > .store {
+    background: url('/svg/steam.svg') no-repeat 70% 50%;
+    background-size: 13px;
 }
 .main.ranking > :last-child {
     margin-bottom: 1.5rem;

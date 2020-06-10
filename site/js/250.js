@@ -327,7 +327,7 @@ class S250 {
 
         let link;
 
-        document.querySelectorAll('.ranking .links').forEach(a => {
+        document.querySelectorAll('.ranking .anchor').forEach(a => {
             a.addEventListener('click', e => {
                 menu.style.top = a.offsetTop + a.offsetHeight + 5 + 'px';
                 menu.style.left = a.offsetLeft + 'px';

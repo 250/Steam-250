@@ -109,7 +109,10 @@
                     {{- ((game.discount_price ? game.discount_price : game.price) / 100)|number_format(2) -}}
                 </span>
                 {% endif %}
-                <a href="#{{ game.rank }}" class="links" title="Link">▼</a>
+                <span class="links">
+                    <a href="{{ steam.store_url }}" class="store" title="Steam store">▼</a>
+                    <a href="#{{ game.rank }}" class="anchor" title="Link">▼</a>
+                </span>
                 {% block reviews %}{% endblock %}
                 {% endblock %}
             </div>
