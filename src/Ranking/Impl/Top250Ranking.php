@@ -12,7 +12,7 @@ class Top250Ranking extends Ranking
 {
     public function __construct(RankingDependencies $dependencies, $id = 'index', $limit = 250)
     {
-        parent::__construct($dependencies, $id, $limit, Algorithm::LAPLACE_LOG(), .7);
+        parent::__construct($dependencies, $id, $limit, Algorithm::LAPLACE_LOG(), .75);
     }
 
     public function customizeQuery(QueryBuilder $builder): void
