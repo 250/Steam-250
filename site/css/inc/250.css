@@ -547,7 +547,7 @@ ol.menu > li ol.t11g {
 .quicklinks a {
     margin: 0 .3em;
 }
-.quicklinks > li:last-of-type > a {
+.quicklinks .p {
     font-size: 120%;
 
     padding-left: 16px;
