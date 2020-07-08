@@ -28,7 +28,7 @@ class Club250Ranking extends Top250Ranking implements CustomRankingFetch, Custom
 
     public function __construct(RankingDependencies $dependencies)
     {
-        parent::__construct($dependencies, 'club250');
+        parent::__construct($dependencies, 'club250/member_reviews');
     }
 
     public function customizeQuery(QueryBuilder $builder): void
