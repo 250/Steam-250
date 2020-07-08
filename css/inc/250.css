@@ -1536,19 +1536,21 @@ tr.a .movement.none:before {
 }
 
 #footer {
-    display: flex;
+    display: grid;
     flex-shrink: 0;
+    grid-template-columns: repeat(auto-fit, 22em);
+    gap: 2em 4%;
     justify-content: center;
     padding: 2em 1.5em;
 
     font-size: 95%;
     line-height: 1.5;
 }
-#footer > * {
-    max-width: 18em;
-}
-#footer > :nth-child(n+2) {
-    margin-left: 4%;
+@media (max-width: 742px) {
+    #footer {
+        grid-template-columns: repeat(auto-fit, minmax(22em, 1fr));
+        line-height: inherit;
+    }
 }
 #footer > :last-child > p:first-of-type > a {
     display: inline-block;
@@ -1605,16 +1607,6 @@ tr.a .movement.none:before {
 }
 #footer a {
     color: #9e814c;
-}
-@media (max-width: 780px) {
-    #footer {
-        flex-direction: column;
-
-        line-height: inherit;
-    }
-    #footer > :nth-child(n+2) {
-        margin: 1.5em 0 0;
-    }
 }
 #footer .status > li:first-of-type > span {
     display: inline-block;
