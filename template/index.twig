@@ -1,10 +1,13 @@
-{% extends 'layout/ranking.twig' %}
+{% extends 'layout/template.twig' %}
 
-{% block title %}Top 250 best Steam Games{% endblock %}
-{% block heading %}Steam Top 250{% endblock %}
+{% block title %}Rankings overview{% endblock %}
+{% block heading %}Steam 250{% endblock %}
+{% block class %}home{% endblock %}
 
 {% block content %}
-<p>
-    Top 250 best Steam games of all time according to gamer reviews.
-</p>
+<section class="rankings">
+    {% for id, ranking in rankings %}
+    {{ include('partial/risers.twig', {games: ranking, title: id}) }}
+    {% endfor %}
+</section>
 {% endblock %}

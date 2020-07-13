@@ -5,6 +5,7 @@ namespace ScriptFUSION\Steam250\SiteGenerator\Generate;
 
 use ScriptFUSION\Steam250\SiteGenerator\Application;
 use ScriptFUSION\Steam250\SiteGenerator\ApplicationConfig;
+use ScriptFUSION\Steam250\SiteGenerator\Page\PreviousDatabaseAware;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Algorithm;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\PageContainerFactory;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Ranking;
@@ -54,9 +55,10 @@ final class PageCommand extends Command
             throw new \InvalidArgumentException("Invalid page ID: \"$id\".");
         }
 
-        if ($page instanceof Ranking) {
+        if ($page instanceof PreviousDatabaseAware) {
             $page->setPrevDb($input->getOption('prev-db'));
-
+        }
+        if ($page instanceof Ranking) {
             // Override algorithm and weight.
             if ($algorithm = $input->getOption('algorithm')) {
                 $page->setAlgorithm(Algorithm::memberOrNullByKey($algorithm, false));

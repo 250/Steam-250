@@ -8,7 +8,7 @@
     }
   ],
   "require": {
-    "php": "7.3.*",
+    "php": "7.4.*",
     "ext-pdo": "*",
     "250/log": "dev-master",
     "250/shared": "dev-master",

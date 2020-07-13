@@ -522,6 +522,9 @@ ol.menu > li ol.t11g {
     /* Force margins to be enclosed. */
     overflow: hidden;
 }
+.body.home > .content {
+    max-width: 1200px;
+}
 .content > p:first-of-type {
     font-size: 107%;
     text-align: center;
@@ -771,11 +774,11 @@ p.notice::before {
     line-height: 0;
 }
 .ranking > div[id] > div:first-child > a,
-.r\&f > .ranking li > a {
+.compact.ranking li > a {
     display: block;
 }
 .ranking > div[id] > div:first-child > a:not([data-video]),
-.r\&f > .ranking li > a:not([data-video]) {
+.compact.ranking li > a:not([data-video]) {
     cursor: not-allowed;
 
 }
@@ -783,7 +786,7 @@ p.notice::before {
     flex-grow: 1;
 }
 .ranking > div[id] > div:nth-child(2),
-.r\&f li > :nth-child(2) {
+.compact.ranking li > :nth-child(2) {
     padding-left: .5vw;
     padding-right: .5vw;
 }
@@ -853,6 +856,12 @@ p.notice::before {
     text-align: center;
     font-size: 70%;
     opacity: .06;
+}
+
+.rankings {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2em 1.5em;
 }
 
 .highlight {
@@ -1403,9 +1412,10 @@ tr.a .movement.none:before {
 }
 
 /* Compact ranking. */
-.r\&f > .ranking > ol {
+.compact.ranking > ol {
     position: relative;
     width: 100%;
+    box-sizing: border-box;
 
     font-size: 90%;
     line-height: .9;
@@ -1415,7 +1425,7 @@ tr.a .movement.none:before {
 
     --image-height: 34px;
 }
-.r\&f > .ranking > ol:before {
+.compact.ranking > ol:before {
     content: '';
     position: absolute;
     top: 2px;
@@ -1426,37 +1436,34 @@ tr.a .movement.none:before {
     border-radius: 4px;
     background: #121d29;
 }
-.r\&f > .ranking li {
+.compact.ranking li {
     position: relative;
     display: flex;
     align-items: center;
     height: calc(var(--image-height) + 1px);
     margin-bottom: 1px;
 }
-.r\&f > .ranking li:last-child {
+.compact.ranking li:last-child {
     height: var(--image-height);
     margin: 0;
 }
-.r\&f > .ranking li:nth-child(2n) {
-    background: #1f2d3f;
+.compact.ranking li:nth-child(2n) {
+    background: linear-gradient(#1d2735, #1f2d3f 20%)
 }
-.r\&f > .ranking li:nth-child(2n-1) {
-    background: linear-gradient(#1f2d3f, #192839 5%);
+.compact.ranking li:nth-child(2n-1) {
+    background: linear-gradient(#374e6d, #233346 1px);
 }
-.r\&f > .ranking li > a {
+.compact.ranking li > a {
     line-height: 0;
 }
-.r\&f > .ranking li a[href^=\#] {
+.compact.ranking li a[href^=\#] {
     color: inherit;
 }
-.r\&f > .ranking li a[href^=\#]:hover {
+.compact.ranking li a[href^=\#]:hover {
     color: #67dbb6;
     text-decoration: none;
 }
-.r\&f > .ranking li > :last-child {
-    width: 100%;
-}
-.r\&f > .ranking img {
+.compact.ranking img {
     height: var(--image-height);
 }
 
@@ -1545,6 +1552,7 @@ tr.a .movement.none:before {
 
     font-size: 95%;
     line-height: 1.5;
+    background: linear-gradient(#0d131f, #171a21 80px)
 }
 @media (max-width: 742px) {
     #footer {
@@ -1561,7 +1569,7 @@ tr.a .movement.none:before {
     text-indent: -99%;
     vertical-align: sub;
 
-    background: url("/svg/discord text.svg") no-repeat -1%;
+    background: url("/svg/discord text.svg") no-repeat -1px;
     background-size: auto 1.4em;
     opacity: .75;
     transition: opacity .2s;

@@ -10,7 +10,7 @@ use ScriptFUSION\Steam250\SiteGenerator\Ranking\RankingDependencies;
 
 class Top250Ranking extends Ranking
 {
-    public function __construct(RankingDependencies $dependencies, $id = 'index', $limit = 250)
+    public function __construct(RankingDependencies $dependencies, $id = 'top250', $limit = 250)
     {
         parent::__construct($dependencies, $id, $limit, Algorithm::LAPLACE_LOG(), .75);
     }

@@ -45,7 +45,7 @@
         <li>
             <a>Rankings</a>
             <ol>
-                <li><a href="/">Top 250 Games</a>
+                <li><a href="/top250{{ ext }}">Top 250 Games</a>
                 <li><a href="/hidden_gems{{ ext }}">Hidden Gems</a>
                 <li><a href="/hidden_novels{{ ext }}">Hidden Novels</a>
                 <li><a href="/most_played{{ ext }}">Most Played</a>
@@ -110,7 +110,7 @@
             </ol>
     </ol>
 
-    <div class="body">
+    <div class="body {% block class %}{% endblock %}">
         <div class="content">
             <ul class="quicklinks">
                 <li><a href="/">Top 250</a>

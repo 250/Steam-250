@@ -5,6 +5,7 @@ namespace ScriptFUSION\Steam250\SiteGenerator\Ranking;
 
 use Joomla\DI\Container;
 use ScriptFUSION\Steam250\SiteGenerator\Database\Queries;
+use ScriptFUSION\Steam250\SiteGenerator\Page\HomePage;
 use ScriptFUSION\Steam250\SiteGenerator\Page\StaticPageName;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\AnnualRanking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\EarlyAccessRanking;
@@ -52,6 +53,14 @@ final class PageContainerFactory
         $container->set(Tag::convertTagToId(EarlyAccessRanking::TAG), static function () use ($parent): Ranking {
             return new EarlyAccessRanking($parent->get(RankingDependencies::class));
         });
+
+        $container->set(
+            'home',
+            fn () => new HomePage(
+                $parent->get('db'),
+                array_map(fn ($name) => $container->buildObject($name), HomePage::getRankings())
+            )
+        );
 
         return $container;
     }

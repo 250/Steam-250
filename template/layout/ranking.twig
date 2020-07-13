@@ -137,10 +137,10 @@
         {% endif %}
         {{ include('partial/ad.twig', {id: '3002887382'}) }}
         {% if new %}
-        {{ include('partial/risers.twig', {games: new, title: 'New entries'}) }}
+        {{ include('partial/risers.twig', {games: new, title: 'New entries today'}) }}
         {% endif %}
         {% if fallers %}
-        {{ include('partial/risers.twig', {games: fallers, title: 'Fallers'}) }}
+        {{ include('partial/risers.twig', {games: fallers, title: 'Fallers today'}) }}
         {% endif %}
     {% else %}
         {{ include('partial/ad.twig', {id: '3002887382'}) }}

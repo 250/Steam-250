@@ -7,10 +7,14 @@ use Doctrine\DBAL\Query\QueryBuilder;
 use ScriptFUSION\Steam250\SiteGenerator\Database\Queries;
 use ScriptFUSION\Steam250\SiteGenerator\Generate\CustomizeGames;
 use ScriptFUSION\Steam250\SiteGenerator\Page\Page;
+use ScriptFUSION\Steam250\SiteGenerator\Page\PreviousDatabaseAware;
+use ScriptFUSION\Steam250\SiteGenerator\Page\PreviousDatabase;
 use ScriptFUSION\Steam250\SiteGenerator\SteamApp\PrimaryTagChooser;
 
-abstract class Ranking extends Page
+abstract class Ranking extends Page implements PreviousDatabaseAware
 {
+    use PreviousDatabase;
+
     private const RISERS_LIMIT = 10;
 
     private $ranker;
@@ -19,7 +23,6 @@ abstract class Ranking extends Page
     private $limit;
     private $algorithm;
     private $weight;
-    private $prevDb;
 
     public function __construct(
         RankingDependencies $dependencies,
@@ -136,8 +139,10 @@ abstract class Ranking extends Page
         return $this->limit;
     }
 
-    public function setPrevDb(?string $prevDb): void
+    public function setLimit(int $limit): self
     {
-        $this->prevDb = $prevDb;
+        $this->limit = $limit;
+
+        return $this;
     }
 }
