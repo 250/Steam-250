@@ -2,7 +2,7 @@ div.title {
     position: relative;
     margin: .072em 0;
 
-    font: calc(30px + 8vw)/1.1 Lobster, sans-serif;
+    font: calc(30px + 8vw)/1.1 Lobster, serif;
     transform: rotate(-1deg);
 }
 @media (min-width: 1160px) {
