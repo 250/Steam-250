@@ -513,6 +513,10 @@ ol.menu > li ol.t11g {
         no-repeat;
     background-size: 100% 60px;
 }
+.body.home {
+    background: linear-gradient(180deg, #263e5c, #22344b 6px, #1e2c3e 20px, #1d2a3c 30px, #1b2939 45px, #1b2838 60px,
+        #25293c 50vh);
+}
 
 .content {
     margin: 0 auto;
@@ -786,9 +790,8 @@ p.notice::before {
     flex-grow: 1;
 }
 .ranking > div[id] > div:nth-child(2),
-.compact.ranking li > :nth-child(2) {
-    padding-left: .5vw;
-    padding-right: .5vw;
+.compact.ranking li > :last-child {
+    padding: .25em .5vw;
 }
 .ranking > div[id] > div:nth-child(2) > * {
     vertical-align: middle;
@@ -1414,6 +1417,8 @@ tr.a .movement.none:before {
 
 /* Compact ranking. */
 .compact.ranking > ol {
+    display: grid;
+    gap: 2px;
     position: relative;
     width: 100%;
     box-sizing: border-box;
@@ -1422,9 +1427,8 @@ tr.a .movement.none:before {
     line-height: .9;
     padding: 4px;
     border-radius: 4px;
-    background: linear-gradient(92deg, var(--light), #30365c, var(--light));
+    background: radial-gradient(60% 140% at 60% 50%, #30365c, #697296);
 
-    --light: #697296;
     --image-height: 36px;
 }
 .compact.ranking > ol:before {
@@ -1439,28 +1443,33 @@ tr.a .movement.none:before {
     background: #121d29;
 }
 .compact.ranking li {
+    display: grid;
+    grid-template-columns: 18px 96px 1fr;
     position: relative;
-    z-index: 1;
-    display: flex;
     align-items: center;
-    height: calc(var(--image-height) + 1px);
 
-    background: linear-gradient(
-        var(--dark),
-        var(--light) var(--spread),
-        var(--light) calc(100% - var(--spread)),
-        var(--dark)
-    );
-
-    --dark: #040509;
-    --light: #354661;
-    --spread: 1px;
+    background: #2d3a52;
 }
 .compact.ranking li:nth-child(2n) {
-    --light: #272e38;
+    background-color: #25242b;
+}
+.compact.ranking li > :first-child {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+
+    font-size: 80%;
+    background: linear-gradient(#2c2a3b, #181720, #2c2a3b);
+}
+.compact.ranking li > :nth-child(2) {
+    height: 100%;
+    min-height: var(--image-height);
+
+    background: #181720 no-repeat center/contain;
 }
 .compact.ranking li a {
-    color: #d7e0f0;
+    color: #cad6ec;
     text-shadow: 1px 1px 1px #1e1242;
 }
 .compact.ranking li:nth-child(2n) a {
@@ -1487,7 +1496,7 @@ tr.a .movement.none:before {
     height: 100%;
 
     background: linear-gradient(
-        var(--angle),
+        86deg,
         var(--dark) calc(var(--start) - var(--spread) - (var(--drift) * var(--step)) - (var(--growth) * var(--step))),
         var(--light) calc(var(--start) - (var(--drift) * var(--step))),
         var(--dark) calc(var(--start) + var(--spread) - (var(--drift) * var(--step)) + (var(--growth) * var(--step)))
@@ -1496,14 +1505,13 @@ tr.a .movement.none:before {
 
     --light: #182630;
     --dark: transparent;
-    --angle: 86deg;
     --start: 60%; /* Light start position */
     --spread: 15%; /* Light <-> dark distance. */
     --drift: -.2%; /* Light drift each step. */
     --growth: 2%; /* Light expansion each step. */
     --step: 0;
 
-    animation: compact-ranking-quing 1.5s;
+    animation: compact-ranking-quing 1.7s .1s backwards;
 }
 @keyframes compact-ranking-quing {
     0% {
@@ -1540,18 +1548,13 @@ tr.a .movement.none:before {
 .compact.ranking li:last-child {
     height: var(--image-height);
 }
-.compact.ranking li > a {
-    line-height: 0;
-}
+
 .compact.ranking li a[href^=\#] {
     color: inherit;
 }
 .compact.ranking li a[href^=\#]:hover {
     color: #67dbb6;
     text-decoration: none;
-}
-.compact.ranking img {
-    height: var(--image-height);
 }
 
 #linkmenu {
@@ -1639,7 +1642,7 @@ tr.a .movement.none:before {
 
     font-size: 95%;
     line-height: 1.5;
-    background: linear-gradient(#0d131f, #171a21 80px)
+    background: linear-gradient(#12141a, #171a21 80px)
 }
 @media (max-width: 742px) {
     #footer {

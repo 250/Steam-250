@@ -5,12 +5,13 @@
     <ol>
         {% for game in games %}
         <li>
-            <a {{ steam.video_attr(game.id, game.videos) }}>
-                <img alt="Logo" src="https://steamcdn-a.akamaihd.net/steam/apps/{{ game.id }}/capsule_sm_120.jpg"
+            <a href="#{{ game.rank }}">{{ game.rank }}</a>
+            <a {{ steam.video_attr(game.id, game.videos) }}
+                style="background-image:
+                    url('https://steamcdn-a.akamaihd.net/steam/apps/{{ game.id }}/capsule_sm_120.jpg');"
             ></a>
             <span>
                 {{ include('partial/movement.twig', {movement: game.movement}) }}
-                <a href="#{{ game.rank }}">{{ game.rank }}</a>.
                 {% if game.developer is defined %}
                 <a href="{{ steam.developer_url(game.developer) }}">{{ game.developer }}</a>
                 {% elseif game.publisher is defined %}
