@@ -1,25 +1,35 @@
 {% import 'macro/steam.twig' as steam %}
 
+{% macro game_link(game) %}
+<a href="
+    {%- if game.developer is defined -%}
+    {{ steam.developer_url(game.developer) }}
+    {%- elseif game.publisher is defined -%}
+    {{ steam.publisher_url(game.publisher) }}
+    {%- else -%}
+    {{ steam.app_url(game.id) }}
+    {%- endif -%}
+" class="title">
+    <span style="background-image:
+        url('https://steamcdn-a.akamaihd.net/steam/apps/{{ game.id }}/capsule_sm_120.jpg');"
+    ></span>
+    <span>
+        {{ include('partial/movement.twig', {movement: game.movement}) }}
+        <span>{{ game.developer is defined ? game.developer
+            : game.publisher is defined ? game.publisher
+            : game.name }}</span>
+    </span>
+</a>
+{% endmacro %}
+
 <div class="compact ranking">
     <h2>{{ title|default('Risers today') }}</h2>
     <ol>
         {% for game in games %}
         <li>
-            <a href="#{{ game.rank }}">{{ game.rank }}</a>
-            <a {{ steam.video_attr(game.id, game.videos) }}
-                style="background-image:
-                    url('https://steamcdn-a.akamaihd.net/steam/apps/{{ game.id }}/capsule_sm_120.jpg');"
-            ></a>
-            <span>
-                {{ include('partial/movement.twig', {movement: game.movement}) }}
-                {% if game.developer is defined %}
-                <a href="{{ steam.developer_url(game.developer) }}">{{ game.developer }}</a>
-                {% elseif game.publisher is defined %}
-                <a href="{{ steam.publisher_url(game.publisher) }}">{{ game.publisher }}</a>
-                {% else %}
-                <a href="{{ steam.app_url(game.id) }}">{{ game.name }}</a>
-                {% endif %}
-            </span>
+            <a href="#{{ game.rank }}" class="rank">{{ game.rank }}</a>
+            {{ _self.game_link(game) }}
+            {{ _self.game_link(game) }}
         {% endfor %}
     </ol>
 </div>

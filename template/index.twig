@@ -11,3 +11,8 @@
     {% endfor %}
 </section>
 {% endblock %}
+
+{% block js %}
+{{ parent() }}
+<script src="/js/Home.js"></script>
+{% endblock %}
