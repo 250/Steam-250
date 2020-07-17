@@ -1449,6 +1449,7 @@ tr.a .movement.none:before {
     background: #2d3a52;
 
     --rank-width: 18px;
+    --step: 0;
 }
 .compact.ranking li:nth-child(2n) {
     background-color: #25242b;
@@ -1470,9 +1471,6 @@ tr.a .movement.none:before {
 .compact.ranking li > .title > :last-child {
     line-height: 1;
     align-self: center;
-}
-.compact.ranking li:nth-child(2n) > .title {
-    color: #98aed3;
 }
 .compact.ranking li > .title > :last-child > :last-child {
     vertical-align: middle;
@@ -1511,7 +1509,6 @@ tr.a .movement.none:before {
     --spread: 15%; /* Light <-> dark distance. */
     --drift: -.2%; /* Light drift each step. */
     --growth: 2%; /* Light expansion each step. */
-    --step: 0;
 
     animation: compact-ranking-quing 1.7s .1s backwards;
 }
@@ -1520,31 +1517,40 @@ tr.a .movement.none:before {
         width: calc(100% - (75% * var(--step) / 9));
     }
 }
-.compact.ranking li:nth-child(2):after {
+.compact.ranking li:nth-child(2) {
+    background: #2c374f;
     --step: 1;
 }
-.compact.ranking li:nth-child(3):after {
+.compact.ranking li:nth-child(3) {
+    background: #2c334a;
     --step: 2;
 }
-.compact.ranking li:nth-child(4):after {
+.compact.ranking li:nth-child(4) {
+    background: #2a2f45;
     --step: 3;
 }
-.compact.ranking li:nth-child(5):after {
+.compact.ranking li:nth-child(5) {
+    background: #292d40;
     --step: 4;
 }
-.compact.ranking li:nth-child(6):after {
+.compact.ranking li:nth-child(6) {
+    background: #292b3d;
     --step: 5;
 }
-.compact.ranking li:nth-child(7):after {
+.compact.ranking li:nth-child(7) {
+    background: #282938;
     --step: 6;
 }
-.compact.ranking li:nth-child(8):after {
+.compact.ranking li:nth-child(8) {
+    background: #272733;
     --step: 7;
 }
-.compact.ranking li:nth-child(9):after {
+.compact.ranking li:nth-child(9) {
+    background: #26252e;
     --step: 8;
 }
-.compact.ranking li:nth-child(10):after {
+.compact.ranking li:nth-child(10) {
+    background: #24232b;
     --step: 9;
 }
 
@@ -1562,9 +1568,12 @@ tr.a .movement.none:before {
     color: inherit;
     font-size: 80%;
     background: linear-gradient(#262433, #181720, #262433);
+
+    transition: background-color .15s;
 }
 .compact.ranking li > .rank:hover {
-    color: #67dbb6;
+    color: #222;
+    background: #e17cbf;
 }
 
 /* Shadow element. */
