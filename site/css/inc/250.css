@@ -1425,9 +1425,15 @@ tr.a .movement.none:before {
     line-height: .9;
     padding: 4px;
     border-radius: 4px;
-    background: radial-gradient(60% 140% at 60% 50%, #30365c, #697296);
+    background: radial-gradient(30% 70% at 30% 25%, #30365c, #697296) 0 0/200% 200%;
+    animation: radial-bg-slidein 1.7s .1s backwards;
 
     --image-height: 36px;
+}
+@keyframes radial-bg-slidein {
+    0% {
+        background-position-x: 40%;
+    }
 }
 .compact.ranking > ol:before {
     content: '';
@@ -1568,6 +1574,7 @@ tr.a .movement.none:before {
     color: inherit;
     font-size: 80%;
     background: linear-gradient(#262433, #181720, #262433);
+    border-radius: 4px 0 0 4px;
 
     transition: background-color .15s;
 }
