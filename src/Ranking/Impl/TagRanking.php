@@ -7,9 +7,9 @@ use Doctrine\DBAL\Query\QueryBuilder;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\RankingDependencies;
 use ScriptFUSION\Steam250\SiteGenerator\SteamApp\Tag;
 
-class TagRanking extends Top250Ranking
+class TagRanking extends DefaultRanking
 {
-    private $tag;
+    private string $tag;
 
     public function __construct(RankingDependencies $dependencies, string $tag)
     {
@@ -19,6 +19,10 @@ class TagRanking extends Top250Ranking
         $this->tag = $tag;
 
         $this->setTemplate('tag');
+        $this->setTitle($tag);
+        $this->setDescription(
+            "Top 150 best Steam games of all time tagged with <em>$tag</em>, according to gamer reviews."
+        );
     }
 
     public function customizeQuery(QueryBuilder $builder): void

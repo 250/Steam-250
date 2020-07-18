@@ -10,10 +10,10 @@ use voku\helper\HtmlMin;
 
 final class PageGenerator
 {
-    private $twig;
-    private $logger;
-    private $minifier;
-    private $minify = false;
+    private Environment $twig;
+    private LoggerInterface $logger;
+    private HtmlMin $minifier;
+    private bool $minify = false;
 
     public function __construct(
         Environment $twig,

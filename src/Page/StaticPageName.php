@@ -14,7 +14,7 @@ final class StaticPageName extends AbstractEnumeration
     public const SEARCH = 'SEARCH';
     public const HTTP_404 = 'HTTP_404';
 
-    private static $classes = [
+    private static array $classes = [
         self::ABOUT => AboutPage::class,
         self::AMBASSADORS => AmbassadorsPage::class,
         self::CONTRIBUTORS => ContributorsPage::class,
@@ -23,7 +23,7 @@ final class StaticPageName extends AbstractEnumeration
         self::HTTP_404 => Http404Page::class,
     ];
 
-    private static $aliases = [
+    private static array $aliases = [
         self::ABOUT => 'about',
         self::AMBASSADORS => 'amb',
         self::CONTRIBUTORS => 'contrib',

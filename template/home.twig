@@ -1,0 +1,39 @@
+{% extends 'layout/template.twig' %}
+
+{% block title %}Rankings overview{% endblock %}
+{% block heading %}Steam 250{% endblock %}
+{% block class %}home{% endblock %}
+
+{% block content %}
+<section class="rankings">
+    {% for id, ranking in rankings %}
+    <section class="top10">
+        <header>
+            {% set group = id in ['price/under5', 'discounts', 'tag/free_to_play'] ? 'budget'
+                : id[:4] == 'tag/' ? 'tag'
+                : ''
+            %}
+            <span class="group {{ group }}">
+                {{ group == 'budget' ? 'Budget gamer' : group == 'tag' ? 'Popular tag' : 'Featured' }}
+            </span>
+            <h2><a href="/{{ id ~ ext }}">{{ ranking.ranking.title }}</a></h2>
+            {% if ranking.related %}
+            <ol>
+                {% for see in ranking.related %}
+                <li><a href="tag/{{ see|tag_id ~ ext }}">{{ see|title }}</a>
+                {% endfor %}
+            </ol>
+            {% endif %}
+            <p>{{ ranking.ranking.description|raw }}</p>
+        </header>
+
+        {{ include('partial/risers.twig', {games: ranking.apps, base_url: id ~ ext}) }}
+    </section>
+    {% endfor %}
+</section>
+{% endblock %}
+
+{% block js %}
+{{ parent() }}
+<script src="/js/Home.js"></script>
+{% endblock %}

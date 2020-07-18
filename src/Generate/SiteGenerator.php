@@ -6,12 +6,12 @@ namespace ScriptFUSION\Steam250\SiteGenerator\Generate;
 use Joomla\DI\Container;
 use ScriptFUSION\Steam250\SiteGenerator\Database\Queries;
 use ScriptFUSION\Steam250\SiteGenerator\Page\Page;
-use ScriptFUSION\Steam250\SiteGenerator\Ranking\Ranking;
+use ScriptFUSION\Steam250\SiteGenerator\Page\PreviousDatabaseAware;
 
 final class SiteGenerator
 {
-    private $generator;
-    private $pages;
+    private PageGenerator $generator;
+    private Container $pages;
 
     public function __construct(PageGenerator $generator, Container $pages)
     {
@@ -28,7 +28,7 @@ final class SiteGenerator
             /** @var Page $page */
             $page = $this->pages->buildObject($pageId);
 
-            if ($page instanceof Ranking) {
+            if ($page instanceof PreviousDatabaseAware) {
                 $page->setPrevDb($prevDb);
             }
 

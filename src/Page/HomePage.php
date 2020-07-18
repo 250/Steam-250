@@ -5,10 +5,13 @@ namespace ScriptFUSION\Steam250\SiteGenerator\Page;
 
 use Doctrine\DBAL\Connection;
 use ScriptFUSION\Steam250\SiteGenerator\Database\Queries;
+use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\DiscountRanking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\HiddenGemsRanking;
+use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\MostPlayedRanking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\RollingWeekRanking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\Top250Ranking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\TrendRanking;
+use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\UsdUnder5List;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Ranking;
 
 class HomePage extends Page implements PreviousDatabaseAware
@@ -20,21 +23,33 @@ class HomePage extends Page implements PreviousDatabaseAware
     /** @var Ranking[] */
     private array $rankings;
 
+    private const RELATED_MAP = [
+        'tag/sexual_content' => ['nudity'],
+        'tag/co-op' => ['singleplayer', 'multiplayer', 'local co-op', 'online co-op'],
+        'tag/pixel_graphics' => ['2d'],
+        'tag/roguelike' => ['roguelite'],
+    ];
+
     public function __construct(Connection $database, array $rankings)
     {
         parent::__construct($database, 'index');
 
         $this->database = $database;
         $this->rankings = $rankings;
+
+        $this->setTemplate('home');
     }
 
     public function export(): array
     {
         $rankings = array_combine(
-            array_map(fn (Ranking $r) => $r->getId(), $this->rankings),
+            array_map(fn ($r) => $r->getId(), $this->rankings),
             array_map(
-                fn (Ranking $r) =>
-                    Queries::fetchRankedList($this->database, $r->setLimit(10), $this->prevDb),
+                fn (Ranking $ranking) =>
+                    [
+                        'apps' => Queries::fetchRankedList($this->database, $ranking->setLimit(10), $this->prevDb),
+                        'related' => self::RELATED_MAP[$ranking->getId()] ?? [],
+                    ] + compact('ranking'),
                 $this->rankings
             )
         );
@@ -48,8 +63,21 @@ class HomePage extends Page implements PreviousDatabaseAware
             Top250Ranking::class,
             HiddenGemsRanking::class,
             date('Y'),
+            MostPlayedRanking::class,
             RollingWeekRanking::class,
             TrendRanking::class,
+            UsdUnder5List::class,
+            DiscountRanking::class,
+            'free_to_play',
+            'sexual_content',
+            'co-op',
+            'rpg',
+            'pixel_graphics',
+            'roguelike',
+            'rts',
+            'story_rich',
+            'sandbox',
+            'simulation',
         ];
     }
 }

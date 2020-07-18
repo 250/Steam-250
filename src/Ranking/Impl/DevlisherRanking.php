@@ -13,10 +13,10 @@ use ScriptFUSION\Steam250\SiteGenerator\Ranking\RankingDependencies;
 
 abstract class DevlisherRanking extends Ranking implements CustomRankingFetch
 {
-    private $dependencies;
+    private RankingDependencies $dependencies;
 
     // More weight prefers more games.
-    private $bayesianWeight;
+    private float $bayesianWeight;
 
     public function __construct(RankingDependencies $dependencies, string $mode, float $bayesianWeight)
     {

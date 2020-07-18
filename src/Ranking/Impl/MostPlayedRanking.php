@@ -14,6 +14,11 @@ class MostPlayedRanking extends Ranking implements CustomRankingFetch
     public function __construct(RankingDependencies $dependencies)
     {
         parent::__construct($dependencies, 'most_played', 250);
+
+        $this->setTitle('Most Played');
+        $this->setDescription(
+            'Top 250 most played Steam games, based on average number of concurrent players in the last seven days.'
+        );
     }
 
     public function customizeQuery(QueryBuilder $builder): void

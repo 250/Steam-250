@@ -62,7 +62,7 @@ final class RankingName extends AbstractEnumeration
     public const CLUB_250 = 'CLUB_250';
     public const COLLAGE = 'COLLAGE';
 
-    private static $classes = [
+    private static array $classes = [
         self::TOP_250 => Top250Ranking::class,
         self::GEMS => HiddenGemsRanking::class,
         self::BOTTOM_100 => Bottom100Ranking::class,
@@ -92,7 +92,7 @@ final class RankingName extends AbstractEnumeration
         self::COLLAGE => CollageRanking::class,
     ];
 
-    private static $aliases = [
+    private static array $aliases = [
         self::TOP_250 => '250',
         self::GEMS => 'gems',
         self::BOTTOM_100 => 'b100',

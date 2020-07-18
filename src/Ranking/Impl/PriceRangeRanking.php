@@ -6,10 +6,10 @@ namespace ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl;
 use Doctrine\DBAL\Query\QueryBuilder;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\RankingDependencies;
 
-abstract class PriceRangeRanking extends Top250Ranking
+abstract class PriceRangeRanking extends DefaultRanking
 {
-    private $min;
-    private $max;
+    private int $min;
+    private int $max;
 
     public function __construct(RankingDependencies $dependencies, string $id, int $min, int $max)
     {

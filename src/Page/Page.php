@@ -8,9 +8,9 @@ use ScriptFUSION\Steam250\SiteGenerator\Database\Queries;
 
 abstract class Page
 {
-    private $database;
-    private $id;
-    private $template;
+    private Connection $database;
+    private string $id;
+    private string $template;
 
     public function __construct(Connection $database, string $id)
     {
@@ -37,7 +37,7 @@ abstract class Page
 
     public function getTemplate(): string
     {
-        return $this->template ?: $this->id;
+        return $this->template ?? $this->id;
     }
 
     protected function setTemplate(string $template): void

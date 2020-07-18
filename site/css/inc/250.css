@@ -535,7 +535,7 @@ ol.menu > li ol.t11g {
 }
 
 .quicklinks {
-    margin: 1em auto;
+    margin: 1em auto 1.5em;
 
     text-align: center;
     text-transform: uppercase;
@@ -859,10 +859,61 @@ p.notice::before {
     opacity: .06;
 }
 
-.rankings {
+section.rankings {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 2em 1.5em;
+    align-items: end;
+    margin: .5em 0;
+}
+
+section.top10 > header {
+    position: relative;
+    top: 4px;
+    padding: .7em 1em;
+    overflow: hidden;
+
+    background: linear-gradient(135deg, #0004, #08110840, #0004, #1c0d1c40);
+    border-radius: 8px 8px 0 0;
+}
+section.top10 > header > .group {
+    float: right;
+    padding: 0.15em 0.6em;
+    position: relative;
+    right: -4px;
+
+    color: #9fbcd3;
+    background: #324568;
+    border-radius: 2px;
+    font-size: 70%;
+    font-variant: all-small-caps;
+}
+section.top10 > header > .group.budget {
+    color: #d0eab3;
+    background: #4e773b;
+}
+section.top10 > header > .group.tag {
+    color: #d4cdea;
+    background: #68386f;
+}
+section.top10 > header > p {
+    margin: .5em 0;
+
+    font-size: 80%;
+    line-height: 1.2;
+}
+section.top10 > header > ol {
+    font-size: 70%;
+    margin: -.9rem 0 1rem 3.7em;
+}
+section.top10 > header > ol > li {
+    display: inline-block;
+    text-indent: .4em;
+}
+section.top10 > header > ol:before {
+    content: 'See also';
+    position: absolute;
+    left: 1rem;
 }
 
 .highlight {
@@ -1426,6 +1477,7 @@ tr.a .movement.none:before {
     padding: 4px;
     border-radius: 4px;
     background: radial-gradient(30% 70% at 30% 25%, #30365c, #697296) 0 0/200% 200%;
+    filter: drop-shadow(4px 4px 0 #0003);
     animation: radial-bg-slidein 1.7s .1s backwards;
 
     --image-height: 36px;
@@ -1447,8 +1499,7 @@ tr.a .movement.none:before {
     background: #121d29;
 }
 .compact.ranking li {
-    display: grid;
-    grid-template-columns: var(--rank-width) 1fr;
+    display: flex;
     position: relative;
     align-items: center;
 
@@ -1470,6 +1521,7 @@ tr.a .movement.none:before {
 }
 .compact.ranking li > .title {
     display: flex;
+    flex-grow: 1;
 
     color: #cad6ec;
     text-shadow: 1px 1px 1px #1e1242;
@@ -1567,9 +1619,11 @@ tr.a .movement.none:before {
 /* Game rank. */
 .compact.ranking li > .rank {
     display: flex;
+    flex-shrink: 0;
     align-items: center;
     justify-content: center;
-    height: 100%;
+    align-self: stretch;
+    width: var(--rank-width);
 
     color: inherit;
     font-size: 80%;
@@ -1578,7 +1632,7 @@ tr.a .movement.none:before {
 
     transition: background-color .15s;
 }
-.compact.ranking li > .rank:hover {
+.compact.ranking li > a.rank:hover {
     color: #222;
     background: #e17cbf;
 }

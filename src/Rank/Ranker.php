@@ -10,8 +10,8 @@ use ScriptFUSION\Steam250\SiteGenerator\Ranking\Ranking;
 
 final class Ranker
 {
-    private $database;
-    private $logger;
+    private Connection $database;
+    private LoggerInterface $logger;
 
     public function __construct(Connection $database, LoggerInterface $logger)
     {

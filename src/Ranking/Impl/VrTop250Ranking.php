@@ -7,7 +7,7 @@ use Doctrine\DBAL\Query\QueryBuilder;
 use ScriptFUSION\Steam250\Shared\Platform;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\RankingDependencies;
 
-class VrTop250Ranking extends Top250Ranking
+class VrTop250Ranking extends DefaultRanking
 {
     public function __construct(RankingDependencies $dependencies, $id = 'vr250')
     {

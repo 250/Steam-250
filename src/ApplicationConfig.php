@@ -5,7 +5,7 @@ namespace ScriptFUSION\Steam250\SiteGenerator;
 
 final class ApplicationConfig
 {
-    private $dbPath;
+    private string $dbPath;
 
     public function __construct(string $dbPath)
     {

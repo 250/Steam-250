@@ -26,6 +26,9 @@ class TrendRanking extends Ranking implements CustomRankingFetch
     public function __construct(RankingDependencies $dependencies)
     {
         parent::__construct($dependencies, 'trending', 50);
+
+        $this->setTitle('Trending Games');
+        $this->setDescription('Top 50 games trending on Steam in the last 50 days based on number of reviews per day.');
     }
 
     public function customizeQuery(QueryBuilder $builder): void

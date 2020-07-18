@@ -6,7 +6,7 @@ namespace ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl;
 use Doctrine\DBAL\Query\QueryBuilder;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\RankingDependencies;
 
-class UsdOver15Ranking extends Top250Ranking
+class UsdOver15Ranking extends DefaultRanking
 {
     public function __construct(RankingDependencies $dependencies)
     {

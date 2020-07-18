@@ -13,7 +13,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 final class SiteCommand extends Command
 {
-    private $application;
+    private Application $application;
 
     public function __construct(Application $application)
     {

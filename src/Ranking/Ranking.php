@@ -3,12 +3,15 @@ declare(strict_types=1);
 
 namespace ScriptFUSION\Steam250\SiteGenerator\Ranking;
 
+use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\Query\QueryBuilder;
+use Psr\Log\LoggerInterface;
 use ScriptFUSION\Steam250\SiteGenerator\Database\Queries;
 use ScriptFUSION\Steam250\SiteGenerator\Generate\CustomizeGames;
 use ScriptFUSION\Steam250\SiteGenerator\Page\Page;
-use ScriptFUSION\Steam250\SiteGenerator\Page\PreviousDatabaseAware;
 use ScriptFUSION\Steam250\SiteGenerator\Page\PreviousDatabase;
+use ScriptFUSION\Steam250\SiteGenerator\Page\PreviousDatabaseAware;
+use ScriptFUSION\Steam250\SiteGenerator\Rank\Ranker;
 use ScriptFUSION\Steam250\SiteGenerator\SteamApp\PrimaryTagChooser;
 
 abstract class Ranking extends Page implements PreviousDatabaseAware
@@ -17,12 +20,14 @@ abstract class Ranking extends Page implements PreviousDatabaseAware
 
     private const RISERS_LIMIT = 10;
 
-    private $ranker;
-    private $database;
-    private $logger;
-    private $limit;
-    private $algorithm;
-    private $weight;
+    private Ranker $ranker;
+    private Connection $database;
+    private LoggerInterface $logger;
+    private int $limit;
+    private ?Algorithm $algorithm;
+    private ?float $weight;
+    private string $title = '';
+    private string $description = '';
 
     public function __construct(
         RankingDependencies $dependencies,
@@ -144,5 +149,25 @@ abstract class Ranking extends Page implements PreviousDatabaseAware
         $this->limit = $limit;
 
         return $this;
+    }
+
+    public function getTitle(): string
+    {
+        return $this->title;
+    }
+
+    public function setTitle(string $title): void
+    {
+        $this->title = $title;
+    }
+
+    public function getDescription(): string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(string $description): void
+    {
+        $this->description = $description;
     }
 }

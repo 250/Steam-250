@@ -133,7 +133,7 @@
     <section class="r&amp;f">
     {% if risers is defined and (risers or fallers or new) %}
         {% if risers %}
-        {{ include('partial/risers.twig', {games: risers}) }}
+        {{ include('partial/risers.twig', {games: risers, title: 'Risers today'}) }}
         {% endif %}
         {{ include('partial/ad.twig', {id: '3002887382'}) }}
         {% if new %}

@@ -17,7 +17,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 final class PageCommand extends Command
 {
-    private $application;
+    private Application $application;
 
     public function __construct(Application $application)
     {

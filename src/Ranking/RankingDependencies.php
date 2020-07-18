@@ -9,9 +9,9 @@ use ScriptFUSION\Steam250\SiteGenerator\Rank\Ranker;
 
 final class RankingDependencies
 {
-    private $ranker;
-    private $database;
-    private $logger;
+    private Ranker $ranker;
+    private Connection $database;
+    private LoggerInterface $logger;
 
     public function __construct(Ranker $ranker, Connection $database, LoggerInterface $logger)
     {

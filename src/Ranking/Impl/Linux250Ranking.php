@@ -7,7 +7,7 @@ use Doctrine\DBAL\Query\QueryBuilder;
 use ScriptFUSION\Steam250\Shared\Platform;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\RankingDependencies;
 
-class Linux250Ranking extends Top250Ranking
+class Linux250Ranking extends DefaultRanking
 {
     public function __construct(RankingDependencies $dependencies)
     {
@@ -16,8 +16,6 @@ class Linux250Ranking extends Top250Ranking
 
     public function customizeQuery(QueryBuilder $builder): void
     {
-        parent::customizeQuery($builder);
-
         $builder->andWhere('platforms & ' . Platform::LINUX);
     }
 }

@@ -15,9 +15,9 @@ use ScriptFUSION\Steam250\SiteGenerator\Ranking\RankingDependencies;
 
 final class Application
 {
-    private $cli;
-    private $config;
-    private $container;
+    private \Symfony\Component\Console\Application $cli;
+    private ApplicationConfig $config;
+    private Container $container;
 
     public function __construct()
     {
@@ -36,7 +36,7 @@ final class Application
 
     public function getContainer(): Container
     {
-        $container = $this->container ?: $this->container = new Container;
+        $container = $this->container ??= new Container;
 
         $container->alias('db', Connection::class);
 

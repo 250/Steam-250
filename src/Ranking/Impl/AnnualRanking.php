@@ -10,7 +10,7 @@ class AnnualRanking extends RollingYearRanking
 {
     public const EARLIEST_YEAR = 2006;
 
-    private $year;
+    private int $year;
 
     public function __construct(RankingDependencies $dependencies, int $year)
     {
@@ -20,6 +20,10 @@ class AnnualRanking extends RollingYearRanking
 
         $this->setId("$year");
         $this->setTemplate('annual');
+        $this->setTitle("Best of $year");
+        $this->setDescription(
+            "Top {$this->getLimit()} best Steam games released in $year, according to gamer reviews."
+        );
     }
 
     public function customizeQuery(QueryBuilder $builder): void

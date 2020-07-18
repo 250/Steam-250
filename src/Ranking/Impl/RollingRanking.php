@@ -6,9 +6,9 @@ namespace ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl;
 use Doctrine\DBAL\Query\QueryBuilder;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\RankingDependencies;
 
-abstract class RollingRanking extends Top250Ranking
+abstract class RollingRanking extends DefaultRanking
 {
-    private $date;
+    private string $date;
 
     public function __construct(RankingDependencies $dependencies, string $id, string $date, int $limit = 250)
     {

@@ -12,5 +12,7 @@ class RollingWeekRanking extends RollingRanking
         parent::__construct($dependencies, '7day', '-7 day', 25);
 
         $this->setWeight(4);
+        $this->setTitle('Week Top 25');
+        $this->setDescription('Top 25 best Steam games released in the last 7 days, according to gamer reviews.');
     }
 }

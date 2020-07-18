@@ -11,7 +11,7 @@ use ScriptFUSION\Steam250\SiteGenerator\Generate\CustomizeGames;
 use ScriptFUSION\Steam250\SiteGenerator\Rank\CustomRankingFetch;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\RankingDependencies;
 
-class Club250Ranking extends Top250Ranking implements CustomRankingFetch, CustomizeGames
+class Club250Ranking extends DefaultRanking implements CustomRankingFetch, CustomizeGames
 {
     private const PATRON_REVIEW_AGGREGATION =
         '(
