@@ -23,7 +23,6 @@ final class PageContainerFactory
         /** @var StaticPageName $name */
         foreach (StaticPageName::members() as $name) {
             $container->alias($name->getAlias(), $name->getClassName());
-            ++$counter;
         }
 
         /** @var RankingName $name */
@@ -59,19 +58,15 @@ final class PageContainerFactory
         $container->set(Tag::convertTagToId(EarlyAccessRanking::TAG), static function () use ($parent): Ranking {
             return new EarlyAccessRanking($parent->get(RankingDependencies::class));
         });
-        ++$counter;
 
         $container->set(
             'home',
             fn () => new HomePage(
                 $parent->get('db'),
                 array_map(fn ($name) => $container->buildObject($name), HomePage::getRankings()),
-                $container->get('counter')
+                $counter
             )
         );
-        ++$counter;
-
-        $container->set('counter', $counter);
 
         return $container;
     }
