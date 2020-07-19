@@ -1,6 +1,6 @@
 {% import 'macro/steam.twig' as steam %}
 
-{% macro game_link(game) %}
+{% macro game_link(game, rank_column) %}
 <a href="
     {%- if game.developer is defined -%}
     {{ steam.developer_url(game.developer) }}
@@ -10,12 +10,15 @@
     {{ steam.app_url(game.id) }}
     {%- endif -%}
 " class="title">
-    <span style="background-image:
-        url('https://steamcdn-a.akamaihd.net/steam/apps/{{ game.id }}/capsule_sm_120.jpg');"
-    ></span>
+    <span>
+        <img alt="Logo" src="https://steamcdn-a.akamaihd.net/steam/apps/{{ game.id }}/capsule_sm_120.jpg">
+    </span>
     <span>
         {% if game.movement is defined %}
         {{ include('partial/movement.twig', {movement: game.movement}) }}
+        {% endif %}
+        {% if not rank_column %}
+        {{ game.rank }}.
         {% endif %}
         <span>{{ game.developer is defined ? game.developer
             : game.publisher is defined ? game.publisher
@@ -31,9 +34,13 @@
     <ol>
         {% for game in games %}
         <li>
+            {% if rank_column is defined %}
             <a href="{{ base_url ?? '' }}#{{ game.rank }}" class="rank">{{ game.rank }}</a>
-            {{ _self.game_link(game) }}
-            {{ _self.game_link(game) }}
+            {% endif %}
+            {{ _self.game_link(game, rank_column is defined) }}
+            {% if shadow is defined %}
+            {{ _self.game_link(game, rank_column is defined) }}
+            {% endif %}
         {% endfor %}
     </ol>
 </div>

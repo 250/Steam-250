@@ -961,7 +961,6 @@ section.top10 > header > ol:before {
 
     text-align: center;
     font-weight: bold;
-    cursor: default;
     filter: drop-shadow(0 1px 1px #0006);
 }
 .movement.none {
@@ -1481,8 +1480,11 @@ tr.a .movement.none:before {
     background: radial-gradient(30% 70% at 30% 25%, #30365c, #697296) 0 0/200% 200%;
     filter: drop-shadow(4px 4px 0 #0003);
     animation: radial-bg-slidein 1.7s .1s backwards;
-
-    --image-height: 36px;
+}
+.r\&f .compact.ranking > ol {
+    background: radial-gradient(30% 70% at 30% 25%, #29354d, #4b5973) 0 0/200% 200%;
+    filter: none;
+    animation: none;
 }
 @keyframes radial-bg-slidein {
     0% {
@@ -1510,16 +1512,28 @@ tr.a .movement.none:before {
     --rank-width: 18px;
     --step: 0;
 }
-.compact.ranking li:nth-child(2n) {
-    background-color: #25242b;
+.r\&f .compact.ranking li:nth-child(2n + 1) {
+    background: #2d3a52;
+}
+.r\&f .compact.ranking li:nth-child(2n) {
+    background-color: #293140;
+}
+.r\&f .compact.ranking li > .title:hover {
+    background: #3b71aa;
+    transition: none;
 }
 .compact.ranking li > .title > :first-child {
     flex-shrink: 0;
-    align-self: stretch;
-    width: 96px;
-    min-height: var(--image-height);
+    display: flex;
+    align-items: center;
 
     background: #181720 no-repeat center/contain;
+}
+.compact.ranking li img {
+    height: 36px;
+}
+.r\&f .compact.ranking img {
+    height: 34px;
 }
 .compact.ranking li > .title {
     display: flex;
@@ -1527,6 +1541,8 @@ tr.a .movement.none:before {
 
     color: #cad6ec;
     text-shadow: 1px 1px 1px #1e1242;
+
+    transition: background-color 1s;
 }
 .compact.ranking li > .title > :last-child {
     line-height: 1;
@@ -1571,6 +1587,11 @@ tr.a .movement.none:before {
     --growth: 2%; /* Light expansion each step. */
 
     animation: compact-ranking-quing 1.7s .1s backwards;
+}
+.r\&f .compact.ranking li:after {
+    --light: #121c24;
+
+    animation: none;
 }
 @keyframes compact-ranking-quing {
     0% {
