@@ -8,7 +8,7 @@ html, body {
 body {
     color: #c7d5e0;
     background: #1b2838;
-    font: 100%/1.4 sans-serif;
+    font: 95%/1.4 sans-serif;
 }
 @media (max-width: 380px) {
     body {
@@ -41,7 +41,7 @@ a:visited {
 h2 {
     margin-bottom: .7em;
 
-    font-size: 105%;
+    font-size: 110%;
     font-weight: bold;
     color: #c5d6e0;
 }
@@ -64,7 +64,7 @@ h2 {
     padding: 6px;
 
     text-align: right;
-    font-size: 80%;
+    font-size: 85%;
 
     --user-height: 37px;
 }
@@ -313,7 +313,7 @@ ol.menu > li {
     flex-flow: column;
     justify-content: center;
     height: 100%;
-    margin: 0 1.79%;
+    margin: 0 1.68%;
     padding: 0 1%;
 
     cursor: pointer;
@@ -471,7 +471,7 @@ ol.menu > li ol.t11g {
     border-top-width: 0;
     border-left-width: 0;
     border-radius: 0 0 3px 3px;
-    font: italic 72%/.8 Cousine;
+    font: italic 75%/.8 Cousine;
     text-transform: uppercase;
 }
 .countdown > span {
@@ -525,9 +525,6 @@ ol.menu > li ol.t11g {
     max-width: 864px;
     /* Force margins to be enclosed. */
     overflow: hidden;
-}
-.body.home > .content {
-    max-width: 1200px;
 }
 .content > p:first-of-type {
     font-size: 107%;
@@ -861,10 +858,15 @@ p.notice::before {
 
 section.rankings {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2em 1.5em;
+    grid-template-columns: repeat(auto-fill, minmax(auto, var(--max-width)));
+    /* Actually will be 3 columns due to the gap. */
+    max-width: calc(var(--max-width) * 4);
+    gap: 3.5vh 2em;
+    justify-content: center;
     align-items: end;
-    margin: .5em 0;
+    margin: .5em auto;
+
+    --max-width: 400px;
 }
 
 section.top10 > header {
@@ -899,7 +901,7 @@ section.top10 > header > .group.tag {
 section.top10 > header > p {
     margin: .5em 0;
 
-    font-size: 80%;
+    font-size: 85%;
     line-height: 1.2;
 }
 section.top10 > header > ol {
@@ -1715,8 +1717,6 @@ tr.a .movement.none:before {
 
 .ranking-layout {
     margin-top: 1em;
-
-    font-size: 95%;
 }
 .ranking-layout > :nth-child(3) {
     max-width: 864px;
@@ -1757,7 +1757,6 @@ tr.a .movement.none:before {
     justify-content: center;
     padding: 2em 1.5em;
 
-    font-size: 95%;
     line-height: 1.5;
     background: linear-gradient(#12141a, #171a21 80px)
 }

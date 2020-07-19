@@ -5,6 +5,30 @@
 {% block class %}home{% endblock %}
 
 {% block content %}
+    <p>
+        <strong>Steam 250 is a collection of Steam games rankings</strong>,
+        helping gamers find good games on Steam.
+        Here we feature the top 10 from a selection of our most popular rankings to help you get started exploring
+        Steam 250.
+    </p>
+    <p>
+        Our <a href="top250{{ ext }}">Steam Top 250</a> showcases 250 of the most popular games on Steam.
+        The <a href="hidden_gems{{ ext }}">Hidden Gems</a> exposes games with near-perfect review scores but not many
+        reviews in total. Then we have rankings by <a href="{{ 'now'|date('Y') ~ ext }}">fixed calendar periods</a>,
+        <a href="365day{{ ext }}">rolling day periods</a>, <a href="most_played{{ ext }}">number of players</a>
+        and <a href="trend{{ ext }}">review velocity</a>, to name a few! A variety of rankings based on
+        <a href="discounts{{ ext }}">price</a>, which we've tagged with <em>budget gamer</em>, below. Lastly, we've
+        showcased a selection of our most popular tags based on number of page views last year.
+    </p>
+    <p>
+        You will find all <strong>{{ total_rankings }} rankings</strong> in the menu bar at the top of the page,
+        and we are not done yet: development continues with new Club 250 features that go beyond just game rankings to
+        provide a full suite of search and discovery tools to help you find good games on Steam.
+        <a href="{{ patreon }}">Join Club 250 today</a> so we can bring these new features to you.
+    </p>
+{% endblock %}
+
+{% block fullwidth %}
 <section class="rankings">
     {% for id, ranking in rankings %}
     <section class="top10">

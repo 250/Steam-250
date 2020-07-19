@@ -23,6 +23,8 @@ class HomePage extends Page implements PreviousDatabaseAware
     /** @var Ranking[] */
     private array $rankings;
 
+    private int $rankingCount;
+
     private const RELATED_MAP = [
         'tag/sexual_content' => ['nudity'],
         'tag/co-op' => ['singleplayer', 'multiplayer', 'local co-op', 'online co-op'],
@@ -30,12 +32,13 @@ class HomePage extends Page implements PreviousDatabaseAware
         'tag/roguelike' => ['roguelite'],
     ];
 
-    public function __construct(Connection $database, array $rankings)
+    public function __construct(Connection $database, array $rankings, int $rankingCount)
     {
         parent::__construct($database, 'index');
 
         $this->database = $database;
         $this->rankings = $rankings;
+        $this->rankingCount = $rankingCount;
 
         $this->setTemplate('home');
     }
@@ -54,7 +57,7 @@ class HomePage extends Page implements PreviousDatabaseAware
             )
         );
 
-        return parent::export() + compact('rankings');
+        return parent::export() + compact('rankings') + ['total_rankings' => $this->rankingCount];
     }
 
     public static function getRankings(): array
