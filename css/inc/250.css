@@ -8,7 +8,7 @@ html, body {
 body {
     color: #c7d5e0;
     background: #1b2838;
-    font: 100%/1.4 sans-serif;
+    font: 95%/1.4 sans-serif;
 }
 @media (max-width: 380px) {
     body {
@@ -41,7 +41,7 @@ a:visited {
 h2 {
     margin-bottom: .7em;
 
-    font-size: 105%;
+    font-size: 110%;
     font-weight: bold;
     color: #c5d6e0;
 }
@@ -64,7 +64,7 @@ h2 {
     padding: 6px;
 
     text-align: right;
-    font-size: 80%;
+    font-size: 85%;
 
     --user-height: 37px;
 }
@@ -313,7 +313,7 @@ ol.menu > li {
     flex-flow: column;
     justify-content: center;
     height: 100%;
-    margin: 0 1.79%;
+    margin: 0 1.68%;
     padding: 0 1%;
 
     cursor: pointer;
@@ -471,7 +471,7 @@ ol.menu > li ol.t11g {
     border-top-width: 0;
     border-left-width: 0;
     border-radius: 0 0 3px 3px;
-    font: italic 72%/.8 Cousine;
+    font: italic 75%/.8 Cousine;
     text-transform: uppercase;
 }
 .countdown > span {
@@ -513,6 +513,10 @@ ol.menu > li ol.t11g {
         no-repeat;
     background-size: 100% 60px;
 }
+.body.home {
+    background: linear-gradient(180deg, #263e5c, #22344b 6px, #1e2c3e 20px, #1d2a3c 30px, #1b2939 45px, #1b2838 60px,
+        #25293c 50vh);
+}
 
 .content {
     margin: 0 auto;
@@ -528,7 +532,7 @@ ol.menu > li ol.t11g {
 }
 
 .quicklinks {
-    margin: 1em auto;
+    margin: 1em auto 1.5em;
 
     text-align: center;
     text-transform: uppercase;
@@ -771,21 +775,18 @@ p.notice::before {
     line-height: 0;
 }
 .ranking > div[id] > div:first-child > a,
-.r\&f > .ranking li > a {
+.compact.ranking li > a {
     display: block;
 }
-.ranking > div[id] > div:first-child > a:not([data-video]),
-.r\&f > .ranking li > a:not([data-video]) {
+.ranking > div[id] > div:first-child > a:not([data-video]) {
     cursor: not-allowed;
-
 }
 .ranking > div > div:nth-child(2) {
     flex-grow: 1;
 }
 .ranking > div[id] > div:nth-child(2),
-.r\&f li > :nth-child(2) {
-    padding-left: .5vw;
-    padding-right: .5vw;
+.compact.ranking li > .title > :last-child {
+    padding: .4em .5vw;
 }
 .ranking > div[id] > div:nth-child(2) > * {
     vertical-align: middle;
@@ -855,6 +856,68 @@ p.notice::before {
     opacity: .06;
 }
 
+section.rankings {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(auto, var(--max-width)));
+    /* Actually will be 3 columns due to the gap. */
+    max-width: calc(var(--max-width) * 4);
+    gap: 3.5vh 2em;
+    justify-content: center;
+    align-items: end;
+    margin: .5em auto;
+
+    --max-width: 400px;
+}
+
+section.top10 > header {
+    position: relative;
+    top: 4px;
+    padding: .7em 1em;
+    overflow: hidden;
+
+    background: linear-gradient(135deg, #0004, #08110840, #0004, #1c0d1c40);
+    border-radius: 8px 8px 0 0;
+}
+section.top10 > header > .group {
+    float: right;
+    padding: 0.15em 0.6em;
+    position: relative;
+    right: -4px;
+
+    color: #9fbcd3;
+    background: #324568;
+    border-radius: 2px;
+    font-size: 70%;
+    font-variant: all-small-caps;
+}
+section.top10 > header > .group.budget {
+    color: #d0eab3;
+    background: #4e773b;
+}
+section.top10 > header > .group.tag {
+    color: #d4cdea;
+    background: #68386f;
+}
+section.top10 > header > p {
+    margin: .5em 0;
+
+    font-size: 85%;
+    line-height: 1.2;
+}
+section.top10 > header > ol {
+    font-size: 70%;
+    margin: -.9rem 0 1rem 3.7em;
+}
+section.top10 > header > ol > li {
+    display: inline-block;
+    text-indent: .4em;
+}
+section.top10 > header > ol:before {
+    content: 'See also';
+    position: absolute;
+    left: 1rem;
+}
+
 .highlight {
     animation: forwards;
     animation-name: highlight, highlight-bg;
@@ -894,11 +957,10 @@ p.notice::before {
     margin-right: 1px;
     vertical-align: middle;
     position: relative;
-    z-index: 0;
 
     text-align: center;
     font-weight: bold;
-    cursor: default;
+    filter: drop-shadow(0 1px 1px #0006);
 }
 .movement.none {
     color: #a99370;
@@ -922,10 +984,10 @@ p.notice::before {
     height: 100%;
 }
 .movement.new:before {
-    width: 88%;
-    height: 88%;
-    top: 7.5%;
-    left: 7.5%;
+    width: 90%;
+    height: 90%;
+    top: 5.5%;
+    left: 3.5%;
     background: linear-gradient(#e3d778, #bfb34a);
     clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
     -webkit-clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
@@ -939,7 +1001,7 @@ tr.a .movement.none:before {
     background: #363638;
 }
 .movement.pos:before {
-    top: -3px;
+    top: -2px;
     background: linear-gradient(#698a48, #546f38);
     clip-path: polygon(20% 100%, 20% 50%, 0% 50%, 50% 0%, 100% 50%, 80% 50%, 80% 100%);
     -webkit-clip-path: polygon(20% 100%, 20% 50%, 0% 50%, 50% 0%, 100% 50%, 80% 50%, 80% 100%);
@@ -1403,19 +1465,32 @@ tr.a .movement.none:before {
 }
 
 /* Compact ranking. */
-.r\&f > .ranking > ol {
+.compact.ranking > ol {
+    display: grid;
+    gap: 2px;
     position: relative;
     width: 100%;
+    box-sizing: border-box;
 
     font-size: 90%;
     line-height: .9;
     padding: 4px;
     border-radius: 4px;
-    background: linear-gradient(92deg, #424f66, #29354d, #424f66);
-
-    --image-height: 34px;
+    background: radial-gradient(30% 70% at 30% 25%, #30365c, #697296) 0 0/200% 200%;
+    filter: drop-shadow(4px 4px 0 #0003);
+    animation: radial-bg-slidein 1.7s .1s backwards;
 }
-.r\&f > .ranking > ol:before {
+.r\&f .compact.ranking > ol {
+    background: radial-gradient(30% 70% at 30% 25%, #29354d, #4b5973) 0 0/200% 200%;
+    filter: none;
+    animation: none;
+}
+@keyframes radial-bg-slidein {
+    0% {
+        background-position-x: 40%;
+    }
+}
+.compact.ranking > ol:before {
     content: '';
     position: absolute;
     top: 2px;
@@ -1426,38 +1501,199 @@ tr.a .movement.none:before {
     border-radius: 4px;
     background: #121d29;
 }
-.r\&f > .ranking li {
+.compact.ranking li {
+    display: flex;
     position: relative;
+    align-items: center;
+
+    background: #2d3a52;
+
+    --rank-width: 18px;
+    --step: 0;
+}
+.r\&f .compact.ranking li:nth-child(2n + 1) {
+    background: #2d3a52;
+}
+.r\&f .compact.ranking li:nth-child(2n) {
+    background-color: #293140;
+}
+.r\&f .compact.ranking li > .title:hover {
+    background: #3b71aa;
+    transition: none;
+}
+.compact.ranking li > .title > :first-child {
+    flex-shrink: 0;
     display: flex;
     align-items: center;
-    height: calc(var(--image-height) + 1px);
-    margin-bottom: 1px;
+
+    background: #181720 no-repeat center/contain;
 }
-.r\&f > .ranking li:last-child {
-    height: var(--image-height);
-    margin: 0;
+.compact.ranking li img {
+    height: 36px;
 }
-.r\&f > .ranking li:nth-child(2n) {
-    background: #1f2d3f;
+.r\&f .compact.ranking img {
+    height: 34px;
 }
-.r\&f > .ranking li:nth-child(2n-1) {
-    background: linear-gradient(#1f2d3f, #192839 5%);
+.compact.ranking li > .title {
+    display: flex;
+    flex-grow: 1;
+
+    color: #cad6ec;
+    text-shadow: 1px 1px 1px #1e1242;
+
+    transition: background-color 1s;
 }
-.r\&f > .ranking li > a {
-    line-height: 0;
+.compact.ranking li > .title > :last-child {
+    line-height: 1;
+    align-self: center;
 }
-.r\&f > .ranking li a[href^=\#] {
-    color: inherit;
+.compact.ranking li > .title > :last-child > :last-child {
+    vertical-align: middle;
 }
-.r\&f > .ranking li a[href^=\#]:hover {
-    color: #67dbb6;
+.compact.ranking li > * {
+    position: relative;
+    z-index: 1;
+}
+.compact.ranking li:before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+
+    background: repeating-linear-gradient(#000, #fff 2px);
+    opacity: .15;
+    mix-blend-mode: multiply;
+}
+.compact.ranking li:after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+
+    background: linear-gradient(
+        86deg,
+        var(--dark) calc(var(--start) - var(--spread) - (var(--drift) * var(--step)) - (var(--growth) * var(--step))),
+        var(--light) calc(var(--start) - (var(--drift) * var(--step))),
+        var(--dark) calc(var(--start) + var(--spread) - (var(--drift) * var(--step)) + (var(--growth) * var(--step)))
+    );
+    mix-blend-mode: color-dodge;
+
+    --light: #1f303d;
+    --dark: transparent;
+    --start: 60%; /* Light start position */
+    --spread: 15%; /* Light <-> dark distance. */
+    --drift: -.2%; /* Light drift each step. */
+    --growth: 2%; /* Light expansion each step. */
+
+    animation: compact-ranking-quing 1.7s .1s backwards;
+}
+.r\&f .compact.ranking li:after {
+    --light: #121c24;
+
+    animation: none;
+}
+@keyframes compact-ranking-quing {
+    0% {
+        width: calc(100% - (75% * var(--step) / 9));
+    }
+}
+.compact.ranking li:nth-child(2) {
+    background: #2c374f;
+    --step: 1;
+}
+.compact.ranking li:nth-child(3) {
+    background: #2c334a;
+    --step: 2;
+}
+.compact.ranking li:nth-child(4) {
+    background: #2a2f45;
+    --step: 3;
+}
+.compact.ranking li:nth-child(5) {
+    background: #292d40;
+    --step: 4;
+}
+.compact.ranking li:nth-child(6) {
+    background: #292b3d;
+    --step: 5;
+}
+.compact.ranking li:nth-child(7) {
+    background: #282938;
+    --step: 6;
+}
+.compact.ranking li:nth-child(8) {
+    background: #272733;
+    --step: 7;
+}
+.compact.ranking li:nth-child(9) {
+    background: #26252e;
+    --step: 8;
+}
+.compact.ranking li:nth-child(10) {
+    background: #24232b;
+    --step: 9;
+}
+
+.compact.ranking li a {
     text-decoration: none;
 }
-.r\&f > .ranking li > :last-child {
-    width: 100%;
+
+/* Game rank. */
+.compact.ranking li > .rank {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    align-self: stretch;
+    width: var(--rank-width);
+
+    color: inherit;
+    font-size: 80%;
+    background: linear-gradient(#262433, #181720, #262433);
+    border-radius: 4px 0 0 4px;
+
+    transition: background-color .15s;
 }
-.r\&f > .ranking img {
-    height: var(--image-height);
+.compact.ranking li > a.rank:hover {
+    color: #222;
+    background: #e17cbf;
+}
+
+/* Shadow element. */
+.compact.ranking li > .title:hover + .title,
+/* Second selector support no-JS fallback. */
+.compact.ranking li > .title + .title:hover {
+    opacity: 1;
+    transition: none;
+}
+.compact.ranking li > .title + .title {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: calc(100% - var(--rank-width));
+
+    opacity: 0;
+    background: linear-gradient(90deg, #9e814c, #ddba83 60%, #9e814c);
+    transition: opacity 1s ease-in;
+}
+.compact.ranking li > .animate {
+    animation: burst-out .4s ease-in forwards;
+}
+@keyframes burst-out {
+    0% {
+        clip-path: circle(0);
+    }
+    to {
+        clip-path: circle(100%);
+    }
+}
+.compact.ranking li > .title + .title > :first-child,
+.compact.ranking li > .title + .title > :last-child > :first-child {
+    filter: sepia(96%) saturate(150%) hue-rotate(-5deg);
+}
+.compact.ranking li > .title + .title > :last-child > :last-child {
+    color: #26210b;
+    text-shadow: 1px 1px 1px #f5c477;
 }
 
 #linkmenu {
@@ -1501,8 +1737,6 @@ tr.a .movement.none:before {
 
 .ranking-layout {
     margin-top: 1em;
-
-    font-size: 95%;
 }
 .ranking-layout > :nth-child(3) {
     max-width: 864px;
@@ -1543,8 +1777,8 @@ tr.a .movement.none:before {
     justify-content: center;
     padding: 2em 1.5em;
 
-    font-size: 95%;
     line-height: 1.5;
+    background: linear-gradient(#12141a, #171a21 80px)
 }
 @media (max-width: 742px) {
     #footer {
@@ -1561,7 +1795,7 @@ tr.a .movement.none:before {
     text-indent: -99%;
     vertical-align: sub;
 
-    background: url("/svg/discord text.svg") no-repeat -1%;
+    background: url("/svg/discord text.svg") no-repeat -1px;
     background-size: auto 1.4em;
     opacity: .75;
     transition: opacity .2s;
@@ -1665,4 +1899,8 @@ a[href='#header']:before {
 }
 a[href='#footer']:before {
     content: '▼ ';
+}
+
+ins {
+    margin-top: 1rem;
 }
