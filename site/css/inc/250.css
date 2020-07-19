@@ -957,7 +957,6 @@ section.top10 > header > ol:before {
     margin-right: 1px;
     vertical-align: middle;
     position: relative;
-    z-index: 0;
 
     text-align: center;
     font-weight: bold;
@@ -1900,4 +1899,8 @@ a[href='#header']:before {
 }
 a[href='#footer']:before {
     content: '▼ ';
+}
+
+ins {
+    margin-top: 1rem;
 }
