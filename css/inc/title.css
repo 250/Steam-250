@@ -34,6 +34,9 @@ div.title:after {
 @keyframes quing {
     to { background-position-x: calc(100% + 100px); }
 }
+div.title a {
+    text-decoration: none;
+}
 
 h1, div.title > h2 {
     color: #9e814c;
