@@ -52,7 +52,7 @@ final class Queries
             ->select('rank.*, app.*, t250.rank as rank_250')
             ->from('rank')
             ->join('rank', 'app', 'app', 'id = rank.app_id')
-            ->leftJoin('rank', 'rank', 't250', 't250.list_id = "index" AND rank.app_id = t250.app_id')
+            ->leftJoin('rank', 'rank', 't250', 't250.list_id = "top250" AND rank.app_id = t250.app_id')
             ->where('rank.list_id = :list_id')
                 ->setParameter('list_id', $ranking->getId())
             ->orderBy('rank')
