@@ -1,6 +1,7 @@
 new class {
     constructor() {
         this.initRankingHoverItems();
+        this.initChevrons();
     }
 
     initRankingHoverItems() {
@@ -21,6 +22,14 @@ new class {
             a.addEventListener('animationend', _ => {
                 shadow.classList.remove('animate');
             })
+        });
+    }
+
+    // This is just to save generating superfluous markup.
+    initChevrons() {
+        document.querySelectorAll('.top10 > footer > a > span:last-of-type').forEach(span => {
+            span.parentNode.appendChild(span.cloneNode());
+            span.parentNode.appendChild(span.cloneNode());
         });
     }
 };
