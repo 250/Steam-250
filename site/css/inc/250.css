@@ -935,7 +935,7 @@ section.top10 > footer > a {
     border-radius: 4px;
     text-decoration: none;
     transform: skewX(-15deg);
-    transition: box-shadow .5s .1s, padding-right .4s;
+    transition: box-shadow .4s .1s, padding-right .4s;
 
     --lt: #f2f3ff;
     --chevron-pad: 2.25em;
@@ -965,14 +965,13 @@ section.top10 > footer > a > span:nth-child(n+2) {
     height: .8em;
 
     text-indent: -100%;
-    overflow: hidden;
     background: var(--lt);
     mask: url(/svg/chevron.svg) right no-repeat;
     -webkit-mask: url(/svg/chevron.svg) right no-repeat;
     transition: right .4s;
 }
 section.top10 > footer > a:hover > span:nth-child(n+2) {
-    animation: more-chevron 1s linear .25s infinite;
+    animation: more-chevron .7s linear .2s infinite;
 }
 section.top10 > footer > a:hover > span:nth-child(n+3) {
     right: calc(var(--chevron-offset) + var(--chevron-dup-offset));
@@ -982,7 +981,7 @@ section.top10 > footer > a:hover > span:nth-child(n+3) {
 section.top10 > footer > a:hover > span:nth-child(n+4) {
     right: calc(var(--chevron-offset) - var(--chevron-dup-offset));
 
-    animation-delay: .4s;
+    animation-delay: .3s;
 }
 @keyframes more-chevron {
     20%, 80% {
@@ -1749,7 +1748,7 @@ tr.a .movement.none:before {
 
     opacity: 0;
     background: linear-gradient(90deg, #9e814c, #ddba83 60%, #9e814c);
-    transition: opacity .8s ease-in;
+    transition: opacity .5s ease-in;
 }
 .compact.ranking li > .animate {
     animation: burst-out .4s ease-in forwards;
