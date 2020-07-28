@@ -786,7 +786,7 @@ p.notice::before {
 }
 .ranking > div[id] > div:nth-child(2),
 .compact.ranking li > .title > :last-child {
-    padding: .4em .5vw;
+    padding: .4em .5em;
 }
 .ranking > div[id] > div:nth-child(2) > * {
     vertical-align: middle;
@@ -861,10 +861,10 @@ section.rankings {
     grid-template-columns: repeat(auto-fill, minmax(auto, var(--max-width)));
     /* Actually will be 3 columns due to the gap. */
     max-width: calc(var(--max-width) * 4);
-    gap: 3.5vh 2em;
+    gap: 5vh 2em;
     justify-content: center;
     align-items: end;
-    margin: .5em auto;
+    margin: 1.5rem auto .5em;
 
     --max-width: 400px;
 }
@@ -918,10 +918,12 @@ section.top10 > header > ol:before {
     left: 1rem;
 }
 section.top10 > footer > a {
+    position: relative;
+    top: -2px;
+    right: 4px;
     display: flex;
     place-items: center;
     float: right;
-    margin: 1em .3em 0;
     padding: .5em var(--chevron-pad) .5em 1.25em;
     line-height: 1;
 
@@ -932,10 +934,10 @@ section.top10 > footer > a {
     color: var(--lt);
     background: #57659c;
     box-shadow: 4px 4px 0 #1b1f26;
-    border-radius: 4px;
+    border-radius: 4px 1px 4px 4px;
     text-decoration: none;
     transform: skewX(-15deg);
-    transition: box-shadow .4s .1s, padding-right .4s;
+    transition: padding-right .4s;
 
     --lt: #f2f3ff;
     --chevron-pad: 2.25em;
@@ -944,16 +946,15 @@ section.top10 > footer > a {
 }
 section.top10 > footer > a:hover {
     padding-right: calc(var(--chevron-pad) + var(--chevron-dup-offset));
-
-    box-shadow: 4px 4px 0 #c76da9;
 }
 section.top10 > footer > a:active {
+    top: 0;
+    right: 3px;
+    box-shadow: 2px 2px 0 #1b1f26, inset 3px 3px 0 #1b1f26;
+}
+section.top10 > footer > a:active > span {
     position: relative;
-
-    box-shadow: 2px 2px 0 #1b1f26;
-    top: 2px;
-    left: 2px;
-    transition: none;
+    transform: skewX(15deg) translate(2px, 2px);
 }
 section.top10 > footer > a > span {
     transform: skewX(15deg);
@@ -1550,19 +1551,13 @@ tr.a .movement.none:before {
     line-height: .9;
     padding: 4px;
     border-radius: 4px;
-    background: radial-gradient(30% 70% at 30% 25%, #30365c, #697296) 0 0/200% 200%;
-    filter: drop-shadow(4px 4px 0 #0003);
-    animation: radial-bg-slidein 1.7s .1s backwards;
+    background: radial-gradient(30% 70% at 30% 25%, #30365c, #606ea8) 0 0/200% 200%;
+    filter: drop-shadow(4px 4px 0 #1b1f26);
 }
 .r\&f .compact.ranking > ol {
     background: radial-gradient(30% 70% at 30% 25%, #29354d, #4b5973) 0 0/200% 200%;
     filter: none;
     animation: none;
-}
-@keyframes radial-bg-slidein {
-    0% {
-        background-position-x: 40%;
-    }
 }
 .compact.ranking > ol:before {
     content: '';
@@ -1612,12 +1607,13 @@ tr.a .movement.none:before {
     display: flex;
     flex-grow: 1;
 
-    color: #cad6ec;
     text-shadow: 1px 1px 1px #1e1242;
 
     transition: background-color 1s;
 }
 .compact.ranking li > .title > :last-child {
+    flex-grow: 1;
+
     line-height: 1;
     align-self: center;
 }
@@ -1627,16 +1623,6 @@ tr.a .movement.none:before {
 .compact.ranking li > * {
     position: relative;
     z-index: 1;
-}
-.compact.ranking li:before {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 100%;
-
-    background: repeating-linear-gradient(#000, #fff 2px);
-    opacity: .15;
-    mix-blend-mode: multiply;
 }
 .compact.ranking li:after {
     content: '';
@@ -1709,7 +1695,9 @@ tr.a .movement.none:before {
 }
 
 .compact.ranking li a {
+    color: #dfeaed;
     text-decoration: none;
+    outline: none;
 }
 
 /* Game rank. */
@@ -1748,7 +1736,7 @@ tr.a .movement.none:before {
 
     opacity: 0;
     background: linear-gradient(90deg, #9e814c, #ddba83 60%, #9e814c);
-    transition: opacity .5s ease-in;
+    transition: opacity .6s ease-in;
 }
 .compact.ranking li > .animate {
     animation: burst-out .4s ease-in forwards;

@@ -1,19 +1,16 @@
 {% import 'macro/steam.twig' as steam %}
 
 {% macro game_link(game, rank_column) %}
-<a href="
-    {%- if game.developer is defined -%}
-    {{ steam.developer_url(game.developer) }}
-    {%- elseif game.publisher is defined -%}
-    {{ steam.publisher_url(game.publisher) }}
-    {%- else -%}
-    {{ steam.app_url(game.id) }}
-    {%- endif -%}
-" class="title">
-    <span>
+{% set href =
+    game.developer is defined ? steam.developer_url(game.developer)
+        : game.publisher is defined ? steam.publisher_url(game.publisher)
+        : steam.app_url(game.id)
+%}
+<span class="title">
+    <a href="{{ href }}" {{ steam.video_attr(game.id, game.videos) }}>
         <img alt="Logo" src="https://steamcdn-a.akamaihd.net/steam/apps/{{ game.id }}/capsule_sm_120.jpg">
-    </span>
-    <span>
+    </a>
+    <a href="{{ href }}">
         {% if game.movement is defined %}
         {{ include('partial/movement.twig', {movement: game.movement}) }}
         {% endif %}
@@ -23,8 +20,8 @@
         <span>{{ game.developer is defined ? game.developer
             : game.publisher is defined ? game.publisher
             : game.name }}</span>
-    </span>
-</a>
+    </a>
+</span>
 {% endmacro %}
 
 <div class="compact ranking">
