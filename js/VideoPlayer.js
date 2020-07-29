@@ -34,6 +34,9 @@ new class {
     initVideoLinks() {
         document.querySelectorAll('[data-video]').forEach(
             a => a.addEventListener('click', e => {
+                // Ignore clicks bubbling up from other link elements.
+                if (e.target.tagName === 'A' && e.target !== a) return;
+
                 this.play(a.getAttribute('data-video'));
 
                 e.stopPropagation();

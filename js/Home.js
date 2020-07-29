@@ -5,8 +5,8 @@ new class {
     }
 
     initRankingHoverItems() {
-        document.querySelectorAll('.compact.ranking li > .title:not(:last-child)').forEach(a => {
-            const shadow = a.nextElementSibling;
+        document.querySelectorAll('.compact.ranking li > .title').forEach(a => {
+            const shadow = a.appendChild(a.cloneNode(true));
 
             // Prevent rapid re-entry when shape is clipped.
             shadow.style.pointerEvents = 'none';
