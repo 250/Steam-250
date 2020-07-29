@@ -90,7 +90,7 @@
                 </span>
                 {{ macro.tag(game.primary_tag, tags) }}
                 {% if game.rank_250 and game.list_id != 'index' %}
-                <a href="/#{{ game.rank_250 }}" class="ref250">Top 250 #{{ game.rank_250 }}</a>
+                <a href="/top250{{ ext }}#{{ game.rank_250 }}" class="ref250">Top 250 #{{ game.rank_250 }}</a>
                 {% endif %}
                 {% if game.vrx %}
                 <a href="/vr_exclusives{{ ext }}" class="vrx" title="VR Exclusive">VRX</a>
