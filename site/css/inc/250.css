@@ -785,7 +785,7 @@ p.notice::before {
     flex-grow: 1;
 }
 .ranking > div[id] > div:nth-child(2),
-.compact.ranking li > .title > :last-child {
+.compact.ranking li .title > :nth-child(2) {
     padding: .4em .5em;
 }
 .ranking > div[id] > div:nth-child(2) > * {
@@ -1590,7 +1590,7 @@ tr.a .movement.none:before {
     background: #3b71aa;
     transition: none;
 }
-.compact.ranking li > .title > :first-child {
+.compact.ranking li .title > :first-child {
     flex-shrink: 0;
     display: flex;
     align-items: center;
@@ -1603,7 +1603,7 @@ tr.a .movement.none:before {
 .r\&f .compact.ranking img {
     height: 34px;
 }
-.compact.ranking li > .title {
+.compact.ranking li .title {
     display: flex;
     flex-grow: 1;
 
@@ -1611,13 +1611,13 @@ tr.a .movement.none:before {
 
     transition: background-color 1s;
 }
-.compact.ranking li > .title > :last-child {
+.compact.ranking li .title > :nth-child(2) {
     flex-grow: 1;
 
     line-height: 1;
     align-self: center;
 }
-.compact.ranking li > .title > :last-child > :last-child {
+.compact.ranking li .title > :nth-child(2) > :last-child {
     vertical-align: middle;
 }
 .compact.ranking li > * {
@@ -1722,23 +1722,34 @@ tr.a .movement.none:before {
 }
 
 /* Shadow element. */
-.compact.ranking li > .title:hover + .title,
+.compact.ranking li > .title:hover > .title,
 /* Second selector support no-JS fallback. */
-.compact.ranking li > .title + .title:hover {
+.compact.ranking li > .title > .title:hover {
     opacity: 1;
     transition: none;
 }
-.compact.ranking li > .title + .title {
+.compact.ranking li a[data-video] > img:hover,
+.compact.ranking li > .title > a[data-video]:hover ~ .title img {
+    mask: url(/svg/film.svg) 0 0/cover;
+    -webkit-mask: url(/svg/film.svg) 0 0/cover;
+
+    animation: film .5s linear infinite;
+}
+@keyframes film {
+    100% {
+        -webkit-mask-position-y: 300%;
+    }
+}
+.compact.ranking li > .title > .title {
     position: absolute;
-    right: 0;
-    bottom: 0;
-    width: calc(100% - var(--rank-width));
+    height: 100%;
+    width: 100%;
 
     opacity: 0;
     background: linear-gradient(90deg, #9e814c, #ddba83 60%, #9e814c);
     transition: opacity .6s ease-in;
 }
-.compact.ranking li > .animate {
+.compact.ranking li .animate {
     animation: burst-out .4s ease-in forwards;
 }
 @keyframes burst-out {
@@ -1749,11 +1760,11 @@ tr.a .movement.none:before {
         clip-path: circle(100%);
     }
 }
-.compact.ranking li > .title + .title > :first-child,
-.compact.ranking li > .title + .title > :last-child > :first-child {
+.compact.ranking li > .title > .title > :first-child,
+.compact.ranking li > .title > .title > :last-child > :first-child {
     filter: sepia(96%) saturate(150%) hue-rotate(-5deg);
 }
-.compact.ranking li > .title + .title > :last-child > :last-child {
+.compact.ranking li > .title > .title > :last-child > :last-child {
     color: #26210b;
     text-shadow: 1px 1px 1px #f5c477;
 }
