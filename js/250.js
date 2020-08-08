@@ -20,6 +20,7 @@ class S250 {
 
         // Fancy stuff.
         this.initAppLinkMenu();
+        this.initRankingHoverItems();
         this.initCountdown();
     }
 
@@ -362,6 +363,27 @@ class S250 {
                     }
                 }
             });
+        });
+    }
+
+    initRankingHoverItems() {
+        document.querySelectorAll('.compact.ranking li > .title').forEach(a => {
+            const shadow = a.appendChild(a.cloneNode(true));
+
+            // Prevent rapid re-entry when shape is clipped.
+            shadow.style.pointerEvents = 'none';
+
+            a.addEventListener('mouseenter', _ => {
+                // Cancel any currently running animation on re-entry.
+                shadow.classList.remove('animate');
+                // Reflow hack to force immediate application.
+                shadow.offsetWidth;
+
+                shadow.classList.add('animate');
+            })
+            a.addEventListener('animationend', _ => {
+                shadow.classList.remove('animate');
+            })
         });
     }
 

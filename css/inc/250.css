@@ -1539,6 +1539,16 @@ tr.a .movement.none:before {
     }
 }
 
+.r\&f > .c250 {
+    padding: 0 1.5em;
+    box-sizing: border-box;
+
+    font-size: 85%;
+    background: #0004;
+    border-radius: 8px;
+    border: 2px solid #334360;
+}
+
 /* Compact ranking. */
 .compact.ranking > ol {
     display: grid;
@@ -1577,18 +1587,13 @@ tr.a .movement.none:before {
 
     background: #2d3a52;
 
-    --rank-width: 18px;
     --step: 0;
 }
 .r\&f .compact.ranking li:nth-child(2n + 1) {
     background: #2d3a52;
 }
 .r\&f .compact.ranking li:nth-child(2n) {
-    background-color: #293140;
-}
-.r\&f .compact.ranking li > .title:hover {
-    background: #3b71aa;
-    transition: none;
+    background-color: #2a3345;
 }
 .compact.ranking li .title > :first-child {
     flex-shrink: 0;
@@ -1610,6 +1615,9 @@ tr.a .movement.none:before {
     text-shadow: 1px 1px 1px #1e1242;
 
     transition: background-color 1s;
+}
+.compact.ranking li .title > :first-child:not([data-video]) {
+    cursor: not-allowed;
 }
 .compact.ranking li .title > :nth-child(2) {
     flex-grow: 1;
@@ -1704,19 +1712,30 @@ tr.a .movement.none:before {
 .compact.ranking li > .rank {
     display: flex;
     flex-shrink: 0;
+    align-self: stretch;
+    width: 18px;
+
+    background: linear-gradient(#262433, #181720, #262433);
+}
+.r\&f .compact.ranking li > .rank {
+    width: 21px;
+
+    background: linear-gradient(#242933, #181b21, #242933);
+}
+.compact.ranking li > .rank > span {
+    display: flex;
     align-items: center;
     justify-content: center;
-    align-self: stretch;
-    width: var(--rank-width);
+    flex-grow: 1;
 
     color: inherit;
+    background: transparent;
     font-size: 80%;
-    background: linear-gradient(#262433, #181720, #262433);
     border-radius: 4px 0 0 4px;
 
-    transition: background-color .15s;
+    transition: .15s;
 }
-.compact.ranking li > a.rank:hover {
+.compact.ranking li > a.rank > span:hover {
     color: #222;
     background: #e17cbf;
 }
@@ -1749,8 +1768,15 @@ tr.a .movement.none:before {
     background: linear-gradient(90deg, #9e814c, #ddba83 60%, #9e814c);
     transition: opacity .6s ease-in;
 }
+.r\&f .compact.ranking li > .title > .title {
+    background: none;
+    box-shadow: inset 0 0 30px #78a4f5
+}
 .compact.ranking li .animate {
     animation: burst-out .4s ease-in forwards;
+}
+.r\&f .compact.ranking li .animate {
+    animation: none;
 }
 @keyframes burst-out {
     0% {
@@ -1760,13 +1786,22 @@ tr.a .movement.none:before {
         clip-path: circle(100%);
     }
 }
+/* Image and movement. */
 .compact.ranking li > .title > .title > :first-child,
 .compact.ranking li > .title > .title > :last-child > :first-child {
     filter: sepia(96%) saturate(150%) hue-rotate(-5deg);
 }
+.r\&f .compact.ranking li > .title > .title > :first-child,
+.r\&f .compact.ranking li > .title > .title > :last-child > :first-child {
+    filter: sepia(96%) saturate(100%) hue-rotate(175deg);
+}
 .compact.ranking li > .title > .title > :last-child > :last-child {
     color: #26210b;
     text-shadow: 1px 1px 1px #f5c477;
+}
+.r\&f .compact.ranking li > .title > .title > :last-child > :last-child {
+    color: #b5cbf3;
+    text-shadow: none;
 }
 
 #linkmenu {
