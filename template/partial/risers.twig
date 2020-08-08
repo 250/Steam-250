@@ -1,6 +1,6 @@
 {% import 'macro/steam.twig' as steam %}
 
-{% macro game_link(game, rank_column) %}
+{% macro game_link(game) %}
 {% set href =
     game.developer is defined ? steam.developer_url(game.developer)
         : game.publisher is defined ? steam.publisher_url(game.publisher)
@@ -13,9 +13,6 @@
     <a href="{{ href }}">
         {% if game.movement is defined %}
         {{ include('partial/movement.twig', {movement: game.movement}) }}
-        {% endif %}
-        {% if not rank_column %}
-        {{ game.rank }}.
         {% endif %}
         <span>{{ game.developer is defined ? game.developer
             : game.publisher is defined ? game.publisher
@@ -31,10 +28,8 @@
     <ol>
         {% for game in games %}
         <li>
-            {% if rank_column is defined %}
-            <a href="{{ base_url ?? '' }}#{{ game.rank }}" class="rank">{{ game.rank }}</a>
-            {% endif %}
-            {{ _self.game_link(game, rank_column is defined) }}
+            <a href="{{ base_url ?? '' }}#{{ game.rank }}" class="rank"><span>{{ game.rank }}</span></a>
+            {{ _self.game_link(game) }}
         {% endfor %}
     </ol>
 </div>
