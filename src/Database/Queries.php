@@ -85,6 +85,28 @@ final class Queries
         return $list;
     }
 
+    /**
+     * Fetches a list of apps present in the previous database snapshot but "missing" from the current snapshot.
+     */
+    public static function fetchMissingApps(Connection $database, Ranking $ranking, string $prevDb): array
+    {
+        $database->exec("ATTACH '$prevDb' AS prev");
+
+        try {
+            return $database->executeQuery(
+                'SELECT id, prank.rank, prank.owner, name, videos
+                FROM prev.rank prank
+                    JOIN app ON id = prank.app_id
+	                LEFT JOIN rank USING (list_id, app_id)
+                WHERE prank.list_id = :ranking_id AND rank.app_id IS NULL
+                ORDER BY prank.rank',
+                ['ranking_id' => $ranking->getId()]
+            )->fetchAll();
+        } finally {
+            $database->exec('DETACH prev');
+        }
+    }
+
     public static function fetchAppTags(Connection $database, int $appId): array
     {
         return $database->query("SELECT tag FROM app_tag WHERE app_id = $appId ORDER BY votes DESC")

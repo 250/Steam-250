@@ -131,7 +131,7 @@
         {% endif %}
     </div>
     <section class="r&amp;f">
-    {% if risers is defined and (risers or fallers or new) %}
+    {% if risers is defined and (risers or fallers or new or missing) %}
         {% if risers %}
         {{ include('partial/risers.twig', {games: risers, title: 'Risers today'}) }}
         {% endif %}
@@ -141,6 +141,9 @@
         {% endif %}
         {% if fallers %}
         {{ include('partial/risers.twig', {games: fallers, title: 'Fallers today'}) }}
+        {% endif %}
+        {% if missing %}
+        {{ include('partial/risers.twig', {games: missing, title: 'Missing since yesterday', noipl: true}) }}
         {% endif %}
     {% else %}
         {{ include('partial/ad.twig', {id: '3002887382'}) }}

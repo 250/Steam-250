@@ -79,9 +79,10 @@ abstract class Ranking extends Page implements PreviousDatabaseAware
             $risers = $this->createRisersList($games);
             $fallers = $this->createFallersList($games);
             $new = $this->createNewEntriesList($games);
+            $missing = Queries::fetchMissingApps($this->database, $this, $this->prevDb);
         }
 
-        return compact('games', 'risers', 'fallers', 'new') + ['ranking' => $this] + parent::export();
+        return compact('games', 'risers', 'fallers', 'new', 'missing') + ['ranking' => $this] + parent::export();
     }
 
     private function createRisersList(array $games): array

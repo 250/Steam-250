@@ -27,6 +27,17 @@ abstract class DevlisherRanking extends Ranking implements CustomRankingFetch
         $this->setTemplate('devlisher');
     }
 
+    public function export(): array
+    {
+        $export = parent::export();
+
+        // Copy owner key to developer/publisher key to be picked up by risers macro.
+        isset($export['missing']) &&
+            array_walk($export['missing'], fn (&$missing) => $missing[$this->getId()] = $missing['owner']);
+
+        return $export;
+    }
+
     public function customizeQuery(QueryBuilder $builder): void
     {
         // Score games for each developer using this ranking's algorithm and weights.
