@@ -5,9 +5,11 @@
         pos" title="Moved up"
     {% elseif movement < 0 %}
         neg" title="Moved down"
+    {% elseif movement == 'dead' %}
+        ded" title="Removed"
     {% else %}
         none" title="No change"
     {% endif -%}
 >
-    {{- movement is same as('0') ? '~' : movement ? movement|abs : null -}}
+    {{- movement is same as('0') ? '~' : movement == 'dead' ? null : movement ? movement|abs : null -}}
 </span>

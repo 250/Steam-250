@@ -1087,6 +1087,10 @@ tr.a .movement.none:before {
     clip-path: polygon(20% 0%, 20% 50%, 0% 50%, 50% 100%, 100% 50%, 80% 50%, 80% 0%);
     -webkit-clip-path: polygon(20% 0%, 20% 50%, 0% 50%, 50% 100%, 100% 50%, 80% 50%, 80% 0%);
 }
+.movement.ded {
+    background: url(/svg/deny.svg);
+    opacity: .6;
+}
 .r\&f .movement {
     width: 19px;
     height: 19px;
