@@ -8,7 +8,7 @@
         {% for game in games %}
         <li>
             {% if noipl is not defined %}
-            <a href="{{ base_url ?? '' }}#{{ game.rank }}" class="rank"><span>{{ game.rank }}</span></a>
+            <a href="{{ base_url ?? '' }}#{{ game.rank }}" class="rank">{{ game.rank }}</a>
             {% endif %}
             {% set href =
                 game.developer is defined ? steam.developer_url(game.developer)
@@ -17,15 +17,13 @@
             %}
             <span class="title">
                 <a href="{{ href }}" {{ steam.video_attr(game.id, game.videos) }}>
-                    <img alt="Logo" src="https://steamcdn-a.akamaihd.net/steam/apps/{{ game.id }}/capsule_sm_120.jpg">
+                    <img alt="Logo" src="//steamcdn-a.akamaihd.net/steam/apps/{{ game.id }}/capsule_sm_120.jpg">
                 </a>
                 <a href="{{ href }}">
                     {% if game.movement is defined %}
                         {{ include('partial/movement.twig', {movement: game.movement}) }}
                     {% endif %}
-                    {% if noipl is defined %}
-                    ({{ game.rank }})
-                    {% endif %}
+                    {% if noipl is defined %}({{ game.rank }}){% endif %}
                     <span>{{ game.developer is defined ? game.developer
                         : game.publisher is defined ? game.publisher
                         : game.name }}</span>
