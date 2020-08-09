@@ -1087,6 +1087,10 @@ tr.a .movement.none:before {
     clip-path: polygon(20% 0%, 20% 50%, 0% 50%, 50% 100%, 100% 50%, 80% 50%, 80% 0%);
     -webkit-clip-path: polygon(20% 0%, 20% 50%, 0% 50%, 50% 100%, 100% 50%, 80% 50%, 80% 0%);
 }
+.movement.ded {
+    background: url(/svg/deny.svg);
+    opacity: .6;
+}
 .r\&f .movement {
     width: 19px;
     height: 19px;
@@ -1711,32 +1715,38 @@ tr.a .movement.none:before {
 /* Game rank. */
 .compact.ranking li > .rank {
     display: flex;
+    align-items: center;
+    justify-content: center;
     flex-shrink: 0;
     align-self: stretch;
     width: 18px;
 
+    color: inherit;
     background: linear-gradient(#262433, #181720, #262433);
+    font-size: 80%;
 }
 .r\&f .compact.ranking li > .rank {
     width: 21px;
 
     background: linear-gradient(#242933, #181b21, #242933);
 }
-.compact.ranking li > .rank > span {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-grow: 1;
-
-    color: inherit;
-    background: transparent;
-    font-size: 80%;
+.compact.ranking li > .rank,
+.compact.ranking li > a.rank:before {
     border-radius: 4px 0 0 4px;
 
     transition: .15s;
 }
-.compact.ranking li > a.rank > span:hover {
+.compact.ranking li > a.rank:before {
+    position: absolute;
+    content: '';
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+.compact.ranking li > a.rank:hover {
     color: #222;
+}
+.compact.ranking li > a.rank:hover:before {
     background: #e17cbf;
 }
 
