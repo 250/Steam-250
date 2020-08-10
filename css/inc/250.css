@@ -1396,17 +1396,12 @@ tr.a .movement.none:before {
 }
 
 .timeline {
-    position: relative;
-    height: 5em;
     line-height: 1;
     margin: 1.5em auto;
 
     font-size: 90%;
 
-    /* Offset from baseline. */
-    --offset: .4em;
-    /* Padding both sides of each anchor. */
-    --padding: 1.3vw;
+    --width: 5em;
     --primary: #4b6a90;
     --primary-hi: #5483b3;
     --highlight: #70c3ff;
@@ -1415,19 +1410,23 @@ tr.a .movement.none:before {
     --spot: #fffa;
     --transition: .1s;
 }
-@media (min-width: 1610px) {
+@media (max-width: 700px) {
     .timeline {
-        --padding: 21px;
+        --width: 4em;
     }
 }
 .timeline > ol {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%) rotate(-90deg);
+    display: flex;
+    flex-flow: wrap;
+    justify-content: center;
 }
 .timeline > ol > li {
-    position: relative;
+    display: flex;
+    align-items: center;
+    width: var(--width);
+    height: 78px;
+
+    transform: rotate(-90deg);
 }
 /* Track */
 .timeline > ol > li:before,
@@ -1435,15 +1434,13 @@ tr.a .movement.none:before {
     content: '';
     position: absolute;
     background: var(--primary);
-    height: 92%;
+    height: calc(var(--width) - 3px);
     width: .25em;
-    top: 5%;
-    left: var(--offset);
 
     transition: background var(--transition);
 }
 .timeline > ol > li:before {
-    left: calc(var(--offset) + .2em);
+    left: .2em;
     transform: skew(0, -45deg);
 }
 .timeline > ol > li:after {
@@ -1459,16 +1456,19 @@ tr.a .movement.none:before {
 }
 /* Text and pole */
 .timeline > ol > li > a {
-    display: inline-block;
-    width: 3em;
-    padding: var(--padding) 0 var(--padding) calc(var(--offset) + 2em);
+    display: flex;
+    flex-wrap: wrap;
+    flex-grow: 1;
+    align-content: center;
+    height: var(--width);
+    padding-left: 2em;
     position: relative;
     z-index: 1;
 
     color: inherit;
     background: linear-gradient(transparent 47%, var(--primary) 47%, var(--primary) 53%, transparent 53%)
-        no-repeat calc(var(--offset) + 1px) 51%;
-    background-size: 1.75em 3em;
+        no-repeat 1px 51%;
+    background-size: 1.6em 2.9em;
 
     transition: color var(--transition);
 }
@@ -1489,7 +1489,7 @@ tr.a .movement.none:before {
     width: 5px;
     height: 5px;
     display: block;
-    left: calc(var(--offset) + 1px);
+    left: 1px;
     top: 50%;
     transform: translate(0, -50%);
     border-radius: 50%;
