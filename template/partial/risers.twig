@@ -16,7 +16,7 @@
                 : steam.app_url(game.id)
             %}
             <span class="title">
-                <a href="{{ href }}" {{ steam.video_attr(game.id, game.videos) }}>
+                <a href="{{ href }}" {{ steam.video_attr(game.id, game.name, game.videos) }}>
                     <img alt="Logo" src="//steamcdn-a.akamaihd.net/steam/apps/{{ game.id }}/capsule_sm_120.jpg">
                 </a>
                 <a href="{{ href }}">

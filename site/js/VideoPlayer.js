@@ -1,23 +1,20 @@
 new class {
     constructor() {
-        this.container = document.body.appendChild(document.createElement('div'));
-        this.video = this.container.appendChild(document.createElement('video'));
-        this.page = document.querySelector('#page');
-
-        this.init();
-    }
-
-    init() {
         this.initContainer();
         this.initVideo();
         this.initVideoLinks();
         this.initKeyboard();
-
-        document.addEventListener('click', _ => this.deactivate());
     }
 
     initContainer() {
-        this.container.id = 'video-player';
+        this.container = document.body.appendChild(document.createElement('div'));
+        this.frame = this.container.appendChild(document.createElement('div'));
+        this.title = this.frame.appendChild(document.createElement('h1'));
+        this.video = this.frame.appendChild(document.createElement('video'));
+        this.page = document.querySelector('#page');
+
+        this.container.id = 'video-container';
+        this.container.addEventListener('click', e => e.target === this.container && this.deactivate());
     }
 
     initVideo() {
@@ -38,6 +35,7 @@ new class {
                 if (e.target.tagName === 'A' && e.target !== a) return;
 
                 this.play(a.getAttribute('data-video'));
+                this.title.innerHTML = a.getAttribute('data-title');
 
                 e.stopPropagation();
                 e.preventDefault();
