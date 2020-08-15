@@ -16,7 +16,7 @@ https://store.steampowered.com/search/?sort_by=Reviews_DESC&amp;category1=998&am
 
 {% macro video_attr(game_id, game_name, videos) %}
 {% if videos -%}
-    data-video="{{ videos|split(',')|first }}"
+    data-video="{{ videos }}"
     data-title="{{ game_name|e('html_attr') }}"
     href="{{ _self.app_url(game_id) }}"
 {%- endif %}
