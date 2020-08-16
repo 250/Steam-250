@@ -1,12 +1,13 @@
 new class {
     constructor() {
-        this.initContainer();
+        this.initDom();
         this.initVideo();
         this.initVideoLinks();
         this.initKeyboard();
+        this.initFooterScroll();
     }
 
-    initContainer() {
+    initDom() {
         this.container = document.body.appendChild(document.createElement('div'));
         this.frame = this.container.appendChild(document.createElement('div'));
         this.header = this.frame.appendChild(document.createElement('header'));
@@ -58,6 +59,20 @@ new class {
 
     initKeyboard() {
         document.addEventListener('keydown', e => e.key === 'Escape' && this.deactivate());
+    }
+
+    initFooterScroll() {
+        this.footer.addEventListener(
+            'mousemove', (e) => {
+                const rect = this.footer.getBoundingClientRect();
+
+                this.footer.scroll({
+                    // 10% dead zone margin.
+                    left: (this.footer.scrollWidth - rect.width) * ((e.clientX - rect.x) / rect.width * 1.2 - .1),
+                    behavior: 'smooth',
+                })
+            }
+        );
     }
 
     loadThumbs(videoIds) {
