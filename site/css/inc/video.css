@@ -16,6 +16,8 @@
 #video-container > div {
     position: relative;
     line-height: 0;
+    /* Prevent children expanding beyond video width when viewport smaller than video. */
+    width: 100%;
 
     --border-width: 5px;
 }
