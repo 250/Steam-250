@@ -17,35 +17,106 @@
     position: relative;
     line-height: 0;
 
-    border-radius: 6px;
-    border: 5px solid #000;
+    --border-width: 5px;
 }
 
-#video-container h1 {
+#video-container header {
     position: absolute;
     box-sizing: border-box;
     width: 100%;
+    margin: var(--border-width);
     padding: .5em;
+    z-index: 3;
 
     opacity: 0;
     font-size: 130%;
     line-height: 1;
-    color: #fff;
+    color: #eee;
     text-align: left;
-    text-shadow: 1px 1px 1px #0008;
     background: linear-gradient(#000, transparent);
 
     transition: opacity .25s;
 }
-#video-container > div:hover h1 {
+#video-container > div:hover header {
     opacity: 1;
+}
+#video-container header a {
+    color: inherit;
+}
+#video-container header:after {
+    content: attr(data-video-id) '/' attr(data-videos);
+    float: right;
+    padding-left: 25px;
+
+    color: #ddd;
+    background: url(/svg/filmstrip.svg) left 30%/19px no-repeat;
+}
+
+#video-container footer {
+    display: flex;
+    position: relative;
+    top: calc(var(--foot-height) * -1);
+    width: 100%;
+    height: var(--foot-height);
+    margin: 0 var(--border-width);
+    overflow: hidden;
+
+    background: #000d;
+
+    --foot-height: 64px;
+
+    transition: top .25s ease-out;
+}
+#video-container > div:hover footer {
+    top: 0;
+}
+#video-container footer > div {
+    position: relative;
+    height: 100%;
+}
+#video-container footer > div:before {
+    content: attr(data-index);
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    padding: 1px 4px;
+    z-index: 1;
+    pointer-events: none;
+
+    font-size: 80%;
+    line-height: 1;
+    color: #ccc;
+    background: #000a;
+    border-radius: 0 0 6px 6px;
+}
+#video-container footer img {
+    height: 100%;
+    box-sizing: border-box;
+
+    opacity: .5;
+    cursor: pointer;
+    border: 2px solid #000;
+
+    transition: opacity .1s, border .2s linear;
+}
+#video-container footer img:hover {
+    opacity: 1;
+}
+#video-container footer img.active {
+    opacity: 1;
+    border-color: #d6ba1a;
 }
 
 video {
+    position: relative;
     max-width: 100%;
     max-height: 100%;
+    z-index: 2;
 
     outline: none;
+    background: #000;
+    border-radius: 6px;
+    border: var(--border-width) solid #000;
 }
 
 #page {

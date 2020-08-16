@@ -718,7 +718,7 @@ p.notice::before {
     padding-left: 1.5em;
     margin-left: .5em;
 
-    background: url('/svg/filmstrip.svg') no-repeat left;
+    background: url('/svg/filmstrip.svg') no-repeat left 45%;
     background-size: 1.2em .9em;
 }
 @media (max-width: 520px) {
@@ -1755,7 +1755,7 @@ tr.a .movement.none:before {
 /* Second selector support no-JS fallback. */
 .compact.ranking li > .title > .title:hover {
     opacity: 1;
-    transition: none;
+    transition: .1s;
 }
 .compact.ranking li a[data-video] > img:hover,
 .compact.ranking li > .title > a[data-video]:hover ~ .title img {
