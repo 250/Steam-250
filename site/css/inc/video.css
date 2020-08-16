@@ -31,15 +31,25 @@
     opacity: 0;
     font-size: 130%;
     line-height: 1;
-    color: #fff;
+    color: #eee;
     text-align: left;
-    text-shadow: 1px 1px 1px #0008;
     background: linear-gradient(#000, transparent);
 
     transition: opacity .25s;
 }
 #video-container > div:hover header {
     opacity: 1;
+}
+#video-container header a {
+    color: inherit;
+}
+#video-container header:after {
+    content: attr(data-video-id) '/' attr(data-videos);
+    float: right;
+    padding-left: 25px;
+
+    color: #ddd;
+    background: url(/svg/filmstrip.svg) left 30%/19px no-repeat;
 }
 
 #video-container footer {
@@ -51,7 +61,7 @@
     margin: 0 var(--border-width);
     overflow: hidden;
 
-    background: #0008;
+    background: #000d;
 
     --foot-height: 64px;
 
@@ -71,11 +81,13 @@
     right: 2px;
     padding: 1px 4px;
     z-index: 1;
+    pointer-events: none;
 
     font-size: 80%;
     line-height: 1;
-    color: #ddd;
-    background: #0009;
+    color: #ccc;
+    background: #000a;
+    border-radius: 0 0 6px 6px;
 }
 #video-container footer img {
     height: 100%;

@@ -42,9 +42,10 @@ new class {
                 // Ignore clicks bubbling up from other link elements.
                 if (e.target.tagName === 'A' && e.target !== a) return;
 
-                const videos = a.getAttribute('data-video').split(',');
-                this.loadThumbs(videos);
+                this.loadThumbs(a.getAttribute('data-video').split(','));
+
                 this.header.innerHTML = a.getAttribute('data-title');
+                if ('href' in a) this.header.innerHTML = `<a href="${a.href}">${this.header.innerHTML}</a>`;
 
                 // Start playing first video with simulated click.
                 this.footer.firstChild.click();
@@ -76,6 +77,9 @@ new class {
 
                 thumb.parentNode.querySelectorAll('img').forEach(img => img.classList.remove('active'));
                 img.classList.add('active');
+
+                this.header.setAttribute('data-video-id', i + 1);
+                this.header.setAttribute('data-videos', videoIds.length);
             });
         }
     }
