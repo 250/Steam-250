@@ -28,9 +28,9 @@ new class {
 
         this.video.addEventListener('volumechange', _ => this.saveVolumeState());
         this.video.addEventListener('loadedmetadata', _ => {
-            // Prevent video resizing between loads.
-            this.video.width = this.video.videoWidth;
-            this.video.height = this.video.videoHeight;
+            // Restore video dimensions to auto.
+            this.video.removeAttribute('width');
+            this.video.removeAttribute('height');
 
             // Keep child elements in sync with video width.
             this.frame.style.maxWidth = this.video.videoWidth + 'px';
@@ -132,6 +132,10 @@ new class {
     }
 
     play(id) {
+        // Prevent video resizing between loads because it looks glitchy. Restored when next video loads.
+        this.video.width = this.video.clientWidth;
+        this.video.height = this.video.clientHeight;
+
         while (this.video.lastChild) {
             this.video.removeChild(this.video.lastChild);
         }
