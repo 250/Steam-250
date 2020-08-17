@@ -69,7 +69,8 @@ new class {
                 this.footer.scroll({
                     // 10% dead zone margin.
                     left: (this.footer.scrollWidth - rect.width) * ((e.clientX - rect.x) / rect.width * 1.2 - .1),
-                    behavior: 'smooth',
+                    // Smooth scrolling is terrible in Chrome because of a fixed delay before scrolling starts.
+                    behavior: typeof InstallTrigger !== 'undefined' ? 'smooth' : 'auto',
                 })
             }
         );
