@@ -56,8 +56,8 @@
 
 #video-container footer {
     display: flex;
-    position: relative;
-    top: calc(var(--foot-height) * -1);
+    position: absolute;
+    bottom: 0;
     width: 100%;
     height: var(--foot-height);
     margin: 0 var(--border-width);
@@ -67,10 +67,10 @@
 
     --foot-height: 64px;
 
-    transition: top .25s ease-out;
+    transition: bottom .25s ease-out;
 }
 #video-container > div:hover footer {
-    top: 0;
+    bottom: calc(var(--foot-height) * -1);
 }
 #video-container footer > div {
     position: relative;
