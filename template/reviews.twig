@@ -1,0 +1,37 @@
+{% extends 'layout/ranking.twig' %}
+
+{% set earliest_year = constant('ScriptFUSION\\Steam250\\SiteGenerator\\Ranking\\Impl\\AnnualRanking::EARLIEST_YEAR') %}
+{% set year = ranking.year ?? earliest_year %}
+{% set when = ranking.year ?? ('pre-' ~ year) %}
+{% set desc = ranking.year is defined ? 'in ' ~ year : 'before ' ~ year %}
+
+{% block title %}Top {{ games|length }} Most Reviewed on Steam {{ desc }}{% endblock %}
+{% block heading %}Most Reviewed {{ when }}{% endblock %}
+
+{% block content %}
+    <p>
+        Top {{ games|length }} most reviewed games on Steam released {{ desc }}.
+    </p>
+    <p>
+        In this ranking games are sorted by number of reviews only, with complete disregard for rating.
+        Total reviews usually have a strong correlation with total sales, so this provides a good insight into best
+        sellers of the year.
+    </p>
+    <p class="note">
+        Free games gain an unfair boost in these rankings since they have no barrier to entry.
+    </p>
+    <p class="tip">
+        Compare with <a href="/{{ (ranking.year ?? 'old') ~ ext }}">top rated games {{ desc }}</a>.
+    </p>
+    {{ include('partial/timeline.twig') }}
+{% endblock %}
+
+{% block post %}
+    {{ include('partial/timeline.twig') }}
+{% endblock %}
+
+{% block scoring_heading %}Reviews{% endblock %}
+{% block scoring_criteria %}
+    <span class="owners">{{ game.total_reviews|number_format }}</span>
+    <span class="rating">rated {{ (game.positive_reviews / game.total_reviews * 100)|round }}%</span>
+{% endblock %}

@@ -10,6 +10,7 @@ use ScriptFUSION\Steam250\SiteGenerator\Page\StaticPageName;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\AnnualRanking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\EarlyAccessRanking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\OwnersRanking;
+use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\ReviewsRanking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\TagRanking;
 use ScriptFUSION\Steam250\SiteGenerator\SteamApp\Tag;
 
@@ -32,18 +33,20 @@ final class PageContainerFactory
         }
 
         foreach (range(AnnualRanking::EARLIEST_YEAR, date('Y')) as $year) {
-            $container->set($year, static function () use ($year, $parent): Ranking {
-                return new AnnualRanking($parent->get(RankingDependencies::class), $year);
-            });
+            $ranking = new AnnualRanking($dependencies = $parent->get(RankingDependencies::class), $year);
+            $container->set($ranking->getId(), $ranking);
             ++$counter;
 
             // Owners data is no longer current, so only show historical rankings.
             if ($year <= 2017) {
-                $container->set("owners/$year", static function () use ($year, $parent): Ranking {
-                    return new OwnersRanking($parent->get(RankingDependencies::class), $year);
-                });
+                $ranking = new OwnersRanking($dependencies, $year);
+                $container->set($ranking->getId(), $ranking);
                 ++$counter;
             }
+
+            $ranking = new ReviewsRanking($dependencies, $year);
+            $container->set($ranking->getId(), $ranking);
+            ++$counter;
         }
 
         // Tags.

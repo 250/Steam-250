@@ -19,6 +19,7 @@ use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\MostPlayedRanking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\OldRanking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\OwnersOldRanking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\PublisherRanking;
+use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\ReviewsOldRanking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\RollingMonthRanking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\RollingQuarterRanking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\RollingWeekRanking;
@@ -49,6 +50,7 @@ final class RankingName extends AbstractEnumeration
     public const D_365 = 'D_365';
     public const OLD = 'OLD';
     public const OLD_OWN = 'OLD_OWN';
+    public const OLD_REVIEW = 'OLD_REVIEW';
     public const MAC = 'MAC';
     public const LINUX = 'LINUX';
     public const VR = 'VR';
@@ -78,6 +80,7 @@ final class RankingName extends AbstractEnumeration
         self::D_365 => RollingYearRanking::class,
         self::OLD => OldRanking::class,
         self::OLD_OWN => OwnersOldRanking::class,
+        self::OLD_REVIEW => ReviewsOldRanking::class,
         self::MAC => Mac250Ranking::class,
         self::LINUX => Linux250Ranking::class,
         self::VR => VrTop250Ranking::class,
@@ -108,6 +111,7 @@ final class RankingName extends AbstractEnumeration
         self::D_365 => '365d',
         self::OLD => 'old',
         self::OLD_OWN => 'oold',
+        self::OLD_REVIEW => 'rold',
         self::MAC => 'mac',
         self::LINUX => 'linux',
         self::VR => 'vr',
