@@ -5,7 +5,9 @@
 
 {% block content %}
     <p>
+        {% block main_p %}
         Top {{ games|length }} most reviewed games on Steam of all time.
+        {% endblock %}
     </p>
     <p>
         In this ranking games are sorted by number of reviews only, with complete disregard for rating.
