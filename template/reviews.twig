@@ -5,7 +5,7 @@
 {% set when = ranking.year ?? ('pre-' ~ year) %}
 {% set desc = ranking.year is defined ? 'in ' ~ year : 'before ' ~ year %}
 
-{% block title %}Top {{ games|length }} Most Reviewed on Steam {{ desc }}{% endblock %}
+{% block title %}Top {{ games|length }} Most Reviewed Steam Games {{ desc }}{% endblock %}
 {% block heading %}Most Reviewed {{ when }}{% endblock %}
 
 {% block content %}
