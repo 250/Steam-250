@@ -49,6 +49,15 @@
                 <li><a href="/top250{{ ext }}">Top 250 Games</a>
                 <li><a href="/hidden_gems{{ ext }}">Hidden Gems</a>
                 <li><a href="/hidden_novels{{ ext }}">Hidden Novels</a>
+                <li>
+                    <a>Most Reviewed</a>
+                    <ol class="annual">
+                        <li><a href="/reviews{{ ext }}">All time</a>
+                            {% for year in range('now'|date('Y'), earliest_year) %}
+                        <li><a href="/reviews/{{ year ~ ext }}">{{ year }}</a>
+                            {% endfor %}
+                        <li><a href="/reviews/old{{ ext }}">Pre-{{ earliest_year }}</a>
+                    </ol>
                 <li><a href="/most_played{{ ext }}">Most Played</a>
                 <li><a href="/trending{{ ext }}">Trending Games</a>
                 <li>

@@ -563,7 +563,7 @@ p.note, p.tip {
     display: table;
 
     opacity: .9;
-    font-size: 70%;
+    font-size: 80%;
 }
 p + p.note, p + p.tip {
     margin-top: -1.5em;
