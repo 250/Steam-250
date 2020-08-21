@@ -563,10 +563,10 @@ p.note, p.tip {
     display: table;
 
     opacity: .9;
-    font-size: 70%;
+    font-size: 80%;
 }
 p + p.note, p + p.tip {
-    margin-top: -1.5em;
+    margin-top: -1.3em;
 }
 p.note:before, p.tip:before {
     content: 'Note';
@@ -666,7 +666,7 @@ p.notice::before {
     height: 1.3em;
 
     font-size: 85%;
-    color: #607b9c;
+    color: #718aa8;
     background: url('/svg/settings.svg') no-repeat right;
     background-size: 1.2em .9em;
     opacity: .5;
@@ -1252,6 +1252,9 @@ tr.a .movement.none:before {
 .date, .date > a {
     color: #cccecf;
     text-decoration: none;
+}
+.date > a:hover {
+    color: #67dbb6;
 }
 
 .platforms {
