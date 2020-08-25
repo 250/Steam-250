@@ -20,7 +20,8 @@
     "voku/html-min": "2.0.0",
     "eloquent/enumeration": "^6",
     "joomla/di": "^1.5",
-    "symfony/console": "^3"
+    "symfony/console": "^3",
+    "phptype/date": "^1"
   },
   "autoload": {
     "psr-4": {
