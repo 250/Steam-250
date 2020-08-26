@@ -411,7 +411,7 @@ class S250 {
         );
     }
 
-    parseParam(name) {
+    static parseParam(name) {
         const match = RegExp('[?&]' + name + '=([^&]*)').exec(location.search);
 
         return match && decodeURIComponent(match[1]);
@@ -429,7 +429,7 @@ class S250 {
         return elem.querySelector('.title > a').innerText;
     }
 
-    copyToClipboard(text) {
+    static copyToClipboard(text) {
         if (window.clipboardData && window.clipboardData.setData) {
             // IE specific code path to prevent textarea being shown while dialog is visible.
             return clipboardData.setData('Text', text);
