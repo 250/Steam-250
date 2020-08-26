@@ -318,7 +318,7 @@ class S250 {
         const q = this.parseParam('q');
 
         if (q !== null) {
-            document.querySelector('#user > form').q.value = q.replace(/\+/g, ' ');
+            document.querySelectorAll('input[name=q]').forEach(i => i.value = q.replace(/\+/g, ' '));
         }
     }
 
@@ -411,7 +411,7 @@ class S250 {
         );
     }
 
-    static parseParam(name) {
+    parseParam(name) {
         const match = RegExp('[?&]' + name + '=([^&]*)').exec(location.search);
 
         return match && decodeURIComponent(match[1]);
@@ -429,7 +429,7 @@ class S250 {
         return elem.querySelector('.title > a').innerText;
     }
 
-    static copyToClipboard(text) {
+    copyToClipboard(text) {
         if (window.clipboardData && window.clipboardData.setData) {
             // IE specific code path to prevent textarea being shown while dialog is visible.
             return clipboardData.setData('Text', text);
