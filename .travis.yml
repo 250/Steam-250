@@ -61,4 +61,4 @@ after_script:
       -H ''Travis-API-Version: 3''
       -H "Authorization: token $TRAVIS_TOKEN"
       -d ''{"request": {"branch": "master"}}''
-      https://api.travis-ci.org/repo/250%2FSteam-curator/requests'
+      https://api.travis-ci.com/repo/250%2FSteam-curator/requests'
