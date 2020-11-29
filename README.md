@@ -72,8 +72,8 @@ php -S localhost:8113 -t '/path/to/Steam 250/site'
 
 Then we can simply visit `localhost:8113` in our favourite web browser. Feel free to change the port to whatever you want and remember to set the path correctly to point to the same directory the site was generated in.
 
-  [Build]: https://travis-ci.org/250/Steam-250
-  [Build image]: https://travis-ci.org/250/Steam-250.svg?branch=master "Build status"
+  [Build]: https://travis-ci.com/250/Steam-250
+  [Build image]: https://travis-ci.com/250/Steam-250.svg?branch=master "Build status"
   [Style]: https://styleci.io/repos/110031821
   [Style image]: https://styleci.io/repos/110031821/shield?style=flat "Code style"
   [Snapshots]: https://github.com/250/Steam-250/releases/tag/snapshots
