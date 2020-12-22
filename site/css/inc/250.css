@@ -1816,7 +1816,7 @@ tr.a .movement.none:before {
 }
 .flat.compact.ranking li > .title > .title > :first-child,
 .flat.compact.ranking li > .title > .title > :last-child > :first-child {
-    filter: sepia(96%) saturate(100%) hue-rotate(175deg);
+    filter: sepia(96%) saturate(200%) hue-rotate(175deg);
 }
 .compact.ranking li > .title > .title > :last-child > :last-child {
     color: #26210b;
