@@ -1560,7 +1560,7 @@ tr.a .movement.none:before {
 }
 
 /* Compact ranking. */
-.r\&f .compact.ranking {
+.flat.compact.ranking {
     background: linear-gradient(#0005 34px, #495770);
     border-radius: 6px;
 }
@@ -1578,7 +1578,7 @@ tr.a .movement.none:before {
     background: radial-gradient(30% 70% at 30% 25%, #30365c, #606ea8) 0 0/200% 200%;
     filter: drop-shadow(4px 4px 0 #1b1f26);
 }
-.r\&f .compact.ranking > ol {
+.flat.compact.ranking > ol {
     background: none;
     filter: none;
     animation: none;
@@ -1611,7 +1611,7 @@ tr.a .movement.none:before {
 .compact.ranking li img {
     height: 36px;
 }
-.r\&f .compact.ranking img {
+.flat.compact.ranking img {
     height: 34px;
 }
 .compact.ranking li .title {
@@ -1623,10 +1623,10 @@ tr.a .movement.none:before {
 
     transition: background-color 1s;
 }
-.r\&f .compact.ranking li:nth-child(2n+1) > .title {
+.flat.compact.ranking li:nth-child(2n+1) > .title {
     background: #293345;
 }
-.r\&f .compact.ranking li:nth-child(2n) > .title {
+.flat.compact.ranking li:nth-child(2n) > .title {
     background: #222a38;
 }
 .compact.ranking li .title > :first-child:not([data-video]) {
@@ -1669,7 +1669,7 @@ tr.a .movement.none:before {
 
     animation: compact-ranking-quing 1.7s .1s backwards;
 }
-.r\&f .compact.ranking li > .title:before {
+.flat.compact.ranking li > .title:before {
     --light: #121c24;
 
     animation: none;
@@ -1721,7 +1721,7 @@ tr.a .movement.none:before {
     text-decoration: none;
     outline: none;
 }
-.r\&f .compact.ranking li a {
+.flat.compact.ranking li a {
     color: inherit;
 }
 
@@ -1738,7 +1738,7 @@ tr.a .movement.none:before {
     background: linear-gradient(#262433, #181720, #262433);
     font-size: 80%;
 }
-.r\&f .compact.ranking li > .rank {
+.flat.compact.ranking li > .rank {
     width: 21px;
 
     background: linear-gradient(#242933, #181b21, #242933);
@@ -1791,14 +1791,14 @@ tr.a .movement.none:before {
     background: linear-gradient(90deg, #9e814c, #ddba83 60%, #9e814c);
     transition: opacity .6s ease-in;
 }
-.r\&f .compact.ranking li > .title > .title {
+.flat.compact.ranking li > .title > .title {
     background: none;
     box-shadow: inset 0 0 30px #78a4f5
 }
 .compact.ranking li .animate {
     animation: burst-out .4s ease-in forwards;
 }
-.r\&f .compact.ranking li .animate {
+.flat.compact.ranking li .animate {
     animation: none;
 }
 @keyframes burst-out {
@@ -1814,15 +1814,15 @@ tr.a .movement.none:before {
 .compact.ranking li > .title > .title > :last-child > :first-child {
     filter: sepia(96%) saturate(150%) hue-rotate(-5deg);
 }
-.r\&f .compact.ranking li > .title > .title > :first-child,
-.r\&f .compact.ranking li > .title > .title > :last-child > :first-child {
+.flat.compact.ranking li > .title > .title > :first-child,
+.flat.compact.ranking li > .title > .title > :last-child > :first-child {
     filter: sepia(96%) saturate(100%) hue-rotate(175deg);
 }
 .compact.ranking li > .title > .title > :last-child > :last-child {
     color: #26210b;
     text-shadow: 1px 1px 1px #f5c477;
 }
-.r\&f .compact.ranking li > .title > .title > :last-child > :last-child {
+.flat.compact.ranking li > .title > .title > :last-child > :last-child {
     color: #b5cbf3;
     text-shadow: none;
 }
