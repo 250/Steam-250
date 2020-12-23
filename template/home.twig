@@ -51,7 +51,7 @@
             <p>{{ ranking.ranking.description|raw }}</p>
         </header>
 
-        {{ include('partial/risers.twig', {games: ranking.apps, base_url: id ~ ext}) }}
+        {{ include('partial/risers.twig', {games: ranking.apps, base_url: id ~ ext, fancy: true}) }}
 
         <footer>
             <a href="/{{ id ~ ext }}"><span>more</span><span>&gt;</span></a>

@@ -1,6 +1,6 @@
 {% import 'macro/steam.twig' as steam %}
 
-<div class="compact ranking flat">
+<div class="compact ranking{% if fancy is not defined %} flat{% endif %}">
     {% if title is defined %}
     <h2>{{ title }}</h2>
     {% endif %}
