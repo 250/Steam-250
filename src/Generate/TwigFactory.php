@@ -30,6 +30,7 @@ final class TwigFactory
         $twig->addGlobal('ext', $ext);
         $twig->addGlobal('club250', 'https://club.steam250.com');
         $twig->addGlobal('patreon', 'https://www.patreon.com/steam250/overview');
+        $twig->addGlobal('discord', 'http://discord.steam250.com');
 
         return $twig;
     }
