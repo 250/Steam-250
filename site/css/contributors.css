@@ -1,3 +1,7 @@
+p {
+    text-align: left;
+}
+
 .content > div {
     display: flex;
     align-items: flex-start;
@@ -10,11 +14,25 @@
     border-radius: 10px;
 }
 
-.content > div > img {
+.content > div > img,
+.content > div > .img {
     max-width: 100px;
     margin-right: 2em;
+    flex-shrink: 0;
 
     border-radius: 10px;
+}
+.content > div > .img {
+    display: flex;
+    width: 100px;
+    height: 100px;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 105%;
+    font-weight: bold;
+    text-shadow: 0 0 8px #051e33;
+    background: linear-gradient(#6cb9d3, #033f75);
 }
 
 .content > div > div > p {
