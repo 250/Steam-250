@@ -737,12 +737,12 @@ p.notice::before {
 
     background: url('/svg/arrow.svg') no-repeat bottom;
 }
-.ranking > header > h2:last-child {
+.ranking > header > h2:nth-child(3) {
     margin-left: auto;
     padding: 0;
 }
 
-.ranking > div[id] {
+.ranking > header ~ div {
     display: flex;
     align-items: center;
     width: 100%;
@@ -751,10 +751,10 @@ p.notice::before {
 .ranking > div.filtered {
     display: none;
 }
-.ranking > div[id='1'] {
+.ranking > header + div {
     margin-top: 0;
 }
-.ranking > div[id]:nth-of-type(2n-1),
+.ranking > header ~ div:nth-of-type(2n-1),
 .ranking > div.primary {
     background-color: #162433;
 }
@@ -762,11 +762,11 @@ p.notice::before {
 .ranking > div.secondary:nth-child(n) {
     background-color: transparent;
 }
-.ranking > div[id] > div:first-child img {
+.ranking > header ~ div > div:first-child img {
     max-width: 100%;
 }
 
-.ranking > div[id] > div:first-child {
+.ranking > header ~ div > div:first-child {
     flex-shrink: 0;
     width: 25%;
     max-width: 120px;
@@ -774,25 +774,25 @@ p.notice::before {
 
     line-height: 0;
 }
-.ranking > div[id] > div:first-child > a,
+.ranking > header ~ div > div:first-child > a,
 .compact.ranking li > a {
     display: block;
 }
-.ranking > div[id] > div:first-child > a:not([data-video]) {
+.ranking > header ~ div > div:first-child > a:not([data-video]) {
     cursor: not-allowed;
 }
 .ranking > div > div:nth-child(2) {
     flex-grow: 1;
 }
-.ranking > div[id] > div:nth-child(2),
+.ranking > header ~ div > div:nth-child(2),
 .compact.ranking li .title > :nth-child(2) {
     padding: .4em .5em;
 }
-.ranking > div[id] > div:nth-child(2) > * {
+.ranking > header ~ div > div:nth-child(2) > * {
     vertical-align: middle;
 }
-.ranking > div[id] > div:nth-child(3),
-.ranking > header > h2:last-child {
+.ranking > header ~ div > div:nth-child(3),
+.ranking > header > h2:nth-child(3) {
     width: 10%;
     min-width: 4.5em;
     padding-right: .5vw;
@@ -800,14 +800,14 @@ p.notice::before {
 
     text-align: center;
 }
-.ranking > div[id] > div:nth-child(3) > span {
+.ranking > header ~ div > div:nth-child(3) > span {
     font-size: 80%;
 }
-.ranking > div[id] > div:nth-child(3) > span:first-child {
+.ranking > header ~ div > div:nth-child(3) > span:first-child {
     font-weight: bold;
 }
 @media (min-width: 850px) {
-    .ranking > div[id] > div:nth-child(3) > span:first-child {
+    .ranking > header ~ div > div:nth-child(3) > span:first-child {
         font-size: 100%;
     }
 }
@@ -839,8 +839,8 @@ p.notice::before {
     opacity: .2;
     transition: opacity .15s;
 }
-.ranking > div[id] > div:nth-child(2):hover .links:hover,
-.ranking > div[id] > div:nth-child(2) .links.show {
+.ranking > header ~ div > div:nth-child(2):hover .links:hover,
+.ranking > header ~ div > div:nth-child(2) .links.show {
     opacity: .7;
 }
 .main.ranking > :last-child {

@@ -43,10 +43,12 @@
         <header>
             <h2>Trailers</h2>
             <h2>{% block game_row_heading %}Movement, rank, title, date, platforms, tag and price{% endblock %}</h2>
+            {% if block('scoring_heading') %}
             <h2>{% block scoring_heading %}Score{% endblock %}</h2>
+            {% endif %}
         </header>
         {% for game in games %}
-        <div id="{{ game.rank }}">
+        <div{% if game.rank is defined %} id="{{ game.rank }}"{% endif %}>
             <div>
                 <a {{ steam.video_attr(game.id, game.name, game.videos) }}>
                     <img alt="Logo" src="//steamcdn-a.akamaihd.net/steam/apps/{{ game.id }}/capsule_
@@ -59,7 +61,7 @@
                 {% endif %}
                 {% block game_row %}
                 <span class="title">
-                    {{ game.rank }}.
+                    {% if game.rank is defined %}{{ game.rank }}.{% endif %}
                     <a href="{{ steam.app_url(game.id) }}">
                         {{- game.name -}}
                     </a>
@@ -89,7 +91,7 @@
                     {%- endif -%}
                 </span>
                 {{ macro.tag(game.primary_tag, tags) }}
-                {% if game.rank_250 and game.list_id != 'index' %}
+                {% if game.rank_250 is defined and game.list_id != 'top250' %}
                 <a href="/top250{{ ext }}#{{ game.rank_250 }}" class="ref250">Top 250 #{{ game.rank_250 }}</a>
                 {% endif %}
                 {% if game.vrx %}
@@ -110,10 +112,11 @@
                 </span>
                 {% endif %}
                 <a href="{{ steam.store_url(game.id) }}" class="store" title="Steam store"></a>{#
-                #}<a href="#{{ game.rank }}" class="links" title="Link">▼</a>
+                #}{% if game.rank is defined %}<a href="#{{ game.rank }}" class="links" title="Link">▼</a>{% endif %}
                 {% block reviews %}{% endblock %}
                 {% endblock %}
             </div>
+            {% if block('scoring_criteria') %}
             <div>
                 {% block scoring_criteria %}
                 <span class="score">{{ (game.score * 10)|number_format(2) }}</span>
@@ -121,12 +124,13 @@
                 <span class="votes">{{ game.total_reviews|number_format }} votes</span>
                 {% endblock %}
             </div>
+            {% endif %}
         </div>
         {% if (loop.index == 25 or loop.index == 50) and not loop.last %}
         {{ include('partial/ad.twig', {id: cycle(['6706909236', '6885984584'], loop.index / 25 - 1)}) }}
         {% endif %}
         {% endfor %}
-        {% if ranking.algorithm %}
+        {% if ranking.algorithm is defined %}
         <footer title="Ranking algorithm">{{ ranking.algorithm }} {{ ranking.weight }}</footer>
         {% endif %}
     </div>

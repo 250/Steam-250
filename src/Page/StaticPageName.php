@@ -7,6 +7,7 @@ use Eloquent\Enumeration\AbstractEnumeration;
 
 final class StaticPageName extends AbstractEnumeration
 {
+    public const PREVIEWS = 'PREVIEWS';
     public const ABOUT = 'ABOUT';
     public const AMBASSADORS = 'AMBASSADORS';
     public const CONTRIBUTORS = 'CONTRIBUTORS';
@@ -15,6 +16,7 @@ final class StaticPageName extends AbstractEnumeration
     public const HTTP_404 = 'HTTP_404';
 
     private static array $classes = [
+        self::PREVIEWS => PreviewsPage::class,
         self::ABOUT => AboutPage::class,
         self::AMBASSADORS => AmbassadorsPage::class,
         self::CONTRIBUTORS => ContributorsPage::class,
@@ -24,6 +26,7 @@ final class StaticPageName extends AbstractEnumeration
     ];
 
     private static array $aliases = [
+        self::PREVIEWS => 'previews',
         self::ABOUT => 'about',
         self::AMBASSADORS => 'amb',
         self::CONTRIBUTORS => 'contrib',
