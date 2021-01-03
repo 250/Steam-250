@@ -165,7 +165,7 @@ final class Queries
             ->addSelect('*')
             ->from('app')
             // Ensure platforms are defined to exclude discontinued apps.
-            ->where('type = \'game\' AND platforms > 0')
+            ->where('type = \'game\' AND platforms > 0 AND app.total_reviews > 0')
         ;
 
         self::removeBannedGames($query);
