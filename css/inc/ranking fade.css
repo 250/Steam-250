@@ -45,7 +45,7 @@
 .ranking > div[id='14'] {
     width: calc(100% - 61px);
 }
-.ranking > div:nth-of-type(n+16) {
+.ranking > div[id]:nth-of-type(n+16) {
     width: calc(100% - 64px);
 }
 
