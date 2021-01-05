@@ -91,7 +91,7 @@
                     {%- endif -%}
                 </span>
                 {{ macro.tag(game.primary_tag, tags) }}
-                {% if game.rank_250 is defined and game.list_id != 'top250' %}
+                {% if game.rank_250 is defined and game.rank_250 and game.list_id != 'top250' %}
                 <a href="/top250{{ ext }}#{{ game.rank_250 }}" class="ref250">Top 250 #{{ game.rank_250 }}</a>
                 {% endif %}
                 {% if game.vrx %}
