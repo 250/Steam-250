@@ -122,8 +122,13 @@ final class Queries
         return $database->query(
             "SELECT tag, COUNT(tag) AS count
             FROM app_tag
+            JOIN (
+                SELECT app_id, AVG(votes) avg
+                FROM app_tag
+                GROUP BY app_id
+            )_ USING(app_id)
             LEFT JOIN app ON id = app_id
-            WHERE type = 'game' AND tag != 'VR'
+            WHERE type = 'game' AND tag != 'VR' AND votes >= avg * .5
             GROUP BY tag
             HAVING count >= $threshold"
         )->fetchAll(\PDO::FETCH_COLUMN);

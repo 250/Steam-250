@@ -32,7 +32,7 @@ class TagRanking extends DefaultRanking
             ->join(
                 'app',
                 '(
-                    SELECT app_id, AVG(votes) as avg
+                    SELECT app_id, AVG(votes) avg
                     FROM app_tag
                     GROUP BY app_id
                 )',
