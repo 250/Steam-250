@@ -209,9 +209,12 @@ class S250 {
     }
 
     markOwnedGames() {
-        const games = JSON.parse(localStorage.getItem('games'));
+        const
+            games = JSON.parse(localStorage.getItem('games')),
+            ranks = document.querySelectorAll('.ranking > div[id] > div:first-of-type > a')
+        ;
 
-        document.querySelectorAll('.ranking > div[id] > div:first-of-type > a').forEach(a => {
+        ranks.forEach(a => {
             const id = a.firstElementChild.src.match(/\/apps\/(\d+)/)[1];
 
             if (games.hasOwnProperty(id)) {
@@ -222,12 +225,14 @@ class S250 {
 
         let current, max;
         document.querySelector('#user .owned').innerText =
-            (current = document.querySelectorAll('.ranking .owned').length)
-            + '/'
-            + (max = document.querySelectorAll('.ranking .title').length)
-            + ' ('
-            + Math.round(current / max * 100)
-            + '%)'
+            ranks.length ?
+                (current = document.querySelectorAll('.ranking .owned').length)
+                + '/'
+                + (max = ranks.length)
+                + ' ('
+                + Math.round(current / max * 100)
+                + '%)'
+            : 'n/a'
         ;
     }
 
