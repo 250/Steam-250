@@ -23,9 +23,9 @@ abstract class RollingRanking extends DefaultRanking
         $now = time();
 
         $builder
-            ->andWhere("release_date > $time")
+            ->andWhere("app.release_date > $time")
             // Some publishers list future dates.
-            ->andWhere("release_date <= $now")
+            ->andWhere("app.release_date <= $now")
         ;
     }
 }

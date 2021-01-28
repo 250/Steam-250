@@ -23,7 +23,7 @@ class OwnersRanking extends AnnualRanking
         parent::customizeQuery($builder);
 
         $builder
-            ->andWhere('price > 0')
+            ->andWhere('app.price > 0')
             ->orderBy('owners', SortDirection::DESC)
         ;
     }

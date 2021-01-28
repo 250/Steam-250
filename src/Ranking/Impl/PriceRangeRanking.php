@@ -22,8 +22,8 @@ abstract class PriceRangeRanking extends DefaultRanking
     public function customizeQuery(QueryBuilder $builder): void
     {
         $builder->andWhere(
-            "(discount_price IS NULL AND price > $this->min AND price <= $this->max)
-            OR (discount_price > $this->min AND discount_price <= $this->max)"
+            "(app.discount_price IS NULL AND app.price > $this->min AND app.price <= $this->max)
+            OR (app.discount_price > $this->min AND app.discount_price <= $this->max)"
         );
     }
 }

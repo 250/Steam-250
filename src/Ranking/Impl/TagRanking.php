@@ -28,7 +28,7 @@ class TagRanking extends DefaultRanking
     public function customizeQuery(QueryBuilder $builder): void
     {
         $builder
-            ->join('app', 'app_tag', 'app_tag', 'id = app_tag.app_id')
+            ->join('app', 'app_tag', 'app_tag', 'app.id = app_tag.app_id')
             ->join(
                 'app',
                 '(
@@ -37,7 +37,7 @@ class TagRanking extends DefaultRanking
                     GROUP BY app_id
                 )',
                 'avg',
-                'id = avg.app_id'
+                'app.id = avg.app_id'
             )
             ->andWhere('tag = :tag AND votes >= avg * .5')
             ->setParameter('tag', $this->tag)

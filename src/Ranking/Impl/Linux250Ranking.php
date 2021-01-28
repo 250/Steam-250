@@ -16,6 +16,6 @@ class Linux250Ranking extends DefaultRanking
 
     public function customizeQuery(QueryBuilder $builder): void
     {
-        $builder->andWhere('platforms & ' . Platform::LINUX);
+        $builder->andWhere('app.platforms & ' . Platform::LINUX);
     }
 }

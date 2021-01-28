@@ -42,7 +42,7 @@ final class Queries
      *
      * @param Connection $database
      * @param Ranking $ranking Ranking.
-     * @param string $prevDb Optional. Path to a previous database.
+     * @param string|null $prevDb Optional. Path to a previous database.
      *
      * @return array Ranking of Steam apps.
      */
@@ -167,10 +167,13 @@ final class Queries
     public static function createScorer(Connection $database, Ranking $ranking): QueryBuilder
     {
         $query = $database->createQueryBuilder()
-            ->addSelect('*')
+            ->addSelect('app.*')
             ->from('app')
+            ->leftJoin('app', 'app', 'parent', 'app.parent_id = parent.id')
             // Ensure platforms are defined to exclude discontinued apps.
-            ->where('type = \'game\' AND platforms > 0 AND app.total_reviews > 0')
+            ->where('app.type = \'game\' AND app.platforms > 0 AND app.total_reviews > 0')
+            // Exclude aliased games pointing to a valid parent.
+            ->andWhere('(app.alias = 0 OR parent.id IS NULL)')
         ;
 
         self::removeBannedGames($query);
@@ -194,7 +197,7 @@ final class Queries
      */
     private static function removeBannedGames(QueryBuilder $query): void
     {
-        $query->andWhere('id != 252150');
+        $query->andWhere('app.id != 252150');
     }
 
     public static function calculateScore(
@@ -209,11 +212,11 @@ final class Queries
                 break;
 
             case Algorithm::BAYESIAN:
-                RankingQueries::calculateBayesianScore($builder, $ranking->getWeight());
+                RankingQueries::calculateBayesianScore($builder, $ranking->getWeight(), $prefix);
                 break;
 
             case Algorithm::LAPLACE:
-                RankingQueries::calculateLaplaceScore($builder, $ranking->getWeight());
+                RankingQueries::calculateLaplaceScore($builder, $ranking->getWeight(), $prefix);
                 break;
 
             case Algorithm::LAPLACE_LOG:
@@ -221,11 +224,11 @@ final class Queries
                 break;
 
             case Algorithm::DIRICHLET_PRIOR:
-                RankingQueries::calculateDirichletPriorScore($builder, $ranking->getWeight());
+                RankingQueries::calculateDirichletPriorScore($builder, $ranking->getWeight(), $prefix);
                 break;
 
             case Algorithm::DIRICHLET_PRIOR_LOG:
-                RankingQueries::calculateDirichletPriorLogScore($builder, $ranking->getWeight());
+                RankingQueries::calculateDirichletPriorLogScore($builder, $ranking->getWeight(), $prefix);
                 break;
 
             case Algorithm::TORN:
@@ -233,7 +236,7 @@ final class Queries
                 break;
 
             case Algorithm::HIDDEN_GEMS:
-                RankingQueries::calculateHiddenGemsScore($builder, $ranking->getWeight());
+                RankingQueries::calculateHiddenGemsScore($builder, $ranking->getWeight(), $prefix);
                 break;
         }
     }

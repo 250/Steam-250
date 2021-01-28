@@ -23,8 +23,8 @@ class OwnersOldRanking extends OldRanking
         parent::customizeQuery($builder);
 
         $builder
-            ->andWhere('price > 0')
-            ->orderBy('owners', SortDirection::DESC)
+            ->andWhere('app.price > 0')
+            ->orderBy('app.owners', SortDirection::DESC)
         ;
     }
 }

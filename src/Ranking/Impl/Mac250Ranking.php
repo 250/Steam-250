@@ -16,6 +16,6 @@ class Mac250Ranking extends DefaultRanking
 
     public function customizeQuery(QueryBuilder $builder): void
     {
-        $builder->andWhere('platforms & ' . Platform::MAC);
+        $builder->andWhere('app.platforms & ' . Platform::MAC);
     }
 }

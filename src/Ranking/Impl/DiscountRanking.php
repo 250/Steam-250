@@ -18,6 +18,6 @@ class DiscountRanking extends DefaultRanking
 
     public function customizeQuery(QueryBuilder $builder): void
     {
-        $builder->andWhere('discount > 0');
+        $builder->andWhere('app.discount > 0');
     }
 }

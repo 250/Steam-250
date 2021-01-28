@@ -32,8 +32,8 @@ class AnnualRanking extends RollingYearRanking
         $yearEnd = $yearStart->modify('1 year');
 
         $builder
-            ->andWhere("release_date >= {$yearStart->getTimestamp()}")
-            ->andWhere("release_date < {$yearEnd->getTimestamp()}")
+            ->andWhere("app.release_date >= {$yearStart->getTimestamp()}")
+            ->andWhere("app.release_date < {$yearEnd->getTimestamp()}")
         ;
     }
 

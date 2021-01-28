@@ -15,6 +15,6 @@ class UsdOver15Ranking extends DefaultRanking
 
     public function customizeQuery(QueryBuilder $builder): void
     {
-        $builder->andWhere('(discount_price IS NULL AND price > 1500) OR (discount_price > 1500)');
+        $builder->andWhere('(app.discount_price IS NULL AND app.price > 1500) OR (app.discount_price > 1500)');
     }
 }

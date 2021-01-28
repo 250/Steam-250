@@ -23,6 +23,6 @@ class EarlyAccessRanking extends TagRanking
 
     public function customizeQuery(QueryBuilder $builder): void
     {
-        $builder->andWhere('ea = 1');
+        $builder->andWhere('app.ea = 1');
     }
 }

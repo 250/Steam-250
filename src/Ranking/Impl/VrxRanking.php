@@ -17,6 +17,6 @@ class VrxRanking extends VrTop250Ranking
     {
         parent::customizeQuery($builder);
 
-        $builder->andWhere('vrx = 1');
+        $builder->andWhere('app.vrx = 1');
     }
 }

@@ -35,18 +35,20 @@ final class RankingQueries
      * Bayesian: votes <=> approval.
      *
      * @param QueryBuilder $builder
-     * @param float $weight Optional. Lower numbers favour confidence over approval.
+     * @param float $weight Optional. Lower numbers favour confidence over approval. Default 1.
      *
      * @see https://math.stackexchange.com/a/41513
      */
-    public static function calculateBayesianScore(QueryBuilder $builder, float $weight = 1): void
+    public static function calculateBayesianScore(QueryBuilder $builder, float $weight, string $prefix): void
     {
         $builder->addSelect(
             "CASE
-                WHEN (total_reviews * $weight * 1. / agg.max_votes) > 1
-                THEN (positive_reviews * 1. / total_reviews)
-                ELSE (total_reviews * $weight * 1. / agg.max_votes) * (positive_reviews * 1. / total_reviews)
-                    + (1 - (total_reviews * $weight * 1. / agg.max_votes)) * agg.avg_score
+                WHEN ($prefix.total_reviews * $weight * 1. / agg.max_votes) > 1
+                THEN ($prefix.positive_reviews * 1. / $prefix.total_reviews)
+                ELSE (
+                    $prefix.total_reviews * $weight * 1. / agg.max_votes)
+                    * ($prefix.positive_reviews * 1. / $prefix.total_reviews
+                ) + (1 - ($prefix.total_reviews * $weight * 1. / agg.max_votes)) * agg.avg_score
             END score"
         )->from(
             '(
@@ -62,14 +64,14 @@ final class RankingQueries
      * Laplace: approval <=> votes.
      *
      * @param QueryBuilder $builder
-     * @param float $weight
+     * @param float $weight Default 1.
      *
      * @see http://planspace.org/2014/08/17/how-to-sort-by-average-rating/
      */
-    public static function calculateLaplaceScore(QueryBuilder $builder, float $weight = 1): void
+    public static function calculateLaplaceScore(QueryBuilder $builder, float $weight, string $prefix): void
     {
         $builder->addSelect(
-            "(positive_reviews + $weight) / (total_reviews + $weight * 2.) AS score"
+            "($prefix.positive_reviews + $weight) / ($prefix.total_reviews + $weight * 2.) AS score"
         );
     }
 
@@ -92,19 +94,20 @@ final class RankingQueries
      *
      * @see http://www.dcs.bbk.ac.uk/%7Edell/publications/dellzhang_ictir2011.pdf
      */
-    public static function calculateDirichletPriorScore(QueryBuilder $builder, float $weight): void
+    public static function calculateDirichletPriorScore(QueryBuilder $builder, float $weight, string $prefix): void
     {
-        $builder->addSelect("(positive_reviews + $weight * p) / (total_reviews + $weight) AS score")
-            ->from('(SELECT SUM(positive_reviews) * 1. / SUM(total_reviews) AS p FROM app)')
+        $builder->addSelect("($prefix.positive_reviews + $weight * p) / ($prefix.total_reviews + $weight) AS score")
+            ->from("(SELECT SUM(positive_reviews) * 1. / SUM(total_reviews) AS p FROM app)")
         ;
     }
 
-    public static function calculateDirichletPriorLogScore(QueryBuilder $builder, float $weight): void
+    public static function calculateDirichletPriorLogScore(QueryBuilder $builder, float $weight, string $prefix): void
     {
         $builder->addSelect(
             "(
-                (positive_reviews * 1. / total_reviews) * LOG10(total_reviews + 1) + $weight * p)
-                   / (LOG10(total_reviews + 1) + $weight
+                ($prefix.positive_reviews * 1. / $prefix.total_reviews)
+                * LOG10($prefix.total_reviews + 1) + $weight * p)
+                   / (LOG10($prefix.total_reviews + 1) + $weight
             ) AS score"
         )->from('(SELECT SUM(positive_reviews) * 1. / SUM(total_reviews) AS p FROM app)');
     }
@@ -130,20 +133,22 @@ final class RankingQueries
      *
      * @see https://github.com/woctezuma/hidden-gems
      */
-    public static function calculateHiddenGemsScore(QueryBuilder $builder, float $weight): void
+    public static function calculateHiddenGemsScore(QueryBuilder $builder, float $weight, string $prefix): void
     {
         $wilsonWeight = 1.96;
 
         $builder->addSelect(
             "(
                 (
-                    (positive_reviews + POWER($wilsonWeight, 2) / 2.) / total_reviews - $wilsonWeight
-                        * SQRT((positive_reviews * negative_reviews) / total_reviews + POWER($wilsonWeight, 2) / 4.)
-                        / total_reviews
-                ) / (1 + POWER($wilsonWeight, 2) * 1. / total_reviews)
-            ) * ($weight * 1. / ($weight + total_reviews)) AS score"
+                    ($prefix.positive_reviews + POWER($wilsonWeight, 2) / 2.) / $prefix.total_reviews - $wilsonWeight
+                        * SQRT(
+                            ($prefix.positive_reviews * $prefix.negative_reviews)
+                            / $prefix.total_reviews + POWER($wilsonWeight, 2) / 4.
+                        ) / $prefix.total_reviews
+                ) / (1 + POWER($wilsonWeight, 2) * 1. / $prefix.total_reviews)
+            ) * ($weight * 1. / ($weight + $prefix.total_reviews)) AS score"
         )
-            ->leftJoin('app', 'app_tag', 'app_tag', 'id = app_tag.app_id AND tag = \'Visual Novel\'')
+            ->leftJoin($prefix, 'app_tag', 'app_tag', "$prefix.id = app_tag.app_id AND tag = 'Visual Novel'")
             ->join(
                 'app',
                 '(
@@ -152,7 +157,7 @@ final class RankingQueries
                     GROUP BY app_id
                 )',
                 'avg',
-                'id = avg.app_id'
+                "$prefix.id = avg.app_id"
             )
         ;
     }

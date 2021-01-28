@@ -21,12 +21,10 @@ final class PageContainerFactory
         $container = new Container($parent);
         $counter = 0;
 
-        /** @var StaticPageName $name */
         foreach (StaticPageName::members() as $name) {
             $container->alias($name->getAlias(), $name->getClassName());
         }
 
-        /** @var RankingName $name */
         foreach (RankingName::members() as $name) {
             $container->alias($name->getAlias(), $name->getClassName());
             ++$counter;

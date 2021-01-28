@@ -15,6 +15,6 @@ class DlcRanking extends DefaultRanking
 
     public function customizeQuery(QueryBuilder $builder): void
     {
-        $builder->where('type = \'dlc\' AND platforms > 0');
+        $builder->where('app.type = \'dlc\' AND app.platforms > 0');
     }
 }

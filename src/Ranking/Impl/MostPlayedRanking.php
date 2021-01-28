@@ -24,7 +24,7 @@ class MostPlayedRanking extends Ranking implements CustomRankingFetch
     public function customizeQuery(QueryBuilder $builder): void
     {
         $builder
-            ->join('app', 'app_players', 'app_players', 'id = app_id')
+            ->join('app', 'app_players', 'app_players', 'app.id = app_id')
             ->orderBy('average_players_7d', SortDirection::DESC)
         ;
     }
