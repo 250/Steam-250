@@ -50,7 +50,7 @@ class HomePage extends Page implements PreviousDatabaseAware
             array_map(
                 fn (Ranking $ranking) =>
                     [
-                        'apps' => Queries::fetchRankedList($this->database, $ranking->setLimit(10), $this->prevDb),
+                        'apps' => Queries::fetchRankedList($this->database, $ranking, $this->prevDb, 10),
                         'related' => self::RELATED_MAP[$ranking->getId()] ?? [],
                     ] + compact('ranking'),
                 $this->rankings

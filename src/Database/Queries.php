@@ -46,8 +46,12 @@ final class Queries
      *
      * @return array Ranking of Steam apps.
      */
-    public static function fetchRankedList(Connection $database, Ranking $ranking, string $prevDb = null): array
-    {
+    public static function fetchRankedList(
+        Connection $database,
+        Ranking $ranking,
+        string $prevDb = null,
+        int $limit = null
+    ): array {
         $query = $database->createQueryBuilder()
             ->select('rank.*, app.*, t250.rank as rank_250')
             ->from('rank')
@@ -56,7 +60,7 @@ final class Queries
             ->where('rank.list_id = :list_id')
                 ->setParameter('list_id', $ranking->getId())
             ->orderBy('rank')
-            ->setMaxResults($ranking->getLimit())
+            ->setMaxResults($limit ?? $ranking->getLimit())
         ;
 
         if ($prevDb) {

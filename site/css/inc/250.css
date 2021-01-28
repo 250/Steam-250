@@ -925,7 +925,7 @@ section.top10 > footer > a {
     place-items: center;
     float: right;
     padding: .5em var(--chevron-pad) .5em 1.25em;
-    line-height: 1;
+    line-height: .95;
 
     outline: none;
     font-size: 105%;
