@@ -1,0 +1,67 @@
+name: Build Steam 250 site
+
+on: push
+
+jobs:
+  Build:
+    runs-on: ubuntu-20.04
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/checkout@v2
+        with:
+          ref: gh-pages
+          path: gh-pages
+
+      - name: Reset build directory
+        run: rm -rfv gh-pages/* && cp -va site/* gh-pages
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 7.4
+
+      - name: Validate composer.json
+        run: composer validate
+
+      - name: Cache dependencies
+        id: composer-cache
+        uses: actions/cache@v2
+        with:
+          path: vendor
+          key: php-${{ hashFiles('composer.lock') }}
+
+      - name: Install dependencies
+        run: composer install --no-interaction --no-progress
+
+      - name: Acquire snapshots
+        run: |
+          snapshots=$(vendor/bin/250\ data download-last2) && echo "$snapshots"
+          echo todayDb=$(sed 1!d <<<"$snapshots" | cut -f3) | tee -a "$GITHUB_ENV"
+          echo todayDir=$(sed 1!d <<<"$snapshots" | cut -f2) | tee -a "$GITHUB_ENV"
+          echo yesterdayDb=$(sed 2!d <<<"$snapshots" | cut -f3) | tee -a "$GITHUB_ENV"
+        env:
+          GOOGLE_CLIENT_SECRET: ${{ secrets.GOOGLE_CLIENT_SECRET }}
+          GOOGLE_REFRESH_TOKEN: ${{ secrets.GOOGLE_REFRESH_TOKEN }}
+
+      - name: Build site
+        run: bin/generate site -v --min --ext '' --prev-db "${{ env.yesterdayDb }}" "${{ env.todayDb }}" gh-pages
+
+      - name: Push site
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add -A . &&
+          git commit -m "Built from $GITHUB_SHA." &&
+          [[ -r index.html ]] && git push
+        working-directory: gh-pages
+
+      - name: Upload modified database
+        run: |
+          mv "${{ env.todayDb }}" steam.sqlite
+          vendor/bin/250\ data upload $_ "${{ env.todayDir }}"
+          vendor/bin/250\ data move "${{ env.todayDir }}"
+        env:
+          GOOGLE_CLIENT_SECRET: ${{ secrets.GOOGLE_CLIENT_SECRET }}
+          GOOGLE_REFRESH_TOKEN: ${{ secrets.GOOGLE_REFRESH_TOKEN }}
