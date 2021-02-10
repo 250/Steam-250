@@ -69,3 +69,7 @@ jobs:
         env:
           GOOGLE_CLIENT_SECRET: ${{ secrets.GOOGLE_CLIENT_SECRET }}
           GOOGLE_REFRESH_TOKEN: ${{ secrets.GOOGLE_REFRESH_TOKEN }}
+
+      - name: Trigger curator sync
+        run: curl -sS -u :"${{ secrets.GH_BILGE_TOKEN }}" -d '{"ref":"master"}'
+          $GITHUB_API_URL/repos/250/Steam-curator/actions/workflows/Curator%20sync.yml/dispatches
