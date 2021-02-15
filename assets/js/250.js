@@ -276,7 +276,7 @@ class S250 {
         const userId = claimdId.replace(/.*\//, '');
 
         fetch(
-            `https://cors.bridged.cc/https://steamcommunity.com/profiles/76561197960597021/games/?tab=all`,
+            `https://cors.bridged.cc/https://steamcommunity.com/profiles/${userId}/games/?tab=all`,
         ).then(
             response => response.text()
         ).then((data) => {
