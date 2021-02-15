@@ -1,4 +1,5 @@
 /vendor/
 /.*/
 !/.github/
-/site/**/*.html
+/site/
+/node_modules/
