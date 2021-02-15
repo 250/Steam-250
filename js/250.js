@@ -1,3 +1,5 @@
+import BuildMonitor from './BuildMonitor';
+
 class S250 {
     constructor() {
         // User stuff.
@@ -274,8 +276,7 @@ class S250 {
         const userId = claimdId.replace(/.*\//, '');
 
         fetch(
-            location.protocol +
-            `//cors-anywhere.herokuapp.com/https://steamcommunity.com/profiles/${userId}/games/?tab=all`,
+            `https://cors.bridged.cc/https://steamcommunity.com/profiles/76561197960597021/games/?tab=all`,
         ).then(
             response => response.text()
         ).then((data) => {
@@ -393,13 +394,6 @@ class S250 {
     }
 
     initCountdown() {
-        if (typeof BuildMonitor !== 'function') {
-            console.debug('BuildMonitor unavailable: skipping.')
-            return;
-        }
-
-        const element = BuildMonitor.createElement();
-
         fetch(
             'https://api.travis-ci.com/repo/16980373/builds?created_by=Azure-bot&limit=1',
             {
@@ -412,7 +406,7 @@ class S250 {
                 data => data.builds[0].finished_at
             )
         ).then(
-            date => new BuildMonitor(date, element)
+            date => new BuildMonitor(date)
         );
     }
 

@@ -1,7 +1,7 @@
-class BuildMonitor {
-    constructor(date, element) {
+export default class BuildMonitor {
+    constructor(date) {
         this.nextBuild = date && moment(date).add({days: 1});
-        this.element = element;
+        this.element = BuildMonitor.createElement();
         this.blink = 0;
 
         // Build is pending.
