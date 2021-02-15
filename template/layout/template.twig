@@ -135,7 +135,7 @@
                 <li><a class="p" href="{{ patreon }}">Discover more with Club 250</a>
             </ul>
             {{ include('partial/ad.twig', {id: '9535671996'}) }}
-            {{ block('content') }}
+            {% block content %}{% endblock %}
         </div>
 
         {% block fullwidth %}{% endblock %}
@@ -239,7 +239,6 @@
 
 {% block js %}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.3/moment.min.js"></script>
-<script src="/js/BuildMonitor.js"></script>
-<script src="/js/250.js"></script>
+<script src="/c/250.js"></script>
 {% endblock %}
 {% endblock %}

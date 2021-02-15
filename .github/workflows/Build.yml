@@ -18,7 +18,10 @@ jobs:
           ref: gh-pages
           path: gh-pages
 
-      - name: Reset build directory
+      - name: Build production assets
+        run: yarn && yarn build
+
+      - name: Copy production assets
         run: rm -rfv gh-pages/* && cp -va site/* gh-pages
 
       - name: Setup PHP
