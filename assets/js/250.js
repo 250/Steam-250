@@ -393,21 +393,13 @@ class S250 {
         });
     }
 
-    initCountdown() {
-        fetch(
-            'https://api.travis-ci.com/repo/16980373/builds?created_by=Azure-bot&limit=1',
-            {
-                headers: {
-                    'Travis-API-Version': 3,
-                },
-            }
-        ).then(
-            response => response.json().then(
-                data => data.builds[0].finished_at
-            )
-        ).then(
-            date => new BuildMonitor(date)
-        );
+    async initCountdown() {
+        const json = await (await fetch(
+            'https://api.github.com/repos/250/Steam-250/actions/workflows/Build.yml/runs'
+            + '?actor=Azure-bot&status=completed&per_page=1',
+        )).json();
+
+        new BuildMonitor(json.workflow_runs[0].updated_at);
     }
 
     parseParam(name) {
