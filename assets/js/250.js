@@ -394,12 +394,14 @@ class S250 {
     }
 
     async initCountdown() {
+        const monitor = new BuildMonitor;
+
         const json = await (await fetch(
             'https://api.github.com/repos/250/Steam-250/actions/workflows/Build.yml/runs'
             + '?actor=Azure-bot&status=completed&per_page=1',
         )).json();
 
-        new BuildMonitor(json.workflow_runs[0].updated_at);
+        monitor.start(json.workflow_runs[0].updated_at);
     }
 
     parseParam(name) {
