@@ -10,7 +10,7 @@ export default class BuildMonitor {
     private timer?: number;
 
     start(date: string) {
-        // Build is pending. TODO: Validate this works with GitHub Actions API.
+        // Build is pending.
         if (!date) return this.showBuilding();
 
         this.nextBuild = dayjs(date).add(1, 'day');
@@ -19,7 +19,7 @@ export default class BuildMonitor {
         // Build is overdue.
         if (this.nextBuild <= now) {
             // Estimate next build based on time of last successful build, even though the last scheduled build failed.
-            this.nextBuild.add(dayjs.duration(now.diff(this.nextBuild)).days() + 1, 'days');
+            this.nextBuild = this.nextBuild.add(dayjs.duration(now.diff(this.nextBuild)).days() + 1, 'days');
         }
 
         // Time remains on the clock.
@@ -73,3 +73,13 @@ export default class BuildMonitor {
         return dayjs.duration(this.nextBuild!.diff(dayjs()));
     }
 }
+
+!async function initCountdown() {
+    const monitor = new BuildMonitor();
+
+    const json = await (await fetch(
+        'https://api.github.com/repos/250/Steam-250/actions/workflows/Build.yml/runs?actor=Azure-bot&per_page=1',
+    )).json();
+
+    monitor.start(json.workflow_runs[0].status === 'completed' ? json.workflow_runs[0].updated_at : null);
+}();
