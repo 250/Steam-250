@@ -398,7 +398,7 @@ class S250 {
 
         const json = await (await fetch(
             'https://api.github.com/repos/250/Steam-250/actions/workflows/Build.yml/runs'
-            + '?actor=Azure-bot&status=completed&per_page=1',
+            + '?actor=Azure-bot&per_page=1',
         )).json();
 
         monitor.start(json.workflow_runs[0].updated_at);
