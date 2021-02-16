@@ -32,8 +32,10 @@ module.exports = {
         new MiniCssExtractPlugin(),
         new CopyPlugin({
             patterns: [
-                // TODO: Exclude JS and CSS when they're fully compiled.
-                { from: '.', to: '..' },
+                // Root directory assets.
+                { from: '*', to: '..' },
+                // Subdirectory assets. TODO: Exclude JS and CSS when they're no longer sourced externally.
+                { from: '*/**/*.!(ts)', to: '..' }
             ],
         }),
         new CleanWebpackPlugin({
