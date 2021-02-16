@@ -6,7 +6,6 @@ class S250 {
         this.syncLogInOutState();
 
         // Menu stuff.
-        this.initFixedMenu();
         this.initMenuScrollbarTransitions();
         this.constrainDropdownMenuPositions();
 
@@ -35,21 +34,6 @@ class S250 {
         form['openid.return_to'].value = location.origin + location.pathname;
 
         document.querySelector('#lin button').addEventListener('click', _ => this.logout());
-    }
-
-    initFixedMenu() {
-        const menu = document.querySelector('ol.menu'),
-            newMenu = menu.cloneNode(true);
-
-        function updateFixedMenuStyle() {
-            newMenu.style.position = 'fixed';
-            newMenu.style.visibility = menu.offsetTop < scrollY ? 'visible' : 'hidden';
-        }
-
-        updateFixedMenuStyle();
-        menu.insertAdjacentElement('afterend', newMenu);
-
-        addEventListener('scroll', updateFixedMenuStyle);
     }
 
     /**
