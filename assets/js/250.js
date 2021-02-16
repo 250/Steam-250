@@ -401,7 +401,7 @@ class S250 {
             + '?actor=Azure-bot&per_page=1',
         )).json();
 
-        monitor.start(json.workflow_runs[0].updated_at);
+        monitor.start(json.workflow_runs[0].status === 'completed' ? json.workflow_runs[0].updated_at : null);
     }
 
     parseParam(name) {

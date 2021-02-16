@@ -10,7 +10,7 @@ export default class BuildMonitor {
     private timer?: number;
 
     start(date: string) {
-        // Build is pending. TODO: Validate this works with GitHub Actions API.
+        // Build is pending.
         if (!date) return this.showBuilding();
 
         this.nextBuild = dayjs(date).add(1, 'day');
