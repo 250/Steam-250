@@ -17,6 +17,11 @@ module.exports = {
             './css/inc/reset.css',
             './css/inc/250.css',
         ],
+        internal: [
+            './js/BuildMonitor.ts',
+            './js/Filter.ts',
+            './js/Home.js',
+        ],
     },
 
     output: {

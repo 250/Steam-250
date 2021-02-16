@@ -1,19 +1,23 @@
 new class {
-    constructor() {
-        this.form = document.querySelector('.ranking form');
-        this.filtersButton = this.form.previousElementSibling;
-        this.checks = [...this.form.querySelectorAll('input[type=checkbox]')];
+    form = <HTMLFormElement>document.querySelector('.ranking .filter form');
+    filtersButton = <HTMLButtonElement>this.form?.previousElementSibling;
+    checks: HTMLInputElement[] = [];
 
-        this.initFilterForm();
-        this.loadState();
+    constructor() {
+        if (this.form) {
+            this.checks = [...this.form.querySelectorAll<HTMLInputElement>('input[type=checkbox]')];
+
+            this.initFilterForm();
+            this.loadState();
+        }
     }
 
-    initFilterForm() {
+    private initFilterForm() {
         // Filters button.
         this.filtersButton.addEventListener('click', _ => this.form.classList.toggle('open'));
 
         // OK button.
-        this.form.parentElement.querySelector('form > button.ok').addEventListener('click', e => {
+        this.form.querySelector('form > button.ok')!.addEventListener('click', e => {
             this.saveState();
             this.form.classList.remove('open');
 
@@ -21,7 +25,7 @@ new class {
         });
 
         // Cancel button.
-        this.form.parentElement.querySelector('form > button.cancel').addEventListener('click', e => {
+        this.form.querySelector('form > button.cancel')!.addEventListener('click', e => {
             this.loadState();
             this.form.classList.remove('open');
 
@@ -29,16 +33,16 @@ new class {
         });
 
         // Reset button.
-        this.form.parentElement.querySelector('form > button.reset').addEventListener('click', _ => {
+        this.form.querySelector('form > button.reset')!.addEventListener('click', _ => {
             // This handler triggers before controls have been modified.
-            setTimeout(_ => this.filterApps());
+            setTimeout(() => this.filterApps());
         });
 
         // Checkbox changes.
         this.checks.forEach(check => check.addEventListener('change', _ => this.filterApps()));
     }
 
-    filterApps() {
+    private filterApps() {
         const ranks = document.querySelectorAll('.ranking > div[id]'),
             checkedChecks = this.checks.filter(check => check.checked);
 
@@ -73,8 +77,8 @@ new class {
         this.filtersButton.setAttribute('data-filtered', filteredCount ? `[-${filteredCount}]` : '');
     }
 
-    saveState() {
-        let state = {};
+    private saveState() {
+        let state: {[index: string]: any} = {};
 
         this.checks.forEach(check => state[check.name] = check.checked);
 
@@ -83,7 +87,7 @@ new class {
         return state;
     }
 
-    loadState() {
+    private loadState() {
         let state;
 
         if (!(state = this.validateState())) {
@@ -98,9 +102,9 @@ new class {
         this.filterApps();
     }
 
-    validateState() {
+    private validateState() {
         try {
-            return JSON.parse(localStorage.getItem('filter'));
+            return JSON.parse(localStorage.getItem('filter')!);
         } catch (error) {
             return false;
         }

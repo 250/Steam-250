@@ -61,7 +61,7 @@ jobs:
           git config user.email github-actions@github.com
           git add -A . &&
           git commit -m "Built from $GITHUB_SHA." &&
-          [[ -r index.html ]] && git push
+          [[ -r CNAME && -r index.html ]] && git push
         working-directory: gh-pages
 
       - name: Upload modified database

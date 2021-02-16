@@ -73,3 +73,13 @@ export default class BuildMonitor {
         return dayjs.duration(this.nextBuild!.diff(dayjs()));
     }
 }
+
+!async function initCountdown() {
+    const monitor = new BuildMonitor();
+
+    const json = await (await fetch(
+        'https://api.github.com/repos/250/Steam-250/actions/workflows/Build.yml/runs?actor=Azure-bot&per_page=1',
+    )).json();
+
+    monitor.start(json.workflow_runs[0].status === 'completed' ? json.workflow_runs[0].updated_at : null);
+}();

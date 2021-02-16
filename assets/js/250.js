@@ -1,5 +1,3 @@
-import BuildMonitor from './BuildMonitor';
-
 class S250 {
     constructor() {
         // User stuff.
@@ -23,7 +21,6 @@ class S250 {
         // Fancy stuff.
         this.initAppLinkMenu();
         this.initRankingHoverItems();
-        this.initCountdown();
     }
 
     initLogInOut() {
@@ -391,17 +388,6 @@ class S250 {
                 shadow.classList.remove('animate');
             })
         });
-    }
-
-    async initCountdown() {
-        const monitor = new BuildMonitor;
-
-        const json = await (await fetch(
-            'https://api.github.com/repos/250/Steam-250/actions/workflows/Build.yml/runs'
-            + '?actor=Azure-bot&per_page=1',
-        )).json();
-
-        monitor.start(json.workflow_runs[0].status === 'completed' ? json.workflow_runs[0].updated_at : null);
     }
 
     parseParam(name) {
