@@ -1792,6 +1792,11 @@ tr.a .movement.none:before {
     opacity: 1;
     transition: .1s;
 }
+/* Preload film.svg */
+.compact.ranking li > .title > .title > a[data-video] > img {
+    mask: url(/svg/film.svg) center/200%;
+    -webkit-mask: url(/svg/film.svg) center/200%;
+}
 .compact.ranking li a[data-video] > img:hover,
 .compact.ranking li > .title > a[data-video]:hover ~ .title img {
     mask: url(/svg/film.svg) 0 0/cover;
