@@ -20,6 +20,6 @@
   },
   "dependencies": {
     "dayjs": "^1.10.4",
-    "lazysizes": "^5.3.0"
+    "vanilla-lazyload": "^17.3.1"
   }
 }

@@ -1,5 +1,4 @@
-// @ts-ignore
-import lazySizes from 'lazysizes';
+import LazyLoad from 'vanilla-lazyload';
 
 new class {
     constructor() {
@@ -7,6 +6,6 @@ new class {
     }
 
     private initImageLazyloading() {
-        lazySizes.init();
+        new LazyLoad;
     }
 }
