@@ -1,13 +1,13 @@
 class S250 {
     constructor() {
+        // Menu stuff.
+        this.initMenuScrollbarTransitions();
+        this.constrainDropdownMenuPositions();
+
         // User stuff.
         this.tryParseOpenIdPostback();
         this.initLogInOut();
         this.syncLogInOutState();
-
-        // Menu stuff.
-        this.initMenuScrollbarTransitions();
-        this.constrainDropdownMenuPositions();
 
         // Hash stuff.
         this.scrollToCurrentHash();
@@ -198,7 +198,7 @@ class S250 {
         ;
 
         ranks.forEach(a => {
-            const id = a.firstElementChild.src.match(/\/apps\/(\d+)/)[1];
+            const id = a.href.match(/\/app\/(\d+)/)[1];
 
             if (games.hasOwnProperty(id)) {
                 a.classList.add('owned');
@@ -293,7 +293,7 @@ class S250 {
             const dom = new DOMParser().parseFromString(data, 'text/html');
             localStorage.setItem('steam', JSON.stringify({
                 id: userId,
-                name: dom.querySelector('.profile_small_header_name').innerText,
+                name: dom.querySelector('.profile_small_header_name').innerText.trim(),
                 avatar: dom.querySelector('.playerAvatar > img')['src'].replace('_medium', ''),
             }));
 

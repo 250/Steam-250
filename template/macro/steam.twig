@@ -18,6 +18,6 @@ https://store.steampowered.com/search/?sort_by=Reviews_DESC&amp;category1=998&am
 {% if videos -%}
     data-video="{{ videos }}"
     data-title="{{ game_name|e('html_attr') }}"
-    href="{{ _self.app_url(game_id) }}"
 {%- endif %}
+    href="{{ _self.app_url(game_id) }}"
 {% endmacro %}
