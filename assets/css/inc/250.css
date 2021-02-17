@@ -1630,9 +1630,11 @@ tr.a .movement.none:before {
 }
 .compact.ranking li img {
     height: 36px;
+    min-width: 96px;
 }
 .flat.compact.ranking img {
     height: 34px;
+    min-width: 90px;
 }
 .compact.ranking li .title {
     display: flex;

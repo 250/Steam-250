@@ -19,6 +19,7 @@
     "build": "webpack --mode production"
   },
   "dependencies": {
-    "dayjs": "^1.10.4"
+    "dayjs": "^1.10.4",
+    "lazysizes": "^5.3.0"
   }
 }

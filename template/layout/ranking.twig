@@ -51,8 +51,8 @@
         <div{% if game.rank is defined %} id="{{ game.rank }}"{% endif %}>
             <div>
                 <a {{ steam.video_attr(game.id, game.name, game.videos) }}>
-                    <img alt="Logo" src="//steamcdn-a.akamaihd.net/steam/apps/{{ game.id }}/capsule_
-                        {{- loop.index <= 14 ? '184x69.jpg' : 'sm_120.jpg' }}"
+                    <img alt="Logo" data-src="//steamcdn-a.akamaihd.net/steam/apps/{{ game.id }}/capsule_
+                        {{- loop.index <= 14 ? '184x69.jpg' : 'sm_120.jpg' }}" class="lazyload"
                 ></a>
             </div>
             <div>

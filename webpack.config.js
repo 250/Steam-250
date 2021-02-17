@@ -18,6 +18,7 @@ module.exports = {
             './css/inc/250.css',
         ],
         internal: [
+            './js/Internal.ts',
             './js/BuildMonitor.ts',
             './js/Filter.ts',
             './js/Home.js',
