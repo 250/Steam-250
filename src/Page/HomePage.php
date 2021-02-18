@@ -57,7 +57,12 @@ class HomePage extends Page implements PreviousDatabaseAware
             )
         );
 
-        return parent::export() + compact('rankings') + ['total_rankings' => $this->rankingCount];
+        return parent::export() + compact('rankings') +
+            [
+                'total_games' => Queries::countGames($this->database),
+                'total_rankings' => $this->rankingCount,
+            ]
+        ;
     }
 
     public static function getRankings(): array

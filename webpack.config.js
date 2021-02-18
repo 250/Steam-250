@@ -15,13 +15,16 @@ module.exports = {
             './js/VideoPlayer.js',
 
             './css/inc/reset.css',
-            './css/inc/250.css',
+            './css/inc/250.less',
         ],
         internal: [
             './js/Internal.ts',
             './js/BuildMonitor.ts',
             './js/Filter.ts',
             './js/Home.js',
+        ],
+        home: [
+            './css/home.less',
         ],
     },
 
@@ -36,7 +39,7 @@ module.exports = {
                 // Root directory assets.
                 { from: '*', to: '..' },
                 // Subdirectory assets. TODO: Exclude JS and CSS when they're no longer sourced externally.
-                { from: '*/**/*.!(ts)', to: '..' }
+                { from: '*/**/*.!(ts|less)', to: '..' }
             ],
         }),
         new CleanWebpackPlugin({

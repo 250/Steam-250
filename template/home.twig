@@ -5,6 +5,16 @@
 {% block class %}home{% endblock %}
 
 {% block fullwidth %}
+<section class="stats">
+    <dl>
+        <dt>Games on Steam
+        <dd>{{ total_games|number_format }}
+    </dl>
+    <dl>
+        <dt>Rankings
+        <dd>{{ total_rankings }}
+    </dl>
+</section>
 <section class="rankings">
     {% for id, ranking in rankings %}
     <section class="top10">
@@ -39,4 +49,9 @@
 
 {% block post %}
 {{ include('partial/ad.twig', {id: '6546092519'}) }}
+{% endblock %}
+
+{% block css %}
+{{ parent() }}
+<link rel="stylesheet" href="/c/home.css">
 {% endblock %}
