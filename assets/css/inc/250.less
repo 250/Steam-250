@@ -203,9 +203,6 @@ input[type=checkbox] + span {
 
     transition: color .15s;
 }
-input[type=checkbox]:checked + span {
-    color: #a4c2b9;
-}
 input[type=checkbox] + span:before,
 input[type=checkbox] + span:after {
     content: '';
@@ -232,15 +229,27 @@ input[type=checkbox] + span:after {
     border-radius: 1em;
     transition: all .15s;
 }
-input[type=checkbox]:checked + span:before {
-    background: #172730;
-    border-color: #5d8bad;
-}
-input[type=checkbox]:checked + span:after {
-    left: 2.2em;
-    transform: translate(-100%, 0);
+input[type=checkbox]:checked,
+// In option mode, checkbox represents two equal options (both enabled) rather than on/off states.
+input[type=checkbox].option {
+    + span {
+        color: #91c2b3;
 
-    background: #34c99f;
+        &:before {
+            background: #172730;
+            border-color: #396d93;
+        }
+
+        &:after {
+            background: #34c99f;
+        }
+    }
+}
+input[type=checkbox]:checked + span {
+    &:after {
+        left: 2.2em;
+        transform: translate(-100%, 0);
+    }
 }
 
 a.owned {
@@ -1196,7 +1205,7 @@ tr.a .movement.none:before {
 .button, .button:visited {
     margin: 1em .8em;
     min-width: 5em;
-    padding: .3em .7em;
+    padding: .4em .7em;
 
     font-size: 90%;
     color: #b7d0e8;
@@ -1204,11 +1213,10 @@ tr.a .movement.none:before {
     border-top: 1px solid #37576e;
     border-left: 1px solid #37576e;
     border-bottom: 2px solid #233852;
-    border-radius: 2px;
+    border-radius: 4px;
     box-shadow: 0 1px 2px rgba(0, 0, 0, .125);
     text-align: center;
     text-shadow: 0 1px 2px #467899;
-    transition: all .1s;
     outline: none;
 }
 .button:hover {
@@ -1229,7 +1237,6 @@ tr.a .movement.none:before {
     border-bottom-width: 1px;
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, .5);
     text-shadow: none;
-    transition: none;
 }
 
 .button.cur {
