@@ -13,12 +13,12 @@ module.exports = {
         250: [
             './js/250.js',
             './js/VideoPlayer.js',
+            './js/LazyLoad.ts',
 
             './css/inc/reset.css',
             './css/inc/250.less',
         ],
         internal: [
-            './js/Internal.ts',
             './js/BuildMonitor.ts',
             './js/Filter.ts',
             './js/Home.js',
@@ -38,8 +38,8 @@ module.exports = {
             patterns: [
                 // Root directory assets.
                 { from: '*', to: '..' },
-                // Subdirectory assets. TODO: Exclude JS and CSS when they're no longer sourced externally.
-                { from: '*/**/*.!(ts|less)', to: '..' }
+                // Subdirectory assets. TODO: Exclude CSS when no longer sourced internally.
+                { from: '*/**/*.!(ts|less|js)', to: '..' }
             ],
         }),
         new CleanWebpackPlugin({

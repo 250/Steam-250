@@ -163,17 +163,17 @@ class S250 {
     resolveHashTarget(hash) {
         // App tracking.
         if (hash.startsWith('#app/')) {
-            let [_, id, name] = hash.split('/', 3),
-                img = document.querySelector(`.ranking img[src*="/${id}/"]`);
+            let [, id, name] = hash.split('/', 3),
+                a = document.querySelector(`.ranking a[href$="/${id}"]`);
 
-            if (!img) {
+            if (!a) {
                 // TODO: Client flash message error.
                 console.error(`Couldn't find game on this ranking: "${decodeURIComponent(name)}".`);
 
                 return;
             }
 
-            return img.closest('[id]');
+            return a.closest('[id]');
         }
 
         return document.getElementById(hash.substr(1));
