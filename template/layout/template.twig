@@ -95,6 +95,7 @@
         <li>
             <a>Tag</a>
             <ol>
+                <li><a href="{{ club250 }}/tags">Browse all tags</a>
                 {% for tag in tags %}
                 <li><a href="/tag/{{ tag|tag_id|url_encode ~ ext }}">{{ tag }}</a>
                 {% endfor %}
