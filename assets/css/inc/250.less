@@ -196,59 +196,68 @@ legend {
 input[type=checkbox] {
     position: absolute;
     opacity: 0;
-}
-input[type=checkbox] + span {
-    position: relative;
-    padding-left: 2.6em;
 
-    transition: color .15s;
-}
-input[type=checkbox] + span:before,
-input[type=checkbox] + span:after {
-    content: '';
-    position: absolute;
-}
-input[type=checkbox] + span:before {
-    height: .7em;
-    width: 2em;
-    top: 2px;
-    left: 1px;
+    // In option mode, checkbox represents two equal options (both enabled) rather than on/off states.
+    &:checked, &.option {
+        + span {
+            color: #91c2b3;
 
-    background: #172230;
-    border: 1px solid #718fa5;
-    border-radius: 1em;
-    transition: all .15s;
-}
-input[type=checkbox] + span:after {
-    height: .71em;
-    width: .75em;
-    top: 3px;
-    left: 1px;
+            &:before {
+                background: #15232b;
+                border-color: #396d93;
+            }
 
-    background: #a0b7c3;
-    border-radius: 1em;
-    transition: all .15s;
-}
-input[type=checkbox]:checked,
-// In option mode, checkbox represents two equal options (both enabled) rather than on/off states.
-input[type=checkbox].option {
+            &:after {
+                background: #34c99f;
+            }
+        }
+    }
+    &:checked {
+        + span:after {
+            left: 2.2em;
+            transform: translate(-100%, 0);
+        }
+    }
+
     + span {
-        color: #91c2b3;
+        position: relative;
+        padding-left: 2.6em;
+
+        transition: color .15s;
+
+        &:before, &:after {
+            content: '';
+            position: absolute;
+        }
 
         &:before {
-            background: #172730;
-            border-color: #396d93;
+            height: .7em;
+            width: 2em;
+            top: 2px;
+            left: 1px;
+
+            background: #172230;
+            border: 1px solid #718fa5;
+            border-radius: 1em;
+
+            transition: .15s;
+
         }
 
         &:after {
-            background: #34c99f;
+            height: .71em;
+            width: .75em;
+            top: 3px;
+            left: 1px;
+
+            background: #a0b7c3;
+            border-radius: 1em;
+            transition: .15s;
         }
-    }
-}
-input[type=checkbox]:checked + span {
-    &:after {
-        left: 2.2em;
-        transform: translate(-100%, 0);
+
+        &:hover{
+            filter: brightness(118%) saturate(86%);
+        }
     }
 }
 
@@ -1203,8 +1212,8 @@ tr.a .movement.none:before {
 }
 
 .button, .button:visited {
-    margin: 1em .8em;
-    min-width: 5em;
+    margin: 1em .5em;
+    min-width: 6em;
     padding: .4em .7em;
 
     font-size: 90%;

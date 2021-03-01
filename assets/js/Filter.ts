@@ -65,7 +65,7 @@ new class {
 
                 if (keep) {
                     rank.classList.remove('primary', 'secondary');
-                    rank.classList.add(++kept & 1 ? 'primary' : 'secondary');
+                    rank.classList.add(++kept & 1 ? 'secondary' : 'primary');
                 }
             });
         } else {
