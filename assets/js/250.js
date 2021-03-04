@@ -127,8 +127,8 @@ class S250 {
         if (target) {
             let yOffset = target.getBoundingClientRect().top - menuHeight;
 
-            // Highlight ranking element if it exists.
-            const ranking = document.querySelector('.ranking');
+            // Highlight ranking element if it exists (will not exist on non-ranking pages).
+            const ranking = document.querySelector('.applist, .ranking');
             if (ranking && ranking.contains(target)) {
                 target.classList.add(HIGHLIGHT);
 
@@ -164,7 +164,7 @@ class S250 {
         // App tracking.
         if (hash.startsWith('#app/')) {
             let [, id, name] = hash.split('/', 3),
-                a = document.querySelector(`.ranking a[href$="/${id}"]`);
+                a = document.querySelector(`.applist a[href$="/${id}"], .ranking a[href$="/${id}"]`);
 
             if (!a) {
                 // TODO: Client flash message error.
