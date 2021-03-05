@@ -33,8 +33,13 @@
             width: 100%;
 
             // Internal grid.
-            grid-auto-flow: column;
-            grid-auto-columns: 320px;
+            grid-template-columns: repeat(3, 320px);
+            justify-content: center;
+
+            .boxlink {
+                // Push boxlinks to end of content.
+                order: 1;
+            }
         }
     }
 
@@ -49,9 +54,12 @@
         }
         >.col3 {
             grid-column: 1;
-            //display: block;
-            grid-auto-flow: row;
-            grid-auto-columns: auto;
+            grid-template-columns: none;
+
+            .boxlink {
+                // Restore boxlink order in auto-row layout.
+                order: 0;
+            }
         }
     }
 
