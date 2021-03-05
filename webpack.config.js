@@ -91,7 +91,11 @@ module.exports = {
 
     optimization: {
         minimizer: [
-            new TerserPlugin(),
+            new TerserPlugin({
+                terserOptions: {
+                    keep_classnames: /^S250$/,
+                },
+            }),
             new CssMinimizerPlugin(),
         ],
     },

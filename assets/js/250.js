@@ -417,3 +417,4 @@ class S250 {
         }
     }
 } new S250;
+window.S250 = S250;
