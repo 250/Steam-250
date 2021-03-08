@@ -459,7 +459,6 @@ ol.menu > li:nth-child(1) > ol > li:nth-of-type(4) > a:before {
 
     background: linear-gradient(#c2b871, #8c8325);
     clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
-    -webkit-clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
 }
 ol.menu > li:nth-child(5) > ol > li:nth-last-of-type(3) > a {
     padding-left: 2.05em;
@@ -659,7 +658,6 @@ p.notice::before {
 
     font: 270%/65px Lobster;
     clip-path: polygon(50% 0, 100% 100%, 0 100%);
-    -webkit-clip-path: polygon(50% 0, 100% 100%, 0 100%);
     color: #ffe9ce;
     text-shadow: 2px 2px 0 #d57500;
     background: #e0990b;
@@ -966,12 +964,10 @@ p.notice::before {
     left: 3.5%;
     background: linear-gradient(#e3d778, #bfb34a);
     clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
-    -webkit-clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
 }
 .movement.none:before {
     background: #36383b;
     clip-path: inset(14% 14.5%);
-    -webkit-clip-path: inset(14% 14.5%);
 }
 tr.a .movement.none:before {
     background: #363638;
@@ -980,13 +976,11 @@ tr.a .movement.none:before {
     top: -2px;
     background: linear-gradient(#698a48, #546f38);
     clip-path: polygon(20% 100%, 20% 50%, 0% 50%, 50% 0%, 100% 50%, 80% 50%, 80% 100%);
-    -webkit-clip-path: polygon(20% 100%, 20% 50%, 0% 50%, 50% 0%, 100% 50%, 80% 50%, 80% 100%);
 }
 .movement.neg:before {
     top: 2px;
     background: linear-gradient(#824e46, #6d4039);
     clip-path: polygon(20% 0%, 20% 50%, 0% 50%, 50% 100%, 100% 50%, 80% 50%, 80% 0%);
-    -webkit-clip-path: polygon(20% 0%, 20% 50%, 0% 50%, 50% 100%, 100% 50%, 80% 50%, 80% 0%);
 }
 .movement.ded {
     background: url(/svg/deny.svg);
@@ -1674,12 +1668,10 @@ tr.a .movement.none:before {
 /* Preload film.svg */
 .compact.ranking li > .title > .title > a[data-video] > img {
     mask: url(/svg/film.svg) center/200%;
-    -webkit-mask: url(/svg/film.svg) center/200%;
 }
 .compact.ranking li a[data-video] > img:hover,
 .compact.ranking li > .title > a[data-video]:hover ~ .title img {
     mask: url(/svg/film.svg) 0 0/cover;
-    -webkit-mask: url(/svg/film.svg) 0 0/cover;
 
     animation: film .5s linear infinite;
 }
