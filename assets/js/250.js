@@ -409,6 +409,7 @@ class S250 {
                 return document.execCommand('copy');
             } catch (e) {
                 // TODO: Client error message.
+                console.debug('Failed to copy clipboard data.');
 
                 return false;
             } finally {
