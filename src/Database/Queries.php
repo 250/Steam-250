@@ -100,7 +100,7 @@ final class Queries
             return $database->executeQuery(
                 'SELECT id, prank.rank, prank.owner, name, videos, "dead" movement
                 FROM prev.rank prank
-                    JOIN app ON id = prank.app_id
+                    JOIN prev.app ON id = prank.app_id
 	                LEFT JOIN rank USING (list_id, app_id)
                 WHERE prank.list_id = :ranking_id AND rank.app_id IS NULL
                 ORDER BY prank.rank
