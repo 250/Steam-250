@@ -7,6 +7,7 @@
 {% block fullwidth %}
 <section class="rankings">
     {% for id, ranking in rankings %}
+    {% if ranking.apps %}
     <section class="top10">
         <header>
             {% set group = id in ['price/under5', 'discounts', 'tag/free_to_play'] ? 'budget'
@@ -33,6 +34,7 @@
             <a href="/{{ id ~ ext }}"><span>All {{ ranking.ranking.limit }}</span><span>&gt;</span></a>
         </footer>
     </section>
+    {% endif %}
     {% endfor %}
 </section>
 <section class="stats">
