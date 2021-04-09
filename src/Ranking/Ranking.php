@@ -60,9 +60,9 @@ abstract class Ranking extends Page implements PreviousDatabaseAware
         );
 
         if (!$games = Queries::fetchRankedList($this->database, $this, $this->prevDb)) {
-            $this->logger->error($error = 'No games matching query.');
+            $this->logger->error($error = 'No apps matching query.');
 
-            throw new \RuntimeException($error);
+            throw new EmptyRankingException($error);
         }
 
         // Decorate each game with tags.

@@ -5,7 +5,9 @@ namespace ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl;
 
 use Doctrine\DBAL\Query\QueryBuilder;
 use ScriptFUSION\Steam250\SiteGenerator\Database\SortDirection;
+use ScriptFUSION\Steam250\SiteGenerator\Page\Page;
 use ScriptFUSION\Steam250\SiteGenerator\Rank\CustomRankingFetch;
+use ScriptFUSION\Steam250\SiteGenerator\Ranking\EmptyRankingException;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Ranking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\RankingDependencies;
 
@@ -35,5 +37,14 @@ class MostPlayedRanking extends Ranking implements CustomRankingFetch
             ->join('app', 'app_players', 'app_players', 'id = app_players.app_id')
             ->addSelect('app_players.average_players_7d')
         ;
+    }
+
+    public function export(): array
+    {
+        try {
+            return parent::export();
+        } catch (EmptyRankingException $exception) {
+            return Page::export();
+        }
     }
 }
