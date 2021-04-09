@@ -1,11 +1,11 @@
 {% macro tag(tag, tags) %}
 {% if tag %}
-    {% if tag in tags %}
-        {% set tag_url = '/tag/' ~ tag|tag_id|url_encode ~ ext %}
+    {% if tag.name in tags %}
+        {% set tag_url = '/tag/' ~ tag.name|tag_id|url_encode ~ ext %}
     {% else %}
-        {% set tag_url = "https://store.steampowered.com/tag/en/#{tag|url_encode}/" %}
+        {% set tag_url = "#{club250}/tag/#{tag.id}" %}
     {% endif -%}
-    <a href="{{ tag_url }}" class="genre">{{ tag }}</a>
+    <a href="{{ tag_url }}" class="genre">{{ tag.name }}</a>
 {%- endif %}
 {% endmacro %}
 

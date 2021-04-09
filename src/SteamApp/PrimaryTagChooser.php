@@ -21,17 +21,17 @@ final class PrimaryTagChooser
         'VR',
     ];
 
-    public static function choose(array $tags): ?string
+    public static function choose(array $tags): ?array
     {
         $lastTag = end($tags);
 
-        foreach ($tags as $tag) {
-            if (!\in_array($tag, self::BLACKLIST, true)) {
-                return $tag;
+        foreach ($tags as $id => $name) {
+            if (!\in_array($name, self::BLACKLIST, true)) {
+                return compact('id', 'name');
             }
 
-            if ($tag === $lastTag) {
-                return reset($tags);
+            if ($name === $lastTag) {
+                return ['name' => reset($tags), 'id' => key($tags)];
             }
         }
 

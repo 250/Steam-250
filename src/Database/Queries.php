@@ -117,25 +117,31 @@ final class Queries
 
     public static function fetchAppTags(Connection $database, int $appId): array
     {
-        return $database->query("SELECT tag FROM app_tag WHERE app_id = $appId ORDER BY votes DESC")
-            ->fetchAll(\PDO::FETCH_COLUMN);
+        return array_column(
+            $database->executeQuery(
+                "SELECT id, name FROM app_tag JOIN tag ON id = tag_id WHERE app_id = $appId ORDER BY votes DESC"
+            )->fetchAllAssociative(),
+            'name',
+            'id'
+        );
     }
 
     public static function fetchPopularTags(Connection $database, int $threshold = 400): array
     {
-        return $database->query(
-            "SELECT tag, COUNT(tag) AS count
+        return $database->executeQuery(
+            "SELECT tag.name AS tag, COUNT(*) AS count
             FROM app_tag
             JOIN (
                 SELECT app_id, AVG(votes) avg
                 FROM app_tag
                 GROUP BY app_id
             )_ USING(app_id)
-            LEFT JOIN app ON id = app_id
-            WHERE type = 'game' AND tag != 'VR' AND votes >= avg * .5
-            GROUP BY tag
+            JOIN tag ON tag.id = tag_id
+            LEFT JOIN app ON app.id = app_id
+            WHERE type = 'game' AND tag.name != 'VR' AND votes >= avg * .5
+            GROUP BY tag.id
             HAVING count >= $threshold"
-        )->fetchAll(\PDO::FETCH_COLUMN);
+        )->fetchFirstColumn();
     }
 
     public static function fetchPatronReviews(Connection $database, int $appId): array
