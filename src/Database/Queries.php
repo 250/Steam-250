@@ -140,7 +140,8 @@ final class Queries
             LEFT JOIN app ON app.id = app_id
             WHERE type = 'game' AND tag.name != 'VR' AND votes >= avg * .5
             GROUP BY tag.id
-            HAVING count >= $threshold"
+            HAVING count >= $threshold
+            ORDER BY tag.name"
         )->fetchFirstColumn();
     }
 
