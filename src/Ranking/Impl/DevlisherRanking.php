@@ -94,7 +94,7 @@ abstract class DevlisherRanking extends Ranking implements CustomRankingFetch
                         -- Override review totals with developer aggregate totals.
                         SUM(total_reviews) AS total_reviews, SUM(positive_reviews) AS positive_reviews
                     FROM app
-                    INNER JOIN app_$mode ON app_id = id
+                    INNER JOIN app_$mode ON app_id = app.id
                     WHERE type = 'game' AND platforms > 0
                     GROUP BY $mode
                 )",
