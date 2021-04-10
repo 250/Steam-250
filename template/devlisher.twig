@@ -47,7 +47,7 @@
 
     <span class="title">
         {{ game.rank }}.
-        <a href="{{ steam_url }}">{{- game.owner -}}</a>
+        <a href="{{ game.team_id ? "#{club250}/team/#{game.team_id}" : steam_url }}">{{- game.owner -}}</a>
     </span>
     <a href="{{ steam_url }}" class="games"
        title="{{ game.games }} game{% if game.games > 1 %}s{% endif %}">{{ game.games }}</a>

@@ -871,14 +871,16 @@ tr.a .movement.none:before {
     background: rgba(82, 76, 22, .7);
 }
 
-.genre[href*="//store.steampowered.com/"] {
-    padding-left: calc(.25em + 15px);
+// External team links.
+.ranking .title > [href*="//store.steampowered.com/"] {
+    padding-left: 1em;
 
     background-image: url('/svg/steam.svg');
-    background-size: 10px;
+    background-size: .7em;
     background-repeat: no-repeat;
-    background-position: 4px 45%;
+    background-position: 2px 50%;
 }
+
 .genre:hover {
     text-decoration: none;
     color: #b8fbff;

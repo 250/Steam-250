@@ -90,16 +90,16 @@ abstract class DevlisherRanking extends Ranking implements CustomRankingFetch
             ->innerJoin(
                 'rank',
                 "(
-                    SELECT app_$mode.name AS $mode, COUNT(*) AS games,
+                    SELECT team.name team, team.id team_id, COUNT(*) games,
                         -- Override review totals with developer aggregate totals.
                         SUM(total_reviews) AS total_reviews, SUM(positive_reviews) AS positive_reviews
                     FROM app
-                    INNER JOIN app_$mode ON app_id = app.id
+                    INNER JOIN app_$mode team ON app_id = app.id
                     WHERE type = 'game' AND platforms > 0
-                    GROUP BY $mode
+                    GROUP BY team
                 )",
                 'agg',
-                "agg.$mode = rank.owner"
+                "agg.team = rank.owner"
             )
         ;
     }
