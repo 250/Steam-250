@@ -148,7 +148,7 @@ final class RankingQueries
                 ) / (1 + POWER($wilsonWeight, 2) * 1. / $prefix.total_reviews)
             ) * ($weight * 1. / ($weight + $prefix.total_reviews)) AS score"
         )
-            ->leftJoin($prefix, 'app_tag', 'app_tag', "$prefix.id = app_tag.app_id AND tag = 'Visual Novel'")
+            ->leftJoin($prefix, 'app_tag', 'app_tag', "$prefix.id = app_tag.app_id AND tag_id = 3799 --Visual Novel\n")
             ->join(
                 'app',
                 '(

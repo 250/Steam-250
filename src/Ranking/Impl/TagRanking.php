@@ -29,6 +29,7 @@ class TagRanking extends DefaultRanking
     {
         $builder
             ->join('app', 'app_tag', 'app_tag', 'app.id = app_tag.app_id')
+            ->join('app_tag', 'tag', 'tag', 'app_tag.tag_id = tag.id')
             ->join(
                 'app',
                 '(
@@ -39,7 +40,7 @@ class TagRanking extends DefaultRanking
                 'avg',
                 'app.id = avg.app_id'
             )
-            ->andWhere('tag = :tag AND votes >= avg * .5')
+            ->andWhere('tag.name = :tag AND votes >= avg * .5')
             ->setParameter('tag', $this->tag)
         ;
     }
