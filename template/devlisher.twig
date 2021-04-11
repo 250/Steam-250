@@ -1,6 +1,7 @@
 {% extends 'layout/ranking.twig' %}
 {% import 'macro/steam.twig' as steam %}
 {% import 'macro/ranking.twig' as ranking_macro %}
+{% import 'macro/club250.twig' as c250 %}
 
 {% set mode = ranking.id %}
 {% set mode_c = mode|capitalize %}
@@ -45,7 +46,7 @@
         {% set steam_url = steam.publisher_url(game.owner) %}
     {% endif %}
 
-    {% set team_url = game.team_id ? "#{club250}/team/#{game.team_id}" : steam_url %}
+    {% set team_url = game.team_id ? c250.team_url(game.team_id) : steam_url %}
     <span class="title">
         {{ game.rank }}.
         <a href="{{ team_url }}">{{- game.owner -}}</a>

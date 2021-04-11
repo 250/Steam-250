@@ -1,4 +1,5 @@
 {% import 'macro/steam.twig' as steam %}
+{% import 'macro/club250.twig' as c250 %}
 
 <div class="compact ranking{% if fancy is not defined %} flat{% endif %}">
     {% if title is defined %}
@@ -11,7 +12,8 @@
             <a href="{{ base_url ?? '' }}#{{ game.rank }}" class="rank">{{ game.rank }}</a>
             {% endif %}
             {% set href =
-                game.developer is defined ? steam.developer_url(game.developer)
+                game.team_id is defined and game.team_id ? c250.team_url(game.team_id)
+                : game.developer is defined ? steam.developer_url(game.developer)
                 : game.publisher is defined ? steam.publisher_url(game.publisher)
                 : steam.app_url(game.id)
             %}
