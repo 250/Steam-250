@@ -94,6 +94,9 @@
                 {% if game.rank_250 is defined and game.rank_250 and game.list_id != 'top250' %}
                 <a href="/top250{{ ext }}#{{ game.rank_250 }}" class="ref250">Top 250 #{{ game.rank_250 }}</a>
                 {% endif %}
+                {% if game.adult %}
+                <span class="adult">18+</span>
+                {% endif %}
                 {% if game.vrx %}
                 <a href="/vr_exclusives{{ ext }}" class="vrx" title="VR Exclusive">VRX</a>
                 {% endif %}
