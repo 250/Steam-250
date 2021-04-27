@@ -194,15 +194,31 @@ legend {
     text-transform: uppercase;
 }
 
+@hover-filter: brightness(118%) saturate(86%);
+label.option {
+    display: inline-flex;
+
+    &:hover {
+        filter: @hover-filter;
+    }
+
+    >input[type=checkbox] {
+        + span + span {
+            order: -1;
+            margin: 0 .2em;
+        }
+    }
+}
+
 input[type=checkbox] {
     position: absolute;
-    opacity: 0;
+    visibility: hidden;
+
+    @checked-colour: #91c2b3;
 
     // In option mode, checkbox represents two equal options (both enabled) rather than on/off states.
-    &:checked, &.option {
+    &:checked, &.option, label.option >& {
         + span {
-            color: #91c2b3;
-
             &:before {
                 background: #15232b;
                 border-color: #396d93;
@@ -214,17 +230,35 @@ input[type=checkbox] {
         }
     }
     &:checked {
-        + span:after {
-            left: 2.2em;
-            transform: translate(-100%, 0);
+        + span {
+            color: @checked-colour;
+
+            &:after {
+                left: 2.2em;
+                transform: translate(-100%, 0);
+            }
+        }
+    }
+    label.option >& {
+        &:not(:checked) {
+            + span + span {
+                color: @checked-colour;
+            }
+            + span {
+                color: inherit;
+            }
+        }
+    }
+
+    label >& {
+        ~ span {
+            transition: color .15s;
         }
     }
 
     + span {
         position: relative;
         padding-left: 2.6em;
-
-        transition: color .15s;
 
         &:before, &:after {
             content: '';
@@ -255,10 +289,10 @@ input[type=checkbox] {
             border-radius: 1em;
             transition: .15s;
         }
+    }
 
-        &:hover{
-            filter: brightness(118%) saturate(86%);
-        }
+    :not(label.option) >& + span:hover {
+        filter: @hover-filter;
     }
 }
 
