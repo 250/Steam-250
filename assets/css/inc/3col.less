@@ -1,14 +1,8 @@
-// TODO: Avoid modifying .body so this file can become part of shared style.
-.body {
-    display: flex;
-    flex-flow: column;
-}
-
 .\33 col-layout {
     display: grid;
     grid-template: auto auto / auto auto auto;
     gap: 30px;
-    align-self: center;
+    justify-content: center;
 
     >.col1 {
         width: 865px;
@@ -45,6 +39,8 @@
 
     /* Double column, col2+3 underneath. */
     @media (max-width: 1214px) {
+        grid-template-columns: 1fr 1fr;
+
         >.col1 {
             grid-column: 1 / -1;
         }
@@ -65,8 +61,6 @@
 
     /* Shrink col1 when viewport smaller than width. */
     @media (max-width: 865px) {
-        grid-template-columns: 1fr 1fr;
-
         >.col1 {
             width: 100%;
         }

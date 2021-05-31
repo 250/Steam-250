@@ -8,10 +8,10 @@
 {% endblock %}
 
 {% block fullwidth %}
-<div class="ranking-layout">
-    <div>{#Virtual#}</div>
+<div class="3col-layout">
+    <div class="col3">{% block col3 %}{% endblock %}</div>
 
-    <div class="main ranking">
+    <div class="col1 main ranking">
         <div class="filter">
             <button type="button">platform filters</button>
             <form method="post">
@@ -137,7 +137,7 @@
         <footer title="Ranking algorithm">{{ ranking.algorithm }} {{ ranking.weight }}</footer>
         {% endif %}
     </div>
-    <section class="r&amp;f">
+    <section class="col2 r&amp;f">
     {% if risers is defined and (risers or fallers or new or missing) %}
         {% if risers %}
         {{ include('partial/risers.twig', {games: risers, title: 'Risers today'}) }}

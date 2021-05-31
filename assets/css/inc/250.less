@@ -741,6 +741,9 @@ p.notice::before {
 .ranking > header ~ div > div:nth-child(2) .links.show {
     opacity: .7;
 }
+.main.ranking {
+    justify-self: center;
+}
 .main.ranking > :last-child {
     margin-bottom: 1.5rem;
 }
@@ -1279,14 +1282,14 @@ tr.a .movement.none:before {
 
 .r\&f {
     display: flex;
-    flex-flow: wrap;
+    flex-flow: column;
     line-height: 1.2;
 }
 /* Defaults for 2-column layout */
 .r\&f > * {
-    margin: 0 23px 23px 23px;
+    margin-bottom: 23px;
     min-width: 300px;
-    max-width: calc(50% - 46px);
+    max-width: 424px;
     width: 100%;
 }
 .r\&f > div:first-of-type {
@@ -1298,8 +1301,8 @@ tr.a .movement.none:before {
 
     text-align: center;
 }
-/* Linked to r&f child min-width + margin, i.e. minimum width for 2-column layout. This is for single-column layout. */
-@media (max-width: 691px) {
+/* R&f single-column layout. */
+@media (max-width: 669px) {
     .r\&f > * {
         max-width: none;
     }
@@ -1638,7 +1641,7 @@ tr.a .movement.none:before {
     margin: 0 auto;
 }
 /* 2-column ranking */
-@media (min-width: 1198px) {
+@media (min-width: 1215px) {
     .ranking-layout {
         display: flex;
         justify-content: center;

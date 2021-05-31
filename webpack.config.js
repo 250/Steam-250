@@ -17,6 +17,7 @@ module.exports = {
 
             './css/inc/reset.css',
             './css/inc/250.less',
+            './css/inc/3col.less',
         ],
         internal: [
             './js/BuildMonitor.ts',
