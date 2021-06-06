@@ -1,6 +1,7 @@
 @import "title.css";
 @import "video.css";
 @import "nav";
+@import "quicklinks";
 
 html, body {
     height: 100%;
@@ -419,41 +420,6 @@ a.owned:hover:before {
 .content > p:first-of-type {
     font-size: 107%;
     text-align: center;
-}
-
-.quicklinks {
-    margin: 1em auto 1.5em;
-
-    text-align: center;
-    text-transform: uppercase;
-    font-size: 80%;
-    line-height: 1.5;
-}
-.quicklinks li {
-    margin: .25em 0;
-}
-.quicklinks li:first-of-type > a:before {
-    content: 'NEW 🟊 ';
-
-    color: #bfb769;
-    font-size: 90%;
-    vertical-align: text-bottom;
-}
-.quicklinks a:first-of-type {
-    margin-left: 0;
-}
-.quicklinks a:last-of-type {
-    margin-right: 0;
-}
-.quicklinks a {
-    margin: 0 .3em;
-}
-.quicklinks .p {
-    font-size: 120%;
-
-    padding-left: 16px;
-    background: url('/svg/patreon.svg') no-repeat left 45%;
-    background-size: 12px;
 }
 
 p.note, p.tip {
@@ -1358,7 +1324,6 @@ tr.a .movement.none:before {
 }
 .compact.ranking li {
     display: flex;
-    position: relative;
     align-items: center;
 
     --step: 0;

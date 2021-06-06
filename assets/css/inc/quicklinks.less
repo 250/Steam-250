@@ -1,0 +1,65 @@
+.quicklinks {
+  display: flex;
+  flex-flow: column;
+  row-gap: 5px;
+
+  a {
+    position: relative;
+
+    @radius: 4px;
+    border-radius: @radius;
+    background: linear-gradient(169deg, #536280, #1f3144 50%);
+    box-shadow: 1px 1px 1px #0006;
+
+    &:hover {
+      text-decoration: none;
+      filter: brightness(118%);
+    }
+
+    span {
+      display: flex;
+      align-items: center;
+      margin: 1px;
+      padding: .5em;
+
+      color: #b1bdc7;
+      background: #121b25;
+      border-radius: @radius;
+
+      @ico-width: 1em;
+
+      // Icon.
+      &:before {
+        content: '';
+        width: @ico-width;
+        height: $width;
+        margin-right: .7em;
+
+        background: #c7d5e0;
+        mask: no-repeat 50%;
+      }
+      &.\32 \35 \30:before {
+        mask-image: url(https://s.steam250.com/img/cup.svg);
+      }
+      &.gems:before {
+        mask-image: url(https://s.steam250.com/img/gem.svg);
+      }
+      &.cranking:before {
+        mask-image: url(https://s.steam250.com/img/custom.svg);
+      }
+
+      // Icon background.
+      &:after {
+        content: '';
+        order: -1;
+        width: @ico-width + .4em;
+        height: $width;
+        // Pull icon back over background.
+        margin-right: -(@ico-width + ($width - @ico-width) / 2);
+
+        border-radius: 2px;
+        background: linear-gradient(#495770, #162231);
+      }
+    }
+  }
+}

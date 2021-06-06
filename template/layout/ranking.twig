@@ -9,7 +9,19 @@
 
 {% block fullwidth %}
 <div class="3col-layout">
-    <div class="col3">{% block col3 %}{% endblock %}</div>
+    <div class="col3">
+    {% block col3 %}
+        <section class="quicklinks">
+            <h2>Recommended rankings</h2>
+            <a href="/top250{{ ext }}"><span class="250">Top 250</span></a>
+            <a href="/hidden_gems{{ ext }}"><span class="gems">Hidden Gems</span></a>
+            <a href="/7day{{ ext }}"><span class="new">New Releases</span></a>
+            <a href="/2021{{ ext }}"><span class="curyear">2021 Releases</span></a>
+            <a href="/most_played{{ ext }}"><span class="played">Most Played</span></a>
+            <a href="{{ club250 }}/ranking/custom"><span class="cranking">Custom Ranking</span></a>
+        </section>
+    {% endblock %}
+    </div>
 
     <div class="col1 main ranking">
         <div class="filter">
