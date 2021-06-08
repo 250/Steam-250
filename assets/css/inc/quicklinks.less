@@ -13,7 +13,10 @@
 
     &:hover {
       text-decoration: none;
-      filter: brightness(118%);
+
+      span {
+        filter: brightness(120%) saturate(95%);
+      }
     }
 
     span {
@@ -22,8 +25,11 @@
       margin: 1px;
       padding: .5em;
 
+      font-size: 105%;
       color: #b1bdc7;
-      background: #121b25;
+      //background: linear-gradient(#14202d, #121b25);
+      //background: linear-gradient(#21364d, #182838 20%, #162433 55%, #182838 70%, #162a38);
+      background: linear-gradient(#2c394f, #222a3a 20%, #1c2331 55%, #222a3a 95%, #1e3e4b);
       border-radius: @radius;
 
       @ico-width: 1em;
@@ -35,17 +41,17 @@
         height: $width;
         margin-right: .7em;
 
-        background: #c7d5e0;
+        background: linear-gradient(#e6eaed 10%, #99b6cc);
         mask: no-repeat 50%;
       }
-      &.\32 \35 \30:before {
-        mask-image: url(https://s.steam250.com/img/cup.svg);
+      &.\32 50:before {
+        mask-image: #icons.cup()[mask-image];
       }
       &.gems:before {
-        mask-image: url(https://s.steam250.com/img/gem.svg);
+        mask-image: #icons.gem()[mask-image];
       }
       &.cranking:before {
-        mask-image: url(https://s.steam250.com/img/custom.svg);
+        mask-image: #icons.custom()[mask-image];
       }
 
       // Icon background.
@@ -58,7 +64,8 @@
         margin-right: -(@ico-width + ($width - @ico-width) / 2);
 
         border-radius: 2px;
-        background: linear-gradient(#495770, #162231);
+        //background: linear-gradient(#51617d, #22344a);
+        background: linear-gradient(#627596, #2e4663);
       }
     }
   }
