@@ -1,38 +1,41 @@
+@import "_icons";
+
 .quicklinks {
   display: flex;
   flex-flow: column;
-  row-gap: 5px;
+  row-gap: .4em;
 
   a {
     position: relative;
 
     @radius: 4px;
     border-radius: @radius;
-    background: linear-gradient(169deg, #536280, #1f3144 50%);
+    border: 1px solid;
+    border-color: #ebe9ff5e #0000002e #0000 #585475;
     box-shadow: 1px 1px 1px #0006;
 
     &:hover {
       text-decoration: none;
 
       span {
-        filter: brightness(120%) saturate(95%);
+        color: #91adf2;
+        filter: brightness(120%) saturate(115%);
       }
     }
 
     span {
       display: flex;
       align-items: center;
-      margin: 1px;
-      padding: .5em;
+      padding: .3rem;
 
-      font-size: 105%;
-      color: #b1bdc7;
-      //background: linear-gradient(#14202d, #121b25);
-      //background: linear-gradient(#21364d, #182838 20%, #162433 55%, #182838 70%, #162a38);
-      background: linear-gradient(#2c394f, #222a3a 20%, #1c2331 55%, #222a3a 95%, #1e3e4b);
+      font-size: 80%;
+      text-transform: uppercase;
+      font-weight: bold;
+      color: #c2ccdb;
+      background: linear-gradient(#2c394f, #222a3a 20%, #1c2331 55%, #222a3a 95%, #43414f);
       border-radius: @radius;
 
-      @ico-width: 1em;
+      @ico-width: 1.2rem;
 
       // Icon.
       &:before {
@@ -41,7 +44,7 @@
         height: $width;
         margin-right: .7em;
 
-        background: linear-gradient(#e6eaed 10%, #99b6cc);
+        background: linear-gradient(#232324, #171c1f);
         mask: no-repeat 50%;
       }
       &.\32 50:before {
@@ -53,19 +56,28 @@
       &.cranking:before {
         mask-image: #icons.custom()[mask-image];
       }
+      &.new:before {
+        #icons.star();
+      }
+      &.curyear:before {
+        mask-image: #icons.calendar()[mask-image];
+      }
+      &.played:before {
+        mask-image: #icons.gamepad()[mask-image];
+      }
 
       // Icon background.
       &:after {
         content: '';
         order: -1;
-        width: @ico-width + .4em;
+        width: @ico-width + .25rem;
         height: $width;
         // Pull icon back over background.
         margin-right: -(@ico-width + ($width - @ico-width) / 2);
 
         border-radius: 2px;
-        //background: linear-gradient(#51617d, #22344a);
-        background: linear-gradient(#627596, #2e4663);
+        background: linear-gradient(158deg, #5f6d78, #cbcfd1 30%, #babcbf 80%, #5f6d78);
+        box-shadow: 1px 1px 1px #16202d;
       }
     }
   }
