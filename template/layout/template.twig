@@ -3,7 +3,7 @@
 {% set earliest_year = constant('ScriptFUSION\\Steam250\\SiteGenerator\\Ranking\\Impl\\AnnualRanking::EARLIEST_YEAR') %}
 
 {% block body %}
-<div id="page">
+<div id="page" class="{% block class %}{% endblock %} promo">
     <section id="header">
         <div id="user">
             <form action="{{ club250 }}/search">
@@ -124,9 +124,16 @@
             </ol>
     </ol>
 
-    <div class="body {% block class %}{% endblock %}">
+    <div class="body">
+        <div class="promo">
+            <a href="//WeHate.Money">
+                <img src="/img/promo/banner.png" alt="New Blood"
+                    title="Visit our friends at New Blood Interactive this week!">
+            </a>
+        </div>
+
         <div class="content">
-            {{ include('partial/ad.twig', {id: '9535671996'}) }}
+{#            {{ include('partial/ad.twig', {id: '9535671996'}) }}#}
             {% block content %}{% endblock %}
         </div>
 

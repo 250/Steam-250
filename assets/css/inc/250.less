@@ -2,6 +2,7 @@
 @import "video.css";
 @import "nav";
 @import "quicklinks";
+@import "promo";
 
 html, body {
     height: 100%;
@@ -404,7 +405,7 @@ a.owned:hover:before {
         no-repeat;
     background-size: 100% 60px;
 }
-.body.home {
+#page.home > .body {
     background: linear-gradient(180deg, #263e5c, #22344b 6px, #1e2c3e 20px, #1d2a3c 30px, #1b2939 45px, #1b2838 60px,
         #25293c 50vh);
 }
@@ -437,8 +438,9 @@ p.note:before, p.tip:before {
     padding-right: .5em;
 
     font-size: 90%;
+    letter-spacing: .05em;
     text-transform: uppercase;
-    color: #818b91;
+    color: #c4c4c4;
 }
 p.tip:before {
     content: 'Tip';
@@ -471,8 +473,8 @@ p.notice::before {
 
     font-size: 95%;
     line-height: 1.2;
-    color: #d2d0ce;
-    background: #232b35;
+    color: #e8e8e8;
+    background: #0008;
     border: 1px dotted #754000;
     border-top-color: #a86009;
     border-radius: 6px;
@@ -501,13 +503,16 @@ p.notice::before {
     margin-bottom: 0;
 }
 
-.ranking {
-    max-width: 950px;
-    line-height: 1;
-}
-@media (max-width: 649px) {
+.body {
     .ranking {
-        font-size: 85%;
+        max-width: 950px;
+        line-height: 1;
+    }
+
+    @media (max-width: 649px) {
+        .ranking {
+            font-size: 85%;
+        }
     }
 }
 
@@ -521,7 +526,7 @@ p.notice::before {
     position: relative;
     right: .5em;
     margin-bottom: .5em;
-    margin-top: -1.5em;
+    margin-top: .5em;
     padding-bottom: .5em;
     text-align: right;
 }
@@ -709,6 +714,9 @@ p.notice::before {
 }
 .main.ranking {
     justify-self: center;
+
+    background: #1b2838;
+    border-radius: 11px;
 }
 .main.ranking > :last-child {
     margin-bottom: 1.5rem;
@@ -1282,14 +1290,14 @@ tr.a .movement.none:before {
     box-sizing: border-box;
 
     font-size: 85%;
-    background: #0004;
+    background: #141d29;
     border-radius: 8px;
     border: 2px solid #334360;
 }
 
 /* Compact ranking. */
 .flat.compact.ranking {
-    background: linear-gradient(#0005 34px, #495770);
+    background: linear-gradient(#121a25 34px, #495770);
     border-radius: 6px;
 }
 .compact.ranking > ol {

@@ -1,0 +1,48 @@
+#page.promo {
+  >.body {
+    background:
+      linear-gradient(#0005, #0000) repeat-x top / 100% 60px,
+      url(/img/promo/bg.png) 0 / 148.5px
+      !important;
+
+    // Leaderboard.
+    >.promo {
+      display: flex;
+      margin: 1rem 0;
+      justify-content: center;
+
+      img {
+        max-width: 100%;
+      }
+    }
+
+    >.content{
+      border-radius: 11px;
+
+      p.note, p.tip {
+        padding: .5em;
+
+        background: #0005;
+      }
+
+      >p {
+        color: #f0f8ff;
+        text-shadow: 1px 1px #422626;
+      }
+    }
+
+    // Homepage.
+    section.top10 {
+      > header {
+        background: linear-gradient(135deg, #000c, #081108c0, #000c, #1c0d1cc0);
+      }
+    }
+  }
+
+  // Non-ranking pages.
+  &:not(.ranking) > .body {
+    >.content {
+      background: #0c121a;
+    }
+  }
+}
