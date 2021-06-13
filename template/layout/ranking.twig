@@ -15,12 +15,14 @@
     {% block col3 %}
         <section class="quicklinks">
             <h2>Recommended rankings</h2>
-            <a href="/top250{{ ext }}"><span class="250">Steam Top 250</span></a>
-            <a href="/hidden_gems{{ ext }}"><span class="gems">Hidden Gems</span></a>
-            <a href="/7day{{ ext }}"><span class="new">New Releases</span></a>
-            <a href="/2021{{ ext }}"><span class="curyear">Best of {{ 'now'|date('Y') }}</span></a>
-            <a href="/most_played{{ ext }}"><span class="played">Most Played</span></a>
-            <a href="{{ club250 }}/ranking/custom"><span class="cranking">Custom Ranking</span></a>
+            <ol>
+                <li><a href="/top250{{ ext }}"><span class="250">Steam Top 250</span></a>
+                <li><a href="/hidden_gems{{ ext }}"><span class="gems">Hidden Gems</span></a>
+                <li><a href="/7day{{ ext }}"><span class="new">New Releases</span></a>
+                <li><a href="/2021{{ ext }}"><span class="curyear">Best of {{ 'now'|date('Y') }}</span></a>
+                <li><a href="/most_played{{ ext }}"><span class="played">Most Played</span></a>
+                <li><a href="{{ club250 }}/ranking/custom"><span class="cranking">Custom Ranking</span></a>
+            </ol>
         </section>
     {% endblock %}
     </div>

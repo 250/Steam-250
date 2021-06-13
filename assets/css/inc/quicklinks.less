@@ -1,24 +1,39 @@
 @import "_icons";
 
 .quicklinks {
-  display: flex;
-  flex-flow: column;
-  row-gap: .4em;
+  padding: 2px;
+
+  background: linear-gradient(#121a25 34px, #495770);
+  @radius: 6px;
+  border-radius: @radius;
+
+  h2 {
+    margin: 0;
+    padding: .7em;
+    text-align: center;
+    line-height: 1;
+  }
+
+  ol {
+    display: flex;
+    flex-flow: column;
+    padding: 2px;
+    row-gap: 4px;
+
+    background: #121d29;
+    border-radius: @radius;
+  }
 
   a {
-    position: relative;
-
     @radius: 4px;
     border-radius: @radius;
-    border: 1px solid;
-    border-color: #ebe9ff5e #0000002e #0000 #585475;
     box-shadow: 1px 1px 1px #0006;
 
     &:hover {
       text-decoration: none;
 
       span {
-        color: #91adf2;
+        color: #8cadff;
         filter: brightness(120%) saturate(115%);
       }
     }
@@ -33,6 +48,8 @@
       font-weight: bold;
       color: #c2ccdb;
       background: linear-gradient(#2c394f, #222a3a 20%, #1c2331 55%, #222a3a 95%, #43414f);
+      border: 1px solid;
+      border-color: #ebe9ff5e #0000002e #0000 #585475;
       border-radius: @radius;
 
       @ico-width: 1.2rem;

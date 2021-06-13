@@ -2,7 +2,7 @@
   >.body {
     background:
       linear-gradient(#0005, #0000) repeat-x top / 100% 60px,
-      url(/img/promo/bg.png) 0 / 148.5px
+      url(/img/promo/bg.png) fixed top / 148.5px
       !important;
 
     // Leaderboard.
@@ -22,7 +22,7 @@
       p.note, p.tip {
         padding: .5em;
 
-        background: #0005;
+        background: #0008;
       }
 
       >p {
@@ -31,11 +31,37 @@
       }
     }
 
+    // Rankings.
+    .main.ranking {
+      background: #0c121a;
+
+      >header ~ div:nth-of-type(2n-1),
+      >div.primary {
+        background-color: #202a3c;
+      }
+    }
+    .\33 col-layout > .col1 {
+      padding: .5rem 1rem;
+      box-sizing: border-box;
+
+      @media (max-width: 669px) {
+        padding: .5rem 0;
+      }
+    }
+
     // Homepage.
     section.top10 {
       > header {
         background: linear-gradient(135deg, #000c, #081108c0, #000c, #1c0d1cc0);
       }
+    }
+
+    // Period pages.
+    .timeline {
+      color: #f0f8ff;
+      text-shadow: -1px 1px #422626;
+      background: #550c0c61;
+      border-radius: 11px;
     }
   }
 
