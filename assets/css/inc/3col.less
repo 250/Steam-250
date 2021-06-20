@@ -9,6 +9,7 @@
     }
     >.col2, >.col3 {
         width: 320px;
+        margin-top: 2rem;
     }
     >.col3 {
         display: grid;
@@ -29,15 +30,10 @@
         >.col3 {
             grid-area: 2 / 1 / 2 / -1;
             width: 100%;
+            margin-top: 0;
 
             // Internal grid.
             grid-template-columns: repeat(3, 320px);
-            justify-content: center;
-
-            .boxlink {
-                // Push boxlinks to end of content.
-                order: 1;
-            }
         }
     }
 
@@ -51,15 +47,11 @@
         >.col2 {
             grid-row: 2;
             width: 100%;
+            margin-top: 0;
         }
         >.col3 {
             grid-column: 1;
             grid-template-columns: none;
-
-            .boxlink {
-                // Restore boxlink order in auto-row layout.
-                order: 0;
-            }
         }
     }
 
