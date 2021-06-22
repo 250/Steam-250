@@ -1,8 +1,14 @@
 {
   "private": true,
   "devDependencies": {
+    "@babel/core": "^7.14.6",
+    "@storybook/addon-actions": "^6.2.9",
+    "@storybook/addon-essentials": "^6.2.9",
+    "@storybook/addon-links": "^6.2.9",
+    "@storybook/html": "^6.2.9",
     "@tsconfig/recommended": "^1.0.1",
     "autoprefixer": "^10.2.5",
+    "babel-loader": "^8.2.2",
     "clean-webpack-plugin": "^3.0.0",
     "copy-webpack-plugin": "^7.0.0",
     "css-loader": "^5.0.2",
@@ -19,7 +25,9 @@
   },
   "scripts": {
     "watch": "webpack --watch",
-    "build": "webpack --mode production"
+    "build": "webpack --mode production",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "dependencies": {
     "dayjs": "^1.10.4",
