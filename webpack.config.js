@@ -37,10 +37,10 @@ module.exports = {
         new MiniCssExtractPlugin(),
         new CopyPlugin({
             patterns: [
-                // Root directory assets.
+                // Root of asset directory assets.
                 { from: '*', to: '..' },
                 // Subdirectory assets. TODO: Exclude CSS when no longer sourced internally.
-                { from: '*/**/*.!(ts|less|js)', to: '..' }
+                { from: '!({js,}/*)*/**/*.!(less)', to: '..' }
             ],
         }),
         new CleanWebpackPlugin({

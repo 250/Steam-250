@@ -1,5 +1,6 @@
 /vendor/
 /.*/
 !/.github/
+!/.storybook/
 /site/
 /node_modules/
