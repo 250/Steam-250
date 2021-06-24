@@ -15,7 +15,6 @@ module.exports = {
             './js/VideoPlayer.js',
             './js/LazyLoad.ts',
 
-            './css/inc/reset.css',
             './css/inc/250.less',
             './css/inc/3col.less',
         ],
