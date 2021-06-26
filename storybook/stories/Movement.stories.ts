@@ -1,5 +1,5 @@
 import {Args, Meta, Story} from '@storybook/html';
-import template from '../../template/partial/movement.twig';
+import template from 'T/partial/movement.twig';
 
 export default {
     title: 'Steam 250/Movement',
@@ -30,14 +30,20 @@ Down.args = {
     movement: '-12',
 };
 
-export const No_change = Template.bind({});
-No_change.loaders = createLoaders();
-No_change.args = {
+export const New = Template.bind({});
+New.loaders = createLoaders();
+New.args = {
+    movement: null,
+};
+
+export const NoChange = Template.bind({});
+NoChange.loaders = createLoaders();
+NoChange.args = {
     movement: '0',
 };
 
-export const Dead = Template.bind({});
-Dead.loaders = createLoaders();
-Dead.args = {
+export const Removed = Template.bind({});
+Removed.loaders = createLoaders();
+Removed.args = {
     movement: 'dead',
 };

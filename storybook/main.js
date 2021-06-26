@@ -1,3 +1,5 @@
+const path = require('path');
+
 module.exports = {
     stories: [
         './stories/*.stories.@(js|jsx|ts|tsx|mdx)',
@@ -8,6 +10,12 @@ module.exports = {
         '@whitespace/storybook-addon-html',
     ],
     webpackFinal: (config) => {
+        config.context = path.resolve('assets');
+        config.resolve.alias = {
+            ...config.resolve.alias,
+            T: path.resolve('template'),
+        };
+
         config.module.rules.push(
             {
                 test: /\.twig$/,
@@ -24,9 +32,6 @@ module.exports = {
                     },
                     {
                         loader: 'css-loader',
-                        options: {
-                            url: false,
-                        },
                     },
                     {
                         loader: 'postcss-loader',
