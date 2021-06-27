@@ -73,7 +73,7 @@
             </div>
             <div>
                 {% if game.movement is defined %}
-                {{ include('partial/movement.twig', {movement: game.movement}) }}
+                {{ include('component/movement.twig', {movement: game.movement}) }}
                 {% endif %}
                 {% block game_row %}
                 <span class="title">

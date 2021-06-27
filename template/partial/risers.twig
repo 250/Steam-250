@@ -24,7 +24,7 @@
                 </a>
                 <a href="{{ href }}">
                     {% if game.movement is defined %}
-                        {{ include('partial/movement.twig', {movement: game.movement}) }}
+                        {{ include('component/movement.twig', {movement: game.movement}) }}
                     {% endif %}
                     {% if noipl is defined %}({{ game.rank }}){% endif %}
                     <span>{{ game.developer is defined ? game.developer

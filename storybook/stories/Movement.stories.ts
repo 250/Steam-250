@@ -1,5 +1,5 @@
 import {Args, Meta, Story} from '@storybook/html';
-import template from 'T/partial/movement.twig';
+import template from 'T/component/movement.twig';
 
 export default {
     title: 'Steam 250/Movement',

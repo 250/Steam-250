@@ -30,7 +30,7 @@
   "scripts": {
     "watch": "webpack --watch",
     "build": "webpack --mode production",
-    "storybook": "start-storybook --config-dir storybook --port 6006",
+    "storybook": "start-storybook --config-dir storybook --port 6006 --ci",
     "build-storybook": "build-storybook"
   },
   "dependencies": {
