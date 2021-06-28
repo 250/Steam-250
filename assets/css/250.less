@@ -1,8 +1,9 @@
-@import "reset.css";
-@import "title.css";
-@import "video.css";
-@import "nav";
-@import "quicklinks";
+@import "inc/reset.css";
+@import "inc/title.css";
+@import "inc/video.css";
+@import "inc/nav";
+@import "inc/quicklinks";
+@import "inc/checkbox";
 
 html, body {
     height: 100%;
@@ -194,108 +195,6 @@ legend {
 
     font-size: 60%;
     text-transform: uppercase;
-}
-
-@hover-filter: brightness(118%) saturate(86%);
-label.option {
-    display: inline-flex;
-
-    &:hover {
-        filter: @hover-filter;
-    }
-
-    >input[type=checkbox] {
-        + span + span {
-            order: -1;
-            margin: 0 .2em;
-        }
-    }
-}
-
-input[type=checkbox] {
-    position: absolute;
-    visibility: hidden;
-
-    @checked-colour: #91c2b3;
-
-    // In option mode, checkbox represents two equal options (both enabled) rather than on/off states.
-    &:checked, &.option, label.option >& {
-        + span {
-            &:before {
-                background: #15232b;
-                border-color: #396d93;
-            }
-
-            &:after {
-                background: #34c99f;
-            }
-        }
-    }
-    &:checked {
-        + span {
-            color: @checked-colour;
-
-            &:after {
-                left: 2.2em;
-                transform: translate(-100%, 0);
-            }
-        }
-    }
-    label.option >& {
-        &:not(:checked) {
-            + span + span {
-                color: @checked-colour;
-            }
-            + span {
-                color: inherit;
-            }
-        }
-    }
-
-    label >& {
-        ~ span {
-            transition: color .15s;
-        }
-    }
-
-    + span {
-        position: relative;
-        padding-left: 2.6em;
-
-        &:before, &:after {
-            content: '';
-            position: absolute;
-        }
-
-        &:before {
-            height: .7em;
-            width: 2em;
-            top: 2px;
-            left: 1px;
-
-            background: #172230;
-            border: 1px solid #718fa5;
-            border-radius: 1em;
-
-            transition: .15s;
-
-        }
-
-        &:after {
-            height: .71em;
-            width: .75em;
-            top: 3px;
-            left: 1px;
-
-            background: #a0b7c3;
-            border-radius: 1em;
-            transition: .15s;
-        }
-    }
-
-    :not(label.option) >& + span:hover {
-        filter: @hover-filter;
-    }
 }
 
 a.owned {

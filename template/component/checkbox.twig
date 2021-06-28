@@ -1,0 +1,7 @@
+<label{% if caption_off %} class="option"{% endif %}>
+    <input type="checkbox" name="{{ name }}" checked>
+    <span>{{ caption_on }}</span>
+    {% if caption_off %}
+    <span>{{ caption_off }}</span>
+    {% endif %}
+</label>

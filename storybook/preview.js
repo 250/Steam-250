@@ -1,4 +1,4 @@
-import '../assets/css/inc/250.less';
+import '../assets/css/250.less';
 
 export const parameters = {
     actions: {argTypesRegex: '^on[A-Z].*'},
