@@ -15,8 +15,7 @@ module.exports = {
             './js/VideoPlayer.js',
             './js/LazyLoad.ts',
 
-            './css/inc/reset.css',
-            './css/inc/250.less',
+            './css/250.less',
             './css/inc/3col.less',
         ],
         internal: [
@@ -37,10 +36,10 @@ module.exports = {
         new MiniCssExtractPlugin(),
         new CopyPlugin({
             patterns: [
-                // Root directory assets.
+                // Root of asset directory assets.
                 { from: '*', to: '..' },
                 // Subdirectory assets. TODO: Exclude CSS when no longer sourced internally.
-                { from: '*/**/*.!(ts|less|js)', to: '..' }
+                { from: '!({js,}/*)*/**/*.!(less)', to: '..' }
             ],
         }),
         new CleanWebpackPlugin({

@@ -1,0 +1,149 @@
+@hover-filter: brightness(118%) saturate(86%);
+
+label.option {
+  display: inline-flex;
+}
+
+input[type=checkbox] {
+  // Remove browser UI from flow.
+  position: absolute;
+  visibility: hidden;
+
+  @checked-colour: #91c2b3;
+  @gutter-width: 2em;
+  @track-height: 1.4ex;
+  @track-v-offset: .3ex;
+  @track-margin: .6em;
+  @transition-time: .15s;
+
+  // Selected text.
+  + span {
+    // Enforce consistent child display modes between option and non-option variants.
+    display: inline-flex;
+
+    position: relative;
+    padding-left: @gutter-width + @track-margin;
+
+    // Track elements.
+    &:before, &:after {
+      content: '';
+      position: absolute;
+      left: 0;
+    }
+
+    // Gutter.
+    &:before {
+      height: @track-height;
+      width: @gutter-width;
+      top: @track-v-offset;
+
+      background: #172230;
+      border: 1px solid #718fa5;
+      border-radius: 1em;
+
+      transition: @transition-time;
+    }
+
+    // Knob.
+    &:after {
+      height: @track-height + .03;
+      width: $height + .02;
+      top: @track-v-offset + .12;
+      left: .02ex;
+
+      background: #a0b7c3;
+      border-radius: 1em;
+      transition: @transition-time;
+    }
+
+    &:hover {
+      color: #dae8eb;
+
+      &:before {
+        border-color: #819eb3;
+      }
+
+      &:after {
+        background: #c0d7e3;
+      }
+    }
+
+    // Deselected text.
+    + span {
+      order: -1;
+      // Don't know where this 3px comes from but it is needed at 100% and 200% font sizes.
+      margin-right: calc(@track-margin - 3px);
+    }
+  }
+
+  &:checked {
+    + span {
+      color: @checked-colour;
+
+      &:after {
+        left: 2.1em;
+        transform: translate(-100%, 0);
+      }
+    }
+
+    &:hover + span {
+      color: #b1e3d3;
+
+      &:before {
+        border-color: #477a9e;
+      }
+
+      &:after {
+        background: #4fe7bd;
+      }
+    }
+  }
+
+  // Option mode: checkbox represents two either/or options rather than one option in an on/off state.
+  label.option >& {
+    &:not(:checked) {
+      + span + span {
+        color: @checked-colour;
+      }
+      + span {
+        color: inherit;
+      }
+
+      &:hover {
+        + span + span {
+          // Copy text highlight colour.
+          &:extend(input[type=checkbox]:checked:hover + span);
+        }
+        + span {
+          // Copy track highlights.
+          &:extend(input[type=checkbox]:checked:hover + span all);
+
+          // Avoid applying text highlight to deselected option.
+          color: inherit;
+        }
+      }
+    }
+  }
+
+  // In option mode the track never dims because it is never "off". Otherwise, these are just further checked states.
+  &:checked, label.option >& {
+    + span {
+      // Gutter.
+      &:before {
+        background: #15232b;
+        border-color: #396d93;
+      }
+
+      // Knob.
+      &:after {
+        background: #34c99f;
+      }
+    }
+  }
+
+  ~ span {
+    line-height: 1.2;
+
+    transition: color @transition-time;
+  }
+}

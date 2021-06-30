@@ -34,22 +34,10 @@
                 <fieldset>
                     <legend>Platforms</legend>
                     <p>Include games supporting these platforms.</p>
-                    <label>
-                        <input type="checkbox" name="win" checked>
-                        <span>Windows</span>
-                    </label>
-                    <label>
-                        <input type="checkbox" name="mac" checked>
-                        <span>Mac</span>
-                    </label>
-                    <label>
-                        <input type="checkbox" name="nix" checked>
-                        <span>Linux</span>
-                    </label>
-                    <label>
-                        <input type="checkbox" name="vr" checked>
-                        <span>Virtual reality</span>
-                    </label>
+                    {{ include('component/checkbox.twig', {caption_on: 'Windows', name: 'win'}) }}
+                    {{ include('component/checkbox.twig', {caption_on: 'Mac', name: 'mac'}) }}
+                    {{ include('component/checkbox.twig', {caption_on: 'Linux', name: 'nix'}) }}
+                    {{ include('component/checkbox.twig', {caption_on: 'Virtual reality', name: 'vr'}) }}
                 </fieldset>
                 <button class="button ok">OK</button>
                 <button class="button cancel">Cancel</button>
@@ -73,7 +61,7 @@
             </div>
             <div>
                 {% if game.movement is defined %}
-                {{ include('partial/movement.twig', {movement: game.movement}) }}
+                {{ include('component/movement.twig', {movement: game.movement}) }}
                 {% endif %}
                 {% block game_row %}
                 <span class="title">
