@@ -80,17 +80,17 @@ input[type=checkbox] {
         left: 2.1em;
         transform: translate(-100%, 0);
       }
+    }
 
-      &:hover {
-        color: #b1e3d3;
+    &:hover + span {
+      color: #b1e3d3;
 
-        &:before {
-          border-color: #477a9e;
-        }
+      &:before {
+        border-color: #477a9e;
+      }
 
-        &:after {
-          background: #4fe7bd;
-        }
+      &:after {
+        background: #4fe7bd;
       }
     }
   }
@@ -108,11 +108,11 @@ input[type=checkbox] {
       &:hover {
         + span + span {
           // Copy text highlight colour.
-          &:extend(input[type=checkbox]:checked + span:hover);
+          &:extend(input[type=checkbox]:checked:hover + span);
         }
         + span {
           // Copy track highlights.
-          &:extend(input[type=checkbox]:checked + span:hover all);
+          &:extend(input[type=checkbox]:checked:hover + span all);
 
           // Avoid applying text highlight to deselected option.
           color: inherit;
