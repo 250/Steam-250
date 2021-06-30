@@ -11,13 +11,16 @@ input[type=checkbox] {
 
   @checked-colour: #91c2b3;
   @gutter-width: 2em;
+  @track-height: 1.4ex;
+  @track-v-offset: .3ex;
   @track-margin: .6em;
   @transition-time: .15s;
 
   // Selected text.
   + span {
     // Enforce consistent child display modes between option and non-option variants.
-    display: flex;
+    display: inline-flex;
+
     position: relative;
     padding-left: @gutter-width + @track-margin;
 
@@ -30,9 +33,9 @@ input[type=checkbox] {
 
     // Gutter.
     &:before {
-      height: .7em;
+      height: @track-height;
       width: @gutter-width;
-      top: .3em;
+      top: @track-v-offset;
 
       background: #172230;
       border: 1px solid #718fa5;
@@ -43,9 +46,10 @@ input[type=checkbox] {
 
     // Knob.
     &:after {
-      height: .73em;
-      width: .75em;
-      top: .33885em;
+      height: @track-height + .03;
+      width: $height + .02;
+      top: @track-v-offset + .12;
+      left: .02ex;
 
       background: #a0b7c3;
       border-radius: 1em;
@@ -138,6 +142,8 @@ input[type=checkbox] {
   }
 
   ~ span {
+    line-height: 1.2;
+
     transition: color @transition-time;
   }
 }
