@@ -2,10 +2,6 @@
 
 label.option {
   display: inline-flex;
-
-  &:hover {
-    filter: @hover-filter;
-  }
 }
 
 input[type=checkbox] {
@@ -17,27 +13,6 @@ input[type=checkbox] {
   @gutter-width: 2em;
   @track-margin: .6em;
   @transition-time: .15s;
-
-  &:checked {
-    + span {
-      color: @checked-colour;
-
-      &:after {
-        left: 2.1em;
-        transform: translate(-100%, 0);
-      }
-    }
-  }
-  label.option >& {
-    &:not(:checked) {
-      + span + span {
-        color: @checked-colour;
-      }
-      + span {
-        color: inherit;
-      }
-    }
-  }
 
   // Selected text.
   + span {
@@ -74,7 +49,19 @@ input[type=checkbox] {
 
       background: #a0b7c3;
       border-radius: 1em;
-      transition: .15s;
+      transition: @transition-time;
+    }
+
+    &:hover {
+      color: #dae8eb;
+
+      &:before {
+        border-color: #819eb3;
+      }
+
+      &:after {
+        background: #c0d7e3;
+      }
     }
 
     // Deselected text.
@@ -85,7 +72,56 @@ input[type=checkbox] {
     }
   }
 
-  // In option mode, track never dims. Otherwise, these are just checked states.
+  &:checked {
+    + span {
+      color: @checked-colour;
+
+      &:after {
+        left: 2.1em;
+        transform: translate(-100%, 0);
+      }
+
+      &:hover {
+        color: #b1e3d3;
+
+        &:before {
+          border-color: #477a9e;
+        }
+
+        &:after {
+          background: #4fe7bd;
+        }
+      }
+    }
+  }
+
+  // Option mode: checkbox represents two either/or options rather than one option in an on/off state.
+  label.option >& {
+    &:not(:checked) {
+      + span + span {
+        color: @checked-colour;
+      }
+      + span {
+        color: inherit;
+      }
+
+      &:hover {
+        + span + span {
+          // Copy text highlight colour.
+          &:extend(input[type=checkbox]:checked + span:hover);
+        }
+        + span {
+          // Copy track highlights.
+          &:extend(input[type=checkbox]:checked + span:hover all);
+
+          // Avoid applying text highlight to deselected option.
+          color: inherit;
+        }
+      }
+    }
+  }
+
+  // In option mode the track never dims because it is never "off". Otherwise, these are just further checked states.
   &:checked, label.option >& {
     + span {
       // Gutter.
@@ -103,9 +139,5 @@ input[type=checkbox] {
 
   ~ span {
     transition: color @transition-time;
-  }
-
-  :not(label.option) >& + span:hover {
-    filter: @hover-filter;
   }
 }
