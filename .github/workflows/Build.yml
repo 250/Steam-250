@@ -1,4 +1,4 @@
-name: Build
+name: Build Steam 250
 
 on:
   push:
