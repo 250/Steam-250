@@ -4,7 +4,9 @@ import template from 'T/component/movement.twig';
 export default {
     title: 'Ranking/Movement',
     argTypes: {
-        movement: {control: 'text'},
+        movement: {
+            type: {name: 'string', required: true},
+        },
     },
 } as Meta;
 

@@ -1,19 +1,32 @@
-import {Args, Meta, Story} from '@storybook/html';
+import {Meta, Story, StoryContext} from '@storybook/html';
 import template from 'T/component/checkbox.twig';
 
 export default {
     title: 'Form/Checkbox',
+    args: {
+        enlarge: true,
+    },
+    argTypes: {
+        caption_on: {
+            type: {required: true},
+        },
+    },
+    parameters: {
+        controls: {
+            sort: 'requiredFirst',
+        },
+    },
     decorators: [
-        Story => `<form style="font-size: 200%">${Story()}</form>`,
+        (Story, ctx) => `<form ${ctx.args.enlarge && 'style="font-size: 200%"'}>${Story()}</form>`,
     ],
 } as Meta;
 
 const Template: Story = (args, {loaded: {html}}) => html;
 
 const createLoaders = () => [
-    async (args: Args) => {
+    async (ctx: StoryContext) => {
         return {
-            html: await template(args.args),
+            html: await template(ctx.args),
         }
     },
 ];

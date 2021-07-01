@@ -12,7 +12,7 @@ input[type=checkbox] {
   @checked-colour: #91c2b3;
   @gutter-width: 2em;
   @track-height: 1.4ex;
-  @track-v-offset: .3ex;
+  @track-v-offset: .35ex;
   @track-margin: .6em;
   @transition-time: .15s;
 
@@ -48,8 +48,8 @@ input[type=checkbox] {
     &:after {
       height: @track-height;
       width: $height;
-      top: @track-v-offset + .12;
-      left: .02ex;
+      top: calc(@track-v-offset + 1px);
+      left: .03em;
 
       background: #a0b7c3;
       border-radius: 1em;
@@ -81,7 +81,7 @@ input[type=checkbox] {
       color: @checked-colour;
 
       &:after {
-        left: 2.1em;
+        left: 2.07em;
         transform: translate(-100%, 0);
       }
     }
