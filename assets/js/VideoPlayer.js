@@ -1,13 +1,19 @@
 new class {
     constructor() {
-        this.initDom();
-        this.initVideo();
-        this.initVideoLinks();
-        this.initKeyboard();
-        this.initFooterScroll();
+        if (this.initDom() !== false) {
+            this.initVideo();
+            this.initVideoLinks();
+            this.initKeyboard();
+            this.initFooterScroll();
+        }
     }
 
     initDom() {
+        if (!document.body) {
+            console.debug("Video player aborted: body not ready.");
+            return false;
+        }
+
         this.container = document.body.appendChild(document.createElement('div'));
         this.frame = this.container.appendChild(document.createElement('div'));
         this.header = this.frame.appendChild(document.createElement('header'));

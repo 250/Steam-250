@@ -3,3 +3,4 @@
 !/.github/
 /site/
 /node_modules/
+*.local

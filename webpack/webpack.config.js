@@ -5,10 +5,11 @@ const TerserPlugin = require('terser-webpack-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
 
 module.exports = {
     mode: 'development',
-    context: path.resolve(__dirname, 'assets'),
+    context: path.resolve(__dirname, '..', 'assets'),
     entry: {
         250: [
             './js/250.js',
@@ -21,19 +22,24 @@ module.exports = {
         internal: [
             './js/BuildMonitor.ts',
             './js/Filter.ts',
-            './js/Home.js',
         ],
         home: [
+            './js/Home.js',
+
             './css/home.less',
         ],
     },
 
     output: {
-        path: path.resolve(__dirname, 'site/c'),
+        path: path.resolve(__dirname, '..', 'site/c'),
     },
 
     plugins: [
         new MiniCssExtractPlugin(),
+        new Dotenv({
+            path: path.join(__dirname, '.env.local'),
+            defaults: path.join(__dirname, '.env'),
+        }),
         new CopyPlugin({
             patterns: [
                 // Root of asset directory assets.
@@ -103,11 +109,7 @@ module.exports = {
 
     optimization: {
         minimizer: [
-            new TerserPlugin({
-                terserOptions: {
-                    keep_classnames: /^S250$/,
-                },
-            }),
+            new TerserPlugin(),
             new CssMinimizerPlugin(),
         ],
     },

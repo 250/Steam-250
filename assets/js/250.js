@@ -1,3 +1,6 @@
+import {parseParam} from './Query';
+import User from './User';
+
 class S250 {
     constructor() {
         // Menu stuff.
@@ -5,9 +8,8 @@ class S250 {
         this.constrainDropdownMenuPositions();
 
         // User stuff.
-        this.tryParseOpenIdPostback();
         this.initLogInOut();
-        this.syncLogInOutState();
+        User.syncLoginUi();
 
         // Hash stuff.
         this.scrollToCurrentHash();
@@ -31,9 +33,18 @@ class S250 {
         }
 
         // Redirect back to same page without query or hash.
-        form['openid.return_to'].value = location.origin + location.pathname;
+        form['openid.realm'].value = process.env.CLUB_250_BASE_URL;
+        form['openid.return_to'].value =
+            `${process.env.CLUB_250_BASE_URL}/steam/login?r=${location.origin + location.pathname}`
 
-        document.querySelector('#lin button').addEventListener('click', _ => this.logout());
+        document.querySelector('#lout button').addEventListener('click', _ => localStorage.setItem('login', 'sync'));
+        document.querySelector('#lin button').addEventListener('click', _ => User.logout());
+
+        // Trigger login sync on post-back.
+        if (localStorage.getItem('login') === 'sync') {
+            localStorage.removeItem('login');
+            User.syncLogin();
+        }
     }
 
     /**
@@ -179,130 +190,20 @@ class S250 {
         return document.getElementById(hash.substr(1));
     }
 
-    syncLogInOutState() {
-        const classes = document.getElementById('user').classList;
-
-        classes.remove('lin', 'lout');
-        classes.add(S250.isLoggedIn() ? 'lin' : 'lout');
-
-        if (S250.isLoggedIn()) {
-            this.markOwnedGames();
-            this.updateUserBar();
-        }
-    }
-
-    markOwnedGames() {
-        const
-            games = JSON.parse(localStorage.getItem('games')),
-            ranks = document.querySelectorAll('.ranking > div[id] > div:first-of-type > a')
-        ;
-
-        ranks.forEach(a => {
-            const id = a.href.match(/\/app\/(\d+)/)[1];
-
-            if (games.hasOwnProperty(id)) {
-                a.classList.add('owned');
-                a.setAttribute('data-content', games[id] + ' hours');
-            }
-        });
-
-        let current, max;
-        document.querySelector('#user .owned').innerText =
-            ranks.length ?
-                (current = document.querySelectorAll('.ranking .owned').length)
-                + '/'
-                + (max = ranks.length)
-                + ' ('
-                + Math.round(current / max * 100)
-                + '%)'
-            : 'n/a'
-        ;
-    }
-
-    unmarkOwnedGames() {
-        document.querySelectorAll('.ranking a.owned').forEach(a => {
-            a.classList.remove('owned');
-        });
-    }
-
-    updateUserBar() {
-        const steam = JSON.parse(localStorage.getItem('steam'));
-
-        const a = document.querySelector('#lin .avatar');
-        a.href = `http://steamcommunity.com/profiles/${steam.id}/`;
-        a.title = steam.name;
-
-        const img = document.createElement('img');
-        img.src = steam.avatar;
-        a.appendChild(img);
-    }
-
     static isLoggedIn() {
-        return localStorage.hasOwnProperty('steam') && localStorage.hasOwnProperty('games');
+        return User.isLoggedIn();
     }
 
-    logout() {
-        localStorage.removeItem('steam');
-        localStorage.removeItem('games');
-
-        this.unmarkOwnedGames();
-        this.syncLogInOutState();
+    static syncLogin() {
+        return User.syncLogin();
     }
 
-    tryParseOpenIdPostback() {
-        const claimdId = this.parseParam('openid.claimed_id');
-
-        if (!claimdId) return;
-
-        const userId = claimdId.replace(/.*\//, '');
-
-        fetch(
-            `https://cors.bridged.cc/https://steamcommunity.com/profiles/${userId}/games/?tab=all`,
-        ).then(
-            response => response.text()
-        ).then((data) => {
-            const matches = data.match(/var rgGames = ([^\n]+);/);
-
-            if (!matches || matches.length !== 2) {
-                alert('Unable to load your profile. This is usually because your Steam profile is not public.\n'
-                    + 'Try setting your Steam Community profile visibility to public, then refresh this page to '
-                    + 'try again.');
-
-                return;
-            }
-
-            const games = JSON.parse(matches[1]).reduce(
-                (games, game) => {
-                    games[game['appid']] = game['hours_forever'] || 0;
-
-                    return games;
-                },
-                {}
-            );
-
-            if (!Object.keys(games).length) {
-                alert('No games found in your account! This is usually because your game details are not public.\n'
-                    + 'Try setting your game details to public on your Steam Community privacy settings page, then '
-                    + 'refresh this page to try again.');
-
-                return;
-            }
-
-            localStorage.setItem('games', JSON.stringify(games));
-
-            const dom = new DOMParser().parseFromString(data, 'text/html');
-            localStorage.setItem('steam', JSON.stringify({
-                id: userId,
-                name: dom.querySelector('.profile_small_header_name').innerText.trim(),
-                avatar: dom.querySelector('.playerAvatar > img')['src'].replace('_medium', ''),
-            }));
-
-            location.replace(location.pathname);
-        });
+    static syncLogout() {
+        return User.syncLogout();
     }
 
     initSearchValue() {
-        const q = this.parseParam('q');
+        const q = parseParam('q');
 
         if (q !== null) {
             document.querySelectorAll('input[name=q]').forEach(i => i.value = q.replace(/\+/g, ' '));
@@ -372,12 +273,6 @@ class S250 {
                 shadow.classList.remove('animate');
             })
         });
-    }
-
-    parseParam(name) {
-        const match = RegExp('[?&]' + name + '=([^&]*)').exec(location.search);
-
-        return match && decodeURIComponent(match[1]);
     }
 
     findSteamAppId(elem) {
