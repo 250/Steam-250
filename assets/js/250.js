@@ -139,7 +139,7 @@ class S250 {
             let yOffset = target.getBoundingClientRect().top - menuHeight;
 
             // Highlight ranking element if it exists (will not exist on non-ranking pages).
-            const ranking = document.querySelector('.applist, .ranking');
+            const ranking = document.querySelector('.applist, .main.ranking');
             if (ranking && ranking.contains(target)) {
                 target.classList.add(HIGHLIGHT);
 
