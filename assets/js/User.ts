@@ -124,7 +124,7 @@ export default class User {
 
         const
             games = JSON.parse(gamesJson),
-            ranks = document.querySelectorAll<HTMLAnchorElement>('.ranking > div[id] > div:first-of-type > a')
+            ranks = document.querySelectorAll<HTMLAnchorElement>('.main.ranking > div[id] > div:first-of-type > a')
         ;
 
         ranks.forEach(a => {
@@ -136,7 +136,7 @@ export default class User {
             }
         });
 
-        const current = document.querySelectorAll('.ranking .owned').length, max = ranks.length;
+        const current = document.querySelectorAll('.main.ranking .owned').length, max = ranks.length;
         gamesOwned.innerText = max ? `${current}/${max} (${Math.round(current / max * 100)}%)` : 'n/a';
     }
 
