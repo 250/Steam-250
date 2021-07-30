@@ -1,0 +1,1 @@
+new class{constructor(){this.initChevrons()}initChevrons(){document.querySelectorAll(".top10 > footer > a > span:last-of-type").forEach((e=>{e.parentNode.appendChild(e.cloneNode()),e.parentNode.appendChild(e.cloneNode())}))}};
