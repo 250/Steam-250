@@ -57,3 +57,8 @@
 {{ parent() }}
 <link rel="stylesheet" href="/c/home.css">
 {% endblock %}
+
+{% block js %}
+{{ parent() }}
+<script src="/c/home.js" defer></script>
+{% endblock %}
