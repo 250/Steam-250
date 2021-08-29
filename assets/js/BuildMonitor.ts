@@ -31,7 +31,7 @@ export default class BuildMonitor {
         element.classList.add('countdown');
         element.innerHTML = 'Initializing...';
 
-        document.querySelector('.body')!.appendChild(element);
+        document.getElementById('body')!.appendChild(element);
 
         return element;
     }

@@ -1,0 +1,62 @@
+// Sort order: relevance/date.
+.gsc-orderby-container {
+    display: none;
+}
+
+#body {
+    .gsc-result-info {
+        color: #93a1ad;
+    }
+
+    // Horizontal rule.
+    .gsc-above-wrapper-area {
+        border-color: #475269;
+    }
+
+    // Result link and URL.
+    .gsc-thumbnail-inside,
+    .gsc-url-top,
+    .gsc-table-result {
+        padding: 0;
+    }
+
+    // Current page.
+    .gsc-results .gsc-cursor-box .gsc-cursor-current-page {
+        color: #93a1ad;
+        background: none;
+        cursor: pointer;
+    }
+    .gsc-results .gsc-cursor-box .gsc-cursor-current-page:hover {
+        text-decoration: none;
+    }
+
+    // Links.
+    .gs-result .gs-title {
+        text-decoration: none;
+    }
+    .gs-result a.gs-title:hover {
+        text-decoration: underline;
+    }
+    .gs-result .gs-title:visited:hover {
+        color: #9e814c;
+    }
+
+    // No results.
+    .gs-no-results-result .gs-snippet {
+        color: inherit;
+        background: none;
+        border: none;
+        text-transform: lowercase;
+    }
+    .gs-no-results-result .gs-snippet:first-letter {
+        text-transform: uppercase;
+    }
+    .gs-no-results-result .gs-snippet:after {
+        content: '.';
+    }
+
+    // Page numbers.
+    .gsc-cursor-page {
+        background: none;
+    }
+}

@@ -28,6 +28,7 @@ module.exports = {
 
             './css/home.less',
         ],
+        search: ['./css/search.less'],
     },
 
     output: {
