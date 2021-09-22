@@ -104,8 +104,7 @@ export default class User {
 
         const a = document.querySelector<HTMLAnchorElement>('#lin .avatar');
         if (!a) return;
-
-        a.href = `https://steamcommunity.com/profiles/[U:1:${user.id}]/`;
+        a.href = `${process.env.CLUB_250_BASE_URL}/me`;
 
         const img = a.appendChild(document.createElement('img'));
         img.alt = img.title = user.name;
