@@ -10,6 +10,7 @@ class S250 {
         // User stuff.
         this.initLogInOut();
         User.syncLoginUi();
+        S250.tryRemoveAds();
 
         // Hash stuff.
         this.scrollToCurrentHash();
@@ -200,6 +201,24 @@ class S250 {
 
     static syncLogout() {
         return User.syncLogout();
+    }
+
+    static showAds() {
+        const userJson = localStorage.getItem('user');
+
+        if (userJson) {
+            const user = JSON.parse(userJson);
+
+            return !(user.hasOwnProperty('noads') && user.noads)
+        }
+
+        return true;
+    }
+
+    static tryRemoveAds() {
+        if (!S250.showAds()) {
+            document.querySelectorAll('ins').forEach(e => e.remove());
+        }
     }
 
     initSearchValue() {

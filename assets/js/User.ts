@@ -23,16 +23,18 @@ export default class User {
             return console.error('Login sync failed:', response.status, response.statusText, body);
         }
 
-        const [userId, rest] = body.split("\0", 2);
+        const [userId, identity, noads] = body.split("\0", 3);
 
         localStorage.setItem('user', JSON.stringify({
             id: userId,
-            name: rest.substring(40),
-            avatar: rest.substring(0, 40),
+            name: identity.substring(40),
+            avatar: identity.substring(0, 40),
+            noads: noads === '1',
         }));
 
         this.postClub250Message('login synced');
 
+        S250.tryRemoveAds();
         this.syncLoginUi();
         this.syncGames();
     }
