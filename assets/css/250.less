@@ -4,6 +4,7 @@
 @import "inc/nav";
 @import "inc/quicklinks";
 @import "inc/checkbox";
+@import "inc/button group";
 
 html, body {
     height: 100%;
@@ -1003,33 +1004,6 @@ tr.a .movement.none:before {
     background: #316b59;
     border-top-color: #1f4d3e;
     border-left-color: #1f4d3e;
-}
-
-.button-group {
-    display: flex;
-    justify-content: center;
-    margin: 1.5em 0;
-
-    --radius: 5px;
-    --padding: 2vw;
-}
-@media (min-width: 1200px) {
-    .button-group {
-        --padding: 24px;
-    }
-}
-.button-group > .button {
-    min-width: 3.5em;
-    margin: 0;
-    padding-left: var(--padding);
-    padding-right: var(--padding);
-    border-radius: 0;
-}
-.button-group > .button:first-child {
-    border-radius: var(--radius) 0 0 var(--radius);
-}
-.button-group > .button:last-child {
-    border-radius: 0 var(--radius) var(--radius) 0;
 }
 
 .timeline {

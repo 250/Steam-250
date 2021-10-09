@@ -1,0 +1,38 @@
+.button-group {
+  display: flex;
+  justify-content: center;
+  margin: 1.5em 0;
+
+  --radius: 5px;
+  --padding: 2vw;
+
+  @media (min-width: 1200px) {
+    --padding: 24px;
+  }
+
+  &.wrap {
+    flex-flow: wrap;
+    gap: 1ex 0;
+  }
+
+  >.button {
+    min-width: 3.5em;
+    margin: 0;
+    padding-left: var(--padding);
+    padding-right: var(--padding);
+    border-radius: 0;
+
+    &:first-child, &.start, &.endgrp + .button {
+      border-top-left-radius: var(--radius);
+      border-bottom-left-radius: var(--radius);
+    }
+    &:last-child, &.end, &.endgrp {
+      border-top-right-radius: var(--radius);
+      border-bottom-right-radius: var(--radius);
+    }
+
+    &.endgrp + .button {
+      margin-left: 2ch;
+    }
+  }
+}
