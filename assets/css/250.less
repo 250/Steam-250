@@ -78,7 +78,7 @@ h2 {
 #user > form {
     display: inline-block;
 }
-#user > form input:not(type) {
+#user > form input[type=search] {
     color: #97a5cf;
     border: 0 solid #97a5cf;
     background: transparent;
@@ -91,8 +91,8 @@ h2 {
     /* Chrome UA focus style override. */
     outline: none;
 }
-#user > form input:not(type):focus,
-#user > form input:not(type):valid {
+#user > form input[type=search]:focus,
+#user > form input[type=search]:valid {
     max-width: 10em;
 
     border-bottom-width: 2px;

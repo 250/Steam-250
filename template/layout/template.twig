@@ -6,10 +6,10 @@
 <div id="page" class="{% block class %}{% endblock %}">
     <section id="header">
         <div id="user">
-            <form action="{{ club250 }}/search">
+            <form action="{{ club250 }}/search" novalidate>
                 <label>
                     <span title="Search">Search</span
-                    ><input name="q">
+                    ><input name="q" type="search" required>
                 </label>
             </form>
             <div id="lout">
