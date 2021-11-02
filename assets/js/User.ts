@@ -53,7 +53,11 @@ export default class User {
 
         const data = await (await fetch(encodeURI(
             `https://cors.bridged.cc/https://steamcommunity.com/profiles/[U:1:${userId}]/games/?tab=all`,
-        ))).text();
+        ), {
+            headers: {
+                'x-cors-grida-api-key': '5e64a881-1bca-4be2-9d93-2443d53458b5',
+            },
+        })).text();
 
         const matches = data.match(/var rgGames = ([^\n]+);/);
 
