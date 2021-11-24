@@ -2,7 +2,6 @@ Steam 250
 =========
 
 [![Build status][Build image]][Build]
-[![Code style][Style image]][Style]
 
 This project generates the [Steam 250][Steam 250] front-end web pages.
 
@@ -72,10 +71,8 @@ php -S localhost:8113 -t '/path/to/Steam 250/site'
 
 Then we can simply visit `localhost:8113` in our favourite web browser. Feel free to change the port to whatever you want and remember to set the path correctly to point to the same directory the site was generated in.
 
-  [Build]: https://travis-ci.com/250/Steam-250
-  [Build image]: https://travis-ci.com/250/Steam-250.svg?branch=master "Build status"
-  [Style]: https://styleci.io/repos/110031821
-  [Style image]: https://styleci.io/repos/110031821/shield?style=flat "Code style"
+  [Build]: https://github.com/250/Steam-250/actions/workflows/Build.yml
+  [Build image]: https://github.com/250/Steam-250/actions/workflows/Build.yml/badge.svg "Build status"
   [Snapshots]: https://github.com/250/Steam-250/releases/tag/snapshots
 
   [Steam 250]: https://steam250.com
