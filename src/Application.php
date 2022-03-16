@@ -12,6 +12,7 @@ use ScriptFUSION\Steam250\SiteGenerator\Log\LoggerFactory;
 use ScriptFUSION\Steam250\SiteGenerator\Rank\Ranker;
 use ScriptFUSION\Steam250\SiteGenerator\Rank\RankerFactory;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\RankingDependencies;
+use Symfony\Component\Dotenv\Dotenv;
 
 final class Application
 {
@@ -27,6 +28,8 @@ final class Application
             new SiteCommand($this),
             new PageCommand($this),
         ]);
+
+        (new Dotenv())->loadEnv(self::getAppPath('webpack/.env'));
     }
 
     public function start(): int

@@ -23,6 +23,7 @@ class S250 {
         // Fancy stuff.
         this.initAppLinkMenu();
         this.initRankingHoverItems();
+        this.initBoxLinkForm();
     }
 
     initLogInOut() {
@@ -155,8 +156,8 @@ class S250 {
             }
 
             scrollTo(
-                pageXOffset,
-                pageYOffset + Math.ceil(yOffset)
+                scrollX,
+                scrollY + Math.ceil(yOffset)
             );
         }
 
@@ -292,6 +293,11 @@ class S250 {
                 shadow.classList.remove('animate');
             })
         });
+    }
+
+    initBoxLinkForm() {
+        // Cancel click events in input boxes to prevent anchor navigation.
+        document.querySelectorAll('.boxlink input').forEach(e => e.addEventListener('click', e => e.preventDefault()));
     }
 
     findSteamAppId(elem) {

@@ -7,6 +7,7 @@
 {% block css %}
 {{ parent() }}
 <link rel="stylesheet" href="/css/ranking.css">
+<link rel="stylesheet" href="{{ club250_static }}/c/steam250.css">
 {% endblock %}
 
 {% block fullwidth %}
@@ -23,6 +24,22 @@
                 <li><a href="/most_played{{ ext }}"><span class="played">Most Played</span></a>
                 <li><a href="{{ club250 }}/ranking/custom"><span class="cranking">Custom Ranking</span></a>
             </ol>
+        </section>
+
+        <section class="boxlink ico email">
+            <a href="{{ club250 }}/email sub/7day">
+                <header>Club 250 Weekly Edition</header>
+                <div>
+                    <p>
+                        Sign up for the Club 250 Weekly Edition and get the <strong>top 30 games of the week</strong>
+                        delivered directly to your inbox every seven days!
+                    </p>
+                    <form method="post" action="{{ club250 }}/email sub/7day">
+                        <input name="email" type="email" placeholder="email address" required>
+                        <button>Send</button>
+                    </form>
+                </div>
+            </a>
         </section>
     {% endblock %}
     </div>
@@ -171,9 +188,8 @@
                 <a href="{{ patreon }}">about section</a> on our Patreon page.</p>
             <p>
                 <a href="{{ patreon }}">Joining Club 250</a>
-                for just $1 per month helps us continue making improvements that help you find good games on Steam.
+                for just £1 per month helps us continue making improvements that help you find good games on Steam.
                 As a bonus incentive, greater pledge levels come with some additional rewards, including
-                <a href="/club250/member_reviews{{ ext }}">your Steam reviews on an exclusive ranking</a> and
                 <a href="/club250/ambassadors{{ ext }}">your name, logo and link on the site</a>.
             </p>
         </div>
