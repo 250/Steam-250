@@ -147,6 +147,18 @@ ol.menu {
       text-align: center;
     }
 
+    // Tab menu two-column layout.
+    &:nth-child(3) > ol {
+      display: grid;
+      grid: auto/auto auto;
+
+      >li:first-child {
+        grid-column: span 2;
+
+        text-align: center;
+      }
+    }
+
     /* Specials. */
     a[class] {
       padding-left: 2.05em;
@@ -181,7 +193,7 @@ ol.menu {
       }
       &.tag:before {
         --width: 1.2em;
-        transform: translate(-115%, -10%);
+        transform: translate(-120%, -10%);
         mask-image: url(/svg/tag.svg);
       }
       &.email:before {

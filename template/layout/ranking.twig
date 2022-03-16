@@ -27,19 +27,18 @@
         </section>
 
         <section class="boxlink ico email">
-            <a href="{{ club250 }}/email sub/7day">
-                <header>Club 250 Weekly Edition</header>
-                <div>
-                    <p>
-                        Sign up for the Club 250 Weekly Edition and get the <strong>top 30 games of the week</strong>
-                        delivered directly to your inbox every seven days!
-                    </p>
-                    <form method="post" action="{{ club250 }}/email sub/7day">
-                        <input name="email" type="email" placeholder="email address" required>
-                        <button>Send</button>
-                    </form>
-                </div>
-            </a>
+            <header>Club 250 Weekly Edition</header>
+            <div>
+                <p>
+                    Sign up for the Club 250 Weekly Edition and get the <strong>top 30 games of the week</strong>
+                    delivered directly to your inbox every seven days!
+                    <a href="{{ club250 }}/email%20sub/7day"><b>Learn more</b></a>.
+                </p>
+                <form method="post" action="{{ club250 }}/email%20sub/7day">
+                    <input name="email" type="email" placeholder="your.email@example.com" required>
+                    <button>Send</button>
+                </form>
+            </div>
         </section>
     {% endblock %}
     </div>
