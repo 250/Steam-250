@@ -104,7 +104,7 @@
                 {% if game.vrx %}
                 <a href="/vr_exclusives{{ ext }}" class="vrx" title="VR Exclusive">VRX</a>
                 {% endif %}
-                {% if game.price is same as('0') %}
+                {% if game.price is same as(0) %}
                 <a href="/tag/free_to_play{{ ext }}" class="free">Free</a>
                 {% endif %}
                 {% if game.ea %}

@@ -5,7 +5,7 @@ export default {
     title: 'Ranking/Movement',
     argTypes: {
         movement: {
-            type: {name: 'string', required: true},
+            type: {name: 'number', required: true},
         },
     },
 } as Meta;
@@ -23,13 +23,13 @@ const createLoaders = () => [
 export const Up = Template.bind({});
 Up.loaders = createLoaders();
 Up.args = {
-    movement: '12',
+    movement: 12,
 };
 
 export const Down = Template.bind({});
 Down.loaders = createLoaders();
 Down.args = {
-    movement: '-12',
+    movement: -12,
 };
 
 export const New = Template.bind({});
@@ -41,7 +41,7 @@ New.args = {
 export const NoChange = Template.bind({});
 NoChange.loaders = createLoaders();
 NoChange.args = {
-    movement: '0',
+    movement: 0,
 };
 
 export const Removed = Template.bind({});
