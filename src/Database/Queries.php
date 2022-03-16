@@ -128,21 +128,26 @@ final class Queries
 
     public static function fetchPopularTags(Connection $database, int $threshold = 400): array
     {
-        return $database->executeQuery(
-            "SELECT tag.name AS tag, COUNT(*) AS count
-            FROM app_tag
-            JOIN (
-                SELECT app_id, AVG(votes) avg
+        return $database->executeQuery("
+            SELECT tag
+            FROM (
+                SELECT tag.name AS tag, COUNT(*) AS count
                 FROM app_tag
-                GROUP BY app_id
-            )_ USING(app_id)
-            JOIN tag ON tag.id = tag_id
-            LEFT JOIN app ON app.id = app_id
-            WHERE type = 'game' AND tag.name != 'VR' AND votes >= avg * .5
-            GROUP BY tag.id
-            HAVING count >= $threshold
-            ORDER BY tag.name"
-        )->fetchFirstColumn();
+                    JOIN (
+                        SELECT app_id, AVG(votes) avg
+                        FROM app_tag
+                        GROUP BY app_id
+                    )_ USING(app_id)
+                    JOIN tag ON tag.id = tag_id
+                    LEFT JOIN app ON app.id = app_id
+                WHERE type = 'game' AND tag.name != 'VR' AND votes >= avg * .5
+                GROUP BY tag.id
+                HAVING count >= $threshold
+                ORDER BY count DESC
+                LIMIT 150
+            )
+            ORDER BY tag
+        ")->fetchFirstColumn();
     }
 
     public static function fetchPatronReviews(Connection $database, int $appId): array
