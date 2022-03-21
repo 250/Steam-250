@@ -25,6 +25,8 @@ use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\RollingMonthRanking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\RollingQuarterRanking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\RollingWeekRanking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\RollingYearRanking;
+use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\SteamDeckPlayableRanking;
+use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\SteamDeckVerifiedRanking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\Top250Ranking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\TrendRanking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\Usd10To15Ranking;
@@ -57,6 +59,8 @@ final class RankingName extends AbstractEnumeration
     public const LINUX = 'LINUX';
     public const VR = 'VR';
     public const VRX = 'VRX';
+    public const STEAM_DECK = 'STEAM_DECK';
+    public const STEAM_DECK_PLAYABLE = 'STEAM_DECK_PLAYABLE';
     public const HVN = 'HVN';
     public const REMORSE = 'REMORSE';
     public const DEVELOPER = 'DEVELOPER';
@@ -88,6 +92,8 @@ final class RankingName extends AbstractEnumeration
         self::LINUX => Linux250Ranking::class,
         self::VR => VrTop250Ranking::class,
         self::VRX => VrxRanking::class,
+        self::STEAM_DECK => SteamDeckVerifiedRanking::class,
+        self::STEAM_DECK_PLAYABLE => SteamDeckPlayableRanking::class,
         self::HVN => HiddenNovelsRanking::class,
         self::REMORSE => BuyersRemorseRanking::class,
         self::DEVELOPER => DeveloperRanking::class,
@@ -120,6 +126,8 @@ final class RankingName extends AbstractEnumeration
         self::LINUX => 'linux',
         self::VR => 'vr',
         self::VRX => 'vrx',
+        self::STEAM_DECK => 'deck',
+        self::STEAM_DECK_PLAYABLE => 'deckp',
         self::HVN => 'hvn',
         self::REMORSE => 'remorse',
         self::DEVELOPER => 'dev',
