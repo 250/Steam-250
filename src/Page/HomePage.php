@@ -11,7 +11,7 @@ use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\MostPlayedRanking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\RollingWeekRanking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\Top250Ranking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\TrendRanking;
-use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\UsdUnder5List;
+use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\UsdUnder5Ranking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Ranking;
 
 class HomePage extends Page implements PreviousDatabaseAware
@@ -74,7 +74,7 @@ class HomePage extends Page implements PreviousDatabaseAware
             MostPlayedRanking::class,
             RollingWeekRanking::class,
             TrendRanking::class,
-            UsdUnder5List::class,
+            UsdUnder5Ranking::class,
             DiscountRanking::class,
             'free_to_play',
             'sexual_content',

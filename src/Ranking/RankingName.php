@@ -27,10 +27,10 @@ use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\RollingWeekRanking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\RollingYearRanking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\Top250Ranking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\TrendRanking;
-use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\Usd10To15List;
-use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\Usd5To10List;
+use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\Usd10To15Ranking;
+use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\Usd5To10Ranking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\UsdOver15Ranking;
-use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\UsdUnder5List;
+use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\UsdUnder5Ranking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\VrTop250Ranking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\VrxRanking;
 
@@ -72,9 +72,9 @@ final class RankingName extends AbstractEnumeration
         self::BOTTOM_100 => Bottom100Ranking::class,
         self::DLC => DlcRanking::class,
         self::DISCOUNT => DiscountRanking::class,
-        self::USD_UNDER_5 => UsdUnder5List::class,
-        self::USD5_10 => Usd5To10List::class,
-        self::USD10_15 => Usd10To15List::class,
+        self::USD_UNDER_5 => UsdUnder5Ranking::class,
+        self::USD5_10 => Usd5To10Ranking::class,
+        self::USD10_15 => Usd10To15Ranking::class,
         self::USD_OVER_15 => UsdOver15Ranking::class,
         self::D_7 => RollingWeekRanking::class,
         self::D_30 => RollingMonthRanking::class,
