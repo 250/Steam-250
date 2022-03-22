@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace ScriptFUSION\Steam250\SiteGenerator\Ranking;
 
 use Eloquent\Enumeration\AbstractEnumeration;
+use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\AdultRanking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\Bottom100Ranking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\BuyersRemorseRanking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\Club250Ranking;
@@ -67,6 +68,7 @@ final class RankingName extends AbstractEnumeration
     public const PUBLISHER = 'PUBLISHER';
     public const PLAYERS = 'PLAYERS';
     public const TREND = 'TREND';
+    public const ADULT = 'ADULT';
     public const CLUB_250 = 'CLUB_250';
     public const COLLAGE = 'COLLAGE';
 
@@ -100,6 +102,7 @@ final class RankingName extends AbstractEnumeration
         self::PUBLISHER => PublisherRanking::class,
         self::PLAYERS => MostPlayedRanking::class,
         self::TREND => TrendRanking::class,
+        self::ADULT => AdultRanking::class,
         self::CLUB_250 => Club250Ranking::class,
         self::COLLAGE => CollageRanking::class,
     ];
@@ -134,6 +137,7 @@ final class RankingName extends AbstractEnumeration
         self::PUBLISHER => 'pub',
         self::PLAYERS => 'players',
         self::TREND => 'trend',
+        self::ADULT => '18',
         self::CLUB_250 => 'club',
         self::COLLAGE => 'collage',
     ];
