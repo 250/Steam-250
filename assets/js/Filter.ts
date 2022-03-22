@@ -43,7 +43,7 @@ new class {
     }
 
     private filterApps() {
-        const ranks = document.querySelectorAll('.ranking > div[id]'),
+        const ranks = document.querySelectorAll('#body .ranking > div[id]'),
             checkedChecks = this.checks.filter(check => check.checked);
 
         let kept = 0;
