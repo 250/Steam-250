@@ -21,7 +21,11 @@
             {% if ranking.related %}
             <ol>
                 {% for see in ranking.related %}
-                <li><a href="tag/{{ see|tag_id ~ ext }}">{{ see|title }}</a>
+                    {% if see == 'adult' %}
+                    <li><a href="/{{ see ~ ext }}">{{ see|title }}</a>
+                    {% else %}
+                    <li><a href="/tag/{{ see|tag_id ~ ext }}">{{ see|title }}</a>
+                    {% endif %}
                 {% endfor %}
             </ol>
             {% endif %}

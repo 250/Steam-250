@@ -26,7 +26,7 @@ class HomePage extends Page implements PreviousDatabaseAware
     private int $rankingCount;
 
     private const RELATED_MAP = [
-        'tag/sexual_content' => ['nudity'],
+        'tag/sexual_content' => ['adult', 'nudity'],
         'tag/co-op' => ['singleplayer', 'multiplayer', 'local co-op', 'online co-op'],
         'tag/pixel_graphics' => ['2d'],
         'tag/roguelike' => ['roguelite'],
