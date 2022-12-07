@@ -45,6 +45,7 @@
     </div>
 
     <div class="col1 main ranking">
+        {% if games is defined %}
         <div class="filter">
             <button type="button">platform filters</button>
             <form method="post">
@@ -160,6 +161,11 @@
         {% endfor %}
         {% if ranking.algorithm is defined %}
         <footer title="Ranking algorithm">{{ ranking.algorithm }} {{ ranking.weight }}</footer>
+        {% endif %}
+        {% else %}
+            <div class="warning">
+                Data for this page is temporarily unavailable due to upstream data errors. Please try again tomorrow!
+            </div>
         {% endif %}
     </div>
     <section class="col2 r&amp;f">

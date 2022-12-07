@@ -54,6 +54,7 @@ jobs:
 
       - name: Build site
         run: bin/generate site -v --min --ext '' --prev-db "${{ env.yesterdayDb }}" "${{ env.todayDb }}" gh-pages
+          | tee out
 
       - name: Push site
         run: |
@@ -76,3 +77,6 @@ jobs:
       - name: Trigger curator sync
         run: curl -sS -u :"${{ secrets.GH_BILGE_TOKEN }}" -d '{"ref":"master"}'
           $GITHUB_API_URL/repos/250/Steam-curator/actions/workflows/Curator%20sync.yml/dispatches
+
+      - name: Ensure no errors in build output
+        run: '! grep --extended-regexp --context 1 ''^\[[^]]+\] [A-Z]\w{3}:'' out'
