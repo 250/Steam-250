@@ -10,7 +10,9 @@ class VrxRanking extends VrTop250Ranking
 {
     public function __construct(RankingDependencies $dependencies)
     {
-        parent::__construct($dependencies, 'vr_exclusives');
+        parent::__construct($dependencies);
+
+        $this->setId('vr_exclusives');
     }
 
     public function customizeQuery(QueryBuilder $builder): void

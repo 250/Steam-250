@@ -51,15 +51,7 @@ new class {
         // Only filter when previously filtered or less than all checks enabled (optimization to speed loading).
         if (this.filtersButton.getAttribute('data-filtered') || checkedChecks.length < this.checks.length) {
             ranks.forEach(rank => {
-                let keep = checkedChecks.some(check => {
-                    if (check.name === 'vr') {
-                        return !!rank.querySelector(
-                            '.platforms > .vive, .platforms > .rift, .platforms > .wmr, .platforms > .index'
-                        )
-                    }
-
-                    return !!rank.querySelector('.platforms > .' + check.name);
-                });
+                let keep = checkedChecks.some(check => !!rank.querySelector('.platforms > .' + check.name));
 
                 rank.classList.toggle('filtered', !keep);
 
@@ -96,7 +88,10 @@ new class {
         }
 
         for (const [name, value] of Object.entries(state)) {
-            this.form[name].checked = value;
+            // Checkbox name may no longer exist if feature was removed.
+            if (this.form[name]) {
+                this.form[name].checked = value;
+            }
         }
 
         this.filterApps();

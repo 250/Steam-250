@@ -16,6 +16,7 @@ abstract class Page
     {
         $this->database = $database;
         $this->id = $id;
+        $this->useDefaultTemplate();
     }
 
     public function export(): array
@@ -37,11 +38,16 @@ abstract class Page
 
     public function getTemplate(): string
     {
-        return $this->template ?? $this->id;
+        return $this->template ?: $this->id;
     }
 
     protected function setTemplate(string $template): void
     {
         $this->template = $template;
+    }
+
+    protected function useDefaultTemplate(): void
+    {
+        $this->template = '';
     }
 }
