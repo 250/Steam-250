@@ -1,4 +1,4 @@
-import {Meta, Story, StoryContext} from '@storybook/html';
+import {Args, Meta, Story} from '@storybook/html';
 import template from 'T/component/checkbox.twig';
 
 export default {
@@ -8,7 +8,7 @@ export default {
     },
     argTypes: {
         caption_on: {
-            type: {required: true},
+            type: {name: 'string', required: true},
         },
     },
     parameters: {
@@ -24,7 +24,7 @@ export default {
 const Template: Story = (args, {loaded: {html}}) => html;
 
 const createLoaders = () => [
-    async (ctx: StoryContext) => {
+    async (ctx: Args) => {
         return {
             html: await template(ctx.args),
         }

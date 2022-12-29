@@ -989,25 +989,33 @@ tr.a .movement.none:before {
     text-align: center;
     text-shadow: 0 1px 2px #467899;
     outline: none;
+
+    &[disabled] {
+        filter: saturate(20%);
+        cursor: not-allowed;
+    }
 }
-.button:hover {
-    color: #d9f5ff;
-    background: #3c6f96;
-    border-top-color: #48718c;
-    border-left-color: transparent;
-    border-bottom-color: #2b4969;
-    text-shadow: 0 1px 2px #5b94b3;
-    text-decoration: none;
-}
-.button:active {
-    top: 1px;
-    color: #abc2d9;
-    background: #2f4e6c;
-    border-top-color: #1f354d;
-    border-left-color: #1f354d;
-    border-bottom-width: 1px;
-    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .5);
-    text-shadow: none;
+.button:not([disabled]) {
+    &:hover {
+        color: #d9f5ff;
+        background: #3c6f96;
+        border-top-color: #48718c;
+        border-left-color: transparent;
+        border-bottom-color: #2b4969;
+        text-shadow: 0 1px 2px #5b94b3;
+        text-decoration: none;
+    }
+
+    &:active {
+        top: 1px;
+        color: #abc2d9;
+        background: #2f4e6c;
+        border-top-color: #1f354d;
+        border-left-color: #1f354d;
+        border-bottom-width: 1px;
+        box-shadow: inset 0 1px 1px rgba(0, 0, 0, .5);
+        text-shadow: none;
+    }
 }
 
 .button.cur {
