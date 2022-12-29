@@ -25,7 +25,7 @@ jobs:
         run: rm -rfv sb/* && cp -val storybook-static/* sb
 
       - name: Declare CNAME
-        run: echo components.steam250.com > sb/CNAME
+        run: echo ui.steam250.com > sb/CNAME
 
       - name: Push site
         run: |
