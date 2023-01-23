@@ -86,8 +86,8 @@
                     {% if game.rank is defined %}{{ game.rank }}.{% endif %}
                     <a href="{{ steam.app_url(game.id) }}">
                         {{- game.name -}}
-                    </a>
-                </span>
+                    </a>{#
+                #}</span>
                 {{ macro.date(game.release_date, game.release_date|date|adaptive_date) }}
                 <span class="platforms">
                     {%- if game.platforms b-and constant('ScriptFUSION\\Steam250\\Shared\\Platform::WINDOWS') -%}
@@ -130,8 +130,8 @@
                 {% if game.demo_id %}
                     <a class="demo" href="steam://install/{{ game.demo_id }}" title="Install demo">Demo</a>
                 {%- endif -%}
-                <a href="{{ steam.store_url(game.id) }}" class="store" title="Steam store"></a>{#
-                #}{% if game.rank is defined %}<a href="#{{ game.rank }}" class="links" title="Link">▼</a>{% endif %}
+                <a href="{{ steam.store_url(game.id) }}" class="store" title="Steam store"></a>
+                {%- if game.rank is defined %}<a href="#{{ game.rank }}" class="links" title="Link">▼</a>{% endif %}
                 {% block reviews %}{% endblock %}
                 {% endblock %}
             </div>
