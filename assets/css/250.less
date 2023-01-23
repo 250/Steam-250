@@ -602,25 +602,64 @@ p.notice::before {
     /* Prevent breaking around title at small resolutions. */
     display: inline;
 }
-.ranking .store {
-    margin-left: 2px;
+.ranking {
+    .demo {
+        position: relative;
+        display: inline-grid;
+        grid: 100%/100%;
+        width: 2.4ex;
+        height: $width;
+        margin-left: 2px;
+        place-items: center;
+        text-indent: 99vw;
+        overflow: hidden;
 
-    background: url('/svg/steam.svg');
-    background-size: 80%;
-}
-.ranking .links {
-    display: inline-block;
-    width: 13px;
-    height: 0;
-    margin-left: 1px;
-    padding: calc(13px / 2 + .1em) .1em;
-    overflow: hidden;
-    text-indent: -20px;
+        color: #dddedc;
+        background: linear-gradient(#4a8427, #43611e);
+        border-radius: 4px;
 
-    background: url('/svg/link.svg') no-repeat 70% 50%;
-    background-size: 13px;
-    opacity: .2;
-    transition: opacity .15s;
+        &:before {
+            display: block;
+            content: '';
+            width: 1.8ex;
+            height: $width;
+            transform-origin: 49% 49%;
+
+            background: url(/svg/demo.svg);
+
+        }
+        &:hover:before {
+            animation: rotate 8s ease-in-out infinite;
+
+            @keyframes rotate {
+                to {
+                    transform: rotate(360deg * 20);
+                }
+            }
+        }
+    }
+
+    .store {
+        margin-left: 2px;
+
+        background: url('/svg/steam.svg');
+        background-size: 80%;
+    }
+
+    .links {
+        display: inline-block;
+        width: 13px;
+        height: 0;
+        margin-left: 1px;
+        padding: calc(13px / 2 + .1em) .1em;
+        overflow: hidden;
+        text-indent: -20px;
+
+        background: url('/svg/link.svg') no-repeat 70% 50%;
+        background-size: 13px;
+        opacity: .2;
+        transition: opacity .15s;
+    }
 }
 .ranking > header ~ div > div:nth-child(2):hover .links:hover,
 .ranking > header ~ div > div:nth-child(2) .links.show {
@@ -951,22 +990,6 @@ tr.a .movement.none:before {
 .platforms > .nix {
     background-image: url(/svg/tux.svg);
     background-size: 85%;
-}
-.platforms > .vive {
-    background-image: url(/svg/vive.svg);
-    background-size: 80%;
-}
-.platforms > .rift {
-    background-image: url(/svg/oculus.svg);
-    background-size: 85%;
-}
-.platforms > .wmr {
-    background-image: url(/img/wmr.png);
-    background-size: cover;
-}
-.platforms > .index {
-    background-image: url(/img/index.png);
-    background-size: 95%;
 }
 .platforms > .deck {
     background-image: url(/svg/deck.svg);

@@ -99,18 +99,6 @@
                     {%- if game.platforms b-and constant('ScriptFUSION\\Steam250\\Shared\\Platform::LINUX') -%}
                     <a href="/linux250{{ ext }}" title="Linux" class="nix"></a>
                     {%- endif -%}
-                    {%- if game.platforms b-and constant('ScriptFUSION\\Steam250\\Shared\\Platform::VIVE') -%}
-                    <a href="/vr250{{ ext }}" title="HTC Vive" class="vive"></a>
-                    {%- endif -%}
-                    {%- if game.platforms b-and constant('ScriptFUSION\\Steam250\\Shared\\Platform::OCULUS') -%}
-                    <a href="/vr250{{ ext }}" title="Oculus Rift" class="rift"></a>
-                    {%- endif -%}
-                    {%- if game.platforms b-and constant('ScriptFUSION\\Steam250\\Shared\\Platform::WMR') -%}
-                    <a href="/vr250{{ ext }}" title="Windows Mixed Reality" class="wmr"></a>
-                    {%- endif -%}
-                    {%- if game.platforms b-and constant('ScriptFUSION\\Steam250\\Shared\\Platform::INDEX') -%}
-                    <a href="/vr250{{ ext }}" title="Valve Index" class="index"></a>
-                    {%- endif -%}
                     {%- if game.steam_deck == 3 -%}
                     <a href="/steam_deck_verified{{ ext }}" title="Steam Deck" class="deck"></a>
                     {%- endif -%}
@@ -139,6 +127,9 @@
                     {{- ((game.discount_price ? game.discount_price : game.price) / 100)|number_format(2) -}}
                 </span>
                 {% endif %}
+                {% if game.demo_id %}
+                    <a class="demo" href="steam://install/{{ game.demo_id }}" title="Install demo">Demo</a>
+                {%- endif -%}
                 <a href="{{ steam.store_url(game.id) }}" class="store" title="Steam store"></a>{#
                 #}{% if game.rank is defined %}<a href="#{{ game.rank }}" class="links" title="Link">▼</a>{% endif %}
                 {% block reviews %}{% endblock %}
@@ -197,7 +188,7 @@
                 <a href="{{ patreon }}">about section</a> on our Patreon page.</p>
             <p>
                 <a href="{{ patreon }}">Joining Club 250</a>
-                for just £1 per month helps us continue making improvements that help you find good games on Steam.
+                for just £2 per month helps us continue making improvements that help you find good games on Steam.
                 As a bonus incentive, greater pledge levels come with some additional rewards, including
                 <a href="/club250/ambassadors{{ ext }}">your name, logo and link on the site</a>.
             </p>
