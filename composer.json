@@ -19,10 +19,13 @@
     "monolog/monolog": "^1",
     "phptype/date": "^1",
     "scriptfusion/static-class": "^1",
-    "symfony/console": "^5",
+    "symfony/console": "^6",
     "symfony/dotenv": "^6",
     "twig/twig": "^2",
-    "voku/html-min": "2.0.0"
+    "voku/html-min": "^4"
+  },
+  "require-dev": {
+    "roave/security-advisories": "dev-latest"
   },
   "config": {
     "sort-packages": true
