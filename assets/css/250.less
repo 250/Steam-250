@@ -602,7 +602,8 @@ p.notice::before {
     /* Prevent breaking around title at small resolutions. */
     display: inline;
 }
-.ranking {
+// Shared S250/C250 appline styles.
+.appline {
     .demo {
         position: relative;
         display: inline-grid;
@@ -659,12 +660,13 @@ p.notice::before {
         background-size: 13px;
         opacity: .2;
         transition: opacity .15s;
+
+        &:hover, &.show {
+            opacity: .7;
+        }
     }
 }
-.ranking > header ~ div > div:nth-child(2):hover .links:hover,
-.ranking > header ~ div > div:nth-child(2) .links.show {
-    opacity: .7;
-}
+
 .main.ranking {
     justify-self: center;
 
@@ -959,7 +961,7 @@ tr.a .movement.none:before {
     display: inline-block;
     margin-left: .25em;
 }
-.platforms > *, .ranking .store {
+.platforms > *, .appline .store {
     display: inline-block;
     width: 20px;
     height: 20px;
@@ -969,12 +971,12 @@ tr.a .movement.none:before {
     opacity: .3;
     transition: opacity .1s;
 }
-.platforms > a:hover, .ranking .store:hover {
+.platforms > a:hover, .appline .store:hover {
     opacity: .8;
 }
 @media (max-width: 599px) {
     .platforms > *,
-    .ranking .store {
+    .appline .store {
         width: 15px;
         height: 15px;
     }

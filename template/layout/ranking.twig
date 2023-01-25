@@ -77,7 +77,7 @@
                         {{- loop.index <= 14 ? '184x69.jpg' : 'sm_120.jpg' }}" class="lazy"
                 ></a>
             </div>
-            <div>
+            <div class="appline">
                 {% if game.movement is defined %}
                 {{ include('component/movement.twig', {movement: game.movement}) }}
                 {% endif %}
