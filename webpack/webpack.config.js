@@ -19,6 +19,9 @@ module.exports = {
             './css/250.less',
             './css/inc/3col.less',
         ],
+        ranking: [
+            './css/ranking.less'
+        ],
         internal: [
             './js/BuildMonitor.ts',
             './js/Filter.ts',

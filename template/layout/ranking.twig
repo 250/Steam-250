@@ -6,7 +6,7 @@
 
 {% block css %}
 {{ parent() }}
-<link rel="stylesheet" href="/css/ranking.css">
+<link rel="stylesheet" href="/c/ranking.css">
 <link rel="stylesheet" href="{{ club250_static }}/c/steam250.css">
 {% endblock %}
 
@@ -41,6 +41,8 @@
                 </form>
             </div>
         </section>
+
+        {{ include('partial/ad.twig', {id: '1119204033'}) }}
     {% endblock %}
     </div>
 
@@ -185,7 +187,8 @@
                 <strong>54 million reviews</strong> from
                 Steam to produce complete games ranking history. It is the next iteration of Steam 250 with lots of
                 ambitious and exciting features planned. Full details are in the
-                <a href="{{ patreon }}">about section</a> on our Patreon page.</p>
+                <a href="{{ patreon }}">about section</a> on our Patreon page.
+            </p>
             <p>
                 <a href="{{ patreon }}">Joining Club 250</a>
                 for just £2 per month helps us continue making improvements that help you find good games on Steam.
