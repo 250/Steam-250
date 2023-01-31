@@ -4,6 +4,12 @@ enum TriState {
     Left,
 }
 
+declare global {
+    interface HTMLInputElement {
+        go2: (state: TriState) => void
+    }
+}
+
 export default class Checkbox {
     public static initTristateCheckboxes() {
         document.querySelectorAll<HTMLInputElement>('.tri > input[type=checkbox]').forEach(checkbox => {
@@ -12,7 +18,7 @@ export default class Checkbox {
                 gutterWidth = parseFloat(getComputedStyle(gutter, ':before').width),
                 lowerBound = gutterWidth / 3,
                 upperBound = lowerBound * 2,
-                go2 = (state: TriState) => {
+                go2 = checkbox.go2 = (state: TriState) => {
                     checkbox.value = state.toString();
 
                     // Setting checked state should have no visual consequence, but ensures value is submitted on post.
