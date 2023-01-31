@@ -1,5 +1,5 @@
-<label{% if caption_off is defined %} class="option"{% endif %}>
-    <input type="checkbox" name="{{ name }}" checked>
+<label{% if caption_off is defined %} class="{{ tri is defined ? 'tri' : 'option' }}"{% endif %}>
+    <input type="checkbox" name="{{ name }}" {{ tri is defined ? 'value="0"' : 'checked' }}>
     <span>{{ caption_on }}</span>
     {% if caption_off is defined %}
     <span>{{ caption_off }}</span>

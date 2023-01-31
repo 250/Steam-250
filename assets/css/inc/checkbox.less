@@ -1,6 +1,4 @@
-@hover-filter: brightness(118%) saturate(86%);
-
-label.option {
+label.option, label.tri {
   display: inline-flex;
 }
 
@@ -121,6 +119,67 @@ input[type=checkbox] {
           // Avoid applying text highlight to deselected option.
           color: inherit;
         }
+      }
+    }
+  }
+
+  // Tri-state mode.
+  label.tri >& {
+    // Far-left state.
+    &[value="2"] {
+      + span {
+        color: inherit;
+
+        &:before {
+          border-color: #704e49;
+        }
+
+        &:after {
+          // Copy positioning from unchecked state.
+          &:extend(input[type=checkbox] + span:after);
+
+          transform: none;
+
+          background: #c9513e;
+        }
+
+        + span {
+          color: #c29088;
+        }
+      }
+
+      &:hover {
+        + span {
+          &:before {
+            border-color: #855c56;
+          }
+
+          &:after {
+            background: #e8634f;
+          }
+
+          + span {
+            color: #e3b8b1;
+          }
+        }
+      }
+    }
+
+    // Indeterminate state.
+    &[value="0"] {
+      + span:after {
+        left: (@gutter-width / 2);
+        transform: translate(-49%);
+
+        background: #c0d7e3;
+      }
+
+      &:hover {
+        // Copy text unchecked colour.
+        + span + span:extend(input[type=checkbox] + span:hover) {}
+
+        // Copy track unchecked highlights.
+        + span:extend(input[type=checkbox] + span:hover all) {}
       }
     }
   }

@@ -1,5 +1,9 @@
 import {Args, Meta, Story} from '@storybook/html';
 import template from 'T/component/checkbox.twig';
+import Checkbox from '../../assets/js/Checkbox';
+
+// Only respond to Storybook emulated DOM loaded event to prevent double-loading.
+addEventListener('DOMContentLoaded', e => e.isTrusted || Checkbox.initTristateCheckboxes());
 
 export default {
     title: 'Form/Checkbox',
@@ -9,6 +13,9 @@ export default {
     argTypes: {
         caption_on: {
             type: {name: 'string', required: true},
+        },
+        tri: {
+            table: {disable: true},
         },
     },
     parameters: {
@@ -44,4 +51,13 @@ AB.storyName = 'A/B';
 AB.args = {
     caption_on: 'Option A',
     caption_off: 'Option B',
+};
+
+export const Tri = Template.bind({});
+Tri.loaders = createLoaders();
+Tri.storyName = 'Tri-state';
+Tri.args = {
+    caption_on: 'Include',
+    caption_off: 'Exclude',
+    tri: true,
 };

@@ -1,11 +1,15 @@
 import {parseParam} from './Query';
 import User from './User';
+import Checkbox from './Checkbox';
 
 class S250 {
     constructor() {
         // Menu stuff.
         this.initMenuScrollbarTransitions();
         this.constrainDropdownMenuPositions();
+
+        // UI stuff.
+        Checkbox.initTristateCheckboxes();
 
         // User stuff.
         this.initLogInOut();
