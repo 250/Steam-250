@@ -14,9 +14,6 @@ export default {
         caption_on: {
             type: {name: 'string', required: true},
         },
-        tri: {
-            table: {disable: true},
-        },
     },
     parameters: {
         controls: {
@@ -33,7 +30,7 @@ const Template: Story = (args, {loaded: {html}}) => html;
 const createLoaders = () => [
     async (ctx: Args) => {
         return {
-            html: await template(ctx.args),
+            html: await template({...ctx.args, ...ctx.parameters}),
         }
     },
 ];
@@ -59,5 +56,8 @@ Tri.storyName = 'Tri-state';
 Tri.args = {
     caption_on: 'Include',
     caption_off: 'Exclude',
-    tri: true,
 };
+Tri.parameters = {
+    tri: true,
+    name: 'foo',
+}

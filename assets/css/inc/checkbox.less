@@ -1,3 +1,5 @@
+@gutter-width: 2em;
+
 label.option, label.tri {
   display: inline-flex;
 }
@@ -8,9 +10,7 @@ input[type=checkbox] {
   visibility: hidden;
 
   @checked-colour: #91c2b3;
-  @gutter-width: 2em;
   @track-height: 1.4ex;
-  @track-v-offset: .3ex;
   @track-margin: .6em;
   @transition-time: .15s;
 
@@ -27,13 +27,14 @@ input[type=checkbox] {
       content: '';
       position: absolute;
       left: 0;
+      top: 50%;
+      transform: translateY(-50%);
     }
 
     // Gutter.
     &:before {
       height: @track-height;
       width: @gutter-width;
-      top: @track-v-offset;
 
       background: #172230;
       border: 1px solid #718fa5;
@@ -46,7 +47,6 @@ input[type=checkbox] {
     &:after {
       height: @track-height;
       width: $height;
-      top: calc(@track-v-offset + 1px);
       left: .03em;
 
       background: #a0b7c3;
@@ -80,7 +80,7 @@ input[type=checkbox] {
 
       &:after {
         left: 2.07em;
-        transform: translate(-100%, 0);
+        transform: translate(-100%, -50%);
       }
     }
 
@@ -123,67 +123,6 @@ input[type=checkbox] {
     }
   }
 
-  // Tri-state mode.
-  label.tri >& {
-    // Far-left state.
-    &[value="2"] {
-      + span {
-        color: inherit;
-
-        &:before {
-          border-color: #704e49;
-        }
-
-        &:after {
-          // Copy positioning from unchecked state.
-          &:extend(input[type=checkbox] + span:after);
-
-          transform: none;
-
-          background: #c9513e;
-        }
-
-        + span {
-          color: #c29088;
-        }
-      }
-
-      &:hover {
-        + span {
-          &:before {
-            border-color: #855c56;
-          }
-
-          &:after {
-            background: #e8634f;
-          }
-
-          + span {
-            color: #e3b8b1;
-          }
-        }
-      }
-    }
-
-    // Indeterminate state.
-    &[value="0"] {
-      + span:after {
-        left: (@gutter-width / 2);
-        transform: translate(-49%);
-
-        background: #c0d7e3;
-      }
-
-      &:hover {
-        // Copy text unchecked colour.
-        + span + span:extend(input[type=checkbox] + span:hover) {}
-
-        // Copy track unchecked highlights.
-        + span:extend(input[type=checkbox] + span:hover all) {}
-      }
-    }
-  }
-
   // In option mode the track never dims because it is never "off". Otherwise, these are just further checked states.
   &:checked, label.option >& {
     + span {
@@ -204,5 +143,73 @@ input[type=checkbox] {
     line-height: 1.2;
 
     transition: color @transition-time;
+  }
+}
+
+// Tri-state mode.
+label.tri > input[type=radio]:extend(input[type=checkbox]) {
+  &:last-of-type + span:extend(input[type=checkbox] + span all) {}
+
+  // Far-left state.
+  &[value="2"]:checked {
+    + span {
+      color: inherit;
+
+      &:before {
+        border-color: #704e49;
+      }
+
+      &:after {
+        // Copy positioning from unchecked state.
+        &:extend(input[type=checkbox] + span:after);
+
+        transform: translateY(-50%);
+
+        background: #c9513e;
+      }
+
+      + span {
+        color: #c29088;
+      }
+    }
+
+    &:hover {
+
+    }
+  }
+
+  // Indeterminate state.
+  &[value="0"]:checked {
+    ~ span:first-of-type:after {
+      left: (@gutter-width / 2);
+      transform: translate(-49%, -50%);
+
+      background: #c0d7e3;
+    }
+
+    &:hover {
+      // Copy text unchecked colour.
+      ~ span:last-of-type:extend(input[type=checkbox] + span:hover) {}
+
+      // Copy track unchecked highlights.
+      ~ span:first-of-type:extend(input[type=checkbox] + span:hover all) {}
+    }
+  }
+
+  &[value="2"]:hover {
+    background: red;
+      >span:first-of-type {
+        &:before {
+          border-color: #855c56;
+        }
+
+        &:after {
+          background: #e8634f;
+        }
+
+        + span {
+          color: #e3b8b1;
+        }
+      }
   }
 }
