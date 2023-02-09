@@ -1,6 +1,6 @@
 @gutter-width: 2em;
 
-label.option, label.tri {
+label.option, div.tri > label {
   display: inline-flex;
 }
 
@@ -147,69 +147,75 @@ input[type=checkbox] {
 }
 
 // Tri-state mode.
-label.tri > input[type=radio]:extend(input[type=checkbox]) {
-  &:last-of-type + span:extend(input[type=checkbox] + span all) {}
+div.tri {
+  // Hide browser radio controls.
+  input:extend(input[type=checkbox]) {}
 
-  // Far-left state.
-  &[value="2"]:checked {
-    + span {
-      color: inherit;
+  >label {
+    >input {
+      // Copy track and gutter styles.
+      + span:extend(input[type=checkbox] + span all) {}
 
-      &:before {
-        border-color: #704e49;
+      // Indeterminate state.
+      &:checked {
+        + span:after {
+          left: (@gutter-width / 2);
+          transform: translate(-49%, -50%);
+        }
+
+        &:hover {
+          // Copy track unchecked highlights.
+          + span:extend(input[type=checkbox] + span:hover all) {
+            // Copy text unchecked colour.
+            + span:extend(input[type=checkbox] + span:hover) {}
+          }
+        }
       }
-
-      &:after {
-        // Copy positioning from unchecked state.
-        &:extend(input[type=checkbox] + span:after);
-
-        transform: translateY(-50%);
-
-        background: #c9513e;
-      }
-
-      + span {
-        color: #c29088;
-      }
     }
 
-    &:hover {
-
-    }
-  }
-
-  // Indeterminate state.
-  &[value="0"]:checked {
-    ~ span:first-of-type:after {
-      left: (@gutter-width / 2);
-      transform: translate(-49%, -50%);
-
-      background: #c0d7e3;
+    // Far-right state.
+    &[data-state="1"] {
+      input:extend(input[type=checkbox]:checked all) {}
     }
 
-    &:hover {
-      // Copy text unchecked colour.
-      ~ span:last-of-type:extend(input[type=checkbox] + span:hover) {}
+    // Far-left state.
+    &[data-state="2"] {
+      input + span {
+        color: inherit;
 
-      // Copy track unchecked highlights.
-      ~ span:first-of-type:extend(input[type=checkbox] + span:hover all) {}
-    }
-  }
-
-  &[value="2"]:hover {
-    background: red;
-      >span:first-of-type {
         &:before {
-          border-color: #855c56;
+          border-color: #704e49;
         }
 
         &:after {
-          background: #e8634f;
+          // Copy positioning from unchecked state.
+          &:extend(input[type=checkbox] + span:after);
+
+          transform: translateY(-50%);
+
+          background: #c9513e;
         }
 
         + span {
-          color: #e3b8b1;
+          color: #c29088;
         }
       }
+
+      &:hover {
+        input + span {
+          &:before {
+            border-color: #855c56;
+          }
+
+          &:after {
+            background: #e8634f;
+          }
+
+          + span {
+            color: #e3b8b1;
+          }
+        }
+      }
+    }
   }
 }

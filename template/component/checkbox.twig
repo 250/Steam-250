@@ -1,13 +1,19 @@
-<label{% if caption_off is defined %} class="{{ tri is defined ? 'tri' : 'option' }}"{% endif %}>
-    {% if not tri is defined %}
-        <input type="checkbox" name="{{ name }}" checked>
-    {% else %}
+{% if tri is defined %}
+<div class="tri">
+    <label>
         <input type="radio" name="{{ name }}" value="0" checked>
-        <input type="radio" name="{{ name }}" value="1">
-        <input type="radio" name="{{ name }}" value="2">
-    {% endif %}
+        <span>{{ caption_on }}</span>
+        <span>{{ caption_off }}</span>
+    </label>
+    <input type="radio" name="{{ name }}" value="1">
+    <input type="radio" name="{{ name }}" value="2">
+</div>
+{% else %}
+<label{% if caption_off is defined %} class="option"{% endif %}>
+    <input type="checkbox" name="{{ name }}" checked>
     <span>{{ caption_on }}</span>
     {% if caption_off is defined %}
     <span>{{ caption_off }}</span>
     {% endif %}
 </label>
+{% endif %}

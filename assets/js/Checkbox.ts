@@ -12,11 +12,10 @@ declare global {
 
 export default class Checkbox {
     public static initTristateCheckboxes() {
-        document.querySelectorAll<HTMLInputElement>('.tri > input[type=radio]:first-of-type').forEach(radio => {
-            let lastState: TriState;
-
+        document.querySelectorAll('div.tri').forEach(div => {
             const
-                radios = [...radio.parentNode!.querySelectorAll('input')],
+                radios = [...div.querySelectorAll('input')],
+                radio = radios[0],
                 gutter = radio.parentNode!.querySelector('span')!,
                 gutterWidth = parseFloat(getComputedStyle(gutter, ':before').width),
                 lowerBound = gutterWidth / 3,
@@ -29,6 +28,11 @@ export default class Checkbox {
                     radio.parentElement!.dataset['state'] = state.toString();
                 }
             ;
+
+            let lastState: TriState = +(radios.filter(r => r.checked)[0]?.value ?? 0);
+
+            // Initialize UI state.
+            go2(lastState);
 
             radio.addEventListener('click', ev => {
                 const x = ev.clientX - gutter.getBoundingClientRect().x;
@@ -48,6 +52,6 @@ export default class Checkbox {
                     }
                 }
             });
-        })
+        });
     }
 }
