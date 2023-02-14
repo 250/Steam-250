@@ -18,6 +18,21 @@ jobs:
           path: sb
           token: ${{ secrets.GH_BILGE_TOKEN }}
 
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.1
+
+      - name: Cache PHP dependencies
+        id: composer-cache
+        uses: actions/cache@v2
+        with:
+          path: vendor
+          key: php-${{ hashFiles('composer.lock') }}
+
+      - name: Install PHP dependencies
+        run: composer install --no-interaction --no-progress
+
       - name: Build Storybook
         run: yarn && yarn build-storybook
 

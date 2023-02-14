@@ -54,10 +54,10 @@
                 <fieldset>
                     <legend>Platforms</legend>
                     <p>Include games supporting these platforms.</p>
-                    {{ include('component/checkbox.twig', {caption_on: 'Windows', name: 'win'}) }}
-                    {{ include('component/checkbox.twig', {caption_on: 'Mac', name: 'mac'}) }}
-                    {{ include('component/checkbox.twig', {caption_on: 'Linux', name: 'nix'}) }}
-                    {{ include('component/checkbox.twig', {caption_on: 'Steam Deck', name: 'deck'}) }}
+                    {{ include('@components/checkbox.twig', {caption_on: 'Windows', name: 'win'}) }}
+                    {{ include('@components/checkbox.twig', {caption_on: 'Mac', name: 'mac'}) }}
+                    {{ include('@components/checkbox.twig', {caption_on: 'Linux', name: 'nix'}) }}
+                    {{ include('@components/checkbox.twig', {caption_on: 'Steam Deck', name: 'deck'}) }}
                 </fieldset>
                 <button class="button ok">OK</button>
                 <button class="button cancel">Cancel</button>

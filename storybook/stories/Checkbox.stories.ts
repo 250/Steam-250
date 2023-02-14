@@ -1,5 +1,5 @@
 import {Args, Meta, Story} from '@storybook/html';
-import template from 'T/component/checkbox.twig';
+import template from '@components/checkbox.twig';
 import Checkbox from '../../assets/js/Checkbox';
 
 // Only respond to Storybook emulated DOM loaded event to prevent double-loading.

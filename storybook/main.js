@@ -14,6 +14,7 @@ module.exports = {
         config.resolve.alias = {
             ...config.resolve.alias,
             T: path.resolve('template'),
+            "@components": path.resolve('vendor/250/components'),
         };
 
         config.module.rules.push(
