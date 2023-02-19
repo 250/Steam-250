@@ -36,6 +36,7 @@ module.exports = {
 
     output: {
         path: path.resolve(__dirname, '..', 'site/c'),
+        hashFunction: 'xxhash64',
     },
 
     plugins: [

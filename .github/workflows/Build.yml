@@ -18,9 +18,6 @@ jobs:
           ref: gh-pages
           path: gh-pages
 
-      - name: Use Node.js v16
-        run: sudo n 16
-
       - name: Build production assets
         run: yarn && yarn build
 

@@ -21,6 +21,7 @@
     "postcss": "^8.2.7",
     "postcss-loader": "^4.3.0",
     "style-loader": "^2.0.0",
+    "terser-webpack-plugin": "^5.3.6",
     "ts-loader": "^8.0.17",
     "twing": "^5.0.2",
     "twing-loader": "^4.0.0",
@@ -31,8 +32,8 @@
   "scripts": {
     "watch": "webpack --config webpack/webpack.config --watch",
     "build": "webpack --config webpack/webpack.config --mode production",
-    "storybook": "start-storybook --config-dir storybook --port 6006 --ci",
-    "build-storybook": "build-storybook --config-dir storybook"
+    "storybook": "NODE_OPTIONS=--openssl-legacy-provider start-storybook --config-dir storybook --port 6006 --ci",
+    "build-storybook": "NODE_OPTIONS=--openssl-legacy-provider build-storybook --config-dir storybook"
   },
   "dependencies": {
     "dayjs": "^1.10.4",
