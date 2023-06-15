@@ -40,6 +40,7 @@ OnOff.loaders = createLoaders();
 OnOff.storyName = 'On/Off';
 OnOff.args = {
     caption_on: 'Click me',
+    negative: false,
 };
 
 export const AB = Template.bind({});

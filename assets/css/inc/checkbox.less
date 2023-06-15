@@ -1,5 +1,14 @@
 @gutter-width: 2em;
 
+// Negative mode.
+@neg-colour: #c29088;
+@neg-track-border-colour: #704e49;
+@neg-knob-colour: #c9513e;
+// Highlights.
+@neg-colour-h: #e3b8b1;
+@neg-track-border-colour-h: #855c56;
+@neg-knob-colour-h: #e8634f;
+
 label.option, div.tri > label {
   display: inline-flex;
 }
@@ -97,6 +106,35 @@ input[type=checkbox] {
     }
   }
 
+  // Negative mode: checkbox represents an option that is exclusionary.
+  label.neg >& {
+    &:checked {
+      + span {
+        color: @neg-colour;
+
+        &:before {
+          border-color: @neg-track-border-colour;
+        }
+
+        &:after {
+          background: @neg-knob-colour;
+        }
+      }
+
+      &:hover + span {
+        color: @neg-colour-h;
+
+        &:before {
+          border-color: @neg-track-border-colour-h;
+        }
+
+        &:after {
+          background: @neg-knob-colour-h;
+        }
+      }
+    }
+  }
+
   // Option mode: checkbox represents two either/or options rather than one option in an on/off state.
   label.option >& {
     &:not(:checked) {
@@ -184,7 +222,7 @@ div.tri {
         color: inherit;
 
         &:before {
-          border-color: #704e49;
+          border-color: @neg-track-border-colour;
         }
 
         &:after {
@@ -193,26 +231,26 @@ div.tri {
 
           transform: translateY(-50%);
 
-          background: #c9513e;
+          background: @neg-knob-colour;
         }
 
         + span {
-          color: #c29088;
+          color: @neg-colour;
         }
       }
 
       &:hover {
         input + span {
           &:before {
-            border-color: #855c56;
+            border-color: @neg-track-border-colour-h;
           }
 
           &:after {
-            background: #e8634f;
+            background: @neg-knob-colour-h;
           }
 
           + span {
-            color: #e3b8b1;
+            color: @neg-colour-h;
           }
         }
       }
