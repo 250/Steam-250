@@ -371,6 +371,13 @@ p.notice::before {
     color: #c5e4fb;
 }
 
+.filtered() {
+    color: #c9b734;
+}
+span.filtered {
+    .filtered();
+}
+
 .warning {
     margin: 1em auto;
     padding: 1em;
@@ -457,7 +464,7 @@ p.notice::before {
     position: relative;
     top: -.07em;
 
-    color: #c9b734;
+    .filtered();
     font-size: 75%;
 }
 .ranking > .filter > form {
@@ -909,8 +916,8 @@ tr.a .movement.none:before {
 .ea:hover {
     text-decoration: none;
     color: #fbffe6;
-    box-shadow: rgba(78, 129, 174, .3);
-    text-shadow: #65a7e0;
+    box-shadow: 1px 1px 3px rgba(78, 129, 174, .3);
+    text-shadow: 1px 1px 0 #65a7e0;
     background: #4e81ae;
 }
 .adult, .adult:visited {
@@ -919,8 +926,8 @@ tr.a .movement.none:before {
 .adult:hover {
     text-decoration: none;
     color: #fbffe6;
-    box-shadow: rgba(173, 78, 146, .3);
-    text-shadow: #e065bd;
+    box-shadow: 1px 1px 3px rgba(173, 78, 146, .3);
+    text-shadow: 1px 1px 0 #e065bd;
     background: #ad4e92;
 }
 
