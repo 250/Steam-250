@@ -25,13 +25,13 @@ final class PrimaryTagChooser
     {
         $lastTag = end($tags);
 
-        foreach ($tags as $id => $name) {
-            if (!\in_array($name, self::BLACKLIST, true)) {
-                return compact('id', 'name');
+        foreach ($tags as $tag) {
+            if (!\in_array($tag['name'], self::BLACKLIST, true)) {
+                return $tag;
             }
 
-            if ($name === $lastTag) {
-                return ['name' => reset($tags), 'id' => key($tags)];
+            if ($tag === $lastTag) {
+                return reset($tags);
             }
         }
 

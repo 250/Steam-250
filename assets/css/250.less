@@ -421,6 +421,14 @@ span.filtered {
     .ranking {
         max-width: 950px;
         line-height: 1;
+
+        .tag {
+            margin: 0 0 0 .genre()[margin-left];
+            padding: .6px .6em;
+
+            font-size: 74%;
+            letter-spacing: normal;
+        }
     }
 
     @media (max-width: 649px) {
@@ -623,8 +631,8 @@ span.filtered {
         overflow: hidden;
 
         color: #dddedc;
-        background: linear-gradient(#4a8427, #43611e);
-        border-radius: 4px;
+        background: linear-gradient(#447824, #43611e);
+        border-radius: 3px;
 
         &:before {
             display: block;
@@ -877,11 +885,13 @@ tr.a .movement.none:before {
 .price {
     color: inherit;
     box-shadow: inset 0 0 0 1px #4c6b22b4;
+    background: #0004;
 }
 .discount + .price {
     margin: 0;
 
-    background: #000;
+    color: saturate(tint(.discount()[background], 75%), 30%);
+    background: #0006;
 }
 
 .free, .free:visited,

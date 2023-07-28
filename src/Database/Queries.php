@@ -117,13 +117,10 @@ final class Queries
 
     public static function fetchAppTags(Connection $database, int $appId): array
     {
-        return array_column(
-            $database->executeQuery(
-                "SELECT id, name FROM app_tag JOIN tag ON id = tag_id WHERE app_id = $appId ORDER BY votes DESC"
-            )->fetchAllAssociative(),
-            'name',
-            'id'
-        );
+        return $database->executeQuery(
+            "SELECT id, name, category FROM app_tag JOIN tag ON id = tag_id
+                WHERE app_id = $appId ORDER BY votes DESC"
+        )->fetchAllAssociative();
     }
 
     public static function fetchPopularTags(Connection $database, int $threshold = 400): array
