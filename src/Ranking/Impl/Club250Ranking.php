@@ -9,10 +9,13 @@ use ScriptFUSION\Steam250\SiteGenerator\Database\Queries;
 use ScriptFUSION\Steam250\SiteGenerator\Database\SortDirection;
 use ScriptFUSION\Steam250\SiteGenerator\Generate\CustomizeGames;
 use ScriptFUSION\Steam250\SiteGenerator\Rank\CustomRankingFetch;
+use ScriptFUSION\Steam250\SiteGenerator\Ranking\AllowEmptyRanking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\RankingDependencies;
 
 class Club250Ranking extends DefaultRanking implements CustomRankingFetch, CustomizeGames
 {
+    use AllowEmptyRanking;
+
     private const PATRON_REVIEW_AGGREGATION =
         '(
             SELECT *, COUNT(*) as total_reviews
