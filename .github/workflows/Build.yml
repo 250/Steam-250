@@ -55,6 +55,7 @@ jobs:
       - name: Build site
         run: bin/generate site -v --min --ext '' --prev-db "${{ env.yesterdayDb }}" "${{ env.todayDb }}" gh-pages
           | tee out
+        shell: bash # enable pipefail LOL
 
       - name: Push site
         run: |

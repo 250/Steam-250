@@ -12,7 +12,7 @@ use ScriptFUSION\Steam250\SiteGenerator\Page\Page;
 use ScriptFUSION\Steam250\SiteGenerator\Page\PreviousDatabase;
 use ScriptFUSION\Steam250\SiteGenerator\Page\PreviousDatabaseAware;
 use ScriptFUSION\Steam250\SiteGenerator\Rank\Ranker;
-use ScriptFUSION\Steam250\SiteGenerator\SteamApp\PrimaryTagChooser;
+use ScriptFUSION\Steam250\SiteGenerator\Tag\PrimaryTagChooser;
 
 abstract class Ranking extends Page implements PreviousDatabaseAware
 {

@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace ScriptFUSION\Steam250\SiteGenerator\SteamApp;
+namespace ScriptFUSION\Steam250\SiteGenerator\Tag;
 
 use ScriptFUSION\StaticClass;
 

@@ -5,7 +5,7 @@ namespace ScriptFUSION\Steam250\SiteGenerator\Page;
 
 use Doctrine\DBAL\Connection;
 use ScriptFUSION\Steam250\SiteGenerator\Database\Queries;
-use ScriptFUSION\Steam250\SiteGenerator\SteamApp\PrimaryTagChooser;
+use ScriptFUSION\Steam250\SiteGenerator\Tag\PrimaryTagChooser;
 
 class PreviewsPage extends Page
 {

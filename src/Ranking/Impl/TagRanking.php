@@ -3,13 +3,17 @@ declare(strict_types=1);
 
 namespace ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl;
 
+use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\Query\QueryBuilder;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\RankingDependencies;
-use ScriptFUSION\Steam250\SiteGenerator\SteamApp\Tag;
+use ScriptFUSION\Steam250\SiteGenerator\Tag\Tag;
+use ScriptFUSION\Steam250\SiteGenerator\Tag\TagDirectoryStatePacker;
 
 class TagRanking extends DefaultRanking
 {
     private string $tag;
+
+    private Connection $database;
 
     public function __construct(RankingDependencies $dependencies, string $tag)
     {
@@ -17,6 +21,7 @@ class TagRanking extends DefaultRanking
         parent::__construct($dependencies, "tag/$tagId", 150);
 
         $this->tag = $tag;
+        $this->database = $dependencies->getDatabase();
 
         $this->setTemplate('tag');
         $this->setTitle($tag);
@@ -43,6 +48,24 @@ class TagRanking extends DefaultRanking
             ->andWhere('tag.name = :tag AND votes >= avg * .5')
             ->setParameter('tag', $this->tag)
         ;
+    }
+
+    public function export(): array
+    {
+        $cat = $this->fetchTagCategory();
+
+        return parent::export() + [
+            'tag_category' => $cat + ['hash' => TagDirectoryStatePacker::packSingleCategory($cat['id'])],
+        ];
+    }
+
+
+    private function fetchTagCategory(): array
+    {
+        return $this->database->fetchAssociative(
+            'SELECT tag_cat.* FROM tag_cat JOIN tag ON tag.category = tag_cat.short_name AND tag.name = ? LIMIT 1',
+            [$this->tag]
+        );
     }
 
     public function getTag(): string

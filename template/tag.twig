@@ -8,6 +8,12 @@
         Top {{ games|length }} best Steam games of all time tagged with <em>{{ ranking.tag }}</em>,
         according to gamer reviews.
     </p>
+    <p class="cat">
+        Category
+        <a href="{{ club250 }}/tags#{{ tag_category.hash }}" class="tag {{ tag_category.short_name }}">
+            {{ tag_category.name }}
+        </a>
+    </p>
     {% if ranking.id == 'tag/free_to_play' %}
     {{ include('partial/price_button_group.twig') }}
     {% endif %}

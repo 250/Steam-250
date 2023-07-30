@@ -12,7 +12,7 @@ use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\EarlyAccessRanking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\OwnersRanking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\ReviewsRanking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\TagRanking;
-use ScriptFUSION\Steam250\SiteGenerator\SteamApp\Tag;
+use ScriptFUSION\Steam250\SiteGenerator\Tag\Tag;
 
 final class PageContainerFactory
 {
