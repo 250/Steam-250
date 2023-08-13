@@ -69,7 +69,6 @@ final class RankingName extends AbstractEnumeration
     public const PLAYERS = 'PLAYERS';
     public const TREND = 'TREND';
     public const ADULT = 'ADULT';
-    public const CLUB_250 = 'CLUB_250';
     public const COLLAGE = 'COLLAGE';
 
     private static array $classes = [
@@ -103,7 +102,6 @@ final class RankingName extends AbstractEnumeration
         self::PLAYERS => MostPlayedRanking::class,
         self::TREND => TrendRanking::class,
         self::ADULT => AdultRanking::class,
-        self::CLUB_250 => Club250Ranking::class,
         self::COLLAGE => CollageRanking::class,
     ];
 
@@ -138,7 +136,6 @@ final class RankingName extends AbstractEnumeration
         self::PLAYERS => 'players',
         self::TREND => 'trend',
         self::ADULT => '18',
-        self::CLUB_250 => 'club',
         self::COLLAGE => 'collage',
     ];
 
