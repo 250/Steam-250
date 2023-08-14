@@ -27,8 +27,6 @@ module.exports = {
             './js/Filter.ts',
         ],
         home: [
-            './js/Home.js',
-
             './css/home.less',
         ],
         search: ['./css/search.less'],

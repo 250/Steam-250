@@ -10,6 +10,7 @@ class S250 {
 
         // UI stuff.
         Checkbox.initTristateCheckboxes();
+        S250.initChevrons();
 
         // User stuff.
         this.initLogInOut();
@@ -295,6 +296,14 @@ class S250 {
             a.addEventListener('animationend', _ => {
                 shadow.classList.remove('animate');
             })
+        });
+    }
+
+    // This is just to save generating superfluous markup.
+    static initChevrons() {
+        document.querySelectorAll('.more-button > span:last-of-type').forEach(span => {
+            span.parentNode.appendChild(span.cloneNode());
+            span.parentNode.appendChild(span.cloneNode());
         });
     }
 

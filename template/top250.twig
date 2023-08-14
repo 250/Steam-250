@@ -8,3 +8,7 @@
     Top 250 best Steam games of all time according to gamer reviews.
 </p>
 {% endblock %}
+
+{% block post %}
+{{ include('component/more button.twig', {url: club250 ~ '/ranking/250/2', caption: 'More'}) }}
+{% endblock %}
