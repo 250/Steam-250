@@ -208,6 +208,10 @@ class S250 {
         return User.syncLogout();
     }
 
+    static syncGames() {
+        User.syncGames();
+    }
+
     static showAds() {
         const userJson = localStorage.getItem('user');
 

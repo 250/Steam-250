@@ -45,50 +45,24 @@ export default class User {
         this.postClub250Message('logout synced');
     }
 
-    static async syncGames() {
-        const userJson = localStorage.getItem('user');
-        if (!userJson) return;
+    static syncGames() {
+        this.postClub250Message('games');
 
-        const userId = JSON.parse(userJson).id;
+        addEventListener('message', message => {
+            if (message.origin !== process.env.CLUB_250_BASE_URL) return;
 
-        const data = await (await fetch(encodeURI(
-            `https://cors.bridged.cc/https://steamcommunity.com/profiles/[U:1:${userId}]/games/?tab=all`,
-        ), {
-            headers: {
-                'x-cors-grida-api-key': '5e64a881-1bca-4be2-9d93-2443d53458b5',
-            },
-        })).text();
+            console.debug('C250:', message.data);
 
-        const matches = data.match(/var rgGames = ([^\n]+);/);
+            if (message.data.message === 'games') {
+                localStorage.setItem('games', message.data.games);
+                localStorage.setItem('games.date', message.data.modified);
+            }
+        });
 
-        if (!matches || matches.length !== 2) {
-            console.log('Unable to load your profile. This is usually because your Steam profile is not public.\n'
-                + 'Try setting your Steam Community profile visibility to public, then refresh this page to '
-                + 'try again.');
-
-            return;
+        // Remove old games format by detecting date stamp.
+        if (!localStorage.getItem('games.date')) {
+            localStorage.removeItem('games');
         }
-
-        const games = JSON.parse(matches[1]).reduce(
-            (games: {[key: string]: any}, game: {[key: string]: any}) => {
-                games[game['appid']] = game['hours_forever'] || 0;
-
-                return games;
-            },
-            {}
-        );
-
-        if (!Object.keys(games).length) {
-            alert('No games found in your account! This is usually because your game details are not public.\n'
-                + 'Try setting your game details to public on your Steam Community privacy settings page, then '
-                + 'refresh this page to try again.');
-
-            return;
-        }
-
-        localStorage.setItem('games', JSON.stringify(games));
-
-        this.markOwnedGames();
     }
 
     static syncLoginUi() {
@@ -137,12 +111,23 @@ export default class User {
 
             if (games.hasOwnProperty(id)) {
                 a.classList.add('owned');
-                a.setAttribute('data-content', games[id] + ' hours');
+                a.setAttribute('data-content', this.formatTimePlayed(games[id]));
             }
         });
 
-        const current = document.querySelectorAll('.main.ranking .owned').length, max = ranks.length;
-        gamesOwned.innerText = max ? `${current}/${max} (${Math.round(current / max * 100)}%)` : 'n/a';
+        const total = ranks.length;
+        if (total) {
+            const owned = document.querySelectorAll('.main.ranking .owned').length;
+
+            gamesOwned.innerText = `${owned}/${total} (${Math.round(owned / total * 100)}%)`;
+        } else {
+            gamesOwned.closest('dl')!.remove();
+        }
+    }
+
+    private static formatTimePlayed(minutes: number) {
+        return minutes < 60 ? minutes + ' minute' + (minutes !== 1 ? 's' : '')
+            : (minutes / 60).toFixed(1) + ' hour' + (minutes !== 60 ? 's' : '');
     }
 
     private static postClub250Message(message: any) {

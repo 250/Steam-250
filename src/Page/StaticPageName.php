@@ -17,6 +17,7 @@ final class StaticPageName extends AbstractEnumeration
     public const HTTP_404 = 'HTTP_404';
     public const LOGIN = 'LOGIN';
     public const LOGOUT = 'LOGOUT';
+    public const SYNC_GAMES = 'SYNC_GAMES';
 
     private static array $classes = [
         self::PREVIEWS => PreviewsPage::class,
@@ -29,6 +30,7 @@ final class StaticPageName extends AbstractEnumeration
         self::HTTP_404 => Http404Page::class,
         self::LOGIN => LoginPage::class,
         self::LOGOUT => LogoutPage::class,
+        self::SYNC_GAMES => SyncGamesPage::class,
     ];
 
     private static array $aliases = [
@@ -42,6 +44,7 @@ final class StaticPageName extends AbstractEnumeration
         self::HTTP_404 => '404',
         self::LOGIN => 'login',
         self::LOGOUT => 'logout',
+        self::SYNC_GAMES => 'sync-games',
     ];
 
     public function getAlias(): string
