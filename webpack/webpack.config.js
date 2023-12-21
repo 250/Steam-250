@@ -12,7 +12,7 @@ module.exports = {
     context: path.resolve(__dirname, '..', 'assets'),
     entry: {
         250: [
-            './js/250.js',
+            './js/250.ts',
             './js/VideoPlayer.js',
             './js/LazyLoad.ts',
 

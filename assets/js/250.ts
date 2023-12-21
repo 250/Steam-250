@@ -2,6 +2,12 @@ import {parseParam} from './Query';
 import User from './User';
 import Checkbox from './Checkbox';
 
+type S250_static = typeof S250;
+
+declare global {
+    var S250: S250_static;
+}
+
 class S250 {
     constructor() {
         // Menu stuff.
@@ -31,7 +37,7 @@ class S250 {
     }
 
     initLogInOut() {
-        const form = document.querySelector('#lout form');
+        const form = document.querySelector<HTMLFormElement>('#lout form');
 
         if (!form) {
             console.debug('Steam user area unavailable: skipped.');
@@ -43,8 +49,8 @@ class S250 {
         form['openid.return_to'].value =
             `${process.env.CLUB_250_BASE_URL}/steam/login?r=${location.origin + location.pathname}`
 
-        document.querySelector('#lout button').addEventListener('click', _ => localStorage.setItem('login', 'sync'));
-        document.querySelector('#lin button').addEventListener('click', _ => User.logout());
+        document.querySelector('#lout button')!.addEventListener('click', _ => localStorage.setItem('login', 'sync'));
+        document.querySelector('#lin button')!.addEventListener('click', _ => User.logout());
 
         // Trigger login sync on post-back.
         if (localStorage.getItem('login') === 'sync') {
@@ -68,7 +74,7 @@ class S250 {
             e.addEventListener('mouseleave', _ => ol.classList.add(T11G));
         });
 
-        document.querySelectorAll('ol.menu > li ol').forEach(e => {
+        document.querySelectorAll<HTMLElement>('ol.menu > li ol').forEach(e => {
             e.addEventListener('transitionend', _ => e.classList.remove(T11G));
 
             // Prevent window scrolling whilst over submenu.
@@ -93,7 +99,7 @@ class S250 {
      * Ensure each drop-down menu is completely visible within the viewport.
      */
     constrainDropdownMenuPositions() {
-        document.querySelectorAll('ol.menu > li > ol').forEach(e => {
+        document.querySelectorAll<HTMLElement>('ol.menu > li > ol').forEach(e => {
             const rect = e.getBoundingClientRect();
 
             if (rect.left < 0) {
@@ -118,7 +124,7 @@ class S250 {
      * Prevent fixed links modifying hash.
      */
     overrideFixedLinks() {
-        document.querySelectorAll('.fixedlinks a').forEach(a => {
+        document.querySelectorAll<HTMLAnchorElement>('.fixedlinks a').forEach(a => {
             a.addEventListener('click', e => {
                 this.scrollToHash(a.hash);
 
@@ -130,7 +136,7 @@ class S250 {
     /**
      * Scrolls to an element taking into consideration the fixed navigation menu height.
      */
-    scrollToHash(hash) {
+    scrollToHash(hash: string) {
         const HIGHLIGHT = 'highlight',
             games = document.querySelectorAll('.ranking [id]');
 
@@ -138,7 +144,7 @@ class S250 {
 
         if (!hash) return;
 
-        const menuHeight = document.querySelector('ol.menu').getBoundingClientRect().height,
+        const menuHeight = document.querySelector('ol.menu')!.getBoundingClientRect().height,
             target = this.resolveHashTarget(hash);
 
         if (target) {
@@ -165,7 +171,7 @@ class S250 {
             );
         }
 
-        function isInViewport(elem) {
+        function isInViewport(elem: Element) {
             const rect = elem.getBoundingClientRect();
 
             return (
@@ -177,7 +183,7 @@ class S250 {
         }
     }
 
-    resolveHashTarget(hash) {
+    resolveHashTarget(hash: string) {
         // App tracking.
         if (hash.startsWith('#app/')) {
             let [, id, name] = hash.split('/', 3),
@@ -193,7 +199,7 @@ class S250 {
             return a.closest('[id]');
         }
 
-        return document.getElementById(hash.substr(1));
+        return document.getElementById(hash.substring(1));
     }
 
     static isLoggedIn() {
@@ -234,21 +240,21 @@ class S250 {
         const q = parseParam('q');
 
         if (q !== null) {
-            document.querySelectorAll('input[name=q]').forEach(i => i.value = q.replace(/\+/g, ' '));
+            document.querySelectorAll<HTMLInputElement>('input[name=q]').forEach(i => i.value = q.replace(/\+/g, ' '));
         }
     }
 
     initAppLinkMenu() {
-        const menu = document.getElementById('linkmenu'),
+        const menu = document.getElementById('linkmenu')!,
             ACTIVE = 'show';
 
-        let link;
+        let link: HTMLAnchorElement;
 
-        document.querySelectorAll('.ranking .links').forEach(a => {
+        document.querySelectorAll<HTMLAnchorElement>('.ranking .links').forEach(a => {
             a.addEventListener('click', e => {
                 menu.style.top = a.offsetTop + a.offsetHeight + 5 + 'px';
                 menu.style.left = a.offsetLeft + 'px';
-                menu.querySelector('a:first-of-type > span').innerHTML = a.closest('[id]').id;
+                menu.querySelector('a:first-of-type > span')!.innerHTML = a.closest('[id]')!.id;
 
                 menu.classList.toggle(ACTIVE, link !== a ? true : undefined);
                 a.classList.toggle(ACTIVE, menu.classList.contains(ACTIVE));
@@ -272,8 +278,8 @@ class S250 {
                     }
 
                     if (a.classList.contains('app')) {
-                        const id = this.findSteamAppId(link.closest('[id]')),
-                            name = encodeURIComponent(this.findSteamAppName(link.closest('div')));
+                        const id = this.findSteamAppId(link.closest('[id]')!),
+                            name = encodeURIComponent(this.findSteamAppName(link.closest('div')!));
 
                         this.copyToClipboard(`${location.origin}${location.pathname}#app/${id}/${name}`)
                     }
@@ -283,8 +289,8 @@ class S250 {
     }
 
     initRankingHoverItems() {
-        document.querySelectorAll('.compact.ranking li > .title').forEach(a => {
-            const shadow = a.appendChild(a.cloneNode(true));
+        document.querySelectorAll<HTMLElement>('.compact.ranking li > .title').forEach(a => {
+            const shadow = a.appendChild(a.cloneNode(true)) as HTMLElement;
 
             // Prevent rapid re-entry when shape is clipped.
             shadow.style.pointerEvents = 'none';
@@ -306,46 +312,44 @@ class S250 {
     // This is just to save generating superfluous markup.
     static initChevrons() {
         document.querySelectorAll('.more-button > span:last-of-type').forEach(span => {
-            span.parentNode.appendChild(span.cloneNode());
-            span.parentNode.appendChild(span.cloneNode());
+            span.parentNode!.appendChild(span.cloneNode());
+            span.parentNode!.appendChild(span.cloneNode());
         });
     }
 
-    findSteamAppId(elem) {
-        const img = elem.querySelector('img[src]');
+    findSteamAppId(elem: HTMLElement) {
+        const img = elem.querySelector<HTMLImageElement>('img[src]');
 
         if (img) {
-            return img.src.match(/\/(\d+)\//)[1];
+            return img.src.match(/\/(\d+)\//)![1];
         }
     }
 
-    findSteamAppName(elem) {
-        return elem.querySelector('.title > a').innerText;
+    findSteamAppName(elem: HTMLElement) {
+        return elem.querySelector<HTMLElement>('.title > a')!.innerText;
     }
 
-    copyToClipboard(text) {
-        if (window.clipboardData && window.clipboardData.setData) {
-            // IE specific code path to prevent textarea being shown while dialog is visible.
-            return clipboardData.setData('Text', text);
-        } else if (document.queryCommandSupported && document.queryCommandSupported('copy')) {
-            const textarea = document.createElement('textarea');
+    copyToClipboard(text: string) {
+        if (!document.queryCommandSupported || !document.queryCommandSupported('copy')) {
+            alert('Clipboard is not supported in this browser!');
+        }
 
-            textarea.textContent = text;
-            // Prevent scrolling to bottom of page in Edge.
-            textarea.style.position = 'fixed';
-            document.body.appendChild(textarea);
-            textarea.select();
+        const textarea = document.createElement('textarea');
 
-            try {
-                return document.execCommand('copy');
-            } catch (e) {
-                // TODO: Client error message.
-                console.debug('Failed to copy clipboard data.');
+        textarea.textContent = text;
+        // Prevent scrolling to bottom of page in Edge.
+        textarea.style.position = 'fixed';
+        document.body.appendChild(textarea);
+        textarea.select();
 
-                return false;
-            } finally {
-                document.body.removeChild(textarea);
-            }
+        try {
+            return document.execCommand('copy');
+        } catch (e) {
+            alert('Failed to copy clipboard data.');
+
+            return false;
+        } finally {
+            document.body.removeChild(textarea);
         }
     }
 } new S250;
