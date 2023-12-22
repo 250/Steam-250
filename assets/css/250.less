@@ -574,12 +574,15 @@ span.filtered {
     width: 25%;
     max-width: 120px;
     min-width: 80px;
+    aspect-ratio: 184/69;
 
     line-height: 0;
 }
 .ranking > header ~ div > div:first-child > a,
 .compact.ranking li > a {
-    display: block;
+    display: flex;
+    height: 100%;
+    align-items: center;
 }
 .ranking > header ~ div > div:first-child > a:not([data-video]) {
     cursor: not-allowed;
