@@ -23,9 +23,15 @@
                 <li><a href="/2023{{ ext }}"><span class="curyear">Best of 2023</span></a>
                 <li><a href="/most_played{{ ext }}"><span class="played">Most Played</span></a>
                 <li><a href="/steam_deck_verified{{ ext }}"><span class="deck">Steam Deck Verified</span></a>
-                <li><a href="{{ club250 }}/ranking/custom"><span class="cranking">Custom Ranking</span></a>
+                <li><a href="{{ club250 }}/ranking/custom">
+                        <span class="cranking">
+                            Custom Ranking <span class="t1 micro tier">T1</span>
+                        </span>
+                    </a>
             </ol>
         </section>
+
+        {{ include('partial/ad.twig', {id: '1119204033'}) }}
 
         <section class="boxlink ico email">
             <header>Club 250 Weekly Edition</header>
@@ -42,7 +48,31 @@
             </div>
         </section>
 
-        {{ include('partial/ad.twig', {id: '1119204033'}) }}
+        <div class="c250">
+            <div class="title h2" data-title="Club 250">
+                <h2><a href="{{ patreon }}">Club 250</a></h2>
+            </div>
+            <p>
+                Club 250 is the Steam 250 member's club, aggregating all
+                <strong>125 million reviews</strong>
+                from Steam to produce full review and ranking history for each game.
+            </p>
+            <p>
+                <a href="{{ patreon }}">Joining Club 250</a> grants access to more site features including our
+                popular <a href="{{ club250 }}/ranking/custom">Custom Ranking</a> tool, historical charting,
+                automatically marking owned Steam games in rankings,
+                game owners and sales estimates based on real GDC research data, ad-free browsing and more.
+                Check out our <a class="tier popup">membership tiers</a> for the full feature breakdown.
+            </p>
+            <p>
+                The <em>advocate</em> tier grants access to most site features for just £2 (prices shown in your local
+                currency on <a href="{{ patreon }}">sign up</a>). It is a subscription service via Patreon,
+                but if you prefer to just try the service for a month, you may cancel your subscription immediately
+                and still enjoy the full term of membership.
+                You may also start a free trial by linking a free Patreon account and visiting your
+                <a href="{{ club250 }}/me">profile page</a>.
+            </p>
+        </div>
     {% endblock %}
     </div>
 
@@ -178,24 +208,6 @@
     {% else %}
         {{ include('partial/ad.twig', {id: '3002887382'}) }}
     {% endif %}
-        <div class="c250">
-            <div class="title h2" data-title="Club 250">
-                <h2><a href="{{ patreon }}">Club 250</a></h2>
-            </div>
-            <p>
-                <a href="{{ patreon }}">Club 250</a> is the Steam 250 member's club, aggregating all
-                <strong>54 million reviews</strong> from
-                Steam to produce complete games ranking history. It is the next iteration of Steam 250 with lots of
-                ambitious and exciting features planned. Full details are in the
-                <a href="{{ patreon }}">about section</a> on our Patreon page.
-            </p>
-            <p>
-                <a href="{{ patreon }}">Joining Club 250</a>
-                for just £2 per month helps us continue making improvements that help you find good games on Steam.
-                As a bonus incentive, greater pledge levels come with some additional rewards, including
-                <a href="/club250/ambassadors{{ ext }}">your name, logo and link on the site</a>.
-            </p>
-        </div>
     </section>
 </div>
 

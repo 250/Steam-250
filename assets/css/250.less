@@ -1238,7 +1238,7 @@ tr.a .movement.none:before {
     }
 }
 
-.r\&f > .c250 {
+.col3 > .c250 {
     padding: 0 1.5em;
     box-sizing: border-box;
 
@@ -1604,14 +1604,18 @@ tr.a .movement.none:before {
     line-height: 1.5;
     background: linear-gradient(#12141a, #171a21 80px);
 
+    p:has(>a.patreon, >a.discord, >a.steam) {
+        position: relative;
+        padding-left: calc(20px + 1ch);
+    }
+
     a.patreon, a.discord, a.steam {
-        display: inline-block;
+        position: absolute;
         overflow: hidden;
         width: 20px;
-        height: 0;
-        margin-left: .25em;
-        padding-top: 20px;
-        vertical-align: text-bottom;
+        height: $width;
+        text-indent: $width;
+        left: 0;
 
         background: no-repeat center;
     }
@@ -1631,6 +1635,11 @@ tr.a .movement.none:before {
         background-size: 17px;
         background-position-y: 1px;
     }
+
+    .micro.tier {
+        margin-right: .3ch;
+        opacity: .95;
+    }
 }
 @media (max-width: 742px) {
     #footer {
@@ -1638,7 +1647,7 @@ tr.a .movement.none:before {
         line-height: inherit;
     }
 }
-#footer > :last-child > p:first-of-type > a {
+#footer > :last-child > p:first-of-type > a:not([class]) {
     display: inline-block;
     padding-top: 1.2em;
     width: 5.7em;

@@ -189,36 +189,42 @@
         <div>
             <h2>
                 <a href="{{ patreon }}">Club 250</a>
-                <a href="{{ patreon }}" class="patreon" title="Patreon">Patreon</a>
             </h2>
             <p>
-                Club 250 aggregates all <strong>54 million reviews</strong> on Steam to provide full ranking history,
-                whereas Steam 250 only looks at the last two days. Club 250 is a much more
-                ambitious and exciting but expensive project. Full details of some of the planned improvements are
-                in the <a href="{{ patreon }}">about section</a> on our Patreon page.
+                <a href="{{ patreon }}" class="patreon" title="Patreon">Patreon</a>
+                Unlock all Steam 250 features by <a href="{{ patreon }}">joining Club 250</a> on Patreon and enjoy
+                popular member-only features such as advanced search with our
+                <a href="{{ club250 }}/ranking/custom">Custom Ranking</a> tool.
             </p>
             <p>
-                Consider <a href="{{ patreon }}">joining Club 250</a> so we can continue making improvements that
-                help you find good games on Steam.
-                As a bonus incentive, greater pledge levels come with some additional rewards, including
-                <a href="/club250/ambassadors{{ ext }}">your name etched into the site</a>!
+                <a class="tier popup"><span class="t1 micro tier">T1</span></a>
+                <a class="tier popup">Tier 1</a> members enjoy access to most features including custom rankings,
+                historical charting, owner estimates and ad-free browsing.
             </p>
-
+            <p>
+                <a class="tier popup"><span class="t2 micro tier">T2</span></a>
+                <a class="tier popup">Tier 2</a> members automatically see their owned Steam games
+                marked with their total playtime on our games rankings as well as sales range estimates.
+            </p>
+            <p>
+                <a class="tier popup"><span class="t3 micro tier">T3</span></a>
+                <a class="tier popup">Tier 3</a> members see our sales median estimates.
+            </p>
         </div>
 
         <div>
             <h2>
                 <a href="{{ discord }}">Community</a>
-                <a href="{{ discord }}" class="discord" title="Discord">Discord</a
-                ><a href="https://store.steampowered.com/curator/32686107/" class="steam" title="Steam curator">
-                    Steam curator
-                </a>
             </h2>
             <p>
+                <a href="{{ discord }}" class="discord" title="Discord">Discord</a>
                 Join the Steam 250 community on <a href="{{ discord }}" title="Discord">Discord</a>
                 from the web, your desktop, mobile or all three at once!
             </p>
             <p>
+                <a href="https://store.steampowered.com/curator/32686107/" class="steam" title="Steam curator">
+                    Steam curator
+                </a>
                 Follow our official <a href="https://store.steampowered.com/curator/32686107/">Steam curator</a>
                 page to access game rankings directly from the Steam store! Automatically updated every day.
             </p>
@@ -241,5 +247,6 @@
 {% block js %}
 <script src="/c/250.js" defer></script>
 <script src="/c/internal.js" defer></script>
+<script src="{{ club250_static }}/c/steam250.js" defer></script>
 {% endblock %}
 {% endblock %}
