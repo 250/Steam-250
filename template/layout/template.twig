@@ -213,28 +213,7 @@
         </div>
 
         <div>
-            <h2>
-                <a href="{{ discord }}">Community</a>
-            </h2>
-            <p>
-                <a href="{{ discord }}" class="discord" title="Discord">Discord</a>
-                Join the Steam 250 community on <a href="{{ discord }}" title="Discord">Discord</a>
-                from the web, your desktop, mobile or all three at once!
-            </p>
-            <p>
-                <a href="https://store.steampowered.com/curator/32686107/" class="steam" title="Steam curator">
-                    Steam curator
-                </a>
-                Follow our official <a href="https://store.steampowered.com/curator/32686107/">Steam curator</a>
-                page to access game rankings directly from the Steam store! Automatically updated every day.
-            </p>
-
-            <h2><a href="/privacy{{ ext }}">Cookie notice</a></h2>
-            <p>
-                Steam 250 only stores strictly necessary cookies (if any).
-                However, our third-party partners may store additional cookies. For more information, see our
-                <a href="/privacy{{ ext }}">privacy policy</a>.
-            </p>
+            {{ include('@components/community panel.twig') }}
         </div>
     </section>
 </div>
