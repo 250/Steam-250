@@ -23,13 +23,14 @@ export default class User {
             return console.error('Login sync failed:', response.status, response.statusText, body);
         }
 
-        const [userId, identity, noads] = body.split("\0", 3);
+        const [userId, identity, noads, tier] = body.split("\0", 4);
 
         localStorage.setItem('user', JSON.stringify({
             id: userId,
             name: identity.substring(40),
             avatar: identity.substring(0, 40),
             noads: noads === '1',
+            tier: +tier,
         }));
 
         this.postClub250Message('login synced');
@@ -73,7 +74,25 @@ export default class User {
         classes.remove('lin', 'lout');
         classes.add(this.isLoggedIn() ? 'lin' : 'lout');
 
-        this.isLoggedIn() && this.updateUserBar();
+        if (this.isLoggedIn()) {
+            this.updateUserBar();
+            this.hideObsoleteTiers();
+        }
+    }
+
+    static hideObsoleteTiers() {
+        const userJson = localStorage.getItem('user');
+        if (!userJson) return;
+
+        const user = JSON.parse(userJson);
+
+        if (user.tier) {
+            document.querySelectorAll('ol.menu .micro.tier, #body .micro.tier').forEach(e => {
+                const tier = +[...e.classList].filter(s => /^t\d$/.test(s))[0].substring(1);
+
+                user.tier >= tier && e.remove();
+            });
+        }
     }
 
     private static updateUserBar() {
