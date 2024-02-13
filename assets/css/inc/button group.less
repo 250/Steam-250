@@ -31,8 +31,16 @@
       border-bottom-right-radius: var(--radius);
     }
 
-    &.endgrp + .button {
-      margin-left: 2ch;
+    &.endgrp {
+      + .button,
+      + .button-group {
+        margin-left: 2ch;
+      }
     }
+  }
+
+  // Nested button subgroup.
+  >.button-group {
+    margin: 0;
   }
 }
