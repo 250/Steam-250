@@ -8,6 +8,11 @@
         Top {{ games|length }} best Steam games of all time tagged with <em>{{ ranking.tag }}</em>,
         according to gamer reviews.
     </p>
+    <p class="note">
+        This is the free version of this page.
+        <a href="{{ club250 }}/tag/{{ ranking.tagId }}">An enhanced version of this tag is available on Club 250</a>.
+        The enhanced version includes an extensive tag description and a list of correlated tags.
+    </p>
     <p class="cat">
         Category
         <a href="{{ club250 }}/tags#{{ tag_category.hash }}" class="tag {{ tag_category.short_name }}">

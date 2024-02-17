@@ -5,7 +5,9 @@
     {% else %}
         {% set tag_url = "#{club250}/tag/#{tag.id}" %}
     {% endif -%}
-    <a href="{{ tag_url }}" class="tag {{ tag.category }}">{{ tag.name }}</a>
+    <a href="{{ tag_url }}" class="tag {{ tag.category }}"
+    {%- if tag.name in tags %} data-id="{{ tag.id }}"{% endif -%}
+    >{{ tag.name }}</a>
 {%- endif %}
 {% endmacro %}
 

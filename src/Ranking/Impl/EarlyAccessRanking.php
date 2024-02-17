@@ -18,7 +18,7 @@ class EarlyAccessRanking extends TagRanking
 
     public function __construct(RankingDependencies $dependencies)
     {
-        parent::__construct($dependencies, self::TAG);
+        parent::__construct($dependencies, self::TAG, 493);
     }
 
     public function customizeQuery(QueryBuilder $builder): void

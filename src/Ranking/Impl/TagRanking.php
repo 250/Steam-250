@@ -11,16 +11,16 @@ use ScriptFUSION\Steam250\SiteGenerator\Tag\TagDirectoryStatePacker;
 
 class TagRanking extends DefaultRanking
 {
-    private string $tag;
-
     private Connection $database;
 
-    public function __construct(RankingDependencies $dependencies, string $tag)
-    {
-        $tagId = Tag::convertTagToId($tag);
-        parent::__construct($dependencies, "tag/$tagId", 150);
+    public function __construct(
+        RankingDependencies $dependencies,
+        private readonly string $tag,
+        private readonly ?int $tagId = null
+    ) {
+        $tagNameId = Tag::convertTagToId($tag);
+        parent::__construct($dependencies, "tag/$tagNameId", 150);
 
-        $this->tag = $tag;
         $this->database = $dependencies->getDatabase();
 
         $this->setTemplate('tag');
@@ -71,5 +71,10 @@ class TagRanking extends DefaultRanking
     public function getTag(): string
     {
         return $this->tag;
+    }
+
+    public function getTagId(): ?int
+    {
+        return $this->tagId;
     }
 }

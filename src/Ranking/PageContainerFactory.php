@@ -48,10 +48,11 @@ final class PageContainerFactory
         }
 
         // Tags.
-        foreach (Queries::fetchPopularTags($container->get('db')) as $tag) {
-            $container->set(Tag::convertTagToId($tag), static function () use ($tag, $parent): Ranking {
-                return new TagRanking($parent->get(RankingDependencies::class), $tag);
-            });
+        foreach (Queries::fetchPopularTags($container->get('db')) as $tagId => $tag) {
+            $container->set(
+                Tag::convertTagToId($tag),
+                fn () => new TagRanking($parent->get(RankingDependencies::class), $tag, $tagId)
+            );
             ++$counter;
         }
 

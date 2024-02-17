@@ -18,7 +18,7 @@ final class Queries
 
     public static function createRankedListTable(Connection $database): void
     {
-        $database->exec(
+        $database->executeStatement(
             'CREATE TABLE IF NOT EXISTS rank (
                 list_id TEXT NOT NULL,
                 rank INTEGER NOT NULL,
@@ -32,7 +32,7 @@ final class Queries
 
     public static function recreateRankedListTable(Connection $database): void
     {
-        $database->exec('DROP TABLE IF EXISTS rank');
+        $database->executeStatement('DROP TABLE IF EXISTS rank');
         self::createRankedListTable($database);
     }
 
@@ -64,7 +64,7 @@ final class Queries
         ;
 
         if ($prevDb) {
-            $database->exec("ATTACH '$prevDb' AS prev");
+            $database->executeStatement("ATTACH '$prevDb' AS prev");
 
             $query
                 ->addSelect('prank.rank - rank.rank AS movement')
@@ -82,9 +82,9 @@ final class Queries
             $ranking->customizeRankingFetch($query);
         }
 
-        $list = $query->execute()->fetchAll();
+        $list = $query->execute()->fetchAllAssociative();
 
-        $prevDb && $database->exec('DETACH prev');
+        $prevDb && $database->executeStatement('DETACH prev');
 
         return $list;
     }
@@ -94,7 +94,7 @@ final class Queries
      */
     public static function fetchMissingApps(Connection $database, Ranking $ranking, int $limit, string $prevDb): array
     {
-        $database->exec("ATTACH '$prevDb' AS prev");
+        $database->executeStatement("ATTACH '$prevDb' AS prev");
 
         try {
             return $database->executeQuery(
@@ -109,9 +109,9 @@ final class Queries
                     'ranking_id' => $ranking->getId(),
                     'limit' => $limit,
                 ]
-            )->fetchAll();
+            )->fetchAllAssociative();
         } finally {
-            $database->exec('DETACH prev');
+            $database->executeStatement('DETACH prev');
         }
     }
 
@@ -126,9 +126,9 @@ final class Queries
     public static function fetchPopularTags(Connection $database, int $threshold = 400): array
     {
         return $database->executeQuery("
-            SELECT tag
+            SELECT id, tag
             FROM (
-                SELECT tag.name AS tag, COUNT(*) AS count
+                SELECT tag.id, tag.name AS tag, COUNT(*) AS count
                 FROM app_tag
                     JOIN (
                         SELECT app_id, AVG(votes) avg
@@ -144,17 +144,7 @@ final class Queries
                 LIMIT 150
             )
             ORDER BY tag
-        ")->fetchFirstColumn();
-    }
-
-    public static function fetchPatronReviews(Connection $database, int $appId): array
-    {
-        return $database->fetchAll(
-            "SELECT * FROM patron_review
-            INNER JOIN steam_profile ON patron_review.profile_id = steam_profile.profile_id
-            WHERE app_id = $appId
-            ORDER BY positive DESC"
-        );
+        ")->fetchAllKeyValue();
     }
 
     public static function countGames(Connection $database): int

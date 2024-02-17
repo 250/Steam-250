@@ -1,6 +1,8 @@
 export default class User {
     static isLoggedIn() {
-        return localStorage.hasOwnProperty('user');
+        return localStorage.hasOwnProperty('user') // S250.
+            || localStorage.hasOwnProperty('whoami') // C250.
+        ;
     }
 
     static logout() {
@@ -67,7 +69,12 @@ export default class User {
     }
 
     static syncLoginUi() {
+        if (this.isLoggedIn()) {
+            this.rewireTagLinks();
+        }
+
         const userBar = document.getElementById('user');
+        // Anything beyond this point will not run on Club 250.
         if (!userBar) return;
 
         const classes = userBar.classList;
@@ -93,6 +100,16 @@ export default class User {
                 user.tier >= tier && e.remove();
             });
         }
+    }
+
+    static rewireTagLinks() {
+        const re = new RegExp(`^https://[^/]+/tag/`);
+
+        document.querySelectorAll<HTMLAnchorElement>('a[data-id]').forEach(a => {
+            if (re.test(a.href)) {
+                a.href = `${process.env.CLUB_250_BASE_URL}/tag/${a.dataset.id}`;
+            }
+        });
     }
 
     private static updateUserBar() {
