@@ -32,21 +32,6 @@
 
         {{ include('partial/ad.twig', {id: '1119204033'}) }}
 
-        <section class="boxlink ico email">
-            <header>Club 250 Weekly Edition</header>
-            <div>
-                <p>
-                    Sign up for the Club 250 Weekly Edition and get the <strong>top 30 games of the week</strong>
-                    delivered directly to your inbox every seven days!
-                    <a href="{{ club250 }}/email%20sub/7day"><b>Learn more</b></a>.
-                </p>
-                <form method="post" action="{{ club250 }}/email%20sub/7day">
-                    <input name="email" type="email" placeholder="your.email@example.com" required>
-                    <button>Send</button>
-                </form>
-            </div>
-        </section>
-
         <section class="c250">
             <div class="title h2" data-title="Club 250">
                 <h2><a href="{{ patreon }}">Club 250</a></h2>
@@ -54,7 +39,7 @@
             <p>
                 Club 250 is the Steam 250 member's club, aggregating all
                 <strong>125 million reviews</strong>
-                from Steam to produce full review and ranking history for each game.
+                on Steam to produce full ranking history for each game.
             </p>
             <p>
                 <a href="{{ patreon }}">Joining Club 250</a> grants access to more features including our
@@ -72,6 +57,29 @@
                 <a href="{{ club250 }}/me">profile page</a>.
             </p>
         </section>
+
+        <section class="boxlink ico email">
+            <header>Club 250 Weekly Edition</header>
+            <div>
+                <p>
+                    Sign up for the free Club 250 Weekly Edition to get the <strong>top 30 games of the week</strong>
+                    delivered directly to your inbox every seven days!
+                    <a href="{{ club250 }}/email%20sub/7day">Learn more</a>
+                </p>
+                <form method="post" action="{{ club250 }}/email%20sub/7day">
+                    <input name="email" type="email" placeholder="your.email@example.com" required>
+                    <button>Send</button>
+                </form>
+            </div>
+        </section>
+
+        <div class="tweets">
+            <h2>Latest tweets</h2>
+            <a class="twitter-timeline" data-dnt="true" data-theme="dark" data-width="316" data-height="640"
+                href="https://twitter.com/Steam_250?ref_src=twsrc%5Etfw">Tweets by Steam_250</a>
+            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+            <a href="https://twitter.com/Steam_250" class="more" target="_blank">More tweets</a>
+        </div>
     {% endblock %}
     </div>
 

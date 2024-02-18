@@ -1227,12 +1227,6 @@ tr.a .movement.none:before {
 .r\&f > div:first-of-type {
     margin-top: 0;
 }
-.r\&f h2 {
-    margin-bottom: -2px;
-    padding: .7em;
-
-    text-align: center;
-}
 /* R&f single-column layout. */
 @media (max-width: 669px) {
     .r\&f > * {
@@ -1258,11 +1252,46 @@ tr.a .movement.none:before {
     }
 }
 
-/* Compact ranking. */
-.flat.compact.ranking {
-    background: linear-gradient(#121a25 34px, #495770);
-    border-radius: 6px;
+#page.ranking {
+    .col2, .col3 {
+        >div {
+            background: linear-gradient(#121a25 34px, #495770);
+            border-radius: 6px;
+
+            >h2 {
+                margin-bottom: -2px;
+                padding: .7em;
+
+                text-align: center;
+            }
+
+            &.tweets {
+                >.twitter-timeline {
+                    margin: auto;
+                }
+
+                >.more {
+                    float: right;
+                    margin: .5ex 1ch;
+
+                    color: #adb9d3;
+                    font-size: 95%;
+                    font-weight: bold;
+                    text-shadow: -1px 1px 0 #2e3748;
+                    text-transform: lowercase;
+                    text-underline-offset: 2px;
+                    text-decoration-thickness: 1px;
+
+                    &:after {
+                        content: ' >';
+                    }
+                }
+            }
+        }
+    }
 }
+
+/* Compact ranking. */
 .compact.ranking > ol {
     display: grid;
     gap: 2px;
@@ -1528,6 +1557,11 @@ tr.a .movement.none:before {
 .flat.compact.ranking li > .title > .title > :last-child > :last-child {
     color: #b5cbf3;
     text-shadow: none;
+}
+
+.boxlink a {
+    color: #70c3ff;
+    font-weight: bold;
 }
 
 #linkmenu {
