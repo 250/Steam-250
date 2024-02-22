@@ -1256,7 +1256,6 @@ tr.a .movement.none:before {
     .col2, .col3 {
         >div {
             background: linear-gradient(#121a25 34px, #495770);
-            border-radius: 6px;
 
             >h2 {
                 margin-bottom: -2px;
@@ -1445,13 +1444,20 @@ tr.a .movement.none:before {
     --step: 9;
 }
 
-.compact.ranking li a {
-    color: #dfeaed;
-    text-decoration: none;
-    outline: none;
-}
-.flat.compact.ranking li a {
-    color: inherit;
+.compact.ranking {
+    .flat& {
+        border-radius: 6px;
+    }
+
+    li a {
+        color: #dfeaed;
+        text-decoration: none;
+        outline: none;
+
+        .flat& {
+            color: inherit;
+        }
+    }
 }
 
 /* Game rank. */
