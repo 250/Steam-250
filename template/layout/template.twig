@@ -56,11 +56,13 @@
                 <li><a href="{{ club250 }}/ranking/gems/history/{{ '-7 year'|date('Ymd') }}" class="history">
                         Hidden Gems History
                         <span class="t1 micro tier">T1</span>
+                    </a>
+                <li><a href="{{ club250 }}/ranking/trending" class="trend">Trending Games</a>
                 <li><a href="{{ club250 }}/ranking/custom" class="custom">
                         Custom Ranking
                         <span class="t1 micro tier">T1</span>
                     </a>
-                <li><a href="/hidden_novels{{ ext }}">Hidden Novels</a>
+                <li><a href="/most_played{{ ext }}" class="pad">Most Played</a>
                 <li>
                     <a>Most Reviewed</a>
                     <ol class="annual">
@@ -70,9 +72,7 @@
                             {% endfor %}
                         <li><a href="/reviews/old{{ ext }}">Pre-{{ earliest_year }}</a>
                     </ol>
-                <li><a href="/most_played{{ ext }}" class="pad">Most Played</a>
                 <li><a href="/adult{{ ext }}">Adult Games</a>
-                <li><a href="/trending{{ ext }}">Trending Games</a>
                 <li><a href="/previews{{ ext }}">Previews</a>
                 <li>
                     <a>Platform</a>
@@ -84,6 +84,7 @@
                         <li><a href="/linux250{{ ext }}" class="linux">Linux</a>
                         <li><a href="/mac250{{ ext }}" class="mac">Mac</a>
                     </ol>
+                <li><a href="/hidden_novels{{ ext }}">Hidden Novels</a>
                 <li><a href="/developer{{ ext }}">Top 250 Developers</a>
                 <li><a href="/publisher{{ ext }}">Top 250 Publishers</a>
                 <li><a href="/dlc{{ ext }}">Top 250 DLC</a>
