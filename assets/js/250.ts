@@ -1,6 +1,7 @@
 import {parseParam} from './Query';
 import User from './User';
 import Checkbox from './Checkbox';
+import chroma from 'chroma-js';
 
 type S250_static = typeof S250;
 
@@ -15,6 +16,7 @@ class S250 {
         this.constrainDropdownMenuPositions();
 
         // UI stuff.
+        S250.initRatingColourGradient();
         Checkbox.initTristateCheckboxes();
         S250.initChevrons();
 
@@ -306,6 +308,27 @@ class S250 {
             a.addEventListener('animationend', _ => {
                 shadow.classList.remove('animate');
             })
+        });
+    }
+
+    private static initRatingColourGradient() {
+        const grad = chroma.scale(['#d94141', '#cccc3d', '#4cbf56']).domain([0, 60, 100]);
+
+        document.querySelectorAll<HTMLElement>('.rating').forEach(el => {
+            const [pre, post] = /(\D*)(\d+%?)/.exec(el.innerText)!.slice(1);
+
+            // Wrap numeric component in separate element to avoid colouring non-digits.
+            if (pre) {
+                const newEl = document.createElement('span');
+
+                el.innerHTML = pre;
+                newEl.innerHTML = post;
+                el.insertAdjacentElement('beforeend', newEl);
+                el = newEl;
+            }
+
+            el.style.color = grad(parseFloat(el.innerText)).hex();
+            el.style.fontWeight = 'bold';
         });
     }
 
