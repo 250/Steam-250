@@ -9,7 +9,6 @@ use ScriptFUSION\Steam250\SiteGenerator\Page\HomePage;
 use ScriptFUSION\Steam250\SiteGenerator\Page\StaticPageName;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\AnnualRanking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\EarlyAccessRanking;
-use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\OwnersRanking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\ReviewsRanking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\TagRanking;
 use ScriptFUSION\Steam250\SiteGenerator\Tag\Tag;
@@ -35,13 +34,6 @@ final class PageContainerFactory
             $container->set($ranking->getId(), $ranking);
             ++$counter;
 
-            // Owners data is no longer current, so only show historical rankings.
-            if ($year <= 2017) {
-                $ranking = new OwnersRanking($dependencies, $year);
-                $container->set($ranking->getId(), $ranking);
-                ++$counter;
-            }
-
             $ranking = new ReviewsRanking($dependencies, $year);
             $container->set($ranking->getId(), $ranking);
             ++$counter;
@@ -57,9 +49,10 @@ final class PageContainerFactory
         }
 
         // Replace Early Access tag using special-cased implementation.
-        $container->set(Tag::convertTagToId(EarlyAccessRanking::TAG), static function () use ($parent): Ranking {
-            return new EarlyAccessRanking($parent->get(RankingDependencies::class));
-        });
+        $container->set(
+            Tag::convertTagToId(EarlyAccessRanking::TAG),
+            fn () => new EarlyAccessRanking($parent->get(RankingDependencies::class))
+        );
 
         $container->set(
             'home',

@@ -7,7 +7,6 @@ use Eloquent\Enumeration\AbstractEnumeration;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\AdultRanking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\Bottom100Ranking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\BuyersRemorseRanking;
-use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\Club250Ranking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\CollageRanking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\DeveloperRanking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\DiscountRanking;
@@ -18,7 +17,6 @@ use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\Linux250Ranking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\Mac250Ranking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\MostPlayedRanking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\OldRanking;
-use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\OwnersOldRanking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\PublisherRanking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\ReviewsFullRanking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\ReviewsOldRanking;
@@ -53,7 +51,6 @@ final class RankingName extends AbstractEnumeration
     public const D_90 = 'D_90';
     public const D_365 = 'D_365';
     public const OLD = 'OLD';
-    public const OLD_OWN = 'OLD_OWN';
     public const REVIEW = 'REVIEW';
     public const OLD_REVIEW = 'OLD_REVIEW';
     public const MAC = 'MAC';
@@ -86,7 +83,6 @@ final class RankingName extends AbstractEnumeration
         self::D_90 => RollingQuarterRanking::class,
         self::D_365 => RollingYearRanking::class,
         self::OLD => OldRanking::class,
-        self::OLD_OWN => OwnersOldRanking::class,
         self::REVIEW => ReviewsFullRanking::class,
         self::OLD_REVIEW => ReviewsOldRanking::class,
         self::MAC => Mac250Ranking::class,
@@ -120,7 +116,6 @@ final class RankingName extends AbstractEnumeration
         self::D_90 => '90d',
         self::D_365 => '365d',
         self::OLD => 'old',
-        self::OLD_OWN => 'oold',
         self::REVIEW => 'review',
         self::OLD_REVIEW => 'rold',
         self::MAC => 'mac',
