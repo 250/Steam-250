@@ -50,20 +50,59 @@ section.top10 {
   >header {
     position: relative;
     top: 4px;
-    padding: .7em 1em;
+    padding: 1rem;
     overflow: hidden;
+    z-index: 0;
 
     background: linear-gradient(135deg, #0004, #08110840, #0004, #1c0d1c40);
     border-radius: 8px 8px 0 0;
+
+    &:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 9px;
+      z-index: -1;
+
+      opacity: 0;
+      background: linear-gradient(135deg, #1f202e, #343834, #212333, #291f29);
+      box-shadow: 0 0 4px #ffc82c;
+
+      transition: opacity .1s;
+    }
+    &:hover:before {
+      opacity: 1;
+    }
+
+    >h2 {
+      margin: 0;
+      height: 1.4em;
+      line-height: 1;
+
+      >a {
+        position: absolute;
+        box-sizing: border-box;
+        width: 100%;
+        height: $width;
+        top: 0;
+        left: 0;
+        padding: 1rem;
+
+        text-decoration: none;
+      }
+    }
 
     >.group {
       float: right;
       padding: 0.15em 0.6em;
       position: relative;
+      top: -3px;
       right: -4px;
 
-      color: #9fbcd3;
-      background: #324568;
+      color: #a8c7e0;
+      background: #435e8c;
       border-radius: 2px;
       font-size: 70%;
       font-variant: all-small-caps;
@@ -86,17 +125,18 @@ section.top10 {
     }
 
     >ol {
+      // Pop over area link.
+      position: relative;
+      display: inline-flex;
+      gap: 1ch;
+      top: -.5rem;
+
       font-size: 70%;
-      margin: -.9rem 0 1rem 4em;
 
       >li {
-        display: inline-block;
-        text-indent: .4em;
-
-        &:before {
+        &:first-of-type:before {
           content: 'See also';
-          position: absolute;
-          left: .8rem;
+          margin-right: 1ch;
         }
       }
     }
