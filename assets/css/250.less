@@ -517,7 +517,7 @@ span.filtered {
 }
 
 .ranking > header > h2:first-of-type {
-    width: 120px;
+    width: 170px;
     box-sizing: border-box;
     padding-left: 1.5em;
     margin-left: .5em;
@@ -570,10 +570,11 @@ span.filtered {
     max-width: 100%;
 }
 
+// Capsule image container.
 .ranking > header ~ div > div:first-child {
     flex-shrink: 0;
     width: 25%;
-    max-width: 120px;
+    max-width: 170px; // Nominally 184px.
     min-width: 80px;
     aspect-ratio: 184/69;
 
@@ -625,6 +626,8 @@ span.filtered {
 .ranking > div > div > .title {
     /* Prevent breaking around title at small resolutions. */
     display: inline;
+
+    font-size: 150%;
 }
 // Shared S250/C250 appline styles.
 .appline {
