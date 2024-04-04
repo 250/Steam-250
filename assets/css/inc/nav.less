@@ -84,16 +84,16 @@ ol.menu {
         &:last-of-type {
           background: none;
           border-radius: 0 0 2px 2px;
+
+          >a {
+            padding-bottom: calc(.2em + 3px);
+          }
         }
 
         >a {
           display: block;
           min-width: 45px;
           padding: calc(.2em + 3px) .8em calc(.2em + 4px);
-
-          &:last-of-type {
-            padding-bottom: calc(.2em + 3px);
-          }
         }
 
         a:not([href]):after {
@@ -156,7 +156,6 @@ ol.menu {
         grid-column: span 2;
 
         font-size: 120%;
-        text-align: center;
 
         >a {
           padding-top: 1ex;
@@ -165,13 +164,14 @@ ol.menu {
       }
     }
 
-    /* Specials. */
+    /* Classified items. */
     a[class] {
-      padding-left: 2.05em;
+      display: flex;
+      gap: .7ch;
+      align-items: center;
 
       &:before {
         content: '';
-        position: absolute;
         --width: 1em;
         width: var(--width);
         height: $width;
@@ -179,7 +179,6 @@ ol.menu {
         background: linear-gradient(#d9b882, #947e59) $mask;
         // Fudge size for scuffed Chrome SVG renderer.
         mask: no-repeat 0/99% 100%;
-        transform: translate(-125%);
       }
       &:hover:before {
         filter: brightness(14%);
@@ -212,10 +211,13 @@ ol.menu {
       &.deck:before {
         #icons.deck();
       }
-      &.tag:before {
-        --width: 1.2em;
-        transform: translate(-120%, -10%);
-        mask-image: url(/svg/tag.svg);
+      &.tag {
+        justify-content: center;
+
+        &:before {
+          --width: 1.2em;
+          mask-image: url(/svg/tag.svg);
+        }
       }
       &.email:before {
         #icons.email();
@@ -226,9 +228,13 @@ ol.menu {
       }
       &.discord:before {
         --width: 1.3em;
-        transform: translate(-110%, -10%);
+        margin-left: -.4em;
+
         mask-image: url(/svg/discord.svg);
+        mask-size: 110%;
         background: linear-gradient(#96aaf2, #5067b3);
+
+        translate: 2px;
       }
       &.steam:before {
         mask-image: url(/svg/steam.svg);
@@ -252,8 +258,15 @@ ol.menu {
   }
 
   .micro.tier {
+    margin: 0;
+
     opacity: .9;
     font-size: 75%;
     text-shadow: none;
+    line-height: 1.3;
+
+    &:hover {
+      filter: brightness(112%) saturate(120%);
+    }
   }
 }

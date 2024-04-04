@@ -23,12 +23,14 @@
                 <li><a href="/most_played{{ ext }}"><span class="played">Most Played</span></a>
                 <li><a href="{{ club250 }}/ranking/trending">
                         <span class="trend">
-                            Trending <span class="t1 micro tier">T1</span>
+                            Trending
+                            {{ include('@components/micro tier.twig', {tier: 1, benefit: 'trend'}) }}
                         </span>
                     </a>
                 <li><a href="{{ club250 }}/ranking/custom">
                         <span class="cranking">
-                            Custom Ranking <span class="t1 micro tier">T1</span>
+                            Custom Ranking
+                            {{ include('@components/micro tier.twig', {tier: 1, benefit: 'cranking'}) }}
                         </span>
                     </a>
             </ol>

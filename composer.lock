@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/250/Components.git",
-                "reference": "80acf417d1ddfeb3ebe56e78124a38100da46283"
+                "reference": "81203b90862a576769c972ee71ce45c9895bd93c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/250/Components/zipball/80acf417d1ddfeb3ebe56e78124a38100da46283",
-                "reference": "80acf417d1ddfeb3ebe56e78124a38100da46283",
+                "url": "https://api.github.com/repos/250/Components/zipball/81203b90862a576769c972ee71ce45c9895bd93c",
+                "reference": "81203b90862a576769c972ee71ce45c9895bd93c",
                 "shasum": ""
             },
             "default-branch": true,
@@ -34,7 +34,7 @@
                 "issues": "https://github.com/250/Components/issues",
                 "source": "https://github.com/250/Components/tree/master"
             },
-            "time": "2024-01-29T18:27:15+00:00"
+            "time": "2024-03-22T00:15:01+00:00"
         },
         {
             "name": "250/log",
