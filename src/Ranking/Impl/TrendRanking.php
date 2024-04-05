@@ -3,49 +3,22 @@ declare(strict_types=1);
 
 namespace ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl;
 
-use Doctrine\DBAL\Query\QueryBuilder;
-use ScriptFUSION\Steam250\SiteGenerator\Database\SortDirection;
-use ScriptFUSION\Steam250\SiteGenerator\Rank\CustomRankingFetch;
-use ScriptFUSION\Steam250\SiteGenerator\Ranking\Ranking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\RankingDependencies;
 
-class TrendRanking extends Ranking implements CustomRankingFetch
+class TrendRanking extends Club250Ranking
 {
-    public const DAYS = 50;
-
-    private const VELOCITY_QUERY =
-        'app.total_reviews / CASE
-            -- Penalize apps with no release date by 1 year.
-            WHEN app.release_date IS NULL THEN 365
-
-            -- Number of days since release.
-            ELSE MAX(1, ABS(JULIANDAY(CURRENT_DATE) - JULIANDAY(DATETIME(app.release_date, "unixepoch"))))
-        END reviews_per_day'
-    ;
-
     public function __construct(RankingDependencies $dependencies)
     {
-        parent::__construct($dependencies, 'trending', 50);
+        parent::__construct($dependencies, 'TREND', 1000);
 
-        $this->setTitle('Trending Games');
-        $this->setDescription('Top 50 games trending on Steam in the last 50 days based on number of reviews per day.');
+        $this->setTitle('New and Trending');
+        $this->setDescription(
+            'Top trending Steam games released within the last 30 days, based on reviews per day since release.'
+        );
     }
 
-    public function customizeQuery(QueryBuilder $builder): void
+    public function getUrl(): string
     {
-        $builder
-            ->addSelect('DATETIME(app.release_date, "unixepoch") AS release_date')
-            ->addSelect('JULIANDAY(CURRENT_DATE) - JULIANDAY(DATETIME(app.release_date, "unixepoch")) AS days')
-            ->addSelect(self::VELOCITY_QUERY)
-            ->andWhere('app.total_reviews > 0')
-            ->andWhere('app.release_date <= CURRENT_DATE')
-            ->andWhere('days < ' . self::DAYS)
-            ->orderBy('reviews_per_day', SortDirection::DESC)
-        ;
-    }
-
-    public function customizeRankingFetch(QueryBuilder $builder): void
-    {
-        $builder->addSelect(self::VELOCITY_QUERY);
+        return "$_ENV[CLUB_250_BASE_URL]/ranking/new-and-trending";
     }
 }

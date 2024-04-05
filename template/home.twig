@@ -8,6 +8,7 @@
 <section class="rankings">
     {% for id, ranking in rankings %}
     {% if ranking.apps %}
+    {% set url = ranking.ranking.url ?? (id ~ ext) %}
     <section class="top10">
         <header>
             {% set group = id in ['price/under5', 'discounts', 'tag/free_to_play'] ? 'budget'
@@ -17,7 +18,12 @@
             <span class="group {{ group }}">
                 {{ group == 'budget' ? 'Budget gamer' : group == 'tag' ? 'Popular tag' : 'Featured' }}
             </span>
-            <h2><a href="/{{ id ~ ext }}">{{ ranking.ranking.title }}</a></h2>
+            <h2><a href="{{ url }}">
+                {{ ranking.ranking.title }}
+                {% if id == 'TREND' %}
+                {{ include('@components/micro tier.twig', {tier: 1, benefit: 'trend'}) }}
+                {% endif %}
+            </a></h2>
             {% if ranking.related %}
             <ol>
                 {% for see in ranking.related %}
@@ -35,7 +41,7 @@
         {{ include('partial/risers.twig', {games: ranking.apps, base_url: id ~ ext, fancy: true}) }}
 
         <footer>
-            {{ include('component/more button.twig', {url: id ~ ext, caption: "All #{ranking.ranking.limit}"}) }}
+            {{ include('component/more button.twig', {url: url, caption: "All #{ranking.ranking.limit}"}) }}
         </footer>
     </section>
     {% endif %}

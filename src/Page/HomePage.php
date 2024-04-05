@@ -68,13 +68,13 @@ class HomePage extends Page implements PreviousDatabaseAware
     public static function getRankings(): array
     {
         return [
-            Top250Ranking::class,
-            HiddenGemsRanking::class,
-            date('Y'),
-            MostPlayedRanking::class,
-            RollingWeekRanking::class,
-            TrendRanking::class,
-            UsdUnder5Ranking::class,
+			Top250Ranking::class,
+			TrendRanking::class,
+			HiddenGemsRanking::class,
+			date('Y'),
+			RollingWeekRanking::class,
+			MostPlayedRanking::class,
+			UsdUnder5Ranking::class,
             DiscountRanking::class,
             'free_to_play',
             'sexual_content',

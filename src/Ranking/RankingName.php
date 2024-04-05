@@ -64,7 +64,6 @@ final class RankingName extends AbstractEnumeration
     public const DEVELOPER = 'DEVELOPER';
     public const PUBLISHER = 'PUBLISHER';
     public const PLAYERS = 'PLAYERS';
-    public const TREND = 'TREND';
     public const ADULT = 'ADULT';
     public const COLLAGE = 'COLLAGE';
 
@@ -96,7 +95,6 @@ final class RankingName extends AbstractEnumeration
         self::DEVELOPER => DeveloperRanking::class,
         self::PUBLISHER => PublisherRanking::class,
         self::PLAYERS => MostPlayedRanking::class,
-        self::TREND => TrendRanking::class,
         self::ADULT => AdultRanking::class,
         self::COLLAGE => CollageRanking::class,
     ];
@@ -129,7 +127,6 @@ final class RankingName extends AbstractEnumeration
         self::DEVELOPER => 'dev',
         self::PUBLISHER => 'pub',
         self::PLAYERS => 'players',
-        self::TREND => 'trend',
         self::ADULT => '18',
         self::COLLAGE => 'collage',
     ];

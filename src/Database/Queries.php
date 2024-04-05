@@ -10,6 +10,7 @@ use ScriptFUSION\StaticClass;
 use ScriptFUSION\Steam250\SiteGenerator\Rank\CustomRankingFetch;
 use ScriptFUSION\Steam250\SiteGenerator\Rank\RankingQueries;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Algorithm;
+use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\Club250Ranking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Ranking;
 
 final class Queries
@@ -52,9 +53,11 @@ final class Queries
         string $prevDb = null,
         int $limit = null
     ): array {
+        $sourceTable = $ranking instanceof Club250Ranking ? '(SELECT *, null owner FROM c250_ranking)' : 'rank';
+
         $query = $database->createQueryBuilder()
             ->select('rank.*, app.*, t250.rank as rank_250')
-            ->from('rank')
+            ->from($sourceTable, 'rank')
             ->join('rank', 'app', 'app', 'id = rank.app_id')
             ->leftJoin('rank', 'rank', 't250', 't250.list_id = "top250" AND rank.app_id = t250.app_id')
             ->where('rank.list_id = :list_id')
@@ -70,7 +73,7 @@ final class Queries
                 ->addSelect('prank.rank - rank.rank AS movement')
                 ->leftJoin(
                     'rank',
-                    'prev.rank',
+                    preg_replace('[\w*?rank]', 'prev.$0', $sourceTable),
                     'prank',
                     'rank.list_id = prank.list_id AND
                         (rank.owner = prank.owner OR (rank.owner IS NULL AND rank.app_id = prank.app_id))'
