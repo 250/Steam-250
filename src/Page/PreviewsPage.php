@@ -24,11 +24,11 @@ class PreviewsPage extends Page
         $games = $this->database->executeQuery('
             SELECT *
             FROM app
-            WHERE release_date > :now AND release_date <= :next_week AND total_reviews = 0 AND type = "game"
+            WHERE release_date > :now AND release_date <= :cutoff AND total_reviews = 0 AND type = "game"
             ORDER BY release_date
         ', [
             'now' => time(),
-            'next_week' => (new \DateTime('1 week'))->getTimestamp(),
+            'cutoff' => strtotime('30 day'),
         ])->fetchAllAssociative();
 
         // Decorate each game with tags.

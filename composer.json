@@ -18,7 +18,7 @@
     "eloquent/enumeration": "^6",
     "joomla/di": "^2",
     "monolog/monolog": "^1",
-    "phptype/date": "^1",
+    "phptype/date": "^2",
     "rybakit/msgpack": "^0.9",
     "scriptfusion/static-class": "^1",
     "symfony/console": "^6",
