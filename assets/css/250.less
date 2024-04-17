@@ -1268,6 +1268,9 @@ tr.a .movement.none:before {
             }
 
             &.tweets {
+                background: #121a25;
+                border-radius: 6px;
+
                 >.twitter-timeline {
                     margin: auto;
                 }
@@ -1276,10 +1279,10 @@ tr.a .movement.none:before {
                     float: right;
                     margin: .5ex 1ch;
 
-                    color: #adb9d3;
+                    color: #98b0df;
                     font-size: 95%;
                     font-weight: bold;
-                    text-shadow: -1px 1px 0 #2e3748;
+                    text-shadow: -1px 1px 0 #202735;
                     text-transform: lowercase;
                     text-underline-offset: 2px;
                     text-decoration-thickness: 1px;
@@ -1763,6 +1766,8 @@ tr.a .movement.none:before {
 
 .fixedlinks {
     position: fixed;
+    // Ensure links are not obscured by minor visual elements exploiting stacking contexts.
+    z-index: 1;
     bottom: .7vh;
     right: .7vw;
 }

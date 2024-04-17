@@ -9,7 +9,7 @@ class RollingMonthRanking extends RollingRanking
 {
     public function __construct(RankingDependencies $dependencies)
     {
-        parent::__construct($dependencies, '30day', 'last month', 50);
+        parent::__construct($dependencies, '30day', 'last month', 100);
 
         $this->setWeight(1);
     }

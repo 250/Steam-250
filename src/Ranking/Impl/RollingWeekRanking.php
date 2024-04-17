@@ -9,7 +9,7 @@ class RollingWeekRanking extends RollingRanking
 {
     public function __construct(RankingDependencies $dependencies)
     {
-        parent::__construct($dependencies, '7day', '-7 day', 30);
+        parent::__construct($dependencies, '7day', '-7 day', 50);
 
         $this->setWeight(4);
         $this->setTitle("Week Top {$this->getLimit()}");
