@@ -96,7 +96,7 @@ ol.menu {
           padding: calc(.2em + 3px) .8em calc(.2em + 4px);
         }
 
-        a:not([href]):after {
+        a:has(+ ol):after {
           content: '▶';
           position: absolute;
           top: 50%;
@@ -116,9 +116,13 @@ ol.menu {
             color: #07080a;
             text-shadow: 1px 1px 1px #cfab72;
             text-decoration: none;
+
+            &[class]:before {
+              filter: brightness(14%);
+            }
           }
 
-          a:not([href]):after {
+          a:has(+ ol):after {
             right: calc(1em - 3px);
           }
         }
@@ -182,9 +186,6 @@ ol.menu {
         background: linear-gradient(#d9b882, #947e59) $mask;
         // Fudge size for scuffed Chrome SVG renderer.
         mask: no-repeat 0/99% 100%;
-      }
-      &:hover:before {
-        filter: brightness(14%);
       }
 
       &.cup:before {
