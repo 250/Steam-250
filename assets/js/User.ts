@@ -71,10 +71,12 @@ export default class User {
     static syncLoginUi() {
         if (this.isLoggedIn()) {
             this.rewireTagLinks();
+            this.hideObsoleteTiers();
         }
 
+        if (S250.isClub250()) return;
+
         const userBar = document.getElementById('user');
-        // Anything beyond this point will not run on Club 250.
         if (!userBar) return;
 
         const classes = userBar.classList;
@@ -83,7 +85,6 @@ export default class User {
 
         if (this.isLoggedIn()) {
             this.updateUserBar();
-            this.hideObsoleteTiers();
         }
     }
 

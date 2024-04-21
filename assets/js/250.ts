@@ -208,6 +208,10 @@ class S250 {
         return User.isLoggedIn();
     }
 
+    static isClub250() {
+        return location.origin === process.env.CLUB_250_BASE_URL;
+    }
+
     static syncLogin() {
         return User.syncLogin();
     }
@@ -375,5 +379,7 @@ class S250 {
             document.body.removeChild(textarea);
         }
     }
-} new S250;
+}
+
 window.S250 = S250;
+new S250;
