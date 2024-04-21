@@ -71,10 +71,12 @@ export default class User {
     static syncLoginUi() {
         if (this.isLoggedIn()) {
             this.rewireTagLinks();
+            this.hideObsoleteTiers();
         }
 
+        if (S250.isClub250()) return;
+
         const userBar = document.getElementById('user');
-        // Anything beyond this point will not run on Club 250.
         if (!userBar) return;
 
         const classes = userBar.classList;
@@ -83,7 +85,6 @@ export default class User {
 
         if (this.isLoggedIn()) {
             this.updateUserBar();
-            this.hideObsoleteTiers();
         }
     }
 
@@ -94,11 +95,13 @@ export default class User {
         const user = JSON.parse(userJson);
 
         if (user.tier) {
-            document.querySelectorAll('ol.menu .micro.tier, #body .micro.tier').forEach(e => {
-                const tier = +[...e.classList].filter(s => /^t\d$/.test(s))[0].substring(1);
+            document.querySelectorAll('ol.menu .micro.tier' + (S250.isClub250() ? '' : ', #body .micro.tier'))
+                .forEach(e => {
+                    const tier = +[...e.classList].filter(s => /^t\d$/.test(s))[0].substring(1);
 
-                user.tier >= tier && e.remove();
-            });
+                    user.tier >= tier && e.remove();
+                })
+            ;
         }
     }
 
