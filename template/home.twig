@@ -11,7 +11,7 @@
     {% set url = ranking.ranking.url ?? (id ~ ext) %}
     <section class="top10">
         <header>
-            {% set group = id in ['price/under5', 'discounts', 'tag/free_to_play'] ? 'budget'
+            {% set group = id in ['price/under5', 'discounts', 'price/free'] ? 'budget'
                 : id[:4] == 'tag/' ? 'tag'
                 : ''
             %}

@@ -11,6 +11,7 @@ use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\CollageRanking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\DeveloperRanking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\DiscountRanking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\DlcRanking;
+use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\FreeRanking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\HiddenGemsRanking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\HiddenNovelsRanking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\Linux250Ranking;
@@ -27,7 +28,6 @@ use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\RollingYearRanking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\SteamDeckPlayableRanking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\SteamDeckVerifiedRanking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\Top250Ranking;
-use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\TrendRanking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\Usd10To15Ranking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\Usd5To10Ranking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\UsdOver15Ranking;
@@ -42,6 +42,7 @@ final class RankingName extends AbstractEnumeration
     public const BOTTOM_100 = 'BOTTOM_100';
     public const DLC = 'DLC';
     public const DISCOUNT = 'DISCOUNT';
+    public const FREE = 'FREE';
     public const USD_UNDER_5 = 'USD_UNDER_5';
     public const USD5_10 = 'USD5_10';
     public const USD10_15 = 'USD10_15';
@@ -73,6 +74,7 @@ final class RankingName extends AbstractEnumeration
         self::BOTTOM_100 => Bottom100Ranking::class,
         self::DLC => DlcRanking::class,
         self::DISCOUNT => DiscountRanking::class,
+        self::FREE => FreeRanking::class,
         self::USD_UNDER_5 => UsdUnder5Ranking::class,
         self::USD5_10 => Usd5To10Ranking::class,
         self::USD10_15 => Usd10To15Ranking::class,
@@ -105,6 +107,7 @@ final class RankingName extends AbstractEnumeration
         self::BOTTOM_100 => 'b100',
         self::DLC => 'dlc',
         self::DISCOUNT => 'discount',
+        self::FREE => 'free',
         self::USD_UNDER_5 => 'u5',
         self::USD5_10 => '5-10',
         self::USD10_15 => '10-15',

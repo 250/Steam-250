@@ -6,6 +6,7 @@ namespace ScriptFUSION\Steam250\SiteGenerator\Page;
 use Doctrine\DBAL\Connection;
 use ScriptFUSION\Steam250\SiteGenerator\Database\Queries;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\DiscountRanking;
+use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\FreeRanking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\HiddenGemsRanking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\MostPlayedRanking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\RollingWeekRanking;
@@ -76,7 +77,7 @@ class HomePage extends Page implements PreviousDatabaseAware
 			MostPlayedRanking::class,
 			UsdUnder5Ranking::class,
             DiscountRanking::class,
-            'free_to_play',
+            FreeRanking::class,
             'sexual_content',
             'co-op',
             'rpg',
