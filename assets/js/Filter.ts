@@ -44,7 +44,8 @@ new class {
 
     private filterApps() {
         const ranks = document.querySelectorAll('#body .ranking > div[id]'),
-            checkedChecks = this.checks.filter(check => check.checked);
+            platformChecks = this.checks.filter(check => this.form.querySelector('fieldset')!.contains(check)),
+            checkedChecks = platformChecks.filter(check => check.checked);
 
         let kept = 0;
 
@@ -52,6 +53,10 @@ new class {
         if (this.filtersButton.getAttribute('data-filtered') || checkedChecks.length < this.checks.length) {
             ranks.forEach(rank => {
                 let keep = checkedChecks.some(check => !!rank.querySelector('.platforms > .' + check.name));
+
+                if (this.form['owned'].checked) {
+                    keep &&= !rank.querySelector('a.owned');
+                }
 
                 rank.classList.toggle('filtered', !keep);
 

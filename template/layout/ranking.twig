@@ -102,6 +102,13 @@
                     {{ include('@components/checkbox.twig', {caption_on: 'Linux', name: 'nix'}) }}
                     {{ include('@components/checkbox.twig', {caption_on: 'Steam Deck', name: 'deck'}) }}
                 </fieldset>
+                <fieldset>
+                    <legend>Owned games</legend>
+                    Show {{ include(
+                        '@components/checkbox.twig',
+                        {negative: 1, checked: 0, caption_on: 'Hide', name: 'owned'})
+                    }}
+                </fieldset>
                 <button class="button ok">OK</button>
                 <button class="button cancel">Cancel</button>
                 <button class="button reset" type="reset">Reset</button>
