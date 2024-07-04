@@ -50,9 +50,14 @@ new class {
         let kept = 0;
 
         // Only filter when previously filtered or less than all checks enabled (optimization to speed loading).
-        if (this.filtersButton.getAttribute('data-filtered') || checkedChecks.length < this.checks.length) {
+        if (this.filtersButton.getAttribute('data-filtered') || checkedChecks.length < platformChecks.length
+            // Or hide owned apps checked.
+            || this.form['owned'].checked
+        ) {
             ranks.forEach(rank => {
-                let keep = checkedChecks.some(check => !!rank.querySelector('.platforms > .' + check.name));
+                // Keep app if it has no platforms (e.g. devlisher pages).
+                let keep = !rank.querySelector('.platforms') ||
+                    checkedChecks.some(check => !!rank.querySelector('.platforms > .' + check.name));
 
                 if (this.form['owned'].checked) {
                     keep &&= !rank.querySelector('a.owned');
