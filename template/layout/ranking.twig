@@ -125,11 +125,8 @@
         <div{% if game.rank is defined %} id="{{ game.rank }}"{% endif %}>
             <div>
                 <a href="{{ steam.app_url(game.id) }}" {{ steam.video_attr(game.name, game.videos) }}>
-                    <img alt="Logo" data-src="//shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/
-                        {{- game.id }}/{{ game.capsule_hash }}/capsule_231x87
-                        {{- game.capsule_alt is not null ? '_alt_assets_' ~ game.capsule_alt }}.jpg"
-                        class="lazy"
-                ></a>
+                    {{ steam.app_capsule(game) }}
+                </a>
             </div>
             <div class="appline">
                 {% if game.movement is defined %}

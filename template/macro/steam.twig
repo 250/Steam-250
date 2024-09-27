@@ -20,3 +20,9 @@ https://store.steampowered.com/search/?sort_by=Reviews_DESC&amp;category1=998&am
     data-title="{{ game_name|e('html_attr') }}"
 {%- endif %}
 {% endmacro %}
+
+{% macro app_capsule(app) %}
+<img alt="logo" class="lazy" data-src="//shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/
+    {{- app.id }}/{{ app.capsule_hash }}/capsule_231x87
+    {{- app.capsule_alt is not null ? '_alt_assets_' ~ app.capsule_alt }}.jpg">
+{% endmacro %}
