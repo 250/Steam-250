@@ -13,7 +13,6 @@ final class RankingQueries
     /**
      * Wilson: approval <=> votes.
      *
-     * @param QueryBuilder $builder
      * @param float $weight Optional. Z value derived from confidence level (see probability table). Default value
      *     represents 95% confidence.
      *
@@ -34,7 +33,6 @@ final class RankingQueries
     /**
      * Bayesian: votes <=> approval.
      *
-     * @param QueryBuilder $builder
      * @param float $weight Optional. Lower numbers favour confidence over approval. Default 1.
      *
      * @see https://math.stackexchange.com/a/41513
@@ -63,7 +61,6 @@ final class RankingQueries
     /**
      * Laplace: approval <=> votes.
      *
-     * @param QueryBuilder $builder
      * @param float $weight Default 1.
      *
      * @see http://planspace.org/2014/08/17/how-to-sort-by-average-rating/
@@ -89,9 +86,6 @@ final class RankingQueries
     }
 
     /**
-     * @param QueryBuilder $builder
-     * @param float $weight
-     *
      * @see http://www.dcs.bbk.ac.uk/%7Edell/publications/dellzhang_ictir2011.pdf
      */
     public static function calculateDirichletPriorScore(QueryBuilder $builder, float $weight, string $prefix): void

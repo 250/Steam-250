@@ -91,11 +91,18 @@ new class {
             const thumb = this.footer.appendChild(document.createElement('div'));
             thumb.setAttribute('data-index', i + 1);
 
+            let videoId = videoIds[i], thumbHash = '';
+            if (videoId.length > 40) {
+                thumbHash = videoId.substring(0, 40);
+                videoId = videoId.substring(40);
+            }
+
             const img = thumb.appendChild(document.createElement('img'));
-            img.src = `https://cdn.cloudflare.steamstatic.com/steam/apps/${videoIds[i]}/movie.184x123.jpg`;
+            img.src = `https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/${videoId}/${thumbHash}/`
+                + (thumbHash ? 'movie_232x130.jpg' : 'movie.184x123.jpg');
 
             thumb.addEventListener('click', _ => {
-                this.play(videoIds[i]);
+                this.play(videoId);
 
                 thumb.parentNode.querySelectorAll('img').forEach(img => img.classList.remove('active'));
                 img.classList.add('active');
