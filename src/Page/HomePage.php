@@ -27,10 +27,11 @@ class HomePage extends Page implements PreviousDatabaseAware
     private int $rankingCount;
 
     private const RELATED_MAP = [
-        'tag/sexual_content' => ['adult', 'nudity'],
+        'tag/hentai' => ['nsfw', 'nudity', 'sexual_content', 'adult'],
         'tag/co-op' => ['singleplayer', 'multiplayer', 'local co-op', 'online co-op'],
-        'tag/pixel_graphics' => ['2d'],
+        'tag/2d' => ['pixel_graphics'],
         'tag/roguelike' => ['roguelite'],
+        'tag/family_friendly' => ['casual']
     ];
 
     public function __construct(Connection $database, array $rankings, int $rankingCount)
@@ -78,15 +79,18 @@ class HomePage extends Page implements PreviousDatabaseAware
 			UsdUnder5Ranking::class,
             DiscountRanking::class,
             FreeRanking::class,
-            'sexual_content',
+            'hentai',
             'co-op',
-            'rpg',
-            'pixel_graphics',
-            'roguelike',
-            'rts',
-            'story_rich',
-            'sandbox',
             'simulation',
+            '2d',
+            'gore',
+            'roguelike',
+            'dating_sim',
+            'sandbox',
+            'card_game',
+            'family_friendly',
+            'controller',
+            'rpg',
         ];
     }
 }
