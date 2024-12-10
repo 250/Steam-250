@@ -12,7 +12,7 @@ declare global {
 
 export default class Checkbox {
     public static initTristateCheckboxes() {
-        document.querySelectorAll('div.tri').forEach(div => {
+        document.querySelectorAll<HTMLDivElement>('[role=checkbox]').forEach(div => {
             const
                 radios = [...div.querySelectorAll('input')],
                 radio = radios[0],
@@ -22,17 +22,21 @@ export default class Checkbox {
                 upperBound = lowerBound * 2,
 
                 go2 = radio.go2 = (state: TriState) => {
-                    lastState = state;
+                    currentState = state;
 
                     radios.filter(r => r.value === state.toString())[0].checked = true;
-                    radio.parentElement!.dataset['state'] = state.toString();
+                    div.ariaChecked = {
+                        [TriState.Middle]: 'mixed',
+                        [TriState.Right]: 'true',
+                        [TriState.Left]: 'false',
+                    }[state];
                 }
             ;
 
-            let lastState: TriState = +(radios.filter(r => r.checked)[0]?.value ?? 0);
+            let currentState: TriState = +(radios.filter(r => r.checked)[0]?.value ?? 0);
 
             // Initialize UI state.
-            go2(lastState);
+            go2(currentState);
 
             radio.addEventListener('click', ev => {
                 const x = ev.clientX - gutter.getBoundingClientRect().x;
@@ -40,18 +44,21 @@ export default class Checkbox {
                 if (x >= lowerBound && x <= upperBound) {
                     // When click in mid-zone, always move knob to mid-zone.
                     go2(TriState.Middle);
-                } else if (lastState === TriState.Middle) {
+                } else if (currentState === TriState.Middle) {
                     // When knob is in mid-zone but click is outside, move knob left or right.
                     go2(x > upperBound ? TriState.Right : TriState.Left);
                 } else {
                     // When knob is left or right, revert to mid-zone or opposite extreme, depending on click zone.
-                    if (lastState === TriState.Left) {
+                    if (currentState === TriState.Left) {
                         go2(x < lowerBound ? TriState.Middle : TriState.Right)
                     } else {
                         go2(x > upperBound ? TriState.Middle : TriState.Left);
                     }
                 }
             });
+
+            // Cycle states when user presses [spacebar].
+            div.addEventListener('keydown', ev => ev.key === ' ' && go2(++currentState % 3));
         });
     }
 }

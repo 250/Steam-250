@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/250/Components.git",
-                "reference": "37cfbd7af08daef785b7f159f36072741e36f1ee"
+                "reference": "88fda64aacc1cc36a7cb2755f7afa67e350f0060"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/250/Components/zipball/37cfbd7af08daef785b7f159f36072741e36f1ee",
-                "reference": "37cfbd7af08daef785b7f159f36072741e36f1ee",
+                "url": "https://api.github.com/repos/250/Components/zipball/88fda64aacc1cc36a7cb2755f7afa67e350f0060",
+                "reference": "88fda64aacc1cc36a7cb2755f7afa67e350f0060",
                 "shasum": ""
             },
             "default-branch": true,
@@ -34,7 +34,7 @@
                 "issues": "https://github.com/250/Components/issues",
                 "source": "https://github.com/250/Components/tree/master"
             },
-            "time": "2024-05-12T20:23:56+00:00"
+            "time": "2024-12-10T12:37:25+00:00"
         },
         {
             "name": "250/log",
@@ -4560,6 +4560,6 @@
         "php": "8.2.*",
         "ext-pdo": "*"
     },
-    "platform-dev": [],
+    "platform-dev": {},
     "plugin-api-version": "2.6.0"
 }

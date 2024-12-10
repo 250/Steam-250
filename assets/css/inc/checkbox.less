@@ -9,7 +9,7 @@
 @neg-track-border-colour-h: #855c56;
 @neg-knob-colour-h: #e8634f;
 
-label.option, div.tri > label {
+label.option, [role=checkbox] > label {
   display: inline-flex;
 }
 
@@ -185,12 +185,12 @@ input[type=checkbox] {
 }
 
 // Tri-state mode.
-div.tri {
+[role=checkbox] {
   // Hide browser radio controls.
   input:extend(input[type=checkbox]) {}
 
   >label {
-    >input {
+    > input {
       // Copy track and gutter styles.
       + span:extend(input[type=checkbox] + span all) {}
 
@@ -210,48 +210,48 @@ div.tri {
         }
       }
     }
+  }
 
-    // Far-right state.
-    &[data-state="1"] {
-      input:extend(input[type=checkbox]:checked all) {}
+  // Far-right state.
+  &[aria-checked="true"] {
+    input:extend(input[type=checkbox]:checked all) {}
+  }
+
+  // Far-left state.
+  &[aria-checked="false"] {
+    input + span {
+      color: inherit;
+
+      &:before {
+        border-color: @neg-track-border-colour;
+      }
+
+      &:after {
+        // Copy positioning from unchecked state.
+        &:extend(input[type=checkbox] + span:after);
+
+        transform: translateY(-50%);
+
+        background: @neg-knob-colour;
+      }
+
+      + span {
+        color: @neg-colour;
+      }
     }
 
-    // Far-left state.
-    &[data-state="2"] {
+    &:hover {
       input + span {
-        color: inherit;
-
         &:before {
-          border-color: @neg-track-border-colour;
+          border-color: @neg-track-border-colour-h;
         }
 
         &:after {
-          // Copy positioning from unchecked state.
-          &:extend(input[type=checkbox] + span:after);
-
-          transform: translateY(-50%);
-
-          background: @neg-knob-colour;
+          background: @neg-knob-colour-h;
         }
 
         + span {
-          color: @neg-colour;
-        }
-      }
-
-      &:hover {
-        input + span {
-          &:before {
-            border-color: @neg-track-border-colour-h;
-          }
-
-          &:after {
-            background: @neg-knob-colour-h;
-          }
-
-          + span {
-            color: @neg-colour-h;
-          }
+          color: @neg-colour-h;
         }
       }
     }
