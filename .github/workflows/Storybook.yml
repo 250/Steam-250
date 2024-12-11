@@ -10,9 +10,9 @@ jobs:
     runs-on: ubuntu-20.04
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
         with:
           repository: 250/Storybook
           path: sb
@@ -24,8 +24,7 @@ jobs:
           php-version: 8.2
 
       - name: Cache PHP dependencies
-        id: composer-cache
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         with:
           path: vendor
           key: php-${{ hashFiles('composer.lock') }}

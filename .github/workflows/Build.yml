@@ -11,9 +11,9 @@ jobs:
     runs-on: ubuntu-20.04
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
         with:
           ref: gh-pages
           path: gh-pages
@@ -33,8 +33,7 @@ jobs:
         run: composer validate
 
       - name: Cache dependencies
-        id: composer-cache
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         with:
           path: vendor
           key: php-${{ hashFiles('composer.lock') }}

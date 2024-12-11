@@ -11,7 +11,7 @@ declare global {
 }
 
 export default class Checkbox {
-    public static initTristateCheckboxes() {
+    public static initCheckboxes() {
         document.querySelectorAll<HTMLDivElement>('[role=checkbox]').forEach(div => {
             const
                 radios = [...div.querySelectorAll('input')],
@@ -57,8 +57,25 @@ export default class Checkbox {
                 }
             });
 
-            // Cycle states when user presses [spacebar].
-            div.addEventListener('keydown', ev => ev.key === ' ' && go2(++currentState % 3));
+            // Cycle states when pressing [spacebar].
+            div.addEventListener('keydown', ev => {
+                if (ev.key === ' ') {
+                    go2(++currentState % 3);
+
+                    ev.preventDefault();
+                }
+            });
         });
+
+        // Toggle checked state for binary checkboxes when pressing [spacebar].
+        document.querySelectorAll<HTMLElement>('label[tabindex]:has(input[type=checkbox])').forEach(label =>
+            label.addEventListener('keydown', ev => {
+                if (ev.key === ' ') {
+                    label.click();
+
+                    ev.preventDefault();
+                }
+            })
+        );
     }
 }

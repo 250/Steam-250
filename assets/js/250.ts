@@ -17,7 +17,7 @@ class S250 {
 
         // UI stuff.
         S250.initRatingColourGradient();
-        Checkbox.initTristateCheckboxes();
+        Checkbox.initCheckboxes();
         S250.initChevrons();
 
         // User stuff.

@@ -3,7 +3,7 @@ import template from '@components/checkbox.twig';
 import Checkbox from '../../assets/js/Checkbox';
 
 // Only respond to Storybook emulated DOM loaded event to prevent double-loading.
-addEventListener('DOMContentLoaded', e => e.isTrusted || Checkbox.initTristateCheckboxes());
+addEventListener('DOMContentLoaded', e => e.isTrusted || Checkbox.initCheckboxes());
 
 export default {
     title: 'Form/Checkbox',
