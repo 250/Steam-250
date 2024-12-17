@@ -159,14 +159,22 @@ ol.menu {
       display: grid;
       grid: auto/auto auto;
 
-      >li:first-child {
-        grid-column: span 2;
+      >li {
+        &:first-child {
+          grid-column: span 2;
 
-        font-size: 120%;
+          font-size: 120%;
 
-        >a {
-          padding-top: 1ex;
-          padding-bottom: $padding-top;
+          >a {
+            padding-top: 1ex;
+            padding-bottom: $padding-top;
+          }
+        }
+
+        &:nth-child(2) {
+          grid-column: span 2;
+
+          text-align: center;
         }
       }
     }
