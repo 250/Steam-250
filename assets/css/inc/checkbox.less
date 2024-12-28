@@ -54,9 +54,9 @@ input[type=checkbox] {
 
     // Knob.
     &:after {
-      height: @track-height;
+      height: calc(@track-height - .12ex);
       width: $height;
-      left: .03em;
+      left: .12em;
 
       background: #a0b7c3;
       border-radius: 1em;
@@ -88,7 +88,7 @@ input[type=checkbox] {
       color: @checked-colour;
 
       &:after {
-        left: 2.07em;
+        left: 1.98em;
         transform: translate(-100%, -50%);
       }
     }
@@ -198,7 +198,7 @@ input[type=checkbox] {
       &:checked {
         + span:after {
           left: (@gutter-width / 2);
-          transform: translate(-49%, -50%);
+          transform: translate(-44%, -50%);
         }
 
         &:hover {
