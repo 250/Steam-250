@@ -17,23 +17,38 @@ export default class Checkbox {
                 radios = [...div.querySelectorAll('input')],
                 radio = radios[0],
                 gutter = radio.parentNode!.querySelector('span')!,
-                gutterWidth = parseFloat(getComputedStyle(gutter, ':before').width),
-                lowerBound = gutterWidth / 3,
-                upperBound = lowerBound * 2,
+
+                measure = () => {
+                    gutterWidth ||= parseFloat(getComputedStyle(gutter, ':before').width);
+                    lowerBound ||= gutterWidth / 3;
+
+                    return upperBound ||= lowerBound * 2;
+                },
 
                 go2 = radio.go2 = (state: TriState) => {
-                    currentState = state;
+                    const go = (state: TriState) => {
+                        currentState = state;
 
-                    radios.filter(r => r.value === state.toString())[0].checked = true;
-                    div.ariaChecked = {
-                        [TriState.Middle]: 'mixed',
-                        [TriState.Right]: 'true',
-                        [TriState.Left]: 'false',
-                    }[state];
+                        radios.filter(r => r.value === state.toString())[0].checked = true;
+                        div.ariaChecked = {
+                            [TriState.Middle]: 'mixed',
+                            [TriState.Right]: 'true',
+                            [TriState.Left]: 'false',
+                        }[state];
+                    }
+
+                    if (measure()) go(state);
+                    // WebKit cannot measure gutter on DOM ready. setTimeout is slightly more efficient than load event.
+                    else setTimeout(() => measure() && go(state));
                 }
             ;
 
-            let currentState: TriState = +(radios.filter(r => r.checked)[0]?.value ?? 0);
+            let
+                gutterWidth: number,
+                lowerBound: number,
+                upperBound: number,
+                currentState: TriState = +(radios.filter(r => r.checked)[0]?.value ?? 0)
+            ;
 
             // Initialize UI state.
             go2(currentState);
