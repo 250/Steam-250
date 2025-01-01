@@ -5,9 +5,13 @@ namespace ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl;
 
 use Doctrine\DBAL\Query\QueryBuilder;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\RankingDependencies;
+use ScriptFUSION\Steam250\SiteGenerator\Ranking\SkipEmptyRanking;
 
 class AnnualRanking extends RollingYearRanking
 {
+    // In the new year, a ranking can be empty.
+    use SkipEmptyRanking;
+
     public const EARLIEST_YEAR = 2006;
 
     private int $year;

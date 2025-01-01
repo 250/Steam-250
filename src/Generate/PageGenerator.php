@@ -5,6 +5,7 @@ namespace ScriptFUSION\Steam250\SiteGenerator\Generate;
 
 use Psr\Log\LoggerInterface;
 use ScriptFUSION\Steam250\SiteGenerator\Page\Page;
+use ScriptFUSION\Steam250\SiteGenerator\Ranking\SkipEmptyRankingException;
 use Twig\Environment;
 use voku\helper\HtmlMin;
 
@@ -29,6 +30,10 @@ final class PageGenerator
     {
         try {
             $export = $page->export() + compact('page');
+        } catch (SkipEmptyRankingException) {
+            $this->logger->warning("Skipped generating page for empty ranking: \"{$page->getId()}\".");
+
+            return true;
         } catch (\Exception $exception) {
             $this->logger->error("Exception occurred: \"$exception\"");
 
