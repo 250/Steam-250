@@ -310,26 +310,30 @@ b.deck-p {
     position: relative;
     padding: 2em 0;
 
-    background: linear-gradient(180deg, #263e5c, #22344b 6px, #1e2c3e 20px, #1d2a3c 30px, #1b2939 45px, #1b2838 60px)
+    background:
+        linear-gradient(#263e5c, #22344b 6px, #1e2c3e 20px, #1d2a3c 30px, #1b2939 45px, #1b2838 60px) no-repeat,
+        linear-gradient(0, #263e5c, #22344b 6px, #1e2c3e 20px, #1d2a3c 30px, #1b2939 45px, #1b2838 60px) bottom
         no-repeat;
     background-size: 100% 60px;
-}
-#page.home > #body {
-    background: linear-gradient(180deg, #263e5c, #22344b 6px, #1e2c3e 20px, #1d2a3c 30px, #1b2939 45px, #1b2838 60px,
-        #25293c 50vh);
-}
 
-.content {
-    margin: 0 auto;
-    padding: 0 1em;
-    box-sizing: border-box;
-    max-width: 864px;
-    /* Force margins to be enclosed. */
-    overflow: hidden;
-}
-.content > p:first-of-type {
-    font-size: 115%;
-    text-align: center;
+    #page.home >& {
+        background: linear-gradient(#263e5c, #22344b 6px, #1e2c3e 20px, #1d2a3c 30px, #1b2939 45px,
+            #1b2838 60px, #25293c 50vh);
+    }
+
+    >.content {
+        margin: 0 auto;
+        padding: 0 1em;
+        box-sizing: border-box;
+        max-width: 864px;
+        /* Force margins to be enclosed. */
+        overflow: hidden;
+
+        >p:first-of-type {
+            font-size: 115%;
+            text-align: center;
+        }
+    }
 }
 
 p.note, p.tip {
