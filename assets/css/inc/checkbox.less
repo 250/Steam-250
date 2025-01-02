@@ -13,7 +13,7 @@ label.option, [role=checkbox] > label {
   display: inline-flex;
 }
 
-input[type=checkbox] {
+input[type=checkbox].switch {
   // Remove browser UI from flow.
   position: absolute;
   visibility: hidden;
@@ -148,11 +148,11 @@ input[type=checkbox] {
       &:hover {
         + span + span {
           // Copy text highlight colour.
-          &:extend(input[type=checkbox]:checked:hover + span);
+          &:extend(input[type=checkbox].switch:checked:hover + span);
         }
         + span {
           // Copy track highlights.
-          &:extend(input[type=checkbox]:checked:hover + span all);
+          &:extend(input[type=checkbox].switch:checked:hover + span all);
 
           // Avoid applying text highlight to deselected option.
           color: inherit;
@@ -187,12 +187,12 @@ input[type=checkbox] {
 // Tri-state mode.
 [role=checkbox] {
   // Hide browser radio controls.
-  input:extend(input[type=checkbox]) {}
+  input:extend(input[type=checkbox].switch) {}
 
   >label {
     > input {
       // Copy track and gutter styles.
-      + span:extend(input[type=checkbox] + span all) {}
+      + span:extend(input[type=checkbox].switch + span all) {}
 
       // Indeterminate state.
       &:checked {
@@ -203,9 +203,9 @@ input[type=checkbox] {
 
         &:hover {
           // Copy track unchecked highlights.
-          + span:extend(input[type=checkbox] + span:hover all) {
+          + span:extend(input[type=checkbox].switch + span:hover all) {
             // Copy text unchecked colour.
-            + span:extend(input[type=checkbox] + span:hover) {}
+            + span:extend(input[type=checkbox].switch + span:hover) {}
           }
         }
       }
@@ -214,7 +214,7 @@ input[type=checkbox] {
 
   // Far-right state.
   &[aria-checked="true"] {
-    input:extend(input[type=checkbox]:checked all) {}
+    input:extend(input[type=checkbox].switch:checked all) {}
   }
 
   // Far-left state.
@@ -228,7 +228,7 @@ input[type=checkbox] {
 
       &:after {
         // Copy positioning from unchecked state.
-        &:extend(input[type=checkbox] + span:after);
+        &:extend(input[type=checkbox].switch + span:after);
 
         transform: translateY(-50%);
 

@@ -9,7 +9,7 @@
   ],
   "license": "AGPL-3.0-only",
   "require": {
-    "php": "8.2.*",
+    "php": "8.4.*",
     "ext-pdo": "*",
     "250/components": "dev-master",
     "250/log": "dev-master",
@@ -24,7 +24,7 @@
     "scriptfusion/static-class": "^1",
     "symfony/console": "^6",
     "symfony/dotenv": "^6",
-    "twig/twig": "^2",
+    "twig/twig": "^3",
     "voku/html-min": "^4"
   },
   "require-dev": {
