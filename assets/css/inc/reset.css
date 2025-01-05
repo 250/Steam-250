@@ -43,7 +43,7 @@ table {
     border-collapse: collapse;
     border-spacing: 0;
 }
-a, label, button {
+a, label, button:not([disabled]) {
     cursor: pointer;
 }
 sup {
