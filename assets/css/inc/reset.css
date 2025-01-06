@@ -55,4 +55,8 @@ button {
     color: inherit;
     background: none;
     border: 0;
+
+    &[disabled] {
+        pointer-events: none;
+    }
 }
