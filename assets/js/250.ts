@@ -2,6 +2,7 @@ import {parseParam} from './Query';
 import User from './User';
 import Checkbox from './Checkbox';
 import chroma from 'chroma-js';
+import posthog from 'posthog-js';
 
 type S250_static = typeof S250;
 
@@ -32,6 +33,9 @@ class S250 {
 
         // Search stuff.
         this.initSearchValue();
+
+        // Tracking stuff.
+        this.initTracker();
 
         // Fancy stuff.
         this.initAppLinkMenu();
@@ -248,6 +252,15 @@ class S250 {
         if (q !== null) {
             document.querySelectorAll<HTMLInputElement>('input[name=q]').forEach(i => i.value = q.replace(/\+/g, ' '));
         }
+    }
+
+    initTracker() {
+        posthog.init('phc_Rjmhrs656s6Say2ICy0A5xFi0HHGD38KTXxh1XI4ntD',
+            {
+                api_host: '//ph.steam250.com',
+                person_profiles: 'always',
+            },
+        );
     }
 
     initAppLinkMenu() {

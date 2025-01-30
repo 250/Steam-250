@@ -8,6 +8,7 @@
     "@storybook/html": "^6.5.15",
     "@tsconfig/recommended": "^1.0.1",
     "@types/chroma-js": "^2.4.4",
+    "@types/node": "^22.12.0",
     "@whitespace/storybook-addon-html": "5.0.0",
     "autoprefixer": "^10.2.5",
     "babel-loader": "^8.2.2",
@@ -39,6 +40,8 @@
   "dependencies": {
     "chroma-js": "^2.4.2",
     "dayjs": "^1.10.4",
+    "posthog-js": "^1.212.1",
     "vanilla-lazyload": "^17.3.1"
-  }
+  },
+  "packageManager": "pnpm@10.0.0+sha512.b8fef5494bd3fe4cbd4edabd0745df2ee5be3e4b0b8b08fa643aa3e4c6702ccc0f00d68fa8a8c9858a735a0032485a44990ed2810526c875e416f001b17df12b"
 }

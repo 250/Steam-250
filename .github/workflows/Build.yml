@@ -18,8 +18,10 @@ jobs:
           ref: gh-pages
           path: gh-pages
 
+      - uses: pnpm/action-setup@v4
+
       - name: Build production assets
-        run: yarn && yarn build
+        run: pnpm install && pnpm build
 
       - name: Copy production assets
         run: rm -rfv gh-pages/* && cp -val site/* gh-pages

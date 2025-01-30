@@ -18,6 +18,8 @@ jobs:
           path: sb
           token: ${{ secrets.GH_BILGE_TOKEN }}
 
+      - uses: pnpm/action-setup@v4
+
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
@@ -33,7 +35,7 @@ jobs:
         run: composer install --no-interaction --no-progress
 
       - name: Build Storybook
-        run: yarn && yarn build-storybook
+        run: pnpm install && pnpm build-storybook
 
       - name: Link Storybook
         run: rm -rfv sb/* && cp -val storybook-static/* sb
