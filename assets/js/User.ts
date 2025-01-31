@@ -26,11 +26,12 @@ export default class User {
         }
 
         const [userId, identity, noads, tier] = body.split("\0", 4);
+        let avatar = identity.match(/^(?:\d+\/[\da-z]{40}\..{3}|[\da-z]{40})/)?.[0];
 
         localStorage.setItem('user', JSON.stringify({
             id: userId,
-            name: identity.substring(40),
-            avatar: identity.substring(0, 40),
+            avatar,
+            name: avatar ? identity.substring(avatar.length) : 'ERROR',
             noads: noads === '1',
             tier: +tier,
         }));
@@ -116,6 +117,8 @@ export default class User {
     }
 
     private static updateUserBar() {
+        const IMAGE_BASE_URL = 'https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images';
+
         const userJson = localStorage.getItem('user');
         if (!userJson) return;
 
@@ -127,8 +130,11 @@ export default class User {
 
         const img = a.appendChild(document.createElement('img'));
         img.alt = img.title = user.name;
-        img.src = 'https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/avatars/'
-            + `${user.avatar.substring(0, 2)}/${user.avatar}.jpg'`;
+        if (user.avatar.includes('/')) {
+            img.src = `${IMAGE_BASE_URL}/items/${user.avatar}`;
+        } else {
+            img.src = `${IMAGE_BASE_URL}/avatars/${user.avatar.substring(0, 2)}/${user.avatar}.jpg'`;
+        }
 
         this.markOwnedGames();
     }

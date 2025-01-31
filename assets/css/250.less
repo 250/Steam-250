@@ -112,7 +112,8 @@ h2 {
 
 #user .avatar {
     display: inline-block;
-    overflow: hidden;
+    width: 32px;
+    height: $width;
     padding: 1px;
     margin: 0 .5em;
     line-height: 0;
@@ -120,6 +121,10 @@ h2 {
 
     background: #3f7085;
     border: 1px solid #4c92ae;
+
+    >img {
+        width: 100%;
+    }
 }
 #user button {
     margin: 0 .5em;
