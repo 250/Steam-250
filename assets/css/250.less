@@ -66,7 +66,7 @@ h2 {
     position: relative;
     z-index: 2;
     height: var(--user-height);
-    margin-bottom: -2.5vw;
+    margin-bottom: max(-2vw, calc(var(--user-height) * -1 - 1px));
     padding: 6px;
 
     text-align: right;
