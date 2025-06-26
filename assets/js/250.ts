@@ -255,7 +255,7 @@ class S250 {
     }
 
     initTracker() {
-        posthog.init('phc_Rjmhrs656s6Say2ICy0A5xFi0HHGD38KTXxh1XI4ntD',
+        process.env.NOTRACK === '' || posthog.init('phc_Rjmhrs656s6Say2ICy0A5xFi0HHGD38KTXxh1XI4ntD',
             {
                 api_host: '//ph.steam250.com',
                 person_profiles: 'always',
