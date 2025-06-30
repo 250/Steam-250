@@ -11,14 +11,23 @@ module.exports = {
     mode: 'development',
     context: path.resolve(__dirname, '..', 'assets'),
     entry: {
-        250: [
-            './js/250.ts',
-            './js/VideoPlayer.js',
-            './js/LazyLoad.ts',
+        250: {
+            import: [
+                './js/250.ts',
+                './js/VideoPlayer.js',
+                './js/LazyLoad.ts',
 
-            './css/250.less',
-            './css/inc/3col.less',
-        ],
+                './css/250.less',
+                './css/inc/3col.less',
+
+                './js/Checkbox.ts'
+            ],
+            library: {
+                name: 'Checkbox',
+                type: 'global',
+                export: 'default',
+            },
+        },
         ranking: [
             './css/ranking.less'
         ],

@@ -1102,26 +1102,28 @@ tr.a .movement.none:before {
     }
 }
 
-.button.cur {
+.button.cur, .button:has(>:checked) {
     color: #b5e6d8;
     background: #316b59;
     border-top: 1px solid #38705e;
     border-left: 1px solid #38705e;
     border-bottom: 2px solid #235244;
     text-shadow: 0 1px 2px #469982;
-}
-.button.cur:hover {
-    color: #dbfff5;
-    background: #38856c;
-    border-top-color: #488a77;
-    border-bottom-color: #296150;
-    text-shadow: 0 1px 2px #5bb39a;
-}
-.button.cur:active {
-    color: #b5e6d8;
-    background: #316b59;
-    border-top-color: #1f4d3e;
-    border-left-color: #1f4d3e;
+
+    &:hover {
+        color: #dbfff5;
+        background: #38856c;
+        border-top-color: #488a77;
+        border-bottom-color: #296150;
+        text-shadow: 0 1px 2px #5bb39a;
+    }
+
+    &:active {
+        color: #b5e6d8;
+        background: #316b59;
+        border-top-color: #1f4d3e;
+        border-left-color: #1f4d3e;
+    }
 }
 
 .timeline {
