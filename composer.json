@@ -18,7 +18,7 @@
     "doctrine/dbal": "^2",
     "eloquent/enumeration": "^6",
     "joomla/di": "^2",
-    "monolog/monolog": "^1",
+    "monolog/monolog": "^3",
     "phptype/date": "^2",
     "rybakit/msgpack": "^0.9",
     "scriptfusion/static-class": "^1",

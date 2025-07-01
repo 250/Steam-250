@@ -13,10 +13,16 @@ label.option, [role=checkbox] > label {
   display: inline-flex;
 }
 
+// Show focus outline on label when using keyboard navigation.
+label:has(>.switch):focus-within:has(:focus-visible) {
+  outline: 1px auto currentColor;
+}
+
 input[type=checkbox].switch {
   // Remove browser UI from flow.
   position: absolute;
-  visibility: hidden;
+  // Allow inputs to receive focus.
+  opacity: 0;
 
   @checked-colour: #91b3c2;
   @track-height: 1.4ex;
@@ -193,6 +199,9 @@ input[type=checkbox].switch {
     > input {
       // Copy track and gutter styles.
       + span:extend(input[type=checkbox].switch + span all) {}
+
+      // Do not allow inputs to gain focus, since enclosing div has a tabindex to receive focus instead.
+      visibility: hidden;
 
       // Indeterminate state.
       &:checked {
