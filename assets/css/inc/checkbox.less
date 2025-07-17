@@ -9,8 +9,9 @@
 @neg-track-border-colour-h: #855c56;
 @neg-knob-colour-h: #e8634f;
 
-label.option, [role=checkbox] > label {
+label:has(>.switch), [role=checkbox] > label {
   display: inline-flex;
+  align-items: center;
 }
 
 // Show focus outline on label when using keyboard navigation.
@@ -29,16 +30,12 @@ input[type=checkbox].switch {
   @track-margin: .6em;
   @transition-time: .15s;
 
-  // Selected text.
+  // Switch UI.
   + span {
-    // Enforce consistent child display modes between option and non-option variants.
-    display: inline-flex;
-
     position: relative;
-    padding-left: @gutter-width + @track-margin;
 
-    // Track elements.
-    &:before, &:after {
+    // Knob.
+    &:after {
       content: '';
       position: absolute;
       left: 0;
@@ -47,16 +44,14 @@ input[type=checkbox].switch {
     }
 
     // Gutter.
-    &:before {
-      height: @track-height;
-      width: @gutter-width;
+    height: @track-height;
+    width: @gutter-width;
 
-      background: #172230;
-      border: 1px solid #718fa5;
-      border-radius: 1em;
+    background: #172230;
+    border: 1px solid #718fa5;
+    border-radius: 1em;
 
-      transition: @transition-time;
-    }
+    transition: @transition-time;
 
     // Knob.
     &:after {
@@ -69,45 +64,51 @@ input[type=checkbox].switch {
       transition: @transition-time;
     }
 
-    &:hover {
-      color: #dae8eb;
-
-      &:before {
-        border-color: #819eb3;
-      }
+    &:hover, &:has(+ span:hover) {
+      border-color: #819eb3;
 
       &:after {
         background: #c0d7e3;
       }
     }
+  }
+
+  // Selected text.
+  + span + span {
+    margin-left: @track-margin;
+
+    &:hover {
+      color: #dae8eb;
+    }
 
     // Deselected text.
     + span {
       order: -1;
-      // Don't know where this 3px comes from but it is needed at 100% and 200% font sizes.
-      margin-right: calc(@track-margin - 3px);
+      margin-right: @track-margin;
     }
   }
 
   &:checked {
     + span {
-      color: @checked-colour;
-
       &:after {
         left: 1.98em;
         transform: translate(-100%, -50%);
       }
     }
 
-    &:hover + span {
-      color: #b1d4e3;
+    + span + span {
+      color: @checked-colour;
+    }
 
-      &:before {
-        border-color: #477a9e;
-      }
+    &:hover + span{
+      border-color: #477a9e;
 
       &:after {
         background: #87dbff;
+      }
+
+      + span {
+        color: #b1d4e3;
       }
     }
   }
@@ -116,27 +117,29 @@ input[type=checkbox].switch {
   label.neg >& {
     &:checked {
       + span {
-        color: @neg-colour;
-
-        &:before {
-          border-color: @neg-track-border-colour;
-        }
+        border-color: @neg-track-border-colour;
 
         &:after {
           background: @neg-knob-colour;
         }
+
+        &:hover, &:has(+ span:hover) {
+          //&:before {
+            border-color: @neg-track-border-colour-h;
+          //}
+
+          &:after {
+            background: @neg-knob-colour-h;
+          }
+        }
       }
 
-      &:hover + span {
+      + span + span {
+        color: @neg-colour;
+      }
+
+      &:hover + span + span {
         color: @neg-colour-h;
-
-        &:before {
-          border-color: @neg-track-border-colour-h;
-        }
-
-        &:after {
-          background: @neg-knob-colour-h;
-        }
       }
     }
   }
@@ -144,24 +147,26 @@ input[type=checkbox].switch {
   // Option mode: checkbox represents two either/or options rather than one option in an on/off state.
   label.option >& {
     &:not(:checked) {
-      + span + span {
+      + span + span + span {
         color: @checked-colour;
       }
-      + span {
+      + span + span {
         color: inherit;
       }
 
       &:hover {
-        + span + span {
+        + span + span + span {
           // Copy text highlight colour.
-          &:extend(input[type=checkbox].switch:checked:hover + span);
+          &:extend(input[type=checkbox].switch:checked:hover + span + span);
         }
         + span {
           // Copy track highlights.
           &:extend(input[type=checkbox].switch:checked:hover + span all);
 
-          // Avoid applying text highlight to deselected option.
-          color: inherit;
+          + span {
+            // Avoid applying text highlight to deselected option.
+            color: inherit;
+          }
         }
       }
     }
@@ -171,10 +176,8 @@ input[type=checkbox].switch {
   &:checked, label.option >& {
     + span {
       // Gutter.
-      &:before {
-        background: #15232b;
-        border-color: #396d93;
-      }
+      background: #15232b;
+      border-color: #396d93;
 
       // Knob.
       &:after {
@@ -214,7 +217,8 @@ input[type=checkbox].switch {
           // Copy track unchecked highlights.
           + span:extend(input[type=checkbox].switch + span:hover all) {
             // Copy text unchecked colour.
-            + span:extend(input[type=checkbox].switch + span:hover) {}
+            + span:extend(input[type=checkbox].switch + span + span:hover) {}
+            + span + span:extend(input[type=checkbox].switch + span + span:hover) {}
           }
         }
       }
@@ -231,9 +235,7 @@ input[type=checkbox].switch {
     input + span {
       color: inherit;
 
-      &:before {
-        border-color: @neg-track-border-colour;
-      }
+      border-color: @neg-track-border-colour;
 
       &:after {
         // Copy positioning from unchecked state.
@@ -244,22 +246,20 @@ input[type=checkbox].switch {
         background: @neg-knob-colour;
       }
 
-      + span {
+      + span + span {
         color: @neg-colour;
       }
     }
 
     &:hover {
       input + span {
-        &:before {
-          border-color: @neg-track-border-colour-h;
-        }
+        border-color: @neg-track-border-colour-h;
 
         &:after {
           background: @neg-knob-colour-h;
         }
 
-        + span {
+        + span + span {
           color: @neg-colour-h;
         }
       }

@@ -19,7 +19,7 @@ export default class Checkbox {
                 gutter = radio.parentNode!.querySelector('span')!,
 
                 measure = () => {
-                    gutterWidth ||= parseFloat(getComputedStyle(gutter, ':before').width);
+                    gutterWidth ||= parseFloat(getComputedStyle(gutter).width);
                     lowerBound ||= gutterWidth / 3;
 
                     return upperBound ||= lowerBound * 2;
