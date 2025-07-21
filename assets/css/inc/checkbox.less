@@ -1,4 +1,4 @@
-@gutter-width: 2em;
+@gutter-width: 1.9em;
 
 // Negative mode.
 @neg-colour: #c29088;
@@ -25,9 +25,9 @@ input[type=checkbox].switch {
   // Allow inputs to receive focus.
   opacity: 0;
 
-  @checked-colour: #91b3c2;
+  @checked-colour: #94dfff;
   @track-height: 1.4ex;
-  @track-margin: .6em;
+  @track-margin: .7ch;
   @transition-time: .15s;
 
   // Switch UI.
@@ -55,9 +55,9 @@ input[type=checkbox].switch {
 
     // Knob.
     &:after {
-      height: calc(@track-height - .2ex);
+      height: calc(@track-height - 2px);
       width: $height;
-      left: .11em;
+      left: 1px;
 
       background: #a0b7c3;
       border-radius: 1em;
@@ -91,7 +91,7 @@ input[type=checkbox].switch {
   &:checked {
     + span {
       &:after {
-        left: 1.98em;
+        left: calc(@gutter-width - 1px);
         transform: translate(-100%, -50%);
       }
     }
@@ -108,7 +108,7 @@ input[type=checkbox].switch {
       }
 
       + span {
-        color: #b1d4e3;
+        color: #ade7ff;
       }
     }
   }
@@ -210,7 +210,7 @@ input[type=checkbox].switch {
       &:checked {
         + span:after {
           left: (@gutter-width / 2);
-          transform: translate(-44%, -50%);
+          transform: translate(-50%, -50%);
         }
 
         &:hover {
