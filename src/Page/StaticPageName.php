@@ -10,7 +10,6 @@ final class StaticPageName extends AbstractEnumeration
     public const PREVIEWS = 'PREVIEWS';
     public const ABOUT = 'ABOUT';
     public const PRIVACY = 'PRIVACY';
-    public const AMBASSADORS = 'AMBASSADORS';
     public const CONTRIBUTORS = 'CONTRIBUTORS';
     public const TWEETS = 'TWEETS';
     public const SEARCH = 'SEARCH';
@@ -23,7 +22,6 @@ final class StaticPageName extends AbstractEnumeration
         self::PREVIEWS => PreviewsPage::class,
         self::ABOUT => AboutPage::class,
         self::PRIVACY => PrivacyPage::class,
-        self::AMBASSADORS => AmbassadorsPage::class,
         self::CONTRIBUTORS => ContributorsPage::class,
         self::TWEETS => TweetsPage::class,
         self::SEARCH => SearchPage::class,
@@ -37,7 +35,6 @@ final class StaticPageName extends AbstractEnumeration
         self::PREVIEWS => 'previews',
         self::ABOUT => 'about',
         self::PRIVACY => 'privacy',
-        self::AMBASSADORS => 'amb',
         self::CONTRIBUTORS => 'contrib',
         self::TWEETS => 'tweets',
         self::SEARCH => 'search',
