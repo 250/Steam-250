@@ -9,6 +9,7 @@ export default {
     title: 'Form/Checkbox',
     args: {
         enlarge: true,
+        disabled: false,
     },
     argTypes: {
         caption_on: {

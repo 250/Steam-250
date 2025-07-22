@@ -191,6 +191,22 @@ input[type=checkbox].switch {
 
     transition: color @transition-time;
   }
+
+  // Disabled mode (tri-state currently unsupported).
+  &:disabled, label.option >&:disabled {
+    + span {
+      background: #202020;
+      border-color: #555;
+
+      &:after {
+        background: #636b6e;
+      }
+
+      + span, + span + span {
+        color: #828282;
+      }
+    }
+  }
 }
 
 // Tri-state mode.
