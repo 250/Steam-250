@@ -329,7 +329,7 @@ class S250 {
     }
 
     private static initRatingColourGradient() {
-        const grad = chroma.scale(['#d94141', '#cccc3d', '#4cbf56']).domain([0, 60, 100]);
+        const grad = chroma.scale(['#de5854', '#dfe372', '#83d866']).domain([0, 60, 100]);
 
         document.querySelectorAll<HTMLElement>('.rating').forEach(el => {
             const [pre, post] = /(\D*)(\d+%?)/.exec(el.innerText)!.slice(1);
@@ -345,7 +345,6 @@ class S250 {
             }
 
             el.style.color = grad(parseFloat(el.innerText)).hex();
-            el.style.fontWeight = 'bold';
         });
     }
 
