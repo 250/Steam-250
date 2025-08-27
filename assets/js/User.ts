@@ -90,10 +90,7 @@ export default class User {
     }
 
     static hideObsoleteTiers() {
-        const userJson = localStorage.getItem('user');
-        if (!userJson) return;
-
-        const user = JSON.parse(userJson);
+        const user = this.fetchUser();
 
         if (user.tier) {
             document.querySelectorAll('ol.menu .micro.tier' + (S250.isClub250() ? '' : ', #body .micro.tier'))
@@ -107,10 +104,12 @@ export default class User {
     }
 
     static rewireTagLinks() {
-        const re = new RegExp(`^https://[^/]+/tag/`);
+        const user = this.fetchUser();
+
+        if (!user.tier) return;
 
         document.querySelectorAll<HTMLAnchorElement>('a[data-id]').forEach(a => {
-            if (re.test(a.href)) {
+            if (new RegExp('^https://[^/]+/tag/').test(a.href)) {
                 a.href = `${process.env.CLUB_250_BASE_URL}/tag/${a.dataset.id}`;
             }
         });
@@ -119,10 +118,7 @@ export default class User {
     private static updateUserBar() {
         const IMAGE_BASE_URL = 'https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images';
 
-        const userJson = localStorage.getItem('user');
-        if (!userJson) return;
-
-        const user = JSON.parse(userJson);
+        const user = this.fetchUser();
 
         const a = document.querySelector<HTMLAnchorElement>('#lin .avatar');
         if (!a) return;
@@ -168,6 +164,13 @@ export default class User {
         } else {
             gamesOwned.closest('dl')!.remove();
         }
+    }
+
+    private static fetchUser() {
+        const userJson = localStorage.getItem('user');
+        if (!userJson) return;
+
+        return JSON.parse(userJson);
     }
 
     private static formatTimePlayed(minutes: number) {
