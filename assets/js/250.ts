@@ -58,6 +58,13 @@ class S250 {
         document.querySelector('#lout button')!.addEventListener('click', _ => localStorage.setItem('login', 'sync'));
         document.querySelector('#lin button')!.addEventListener('click', _ => User.logout());
 
+        // Club 250 logout signal.
+        if (location.hash === '#!') {
+            User.syncLogout();
+            history.replaceState(null, '', location.pathname + location.search);
+            console.debug('Club 250 logout signal received.');
+        }
+
         // Trigger login sync on post-back.
         if (localStorage.getItem('login') === 'sync') {
             localStorage.removeItem('login');
