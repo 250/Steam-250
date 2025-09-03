@@ -7,6 +7,8 @@ const CopyPlugin = require('copy-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
 
+const outDir = process.env.APP_ENV === 'headless' ? 'headless' : 'site';
+
 module.exports = {
     mode: 'development',
     context: path.resolve(__dirname, '..', 'assets'),
@@ -42,7 +44,7 @@ module.exports = {
     },
 
     output: {
-        path: path.resolve(__dirname, '..', 'site/c'),
+        path: path.resolve(__dirname, '..', `${outDir}/c`),
         hashFunction: 'xxhash64',
     },
 
@@ -51,6 +53,7 @@ module.exports = {
         new Dotenv({
             path: path.join(__dirname, '.env.local'),
             defaults: path.join(__dirname, '.env'),
+            systemvars: true,
         }),
         new CopyPlugin({
             patterns: [
@@ -63,9 +66,9 @@ module.exports = {
         new CleanWebpackPlugin({
             cleanOnceBeforeBuildPatterns: [
                 // Remove all files containing a '.' (to distinguish between files and directories).
-                path.join(process.cwd(), 'site/**/*.*'),
+                path.join(process.cwd(), `${outDir}/**/*.*`),
                 // Do not remove HTML files.
-                '!' + path.join(process.cwd(), 'site/**/*.html'),
+                '!' + path.join(process.cwd(), `${outDir}/**/*.html`),
             ],
         }),
     ],
