@@ -20,3 +20,7 @@
         Visual novels have their own ranking called <a href="/hidden_novels{{ ext }}">Hidden Novels</a>.
     </p>
 {% endblock %}
+
+{% block post %}
+    {{ include('component/more button.twig', {url: club250 ~ '/ranking/gems/2', caption: 'Next 250'}) }}
+{% endblock %}

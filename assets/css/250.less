@@ -344,6 +344,11 @@ b.deck-p {
             font-size: 115%;
             text-align: center;
         }
+
+        &:nth-child(2 of .content) {
+            // Avoid occluding more-button box shadow.
+            overflow: visible;
+        }
     }
 }
 
