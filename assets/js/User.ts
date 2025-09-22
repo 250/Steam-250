@@ -131,39 +131,6 @@ export default class User {
         } else {
             img.src = `${IMAGE_BASE_URL}/avatars/${user.avatar.substring(0, 2)}/${user.avatar}.jpg'`;
         }
-
-        this.markOwnedGames();
-    }
-
-    private static markOwnedGames() {
-        const
-            gamesJson = localStorage.getItem('games'),
-            gamesOwned = document.querySelector<HTMLElement>('#user .owned')
-        ;
-        if (!gamesJson || !gamesOwned) return;
-
-        const
-            games = JSON.parse(gamesJson),
-            ranks = document.querySelectorAll<HTMLAnchorElement>('.main.ranking > div[id] > div:first-of-type > a')
-        ;
-
-        ranks.forEach(a => {
-            const id = a.href.match(/\/app\/(\d+)/)![1];
-
-            if (games.hasOwnProperty(id)) {
-                a.classList.add('owned');
-                a.setAttribute('data-content', this.formatTimePlayed(games[id]));
-            }
-        });
-
-        const total = ranks.length;
-        if (total) {
-            const owned = document.querySelectorAll('.main.ranking .owned').length;
-
-            gamesOwned.innerText = `${owned}/${total} (${Math.round(owned / total * 100)}%)`;
-        } else {
-            gamesOwned.closest('dl')!.remove();
-        }
     }
 
     private static fetchUser() {

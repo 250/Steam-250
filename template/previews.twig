@@ -1,5 +1,6 @@
 {% extends 'layout/ranking.twig' %}
 
+{% block class %}preview{% endblock %}
 {% block title %}Steam Game Previews for Next Week{% endblock %}
 {% block heading %}Steam Previews{% endblock %}
 
@@ -10,5 +11,6 @@
     <p class="note">Does not include DLC, soundtracks or other app types.</p>
 {% endblock %}
 
-{% block scoring_heading %}{% endblock %}
-{% block scoring_criteria %}{% endblock %}
+{% block rank_heading %}Order{% endblock %}
+{% block rating_heading %}{% endblock %}
+{% block score_heading %}{% endblock %}

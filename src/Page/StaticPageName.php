@@ -32,7 +32,7 @@ final class StaticPageName extends AbstractEnumeration
     ];
 
     private static array $aliases = [
-        self::PREVIEWS => 'previews',
+        self::PREVIEWS => 'preview',
         self::ABOUT => 'about',
         self::PRIVACY => 'privacy',
         self::CONTRIBUTORS => 'contrib',

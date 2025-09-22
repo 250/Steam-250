@@ -94,126 +94,113 @@
     {% endblock %}
     </div>
 
-    <div class="col1 main ranking">
+    <div class="col1">
         {% if games is defined %}
-        <div class="filter">
-            <button type="button">platform filters</button>
-            <form method="post">
-                <fieldset>
-                    <legend>Platforms</legend>
-                    <p>Include games supporting these platforms.</p>
-                    {{ include('@components/checkbox.twig', {caption_on: 'Windows', name: 'win'}) }}
-                    {{ include('@components/checkbox.twig', {caption_on: 'Mac', name: 'mac'}) }}
-                    {{ include('@components/checkbox.twig', {caption_on: 'Linux', name: 'nix'}) }}
-                    {{ include('@components/checkbox.twig', {caption_on: 'Steam Deck', name: 'deck'}) }}
-                </fieldset>
-                <fieldset>
-                    <legend>Owned games</legend>
-                    Show {{ include(
-                        '@components/checkbox.twig',
-                        {negative: 1, checked: 0, caption_on: 'Hide', name: 'owned'})
-                    }}
-                </fieldset>
-                <button class="button ok">OK</button>
-                <button class="button cancel">Cancel</button>
-                <button class="button reset" type="reset">Reset</button>
-            </form>
-        </div>
-        <header>
-            <h2>Trailers</h2>
-            <h2>{% block game_row_heading %}Movement, rank, title, date, platforms, tag and price{% endblock %}</h2>
-            {% if block('scoring_heading') %}
-            <h2>{% block scoring_heading %}Score{% endblock %}</h2>
+        <section class="applist compact no-wl">
+            <header>
+                <span>{% block rank_heading %}Rank{% endblock %}</span>
+                <span></span>
+                <span>{% block score_heading %}Score{% endblock %}</span>
+                <span>{% block rating_heading %}Rating{% endblock %}</span>
+            </header>
+            {% for app in games %}
+            <div {% if app.rank is defined %} id="{{ app.rank }}"{% endif %}>
+                <div>
+                    {% if app.movement is defined %}
+                        {% if app.movement is null %}
+                            <span title="New entry"></span>
+                        {% elseif app.movement != 0 %}
+                            <span class="{{ app.movement > 0 ? '+' : '-' }}">{{ app.movement|abs }}</span>
+                        {% endif %}
+                    {% endif %}
+                    {{ app.rank ?? loop.index }}
+                </div>
+                <div>{# Capsule image. #}
+                    <a href="{{ steam.app_url(app.id) }}" {{ steam.video_attr(app.name, app.videos) }}>
+                        {{ steam.app_capsule(app) }}
+                    </a>
+                </div>
+                <div>{# Title. #}
+                    <div>
+                        {% block app_title %}
+                            <a href="{{ steam.app_url(app.id) }}" title="{{ app.name }}">{{ app.name }}</a>
+                            <span title="{{ app.release_date|date('j M Y') }}">
+                                {{ macro.date(app.release_date, app.release_date|date|adaptive_date('Y')) }}
+                            </span>
+                        {% endblock %}
+
+                    </div>
+                    {# Tag, price and size. #}
+                    <div>
+                        {{ macro.tag(app.primary_tag, tags) }}
+                        {% if app.price is same as(0) %}
+                            <a href="/tag/free_to_play{{ ext }}" class="free">Free</a>
+                        {% else %}
+                            <span>
+                                <span>${{ ((app.discount_price ? app.discount_price : app.price) / 100)|number_format(2) }}</span>
+                                {% if app.discount > 0 %}
+                                    <span>-{{ app.discount }}%</span>
+                                    <span>${{ (app.price / 100)|number_format(2) }}</span>
+                                {% endif %}
+                            </span>
+                        {% endif %}
+                    </div>
+                </div>
+                <div>
+                    {# Labels. #}
+                    <span>
+                        {%- if app.ea %}
+                            <a href="/tag/early_access" class="ea" title="Early Access">EA</a>
+                        {% endif %}
+                        {%- if app.adult %}
+                            <a href="/adult" class="18" title="Adult only">18</a>
+                        {% endif %}
+                        {%- if app.vrx %}
+                            <a href="/vr_exclusives" class="vr" title="VR Exclusive">VR</a>
+                        {% endif -%}
+                    </span>
+                    {# Links. #}
+                    <span>
+                        {% if app.demo_id %}
+                            <a class="demo" href="steam://install/{{ app.demo_id }}" title="Install demo">Demo</a>
+                        {%- endif -%}
+                        <a href="{{ steam.store_url(app.id) }}" class="store" title="Steam store"></a>
+                    </span>
+                </div>
+                <div>
+                    {%- if block('score_heading') %}
+                        <span>{% block score %}{{ (app.score * 10)|number_format(2) }}{% endblock %}</span>
+                    {% endif -%}
+                </div>
+                <div>
+                    {%- if app.total_reviews > 0 %}
+                        <span class="rating">
+                            {{ (app.positive_reviews / app.total_reviews * 100)|round }}%
+                        </span>
+                    {% endif %}
+                    {%- if block('rating_heading') %}
+                        <span class="votes" title="{{ app.total_reviews|number_format }} reviews">
+                            {{ app.total_reviews|sigfig(3) }}
+                        </span>
+                    {% endif -%}
+                </div>
+            </div>
+            {% if (loop.index == 25 or loop.index == 50) and not loop.last %}
+                {{ include('partial/ad.twig', {id: cycle(['6706909236', '6885984584'], loop.index / 25 - 1)}) }}
             {% endif %}
-        </header>
-        {% for game in games %}
-        <div{% if game.rank is defined %} id="{{ game.rank }}"{% endif %}>
-            <div>
-                <a href="{{ steam.app_url(game.id) }}" {{ steam.video_attr(game.name, game.videos) }}>
-                    {{ steam.app_capsule(game) }}
-                </a>
-            </div>
-            <div class="appline">
-                {% if game.movement is defined %}
-                {{ include('component/movement.twig', {movement: game.movement}) }}
-                {% endif %}
-                {% block game_row %}
-                <span class="title">
-                    {% if game.rank is defined %}{{ game.rank }}.{% endif %}
-                    <a href="{{ steam.app_url(game.id) }}">
-                        {{- game.name -}}
-                    </a>{#
-                #}</span>
-                {{ macro.date(game.release_date, game.release_date|date|adaptive_date) }}
-                <span class="platforms">
-                    {%- if game.platforms b-and constant('ScriptFUSION\\Steam250\\Shared\\Platform::WINDOWS') -%}
-                    <span title="Windows" class="win"></span>
-                    {%- endif -%}
-                    {%- if game.platforms b-and constant('ScriptFUSION\\Steam250\\Shared\\Platform::MAC') -%}
-                    <a href="/mac250{{ ext }}" title="Mac" class="mac"></a>
-                    {%- endif -%}
-                    {%- if game.platforms b-and constant('ScriptFUSION\\Steam250\\Shared\\Platform::LINUX') -%}
-                    <a href="/linux250{{ ext }}" title="Linux" class="nix"></a>
-                    {%- endif -%}
-                    {%- if game.steam_deck == 3 -%}
-                    <a href="/steam_deck_verified{{ ext }}" title="Steam Deck" class="deck"></a>
-                    {%- endif -%}
-                </span>
-                {{ macro.tag(game.primary_tag, tags) }}
-                {% if game.rank_250 is defined and game.rank_250 and game.list_id != 'top250' %}
-                <a href="/top250{{ ext }}#{{ game.rank_250 }}" class="ref250">Top 250 #{{ game.rank_250 }}</a>
-                {% endif %}
-                {% if game.adult %}
-                <a href="/adult{{ ext }}" class="adult" title="Adult only">18+</a>
-                {% endif %}
-                {% if game.vrx %}
-                <a href="/vr_exclusives{{ ext }}" class="vrx" title="VR Exclusive">VRX</a>
-                {% endif %}
-                {% if game.price is same as(0) %}
-                <a href="/tag/free_to_play{{ ext }}" class="free">Free</a>
-                {% endif %}
-                {% if game.ea %}
-                <a href="/tag/early_access{{ ext }}" class="ea" title="Early Access">EA</a>
-                {% endif %}
-                {% if game.discount > 0 %}
-                <a href="/discounts{{ ext }}" class="discount">-{{ game.discount }}%</a>
-                {%- endif %}
-                {%- if game.price > 0 -%}
-                <span class="price">$
-                    {{- ((game.discount_price ? game.discount_price : game.price) / 100)|number_format(2) -}}
-                </span>
-                {% endif %}
-                {% if game.demo_id %}
-                    <a class="demo" href="steam://install/{{ game.demo_id }}" title="Install demo">Demo</a>
-                {%- endif -%}
-                <a href="{{ steam.store_url(game.id) }}" class="store" title="Steam store"></a>
-                {%- if game.rank is defined %}<a href="#{{ game.rank }}" class="links" title="Link">▼</a>{% endif %}
-                {% block reviews %}{% endblock %}
-                {% endblock %}
-            </div>
-            {% if block('scoring_criteria') %}
-            <div>
-                {% block scoring_criteria %}
-                <span class="score">{{ (game.score * 10)|number_format(2) }}</span>
-                <span class="rating">{{ (game.positive_reviews / game.total_reviews * 100)|round }}%</span>
-                <span class="votes">{{ game.total_reviews|number_format }} votes</span>
-                {% endblock %}
-            </div>
+            {% endfor %}
+            {% if ranking.algorithm is defined %}
+                <footer title="Ranking algorithm">{{ ranking.algorithm }} {{ ranking.weight }}</footer>
             {% endif %}
-        </div>
-        {% if (loop.index == 25 or loop.index == 50) and not loop.last %}
-        {{ include('partial/ad.twig', {id: cycle(['6706909236', '6885984584'], loop.index / 25 - 1)}) }}
-        {% endif %}
-        {% endfor %}
-        {% if ranking.algorithm is defined %}
-        <footer title="Ranking algorithm">{{ ranking.algorithm }} {{ ranking.weight }}</footer>
-        {% endif %}
+        </section>
+
         {% else %}
             <div class="warning">
                 Data for this page is temporarily unavailable due to upstream data errors. Please try again tomorrow!
             </div>
         {% endif %}
     </div>
+
     <section class="col2 r&amp;f">
     {% if risers is defined and (risers or fallers or new or missing) %}
         {% if risers %}

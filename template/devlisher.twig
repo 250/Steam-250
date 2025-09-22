@@ -6,6 +6,7 @@
 {% set mode = ranking.id %}
 {% set mode_c = mode|capitalize %}
 
+{% block class %}devlisher ranking{% endblock %}
 {% block title %}Top 250 best Steam {{ mode_c }}s{% endblock %}
 {% block heading %}{{ mode_c }} 250{% endblock %}
 
@@ -35,29 +36,17 @@
     </p>
 {% endblock %}
 
-{% block game_row_heading %}
-    Movement, rank, {{ mode }}, game total, top game, year and tag
-{% endblock %}
-
-{% block game_row %}
+{% block app_title %}
     {% if mode == 'developer' %}
-        {% set steam_url = steam.developer_url(game.owner) %}
+        {% set steam_url = steam.developer_url(app.owner) %}
     {% else %}
-        {% set steam_url = steam.publisher_url(game.owner) %}
+        {% set steam_url = steam.publisher_url(app.owner) %}
     {% endif %}
 
-    {% set team_url = game.team_id ? c250.team_url(game.team_id) : steam_url %}
-    <span class="title">
-        {{ game.rank }}.
-        <a href="{{ team_url }}">{{- game.owner -}}</a>
-    </span>
+    {% set team_url = app.team_id ? c250.team_url(app.team_id) : steam_url %}
+    <a href="{{ team_url }}">{{ app.owner }}</a>
     <a href="{{ team_url }}" class="games"
-       title="{{ game.games }} game{% if game.games > 1 %}s{% endif %}">{{ game.games }}</a>
-    <span class="knownfor">
-        <a href="{{ steam.app_url(game.id) }}">{{ game.name }}</a>
-    </span>
-    {% if game.release_date %}
-    {{ ranking_macro.date(game.release_date, game.release_date|date('Y')) }}
-    {% endif %}
-    {{ ranking_macro.tag(game.primary_tag, tags) }}
+       title="{{ app.games }} game{% if app.games > 1 %}s{% endif %}">{{ app.games }}</a>
+
+    {{ parent() }}
 {% endblock %}
