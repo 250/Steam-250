@@ -1,291 +1,316 @@
 @import "func/icons";
 
-ol.menu {
+nav {
   position: sticky;
-  width: 100%;
-  height: 36px;
+  top: 0;
   z-index: 10;
   flex-shrink: 0;
-  /* Google cache fix for fixed menu. */
-  top: 0;
 
-  white-space: nowrap;
-  text-align: center;
+  font-weight: 450;
   background: linear-gradient(180deg, #14161c 70%, #171a21);
 
-  // Do expando.
-  li:hover > ol {
-    overflow: visible;
-    max-height: 60vh;
+  >ol {
+    display: flex;
+    max-width: 629px;
+    height: 38px;
+    margin: 0 auto;
+    justify-content: space-between;
 
-    transition-delay: 0s;
-  }
+    color: #aab3ce;
+    letter-spacing: -.01em;
 
-  >li {
-    position: relative;
-    display: inline-flex;
-    flex-flow: column;
-    justify-content: center;
-    height: 100%;
-    margin: 0 1.68%;
-    padding: 0 1%;
-
-    cursor: pointer;
-    color: #9e814c;
-
-    &:after {
-      content: '▼';
+    >li {
       position: relative;
-      top: -2px;
-      line-height: 1;
+      padding: 0 1.3ch;
+      align-content: center;
 
-      font-size: 65%;
+      cursor: pointer;
+      border-radius: 3px;
 
-      transition: top .15s;
-    }
-    &:hover:after {
-      top: 1px;
-    }
+      &:after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 1px;
+        bottom: 0;
+        left: 50%;
 
-    >a {
-      color: #b3b5bd;
-      text-decoration: none;
+        background: #e0c17d;
 
-      transition: color .3s;
-    }
-    &:hover > a {
-      color: #cfab72;
-    }
+        transition: all .15s;
+      }
+      &:hover {
+        color: #cec3aa;
 
-    /* First level menus (most rules cascade to second level). */
-    ol {
-      position: absolute;
-      top: 100%;
-      left: 50%;
-      max-height: 0;
-      overflow: hidden;
-      z-index: 10;
-      transform: translate(-50%, 0);
+        &:after {
+          width: 100%;
+          left: 0;
+        }
+      }
 
-      text-align: left;
-      background: #171a21;
-      border-radius: 0 0 2px 2px;
-      box-shadow: 0 2px 3px rgba(38, 61, 91, .43);
+      >div {
+        @1: #d5dbed;
+        @2: #aab6da;
 
-      transition: max-height .3s .15s;
+        .sub-indent(@font-size) {
+          // Gap (.6em) + width of icon (1.1em) scaled to rem.
+          margin-left: calc(@font-size/16 * 1.7rem);
+        }
 
-      li {
-        display: block;
-        line-height: 1;
+        box-sizing: border-box;
+        position: absolute;
+        left: 50%;
+        top: 38px;
+        translate: -50%;
+        padding: 25px 23px 15px;
 
-        background: linear-gradient(90deg, transparent, #07080a, transparent) no-repeat bottom;
-        background-size: 95% 1px;
+        cursor: auto;
+        font-size: 17px;
+        font-weight: 430;
+        color: @1;
+        background: #14191f;
+        border-radius: 0 0 6px 6px;
 
-        &:last-of-type {
-          background: none;
-          border-radius: 0 0 2px 2px;
+        // Sibling or sub-links.
+        >div > div {
+          >a:first-child ~ a, >a.sub {
+            color: @2;
+            font-size: 15px;
 
-          >a {
-            padding-bottom: calc(.2em + 3px);
+            &:is(.sub) {
+              .sub-indent(15);
+
+              font-size: 14px;
+
+              &:before {
+                content: none;
+              }
+            }
           }
         }
 
-        >a {
-          display: block;
-          min-width: 45px;
-          padding: calc(.2em + 3px) .8em calc(.2em + 4px);
+        >div:nth-of-type(n+2) {
+          // Divider.
+          &:before {
+            content: '';
+            display: block;
+            grid-column: 1 / -1;
+            width: calc(100% + 12px);
+            height: 1px;
+            margin: 1.6ex -6px;
+
+            background: #20252a;
+          }
         }
 
-        a:has(+ ol):after {
-          content: '▶';
-          position: absolute;
-          top: 50%;
-          right: 1em;
-          transform: translate(0, -50%);
+        // Rankings.
+        &:nth-of-type(1) {
+          display: grid;
+          grid-template-columns: auto auto auto;
+          gap: 0 3.3ch;
 
-          font-size: 65%;
+          >div {
+            display: grid;
+            grid-template-columns: subgrid;
+            grid-column: 1 / -1;
 
-          transition: right .15s;
+            // First row.
+            &:nth-of-type(1) {
+              white-space: nowrap;
+
+              >div {
+                // Fine adjustments.
+                &:nth-of-type(2) > a {
+                  margin-bottom: -.05em;
+                }
+                &:nth-of-type(3) > a {
+                  margin: calc(5/7 / 2 * -.5em) 0;
+                }
+
+                >a:nth-of-type(1) {
+                  line-height: 1;
+                }
+                >a:nth-of-type(2) {
+                  .sub-indent(17);
+                }
+              }
+            }
+
+            // Second row.
+            &:nth-of-type(2) {
+              // Key links.
+              >:nth-of-type(1) {
+                display: grid;
+                grid-template-columns: min-content 1fr;
+                grid-auto-rows: min-content;
+                gap: .6ex;
+
+                >a {
+                  display: grid;
+                  grid-template-columns: subgrid;
+                  grid-column: 1 / -1;
+
+                  color: @1;
+                  font-size: 16px;
+                }
+              }
+
+              // Lesser headings.
+              >div:nth-of-type(n+2) > :first-child {
+                margin-bottom: .1ex;
+
+                font-size: 16px;
+              }
+
+              // Most reviewed.
+              >div:nth-of-type(2) {
+                >div {
+                  display: grid;
+                  grid-template-columns: repeat(5, min-content);
+                  gap: .1ex .7ch;
+                  float: right;
+
+                  color: @2;
+                  font-size: 14px;
+                  text-align: center;
+
+                  >:last-child {
+                    grid-column: 1 / -1;
+                    text-align: right;
+                    margin-top: .2ex;
+                  }
+                }
+              }
+
+              // Platforms.
+              >div:nth-of-type(3) {
+                display: flex;
+                flex-flow: column;
+
+                >a:not(.sub) {
+                  color: inherit;
+                  font-size: 15px;
+                }
+              }
+            }
+
+            // Third row.
+            &:nth-of-type(3) {
+              font-size: 14px;
+
+              >a {
+                margin-top: .3ex;
+              }
+            }
+          }
         }
 
-        &:hover {
-          background: linear-gradient(90deg, #9e814c, #cfab72, #9e814c);
-          text-decoration: none;
+        a, a:visited {
+          white-space: nowrap;
 
-          >a {
-            color: #07080a;
-            text-shadow: 1px 1px 1px #cfab72;
-            text-decoration: none;
+          color: inherit;
 
-            &[class]:before {
-              filter: brightness(14%);
+          &[class] {
+            display: flex;
+            align-items: center;
+            gap: .6em;
+
+            &:before {
+              content: '';
+              width: 1.02em;
+              aspect-ratio: 1;
+              justify-self: center;
+
+              mask: no-repeat right;
+              background: #7680ec;
             }
           }
 
-          a:has(+ ol):after {
-            right: calc(1em - 3px);
+          &.cup:before {
+            #icons.cup();
+            background: #c39a40;
+          }
+          &.gem:before {
+            #icons.gem();
+            width: 1.1em;
+
+            background: #41aaf0;
+          }
+          &.trend:before {
+            #icons.trend();
+            aspect-ratio: 5/7;
+
+            background: #e66262;
+            mask-position-y: top;
+          }
+          &.custom:before {
+            #icons.custom();
+            width: 1.1em;
+          }
+          &.pad:before {
+            #icons.gamepad();
+            width: 1.2em;
+          }
+          &.preview:before {
+            #icons.preview();
+            width: 1.1em;
+          }
+          &.bottom:before {
+            #icons.bottom();
+            width: .95em;
+          }
+          &.adult:before {
+            #icons.adult();
+            position: relative;
+            left: .2ch;
+            width: 1.1em;
+
+            background: #d96bca;
+          }
+          &.review:before {
+            #icons.review();
+          }
+
+          &.mac:before {
+            #icons.mac();
+          }
+          &.linux:before {
+            #icons.linux();
+          }
+          &.deck:before {
+            #icons.deck();
+          }
+          &.vr:before {
+            #icons.vr();
           }
         }
-      }
-    }
 
-    >ol > li {
-      position: relative;
+        span {
+          white-space: nowrap;
 
-      /* Second level */
-      >ol {
-        position: absolute;
-        top: 0;
-        left: 99.5%;
-        transform: none;
-      }
-    }
+          color: #818797;
 
-    /* Long second-level menus with smaller fonts and scrollbars. */
-    &:nth-child(3) > ol, ol.annual {
-      overflow-y: auto;
-      overflow-x: hidden;
+          &.middot {
+            display: inline-block;
+            width: .2em;
+            height: $width;
+            vertical-align: middle;
 
-      font-size: 90%;
-    }
-    ol.annual {
-      column-count: 2;
-
-      text-align: center;
-    }
-
-    // Tag menu two-column layout.
-    &:nth-child(3) > ol {
-      display: grid;
-      grid: auto/auto auto;
-
-      >li {
-        &:first-child {
-          grid-column: span 2;
-
-          font-size: 120%;
-
-          >a {
-            padding-top: 1ex;
-            padding-bottom: $padding-top;
+            background: #aab6da;
+            border-radius: 9px;
           }
         }
 
-        &:nth-child(2) {
-          grid-column: span 2;
+        .micro.tier {
+          margin-left: .5ch;
 
-          text-align: center;
+          font-size: 11px;
         }
       }
-    }
-
-    /* Classified items. */
-    a[class] {
-      display: flex;
-      gap: .7ch;
-      align-items: center;
-
-      &:before {
-        content: '';
-        --width: 1em;
-        width: var(--width);
-        height: $width;
-
-        background: linear-gradient(#d9b882, #947e59) $mask;
-        // Fudge size for scuffed Chrome SVG renderer.
-        mask: no-repeat 0/99% 100%;
-      }
-
-      &.cup:before {
-        #icons.cup();
-      }
-      &.history:before {
-        #icons.history();
-      }
-      &.gem:before {
-        #icons.gem();
-      }
-      &.trend:before {
-        #icons.trend();
-      }
-      &.pad:before {
-        #icons.gamepad();
-      }
-      &.custom:before {
-        #icons.custom();
-      }
-      &.mac:before {
-        #icons.mac();
-      }
-      &.linux:before {
-        #icons.linux();
-      }
-      &.deck:before {
-        #icons.deck();
-      }
-      &.tag {
-        justify-content: center;
-
-        &:before {
-          --width: 1.2em;
-          mask-image: url(/svg/tag.svg);
-        }
-      }
-      &.email:before {
-        #icons.email();
-      }
-      &.myrank:before {
-        --width: 1.1em;
-        #icons.myrank();
-      }
-      &.members:before {
-        #icons.members();
-      }
-      &.patreon:before {
-        --width: .9em;
-        background-image: url(//s.steam250.com/img/patreon.svg);
-      }
-      &.discord:before {
-        --width: 1.3em;
-        margin-left: -.4em;
-
-        mask-image: url(/svg/discord.svg);
-        mask-size: 110%;
-        background: linear-gradient(#96aaf2, #5067b3);
-
-        translate: 2px;
-      }
-      &.steam:before {
-        mask-image: url(/svg/steam.svg);
-        background: linear-gradient(#fffbf2, #bab7b1);
-      }
-    }
-
-    &:nth-child(5) > ol {
-      >li:nth-last-of-type(2):hover {
-        background-image: linear-gradient(90deg, #4b60a6, #7289da, #4b60a6);
-
-        >a {
-          text-shadow: 1px 1px 1px #7289da;
-        }
-      }
-    }
-
-    ol.t11g {
-      overflow: hidden !important;
     }
   }
 
-  .micro.tier {
-    margin: 0;
-
-    opacity: .9;
-    font-size: 75%;
-    text-shadow: none;
-    line-height: 1.3;
-
-    &:hover {
-      filter: brightness(112%) saturate(120%);
-    }
+  >div {
+    display: none;
   }
 }

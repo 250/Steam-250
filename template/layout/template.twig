@@ -38,114 +38,158 @@
         </div>
     </section>
 
-    <ol class="menu">
-        <li>
-            <a>Rankings</a>
-            <ol>
-                <li><a href="/">Overview</a>
-                <li><a href="/top250{{ ext }}" class="cup">Top 250 Games</a>
-                <li><a href="{{ club250 }}/ranking/250/history/{{ '-7 year'|date('Ymd') }}" class="history">
-                        Top 250 History
-                        {{ include('@components/micro tier.twig', {tier: 1, benefit: 'hist250'}) }}
-                    </a>
-                <li><a href="/hidden_gems{{ ext }}" class="gem">Hidden Gems</a>
-                <li><a href="{{ club250 }}/ranking/gems/history/{{ '-7 year'|date('Ymd') }}" class="history">
-                        Hidden Gems History
-                        {{ include('@components/micro tier.twig', {tier: 1, benefit: 'hist250'}) }}
-                    </a>
-                <li><a class="trend">
-                        Trending Games
-                        {{ include('@components/micro tier.twig', {tier: 1, benefit: 'trend'}) }}
-                    </a>
-                    <ol>
-                        <li><a href="{{ club250 }}/ranking/trending" class="trend">Trending</a>
-                        <li><a href="{{ club250 }}/ranking/new-and-trending" class="trend">New &amp; Trending</a>
-                        <li><a href="{{ club250 }}/ranking/trending-now" class="trend">Trending Now!</a>
-                    </ol>
-                <li><a href="{{ club250 }}/ranking/custom" class="custom">
-                        Custom Ranking
-                        {{ include('@components/micro tier.twig', {tier: 1, benefit: 'cranking'}) }}
-                    </a>
-                <li><a href="/most_played{{ ext }}" class="pad">Most Played</a>
-                <li>
-                    <a>Most Reviewed</a>
-                    <ol class="annual">
-                        <li><a href="/reviews{{ ext }}">All time</a>
-                            {% for year in range('now'|date('Y'), earliest_year) %}
-                        <li><a href="/reviews/{{ year ~ ext }}">{{ year }}</a>
-                            {% endfor %}
-                        <li><a href="/reviews/old{{ ext }}">Pre-{{ earliest_year }}</a>
-                    </ol>
-                <li><a href="/adult{{ ext }}">Adult Games</a>
-                <li><a href="/previews{{ ext }}">Previews</a>
-                <li>
-                    <a>Platform</a>
-                    <ol>
-                        <li><a href="/steam_deck_verified{{ ext }}" class="deck">Steam Deck Verified</a>
-                        <li><a href="/steam_deck_playable{{ ext }}" class="deck">Steam Deck Playable</a>
-                        <li><a href="/vr_exclusives{{ ext }}">VR Exclusives</a>
-                        <li><a href="/vr250{{ ext }}">Virtual Reality</a>
-                        <li><a href="/linux250{{ ext }}" class="linux">Linux</a>
-                        <li><a href="/mac250{{ ext }}" class="mac">Mac</a>
-                    </ol>
-                <li><a href="/hidden_novels{{ ext }}">Hidden Novels</a>
-                <li><a href="/developer{{ ext }}">Top 250 Developers</a>
-                <li><a href="/publisher{{ ext }}">Top 250 Publishers</a>
-                <li><a href="/dlc{{ ext }}">Top 250 DLC</a>
-                <li><a href="/bottom100{{ ext }}">Bottom 100</a>
-            </ol>
-        <li>
-            <a>Period</a>
-            <ol>
-                <li>
-                    <a>Fixed Year</a>
-                    <ol class="annual">
-                        {% for year in range('now'|date('Y'), earliest_year) %}
-                        <li><a href="/{{ year ~ ext }}">{{ year }}</a>
-                        {% endfor %}
-                        <li><a href="/old{{ ext }}">Pre-{{ earliest_year }}</a>
-                    </ol>
-                <li><a href="/7day{{ ext }}">This Week</a>
-                <li><a href="/30day{{ ext }}">This Month</a>
-                <li><a href="/90day{{ ext }}">This Quarter</a>
-                <li><a href="/365day{{ ext }}">This Year</a>
-            </ol>
-        <li>
-            <a>Tag</a>
-            <ol>
-                <li><a href="{{ club250 }}/tags" class="tag">Browse all tags</a>
-                <li><a href="{{ club250 }}/tags/hierarchy">Tag hierarchy</a>
+    <nav>
+        <ol>
+            <li>Rankings
+                <div>{# Rankings #}
+                    <div>
+                        <div>
+                            <a href="/top250{{ ext }}" class="cup">Steam Top 250</a>
+                            <a href="{{ club250 }}/ranking/250/history/{{ '-7 year'|date('Ymd') }}">History</a>
+                            {{ include('@components/micro tier.twig', {tier: 1, benefit: 'hist250'}) }}
+                        </div>
+                        <div>
+                            <a href="/hidden_gems{{ ext }}" class="gem">Hidden Gems</a>
+                            <a href="{{ club250 }}/ranking/gems/history/{{ '-7 year'|date('Ymd') }}">
+                                History
+                            </a>
+                            <span class="middot"></span>
+                            <a href="/hidden_novels{{ ext }}">Novels</a>
+                        </div>
+                        <div>
+                            <a href="{{ club250 }}/ranking/trending-now" class="trend">Trending now</a>
+                            <a href="{{ club250 }}/ranking/new-and-trending">New</a>
+                            <span class="middot"></span>
+                            <a href="{{ club250 }}/ranking/trending">All time</a>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div>
+                            <a href="{{ club250 }}/ranking/custom" class="custom">Custom Ranking</a>
+                            <a href="/most_played{{ ext }}" class="pad">Most played</a>
+                            <a href="/previews{{ ext }}" class="preview">Previews</a>
+                            <a href="/bottom100{{ ext }}" class="bottom">Bottom 100</a>
+                            <a href="/adult{{ ext }}" class="adult">Adult games</a>
+                        </div>
+                        <div>
+                            <a href="/reviews{{ ext }}" class="review">Most reviewed</a>
+                            <div>
+                                {% for year in range('now'|date('Y'), earliest_year) %}
+                                    <a href="/reviews/{{ year ~ ext }}">{{ year[2:] }}</a>
+                                {% endfor %}
+                                <a href="/reviews/old{{ ext }}">Pre-{{ earliest_year }}</a>
+                            </div>
+                        </div>
+                        <div>
+                            <span>More platforms</span>
+                            <a href="/mac250{{ ext }}" class="mac">Mac</a>
+                            <a href="/linux250{{ ext }}" class="linux">Linux</a>
+                            <a href="/steam_deck_playable{{ ext }}" class="deck">Steam Deck</a>
+                            <a href="/steam_deck_verified{{ ext }}" class="sub">Verified</a>
+                            <a href="/vr250{{ ext }}" class="vr">Virtual Reality</a>
+                            <a href="/vr_exclusives{{ ext }}" class="sub">Exclusive</a>
+                        </div>
+                    </div>
+
+                    <div>
+                        <a href="/developer{{ ext }}">Top 250 Developers</a>
+                        <a href="/publisher{{ ext }}">Top 250 Publishers</a>
+                        <a href="/dlc{{ ext }}">Top 250 DLC</a>
+                    </div>
+                </div>
+
+            <li>Tags
+
+
+            <li>Deals
+
+
+            <li>Dates
+
+
+            <li>Club 250
+
+
+        </ol>
+
+
+
+        <div>{# Tags #}
+            <div>
+                <a href="{{ club250 }}/tags" class="tag">Complete tag directory</a>
+                <a href="{{ club250 }}/tags/hierarchy">Tag hierarchy</a>
+            </div>
+            <div>
                 {% for id, tag in tags %}
-                <li><a href="/tag/{{ tag|tag_id|url_encode ~ ext }}" data-id="{{ id }}">{{ tag }}</a>
+                    <a href="/tag/{{ tag|tag_id|url_encode ~ ext }}" data-id="{{ id }}">{{ tag }}</a>
                 {% endfor %}
-            </ol>
-        <li>
-            <a>Price</a>
-            <ol>
-                <li><a href="/discounts{{ ext }}">Top 250 Discounts</a>
-                <li><a href="/price/free{{ ext }}">Free Games</a>
-                <li><a href="/price/under5{{ ext }}">Games Under $5</a>
-                <li><a href="/price/5-10{{ ext }}">Games $5&ndash;10</a>
-                <li><a href="/price/10-15{{ ext }}">Games $10&ndash;15</a>
-                <li><a href="/price/over15{{ ext }}">Games Over $15</a>
-            </ol>
-        <li>
-            <a>Steam 250</a>
-            <ol>
-                <li><a href="{{ club250 }}/members" class="members">Club 250 Members</a>
-                <li><a href="{{ club250 }}/ranking/my-games" class="myrank">
-                        My Games Ranking
-                        {{ include('@components/micro tier.twig', {tier: 2, benefit: 'myrank'}) }}
-                    </a>
-                <li><a href="/about{{ ext }}">About Steam 250</a>
-                <li><a href="{{ club250 }}/email%20sub/7day" class="email">Free weekly email</a>
-                <li><a href="/contributors{{ ext }}">Contributors</a>
-                <li><a href="/cosmic_tweets{{ ext }}">Cosmic Tweets</a>
-                <li><a href="{{ club250 }}/join" class="patreon">Join Club 250</a>
-                <li><a href="{{ discord }}" class="discord">Chat in Discord</a>
-                <li><a href="https://store.steampowered.com/curator/32686107/" class="steam">Follow on Steam</a>
-            </ol>
-    </ol>
+            </div>
+        </div>
+
+        <div>{# Deals #}
+            <div>
+                <a href="/discounts{{ ext }}">Top 250 Discounts</a>
+                <a href="/price/free{{ ext }}">Free Games</a>
+            </div>
+            <div>
+                <a href="/price/under5{{ ext }}">Under $5</a>
+                <a href="/price/5-10{{ ext }}">From $5&ndash;10</a>
+                <a href="/price/10-15{{ ext }}">From $10&ndash;15</a>
+                <a href="/price/10-15{{ ext }}">From $15&ndash;20</a>
+                <a href="/price/over20{{ ext }}">Over $20</a>
+            </div>
+        </div>
+
+        <div>{# Dates #}
+            <div>
+                <span>Recent</span>
+                <a href="/7day{{ ext }}">This Week</a>
+                <a href="/30day{{ ext }}">This Month</a>
+                <a href="/90day{{ ext }}">This Quarter</a>
+                <a href="/365day{{ ext }}">This Year</a>
+            </div>
+            <div>
+                <span>Best of the year</span>
+                {% for year in range('now'|date('Y'), earliest_year) %}
+                    <a href="/{{ year ~ ext }}">{{ year[2:] }}</a>
+                {% endfor %}
+                <a href="/old{{ ext }}">Pre-{{ earliest_year }}</a>
+            </div>
+        </div>
+
+        <div>{# Club 250 #}
+            <div>
+                <a href="{{ club250 }}/join" class="patreon">Join Club 250</a>
+                <a href="{{ club250 }}/ranking/my-games" class="myrank">
+                    My Games
+                    {{ include('@components/micro tier.twig', {tier: 2, benefit: 'myrank'}) }}
+                </a>
+                <a href="{{ club250 }}/members" class="members">Club Members</a>
+            </div>
+
+            <div>
+                <div>
+                    <a href="/about{{ ext }}">About Steam 250</a>
+                    <a href="/contributors{{ ext }}">Contributors</a>
+                    <a href="/cosmic_tweets{{ ext }}">Classic Tweets</a>
+                </div>
+                <div>
+                    <a href="{{ club250 }}/email%20sub/7day" class="email">Free weekly email</a>
+                    <p>
+                        <i>Please note</i>
+                        we are currently experiencing issues with deliverability to Gmail and Outlook addresses.
+                    </p>
+                </div>
+            </div>
+
+            <div>
+                <a href="{{ discord }}">Chat in Discord</a>
+                <a href="https://store.steampowered.com/curator/32686107/">Follow on Steam</a>
+                <a href="{{ discord }}">Follow on X</a>
+            </div>
+        </div>
+    </nav>
 
     <div id="body">
          <div class="content">
