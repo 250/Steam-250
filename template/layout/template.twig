@@ -100,95 +100,97 @@
                 </div>
 
             <li>Tags
-
+                <div>
+                    <div>
+                        <div>
+                            <a href="{{ club250 }}/tags" class="tags">Complete tag directory</a>
+                            <p>There are {{ tags|length }} tags on Steam</p>
+                        </div>
+                        <a href="{{ club250 }}/tags/hierarchy" class="hier">Tag hierarchy</a>
+                    </div>
+                    <div>
+                        <ol class="tags">
+                            {% for tag in tags %}
+                                <li data-cat="{{ tag.category }}">
+                                    <a href="/tag/{{ tag.name|tag_id|url_encode ~ ext }}" class="tag"
+                                        data-id="{{ tag.id }}">{{ tag.name }}</a>
+                            {% endfor %}
+                        </ol>
+                    </div>
+                </div>
 
             <li>Deals
-
+                <div>
+                    <div>
+                        <a href="/discounts{{ ext }}" class="discount">Top 250 Discounts</a>
+                        <a href="/price/free{{ ext }}" class="free">Free Games</a>
+                    </div>
+                    <div>
+                        <div>
+                            <a href="/price/under5{{ ext }}" class="price">Under $5</a>
+                            <a href="/price/5-10{{ ext }}" class="price">From $5&ndash;10</a>
+                            <a href="/price/10-15{{ ext }}" class="price">From $10&ndash;15</a>
+                        </div>
+                        <div>
+                            <a href="/price/10-15{{ ext }}" class="price">From $15&ndash;20</a>
+                            <a href="/price/over20{{ ext }}" class="price">Over $20</a>
+                        </div>
+                    </div>
+                </div>
 
             <li>Dates
-
+                <div>
+                    <div>
+                        <span>Recent</span>
+                        <a href="/7day{{ ext }}" class="dt7">This Week</a>
+                        <a href="/30day{{ ext }}" class="dt30">This Month</a>
+                        <a href="/90day{{ ext }}" class="dt90">This Quarter</a>
+                        <a href="/365day{{ ext }}" class="dt365">This Year</a>
+                    </div>
+                    <div>
+                        <span>Best of the year</span>
+                        <div>
+                            {% for year in range('now'|date('Y'), earliest_year) %}
+                                <a href="/{{ year ~ ext }}">{{ year[2:] }}</a>
+                            {% endfor %}
+                            <a href="/old{{ ext }}">Pre-{{ earliest_year }}</a>
+                        </div>
+                    </div>
+                </div>
 
             <li>Club 250
+                <div>
+                    <div>
+                        <a href="{{ club250 }}/join" class="patreon">Join Club 250</a>
+                        <a href="{{ club250 }}/ranking/my-games" class="myrank">
+                            My Games
+                            {{ include('@components/micro tier.twig', {tier: 2, benefit: 'myrank'}) }}
+                        </a>
+                        <a href="{{ club250 }}/members" class="members">Club Members</a>
+                    </div>
 
+                    <div>
+                        <div>
+                            <a href="/about{{ ext }}">About Steam 250</a>
+                            <a href="/contributors{{ ext }}">Contributors</a>
+                            <a href="/cosmic_tweets{{ ext }}">Classic Tweets</a>
+                        </div>
+                        <div>
+                            <a href="{{ club250 }}/email%20sub/7day" class="email">Free weekly email</a>
+                            <p>
+                                <i>Please note</i>
+                                we are currently experiencing issues with deliverability to Gmail and Outlook addresses.
+                            </p>
+                        </div>
+                    </div>
 
+                    <div>
+                        <a href="{{ discord }}">Chat in Discord</a>
+                        <a href="https://store.steampowered.com/curator/32686107/">Follow on Steam</a>
+                        <a href="{{ discord }}">Follow on X</a>
+                    </div>
+                </div>
         </ol>
-
-
-
-        <div>{# Tags #}
-            <div>
-                <a href="{{ club250 }}/tags" class="tag">Complete tag directory</a>
-                <a href="{{ club250 }}/tags/hierarchy">Tag hierarchy</a>
-            </div>
-            <div>
-                {% for id, tag in tags %}
-                    <a href="/tag/{{ tag|tag_id|url_encode ~ ext }}" data-id="{{ id }}">{{ tag }}</a>
-                {% endfor %}
-            </div>
-        </div>
-
-        <div>{# Deals #}
-            <div>
-                <a href="/discounts{{ ext }}">Top 250 Discounts</a>
-                <a href="/price/free{{ ext }}">Free Games</a>
-            </div>
-            <div>
-                <a href="/price/under5{{ ext }}">Under $5</a>
-                <a href="/price/5-10{{ ext }}">From $5&ndash;10</a>
-                <a href="/price/10-15{{ ext }}">From $10&ndash;15</a>
-                <a href="/price/10-15{{ ext }}">From $15&ndash;20</a>
-                <a href="/price/over20{{ ext }}">Over $20</a>
-            </div>
-        </div>
-
-        <div>{# Dates #}
-            <div>
-                <span>Recent</span>
-                <a href="/7day{{ ext }}">This Week</a>
-                <a href="/30day{{ ext }}">This Month</a>
-                <a href="/90day{{ ext }}">This Quarter</a>
-                <a href="/365day{{ ext }}">This Year</a>
-            </div>
-            <div>
-                <span>Best of the year</span>
-                {% for year in range('now'|date('Y'), earliest_year) %}
-                    <a href="/{{ year ~ ext }}">{{ year[2:] }}</a>
-                {% endfor %}
-                <a href="/old{{ ext }}">Pre-{{ earliest_year }}</a>
-            </div>
-        </div>
-
-        <div>{# Club 250 #}
-            <div>
-                <a href="{{ club250 }}/join" class="patreon">Join Club 250</a>
-                <a href="{{ club250 }}/ranking/my-games" class="myrank">
-                    My Games
-                    {{ include('@components/micro tier.twig', {tier: 2, benefit: 'myrank'}) }}
-                </a>
-                <a href="{{ club250 }}/members" class="members">Club Members</a>
-            </div>
-
-            <div>
-                <div>
-                    <a href="/about{{ ext }}">About Steam 250</a>
-                    <a href="/contributors{{ ext }}">Contributors</a>
-                    <a href="/cosmic_tweets{{ ext }}">Classic Tweets</a>
-                </div>
-                <div>
-                    <a href="{{ club250 }}/email%20sub/7day" class="email">Free weekly email</a>
-                    <p>
-                        <i>Please note</i>
-                        we are currently experiencing issues with deliverability to Gmail and Outlook addresses.
-                    </p>
-                </div>
-            </div>
-
-            <div>
-                <a href="{{ discord }}">Chat in Discord</a>
-                <a href="https://store.steampowered.com/curator/32686107/">Follow on Steam</a>
-                <a href="{{ discord }}">Follow on X</a>
-            </div>
-        </div>
     </nav>
 
     <div id="body">

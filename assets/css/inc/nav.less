@@ -20,12 +20,40 @@ nav {
     letter-spacing: -.01em;
 
     >li {
+      @1: #d5dbed;
+      @2: #aab6da;
+
+      .sub-indent(@font-size) {
+        // Gap (.6em) + width of icon (1.1em) scaled to rem.
+        margin-left: calc(@font-size/16 * 1.7rem);
+      }
+      .grid-gap() {
+        gap: 0 3.3ch;
+      }
+      .annumdar() {
+        display: grid;
+        grid-template-columns: repeat(5, min-content);
+        gap: .1ex .7ch;
+        float: right;
+
+        font-size: 14px;
+        text-align: center;
+
+        >:last-child {
+          grid-column: 1 / -1;
+          text-align: right;
+          margin-top: .2ex;
+        }
+      }
+
       position: relative;
       padding: 0 1.3ch;
       align-content: center;
 
       cursor: pointer;
       border-radius: 3px;
+
+      transition: color .3s .15s;
 
       &:after {
         content: '';
@@ -37,32 +65,66 @@ nav {
 
         background: #e0c17d;
 
-        transition: all .15s;
+        transition: all .3s .15s;
       }
       &:hover {
+        // Show active menu over any transitioning menu.
+        z-index: 1;
+
         color: #cec3aa;
+
+        transition-delay: 0s;
 
         &:after {
           width: 100%;
           left: 0;
+
+          transition-delay: 0s;
+        }
+
+        >div {
+          // Ostensibly 306.5.
+          max-height: 320px;
+          padding: 25px 23px 15px;
+
+          transition-delay: 0s;
+        }
+      }
+
+      &:nth-of-type(2) {
+        &:after {
+          background: #7ba7f2;
+        }
+        &:hover {
+          color: #a4c5ff;
+        }
+      }
+      &:nth-of-type(3) {
+        &:after {
+          background: #7de099;
+        }
+        &:hover {
+          color: #aaceb4;
+        }
+      }
+      &:nth-of-type(4) {
+        &:after {
+          background: #98a1ff;
+        }
+        &:hover {
+          color: #a6adff;
         }
       }
 
       >div {
-        @1: #d5dbed;
-        @2: #aab6da;
-
-        .sub-indent(@font-size) {
-          // Gap (.6em) + width of icon (1.1em) scaled to rem.
-          margin-left: calc(@font-size/16 * 1.7rem);
-        }
-
         box-sizing: border-box;
         position: absolute;
         left: 50%;
         top: 38px;
         translate: -50%;
-        padding: 25px 23px 15px;
+        max-height: 0;
+        padding: 0 23px;
+        overflow: hidden;
 
         cursor: auto;
         font-size: 17px;
@@ -70,6 +132,8 @@ nav {
         color: @1;
         background: #14191f;
         border-radius: 0 0 6px 6px;
+
+        transition: all .3s .15s;
 
         // Sibling or sub-links.
         >div > div {
@@ -89,6 +153,13 @@ nav {
           }
         }
 
+        >div:first-of-type {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          align-items: start;
+          .grid-gap();
+        }
+
         >div:nth-of-type(n+2) {
           // Divider.
           &:before {
@@ -103,114 +174,12 @@ nav {
           }
         }
 
-        // Rankings.
-        &:nth-of-type(1) {
-          display: grid;
-          grid-template-columns: auto auto auto;
-          gap: 0 3.3ch;
-
-          >div {
-            display: grid;
-            grid-template-columns: subgrid;
-            grid-column: 1 / -1;
-
-            // First row.
-            &:nth-of-type(1) {
-              white-space: nowrap;
-
-              >div {
-                // Fine adjustments.
-                &:nth-of-type(2) > a {
-                  margin-bottom: -.05em;
-                }
-                &:nth-of-type(3) > a {
-                  margin: calc(5/7 / 2 * -.5em) 0;
-                }
-
-                >a:nth-of-type(1) {
-                  line-height: 1;
-                }
-                >a:nth-of-type(2) {
-                  .sub-indent(17);
-                }
-              }
-            }
-
-            // Second row.
-            &:nth-of-type(2) {
-              // Key links.
-              >:nth-of-type(1) {
-                display: grid;
-                grid-template-columns: min-content 1fr;
-                grid-auto-rows: min-content;
-                gap: .6ex;
-
-                >a {
-                  display: grid;
-                  grid-template-columns: subgrid;
-                  grid-column: 1 / -1;
-
-                  color: @1;
-                  font-size: 16px;
-                }
-              }
-
-              // Lesser headings.
-              >div:nth-of-type(n+2) > :first-child {
-                margin-bottom: .1ex;
-
-                font-size: 16px;
-              }
-
-              // Most reviewed.
-              >div:nth-of-type(2) {
-                >div {
-                  display: grid;
-                  grid-template-columns: repeat(5, min-content);
-                  gap: .1ex .7ch;
-                  float: right;
-
-                  color: @2;
-                  font-size: 14px;
-                  text-align: center;
-
-                  >:last-child {
-                    grid-column: 1 / -1;
-                    text-align: right;
-                    margin-top: .2ex;
-                  }
-                }
-              }
-
-              // Platforms.
-              >div:nth-of-type(3) {
-                display: flex;
-                flex-flow: column;
-
-                >a:not(.sub) {
-                  color: inherit;
-                  font-size: 15px;
-                }
-              }
-            }
-
-            // Third row.
-            &:nth-of-type(3) {
-              font-size: 14px;
-
-              >a {
-                margin-top: .3ex;
-              }
-            }
-          }
-        }
-
         a, a:visited {
           white-space: nowrap;
 
           color: inherit;
 
-          &[class] {
+          &[class]:where(:not(.tag)) {
             display: flex;
             align-items: center;
             gap: .6em;
@@ -283,6 +252,43 @@ nav {
           &.vr:before {
             #icons.vr();
           }
+
+          &.tags:before {
+            #icons.tags();
+            width: 1.1em;
+            rotate: 45deg;
+
+            background: #6294EA;
+          }
+          &.hier:before {
+            #icons.hierarchy();
+            aspect-ratio: 9/10;
+          }
+
+          &.discount:before {
+            #icons.discount();
+          }
+          &.free:before {
+            #icons.free();
+          }
+          &.price:before {
+            #icons.price();
+            width: 1.1em;
+            aspect-ratio: 18/17;
+          }
+
+          &.dt7:before {
+            #icons.dt7();
+          }
+          &.dt30:before {
+            #icons.dt30();
+          }
+          &.dt90:before {
+            #icons.dt90();
+          }
+          &.dt365:before {
+            #icons.dt365();
+          }
         }
 
         span {
@@ -301,10 +307,193 @@ nav {
           }
         }
 
+        p {
+          margin: 0;
+
+          color: #aeb6cf;
+          font-size: 13px;
+          font-weight: normal;
+
+          i {
+            font-style: italic;
+          }
+        }
+
         .micro.tier {
           margin-left: .5ch;
 
           font-size: 11px;
+        }
+      }
+
+      // Rankings.
+      &:nth-of-type(1) > div {
+        display: grid;
+        grid-template-columns: auto auto auto;
+        .grid-gap();
+
+        >div {
+          display: grid;
+          grid-template-columns: subgrid;
+          grid-column: 1 / -1;
+
+          // First row.
+          &:nth-of-type(1) {
+            white-space: nowrap;
+
+            >div {
+              // Fine adjustments.
+              &:nth-of-type(2) > a {
+                margin-bottom: -.05em;
+              }
+              &:nth-of-type(3) > a {
+                margin: calc(5/7 / 2 * -.5em) 0;
+              }
+
+              >a:nth-of-type(1) {
+                line-height: 1;
+              }
+              >a:nth-of-type(2) {
+                .sub-indent(17);
+              }
+            }
+          }
+
+          // Second row.
+          &:nth-of-type(2) {
+            // Key links.
+            >:nth-of-type(1) {
+              display: grid;
+              grid-template-columns: min-content 1fr;
+              grid-auto-rows: min-content;
+              gap: .6ex;
+
+              >a {
+                display: grid;
+                grid-template-columns: subgrid;
+                grid-column: 1 / -1;
+
+                color: @1;
+                font-size: 16px;
+              }
+            }
+
+            // Lesser headings.
+            >div:nth-of-type(n+2) > :first-child {
+              margin-bottom: .1ex;
+
+              font-size: 16px;
+            }
+
+            // Most reviewed.
+            >div:nth-of-type(2) {
+              >div {
+                .annumdar();
+                color: @2;
+              }
+            }
+
+            // Platforms.
+            >div:nth-of-type(3) {
+              display: flex;
+              flex-flow: column;
+
+              >a:not(.sub) {
+                color: inherit;
+                font-size: 15px;
+              }
+            }
+          }
+
+          // Third row.
+          &:nth-of-type(3) {
+            font-size: 14px;
+
+            >a {
+              margin-top: .3ex;
+            }
+          }
+        }
+      }
+
+      // Tags.
+      &:nth-of-type(2) > div {
+        width: 538px;
+
+        p {
+          .sub-indent(17);
+        }
+
+        // Tag list.
+        >div:last-of-type {
+          >ol.tags {
+            gap: 1px;
+            overflow: auto;
+            max-height: 200px;
+          }
+        }
+      }
+
+      // Deals.
+      &:nth-of-type(3) > div {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        .grid-gap();
+
+        >div {
+          display: grid;
+          grid-template-columns: subgrid;
+          grid-column: 1 / -1;
+
+          &:first-of-type {
+            >a:before {
+              background: #3bb05c;
+            }
+          }
+
+          &:last-of-type > div {
+            display: flex;
+            flex-flow: column;
+            gap: .6ex;
+
+            >a {
+              color: @1;
+              font-size: 16px;
+            }
+          }
+        }
+      }
+
+      // Dates.
+      &:nth-of-type(4) > div {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        .grid-gap();
+
+        >div {
+          &:first-of-type {
+            display: flex;
+            flex-flow: column;
+            gap: .6ex;
+
+            >a:before {
+              position: relative;
+              top: -2px;
+            }
+          }
+          &:last-of-type > div {
+            .annumdar();
+            margin-top: 1ex;
+
+            >a {
+              color: @1;
+              font-size: 14px;
+            }
+          }
+
+          &:before {
+            content: none;
+          }
         }
       }
     }

@@ -129,9 +129,9 @@ final class Queries
     public static function fetchPopularTags(Connection $database, int $threshold = 400): array
     {
         return $database->executeQuery("
-            SELECT id, tag
+            SELECT tag.id, tag.name, category
             FROM (
-                SELECT tag.id, tag.name AS tag, COUNT(*) AS count
+                SELECT tag.id, tag.name, category, COUNT(*) AS count
                 FROM app_tag
                     JOIN (
                         SELECT app_id, AVG(votes) avg
@@ -144,10 +144,10 @@ final class Queries
                 GROUP BY tag.id
                 HAVING count >= $threshold
                 ORDER BY count DESC
-                LIMIT 150
-            )
-            ORDER BY tag
-        ")->fetchAllKeyValue();
+                LIMIT 100
+            ) tag LEFT JOIN tag_cat cat ON category = short_name
+            ORDER BY cat.id, tag.name
+        ")->fetchAllAssociative();
     }
 
     public static function countGames(Connection $database): int

@@ -13,7 +13,6 @@ declare global {
 class S250 {
     constructor() {
         // Menu stuff.
-        this.initMenuScrollbarTransitions();
         this.constrainDropdownMenuPositions();
 
         // UI stuff.
@@ -73,46 +72,10 @@ class S250 {
     }
 
     /**
-     * Apply transitioning (t11g) class whilst menu is opening or closing to prevent scrollbars during this state.
-     */
-    initMenuScrollbarTransitions() {
-        const T11G = 't11g';
-
-        // transitionstart event emulation for Chrome.
-        document.querySelectorAll('ol.menu li').forEach(e => {
-            const ol = e.querySelector('ol');
-            if (!ol) return;
-
-            e.addEventListener('mouseenter', _ => ol.clientHeight === 0 && ol.classList.add(T11G));
-            e.addEventListener('mouseleave', _ => ol.classList.add(T11G));
-        });
-
-        document.querySelectorAll<HTMLElement>('ol.menu > li ol').forEach(e => {
-            e.addEventListener('transitionend', _ => e.classList.remove(T11G));
-
-            // Prevent window scrolling whilst over submenu.
-            e.addEventListener('wheel', (event) => {
-                if (e.clientHeight + e.scrollTop + event.deltaY > e.scrollHeight) {
-                    e.scrollTop = e.scrollHeight;
-
-                    event.preventDefault();
-                } else if (e.scrollTop + event.deltaY < 0) {
-                    e.scrollTop = 0;
-
-                    event.preventDefault();
-                }
-
-                // Forbid parent from handling event.
-                event.stopPropagation();
-            });
-        });
-    }
-
-    /**
      * Ensure each drop-down menu is completely visible within the viewport.
      */
     constrainDropdownMenuPositions() {
-        document.querySelectorAll<HTMLElement>('ol.menu > li > ol').forEach(e => {
+        document.querySelectorAll<HTMLElement>('nav > ol > li > div').forEach(e => {
             const rect = e.getBoundingClientRect();
 
             if (rect.left < 0) {
