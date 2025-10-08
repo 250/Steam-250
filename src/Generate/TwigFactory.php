@@ -47,7 +47,7 @@ final class TwigFactory
         $twig->addGlobal('ext', $ext);
         $twig->addGlobal('club250', $_ENV['CLUB_250_BASE_URL']);
         $twig->addGlobal('club250_static', $_ENV['CLUB_250_STATIC_BASE_URL']);
-        $twig->addGlobal('patreon', 'https://www.patreon.com/steam250/overview');
+        $twig->addGlobal('patreon', 'https://www.patreon.com/steam250');
         $twig->addGlobal('discord', 'https://discord.steam250.com');
 
         return $twig;

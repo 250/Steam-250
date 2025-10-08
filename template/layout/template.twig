@@ -161,18 +161,23 @@
             <li>Club 250
                 <div>
                     <div>
-                        <a href="{{ club250 }}/join" class="patreon">Join Club 250</a>
-                        <a href="{{ club250 }}/ranking/my-games" class="myrank">
-                            My Games
-                            {{ include('@components/micro tier.twig', {tier: 2, benefit: 'myrank'}) }}
-                        </a>
-                        <a href="{{ club250 }}/members" class="members">Club Members</a>
+                        <div>
+                            <a href="{{ club250 }}/join" class="join">Join Club 250</a>
+                            <p>Discover more with a Club 250 membership</p>
+                        </div>
+                        <div>
+                            <div>
+                                <a href="{{ club250 }}/ranking/my-games" class="myrank">My Games</a>
+                                {{ include('@components/micro tier.twig', {tier: 2, benefit: 'myrank'}) }}
+                            </div>
+                            <a href="{{ club250 }}/members" class="members">Club Members</a>
+                        </div>
                     </div>
 
                     <div>
                         <div>
-                            <a href="/about{{ ext }}">About Steam 250</a>
-                            <a href="/contributors{{ ext }}">Contributors</a>
+                            <a href="/about{{ ext }}" class="about">About Steam 250</a>
+                            <a href="/contributors{{ ext }}" class="contrib">Contributors</a>
                             <a href="/cosmic_tweets{{ ext }}">Classic Tweets</a>
                         </div>
                         <div>
@@ -185,9 +190,10 @@
                     </div>
 
                     <div>
-                        <a href="{{ discord }}">Chat in Discord</a>
-                        <a href="https://store.steampowered.com/curator/32686107/">Follow on Steam</a>
-                        <a href="{{ discord }}">Follow on X</a>
+                        <a href="{{ discord }}" class="discord">Chat in Discord</a>
+                        <a href="https://store.steampowered.com/curator/32686107/" class="steam">Follow on Steam</a>
+                        <a href="{{ patreon }}" class="patreon">Follow on Patreon</a>
+                        <a href="https://x.com/Steam_250" class="x">Follow on X</a>
                     </div>
                 </div>
         </ol>

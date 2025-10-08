@@ -28,7 +28,7 @@ nav {
         margin-left: calc(@font-size/16 * 1.7rem);
       }
       .grid-gap() {
-        gap: 0 3.3ch;
+        column-gap: 3.3ch;
       }
       .annumdar() {
         display: grid;
@@ -115,6 +115,24 @@ nav {
           color: #a6adff;
         }
       }
+      &:nth-of-type(5) {
+        //> div:extend(nav > ol > li:hover > div) {}
+      }
+      &:nth-of-type(-n+3) > div {
+        >div:nth-of-type(n+2) {
+          // Divider.
+          &:before {
+            content: '';
+            display: block;
+            grid-column: 1 / -1;
+            width: calc(100% + 12px);
+            height: 1px;
+            margin: 1.6ex -6px;
+
+            background: #20252a;
+          }
+        }
+      }
 
       >div {
         box-sizing: border-box;
@@ -158,20 +176,6 @@ nav {
           grid-template-columns: 1fr 1fr;
           align-items: start;
           .grid-gap();
-        }
-
-        >div:nth-of-type(n+2) {
-          // Divider.
-          &:before {
-            content: '';
-            display: block;
-            grid-column: 1 / -1;
-            width: calc(100% + 12px);
-            height: 1px;
-            margin: 1.6ex -6px;
-
-            background: #20252a;
-          }
         }
 
         a, a:visited {
@@ -289,6 +293,42 @@ nav {
           &.dt365:before {
             #icons.dt365();
           }
+
+          &.join:before {
+            #icons.join();
+          }
+          &.myrank:before {
+            #icons.myrank();
+          }
+          &.members:before {
+            #icons.user();
+            width: .99em;
+          }
+          &.email:before {
+            #icons.email();
+          }
+          &.about:before {
+            #icons.info();
+          }
+          &.contrib:before {
+            #icons.group();
+          }
+
+          &.discord:before {
+            #icons.discord();
+            width: 1.2em;
+          }
+          &.steam:before {
+            #icons.steam();
+          }
+          &.patreon:before {
+            #icons.patreon();
+          }
+          &.x:before {
+            #icons.x();
+            width: .9em;
+            margin: 0 .15em;
+          }
         }
 
         span {
@@ -313,6 +353,8 @@ nav {
           color: #aeb6cf;
           font-size: 13px;
           font-weight: normal;
+          line-height: 1.3;
+          text-align: left;
 
           i {
             font-style: italic;
@@ -479,6 +521,8 @@ nav {
             >a:before {
               position: relative;
               top: -2px;
+
+              font-size: 16px;
             }
           }
           &:last-of-type > div {
@@ -490,9 +534,101 @@ nav {
               font-size: 14px;
             }
           }
+        }
+      }
+
+      // Club 250.
+      &:nth-of-type(5) > div {
+        >div:nth-of-type(1) {
+          display: grid;
+          grid-template-columns: min-content min-content auto;
+          margin: -25px -23px 15px;
+          padding: 20px 22px 16px;
+
+          border-radius: 5px;
+          border: 1px solid #f5c03b80;
+          background: linear-gradient(#313021, #2b2820);
+
+          a {
+            color: #e7bf60;
+
+            &:before {
+              background: #e7bf60;
+            }
+          }
+          p {
+            color: #c6bc9a;
+          }
 
           &:before {
-            content: none;
+            content: '';
+            width: 65px;
+            aspect-ratio: 11/12;
+
+            background: url('//s.steam250.com/img/club 250 logo x96.webp') 0/cover;
+          }
+
+          >div {
+            display: flex;
+            flex-flow: column;
+            justify-content: center;
+            height: 100%;
+
+            &:last-of-type {
+              gap: .6ex;
+
+              >div {
+                display: flex;
+                align-items: end;
+                gap: .5ch;
+              }
+            }
+          }
+        }
+
+        >div:nth-of-type(2) {
+          display: grid;
+          grid-template-columns: 1fr auto;
+          .grid-gap();
+
+          >div:first-of-type {
+            display: flex;
+            flex-flow: column;
+            gap: .6ex;
+
+            >a {
+              color: @1;
+              font-size: 17px;
+
+              &:last-of-type {
+                margin-top: .1em;
+                .sub-indent(17);
+
+                font-size: 14px;
+              }
+            }
+          }
+
+          p {
+            .sub-indent(17);
+            min-width: 18em;
+          }
+        }
+
+        // Footer.
+        >div:nth-of-type(3) {
+          display: grid;
+          grid-template-columns: repeat(3, auto);
+          margin: 15px -23px -15px;
+          padding: 15px 23px;
+          .grid-gap();
+          row-gap: .8ex;
+
+          font-size: 14px;
+          background: #111519;
+
+          >a:before {
+            background: currentColor;
           }
         }
       }
