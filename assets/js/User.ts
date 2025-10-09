@@ -93,7 +93,7 @@ export default class User {
         const user = this.fetchUser();
 
         if (user.tier) {
-            document.querySelectorAll('ol.menu .micro.tier' + (S250.isClub250() ? '' : ', #body .micro.tier'))
+            document.querySelectorAll('nav .micro.tier' + (S250.isClub250() ? '' : ', #body .micro.tier'))
                 .forEach(e => {
                     const tier = +[...e.classList].filter(s => /^t\d$/.test(s))[0].substring(1);
 

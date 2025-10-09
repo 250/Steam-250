@@ -120,7 +120,7 @@ class S250 {
 
         if (!hash) return;
 
-        const menuHeight = document.querySelector('ol.menu')!.getBoundingClientRect().height,
+        const menuHeight = document.querySelector('nav')!.getBoundingClientRect().height,
             target = this.resolveHashTarget(hash);
 
         if (target) {

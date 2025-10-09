@@ -46,6 +46,8 @@ nav {
         }
       }
 
+      display: flex;
+      align-items: center;
       position: relative;
       padding: 0 1.3ch;
       align-content: center;
@@ -55,6 +57,17 @@ nav {
 
       transition: color .3s .15s;
 
+      &:before {
+        content: '';
+        display: inline-block;
+        width: 15px;
+        height: 15px;
+        margin-right: .8ch;
+
+        background: #9da0c5;
+
+        transition: background-color .3s;
+      }
       &:after {
         content: '';
         position: absolute;
@@ -91,31 +104,72 @@ nav {
         }
       }
 
+      &:nth-of-type(1) {
+        &:before {
+          #icons.cup();
+        }
+        &:hover:before {
+          background: #c39a40;
+        }
+      }
       &:nth-of-type(2) {
+        &:before {
+          #icons.tags();
+          width: 1.1em;
+
+          rotate: 45deg;
+          mask-repeat: no-repeat;
+          mask-position: right;
+        }
         &:after {
           background: #7ba7f2;
         }
         &:hover {
           color: #a4c5ff;
+
+          &:before {
+            background: #6294ea;;
+          }
         }
       }
       &:nth-of-type(3) {
+        &:before {
+          #icons.discount();
+        }
         &:after {
           background: #7de099;
         }
         &:hover {
           color: #aaceb4;
+
+          &:before {
+            background: #3bb05c;
+          }
         }
       }
       &:nth-of-type(4) {
+        &:before {
+          #icons.dt7();
+          margin-top: -.1em;
+        }
         &:after {
           background: #98a1ff;
         }
         &:hover {
           color: #a6adff;
+
+          &:before {
+            background: #7680ec;
+          }
         }
       }
       &:nth-of-type(5) {
+        &:before {
+          #icons.members();
+        }
+        &:hover:before {
+          background: #c39b3a;
+        }
         //> div:extend(nav > ol > li:hover > div) {}
       }
       &:nth-of-type(-n+3) > div {
@@ -150,6 +204,7 @@ nav {
         color: @1;
         background: #14191f;
         border-radius: 0 0 6px 6px;
+        box-shadow: 0 1px 8px #17222f;
 
         transition: all .3s .15s;
 
@@ -299,10 +354,12 @@ nav {
           }
           &.myrank:before {
             #icons.myrank();
+            width: 1.1em;
+            margin-left: -.1em;
           }
           &.members:before {
             #icons.user();
-            width: .99em;
+            width: .9em;
           }
           &.email:before {
             #icons.email();

@@ -144,7 +144,7 @@ final class Queries
                 GROUP BY tag.id
                 HAVING count >= $threshold
                 ORDER BY count DESC
-                LIMIT 100
+                LIMIT 150
             ) tag LEFT JOIN tag_cat cat ON category = short_name
             ORDER BY cat.id, tag.name
         ")->fetchAllAssociative();

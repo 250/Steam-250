@@ -205,47 +205,6 @@ legend {
     text-transform: uppercase;
 }
 
-a.owned {
-    position: relative;
-    display: inline-block;
-}
-a.owned > img {
-    opacity: .3;
-}
-a.owned {
-    &:before {
-        content: attr(data-content);
-        position: absolute;
-        display: block;
-        z-index: 1;
-        left: 0;
-        top: 50%;
-        max-width: 0;
-        height: 18px;
-        line-height: 19px;
-        padding-left: 18px;
-        margin-top: -9px;
-        overflow: hidden;
-        white-space: nowrap;
-        pointer-events: none;
-
-        color: #111;
-        background: #4F95BD url('/svg/burger.svg') no-repeat 5px 50%;
-        background-size: 8px 8px;
-        font-size: 8pt;
-        text-transform: uppercase;
-        transition: max-width .3s, padding .2s;
-    }
-
-    &[data-content="0 minutes"]:before {
-        background-color: #ba6363;
-    }
-}
-a.owned:hover:before {
-    max-width: 100%;
-    padding-right: 5px;
-}
-
 b.deck-v {
     color: #59bf40;
 }
