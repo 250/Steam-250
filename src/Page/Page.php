@@ -22,8 +22,9 @@ abstract class Page
     public function export(): array
     {
         $tags = Queries::fetchPopularTags($this->database);
+        $tagCount = Queries::countTags($this->database);
 
-        return compact('tags');
+        return compact('tags', 'tagCount');
     }
 
     public function getId(): string

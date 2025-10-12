@@ -29,8 +29,9 @@ use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\SteamDeckPlayableRanking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\SteamDeckVerifiedRanking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\Top250Ranking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\Usd10To15Ranking;
+use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\Usd15To20Ranking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\Usd5To10Ranking;
-use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\UsdOver15Ranking;
+use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\UsdOver20Ranking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\UsdUnder5Ranking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\VrTop250Ranking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\VrxRanking;
@@ -46,7 +47,8 @@ final class RankingName extends AbstractEnumeration
     public const USD_UNDER_5 = 'USD_UNDER_5';
     public const USD5_10 = 'USD5_10';
     public const USD10_15 = 'USD10_15';
-    public const USD_OVER_15 = 'USD_OVER_15';
+    public const USD15_20 = 'USD15_20';
+    public const USD_OVER_20 = 'USD_OVER_20';
     public const D_7 = 'D_7';
     public const D_30 = 'D_30';
     public const D_90 = 'D_90';
@@ -78,7 +80,8 @@ final class RankingName extends AbstractEnumeration
         self::USD_UNDER_5 => UsdUnder5Ranking::class,
         self::USD5_10 => Usd5To10Ranking::class,
         self::USD10_15 => Usd10To15Ranking::class,
-        self::USD_OVER_15 => UsdOver15Ranking::class,
+        self::USD15_20 => Usd15To20Ranking::class,
+        self::USD_OVER_20 => UsdOver20Ranking::class,
         self::D_7 => RollingWeekRanking::class,
         self::D_30 => RollingMonthRanking::class,
         self::D_90 => RollingQuarterRanking::class,
@@ -111,7 +114,8 @@ final class RankingName extends AbstractEnumeration
         self::USD_UNDER_5 => 'u5',
         self::USD5_10 => '5-10',
         self::USD10_15 => '10-15',
-        self::USD_OVER_15 => 'o15',
+        self::USD15_20 => '15-20',
+        self::USD_OVER_20 => 'o20',
         self::D_7 => '7d',
         self::D_30 => '30d',
         self::D_90 => '90d',

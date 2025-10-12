@@ -155,6 +155,11 @@ final class Queries
         return +$database->fetchOne("SELECT count(*) FROM app WHERE type = 'game'");
     }
 
+    public static function countTags(Connection $database): int
+    {
+        return +$database->fetchOne("SELECT count(*) FROM tag");
+    }
+
     /**
      * Ranks the specified list according to the list's algorithm and weighting.
      *

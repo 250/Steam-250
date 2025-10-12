@@ -19,7 +19,7 @@
     "eloquent/enumeration": "^6",
     "joomla/di": "^2",
     "monolog/monolog": "^3",
-    "phptype/date": "^2",
+    "phptype/date": "^3",
     "rybakit/msgpack": "^0.9",
     "scriptfusion/byte-formatter": "^4.2",
     "scriptfusion/static-class": "^1",
