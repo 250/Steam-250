@@ -2,6 +2,7 @@
   "private": true,
   "devDependencies": {
     "@babel/core": "^7.14.6",
+    "@dotenvx/dotenvx": "^1.51.0",
     "@storybook/addon-actions": "^6.5.15",
     "@storybook/addon-essentials": "^6.5.15",
     "@storybook/addon-links": "^6.5.15",
@@ -22,6 +23,7 @@
     "mini-css-extract-plugin": "^2.9.4",
     "postcss": "^8.2.7",
     "postcss-loader": "^4.3.0",
+    "postcss-pxtorem": "^6.1.0",
     "style-loader": "^2.0.0",
     "terser-webpack-plugin": "^5.3.6",
     "ts-loader": "^8.0.17",
@@ -32,8 +34,8 @@
     "webpack-cli": "^4.5.0"
   },
   "scripts": {
-    "watch": "webpack --config webpack/webpack.config --watch",
-    "build": "webpack --config webpack/webpack.config --mode production",
+    "watch": "dotenvx run -f webpack/.env.local -f webpack/.env -- webpack --config webpack/webpack.config --watch",
+    "build": "dotenvx run -f webpack/.env -- webpack --config webpack/webpack.config --mode production",
     "storybook": "NODE_OPTIONS=--openssl-legacy-provider start-storybook --config-dir storybook --port 6006 --ci",
     "build-storybook": "NODE_OPTIONS=--openssl-legacy-provider build-storybook --config-dir storybook"
   },

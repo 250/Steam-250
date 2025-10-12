@@ -7,6 +7,24 @@
 @import "inc/button group";
 @import "inc/more button";
 
+:root {
+    // Only affects rem-scaling components since body immediately overrides this.
+    @media (max-width: 521px) {
+        font-size: 15PX;
+    }
+    @media (max-width: 490px) {
+        font-size: 14PX;
+    }
+    @media (max-width: 464px) {
+        font-size: 13PX;
+    }
+    @media (max-width: 438px) {
+        font-size: 12PX;
+    }
+    @media (max-width: 400px) {
+        font-size: 11PX;
+    }
+}
 html, body {
     height: 100%;
 }
@@ -14,7 +32,7 @@ html, body {
 body {
     color: #c7d5e0;
     background: #1b2838;
-    font: 95%/1.4 Inter, sans-serif;
+    font: 15.2px/1.4 Inter, sans-serif;
     font-optical-sizing: auto;
 }
 @media (max-width: 380px) {

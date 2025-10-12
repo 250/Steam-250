@@ -104,6 +104,9 @@ module.exports = {
                                     [
                                         'autoprefixer',
                                     ],
+                                    [
+                                        'postcss-pxtorem',
+                                    ],
                                 ],
                             },
                         },
@@ -113,7 +116,11 @@ module.exports = {
                         options: {
                             sourceMap: true,
                             lessOptions: {
+                                relativeUrls: false,
                                 strictUnits: true,
+                                globalVars: {
+                                    C250: `'${process.env.CLUB_250_STATIC_BASE_URL}'`,
+                                },
                             },
                         },
                     },

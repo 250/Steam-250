@@ -14,6 +14,7 @@ class S250 {
     constructor() {
         // Menu stuff.
         this.constrainDropdownMenuPositions();
+        addEventListener('resize', _ => this.constrainDropdownMenuPositions())
 
         // UI stuff.
         S250.initRatingColourGradient();
