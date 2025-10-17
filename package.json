@@ -1,7 +1,6 @@
 {
   "private": true,
   "devDependencies": {
-    "@babel/core": "^7.14.6",
     "@dotenvx/dotenvx": "^1.51.0",
     "@storybook/addon-actions": "^6.5.15",
     "@storybook/addon-essentials": "^6.5.15",
@@ -12,7 +11,6 @@
     "@types/node": "^22.12.0",
     "@whitespace/storybook-addon-html": "5.0.0",
     "autoprefixer": "^10.2.5",
-    "babel-loader": "^8.2.2",
     "clean-webpack-plugin": "^3.0.0",
     "copy-webpack-plugin": "^13.0.1",
     "css-loader": "^5.0.2",
@@ -29,20 +27,21 @@
     "ts-loader": "^8.0.17",
     "twing": "^5.0.2",
     "twing-loader": "^4.0.0",
-    "typescript": "^4.1.5",
+    "typescript": "^5.9.3",
     "webpack": "^5.101.3",
     "webpack-cli": "^4.5.0"
   },
   "scripts": {
     "watch": "dotenvx run -f webpack/.env.local -f webpack/.env -- webpack --config webpack/webpack.config --watch",
     "build": "dotenvx run -f webpack/.env -- webpack --config webpack/webpack.config --mode production",
-    "storybook": "NODE_OPTIONS=--openssl-legacy-provider start-storybook --config-dir storybook --port 6006 --ci",
-    "build-storybook": "NODE_OPTIONS=--openssl-legacy-provider build-storybook --config-dir storybook"
+    "storybook": "NODE_OPTIONS=--openssl-legacy-provider dotenvx run -f webpack/.env -- start-storybook --config-dir storybook --port 6006 --ci",
+    "build-storybook": "NODE_OPTIONS=--openssl-legacy-provider dotenvx run -f webpack/.env -- build-storybook --config-dir storybook"
   },
   "dependencies": {
     "chroma-js": "^2.4.2",
     "dayjs": "^1.10.4",
     "posthog-js": "^1.212.1",
+    "shaka-player": "^4.16.4",
     "vanilla-lazyload": "^17.3.1"
   },
   "packageManager": "pnpm@10.0.0+sha512.b8fef5494bd3fe4cbd4edabd0745df2ee5be3e4b0b8b08fa643aa3e4c6702ccc0f00d68fa8a8c9858a735a0032485a44990ed2810526c875e416f001b17df12b"

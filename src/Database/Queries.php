@@ -101,7 +101,8 @@ final class Queries
 
         try {
             return $database->executeQuery(
-                'SELECT id, prank.rank, prank.owner, name, videos, capsule_hash, capsule_alt, "dead" movement
+                'SELECT id, prank.rank, prank.owner, name, videos, video_manifest_hashes, capsule_hash, capsule_alt,
+                    "dead" movement
                 FROM prev.rank prank
                     JOIN prev.app ON id = prank.app_id
                     LEFT JOIN rank USING (list_id, app_id)

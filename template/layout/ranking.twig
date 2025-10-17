@@ -116,7 +116,9 @@
                     {{ app.rank ?? loop.index }}
                 </div>
                 <div>{# Capsule image. #}
-                    <a href="{{ steam.app_url(app.id) }}" {{ steam.video_attr(app.name, app.videos) }}>
+                    <a href="{{ steam.app_url(app.id) }}"
+                        {{ steam.video_attr(app.name, app.videos, app.video_manifest_hashes) }}
+                    >
                         {{ steam.app_capsule(app) }}
                     </a>
                 </div>

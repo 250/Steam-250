@@ -14,9 +14,10 @@ https://store.steampowered.com/search/?sort_by=Reviews_DESC&amp;category1=998&am
 https://store.steampowered.com/search/?sort_by=Reviews_DESC&amp;category1=998&amp;publisher={{ publisher|e('url') }}
 {% endmacro %}
 
-{% macro video_attr(game_name, videos) %}
+{% macro video_attr(game_name, videos, hashes) %}
 {% if videos -%}
     data-video="{{ videos }}"
+    data-hx="{{ hashes }}"
     data-title="{{ game_name|e('html_attr') }}"
 {%- endif %}
 {% endmacro %}

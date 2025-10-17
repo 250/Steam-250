@@ -16,7 +16,7 @@ module.exports = {
         250: {
             import: [
                 './js/250.ts',
-                './js/VideoPlayer.js',
+                './js/VideoPlayer.ts',
                 './js/LazyLoad.ts',
 
                 './css/250.less',
@@ -35,7 +35,6 @@ module.exports = {
         ],
         internal: [
             './js/BuildMonitor.ts',
-            './js/Filter.ts',
         ],
         home: [
             './css/home.less',

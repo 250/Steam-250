@@ -48,6 +48,14 @@ module.exports = {
                     },
                     {
                         loader: 'less-loader',
+                        options: {
+                            lessOptions: {
+                                relativeUrls: false,
+                                globalVars: {
+                                    C250: `'${process.env.CLUB_250_STATIC_BASE_URL}'`,
+                                },
+                            },
+                        },
                     },
                 ],
             },

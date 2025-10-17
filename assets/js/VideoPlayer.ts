@@ -1,4 +1,16 @@
+// @ts-expect-error not a module
+import type shaka from 'shaka-player';
+
 new class {
+    private container!: HTMLDivElement;
+    private frame!: HTMLDivElement;
+    private header!: HTMLElement;
+    private video!: HTMLVideoElement;
+    private footer!: HTMLElement;
+    private page!: Element;
+    private shaka?: shaka;
+    private player?: shaka.Player;
+
     constructor() {
         if (this.initDom() !== false) {
             this.initVideo();
@@ -19,7 +31,7 @@ new class {
         this.header = this.frame.appendChild(document.createElement('header'));
         this.video = this.frame.appendChild(document.createElement('video'));
         this.footer = this.frame.appendChild(document.createElement('footer'))
-        this.page = document.querySelector('#page');
+        this.page = document.querySelector('#page')!;
 
         this.container.id = 'video-container';
         this.container.addEventListener('click', e => e.target === this.container && this.deactivate());
@@ -33,7 +45,7 @@ new class {
         this.video.muted = volume.muted;
 
         this.video.addEventListener('volumechange', _ => this.saveVolumeState());
-        this.video.addEventListener('loadedmetadata', _ => {
+        this.video.addEventListener('resize', _ => {
             // Restore video dimensions to auto.
             this.video.removeAttribute('width');
             this.video.removeAttribute('height');
@@ -44,18 +56,22 @@ new class {
     }
 
     initVideoLinks() {
-        document.querySelectorAll('[data-video]').forEach(
+        document.querySelectorAll<HTMLElement>('[data-video]').forEach(
             a => a.addEventListener('click', e => {
                 // Ignore clicks bubbling up from other link elements.
-                if (e.target.tagName === 'A' && e.target !== a) return;
+                if (e.target instanceof HTMLAnchorElement && e.target !== a) return;
 
-                this.loadThumbs(a.getAttribute('data-video').split(','));
+                this.loadThumbs(
+                    ('href' in a ? <string>a.href : location.pathname).match(/\/app\/(\d+)/)![1],
+                    a.getAttribute('data-video')!.split(','),
+                    a.getAttribute('data-hx')!.split(','),
+                );
 
-                this.header.innerHTML = a.getAttribute('data-title');
+                this.header.innerHTML = a.getAttribute('data-title')!;
                 if ('href' in a) this.header.innerHTML = `<a href="${a.href}">${this.header.innerHTML}</a>`;
 
                 // Start playing first video with simulated click.
-                this.footer.firstChild.click();
+                this.footer.firstChild!.dispatchEvent(new Event('click'));
 
                 e.stopPropagation();
                 e.preventDefault();
@@ -76,20 +92,20 @@ new class {
                     // 10% dead zone margin.
                     left: (this.footer.scrollWidth - rect.width) * ((e.clientX - rect.x) / rect.width * 1.2 - .1),
                     // Smooth scrolling is terrible in Chrome because of a fixed delay before scrolling starts.
-                    behavior: typeof InstallTrigger !== 'undefined' ? 'smooth' : 'auto',
+                    behavior: 'InstallTrigger' in window ? 'smooth' : 'auto',
                 })
             }
         );
     }
 
-    loadThumbs(videoIds) {
+    loadThumbs(appId: string, videoIds: string[], videoHashes: string[]) {
         while (this.footer.lastChild) {
             this.footer.removeChild(this.footer.lastChild);
         }
 
         for (let i = 0; i < videoIds.length; ++i) {
             const thumb = this.footer.appendChild(document.createElement('div'));
-            thumb.setAttribute('data-index', i + 1);
+            thumb.setAttribute('data-index', String(i + 1));
 
             let videoId = videoIds[i], thumbHash = '';
             if (videoId.length > 40) {
@@ -102,20 +118,20 @@ new class {
                 + (thumbHash ? 'movie_232x130.jpg' : 'movie.184x123.jpg');
 
             thumb.addEventListener('click', _ => {
-                this.play(videoId);
+                this.play(appId, videoHashes[i]);
 
-                thumb.parentNode.querySelectorAll('img').forEach(img => img.classList.remove('active'));
+                thumb.parentNode!.querySelectorAll('img').forEach(img => img.classList.remove('active'));
                 img.classList.add('active');
 
-                this.header.setAttribute('data-video-id', i + 1);
-                this.header.setAttribute('data-videos', videoIds.length);
+                this.header.setAttribute('data-video-id', String(i + 1));
+                this.header.setAttribute('data-videos', videoIds.length.toString());
             });
         }
     }
 
     loadVolumeState() {
         return localStorage.hasOwnProperty('video.volume')
-            ? JSON.parse(localStorage.getItem('video.volume'))
+            ? JSON.parse(localStorage.getItem('video.volume')!)
             : {
                 volume: .5,
                 muted: false,
@@ -145,24 +161,42 @@ new class {
         this.page.classList.remove('video');
     }
 
-    play(id) {
+    async play(appId: string, hash: string) {
+        // @ts-expect-error not a module
+        this.shaka ||= <shaka>await import('shaka-player');
+        const player: shaka.Player = this.player ||= new this.shaka.Player();
+        await player.attach(this.video);
+
+        // Don't pick a resolution beyond the screen size.
+        player.configure('abr.restrictToScreenSize', true);
+        // Assume we can handle the highest bitrate available until we know better.
+        player.configure('abr.defaultBandwidthEstimate', Infinity);
+
+        player.addEventListener('adaptation', (event: any) => this.header.dataset.res = event.newTrack.height + 'p');
+
         // Prevent video resizing between loads because it looks glitchy. Restored when next video loads.
         this.video.width = this.video.clientWidth;
         this.video.height = this.video.clientHeight;
 
-        while (this.video.lastChild) {
-            this.video.removeChild(this.video.lastChild);
-        }
-
-        const webm = this.video.appendChild(document.createElement('source'));
-        webm.src = `https://steamcdn-a.akamaihd.net/steam/apps/${id}/movie480.webm`;
-        webm.type = 'video/webm';
-
-        const mp4 = this.video.appendChild(document.createElement('source'));
-        mp4.src = `https://steamcdn-a.akamaihd.net/steam/apps/${id}/movie480.mp4`;
-        mp4.type = 'video/mp4';
+        await this.loadCompatibleMedia(player, appId, hash);
 
         this.activate();
-        this.video.load();
+    }
+
+    async loadCompatibleMedia(player: shaka.Player, appId: string, hash: string) {
+        const CDN = 'https://video.akamai.steamstatic.com/store_trailers';
+        const base = `${CDN}/${appId}/${hash}`;
+
+        // AV1 Main Profile Level 9.0 8-bit ≈ 4K@60fps.
+        if (MediaSource.isTypeSupported('video/mp4; codecs="av01.0.09M.08"')) {
+            return await player.load(`${base}/dash_av1.mpd`);
+        }
+
+        // H.264 High Profile Level 4.1 = 1080p@60fps.
+        if (MediaSource.isTypeSupported('video/mp4; codecs="avc1.640029"')) {
+            return await player.load(`${base}/dash_h264.mpd`);
+        }
+
+        return await player.load(`${base}/hls_264_master.m3u8`);
     }
 };
