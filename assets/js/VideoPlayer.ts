@@ -51,8 +51,13 @@ new class {
             this.video.removeAttribute('height');
 
             // Keep child elements in sync with video width.
-            this.frame.style.maxWidth = this.video.videoWidth + 'px';
+            this.syncFooterSize();
         });
+        addEventListener('resize', () => this.syncFooterSize());
+    }
+
+    syncFooterSize() {
+        this.footer.style.maxWidth = `${this.video.clientWidth}px`;
     }
 
     initVideoLinks() {
