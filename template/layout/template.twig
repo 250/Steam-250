@@ -6,12 +6,6 @@
 <div id="page" class="{% block class %}{% endblock %}">
     <section id="header">
         <div id="user">
-            <form action="{{ club250 }}/search" novalidate>
-                <label>
-                    <span title="Search">Search</span
-                    ><input name="q" type="search" required>
-                </label>
-            </form>
             <div id="lout">
                 <form action="https://steamcommunity.com/openid/login" method="post">
                     <button id="login">Sign in via Steam</button>
@@ -187,7 +181,8 @@
                             <a href="{{ club250 }}/email%20sub/7day" class="email">Free weekly email</a>
                             <p>
                                 <i>Please note</i>
-                                we are currently experiencing issues with deliverability to Gmail and Outlook addresses.
+                                we are currently experiencing issues with deliverability to some
+                                Gmail and Outlook addresses.
                             </p>
                         </div>
                     </div>
@@ -199,6 +194,18 @@
                         <a href="https://x.com/Steam_250" class="x">Follow on X</a>
                     </div>
                 </div>
+
+            <li>
+                <button title="Search (s)" onclick="search.showModal()">Search</button>
+                <dialog id="search" onclick="event.target === search && search.close()">
+                    <form action="{{ club250 }}/search">
+                        <label>
+                            Search game titles
+                            <input name="q" type="search" placeholder="Search">
+                        </label>
+                        <button>Search</button>
+                    </form>
+                </dialog>
         </ol>
     </nav>
 

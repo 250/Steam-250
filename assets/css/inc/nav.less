@@ -22,6 +22,13 @@ nav {
     letter-spacing: -.01em;
 
     >li {
+      padding: 0 1.3ch;
+
+      @media (max-width: 544px) {
+        padding: 0 1ch;
+      }
+    }
+    >li:not(:last-child) {
       @1: #d5dbed;
       @2: #aab6da;
 
@@ -51,7 +58,6 @@ nav {
       display: flex;
       align-items: center;
       position: relative;
-      padding: 0 1.3ch;
       align-content: center;
 
       cursor: pointer;
@@ -111,8 +117,7 @@ nav {
       &:nth-of-type(1) {
         &:before {
           #icons.cup();
-
-          width: .95em;
+          width: 14px;
         }
         &:hover:before {
           background: #c39a40;
@@ -121,7 +126,7 @@ nav {
       &:nth-of-type(2) {
         &:before {
           #icons.tags();
-          width: 1.1em;
+          width: 17.4px;
 
           rotate: 45deg;
           mask-repeat: no-repeat;
@@ -134,7 +139,7 @@ nav {
           color: #a4c5ff;
 
           &:before {
-            background: #6294ea;;
+            background: #6294ea;
           }
         }
       }
@@ -701,6 +706,26 @@ nav {
           >a:before {
             background: currentColor;
           }
+        }
+      }
+    }
+
+    >li:last-child {
+      align-self: center;
+
+      // Search.
+      >button {
+        overflow: hidden;
+        text-indent: 200%;
+        width: 16px;
+        height: $width;
+        line-height: 0;
+
+        background: #9ba2b9;
+        mask: url(/svg/search.svg);
+
+        &:hover {
+          background: #c7d5e0;
         }
       }
     }
