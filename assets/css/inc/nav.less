@@ -247,7 +247,9 @@ nav {
         a, a:visited {
           white-space: nowrap;
 
-          color: inherit;
+          &:not(.tag) {
+            color: inherit;
+          }
 
           &[class]:where(:not(.tag)) {
             display: flex;
