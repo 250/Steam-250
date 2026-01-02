@@ -14,6 +14,6 @@ abstract class DefaultRanking extends Ranking
 {
     public function __construct(RankingDependencies $dependencies, string $id, int $limit = 250)
     {
-        parent::__construct($dependencies, $id, $limit, Algorithm::LAPLACE_LOG(), .75);
+        parent::__construct($dependencies, $id, $limit, Algorithm::LAPLACE_LOG(), 10);
     }
 }
