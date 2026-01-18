@@ -9,7 +9,7 @@
   ],
   "license": "AGPL-3.0-only",
   "require": {
-    "php": "8.4.*",
+    "php": "8.5.*",
     "ext-pdo": "*",
     "250/components": "dev-master",
     "250/log": "dev-master",

@@ -1,3 +1,5 @@
+@import "inc/func/icons";
+
 section.stats {
   display: flex;
   flex-flow: wrap;
@@ -91,29 +93,93 @@ section.top10 {
         padding: 1rem;
 
         text-decoration: none;
+
+        &:before {
+          content: '';
+          display: inline-block;
+          width: 1em;
+          height: $width;
+          margin-right: .5ch;
+          vertical-align: bottom;
+
+          background: #7680ec;
+          mask-repeat: no-repeat;
+        }
+
+        &.top250:before {
+          #icons.cup();
+          background: #c39a40;
+        }
+        &.TREND:before {
+          vertical-align: baseline;
+
+          #icons.trend();
+          background: #e66262;
+          mask-size: .8em;
+          mask-position: 90%;
+        }
+        &.hidden_gems:before {
+          width: 1.1em;
+
+          #icons.gem();
+          background: #41aaf0;
+          mask-position: 0 100%;
+        }
+        &[class^='20']:before {
+          #icons.dt365();
+        }
+        &.\37 day:before {
+          #icons.dt7();
+        }
+        &.most_played:before {
+          width: 1.1em;
+          vertical-align: middle;
+
+          #icons.gamepad();
+        }
+        &.price\2f under5:before {
+          #icons.price();
+        }
+        &.discounts:before {
+          #icons.discount();
+          background: #3bb05c;
+        }
+        &.price\2f free:before {
+          #icons.free();
+          background: #3bb05c;
+        }
+        &[class^='tag/']:before {
+          vertical-align: middle;
+
+          #icons.tags();
+          rotate: 45deg;
+          background: #6294ea;
+        }
       }
     }
 
     >.group {
       float: right;
-      padding: 0.15em 0.6em;
+      padding: .4ex .8ch;
       position: relative;
-      top: -3px;
-      right: -4px;
+      top: -2px;
+      right: -1px;
 
-      color: #a8c7e0;
-      background: #435e8c;
+      color: #d6d3c7;
+      background: #7b6338;
       border-radius: 2px;
       font-size: 70%;
-      font-variant: all-small-caps;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: -.02em;
 
       &.budget {
-        color: #d0eab3;
-        background: #4e773b;
+        color: #c1d7c7;
+        background: #357e49;
       }
       &.tag {
-        color: #d4cdea;
-        background: #68386f;
+        color: #cbcfd8;
+        background: #496ba7;
       }
     }
 

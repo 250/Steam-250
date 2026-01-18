@@ -16,9 +16,9 @@
                 : ''
             %}
             <span class="group {{ group }}">
-                {{ group == 'budget' ? 'Budget gamer' : group == 'tag' ? 'Popular tag' : 'Featured' }}
+                {{ group == 'budget' ? 'Budget gamer' : group == 'tag' ? 'Popular tag' : 'Featured Ranking' }}
             </span>
-            <h2><a href="{{ url }}">
+            <h2><a href="{{ url }}" class="{{ id }}">
                 {{ ranking.ranking.title }}
                 {% if id == 'TREND' %}
                 {{ include('@components/micro tier.twig', {tier: 1, benefit: 'trend'}) }}
@@ -54,7 +54,7 @@
     </dl>
     <dl>
         <dt>Rankings
-        <dd>{{ total_rankings }}
+        <dd>{{ total_rankings }}+
     </dl>
 </section>
 {% endblock %}
