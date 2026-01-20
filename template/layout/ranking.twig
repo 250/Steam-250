@@ -206,17 +206,17 @@
     <section class="col2 r&amp;f">
     {% if risers is defined and (risers or fallers or new or missing) %}
         {% if risers %}
-        {{ include('partial/risers.twig', {games: risers, title: 'Risers today'}) }}
+            {{ include('partial/risers.twig', {games: risers, title: 'Risers today', class: 'up'}) }}
         {% endif %}
         {{ include('partial/ad.twig', {id: '3002887382'}) }}
-        {% if new %}
-        {{ include('partial/risers.twig', {games: new, title: 'New entries today'}) }}
-        {% endif %}
         {% if fallers %}
-        {{ include('partial/risers.twig', {games: fallers, title: 'Fallers today'}) }}
+            {{ include('partial/risers.twig', {games: fallers, title: 'Fallers today', class: 'dn'}) }}
+        {% endif %}
+        {% if new %}
+            {{ include('partial/risers.twig', {games: new, title: 'New entries today', class: 'nu'}) }}
         {% endif %}
         {% if missing %}
-        {{ include('partial/risers.twig', {games: missing, title: 'Dropped off today', noipl: true}) }}
+            {{ include('partial/risers.twig', {games: missing, title: 'Dropped off today', class: 'no', noipl: true}) }}
         {% endif %}
     {% else %}
         {{ include('partial/ad.twig', {id: '3002887382'}) }}
