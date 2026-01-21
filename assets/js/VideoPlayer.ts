@@ -1,5 +1,4 @@
-// @ts-expect-error not a module
-import type shaka from 'shaka-player';
+import shaka from 'shaka-player';
 
 new class {
     private container!: HTMLDivElement;
@@ -8,7 +7,6 @@ new class {
     private video!: HTMLVideoElement;
     private footer!: HTMLElement;
     private page!: Element;
-    private shaka?: shaka;
     private player?: shaka.Player;
 
     constructor() {
@@ -167,9 +165,7 @@ new class {
     }
 
     async play(appId: string, hash: string) {
-        // @ts-expect-error not a module
-        this.shaka ||= <shaka>await import('shaka-player');
-        const player: shaka.Player = this.player ||= new this.shaka.Player();
+        const player: shaka.Player = this.player ||= new shaka.Player();
         await player.attach(this.video);
 
         // Don't pick a resolution beyond the screen size.
