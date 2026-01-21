@@ -38,7 +38,7 @@
             <p>{{ ranking.ranking.description|raw }}</p>
         </header>
 
-        {{ include('partial/risers.twig', {games: ranking.apps, base_url: id ~ ext, fancy: true}) }}
+        {{ include('partial/risers.twig', {games: ranking.apps, base_url: url, fancy: true}) }}
 
         <footer>
             {{ include('component/more button.twig', {url: url, caption: "All #{ranking.ranking.limit}"}) }}

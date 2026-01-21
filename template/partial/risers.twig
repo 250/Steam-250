@@ -11,7 +11,12 @@
         <li>
             {# Intra-page links. #}
             {% if noipl is not defined %}
-                <a href="{{ base_url ?? '' }}#{{ game.rank }}" class="rank">{{ game.rank }}</a>
+                <a href="{{ base_url ?? '' }}#{{ game.rank }}" class="rank">
+                    {%- if game.movement is defined and game.movement and fancy is not defined -%}
+                        <span>{{ game.movement|abs }}</span>
+                    {% endif -%}
+                    {{ game.rank }}
+                </a>
             {% endif %}
             {% set href =
                 game.team_id is defined and game.team_id ? c250.team_url(game.team_id)

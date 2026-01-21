@@ -1034,10 +1034,19 @@ tr.a .movement.none:before {
 
         border-bottom-color: #68b571;
     }
-    &.dn > h2:before {
-        bottom: -.6ex;
+    &.dn {
+        >h2:before {
+            bottom: -.6ex;
 
-        border-top-color: #c35a5a;
+            border-top-color: #c35a5a;
+        }
+
+        li > .rank > span {
+            top: auto;
+            bottom: 2px;
+
+            color: #c35a5a;
+        }
     }
     &.nu > h2:before {
         #icons.star();
@@ -1065,16 +1074,34 @@ tr.a .movement.none:before {
 
 /* Game rank. */
 .compact.ranking li > .rank {
-    display: flex;
-    align-items: center;
     justify-content: center;
     flex-shrink: 0;
-    align-self: stretch;
     width: 18px;
 
     color: inherit;
     background: linear-gradient(#262433, #181720, #262433);
     font-size: 80%;
+    font-family: "Reddit Sans", sans-serif;
+
+    >span {
+        position: absolute;
+        top: 2px;
+        font-size: 10px;
+
+        color: #68B571;
+    }
+
+    &:before {
+        position: absolute;
+        content: '';
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+    }
+
+    &:hover, &:hover > span {
+        color: #222;
+    }
 
     .flat& {
         width: 21px;
@@ -1087,16 +1114,6 @@ tr.a .movement.none:before {
     border-radius: 4px 0 0 4px;
 
     transition: .1s linear;
-}
-.compact.ranking li > a.rank:before {
-    position: absolute;
-    content: '';
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-}
-.compact.ranking li > a.rank:hover {
-    color: #222;
 }
 .compact.ranking li > a.rank:hover:before {
     background: #7cb5e1;
