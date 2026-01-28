@@ -3,6 +3,7 @@ import User from './User';
 import Checkbox from './Checkbox';
 import chroma from 'chroma-js';
 import posthog from 'posthog-js';
+import VideoPlayer from './VideoPlayer';
 
 type S250_static = typeof S250;
 
@@ -11,6 +12,8 @@ declare global {
 }
 
 class S250 {
+    private static player: VideoPlayer;
+
     constructor() {
         // Menu stuff.
         this.constrainDropdownMenuPositions();
@@ -39,7 +42,8 @@ class S250 {
 
         // Fancy stuff.
         this.initAppLinkMenu();
-        this.initRankingHoverItems();
+        S250.initRankingHoverItems();
+        S250.player = new VideoPlayer();
     }
 
     initLogInOut() {
@@ -278,7 +282,7 @@ class S250 {
         });
     }
 
-    initRankingHoverItems() {
+    static initRankingHoverItems() {
         document.querySelectorAll<HTMLElement>('.compact.ranking li > .title').forEach(a => {
             const shadow = a.appendChild(a.cloneNode(true)) as HTMLElement;
 
@@ -297,6 +301,10 @@ class S250 {
                 shadow.classList.remove('animate');
             })
         });
+    }
+
+    static initVideoLinks(links: NodeListOf<HTMLElement>) {
+        S250.player.initVideoLinks(links);
     }
 
     private static initRatingColourGradient() {

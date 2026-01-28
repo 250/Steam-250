@@ -1,6 +1,6 @@
 import shaka from 'shaka-player';
 
-new class {
+export default class {
     private container!: HTMLDivElement;
     private frame!: HTMLDivElement;
     private header!: HTMLElement;
@@ -58,8 +58,8 @@ new class {
         this.footer.style.maxWidth = `${this.video.clientWidth}px`;
     }
 
-    initVideoLinks() {
-        document.querySelectorAll<HTMLElement>('[data-video]').forEach(
+    initVideoLinks(links = document.querySelectorAll<HTMLElement>('[data-video]')) {
+        links.forEach(
             a => a.addEventListener('click', e => {
                 // Ignore clicks bubbling up from other link elements.
                 if (e.target instanceof HTMLAnchorElement && e.target !== a) return;

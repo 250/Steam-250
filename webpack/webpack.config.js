@@ -16,7 +16,6 @@ module.exports = {
         250: {
             import: [
                 './js/250.ts',
-                './js/VideoPlayer.ts',
                 './js/LazyLoad.ts',
 
                 './css/250.less',

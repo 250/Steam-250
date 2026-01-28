@@ -799,7 +799,7 @@ tr.a .movement.none:before {
     .r\&f > * {
         max-width: none;
     }
-    .r\&f h2 {
+    .r\&f h3 {
         text-align: left;
     }
 }
@@ -824,11 +824,12 @@ tr.a .movement.none:before {
         >div {
             background: .quicklinks()[background];
 
-            >h2 {
+            >h3 {
                 margin-bottom: -2px;
                 padding: .6em;
 
                 text-align: center;
+                font-size: 16px;
                 font-weight: 500;
             }
         }
@@ -1012,7 +1013,7 @@ tr.a .movement.none:before {
         }
     }
 
-    &:where(.up, .dn, .nu, .no) > h2 {
+    &:where(.up, .dn, .nu, .no) > h3 {
         display: flex;
         gap: .6ch;
         align-items: center;
@@ -1029,13 +1030,13 @@ tr.a .movement.none:before {
             content: '';
         }
     }
-    &.up > h2:before {
+    &.up > h3:before {
         top: -.4ex;
 
         border-bottom-color: #68b571;
     }
     &.dn {
-        >h2:before {
+        >h3:before {
             bottom: -.6ex;
 
             border-top-color: #c35a5a;
@@ -1048,14 +1049,14 @@ tr.a .movement.none:before {
             color: #c35a5a;
         }
     }
-    &.nu > h2:before {
+    &.nu > h3:before {
         #icons.star();
         left: 1px;
 
         border-width: 7px;
         background: #e3d887;
     }
-    &.no > h2{
+    &.no > h3 {
         &:before, &:after {
             border-top-color: #aaa7a7;
         }
