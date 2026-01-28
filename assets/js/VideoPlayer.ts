@@ -165,6 +165,7 @@ export default class {
     }
 
     async play(appId: string, hash: string) {
+        this.player || shaka.polyfill.installAll();
         const player: shaka.Player = this.player ||= new shaka.Player();
         await player.attach(this.video);
 

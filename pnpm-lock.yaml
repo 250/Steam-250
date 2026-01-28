@@ -18,8 +18,8 @@ importers:
         specifier: ^1.212.1
         version: 1.212.1
       shaka-player:
-        specifier: ^4.16.14
-        version: 4.16.14
+        specifier: ^4.16.15
+        version: 4.16.15
       vanilla-lazyload:
         specifier: ^17.3.1
         version: 17.9.0
@@ -5087,8 +5087,8 @@ packages:
     resolution: {integrity: sha512-QMEp5B7cftE7APOjk5Y6xgrbWu+WkLVQwk8JNjZ8nKRciZaByEW6MubieAiToS7+dwvrjGhH8jRXz3MVd0AYqQ==}
     hasBin: true
 
-  shaka-player@4.16.14:
-    resolution: {integrity: sha512-RDxHFlsibqtcjbMflx7upcioJEr66deRyDOb2GQCMEic2NFv6qKdbeyguV+ZDSO6Bcg5/cFZsoDdim5jDnNpSw==}
+  shaka-player@4.16.15:
+    resolution: {integrity: sha512-jsA1AkQO5zWdrXI8RW/BK0vbdI2ZrHG0w73qPVLoGRoCggmkpJ1rT26/KjmakoO1X+Z2nkIVofTuE5gvirkV8w==}
     engines: {node: '>=18'}
 
   shallow-clone@3.0.1:
@@ -12537,7 +12537,7 @@ snapshots:
       inherits: 2.0.4
       safe-buffer: 5.2.1
 
-  shaka-player@4.16.14: {}
+  shaka-player@4.16.15: {}
 
   shallow-clone@3.0.1:
     dependencies:
