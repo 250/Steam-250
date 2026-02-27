@@ -821,7 +821,7 @@ tr.a .movement.none:before {
 
 #page.ranking {
     .col2, .col3 {
-        >div {
+        >:is(.compact.ranking, .quicklinks) {
             background: .quicklinks()[background];
 
             >h3 {
@@ -837,7 +837,7 @@ tr.a .movement.none:before {
 }
 
 /* Compact ranking. */
-.compact.ranking > ol {
+.compact.ranking ol {
     display: grid;
     gap: 2px;
     position: relative;

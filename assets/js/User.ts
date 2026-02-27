@@ -71,7 +71,7 @@ export default class User {
 
     static syncLoginUi() {
         if (this.isLoggedIn()) {
-            this.rewireTagLinks();
+            this.rewriteLinks();
             this.hideObsoleteTiers();
         }
 
@@ -103,14 +103,29 @@ export default class User {
         }
     }
 
-    static rewireTagLinks() {
+    static rewriteLinks() {
         const user = this.fetchUser();
 
         if (!user.tier) return;
 
+        this.rewriteTagLinks();
+        this.rewriteRankingLinks();
+    }
+
+    private static rewriteTagLinks() {
         document.querySelectorAll<HTMLAnchorElement>('a[data-id]').forEach(a => {
             if (new RegExp('^https://[^/]+/tag/').test(a.href)) {
                 a.href = `${process.env.CLUB_250_BASE_URL}/tag/${a.dataset.id}`;
+            }
+        });
+    }
+
+    private static rewriteRankingLinks() {
+        document.querySelectorAll<HTMLAnchorElement>('a[href*="/top250"], a[href*="/hidden_gems"]').forEach(a => {
+            const match = new RegExp('^https://[^/]+/(top250|hidden_gems)\\b').exec(a.href);
+
+            if (match) {
+                a.href = `${process.env.CLUB_250_BASE_URL}/ranking/${match[1] === 'top250' ? '250' : 'gems'}`;
             }
         });
     }

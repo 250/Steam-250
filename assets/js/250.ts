@@ -284,6 +284,7 @@ class S250 {
 
     static initRankingHoverItems() {
         document.querySelectorAll<HTMLElement>('.compact.ranking li > .title').forEach(a => {
+            a.querySelector(':scope > .title')?.remove();
             const shadow = a.appendChild(a.cloneNode(true)) as HTMLElement;
 
             // Prevent rapid re-entry when shape is clipped.
