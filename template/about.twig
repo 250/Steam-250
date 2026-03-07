@@ -105,3 +105,8 @@
     <a href="mailto:bilge@steam250.com">sending an email</a>.
 </p>
 {% endblock %}
+
+{% block css %}
+{{ parent() }}
+<link rel="stylesheet" href="/c/about.css">
+{% endblock %}
