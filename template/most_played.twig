@@ -5,9 +5,10 @@
 
 {% block content %}
     <p>
-        Top 250 most played Steam games, based on average number of concurrent players in the last seven days.
+        The Top 250 most played Steam games based on the average number of concurrent players in the
+        <b>past 24 hours</b>.
     </p>
 {% endblock %}
 
 {% block score_heading %}Concurrent Players{% endblock %}
-{% block score %}{{ app.average_players_7d|unit_format }}{% endblock %}
+{% block score %}{{ app.average_players_1d|unit_format }}{% endblock %}
