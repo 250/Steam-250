@@ -79,9 +79,11 @@ final class RankingQueries
         string $alias
     ): void {
         $builder->addSelect(
-            "(
-                $prefix.positive_reviews * 1. / $prefix.total_reviews * LOG10($prefix.total_reviews + 1) + $weight
-            ) / (LOG10($prefix.total_reviews + 1) + $weight * 2.) AS $alias"
+            "SIN(4 * (PI() *
+                (
+                    $prefix.positive_reviews * 1. / $prefix.total_reviews * LOG10($prefix.total_reviews + 1) + $weight
+                ) / (LOG10($prefix.total_reviews + 1) + $weight * 2.)
+            - .5 * PI())) * .5 + .5 AS $alias"
         );
     }
 
