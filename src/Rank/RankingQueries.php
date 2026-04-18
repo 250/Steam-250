@@ -76,10 +76,11 @@ final class RankingQueries
         QueryBuilder $builder,
         float $weight,
         string $prefix,
-        string $alias
+        string $alias,
+        float $spin,
     ): void {
         $builder->addSelect(
-            "SIN(4 * (PI() *
+            "SIN($spin * (PI() *
                 (
                     $prefix.positive_reviews * 1. / $prefix.total_reviews * LOG10($prefix.total_reviews + 1) + $weight
                 ) / (LOG10($prefix.total_reviews + 1) + $weight * 2.)

@@ -237,7 +237,13 @@ final class Queries
                 break;
 
             case Algorithm::LAPLACE_LOG:
-                RankingQueries::calculateLaplaceLogScore($builder, $ranking->getWeight(), $prefix, $alias);
+                RankingQueries::calculateLaplaceLogScore(
+                    $builder,
+                    $ranking->getWeight(),
+                    $prefix,
+                    $alias,
+                    $ranking->spin,
+                );
                 break;
 
             case Algorithm::DIRICHLET_PRIOR:

@@ -23,6 +23,7 @@ abstract class DevlisherRanking extends Ranking implements CustomRankingFetch
         parent::__construct($this->dependencies = $dependencies, $mode, 250, Algorithm::LAPLACE_LOG(), 2.);
 
         $this->bayesianWeight = $bayesianWeight;
+        $this->spin = 1;
 
         $this->setTemplate('devlisher');
     }

@@ -26,6 +26,7 @@ abstract class Ranking extends Page implements PreviousDatabaseAware
     private int $limit;
     private ?Algorithm $algorithm;
     private ?float $weight;
+    public float $spin = 4;
     private string $title = '';
     private string $description = '';
 
