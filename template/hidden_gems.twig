@@ -1,9 +1,9 @@
 {% extends 'layout/ranking.twig' %}
 
 {% block title %}Top 250 best Hidden Gems on Steam{% endblock %}
-{% block heading %}Hidden Gems{% endblock %}
+{% block heading %}Hidden Gems Ranking{% endblock %}
 
-{% block content %}
+{% block main %}
     <p>
         Top 250 highly rated Steam games that few know but many love.
     </p>
@@ -21,6 +21,8 @@
     </p>
 {% endblock %}
 
-{% block post %}
+{% block post_ranking %}
     {{ include('component/more button.twig', {url: club250 ~ '/ranking/gems/2', caption: 'Next 250'}) }}
 {% endblock %}
+
+{% block local_nav %}{% include 'nav/local/gems.twig' %}{% endblock %}

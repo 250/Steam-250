@@ -1,0 +1,141 @@
+.mvmt {
+  h3 {
+    display: flex;
+    gap: 1.4ch;
+
+    color: var(--c);
+
+    &:before {
+      content: '';
+      width: 15px;
+      height: $width;
+
+      background: currentColor;
+      mask: none no-repeat center;
+    }
+  }
+  &.up {
+    --c: #22c55ecc;
+
+    > h3 {
+      &:before {
+        mask-image: url(/svg/rocket.svg);
+      }
+    }
+  }
+  &.dn {
+    --c: #f87171cc;
+
+    >h3 {
+      &:before {
+        mask-image: url('/svg/trend down.svg');
+      }
+    }
+  }
+  &.nu {
+    --c: #60a5facc;
+
+    >h3 {
+      &:before {
+        mask-image: url('/svg/new.svg');
+      }
+    }
+  }
+  &.no {
+    --c: #d1c5b466;
+
+    >h3 {
+      &:before {
+        mask-image: url('/svg/blind.svg');
+      }
+    }
+
+    ol > li {
+      color: #ebddf766;
+
+      >a {
+        color: #ebddf780;
+      }
+    }
+  }
+
+  ol {
+    display: flex;
+    flex-flow: column;
+    gap: 1px;
+    overflow: hidden;
+
+    line-height: 1.3;
+    border-radius: 4px;
+
+    >li {
+      position: relative; // Contain area link.
+      display: grid;
+      grid-template-columns: 64px auto;
+      align-items: start;
+      gap: 0 8px;
+      padding: 8px;
+      overflow: hidden;
+
+      font-size: 10px;
+      background: #170f21;
+
+      &:hover {
+        background: #3a3145;
+      }
+
+      a {
+        // Pop over area link.
+        position: relative;
+        z-index: 1;
+      }
+      >a:has(>img) {
+        overflow: hidden;
+        line-height: 0;
+
+        border-radius: 2px;
+
+        &:hover {
+          background: #121214;
+        }
+      }
+      >a:nth-of-type(2) {
+        position: static;
+        text-decoration: none;
+        z-index: 0;
+
+        // Area link.
+        &:after {
+          content: '';
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          top: 0;
+          left: 0;
+        }
+      }
+      >:nth-child(1) {
+        grid-row: span 2;
+      }
+      >:nth-child(2) {
+        color: #ebddf7;
+        font-weight: bold;
+      }
+      >:nth-child(3) {
+        font-size: 9px;
+
+        >span {
+          margin-inline: .5ch;
+
+          color: var(--c);
+          font-weight: bold;
+          text-transform: uppercase;
+        }
+      }
+
+      img {
+        max-width: 100%;
+      }
+    }
+  }
+}

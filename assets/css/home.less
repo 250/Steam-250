@@ -56,7 +56,7 @@ section.top10 {
     overflow: hidden;
     z-index: 0;
 
-    background: linear-gradient(135deg, #0004, #08110840, #0004, #1c0d1c40);
+    background: linear-gradient(135deg, #0003, #08110830, #0003, #1c0d1c30);
     border-radius: 8px 8px 0 0;
 
     &:before {
@@ -69,19 +69,21 @@ section.top10 {
       z-index: -1;
 
       opacity: 0;
-      background: linear-gradient(135deg, #1f202e, #343834, #212333, #291f29);
+      background: linear-gradient(135deg, #1f202e, #373438, #282133, #291f29);
       box-shadow: 0 0 4px #ffc82c;
 
       transition: opacity 50ms;
     }
     &:hover:before {
-      opacity: 1;
+      opacity: .7;
     }
 
     >h2 {
       margin: 0;
       height: 1.4em;
       line-height: 1;
+
+      font-size: 150%;
 
       >a {
         position: absolute;
@@ -150,7 +152,6 @@ section.top10 {
           vertical-align: middle;
 
           #icons.tags();
-          rotate: 45deg;
           background: #6294ea;
         }
       }
@@ -184,7 +185,7 @@ section.top10 {
     >p {
       margin: .5em 0;
 
-      font-size: 85%;
+      color: #bab2b1;
       line-height: 1.2;
     }
 

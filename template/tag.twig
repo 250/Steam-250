@@ -1,9 +1,14 @@
 {% extends 'layout/ranking.twig' %}
 
 {% block title %}Top {{ ranking.tag }} Games on Steam{% endblock %}
-{% block heading %}{{ ranking.tag }} Games{% endblock %}
+{% block heading %}
+    {{ ranking.tag }} Games Ranking
+    <a href="{{ club250 }}/tags#{{ tag_category.hash }}" class="tag {{ tag_category.short_name }}">
+        {{ tag_category.name }}
+    </a>
+{% endblock %}
 
-{% block content %}
+{% block main %}
     <p>
         Top {{ games|length }} best Steam games of all time tagged with <em>{{ ranking.tag }}</em>,
         according to gamer reviews.
@@ -11,21 +16,29 @@
     <p class="note">
         This is the free version of this page.
         <a href="{{ club250 }}/tag/{{ ranking.tagId }}">An enhanced version of this tag is available on Club 250</a>.
-        The enhanced version includes an extensive tag description and a list of correlated tags.
+        The enhanced version includes 250 results, an extensive tag description and a map of correlated tags.
     </p>
-    <p class="cat">
-        Category
-        <a href="{{ club250 }}/tags#{{ tag_category.hash }}" class="tag {{ tag_category.short_name }}">
-            {{ tag_category.name }}
-        </a>
-    </p>
-    {% if ranking.id == 'tag/free_to_play' %}
-    {{ include('partial/price_button_group.twig') }}
-    {% endif %}
 {% endblock %}
 
-{% block post %}
-    {% if ranking.id == 'tag/free_to_play' %}
-    {{ include('partial/price_button_group.twig') }}
-    {% endif %}
+{% block context_nav %}
+<h3>Tag Categories</h3>
+{% for cat in tag_categories %}
+    <ol>
+        <li><a href="/tag/{{ cat.first_tag|tag_id|url_encode ~ ext }}"
+            class="tags {{ cat.id == tag_category.id ? 'sel' }}">
+            {{ cat.name }}
+        </a>
+    </ol>
+{% endfor %}
+{% endblock %}
+
+{% block local_nav %}
+<h3>{{ tag_category.name}} Tags</h3>
+<ol>
+    {% for tag in tags|filter(t => t.category === tag_category.short_name) %}
+    <li><a href="/tag/{{ tag.name|tag_id|url_encode ~ ext }}" class="tags {{ tag.id == ranking.tagId ? 'sel' }}">
+        {{ tag.name }}
+    </a>
+    {% endfor %}
+</ol>
 {% endblock %}

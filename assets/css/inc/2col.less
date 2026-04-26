@@ -1,0 +1,31 @@
+.\32 col-layout {
+  display: grid;
+  grid-template-columns: 288px 1fr;
+
+  @media (max-width: 1199px) {
+    grid-template-columns: 1fr;
+  }
+
+  >main {
+    padding: 32px;
+
+    @media (max-width: 821px) {
+      padding-inline: 1vw;
+    }
+  }
+
+  >aside {
+    @media (min-width: 1200px) {
+      grid-row: 1;
+    }
+    @media (max-width: 1199px) {
+      nav {
+        display: none;
+      }
+    }
+
+    padding: 16px;
+
+    background: #20182a;
+  }
+}

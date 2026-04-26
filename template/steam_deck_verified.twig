@@ -3,7 +3,7 @@
 {% block title %}Top 250 best Steam Deck Verified games{% endblock %}
 {% block heading %}Steam Deck 250{% endblock %}
 
-{% block content %}
+{% block main %}
 <p>
     Top 250 best <b class="deck-v">Steam Deck Verified</b> games of all time according to gamer reviews.
 </p>
@@ -13,3 +13,6 @@
     see <a href="/steam_deck_playable{{ ext }}">Steam Deck Playable</a>.
 </p>
 {% endblock %}
+
+{% block context_nav %}{% include 'nav/context/platforms.twig' %}{% endblock %}
+{% block local_nav %}{% include 'nav/local/deck.twig' %}{% endblock %}

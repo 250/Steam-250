@@ -1,5 +1,4 @@
 import {Args, Meta, Story} from '@storybook/html';
-import template from 'T/partial/rolling_button_group.twig';
 
 export default {
     title: 'Form/Button group',
@@ -10,15 +9,22 @@ const Template: Story = (args, {loaded: {html}}) => html;
 const createLoaders = () => [
     async (ctx: Args) => {
         return {
-            html: ctx.parameters.html ?? await template(ctx.args),
+            html: ctx.parameters.html,
         }
     },
 ];
 
 export const Linear = Template.bind({});
 Linear.loaders = createLoaders();
-Linear.args = {
-    page: {id: '7day'}
+Linear.parameters = {
+    html: `
+        <div class="button-group">
+            <a class="button">Button 1</a>
+            <a class="button">Button 2</a>
+            <a class="button">Button 3</a>
+            <a class="button">Button 4</a>
+        </div>
+    `,
 }
 
 export const Wrapped = Template.bind({});

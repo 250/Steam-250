@@ -5,10 +5,182 @@
 {% block body %}
 <div id="page" class="{% block class %}{% endblock %}">
     <section id="header">
-        <div id="user">
+        <h1><a href="/" title="Steam 250 Home">Steam 250</a></h1>
+
+        <nav>
+            <ol>
+                <li>Rankings
+                    <div>{# Rankings #}
+                        <div>
+                            <div>
+                                <a href="/top250{{ ext }}" class="cup">Steam Top 250</a>
+                                <a href="{{ club250 }}/ranking/250/history/{{ '-7 year'|date('Ymd') }}">History</a>
+                                {{ include('@components/micro tier.twig', {tier: 1, benefit: 'hist250'}) }}
+                            </div>
+                            <div>
+                                <a href="/hidden_gems{{ ext }}" class="gem">Hidden Gems</a>
+                                <a href="{{ club250 }}/ranking/gems/history/{{ '-7 year'|date('Ymd') }}">History</a>
+                                <span class="middot"></span>
+                                <a href="/hidden_novels{{ ext }}">Novels</a>
+                            </div>
+                            <div>
+                                <a href="{{ club250 }}/ranking/trending-now" class="trend">Trending now</a>
+                                <a href="{{ club250 }}/ranking/new-and-trending">New</a>
+                                <span class="middot"></span>
+                                <a href="{{ club250 }}/ranking/trending">All time</a>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div>
+                                <a href="{{ club250 }}/ranking/custom" class="custom">Custom Ranking</a>
+                                <a href="/most_played{{ ext }}" class="pad">Most played</a>
+                                <a href="/previews{{ ext }}" class="preview">Previews</a>
+                                <a href="/bottom100{{ ext }}" class="bottom">Bottom 100</a>
+                                <a href="/adult{{ ext }}" class="adult">Adult games</a>
+                            </div>
+                            <div>
+                                <a href="/reviews{{ ext }}" class="review">Most reviewed</a>
+                                <div>
+                                    {% for year in range('now'|date('Y'), earliest_year) %}
+                                        <a href="/reviews/{{ year ~ ext }}">{{ year[2:] }}</a>
+                                    {% endfor %}
+                                    <a href="/reviews/old{{ ext }}">Pre-{{ earliest_year }}</a>
+                                </div>
+                            </div>
+                            <div>
+                                <span>More platforms</span>
+                                <a href="/mac250{{ ext }}" class="mac">Mac</a>
+                                <a href="/linux250{{ ext }}" class="linux">Linux</a>
+                                <a href="/steam_deck_playable{{ ext }}" class="deck">Steam Deck</a>
+                                <a href="/steam_deck_verified{{ ext }}" class="sub">Verified</a>
+                                <a href="/vr250{{ ext }}" class="vr">Virtual Reality</a>
+                                <a href="/vr_exclusives{{ ext }}" class="sub">Exclusive</a>
+                            </div>
+                        </div>
+
+                        <div>
+                            <a href="/developer{{ ext }}">Top 250 Developers</a>
+                            <a href="/publisher{{ ext }}">Top 250 Publishers</a>
+                            <a href="/dlc{{ ext }}">Top 250 DLC</a>
+                        </div>
+                    </div>
+
+                <li>Tags
+                    <div>
+                        <div>
+                            <div>
+                                <a href="{{ club250 }}/tags" class="tags">Complete tag directory</a>
+                                <p>There are {{ tagCount }} tags on Steam</p>
+                            </div>
+                            <a href="{{ club250 }}/tags/hierarchy" class="hier">Tag hierarchy</a>
+                        </div>
+                        <div>
+                            <ol class="tags">
+                                {% for tag in tags %}
+                                    <li data-cat="{{ tag.category }}">
+                                        <a href="/tag/{{ tag.name|tag_id|url_encode ~ ext }}" class="tag"
+                                            data-id="{{ tag.id }}">{{ tag.name }}</a>
+                                {% endfor %}
+                            </ol>
+                        </div>
+                    </div>
+
+                <li>Deals
+                    <div>
+                        <div>
+                            <a href="/discounts{{ ext }}" class="discount">Top 250 Discounts</a>
+                            <a href="/price/free{{ ext }}" class="free">Free Games</a>
+                        </div>
+                        <div>
+                            <div>
+                                <a href="/price/under5{{ ext }}" class="price">Under $5</a>
+                                <a href="/price/5-10{{ ext }}" class="price">From $5&ndash;10</a>
+                                <a href="/price/10-15{{ ext }}" class="price">From $10&ndash;15</a>
+                            </div>
+                            <div>
+                                <a href="/price/15-20{{ ext }}" class="price">From $15&ndash;20</a>
+                                <a href="/price/over20{{ ext }}" class="price">Over $20</a>
+                            </div>
+                        </div>
+                    </div>
+
+                <li>Dates
+                    <div>
+                        <div>
+                            <span>Recent</span>
+                            <a href="/7day{{ ext }}" class="dt7">This Week</a>
+                            <a href="/30day{{ ext }}" class="dt30">This Month</a>
+                            <a href="/90day{{ ext }}" class="dt90">This Quarter</a>
+                            <a href="/365day{{ ext }}" class="dt365">This Year</a>
+                        </div>
+                        <div>
+                            <span>Best of the year</span>
+                            <div>
+                                {% for year in range('now'|date('Y'), earliest_year) %}
+                                    <a href="/{{ year ~ ext }}">{{ year[2:] }}</a>
+                                {% endfor %}
+                                <a href="/old{{ ext }}">Pre-{{ earliest_year }}</a>
+                            </div>
+                        </div>
+                    </div>
+
+                <li>Steam 250
+                    <div>
+                        <div>
+                            <a href="{{ club250 }}/join">
+                                <img src="{{ club250_static }}/img/club 250 logo x96.webp" alt="Club 250">
+                            </a>
+                            <div>
+                                <a href="{{ club250 }}/join" class="join">Join Club 250</a>
+                                <p>Discover more with a Club 250 membership</p>
+                            </div>
+                            <div>
+                                <div>
+                                    <a href="{{ club250 }}/ranking/my-games" class="myrank">My Games</a>
+                                    {{ include('@components/micro tier.twig', {tier: 2, benefit: 'myrank'}) }}
+                                </div>
+                                <a href="{{ club250 }}/members" class="members">Club Members</a>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div>
+                                <a href="/about{{ ext }}" class="about">About Steam 250</a>
+                                <a href="/contributors{{ ext }}" class="contrib">Contributors</a>
+                                <a href="/cosmic_tweets{{ ext }}">Classic Tweets</a>
+                            </div>
+                            <div>
+                                <a href="{{ club250 }}/email%20sub/7day" class="email">Free weekly email</a>
+                            </div>
+                        </div>
+
+                        <div>
+                            <a href="{{ discord }}" class="discord">Chat in Discord</a>
+                            <a href="https://store.steampowered.com/curator/32686107/" class="steam">Follow on Steam</a>
+                            <a href="{{ patreon }}" class="patreon">Follow on Patreon</a>
+                            <a href="https://x.com/Steam_250" class="x">Follow on X</a>
+                        </div>
+                    </div>
+
+                <li>
+                    <button title="Search (s)" onclick="search.showModal()">Search</button>
+                    <dialog id="search" onclick="event.target === search && search.close()">
+                        <form action="{{ club250 }}/search">
+                            <label>
+                                Search game titles
+                                <input name="q" type="search" placeholder="Search">
+                            </label>
+                            <button>Search</button>
+                        </form>
+                    </dialog>
+            </ol>
+        </nav>
+
+        <div>
             <div id="lout">
-                <form action="https://steamcommunity.com/openid/login" method="post">
-                    <button id="login">Sign in via Steam</button>
+                <form action="https://steamcommunity.com/openid/login" method="post" class="sign-in">
+                    <button id="login"><span>Sign in</span></button>
                     <input type="hidden" name="openid.identity"
                         value="http://specs.openid.net/auth/2.0/identifier_select">
                     <input type="hidden" name="openid.claimed_id"
@@ -20,190 +192,13 @@
                 </form>
             </div>
             <div id="lin">
-                <a class="avatar"></a><button id="logout">Sign out</button>
+                <a class="user-avatar"></a>
             </div>
-        </div>
-        <div class="title" data-title="{{ block('heading') }}">
-            <h1><a href="/">{{ block('heading') }}</a></h1>
-        </div>
-        <div class="slogan">
-            Helping you <span class="d">find</span> good games <span class="d">on</span> Steam
-            <span class="d">since</span> 2017
         </div>
     </section>
 
-    <nav>
-        <ol>
-            <li>Rankings
-                <div>{# Rankings #}
-                    <div>
-                        <div>
-                            <a href="/top250{{ ext }}" class="cup">Steam Top 250</a>
-                            <a href="{{ club250 }}/ranking/250/history/{{ '-7 year'|date('Ymd') }}">History</a>
-                            {{ include('@components/micro tier.twig', {tier: 1, benefit: 'hist250'}) }}
-                        </div>
-                        <div>
-                            <a href="/hidden_gems{{ ext }}" class="gem">Hidden Gems</a>
-                            <a href="{{ club250 }}/ranking/gems/history/{{ '-7 year'|date('Ymd') }}">History</a>
-                            <span class="middot"></span>
-                            <a href="/hidden_novels{{ ext }}">Novels</a>
-                        </div>
-                        <div>
-                            <a href="{{ club250 }}/ranking/trending-now" class="trend">Trending now</a>
-                            <a href="{{ club250 }}/ranking/new-and-trending">New</a>
-                            <span class="middot"></span>
-                            <a href="{{ club250 }}/ranking/trending">All time</a>
-                        </div>
-                    </div>
-
-                    <div>
-                        <div>
-                            <a href="{{ club250 }}/ranking/custom" class="custom">Custom Ranking</a>
-                            <a href="/most_played{{ ext }}" class="pad">Most played</a>
-                            <a href="/previews{{ ext }}" class="preview">Previews</a>
-                            <a href="/bottom100{{ ext }}" class="bottom">Bottom 100</a>
-                            <a href="/adult{{ ext }}" class="adult">Adult games</a>
-                        </div>
-                        <div>
-                            <a href="/reviews{{ ext }}" class="review">Most reviewed</a>
-                            <div>
-                                {% for year in range('now'|date('Y'), earliest_year) %}
-                                    <a href="/reviews/{{ year ~ ext }}">{{ year[2:] }}</a>
-                                {% endfor %}
-                                <a href="/reviews/old{{ ext }}">Pre-{{ earliest_year }}</a>
-                            </div>
-                        </div>
-                        <div>
-                            <span>More platforms</span>
-                            <a href="/mac250{{ ext }}" class="mac">Mac</a>
-                            <a href="/linux250{{ ext }}" class="linux">Linux</a>
-                            <a href="/steam_deck_playable{{ ext }}" class="deck">Steam Deck</a>
-                            <a href="/steam_deck_verified{{ ext }}" class="sub">Verified</a>
-                            <a href="/vr250{{ ext }}" class="vr">Virtual Reality</a>
-                            <a href="/vr_exclusives{{ ext }}" class="sub">Exclusive</a>
-                        </div>
-                    </div>
-
-                    <div>
-                        <a href="/developer{{ ext }}">Top 250 Developers</a>
-                        <a href="/publisher{{ ext }}">Top 250 Publishers</a>
-                        <a href="/dlc{{ ext }}">Top 250 DLC</a>
-                    </div>
-                </div>
-
-            <li>Tags
-                <div>
-                    <div>
-                        <div>
-                            <a href="{{ club250 }}/tags" class="tags">Complete tag directory</a>
-                            <p>There are {{ tagCount }} tags on Steam</p>
-                        </div>
-                        <a href="{{ club250 }}/tags/hierarchy" class="hier">Tag hierarchy</a>
-                    </div>
-                    <div>
-                        <ol class="tags">
-                            {% for tag in tags %}
-                                <li data-cat="{{ tag.category }}">
-                                    <a href="/tag/{{ tag.name|tag_id|url_encode ~ ext }}" class="tag"
-                                        data-id="{{ tag.id }}">{{ tag.name }}</a>
-                            {% endfor %}
-                        </ol>
-                    </div>
-                </div>
-
-            <li>Deals
-                <div>
-                    <div>
-                        <a href="/discounts{{ ext }}" class="discount">Top 250 Discounts</a>
-                        <a href="/price/free{{ ext }}" class="free">Free Games</a>
-                    </div>
-                    <div>
-                        <div>
-                            <a href="/price/under5{{ ext }}" class="price">Under $5</a>
-                            <a href="/price/5-10{{ ext }}" class="price">From $5&ndash;10</a>
-                            <a href="/price/10-15{{ ext }}" class="price">From $10&ndash;15</a>
-                        </div>
-                        <div>
-                            <a href="/price/15-20{{ ext }}" class="price">From $15&ndash;20</a>
-                            <a href="/price/over20{{ ext }}" class="price">Over $20</a>
-                        </div>
-                    </div>
-                </div>
-
-            <li>Dates
-                <div>
-                    <div>
-                        <span>Recent</span>
-                        <a href="/7day{{ ext }}" class="dt7">This Week</a>
-                        <a href="/30day{{ ext }}" class="dt30">This Month</a>
-                        <a href="/90day{{ ext }}" class="dt90">This Quarter</a>
-                        <a href="/365day{{ ext }}" class="dt365">This Year</a>
-                    </div>
-                    <div>
-                        <span>Best of the year</span>
-                        <div>
-                            {% for year in range('now'|date('Y'), earliest_year) %}
-                                <a href="/{{ year ~ ext }}">{{ year[2:] }}</a>
-                            {% endfor %}
-                            <a href="/old{{ ext }}">Pre-{{ earliest_year }}</a>
-                        </div>
-                    </div>
-                </div>
-
-            <li>Club 250
-                <div>
-                    <div>
-                        <a href="{{ club250 }}/join">
-                            <img src="{{ club250_static }}/img/club 250 logo x96.webp" alt="Club 250">
-                        </a>
-                        <div>
-                            <a href="{{ club250 }}/join" class="join">Join Club 250</a>
-                            <p>Discover more with a Club 250 membership</p>
-                        </div>
-                        <div>
-                            <div>
-                                <a href="{{ club250 }}/ranking/my-games" class="myrank">My Games</a>
-                                {{ include('@components/micro tier.twig', {tier: 2, benefit: 'myrank'}) }}
-                            </div>
-                            <a href="{{ club250 }}/members" class="members">Club Members</a>
-                        </div>
-                    </div>
-
-                    <div>
-                        <div>
-                            <a href="/about{{ ext }}" class="about">About Steam 250</a>
-                            <a href="/contributors{{ ext }}" class="contrib">Contributors</a>
-                            <a href="/cosmic_tweets{{ ext }}">Classic Tweets</a>
-                        </div>
-                        <div>
-                            <a href="{{ club250 }}/email%20sub/7day" class="email">Free weekly email</a>
-                        </div>
-                    </div>
-
-                    <div>
-                        <a href="{{ discord }}" class="discord">Chat in Discord</a>
-                        <a href="https://store.steampowered.com/curator/32686107/" class="steam">Follow on Steam</a>
-                        <a href="{{ patreon }}" class="patreon">Follow on Patreon</a>
-                        <a href="https://x.com/Steam_250" class="x">Follow on X</a>
-                    </div>
-                </div>
-
-            <li>
-                <button title="Search (s)" onclick="search.showModal()">Search</button>
-                <dialog id="search" onclick="event.target === search && search.close()">
-                    <form action="{{ club250 }}/search">
-                        <label>
-                            Search game titles
-                            <input name="q" type="search" placeholder="Search">
-                        </label>
-                        <button>Search</button>
-                    </form>
-                </dialog>
-        </ol>
-    </nav>
-
     <div id="body">
-         <div class="content">
+        <div class="content">
             {{ include('partial/ad.twig', {id: '9535671996'}) }}
             {% block content %}{% endblock %}
         </div>
@@ -215,87 +210,43 @@
         </div>
     </div>
 
-    <section id="footer">
+    <footer id="footer">
         <div>
-            <h2>
-                <a href="/about{{ ext }}">Steam 250</a>
-            </h2>
+            <h2><a href="/about{{ ext }}">Steam 250</a></h2>
             <p>
-                Rankings are automatically updated at least once a day from live Steam reviews data.
-                <a href="about{{ ext }}">Learn more</a>.
-            </p>
-            {% if games.0.movement is defined or rankings.top250.apps.0.movement is defined %}
-            <p>Movement indicators show the change in position since yesterday.</p>
-            {% endif %}
-
-            <h3>System status</h3>
-            <table>
-                <tr>
-                    <td>Data
-                    <td>Pages
-                    <td><a href="https://store.steampowered.com/curator/32686107/">Curator</a>
-                <tr>
-                    <td>
-                        <a href="https://dev.azure.com/ScriptFUSION/Steam%20250/_build/latest?definitionId=1">
-                            <img src="https://dev.azure.com/ScriptFUSION/Steam%20250/_apis/build/status/250.Steam-importer?branchName=master"
-                                 alt="Data import status">
-                        </a>
-                    <td>
-                        <a href="https://github.com/250/Steam-250/actions/workflows/Build.yml">
-                            <img src="https://github.com/250/Steam-250/actions/workflows/Build.yml/badge.svg"
-                                alt="Page build status">
-                        </a>
-                    <td>
-                        <a href="https://github.com/250/Steam-curator/actions/workflows/Curator%20sync.yml">
-                            <img src="https://github.com/250/Steam-curator/actions/workflows/Curator%20sync.yml/badge.svg"
-                                alt="Curator sync status">
-                        </a>
-            </table>
-            <ul class="status">
-                <li>Generated {{ 'now'|date }} {{ tz() }}
-                <li><a href="https://github.com/250">Source code</a>,
-                    <a href="https://github.com/250/Steam-250/issues">Issues</a>
-            </ul>
-            <p>
-                <a href="mailto:bilge@steam250.com">Contact by email</a>
+                &copy; 2017&mdash;{{ 'now'|date('Y') }} Steam 250 &ndash; Built for Discovery
             </p>
         </div>
 
-        <div>
-            <h2>
-                <a href="{{ club250 }}/join">Club 250</a>
-            </h2>
-            <p>
-                <a href="{{ patreon }}" class="patreon" title="Patreon">Patreon</a>
-                Unlock all Steam 250 features by <a href="{{ club250 }}/join">joining Club 250</a> on Patreon and enjoy
-                popular member-only features such as advanced search with our
-                <a href="{{ club250 }}/ranking/custom">Custom Ranking</a> tool.
-            </p>
-            <p>
-                <a class="tier popup"><span class="t1 micro tier">T1</span></a>
-                <a class="tier popup">Tier 1</a> members enjoy access to most features including
-                <a href="{{ club250 }}/ranking/custom">custom rankings</a>,
-                <a href="{{ club250 }}/app/70">historical charting</a>,
-                <a href="{{ club250 }}/ranking/250/history/{{ '-10 year'|date('Ymd') }}">historical rankings</a>,
-                <a href="{{ club250 }}/ranking/250">complete top 250 ranking</a>,
-                owner estimates and ad-free browsing.
-            </p>
-            <p>
-                <a class="tier popup"><span class="t2 micro tier">T2</span></a>
-                <a class="tier popup">Tier 2</a> members can
-                <a href="{{ club250 }}/ranking/my-games">rank their games</a>, see which Steam games they already
-                own, with total playtime, on all our games rankings, and sales range estimates.
-            </p>
-            <p>
-                <a class="tier popup"><span class="t3 micro tier">T3</span></a>
-                <a class="tier popup">Tier 3</a> members see our sales median estimates.
-            </p>
-        </div>
+        <dl>
+            <dt>Data
+            <dd><a href="https://dev.azure.com/ScriptFUSION/Steam%20250/_build/latest?definitionId=1">
+                <img src="https://dev.azure.com/ScriptFUSION/Steam%20250/_apis/build/status/250.Steam-importer?branchName=master"
+                    alt="Data import status">
+            </a>
+            <dt>Pages
+            <dd><a href="https://github.com/250/Steam-250/actions/workflows/Build.yml">
+                <img src="https://github.com/250/Steam-250/actions/workflows/Build.yml/badge.svg"
+                    alt="Page build status">
+            </a>
+            <dt><a href="https://store.steampowered.com/curator/32686107/">Curator</a>
+            <dd><a href="https://github.com/250/Steam-curator/actions/workflows/Curator%20sync.yml">
+                <img src="https://github.com/250/Steam-curator/actions/workflows/Curator%20sync.yml/badge.svg"
+                    alt="Curator sync status">
+            </a>
+            <dt>Generated
+            <dd>{{ 'now'|date }} {{ tz() }}
+        </dl>
 
-        <div>
-            {{ include('@components/community panel.twig') }}
-        </div>
-    </section>
+        <ul>
+            <li><a href="{{ club250 }}/join">Join</a>
+            <li><a href="/about{{ ext }}">About</a>
+            <li><a href="{{ discord }}">Discord</a>
+            <li><a href="mailto:bilge@steam250.com">Email</a>
+            <li><a href="https://github.com/250">Source</a>
+            <li><a href="/privacy{{ ext }}">Privacy</a>
+        </ul>
+    </footer>
 </div>
 
 <div class="fixedlinks">

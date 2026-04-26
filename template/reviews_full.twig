@@ -3,7 +3,7 @@
 {% block title %}Top {{ games|length }} Most Reviewed Steam Games{% endblock %}
 {% block heading %}Most Reviewed {{ games|length }}{% endblock %}
 
-{% block content %}
+{% block main %}
     <p>
         {% block main_p %}
         Top {{ games|length }} most reviewed games on Steam of all time.
@@ -12,10 +12,8 @@
     <p>
         In this ranking games are sorted by number of reviews only, with complete disregard for rating.
         Total reviews usually have a strong correlation with total sales, so this provides a relative insight into best
-        sellers of the year.
-    </p>
-    <p class="note">
-        Free games gain an unfair boost in these rankings since they have no barrier to entry.
+        sellers of the year. Consider that free games may gain an unfair boost in these rankings since they have no
+        barrier to entry.
     </p>
 {% endblock %}
 

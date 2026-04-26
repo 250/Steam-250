@@ -10,10 +10,17 @@ abstract class RollingRanking extends DefaultRanking
 {
     private string $date;
 
-    public function __construct(RankingDependencies $dependencies, string $id, string $date, int $limit = 250)
-    {
+    public function __construct(
+        RankingDependencies $dependencies,
+        string $id,
+        string $date,
+        protected(set) string $periodName,
+        protected(set) int $days,
+        int $limit = 250,
+    ) {
         parent::__construct($dependencies, $id, $limit);
 
+        $this->setTemplate('rolling');
         $this->date = $date;
     }
 

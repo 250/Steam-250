@@ -1,0 +1,6 @@
+<h3>Date Rankings</h3>
+<ol>
+    <li><a href="/7day{{ ext }}" class="dt7 {{ id == 'recent' ? 'sel' }}">Recent</a>
+    <li><a href="/{{ 'now'|date('Y') ~ ext }}" class="annum {{ id == 'annum' ? 'sel' }}">Best of the Year</a>
+    <li><a href="/reviews/{{ 'now'|date('Y') ~ ext }}" class="review {{ id == 'review' ? 'sel' }}">Most Reviewed</a>
+</ol>

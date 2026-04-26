@@ -11,7 +11,8 @@ class UsdUnder5Ranking extends PriceRangeRanking
     {
         parent::__construct($dependencies, 'price/under5', 0, 500);
 
-        $this->setTitle('Under $5 250');
+        $this->setTitle('Games under $5 Ranking');
         $this->setDescription('Top 250 best Steam games for $5 or less, perfect for bargain hunters.');
+        $this->windowTitle = 'under five dollars';
     }
 }

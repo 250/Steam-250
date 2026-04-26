@@ -1,0 +1,24 @@
+{% extends 'layout/ranking.twig' %}
+
+{% block title %}Top {{ games|length }} best Steam Games this {{ ranking.periodName }}{% endblock %}
+{% block heading %}{{ ranking.periodName|title }} Top {{ games|length }} Games Ranking{% endblock %}
+
+{% block main %}
+    <p>
+        Top {{ games|length }} best Steam games released in the last {{ ranking.days }} days,
+        according to gamer reviews.
+    </p>
+{% endblock %}
+
+{% block context_nav %}{% include 'nav/context/dates.twig' with {id: 'recent'} %}{% endblock %}
+{% block context_name %}{{ ranking.periodName|title }}{% endblock %}
+
+{% block local_nav %}
+<h3>Recent</h3>
+<ol>
+    <li><a href="/7day{{ ext }}" class="dt7 {{ page.id == '7day' ? 'sel' }}">This Week</a>
+    <li><a href="/30day{{ ext }}" class="dt30 {{ page.id == '30day' ? 'sel' }}">This Month</a>
+    <li><a href="/90day{{ ext }}" class="dt90 {{ page.id == '90day' ? 'sel' }}">This Quarter</a>
+    <li><a href="/365day{{ ext }}" class="dt365 {{ page.id == '365day' ? 'sel' }}">This Year</a>
+</ol>
+{% endblock %}

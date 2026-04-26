@@ -1,9 +1,9 @@
 {% extends 'layout/template.twig' %}
 
 {% block title %}About Steam 250{% endblock %}
-{% block heading %}About Steam 250{% endblock %}
 
 {% block content %}
+<h2>About Steam 250</h2>
 <p>Welcome to Steam 250, helping gamers find good games on Steam.</p>
 
 <p>
@@ -26,7 +26,7 @@
     they really want.
 </p>
 
-<h2 id="ranking">Ranking games</h2>
+<h3 id="ranking">Ranking games</h3>
 <p>
     Most of our rankings use player votes to determine rank order.
     These <em>votes</em> are the thumbs up or down given with each game review on Steam.
@@ -40,7 +40,7 @@
     The countdown shown at the top of the page estimates when the next update will finish.
 </p>
 
-<h2 id="algorithm">The algorithm</h2>
+<h3 id="algorithm">The algorithm</h3>
 <p>
     A ranking algorithm determines the order of each game relative to every other game.
     For each game, the algorithm takes two inputs: the <strong>number of votes</strong> and the
@@ -80,7 +80,7 @@
     making a change to fix ranking anomalies.
 </p>
 
-<h2 id="opensource">Impartial and open source</h2>
+<h3 id="opensource">Impartial and open source</h3>
 <p>
     The entire Steam 250 website is <a href="https://github.com/250">open source</a>:
     all the code and data used to run this site are publicly available.
@@ -97,8 +97,7 @@
     change proposals beforehand).
 </p>
 
-
-<h2>Questions</h2>
+<h3>Questions</h3>
 <p>
     If you have any questions feel free to get in touch by
     <a href="{{ discord }}">joining our discord</a> or

@@ -56,9 +56,18 @@ class TagRanking extends DefaultRanking
 
         return parent::export() + [
             'tag_category' => $cat + ['hash' => TagDirectoryStatePacker::packSingleCategory($cat['id'])],
+            'tag_categories' => $this->fetchTagCategories(),
         ];
     }
 
+    private function fetchTagCategories(): array
+    {
+        return $this->database->fetchAllAssociative('
+            SELECT c.*, (SELECT min(tag.name) FROM tag WHERE tag.category = c.short_name) first_tag
+            FROM tag_cat c
+            ORDER BY c.id
+        ');
+    }
 
     private function fetchTagCategory(): array
     {

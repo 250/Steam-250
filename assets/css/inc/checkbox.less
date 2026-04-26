@@ -1,13 +1,20 @@
-@gutter-width: 1.9em;
+@gutter-width: 2em;
+// Space around the knob.
+@space: 2px;
+
+@text-colour: color-mix(var(--frm-fg) 50%, transparent);
 
 // Negative mode.
-@neg-colour: #c29088;
-@neg-track-border-colour: #704e49;
+@neg-colour: color-mix(@neg-knob-colour 70%, var(--frm-fg));
+@neg-track-border-colour: color-mix(@neg-knob-colour 50%, transparent);
+@neg-track-bg-colour: color-mix(@neg-knob-colour-h 20%, transparent);
 @neg-knob-colour: #c9513e;
 // Highlights.
-@neg-colour-h: #e3b8b1;
-@neg-track-border-colour-h: #855c56;
+@neg-colour-h: @neg-colour;
+@neg-track-border-colour-h: @neg-track-border-colour;
 @neg-knob-colour-h: #e8634f;
+
+@transition-time: .15s;
 
 label:has(>.switch), [role=checkbox] > label {
   display: inline-flex;
@@ -25,14 +32,21 @@ input[type=checkbox].switch {
   // Allow inputs to receive focus.
   opacity: 0;
 
-  @checked-colour: #94dfff;
-  @track-height: 1.4ex;
+  @checked-colour: var(--frm-ctrl-hi-fg);
+  @track-height: 1.8ex;
   @track-margin: .7ch;
-  @transition-time: .15s;
 
   // Switch UI.
   + span {
     position: relative;
+
+    ~ span {
+      color: @text-colour;
+
+      &:hover {
+        color: var(--frm-fg);
+      }
+    }
 
     // Knob.
     &:after {
@@ -47,28 +61,28 @@ input[type=checkbox].switch {
     height: @track-height;
     width: @gutter-width;
 
-    background: #172230;
-    border: 1px solid #718fa5;
+    background: var(--frm-ctrl-hard-bg);
+    border: 1px solid var(--frm-ctrl-hard-brdr);
     border-radius: 1em;
 
     transition: @transition-time;
 
     // Knob.
     &:after {
-      height: calc(@track-height - 2px);
+      height: calc(@track-height - @space * 2);
       width: $height;
-      left: 1px;
+      left: @space;
 
-      background: #a0b7c3;
+      background: var(--frm-fg);
       border-radius: 1em;
       transition: @transition-time;
     }
 
     &:hover, &:has(+ span:hover) {
-      border-color: #819eb3;
+      border-color: var(--frm-ctrl-hard-brdr-hov);
 
       &:after {
-        background: #c0d7e3;
+        background: var(--frm-fg);
       }
     }
   }
@@ -78,7 +92,7 @@ input[type=checkbox].switch {
     margin-left: @track-margin;
 
     &:hover {
-      color: #dae8eb;
+      color: var(--frm-fg);
     }
 
     // Deselected text.
@@ -91,7 +105,7 @@ input[type=checkbox].switch {
   &:checked {
     + span {
       &:after {
-        left: calc(@gutter-width - 1px);
+        left: calc(@gutter-width - @space);
         transform: translate(-100%, -50%);
       }
     }
@@ -100,15 +114,15 @@ input[type=checkbox].switch {
       color: @checked-colour;
     }
 
-    &:hover + span{
-      border-color: #477a9e;
+    &:hover + span {
+      border-color: color-mix(var(--frm-ctrl-hi-fg) 50%, transparent);
 
       &:after {
-        background: #87dbff;
+        background: var(--frm-ctrl-hi-fg);
       }
 
       + span {
-        color: #ade7ff;
+        color: var(--frm-ctrl-hi-fg);
       }
     }
   }
@@ -118,6 +132,7 @@ input[type=checkbox].switch {
     &:checked {
       + span {
         border-color: @neg-track-border-colour;
+        background: @neg-track-bg-colour;
 
         &:after {
           background: @neg-knob-colour;
@@ -151,7 +166,7 @@ input[type=checkbox].switch {
         color: @checked-colour;
       }
       + span + span {
-        color: inherit;
+        color: @text-colour;
       }
 
       &:hover {
@@ -165,7 +180,7 @@ input[type=checkbox].switch {
 
           + span {
             // Avoid applying text highlight to deselected option.
-            color: inherit;
+            color: var(--frm-fg);
           }
         }
       }
@@ -176,12 +191,12 @@ input[type=checkbox].switch {
   &:checked, label.option >& {
     + span {
       // Gutter.
-      background: #15232b;
-      border-color: #396d93;
+      background: color-mix(var(--frm-ctrl-hi-fg) 30%, transparent);
+      border-color: color-mix(var(--frm-ctrl-hi-fg) 50%, transparent);
 
       // Knob.
       &:after {
-        background: #70D1FB;
+        background: var(--frm-ctrl-hi-fg);
       }
     }
   }
@@ -222,11 +237,21 @@ input[type=checkbox].switch {
       // Do not allow inputs to gain focus, since enclosing div has a tabindex to receive focus instead.
       visibility: hidden;
 
+      ~ span {
+        transition: color @transition-time;
+      }
+
       // Indeterminate state.
       &:checked {
-        + span:after {
-          left: (@gutter-width / 2);
-          transform: translate(-50%, -50%);
+        + span {
+          + span + span {
+            color: @text-colour;
+          }
+
+          &:after {
+            left: (@gutter-width / 2);
+            transform: translate(-50%, -50%);
+          }
         }
 
         &:hover {
@@ -252,6 +277,7 @@ input[type=checkbox].switch {
       color: inherit;
 
       border-color: @neg-track-border-colour;
+      background: @neg-track-bg-colour;
 
       &:after {
         // Copy positioning from unchecked state.

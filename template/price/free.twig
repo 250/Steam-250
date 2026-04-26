@@ -1,8 +1,10 @@
 {% extends 'layout/ranking.twig' %}
 
 {% block title %}Top 250 best Free Steam Games{% endblock %}
-{% block heading %}Free 250{% endblock %}
+{% block heading %}Free Games Ranking{% endblock %}
 
-{% block content %}
+{% block main %}
 <p>{{ ranking.description }}</p>
 {% endblock %}
+
+{% block context_nav %}{% include 'nav/context/deals.twig' %}{% endblock %}

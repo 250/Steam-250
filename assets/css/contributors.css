@@ -8,9 +8,9 @@ p {
     margin-bottom: 1em;
     padding: 1em;
 
-    background: rgba(0, 0, 0, .09) linear-gradient(0deg, rgba(156, 245, 255, .04), transparent 30%);
-    border-top: 1px solid #263c4f;
-    box-shadow: 3px 3px 7px #131d29;
+    background: #1d1429 linear-gradient(0deg, rgba(197, 156, 255, .04), transparent 30%);
+    border-top: 1px solid #37264f;
+    box-shadow: 3px 3px 7px #1c1329;
     border-radius: 10px;
 }
 
@@ -29,30 +29,27 @@ p {
     align-items: center;
     justify-content: center;
 
+    color: #ccc;
     font-size: 105%;
     font-weight: bold;
-    text-shadow: 0 0 8px #051e33;
-    background: linear-gradient(#6cb9d3, #033f75);
+    text-shadow: 0 0 8px #180533;
+    background: linear-gradient(#976cd4, #330475);
 }
 
 .content > div > div > p {
-    margin-top: 1em;
     margin-bottom: 0;
 
-    font-size: 95%;
-    line-height: 1.3;
+    color: #bab2b1;
 }
 
 .content h2 {
-    font: 200%/1 Lobster, sans-serif;
+    margin-bottom: -.5rem;
+
+    font-size: 200%;
     text-shadow: 1px 1px 4px rgba(0, 0, 0, .8);
 }
 
 .subtitle {
-    display: block;
-    margin-top: -1rem;
-
-    color: #70c3ff;
+    color: #946ace;
     font-variant: petite-caps;
-    font-size: 92.5%;
 }

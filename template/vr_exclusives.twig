@@ -1,15 +1,19 @@
 {% extends 'layout/ranking.twig' %}
 
 {% block title %}Top 250 best VR Exclusive Steam Games{% endblock %}
-{% block heading %}VR Exclusives{% endblock %}
+{% block heading %}VR Exclusives Ranking{% endblock %}
 
-{% block content %}
+{% block main %}
     <p>
         Top 250 best virtual reality exclusive Steam games of all time,
         according to gamer reviews.
     </p>
-    <p class="tip">
+    <p>
         These games can only be played with a VR headset. For VR games with desktop support see
         <a href="/vr250{{ ext }}">VR Top 250</a>.
     </p>
 {% endblock %}
+
+{% block context_nav %}{% include 'nav/context/platforms.twig' %}{% endblock %}
+{% block local_nav %}{% include 'nav/local/vr.twig' %}{% endblock %}
+{% block context_name %}Exclusive{% endblock %}

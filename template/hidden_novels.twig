@@ -1,14 +1,17 @@
 {% extends 'layout/ranking.twig' %}
 
 {% block title %}Hidden Visual Novels on Steam{% endblock %}
-{% block heading %}Hidden Novels{% endblock %}
+{% block heading %}Hidden Novels Ranking{% endblock %}
 
-{% block content %}
+{% block main %}
     <p>
         Top {{ games|length }} highly rated visual novels that few know but many love.
     </p>
     <p class="tip">
         For more popular novels see the <a href="/tag/visual_novel{{ ext }}">Visual Novels</a> ranking.
-        For more hidden games see the <a href="/hidden_gems{{ ext }}">Hidden Gems</a> ranking.
     </p>
 {% endblock %}
+
+{% block local_nav %}{% include 'nav/local/gems.twig' %}{% endblock %}
+{% block context_name %}Novels{% endblock %}
+{% block parent_id %}hidden_gems{% endblock %}

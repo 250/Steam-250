@@ -9,6 +9,6 @@ class RollingQuarterRanking extends RollingRanking
 {
     public function __construct(RankingDependencies $dependencies)
     {
-        parent::__construct($dependencies, '90day', '-3 month', 200);
+        parent::__construct($dependencies, '90day', '-3 month', 'quarter', 90, 200);
     }
 }

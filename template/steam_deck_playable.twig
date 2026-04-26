@@ -1,13 +1,13 @@
 {% extends 'layout/ranking.twig' %}
 
 {% block title %}Top 250 best Steam Deck Playable games{% endblock %}
-{% block heading %}Deck Playable 250{% endblock %}
+{% block heading %}Steam Deck Playable Ranking{% endblock %}
 
-{% block content %}
+{% block main %}
 <p>
     Top 250 best <b class="deck-p">Steam Deck Playable</b> games of all time according to gamer reviews.
 </p>
-<p class="note">
+<p>
     <em>Playable</em> games have been certified by Valve as functional on Steam Deck,
     but might require extra effort to interact with or configure.
 </p>
@@ -16,3 +16,6 @@
     See <a href="/steam_deck_verified{{ ext }}">Steam Deck Verified</a> to exclude <em>playable</em> games.
 </p>
 {% endblock %}
+
+{% block context_nav %}{% include 'nav/context/platforms.twig' %}{% endblock %}
+{% block local_nav %}{% include 'nav/local/deck.twig' %}{% endblock %}

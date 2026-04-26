@@ -6,16 +6,16 @@
 {% set desc = ranking.year is defined ? 'in ' ~ year : 'before ' ~ year %}
 
 {% block title %}Top {{ games|length }} best Steam Games released {{ desc }}{% endblock %}
-{% block heading %}Best of {{ when }}{% endblock %}
+{% block heading %}Best Games of {{ when }} Ranking{% endblock %}
 
-{% block content %}
+{% block main %}
     <p>
         Top {{ games|length }} best Steam games released {{ desc }},
         according to gamer reviews.
     </p>
     {% if year != 'now'|date('Y') %}
-    <p class="note">
-        Despite representing a historical segment, this ranking is subject to change as votes change
+    <p>
+        Note that, despite representing a historical segment, this ranking is still subject to change as votes change
         and old games are released on Steam.
     </p>
     {% endif %}
@@ -27,4 +27,17 @@
 
 {% block post %}
     {{ include('partial/timeline.twig') }}
+{% endblock %}
+
+{% block context_nav %}{% include 'nav/context/dates.twig' with {id: 'annum'} %}{% endblock %}
+{% block local_nav %}
+<h3>Best of</h3>
+<ol>
+    {% for yr in 'now'|date('Y')..earliest_year %}
+        <li><a href="/{{ yr ~ ext }}" class="annum {{ ranking.year ?? 0 == yr ? 'sel' }}">{{ yr }}</a>
+    {% endfor %}
+    <li><a href="/old{{ ext }}" class="annum {{ ranking.year is not defined ? 'sel' }}">
+        Pre-{{ earliest_year }}
+    </a>
+</ol>
 {% endblock %}

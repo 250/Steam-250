@@ -19,7 +19,6 @@ module.exports = {
                 './js/LazyLoad.ts',
 
                 './css/250.less',
-                './css/inc/3col.less',
 
                 './js/Checkbox.ts'
             ],

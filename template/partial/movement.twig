@@ -1,0 +1,39 @@
+{% import 'macro/steam.twig' as steam %}
+{% import 'macro/club250.twig' as c250 %}
+
+<section class="mvmt {{ class }}">
+    <h3>{{ title }}</h3>
+    <ol>
+        {% for game in games %}
+        <li>
+            {% set href =
+                game.team_id is defined and game.team_id ? c250.team_url(game.team_id)
+                    : game.developer is defined ? steam.developer_url(game.developer)
+                        : game.publisher is defined ? steam.publisher_url(game.publisher)
+                            : steam.app_url(game.id)
+            %}
+            <a href="{{ href }}" {{ steam.video_attr(game.name, game.videos, game.video_manifest_hashes) }}>
+                {{- steam.app_capsule(game) -}}
+            </a>
+            <a href="{{ href }}">
+                {{ game.developer is defined ? game.developer
+                    : game.publisher is defined ? game.publisher
+                    : game.name }}
+            </a>
+            {# Intra-page links. #}
+            {% if noipl is defined %}
+                Gone (#{{ game.rank }})
+            {% else %}
+                <span>
+                    <a href="{{ base_url ?? '' }}#{{ game.rank }}" class="rank">#{{ game.rank }}</a>
+                    {%- if game.movement is defined -%}
+                        <span>
+                            {{ game.movement is null ? 'New'
+                                : (game.movement < 0 ? '-' : '+') ~ game.movement|abs }}
+                        </span>
+                    {% endif -%}
+                </span>
+            {% endif %}
+        {% endfor %}
+    </ol>
+</section>

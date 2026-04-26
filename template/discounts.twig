@@ -1,9 +1,9 @@
 {% extends 'layout/ranking.twig' %}
 
 {% block title %}Top 250 best Discounted Steam Games{% endblock %}
-{% block heading %}Discount 250{% endblock %}
+{% block heading %}Top 250 Discounts Ranking{% endblock %}
 
-{% block content %}
+{% block main %}
 <p>
     Top 250 best Steam games currently on sale,
     according to gamer reviews.
@@ -18,6 +18,8 @@
 </div>
 <p class="note">
     Steam 250 receives no commission from sales.
-    To support this site <a href="{{ club250 }}/join">join Club 250</a>.
+    To support this site <a href="{{ club250 }}/join">join Steam 250</a>.
 </p>
 {% endblock %}
+
+{% block context_nav %}{% include 'nav/context/deals.twig' %}{% endblock %}

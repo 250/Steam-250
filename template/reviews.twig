@@ -8,14 +8,12 @@
 {% block title %}Top {{ games|length }} Most Reviewed Steam Games {{ desc }}{% endblock %}
 {% block heading %}Most Reviewed {{ when }}{% endblock %}
 
-{% block content %}
+{% block main %}
     {{ parent() }}
 
     <p class="tip">
         Compare with <a href="/{{ (ranking.year ?? 'old') ~ ext }}">top rated games {{ desc }}</a>.
     </p>
-
-    {{ include('partial/timeline.twig') }}
 {% endblock %}
 
 {% block main_p %}
@@ -24,4 +22,17 @@
 
 {% block post %}
     {{ include('partial/timeline.twig') }}
+{% endblock %}
+
+{% block context_nav %}{% include 'nav/context/dates.twig' with {id: 'review'} %}{% endblock %}
+{% block local_nav %}
+<h3>Most reviewed</h3>
+<ol>
+    {% for yr in 'now'|date('Y')..earliest_year %}
+        <li><a href="/reviews/{{ yr ~ ext }}" class="review {{ ranking.year ?? 0 == yr ? 'sel' }}">{{ yr }}</a>
+    {% endfor %}
+    <li><a href="/reviews/old{{ ext }}" class="review {{ ranking.year is not defined ? 'sel' }}">
+        Pre-{{ earliest_year }}
+    </a>
+</ol>
 {% endblock %}

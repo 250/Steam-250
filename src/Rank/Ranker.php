@@ -30,6 +30,7 @@ final class Ranker
 
         $matched = 0;
         $cursor = Queries::rankList($this->database, $ranking);
+        $this->database->executeQuery('PRAGMA synchronous = OFF');
 
         while (false !== $app = $cursor->fetch()) {
             // Insert app rank into database.

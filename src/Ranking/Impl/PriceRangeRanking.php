@@ -10,10 +10,13 @@ abstract class PriceRangeRanking extends DefaultRanking
 {
     private int $min;
     private int $max;
+    protected(set) string $windowTitle;
 
     public function __construct(RankingDependencies $dependencies, string $id, int $min, int $max)
     {
         parent::__construct($dependencies, $id);
+
+        $this->setTemplate('price/price_range');
 
         $this->min = $min;
         $this->max = $max;

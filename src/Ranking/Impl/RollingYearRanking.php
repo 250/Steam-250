@@ -9,6 +9,6 @@ class RollingYearRanking extends RollingRanking
 {
     public function __construct(RankingDependencies $dependencies)
     {
-        parent::__construct($dependencies, '365day', 'last year', 250);
+        parent::__construct($dependencies, '365day', 'last year', 'year', 365, 250);
     }
 }

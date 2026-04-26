@@ -1,14 +1,22 @@
 {% extends 'layout/ranking.twig' %}
 
 {% block title %}Top 250 best Steam Games{% endblock %}
-{% block heading %}Steam Top 250{% endblock %}
+{% block heading %}Steam Top 250 Ranking{% endblock %}
 
-{% block content %}
+{% block main %}
 <p>
     Top 250 best Steam games of all time according to gamer reviews.
 </p>
 {% endblock %}
 
-{% block post %}
+{% block post_ranking %}
 {{ include('component/more button.twig', {url: club250 ~ '/ranking/250/2', caption: 'Next 250'}) }}
+{% endblock %}
+
+{% block local_nav %}
+<h3>Steam Top 250</h3>
+<ol>
+    <li><a href="/top250{{ ext }}" class="cup sel">Today</a>
+    <li><a href="{{ club250 }}/ranking/250/history/20190417" class="cup">History</a>
+</ol>
 {% endblock %}

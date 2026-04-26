@@ -5,18 +5,6 @@ export default class User {
         ;
     }
 
-    static logout() {
-        document.body.insertAdjacentHTML('beforeend', `
-            <form method="post" action="${process.env.CLUB_250_BASE_URL}/logout" name="logout">
-                <input type="hidden" name="r" value="${location.origin + location.pathname}">
-            </form>
-        `);
-
-        this.syncLogout();
-
-        document.forms.namedItem('logout')!.submit();
-    }
-
     static async syncLogin() {
         const response = await fetch(`${process.env.CLUB_250_BASE_URL}/api/whoami`, {credentials: 'include'});
         const body = await response.text();
@@ -77,7 +65,7 @@ export default class User {
 
         if (S250.isClub250()) return;
 
-        const userBar = document.getElementById('user');
+        const userBar = document.querySelector('#header > :last-child');
         if (!userBar) return;
 
         const classes = userBar.classList;
@@ -135,17 +123,18 @@ export default class User {
 
         const user = this.fetchUser();
 
-        const a = document.querySelector<HTMLAnchorElement>('#lin .avatar');
+        const a = document.querySelector<HTMLAnchorElement>('#header .user-avatar');
         if (!a) return;
         a.href = `${process.env.CLUB_250_BASE_URL}/me`;
 
-        const img = a.appendChild(document.createElement('img'));
-        img.alt = img.title = user.name;
-        if (user.avatar.includes('/')) {
-            img.src = `${IMAGE_BASE_URL}/items/${user.avatar}`;
-        } else {
-            img.src = `${IMAGE_BASE_URL}/avatars/${user.avatar.substring(0, 2)}/${user.avatar}.jpg'`;
-        }
+        const src = user.avatar.includes('/')
+            ? `${IMAGE_BASE_URL}/items/${user.avatar}`
+            : `${IMAGE_BASE_URL}/avatars/${user.avatar.substring(0, 2)}/${user.avatar}_full.jpg'`;
+
+        a.insertAdjacentHTML(
+            'afterbegin',
+            `<span title="${user.name}'s profile"><img alt="${user.name}" src="${src}"></span>`
+        );
     }
 
     private static fetchUser() {

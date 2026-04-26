@@ -1,15 +1,19 @@
 {% extends 'layout/ranking.twig' %}
 
 {% block title %}Top 250 best VR Steam Games{% endblock %}
-{% block heading %}VR Top 250{% endblock %}
+{% block heading %}VR Top 250 Ranking{% endblock %}
 
-{% block content %}
+{% block main %}
     <p>
         Top 250 best virtual reality Steam games of all time,
         according to gamer reviews.
     </p>
-    <p class="tip">
+    <p>
         This ranking includes games with any level of VR support.
         <a href="/vr_exclusives{{ ext }}">VR Exclusives</a> have their own ranking.
     </p>
 {% endblock %}
+
+{% block context_nav %}{% include 'nav/context/platforms.twig' %}{% endblock %}
+{% block local_nav %}{% include 'nav/local/vr.twig' %}{% endblock %}
+{% block context_name %}Compatible{% endblock %}

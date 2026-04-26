@@ -23,6 +23,7 @@ class S250 {
         S250.initRatingColourGradient();
         Checkbox.initCheckboxes();
         S250.initChevrons();
+        this.initContextNav();
 
         // User stuff.
         this.initLogInOut();
@@ -41,7 +42,6 @@ class S250 {
         this.initTracker();
 
         // Fancy stuff.
-        this.initAppLinkMenu();
         S250.initRankingHoverItems();
         S250.player = new VideoPlayer();
     }
@@ -60,7 +60,6 @@ class S250 {
             `${process.env.CLUB_250_BASE_URL}/steam/login?r=${location.origin + location.pathname}`
 
         document.querySelector('#lout button')!.addEventListener('click', _ => localStorage.setItem('login', 'sync'));
-        document.querySelector('#lin button')!.addEventListener('click', _ => User.logout());
 
         // Club 250 logout signal.
         if (location.hash === '#!') {
@@ -238,50 +237,6 @@ class S250 {
         );
     }
 
-    initAppLinkMenu() {
-        const menu = document.getElementById('linkmenu')!,
-            ACTIVE = 'show';
-
-        let link: HTMLAnchorElement;
-
-        document.querySelectorAll<HTMLAnchorElement>('.ranking .links').forEach(a => {
-            a.addEventListener('click', e => {
-                menu.style.top = a.offsetTop + a.offsetHeight + 5 + 'px';
-                menu.style.left = a.offsetLeft + 'px';
-                menu.querySelector('a:first-of-type > span')!.innerHTML = a.closest('[id]')!.id;
-
-                menu.classList.toggle(ACTIVE, link !== a ? true : undefined);
-                a.classList.toggle(ACTIVE, menu.classList.contains(ACTIVE));
-
-                link = a;
-
-                e.preventDefault();
-            });
-
-            a.addEventListener('blur', _ => {
-                menu.classList.remove(ACTIVE);
-                a.classList.remove(ACTIVE);
-            });
-        });
-
-        document.querySelectorAll('#linkmenu a').forEach(a => {
-            a.addEventListener('click', _ => {
-                if (a.classList.contains('cp')) {
-                    if (a.classList.contains('rank')) {
-                        this.copyToClipboard(link.href);
-                    }
-
-                    if (a.classList.contains('app')) {
-                        const id = this.findSteamAppId(link.closest('[id]')!),
-                            name = encodeURIComponent(this.findSteamAppName(link.closest('div')!));
-
-                        this.copyToClipboard(`${location.origin}${location.pathname}#app/${id}/${name}`)
-                    }
-                }
-            });
-        });
-    }
-
     static initRankingHoverItems() {
         document.querySelectorAll<HTMLElement>('.compact.ranking li > .title').forEach(a => {
             a.querySelector(':scope > .title')?.remove();
@@ -309,22 +264,12 @@ class S250 {
     }
 
     private static initRatingColourGradient() {
-        const grad = chroma.scale(['#de5854', '#dfe372', '#83d866']).domain([0, 60, 100]);
+        const grad = chroma.scale(['#da3e41', '#eab308', '#22c55e']).domain([0, 60, 100]);
 
-        document.querySelectorAll<HTMLElement>('.rating').forEach(el => {
-            const [pre, post] = /(\D*)(\d+%?)/.exec(el.innerText)!.slice(1);
+        document.querySelectorAll<HTMLElement>('.rating > span').forEach(el => {
+            const pct = el.style.width;
 
-            // Wrap numeric component in separate element to avoid colouring non-digits.
-            if (pre) {
-                const newEl = document.createElement('span');
-
-                el.innerHTML = pre;
-                newEl.innerHTML = post;
-                el.insertAdjacentElement('beforeend', newEl);
-                el = newEl;
-            }
-
-            el.style.color = grad(parseFloat(el.innerText)).hex();
+            el.style.backgroundColor = grad(parseFloat(pct)).hex();
         });
     }
 
@@ -334,6 +279,23 @@ class S250 {
             span.parentNode!.appendChild(span.cloneNode());
             span.parentNode!.appendChild(span.cloneNode());
         });
+    }
+
+    private initContextNav() {
+        const nav = document.querySelector<HTMLElement>('aside > nav')!;
+        const sel = nav?.querySelectorAll<HTMLElement>('.sel') || [];
+
+        if (sel.length < 2) return;
+
+        sel[0].insertAdjacentHTML('beforeend', `<span>${nav.dataset.ctx || sel[1].innerText}</span>`);
+
+        // Scroll local nav to selected element.
+        const container = sel[1].closest('ol')!;
+        const elementRect = sel[1].getBoundingClientRect();
+        const elementMid = elementRect.top - container.getBoundingClientRect().top
+            + container.scrollTop + elementRect.height / 2;
+
+        container.scrollTop = elementMid - container.clientHeight / 2;
     }
 
     findSteamAppId(elem: HTMLElement) {

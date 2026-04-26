@@ -50,13 +50,12 @@ export default class BuildMonitor {
             return this.showReady();
         }
 
-        const formattedDuration = duration.format('[<span>]HH:mm.ss[</span>]');
+        const formattedDuration = duration.format(`
+            [<span>]HH[</span><span>]${(this.blink ^= 1) ? ':' : ' '}[</span><span>]mm[</span><span>]
+            .[</span><span>]ss[</span>]
+        `);
 
-        this.element.innerHTML = 'Next update in ' + (
-            (this.blink ^= 1)
-                ? formattedDuration
-                : formattedDuration.replace(/:/, ' ')
-        );
+        this.element.innerHTML = 'Next update ' + formattedDuration;
     }
 
     private showBuilding() {
