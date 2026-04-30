@@ -266,10 +266,16 @@ class S250 {
     private static initRatingColourGradient() {
         const grad = chroma.scale(['#da3e41', '#eab308', '#22c55e']).domain([0, 60, 100]);
 
-        document.querySelectorAll<HTMLElement>('.rating > span').forEach(el => {
-            const pct = el.style.width;
+        document.querySelectorAll<HTMLElement>('.rating').forEach(el => {
+            const span = el.querySelector('span');
 
-            el.style.backgroundColor = grad(parseFloat(pct)).hex();
+            if (span) {
+                // Meter.
+                span.style.backgroundColor = grad(parseFloat(span.style.width)).hex();
+            } else {
+                // Text only.
+                el.style.color = grad(parseFloat(el.textContent)).hex();
+            }
         });
     }
 

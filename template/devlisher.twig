@@ -50,3 +50,12 @@
     <li><a href="/publisher{{ ext }}" class="{{ mode == 'publisher' ? 'sel' }}">Publishers</a>
 </ol>
 {% endblock %}
+
+{% block css %}
+{{ parent() }}
+<style>
+    aside nav >ol:nth-child(2 of ol) > li > a:before {
+        content: none;
+    }
+</style>
+{% endblock %}
