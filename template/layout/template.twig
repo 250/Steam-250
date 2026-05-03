@@ -218,26 +218,6 @@
             </p>
         </div>
 
-        <dl>
-            <dt>Data
-            <dd><a href="https://dev.azure.com/ScriptFUSION/Steam%20250/_build/latest?definitionId=1">
-                <img src="https://dev.azure.com/ScriptFUSION/Steam%20250/_apis/build/status/250.Steam-importer?branchName=master"
-                    alt="Data import status">
-            </a>
-            <dt>Pages
-            <dd><a href="https://github.com/250/Steam-250/actions/workflows/Build.yml">
-                <img src="https://github.com/250/Steam-250/actions/workflows/Build.yml/badge.svg"
-                    alt="Page build status">
-            </a>
-            <dt><a href="https://store.steampowered.com/curator/32686107/">Curator</a>
-            <dd><a href="https://github.com/250/Steam-curator/actions/workflows/Curator%20sync.yml">
-                <img src="https://github.com/250/Steam-curator/actions/workflows/Curator%20sync.yml/badge.svg"
-                    alt="Curator sync status">
-            </a>
-            <dt>Generated
-            <dd>{{ 'now'|date }} {{ tz() }}
-        </dl>
-
         <ul>
             <li><a href="{{ club250 }}/join">Join</a>
             <li><a href="/about{{ ext }}">About</a>
@@ -246,12 +226,28 @@
             <li><a href="https://github.com/250">Source</a>
             <li><a href="/privacy{{ ext }}">Privacy</a>
         </ul>
+
+        <div>
+            <span>System</span>
+            <ol>
+                <li><a href="https://dev.azure.com/ScriptFUSION/Steam%20250/_build/latest?definitionId=1">
+                    Data snapshot
+                </a>
+                <li><a href="https://github.com/250/Steam-250/actions/workflows/Build.yml">
+                    Page build
+                </a>
+                <li><a href="https://github.com/250/Steam-curator/actions/workflows/Curator%20sync.yml">
+                    Curator sync
+                </a>
+                <li>Generated <span>{{ 'now'|date }} {{ tz() }}</span>
+            </ol>
+        </div>
     </footer>
 </div>
 
 <div class="fixedlinks">
-    <a href="#header">Top</a>
-    <a href="#footer">Bottom</a>
+    <a href="#header" title="Top">Top</a>
+    <a href="#footer" title="Bottom">Bottom</a>
 </div>
 
 {% block js %}

@@ -24,6 +24,7 @@ class S250 {
         Checkbox.initCheckboxes();
         S250.initChevrons();
         this.initContextNav();
+        this.initStatusLights();
 
         // User stuff.
         this.initLogInOut();
@@ -302,6 +303,60 @@ class S250 {
             + container.scrollTop + elementRect.height / 2;
 
         container.scrollTop = elementMid - container.clientHeight / 2;
+    }
+
+    private initStatusLights() {
+        const statusBar = document.querySelector('#footer > :nth-child(3) > ol')!;
+        const dataSnapshot = statusBar.querySelector<HTMLElement>('li:nth-child(1)')!;
+        const pageBuild = statusBar.querySelector<HTMLElement>('li:nth-child(2)')!;
+        const curatorSync = statusBar.querySelector<HTMLElement>('li:nth-child(3)')!;
+
+        const io = new IntersectionObserver((entries: IntersectionObserverEntry[]) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    io.unobserve(entry.target);
+
+                    fetchStatuses();
+                }
+            })
+        }, {rootMargin: '50%'});
+        io.observe(statusBar);
+
+        function fetchStatuses() {
+            // fetch('https://dev.azure.com/ScriptFUSION/Steam%20250/_apis/pipelines/1/runs')
+            fetch('https://dev.azure.com/ScriptFUSION/Steam%20250/_apis/build/builds?definitions=1&$top=1')
+                .then(async response => {
+                    const json = await response.json();
+                    const {status, result} = json.value[0];
+
+                    if (status === 'completed' && result === 'succeeded') {
+                        dataSnapshot.classList.add('1');
+                    } else if (status === 'inProgress') {
+                        dataSnapshot.classList.add('2');
+                    } else {
+                        dataSnapshot.classList.add('3');
+                    }
+                });
+
+            fetch('https://api.github.com/repos/250/Steam-250/actions/workflows/Build.yml/runs?per_page=1')
+                .then(r => parseGitHubResponse(r, pageBuild));
+
+            fetch('https://api.github.com/repos/250/Steam-curator/actions/workflows/Curator%20sync.yml/runs?per_page=1')
+                .then(r => parseGitHubResponse(r, curatorSync));
+        }
+
+        async function parseGitHubResponse(response: Response, target: HTMLElement) {
+            const json = await response.json();
+            const {status, conclusion} = json.workflow_runs[0];
+
+            if (status === 'completed' && conclusion === 'success') {
+                target.classList.add('1');
+            } else if (status === 'in_progress') {
+                target.classList.add('2');
+            } else {
+                target.classList.add('3');
+            }
+        }
     }
 
     findSteamAppId(elem: HTMLElement) {
