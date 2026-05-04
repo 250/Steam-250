@@ -16,8 +16,7 @@
   >ol {
     display: flex;
     max-width: 629px;
-    height: 37px;
-    margin: 1px auto 0;
+    height: 100%;
     gap: 22px;
     justify-content: space-between;
 
@@ -84,7 +83,7 @@
         position: absolute;
         width: 0;
         height: 2px;
-        bottom: 0;
+        bottom: calc(50% - 1em - 4px);
         left: 50%;
 
         background: #e0c17d;
@@ -198,7 +197,7 @@
         box-sizing: border-box;
         position: absolute;
         left: 50%;
-        top: 66px;
+        top: 100%;
         translate: -50%;
         max-height: 0;
         padding: 0 23px;
@@ -212,7 +211,7 @@
         color: @1;
         background: #120b1c;
         border-radius: 0 0 6px 6px;
-        //box-shadow: 0 1px 8px #17222f;
+        box-shadow: 0 1px 6px rgb(17 14 20 / .5);
 
         transition: all .3s .15s;
 

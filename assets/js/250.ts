@@ -323,7 +323,6 @@ class S250 {
         io.observe(statusBar);
 
         function fetchStatuses() {
-            // fetch('https://dev.azure.com/ScriptFUSION/Steam%20250/_apis/pipelines/1/runs')
             fetch('https://dev.azure.com/ScriptFUSION/Steam%20250/_apis/build/builds?definitions=1&$top=1')
                 .then(async response => {
                     const json = await response.json();

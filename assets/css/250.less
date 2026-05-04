@@ -1213,7 +1213,8 @@ tr.a .movement.none:before {
     }
     >:nth-child(2) {
         display: flex;
-        gap: 32px;
+        flex-flow: wrap;
+        gap: 2em 32px;
         align-items: center;
 
         font-weight: bold;
@@ -1233,6 +1234,7 @@ tr.a .movement.none:before {
     }
     >:nth-child(3) {
         display: flex;
+        flex-flow: wrap;
         flex: 100%;
         margin-inline: -@hpad;
         padding: 10px @hpad;
@@ -1255,9 +1257,10 @@ tr.a .movement.none:before {
 
         >ol {
             display: flex;
-            flex: 100%;
+            flex-flow: wrap;
+            flex: auto;
             height: 24px;
-            gap: 24px;
+            gap: 2em 24px;
 
             >li {
                 display: flex;
@@ -1318,7 +1321,7 @@ tr.a .movement.none:before {
     position: fixed;
     // Ensure links are not obscured by minor visual elements exploiting stacking contexts.
     z-index: 1;
-    bottom: 40px;
+    bottom: 30px;
     right: 24px;
     width: 30px;
     height: $width;
