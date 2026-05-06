@@ -28,7 +28,7 @@
     "ts-loader": "^8.0.17",
     "twing": "^5.0.2",
     "twing-loader": "^4.0.0",
-    "typescript": "^5.9.3",
+    "typescript": "^6.0.3",
     "webpack": "^5.101.3",
     "webpack-cli": "^4.5.0"
   },

@@ -306,10 +306,12 @@ class S250 {
     }
 
     private initStatusLights() {
-        const statusBar = document.querySelector('#footer > :nth-child(3) > ol')!;
-        const dataSnapshot = statusBar.querySelector<HTMLElement>('li:nth-child(1)')!;
-        const pageBuild = statusBar.querySelector<HTMLElement>('li:nth-child(2)')!;
-        const curatorSync = statusBar.querySelector<HTMLElement>('li:nth-child(3)')!;
+        const statusBar = document.querySelector('#footer > :nth-child(3) > ol');
+        const dataSnapshot = statusBar?.querySelector<HTMLElement>('li:nth-child(1)')!;
+        const pageBuild = statusBar?.querySelector<HTMLElement>('li:nth-child(2)')!;
+        const curatorSync = statusBar?.querySelector<HTMLElement>('li:nth-child(3)')!;
+
+        if (!(statusBar && dataSnapshot && pageBuild && curatorSync)) return;
 
         const io = new IntersectionObserver((entries: IntersectionObserverEntry[]) => {
             entries.forEach(entry => {
@@ -323,7 +325,8 @@ class S250 {
         io.observe(statusBar);
 
         function fetchStatuses() {
-            fetch('https://dev.azure.com/ScriptFUSION/Steam%20250/_apis/build/builds?definitions=1&$top=1')
+            fetch('https://dev.azure.com/ScriptFUSION/Steam%20250/_apis/build/builds'
+                + '?definitions=1&$top=1&queryOrder=queueTimeDescending')
                 .then(async response => {
                     const json = await response.json();
                     const {status, result} = json.value[0];
@@ -350,7 +353,7 @@ class S250 {
 
             if (status === 'completed' && conclusion === 'success') {
                 target.classList.add('1');
-            } else if (status === 'in_progress') {
+            } else if (status === 'queued' || status === 'in_progress') {
                 target.classList.add('2');
             } else {
                 target.classList.add('3');
