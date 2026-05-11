@@ -3,7 +3,11 @@ declare(strict_types=1);
 
 namespace ScriptFUSION\Steam250\SiteGenerator\Page;
 
+use Doctrine\DBAL\ArrayParameterType;
 use Doctrine\DBAL\Connection;
+use ScriptFUSION\Porter\Import\Import;
+use ScriptFUSION\Porter\Porter;
+use ScriptFUSION\Porter\Provider\Steam\Resource\GetAppAssets;
 use ScriptFUSION\Steam250\SiteGenerator\Database\Queries;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\DiscountRanking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\FreeRanking;
@@ -14,6 +18,7 @@ use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\Top250Ranking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\TrendRanking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\UsdUnder5Ranking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Ranking;
+use ScriptFUSION\Steam250\SiteGenerator\Tag\KeystoneTagChooser;
 
 class HomePage extends Page implements PreviousDatabaseAware
 {
@@ -34,8 +39,21 @@ class HomePage extends Page implements PreviousDatabaseAware
         'tag/family_friendly' => ['casual']
     ];
 
-    public function __construct(Connection $database, array $rankings, int $rankingCount)
-    {
+    private const APP_MEDIA_MAP = [
+        TrendRanking::class => 'library_hero',
+        Top250Ranking::class => 'library_hero',
+        RollingWeekRanking::class => 'hero_capsule',
+        MostPlayedRanking::class => 'hero_capsule',
+        HiddenGemsRanking::class => 'hero_capsule',
+    ];
+
+    public function __construct(
+        Connection $database,
+        private readonly Connection $appMediaCache,
+        private readonly Porter $porter,
+        array $rankings,
+        int $rankingCount,
+    ) {
         parent::__construct($database, 'index');
 
         $this->database = $database;
@@ -52,9 +70,11 @@ class HomePage extends Page implements PreviousDatabaseAware
             array_map(
                 fn (Ranking $ranking) =>
                     [
-                        'apps' => Queries::fetchRankedList($this->database, $ranking, $this->prevDb, 10),
+                        'apps' => $apps = Queries::fetchRankedList($this->database, $ranking, $this->prevDb, 10)
+                            |> self::pickKeystoneTag(...),
                         'related' => self::RELATED_MAP[$ranking->getId()] ?? [],
-                    ] + compact('ranking'),
+                    ] + compact('ranking')
+                    + $this->fetchAppMedia($ranking, $apps),
                 $this->rankings
             )
         );
@@ -65,6 +85,57 @@ class HomePage extends Page implements PreviousDatabaseAware
                 'total_rankings' => $this->rankingCount,
             ]
         ;
+    }
+
+    private static function pickKeystoneTag(array $apps): array
+    {
+        return array_map(static function ($app) {
+            if (isset($app['tags'])) {
+                $decodedTags = array_map(
+                    static fn ($tag) => array_combine(
+                        ['name', 'votes', 'category'],
+                        explode("\x1f", $tag)
+                    ),
+                    explode("\x1e", $app['tags'])
+                );
+
+                $app['keystone_tag'] = KeystoneTagChooser::choose($decodedTags);
+            }
+
+            return $app;
+        }, $apps);
+    }
+
+    private function fetchAppMedia(Ranking $ranking, array $apps): array
+    {
+        if (!$apps || !isset(self::APP_MEDIA_MAP[$ranking::class])) {
+            return [];
+        }
+
+        $mediaClass = self::APP_MEDIA_MAP[$ranking::class];
+
+        // Check if media links are already cached.
+        $cachedMedia = $this->appMediaCache->executeQuery(
+            "SELECT app_id, $mediaClass FROM app_media WHERE app_id IN (?) AND $mediaClass IS NOT NULL",
+            [$appIds = array_map(fn ($app) => $app['id'], $apps)],
+            [ArrayParameterType::INTEGER],
+        )->fetchAllKeyValue();
+
+        if ($missing = array_diff_key(array_flip($appIds), $cachedMedia)) {
+            // Download media links.
+            $response = $this->porter->import(new Import(new GetAppAssets(array_keys($missing))));
+
+            // Cache media links.
+            $media = [];
+            foreach ($response as $app) {
+                $this->appMediaCache->executeStatement(
+                    "INSERT OR REPLACE INTO app_media (app_id, $mediaClass) VALUES (?, ?)",
+                    [$app['id'], $media[$app['id']] = $app['assets'][$mediaClass]]
+                );
+            }
+        }
+
+        return ['app_media' => $cachedMedia ?: $media];
     }
 
     public static function getRankings(): array

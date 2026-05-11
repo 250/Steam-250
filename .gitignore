@@ -6,3 +6,4 @@
 /headless/
 /db/
 *.local
+/app media cache.db

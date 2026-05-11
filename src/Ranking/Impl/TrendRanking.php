@@ -3,9 +3,11 @@ declare(strict_types=1);
 
 namespace ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl;
 
+use Doctrine\DBAL\Query\QueryBuilder;
+use ScriptFUSION\Steam250\SiteGenerator\Rank\CustomRankingFetch;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\RankingDependencies;
 
-class TrendRanking extends Club250Ranking
+class TrendRanking extends Club250Ranking implements CustomRankingFetch
 {
     public function __construct(RankingDependencies $dependencies)
     {
@@ -19,6 +21,20 @@ class TrendRanking extends Club250Ranking
 
     public function getUrl(): string
     {
-        return "$_ENV[CLUB_250_BASE_URL]/ranking/new-and-trending";
+        return "$_ENV[CLUB_250_BASE_URL]/ranking/trending-now";
+    }
+
+    public function customizeRankingFetch(QueryBuilder $builder): void
+    {
+        $builder
+            ->addSelect(
+                'dev.name developer',
+                "GROUP_CONCAT(tag.name || '\x1F' || app_tag.votes || '\x1F' || tag.category, '\x1E') tags"
+            )
+            ->leftJoin('app', 'app_developer', 'dev', 'dev.app_id = app.id')
+            ->leftJoin('app', 'app_tag', 'app_tag', 'app.id = app_tag.app_id')
+            ->join('app_tag', 'tag', 'tag', 'tag.id = app_tag.tag_id')
+            ->groupBy('app.id')
+        ;
     }
 }

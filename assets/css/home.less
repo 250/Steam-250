@@ -1,223 +1,207 @@
-@import "inc/func/icons";
+main {
+  padding: 32px;
 
-section.stats {
-  display: flex;
-  flex-flow: wrap;
-  justify-content: space-evenly;
-  max-width: 60rem;
-  margin: 4em auto 1em;
-
-  dl {
-    position: relative;
-    margin-bottom: .5rem;
-    padding-right: 1.6em;
-
-    letter-spacing: -.08em;
-    filter: drop-shadow(1px 2px 1px #050a0d);
-    border-right: 2px solid #bdbdbd;
+  h2 {
+    font-size: 20px;
+    text-transform: uppercase;
   }
-  dt {
-    position: absolute;
-    bottom: -.2em;
-    right: 1.7rem;
 
-    color: #8499db;
-    font-size: 150%;
-    font-style: italic;
-  }
-  dd {
-    color: transparent;
-    background: linear-gradient(179deg, #fff 10%, #c6c5c9 61%, #536280 62%, #bbb8c2 80%);
-    -webkit-background-clip: text;
-    font-size: 500%;
-    font-weight: bold;
-    letter-spacing: -.05em;
-  }
-}
+  section {
+    display: flex;
+    flex-flow: column;
+    gap: 16px;
 
-section.rankings {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(auto, var(--max-width)));
-  /* Actually will be 3 columns due to the gap. */
-  max-width: calc(var(--max-width) * 4);
-  gap: 5vh 2em;
-  justify-content: center;
-  align-items: end;
-  margin: 1.5rem auto .5em;
+    >header {
+      display: grid;
+      grid-template-columns: 40px 1fr auto;
+      gap: 12px;
 
-  --max-width: 400px;
-}
+      &:before, &:after {
+        grid-area: 1 / 1;
+        align-self: center;
+      }
+      &:before {
+        content: '';
+        height: 40px;
 
-section.top10 {
-  >header {
-    position: relative;
-    top: 4px;
-    padding: 1rem;
-    overflow: hidden;
-    z-index: 0;
+        border-radius: 4px;
+        background: #e9c1761a;
+      }
 
-    background: linear-gradient(135deg, #0003, #08110830, #0003, #1c0d1c30);
-    border-radius: 8px 8px 0 0;
+      >h2, >p {
+        grid-area: 1 / 2;
+      }
 
-    &:before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 9px;
-      z-index: -1;
+      >p {
+        margin: 25px 0 0;
 
-      opacity: 0;
-      background: linear-gradient(135deg, #1f202e, #373438, #282133, #291f29);
-      box-shadow: 0 0 4px #ffc82c;
+        //color: #d3beeb9a;
+        font-size: 13px;
+      }
 
-      transition: opacity 50ms;
-    }
-    &:hover:before {
-      opacity: .7;
+      >.button.pri {
+        height: 35px;
+        align-self: center;
+        margin: 0;
+
+        font-size: 10.4px;
+        font-weight: 800;
+        text-transform: uppercase;
+        opacity: .9;
+      }
     }
 
-    >h2 {
-      margin: 0;
-      height: 1.4em;
-      line-height: 1;
-
-      font-size: 150%;
-
-      >a {
-        position: absolute;
-        box-sizing: border-box;
-        width: 100%;
-        height: $width;
-        top: 0;
-        left: 0;
-        padding: 1rem;
-
-        text-decoration: none;
-
-        &:before {
+    &.trend {
+      >header {
+        &:after {
           content: '';
-          display: inline-block;
-          width: 1em;
-          height: $width;
-          margin-right: .5ch;
-          vertical-align: bottom;
+          height: 22px;
+          aspect-ratio: 15/21;
+          justify-self: center;
 
-          background: #7680ec;
-          mask-repeat: no-repeat;
-        }
-
-        &.top250:before {
-          #icons.cup();
-          background: #c39a40;
-        }
-        &.TREND:before {
-          #icons.trend();
-          background: #e66262;
-          mask-size: .8em;
-          mask-position: 90%;
-        }
-        &.hidden_gems:before {
-          width: 1.1em;
-
-          #icons.gem();
-          background: #41aaf0;
-          mask-position: 0 100%;
-        }
-        &[class^='20']:before {
-          #icons.dt365();
-        }
-        &.\37 day:before {
-          #icons.dt7();
-        }
-        &.most_played:before {
-          width: 1.1em;
-          vertical-align: middle;
-
-          #icons.gamepad();
-        }
-        &.price\2f under5:before {
-          #icons.price();
-        }
-        &.discounts:before {
-          #icons.discount();
-          background: #3bb05c;
-        }
-        &.price\2f free:before {
-          #icons.free();
-          background: #3bb05c;
-        }
-        &[class^='tag/']:before {
-          vertical-align: middle;
-
-          #icons.tags();
-          background: #6294ea;
+          background: radial-gradient(circle at bottom, #fc0, #d8701b 32%, #993633 59%);
+          mask: url(/svg/trend.svg);
         }
       }
-    }
 
-    >.group {
-      float: right;
-      padding: .4ex .8ch;
-      position: relative;
-      top: -2px;
-      right: -1px;
+      >ol {
+        display: flex;
+        gap: 16px;
+        overflow: auto;
 
-      color: #d6d3c7;
-      background: #7b6338;
-      border-radius: 2px;
-      font-size: 70%;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: -.02em;
+        >li {
+          width: 420px;
+          height: 232px;
+          flex-shrink: 0;
+          box-sizing: border-box;
+          overflow: hidden;
 
-      &.budget {
-        color: #c1d7c7;
-        background: #357e49;
-      }
-      &.tag {
-        color: #cbcfd8;
-        background: #496ba7;
-      }
-    }
+          border: 4px solid #3a3145;
+          border-radius: 2px;
 
-    >p {
-      margin: .5em 0;
+          >a {
+            display: flex;
+            flex-flow: column;
+            height: 100%;
 
-      color: #bab2b1;
-      line-height: 1.2;
-    }
+            text-decoration: none;
+          }
 
-    >ol {
-      // Pop over area link.
-      position: relative;
-      display: inline-flex;
-      gap: 1ch;
-      top: -.2ex;
+          img {
+            max-width: 100%;
+            height: 141px;
 
-      font-size: 75%;
+            object-fit: cover;
+          }
 
-      >li {
-        &:first-of-type:before {
-          content: 'Related';
-          margin-right: 1ch;
+          header {
+            position: relative;
+            display: flex;
+
+            >img {
+              border-radius: 2px 2px 0 0;
+            }
+
+            >span {
+              position: absolute;
+              top: 12px;
+              left: $top;
+              padding: 4px 12px;
+
+              font-size: 20px;
+              font-weight: 800;
+              color: #412d00;
+              background: #e9c176;
+              border-radius: 2px;
+            }
+          }
+
+          footer {
+            position: relative;
+            flex: 1;
+            display: grid;
+            padding: 16px;
+            gap: 0 2ch;
+
+            &:before {
+              content: '';
+              position: absolute;
+              top: 0;
+              left: 0;
+              right: 0;
+              bottom: 0;
+              z-index: 1;
+
+              background: #3a3145;
+              opacity: .9;
+            }
+
+            >img {
+              position: absolute;
+
+              scale: 1 -1;
+              filter: blur(6px);
+
+              ~ * {
+                position: relative;
+                z-index: 1;
+              }
+            }
+
+            >span:nth-of-type(1) {
+              color: #eddcff;
+              font-size: 20px;
+              font-weight: bold;
+              letter-spacing: -.03em;
+              overflow: hidden;
+              white-space: nowrap;
+
+              >span {
+                margin-left: 8px;
+                vertical-align: middle;
+
+                font-size: 12px;
+                font-weight: 600;
+                opacity: .75;
+              }
+            }
+            >span:nth-of-type(2) {
+              margin-top: 4px;
+
+              opacity: .6;
+              color: #d3beeb;
+              font-size: 10px;
+              font-weight: bold;
+              letter-spacing: 1px;
+              text-transform: uppercase;
+            }
+            >span:nth-of-type(3) {
+              grid-area: 1 / 2;
+              align-self: end;
+
+              color: #d3beeb;
+              font-size: 18px;
+              font-weight: 900;
+              letter-spacing: -.45px;
+              text-transform: uppercase;
+              text-align: right;
+            }
+            >span:nth-of-type(4) {
+              --w: 94px;
+
+              margin-top: 8px;
+              justify-self: end;
+
+              &:before {
+                border: 1px solid #ffffff0c;
+              }
+              >:first-child {
+                margin: 1px 0 0 1px;
+              }
+            }
+          }
         }
       }
-    }
-
-    .micro.tier {
-      margin: .5ch;
-
-      font-size: 80%;
-    }
-  }
-
-  >footer {
-    >a {
-      position: relative;
-      top: -2px;
-      right: 4px;
     }
   }
 }

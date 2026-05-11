@@ -5,6 +5,8 @@ namespace ScriptFUSION\Steam250\SiteGenerator;
 
 use Doctrine\DBAL\Connection;
 use Joomla\DI\Container;
+use ScriptFUSION\Porter\Porter;
+use ScriptFUSION\Porter\Provider\Steam\SteamProvider;
 use ScriptFUSION\Steam250\SiteGenerator\Database\DatabaseFactory;
 use ScriptFUSION\Steam250\SiteGenerator\Generate\PageCommand;
 use ScriptFUSION\Steam250\SiteGenerator\Generate\SiteCommand;
@@ -44,6 +46,7 @@ final class Application
         $container->alias('db', Connection::class);
 
         $container->share(Connection::class, (new DatabaseFactory)->create($this->getConfig()->getDbPath()));
+        $container->share('app media cache', new DatabaseFactory()->createAppMediaCache('app media cache.db'));
         $container->share(Ranker::class, (new RankerFactory)->create($container->get('db')));
         $container->share(
             RankingDependencies::class,
@@ -54,6 +57,7 @@ final class Application
             ),
             true
         );
+        $container->share(Porter::class, new Porter(new Container()->share(SteamProvider::class, new SteamProvider())));
 
         return $container;
     }

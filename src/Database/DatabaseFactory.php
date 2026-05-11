@@ -5,24 +5,35 @@ namespace ScriptFUSION\Steam250\SiteGenerator\Database;
 
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\DriverManager;
+use Pdo\Sqlite;
 
 final class DatabaseFactory
 {
     public function create(string $path): Connection
     {
-        $connection = DriverManager::getConnection(['url' => "sqlite:///$path"]);
-        self::defineCustomFunctions($connection->getWrappedConnection());
+        $connection = DriverManager::getConnection(['driver' => 'pdo_sqlite', 'path' => $path]);
+        self::defineCustomFunctions($connection->getNativeConnection());
         Queries::createRankedListTable($connection);
 
         return $connection;
     }
 
-    private static function defineCustomFunctions(\PDO $pdo): void
+    public function createAppMediaCache(string $path): Connection
     {
-        $pdo->sqliteCreateFunction('log10', 'log10', 1, \PDO::SQLITE_DETERMINISTIC);
-        $pdo->sqliteCreateFunction('log', 'log', 2, \PDO::SQLITE_DETERMINISTIC);
-        $pdo->sqliteCreateFunction('power', 'pow', 2, \PDO::SQLITE_DETERMINISTIC);
-        $pdo->sqliteCreateFunction('sin', 'sin', 1, \PDO::SQLITE_DETERMINISTIC);
-        $pdo->sqliteCreateFunction('pi', 'pi', 0, \PDO::SQLITE_DETERMINISTIC);
+        $connection = DriverManager::getConnection(['driver' => 'pdo_sqlite', 'path' => $path]);
+
+        self::defineCustomFunctions($connection->getNativeConnection());
+        Queries::createAppMediaTable($connection);
+
+        return $connection;
+    }
+
+    private static function defineCustomFunctions(Sqlite $pdo): void
+    {
+        $pdo->createFunction('log10', 'log10', 1, $pdo::DETERMINISTIC);
+        $pdo->createFunction('log', 'log', 2, $pdo::DETERMINISTIC);
+        $pdo->createFunction('power', 'pow', 2, $pdo::DETERMINISTIC);
+        $pdo->createFunction('sin', 'sin', 1, $pdo::DETERMINISTIC);
+        $pdo->createFunction('pi', 'pi', 0, $pdo::DETERMINISTIC);
     }
 }

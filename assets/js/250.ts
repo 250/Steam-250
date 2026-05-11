@@ -270,13 +270,7 @@ class S250 {
         document.querySelectorAll<HTMLElement>('.rating').forEach(el => {
             const span = el.querySelector('span');
 
-            if (span) {
-                // Meter.
-                span.style.backgroundColor = grad(parseFloat(span.style.width)).hex();
-            } else {
-                // Text only.
-                el.style.color = grad(parseFloat(el.textContent)).hex();
-            }
+            el.style.color = grad(parseFloat(span?.style.width || el.textContent)).hex();
         });
     }
 

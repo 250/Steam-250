@@ -1,62 +1,43 @@
 {% extends 'layout/template.twig' %}
+{% import 'macro/steam.twig' as steam %}
 
 {% block title %}Rankings overview{% endblock %}
-{% block heading %}Steam 250{% endblock %}
-{% block class %}home{% endblock %}
 
 {% block fullwidth %}
-<section class="rankings">
-    {% for id, ranking in rankings %}
-    {% if ranking.apps %}
-    {% set url = ranking.ranking.url ?? (id ~ ext) %}
-    <section class="top10">
+<main>
+    <section class="trend">
         <header>
-            {% set group = id in ['price/under5', 'discounts', 'price/free'] ? 'budget'
-                : id[:4] == 'tag/' ? 'tag'
-                : ''
-            %}
-            <span class="group {{ group }}">
-                {{ group == 'budget' ? 'Budget gamer' : group == 'tag' ? 'Popular tag' : 'Featured Ranking' }}
-            </span>
-            <h2><a href="{{ url }}" class="{{ id }}">
-                {{ ranking.ranking.title }}
-                {% if id == 'TREND' %}
-                {{ include('@components/micro tier.twig', {tier: 1, benefit: 'trend'}) }}
-                {% endif %}
-            </a></h2>
-            {% if ranking.related %}
-            <ol>
-                {% for see in ranking.related %}
-                    {% if see == 'adult' %}
-                    <li><a href="/{{ see ~ ext }}">{{ see|title }}</a>
-                    {% else %}
-                    <li><a href="/tag/{{ see|tag_id ~ ext }}">{{ see|title }}</a>
-                    {% endif %}
-                {% endfor %}
-            </ol>
-            {% endif %}
-            <p>{{ ranking.ranking.description|raw }}</p>
+            <h2>Trending Now on Steam 250</h2>
+            <p>Games with the most reviews in the past 24 hours</p>
+            <a href="{{ rankings.TREND.ranking.url }}" class="button pri">View all Trending</a>
         </header>
-
-        {{ include('partial/risers.twig', {games: ranking.apps, base_url: url, fancy: true}) }}
-
-        <footer>
-            {{ include('component/more button.twig', {url: url, caption: "All #{ranking.ranking.limit}"}) }}
-        </footer>
+        <ol>
+            {% for game in rankings.TREND.apps %}
+            <li><a href="{{ steam.app_url(game.id) }}">
+                <header>
+                    {% set img -%}
+                    <img src="https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/{{ game.id }}/
+                        {{- rankings.TREND.app_media[game.id] }}">
+                    {%- endset %}
+                    {{ img }}
+                    <span>#{{ game.rank }}</span>
+                </header>
+                <footer>
+                    {{ img }}
+                    <span>{{ game.name }} <span>{{ game.release_date|date('Y') }}</span></span>
+                    <span>{{ game.keystone_tag }}  &middot;  {{ game.developer }}</span>
+                    <span>+{{ game.score|number_format }} Reviews</span>
+                    {% set pct = (game.positive_reviews / game.total_reviews * 100)|round %}
+                    <span class="rating meter">
+                        <span style="width: {{ pct }}%"></span>
+                        {{ pct }}%
+                    </span>
+                </footer>
+            </a>
+            {% endfor %}
+        </ol>
     </section>
-    {% endif %}
-    {% endfor %}
-</section>
-<section class="stats">
-    <dl>
-        <dt>Games on Steam
-        <dd>{{ total_games|number_format }}
-    </dl>
-    <dl>
-        <dt>Rankings
-        <dd>{{ total_rankings }}+
-    </dl>
-</section>
+</main>
 {% endblock %}
 
 {% block post %}

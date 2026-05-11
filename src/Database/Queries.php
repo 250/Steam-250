@@ -31,6 +31,19 @@ final class Queries
         );
     }
 
+    public static function createAppMediaTable(Connection $database): void
+    {
+        $database->executeStatement(
+            'CREATE TABLE IF NOT EXISTS app_media (
+                app_id INTEGER NOT NULL,
+                library_hero TEXT,
+                hero_capsule TEXT,
+                library_capsule TEXT,
+                PRIMARY KEY(app_id)
+            )'
+        );
+    }
+
     public static function recreateRankedListTable(Connection $database): void
     {
         $database->executeStatement('DROP TABLE IF EXISTS rank');
@@ -58,7 +71,7 @@ final class Queries
         $query = $database->createQueryBuilder()
             ->select('rank.*, app.*, t250.rank as rank_250')
             ->from($sourceTable, 'rank')
-            ->join('rank', 'app', 'app', 'id = rank.app_id')
+            ->join('rank', 'app', 'app', 'app.id = rank.app_id')
             ->leftJoin('rank', 'rank', 't250', 't250.list_id = "top250" AND rank.app_id = t250.app_id')
             ->where('rank.list_id = :list_id')
                 ->setParameter('list_id', $ranking->getId())
@@ -85,7 +98,7 @@ final class Queries
             $ranking->customizeRankingFetch($query);
         }
 
-        $list = $query->execute()->fetchAllAssociative();
+        $list = $query->fetchAllAssociative();
 
         $prevDb && $database->executeStatement('DETACH prev');
 
