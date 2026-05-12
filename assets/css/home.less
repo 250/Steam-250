@@ -1,5 +1,13 @@
 @import (reference) "inc/func/icons";
 
+.bg-hov() {
+  transition: background .15s;
+
+  &:hover {
+    background: var(--bg-hov);
+  }
+}
+
 main {
   display: flex;
   flex-flow: wrap;
@@ -30,6 +38,10 @@ main {
     font-weight: 800;
     text-transform: uppercase;
     opacity: .9;
+
+    &:hover {
+      opacity: 1;
+    }
   }
 
   .keystone {
@@ -41,6 +53,8 @@ main {
   }
 
   section {
+    --bg-hov: var(--frm-ctrl-hard-brdr);
+
     display: flex;
     flex-flow: column;
     gap: 16px;
@@ -114,10 +128,28 @@ main {
           border: 4px solid #3a3145;
           border-radius: 2px;
 
+          transition: border-color .2s;
+
+          &:has(> a:hover) {
+            border-color: color-mix(var(--bg-hov), #fff 10%);
+          }
+
           >a {
             display: flex;
             flex-flow: column;
             height: 100%;
+
+            &:hover {
+              img {
+                scale: 1.2;
+
+                transition: scale 2.5s ease-out;
+
+                &:where(footer > img) {
+                  scale: 1.2 -1.2;
+                }
+              }
+            }
           }
 
           img {
@@ -125,13 +157,19 @@ main {
             height: 141px;
 
             object-fit: cover;
+
+            transition: scale .15s;
           }
 
           header {
             position: relative;
             display: flex;
+            flex-shrink: 0;
+            overflow: hidden;
 
             >img {
+              z-index: 1;
+
               border-radius: 2px 2px 0 0;
             }
 
@@ -140,6 +178,7 @@ main {
               top: 12px;
               left: $top;
               padding: 4px 12px;
+              z-index: 1;
 
               font-size: 20px;
               font-weight: 800;
@@ -265,6 +304,14 @@ main {
         border-radius: 4px;
         border: 2px solid #3A3145;
 
+        &:hover {
+          >img {
+            scale: 1.05;
+
+            transition: scale 2.5s ease-out;
+          }
+        }
+
         &:before {
           content: '';
           position: absolute;
@@ -287,6 +334,8 @@ main {
 
           border-radius: inherit;
 
+          transition: scale .15s;
+
           ~ * {
             position: relative;
             z-index: 1;
@@ -304,6 +353,10 @@ main {
 
             border-radius: 2px;
             box-shadow: inset 0 0 0 1px color-mix(currentColor 10%, transparent);
+
+            &:hover {
+              background: #fff2;
+            }
 
             ~ * {
               grid-column: 1 / -1;
@@ -352,6 +405,8 @@ main {
         >li {
           background: #241c2f66;
           border-radius: 2px;
+
+          .bg-hov();
 
           >a {
             display: grid;
@@ -448,6 +503,8 @@ main {
           background: #20182a;
           border-radius: 2px;
 
+          .bg-hov();
+
           >* {
             grid-column: 1 / -1;
           }
@@ -538,6 +595,8 @@ main {
 
             background: #20182a;
             border-radius: 2px;
+
+            .bg-hov();
 
             >:nth-child(-n+2) {
               grid-row: span 2;
@@ -645,6 +704,8 @@ main {
             background: #20182a;
             box-shadow: inset 0 0 0 1px #4e46391a;
             border-radius: 2px;
+
+            .bg-hov();
 
             img {
               width: 100%;
@@ -801,6 +862,8 @@ main {
 
               background: #20182a80;
               box-shadow: inset 0 0 0 1px #4e46390c;
+
+              .bg-hov();
 
               img {
                 grid-row: span 2;

@@ -8,6 +8,7 @@ use Doctrine\DBAL\Connection;
 use ScriptFUSION\Porter\Import\Import;
 use ScriptFUSION\Porter\Porter;
 use ScriptFUSION\Porter\Provider\Steam\Resource\GetAppAssets;
+use ScriptFUSION\Porter\Provider\Steam\Resource\ScrapeAppDetails;
 use ScriptFUSION\Steam250\SiteGenerator\Database\Queries;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\AnnualRanking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\DiscountRanking;
@@ -17,6 +18,7 @@ use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\HiddenGemsRanking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\MostPlayedRanking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\RollingWeekRanking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\TagRanking;
+use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\Top250Ranking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\TrendRanking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\UsdUnder5Ranking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Ranking;
@@ -32,14 +34,6 @@ class HomePage extends Page implements PreviousDatabaseAware
     private array $rankings;
 
     private int $rankingCount;
-
-    private const RELATED_MAP = [
-        'tag/hentai' => ['nsfw', 'nudity', 'sexual_content', 'adult'],
-        'tag/co-op' => ['singleplayer', 'multiplayer', 'local co-op', 'online co-op'],
-        'tag/2d' => ['pixel_graphics'],
-        'tag/roguelike' => ['roguelite'],
-        'tag/family_friendly' => ['casual']
-    ];
 
     private const APP_MEDIA_MAP = [
         TrendRanking::class => 'library_hero',
@@ -74,8 +68,8 @@ class HomePage extends Page implements PreviousDatabaseAware
                 fn (Ranking $ranking) =>
                     [
                         'apps' => $apps = Queries::fetchRankedList($this->database, $ranking, $this->prevDb, 10)
-                            |> (fn ($apps) => $ranking instanceof TagRanking ? $apps : $this->applyKeystoneTag($apps)),
-                        'related' => self::RELATED_MAP[$ranking->getId()] ?? [],
+                            |> (fn ($apps) => $ranking instanceof TagRanking ? $apps : $this->applyKeystoneTag($apps))
+                            |> (fn ($apps) => $ranking instanceof Top250Ranking ? $this->applyBlurb($apps) : $apps),
                     ] + compact('ranking')
                     + $this->fetchAppMedia($ranking, $apps),
                 $this->rankings
@@ -95,6 +89,15 @@ class HomePage extends Page implements PreviousDatabaseAware
         foreach ($apps as &$app) {
             $app['keystone_tag'] = KeystoneTagChooser::choose(Queries::fetchAppTags($this->database, $app['id']));
         }
+
+        return $apps;
+    }
+
+    private function applyBlurb($apps): array
+    {
+        $result = $this->porter->importOne(new Import(new ScrapeAppDetails($apps[0]['id'])));
+
+        $apps[0]['blurb'] = $result['blurb'];
 
         return $apps;
     }
