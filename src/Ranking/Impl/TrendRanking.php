@@ -27,14 +27,8 @@ class TrendRanking extends Club250Ranking implements CustomRankingFetch
     public function customizeRankingFetch(QueryBuilder $builder): void
     {
         $builder
-            ->addSelect(
-                'dev.name developer',
-                "GROUP_CONCAT(tag.name || '\x1F' || app_tag.votes || '\x1F' || tag.category, '\x1E') tags"
-            )
+            ->addSelect('dev.name developer')
             ->leftJoin('app', 'app_developer', 'dev', 'dev.app_id = app.id')
-            ->leftJoin('app', 'app_tag', 'app_tag', 'app.id = app_tag.app_id')
-            ->join('app_tag', 'tag', 'tag', 'tag.id = app_tag.tag_id')
-            ->groupBy('app.id')
         ;
     }
 }

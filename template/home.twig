@@ -3,6 +3,18 @@
 
 {% block title %}Rankings overview{% endblock %}
 
+{% macro img(id, hash) %}
+<img src="https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/{{ id }}/{{ hash }}">
+{% endmacro %}
+
+{% macro meter(game) %}
+{% set pct = (game.positive_reviews / game.total_reviews * 100)|round %}
+<span class="rating meter">
+    <span style="width: {{ pct }}%"></span>
+    {{ pct }}%
+</span>
+{% endmacro %}
+
 {% block fullwidth %}
 <main>
     <section class="trend">
@@ -15,10 +27,7 @@
             {% for game in rankings.TREND.apps %}
             <li><a href="{{ steam.app_url(game.id) }}">
                 <header>
-                    {% set img -%}
-                    <img src="https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/{{ game.id }}/
-                        {{- rankings.TREND.app_media[game.id] }}">
-                    {%- endset %}
+                    {% set img %}{{ _self.img(game.id, rankings.TREND.app_media[game.id]) }}{% endset %}
                     {{ img }}
                     <span>#{{ game.rank }}</span>
                 </header>
@@ -26,13 +35,45 @@
                     {{ img }}
                     <span>{{ game.name }} <span>{{ game.release_date|date('Y') }}</span></span>
                     <span>{{ game.keystone_tag }}  &middot;  {{ game.developer }}</span>
-                    <span>+{{ game.score|number_format }} Reviews</span>
-                    {% set pct = (game.positive_reviews / game.total_reviews * 100)|round %}
-                    <span class="rating meter">
-                        <span style="width: {{ pct }}%"></span>
-                        {{ pct }}%
-                    </span>
+                    <span>+{{ (game.score ?? 0)|number_format }} Reviews</span>
+                    {{ _self.meter(game) }}
                 </footer>
+            </a>
+            {% endfor %}
+        </ol>
+    </section>
+
+    <section class="gotd">
+        <header>
+            <h2>Steam Top 250</h2>
+            <p>Highest rated games of all time on Steam</p>
+            <a href="/{{ rankings.top250.ranking.id ~ ext }}" class="button pri">View all Top 250</a>
+        </header>
+        {% set app = rankings.top250.apps.0 %}
+        <a href="{{ steam.app_url(app.id) }}">
+            {{ _self.img(app.id, rankings.top250.app_media[app.id]) }}
+            <span class="button pri">Game of the Day</span>
+            <span class="button">Top 250 #{{ app.rank }}</span>
+            <h3>{{ app.name }}</h3>
+            <p>We fused card games and roguelikes together to make the best single player deckbuilder we could. Craft a unique deck, encounter bizarre creatures, discover relics of immense power, and Slay the Spire!</p>
+        </a>
+    </section>
+
+    {% set ranking = rankings['7day'] %}
+    <section class="wk">
+        <header>
+            <h2>Best of the Week</h2>
+            <a href="/{{ ranking.ranking.id ~ ext }}" class="button pri">View all</a>
+        </header>
+        <ol>
+            {% for game in ranking.apps %}
+            <li><a href="{{ steam.app_url(game.id) }}">
+                {{ _self.img(game.id, ranking.app_media[game.id]) }}
+                <span>#{{ game.rank }}</span>
+                <span>{{ game.name }} <span>{{ game.release_date|date|adaptive_date }}</span></span>
+                <span>{{ game.total_reviews|number_format }} Reviews</span>
+                {{ _self.meter(game) }}
+                <span>{{ game.keystone_tag }}</span>
             </a>
             {% endfor %}
         </ol>

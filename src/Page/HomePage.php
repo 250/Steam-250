@@ -5,16 +5,18 @@ namespace ScriptFUSION\Steam250\SiteGenerator\Page;
 
 use Doctrine\DBAL\ArrayParameterType;
 use Doctrine\DBAL\Connection;
+use Google\Service\CloudSearch\Rank;
 use ScriptFUSION\Porter\Import\Import;
 use ScriptFUSION\Porter\Porter;
 use ScriptFUSION\Porter\Provider\Steam\Resource\GetAppAssets;
 use ScriptFUSION\Steam250\SiteGenerator\Database\Queries;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\DiscountRanking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\FreeRanking;
+use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\GameOfTheDayRanking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\HiddenGemsRanking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\MostPlayedRanking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\RollingWeekRanking;
-use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\Top250Ranking;
+use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\TagRanking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\TrendRanking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\UsdUnder5Ranking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Ranking;
@@ -41,7 +43,7 @@ class HomePage extends Page implements PreviousDatabaseAware
 
     private const APP_MEDIA_MAP = [
         TrendRanking::class => 'library_hero',
-        Top250Ranking::class => 'library_hero',
+        GameOfTheDayRanking::class => 'library_hero',
         RollingWeekRanking::class => 'hero_capsule',
         MostPlayedRanking::class => 'hero_capsule',
         HiddenGemsRanking::class => 'hero_capsule',
@@ -71,7 +73,7 @@ class HomePage extends Page implements PreviousDatabaseAware
                 fn (Ranking $ranking) =>
                     [
                         'apps' => $apps = Queries::fetchRankedList($this->database, $ranking, $this->prevDb, 10)
-                            |> self::pickKeystoneTag(...),
+                            |> (fn ($apps) => $ranking instanceof TagRanking ? $apps : $this->applyKeystoneTag($apps)),
                         'related' => self::RELATED_MAP[$ranking->getId()] ?? [],
                     ] + compact('ranking')
                     + $this->fetchAppMedia($ranking, $apps),
@@ -87,23 +89,13 @@ class HomePage extends Page implements PreviousDatabaseAware
         ;
     }
 
-    private static function pickKeystoneTag(array $apps): array
+    private function applyKeystoneTag(array $apps): array
     {
-        return array_map(static function ($app) {
-            if (isset($app['tags'])) {
-                $decodedTags = array_map(
-                    static fn ($tag) => array_combine(
-                        ['name', 'votes', 'category'],
-                        explode("\x1f", $tag)
-                    ),
-                    explode("\x1e", $app['tags'])
-                );
+        foreach ($apps as &$app) {
+            $app['keystone_tag'] = KeystoneTagChooser::choose(Queries::fetchAppTags($this->database, $app['id']));
+        }
 
-                $app['keystone_tag'] = KeystoneTagChooser::choose($decodedTags);
-            }
-
-            return $app;
-        }, $apps);
+        return $apps;
     }
 
     private function fetchAppMedia(Ranking $ranking, array $apps): array
@@ -126,7 +118,6 @@ class HomePage extends Page implements PreviousDatabaseAware
             $response = $this->porter->import(new Import(new GetAppAssets(array_keys($missing))));
 
             // Cache media links.
-            $media = [];
             foreach ($response as $app) {
                 $this->appMediaCache->executeStatement(
                     "INSERT OR REPLACE INTO app_media (app_id, $mediaClass) VALUES (?, ?)",
@@ -135,13 +126,13 @@ class HomePage extends Page implements PreviousDatabaseAware
             }
         }
 
-        return ['app_media' => $cachedMedia ?: $media];
+        return ['app_media' => $cachedMedia + ($media ?? [])];
     }
 
     public static function getRankings(): array
     {
         return [
-			Top250Ranking::class,
+            GameOfTheDayRanking::class,
 			TrendRanking::class,
 			HiddenGemsRanking::class,
 			date('Y'),
