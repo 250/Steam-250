@@ -16,8 +16,8 @@ class Top250Ranking extends DefaultRanking
         $this->setDescription('Top 250 best Steam games of all time according to gamer reviews.');
     }
 
-    public function customizeQuery(QueryBuilder $builder): void
+    public function customizeQuery(QueryBuilder $builder): ?QueryBuilder
     {
-        // Intentionally empty.
+        return null;
     }
 }

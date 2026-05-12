@@ -13,8 +13,8 @@ class SteamDeckVerifiedRanking extends DefaultRanking
         parent::__construct($dependencies, 'steam_deck_verified');
     }
 
-    public function customizeQuery(QueryBuilder $builder): void
+    public function customizeQuery(QueryBuilder $builder): ?QueryBuilder
     {
-        $builder->andWhere('app.steam_deck = 3');
+        return $builder->andWhere('app.steam_deck = 3');
     }
 }

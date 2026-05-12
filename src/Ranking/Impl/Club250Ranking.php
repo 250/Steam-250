@@ -10,7 +10,8 @@ abstract class Club250Ranking extends Ranking
 {
     abstract public function getUrl(): string;
 
-    public function customizeQuery(QueryBuilder $builder): void
+    public function customizeQuery(QueryBuilder $builder): ?QueryBuilder
     {
+        return null;
     }
 }

@@ -16,8 +16,8 @@ class DiscountRanking extends DefaultRanking
         $this->setDescription('Top 250 best Steam games currently on sale, according to gamer reviews.');
     }
 
-    public function customizeQuery(QueryBuilder $builder): void
+    public function customizeQuery(QueryBuilder $builder): ?QueryBuilder
     {
-        $builder->andWhere('app.discount > 0');
+        return $builder->andWhere('app.discount > 0');
     }
 }

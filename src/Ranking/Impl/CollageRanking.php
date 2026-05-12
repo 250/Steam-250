@@ -13,8 +13,8 @@ class CollageRanking extends DefaultRanking
         parent::__construct($dependencies, 'collage');
     }
 
-    public function customizeQuery(QueryBuilder $builder): void
+    public function customizeQuery(QueryBuilder $builder): ?QueryBuilder
     {
-        // Intentionally empty.
+        return null;
     }
 }

@@ -13,8 +13,8 @@ class DlcRanking extends DefaultRanking
         parent::__construct($dependencies, 'dlc');
     }
 
-    public function customizeQuery(QueryBuilder $builder): void
+    public function customizeQuery(QueryBuilder $builder): ?QueryBuilder
     {
-        $builder->where('app.type = \'dlc\' AND app.platforms > 0');
+        return $builder->where('app.type = \'dlc\' AND app.platforms > 0');
     }
 }

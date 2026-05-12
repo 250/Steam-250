@@ -21,8 +21,8 @@ class EarlyAccessRanking extends TagRanking
         parent::__construct($dependencies, self::TAG, 493);
     }
 
-    public function customizeQuery(QueryBuilder $builder): void
+    public function customizeQuery(QueryBuilder $builder): ?QueryBuilder
     {
-        $builder->andWhere('app.ea = 1');
+        return $builder->andWhere('app.ea = 1');
     }
 }

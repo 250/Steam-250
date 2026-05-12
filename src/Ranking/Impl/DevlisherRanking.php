@@ -39,18 +39,17 @@ abstract class DevlisherRanking extends Ranking implements CustomRankingFetch
         return $export;
     }
 
-    public function customizeQuery(QueryBuilder $builder): void
+    public function customizeQuery(QueryBuilder $builder): ?QueryBuilder
     {
         // Score games for each developer using this ranking's algorithm and weights.
-        $ownerScorer = Queries::createScorer($builder->getConnection(), $this);
+        $ownerScorer = Queries::createScorer($this->dependencies->getDatabase(), $this);
 
         // Score individual games as if they were on the top 250 (used to pick most popular game).
-        $gameScorer = Queries::createScorer($builder->getConnection(), new Top250Ranking($this->dependencies));
+        $gameScorer = Queries::createScorer($this->dependencies->getDatabase(), new Top250Ranking($this->dependencies));
 
         $mode = $this->getId();
 
-        $builder
-            ->resetQueryParts()
+        return $builder->sub()
             ->select("*, $mode AS owner")
             ->addSelect(
                 // Calculate Bayesian average (https://en.wikipedia.org/wiki/Bayesian_average) and scale scores up.

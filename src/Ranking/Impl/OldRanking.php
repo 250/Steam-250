@@ -15,8 +15,8 @@ class OldRanking extends DefaultRanking
         $this->setTemplate('annual');
     }
 
-    public function customizeQuery(QueryBuilder $builder): void
+    public function customizeQuery(QueryBuilder $builder): ?QueryBuilder
     {
-        $builder->andWhere('app.release_date < ' . strtotime(AnnualRanking::EARLIEST_YEAR . '-1-1'));
+        return $builder->andWhere('app.release_date < ' . strtotime(AnnualRanking::EARLIEST_YEAR . '-1-1'));
     }
 }

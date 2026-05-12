@@ -30,12 +30,12 @@ class AnnualRanking extends RollingYearRanking
         );
     }
 
-    public function customizeQuery(QueryBuilder $builder): void
+    public function customizeQuery(QueryBuilder $builder): ?QueryBuilder
     {
         $yearStart = new \DateTimeImmutable("$this->year-1-1");
         $yearEnd = $yearStart->modify('1 year');
 
-        $builder
+        return $builder
             ->andWhere("app.release_date >= {$yearStart->getTimestamp()}")
             ->andWhere("app.release_date < {$yearEnd->getTimestamp()}")
         ;

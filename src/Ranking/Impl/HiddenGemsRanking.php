@@ -18,9 +18,9 @@ class HiddenGemsRanking extends Ranking
         $this->setDescription('Top 250 highly rated Steam games that few know but many love.');
     }
 
-    public function customizeQuery(QueryBuilder $builder): void
+    public function customizeQuery(QueryBuilder $builder): ?QueryBuilder
     {
         // Exclude visual novels, adjusted by tag confidence threshold.
-        $builder->andWhere('tag_id IS NULL OR votes < avg * .5');
+        return $builder->andWhere('tag_id IS NULL OR votes < avg * .5');
     }
 }

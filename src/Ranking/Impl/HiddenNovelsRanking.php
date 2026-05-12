@@ -13,9 +13,9 @@ class HiddenNovelsRanking extends HiddenGemsRanking
         parent::__construct($dependencies, 'hidden_novels');
     }
 
-    public function customizeQuery(QueryBuilder $builder): void
+    public function customizeQuery(QueryBuilder $builder): ?QueryBuilder
     {
         // Include only visual novels, adjusted by tag confidence threshold.
-        $builder->andWhere('tag_id IS NOT NULL AND votes >= avg * .5');
+        return $builder->andWhere('tag_id IS NOT NULL AND votes >= avg * .5');
     }
 }

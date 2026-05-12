@@ -16,8 +16,8 @@ class Bottom100Ranking extends Ranking
         parent::__construct($dependencies, $id, 100, Algorithm::BAYESIAN(), $weight);
     }
 
-    public function customizeQuery(QueryBuilder $builder): void
+    public function customizeQuery(QueryBuilder $builder): ?QueryBuilder
     {
-        $builder->orderBy('score', SortDirection::ASC());
+        return $builder->orderBy('score', SortDirection::ASC);
     }
 }

@@ -30,9 +30,9 @@ class TagRanking extends DefaultRanking
         );
     }
 
-    public function customizeQuery(QueryBuilder $builder): void
+    public function customizeQuery(QueryBuilder $builder): ?QueryBuilder
     {
-        $builder
+        return $builder
             ->join('app', 'app_tag', 'app_tag', 'app.id = app_tag.app_id')
             ->join('app_tag', 'tag', 'tag', 'app_tag.tag_id = tag.id')
             ->join(

@@ -24,9 +24,9 @@ class MostPlayedRanking extends Ranking implements CustomRankingFetch
         );
     }
 
-    public function customizeQuery(QueryBuilder $builder): void
+    public function customizeQuery(QueryBuilder $builder): ?QueryBuilder
     {
-        $builder
+        return $builder
             ->join('app', 'app_players', 'app_players', 'app.id = app_id')
             ->orderBy('average_players_1d', SortDirection::DESC)
         ;

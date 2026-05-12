@@ -188,7 +188,7 @@ final class Queries
             ->setMaxResults($ranking->getLimit())
         ;
 
-        $ranking->customizeQuery($query);
+        $query = $ranking->customizeQuery($query) ?? $query;
 
         return $query->executeQuery();
     }

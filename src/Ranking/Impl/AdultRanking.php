@@ -13,8 +13,8 @@ class AdultRanking extends DefaultRanking
         parent::__construct($dependencies, 'adult');
     }
 
-    public function customizeQuery(QueryBuilder $builder): void
+    public function customizeQuery(QueryBuilder $builder): ?QueryBuilder
     {
-        $builder->andWhere('app.adult = 1');
+        return $builder->andWhere('app.adult = 1');
     }
 }

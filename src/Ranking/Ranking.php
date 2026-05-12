@@ -47,7 +47,7 @@ abstract class Ranking extends Page implements PreviousDatabaseAware
         $this->weight = $weight;
     }
 
-    abstract public function customizeQuery(QueryBuilder $builder): void;
+    abstract public function customizeQuery(QueryBuilder $builder): ?QueryBuilder;
 
     public function export(): array
     {

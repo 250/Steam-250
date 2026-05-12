@@ -15,10 +15,10 @@ class VrxRanking extends VrTop250Ranking
         $this->setId('vr_exclusives');
     }
 
-    public function customizeQuery(QueryBuilder $builder): void
+    public function customizeQuery(QueryBuilder $builder): ?QueryBuilder
     {
         parent::customizeQuery($builder);
 
-        $builder->andWhere('app.vrx = 1');
+        return $builder->andWhere('app.vrx = 1');
     }
 }

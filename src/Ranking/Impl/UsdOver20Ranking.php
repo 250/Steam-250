@@ -17,8 +17,8 @@ class UsdOver20Ranking extends PriceRangeRanking
         $this->windowTitle = 'over twenty dollars';
     }
 
-    public function customizeQuery(QueryBuilder $builder): void
+    public function customizeQuery(QueryBuilder $builder): ?QueryBuilder
     {
-        $builder->andWhere('(app.discount_price IS NULL AND app.price > 2000) OR (app.discount_price > 2000)');
+        return $builder->andWhere('(app.discount_price IS NULL AND app.price > 2000) OR (app.discount_price > 2000)');
     }
 }

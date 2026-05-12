@@ -17,9 +17,9 @@ class ReviewsFullRanking extends DefaultRanking
         $this->setAlgorithm(null);
     }
 
-    public function customizeQuery(QueryBuilder $builder): void
+    public function customizeQuery(QueryBuilder $builder): ?QueryBuilder
     {
-        $builder
+        return $builder
             ->orderBy('total_reviews', SortDirection::DESC)
         ;
     }

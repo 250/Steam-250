@@ -13,8 +13,8 @@ class SteamDeckPlayableRanking extends DefaultRanking
         parent::__construct($dependencies, 'steam_deck_playable');
     }
 
-    public function customizeQuery(QueryBuilder $builder): void
+    public function customizeQuery(QueryBuilder $builder): ?QueryBuilder
     {
-        $builder->andWhere('app.steam_deck >= 2');
+        return $builder->andWhere('app.steam_deck >= 2');
     }
 }

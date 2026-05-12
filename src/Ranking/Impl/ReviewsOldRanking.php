@@ -18,11 +18,11 @@ class ReviewsOldRanking extends OldRanking
         $this->setAlgorithm(null);
     }
 
-    public function customizeQuery(QueryBuilder $builder): void
+    public function customizeQuery(QueryBuilder $builder): ?QueryBuilder
     {
         parent::customizeQuery($builder);
 
-        $builder
+        return $builder
             ->orderBy('total_reviews', SortDirection::DESC)
         ;
     }

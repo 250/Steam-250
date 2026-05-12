@@ -16,8 +16,8 @@ class FreeRanking extends DefaultRanking
         $this->setDescription('Top 250 best free of charge games on Steam, according to gamer reviews.');
     }
 
-    public function customizeQuery(QueryBuilder $builder): void
+    public function customizeQuery(QueryBuilder $builder): ?QueryBuilder
     {
-        $builder->andWhere('app.free = 1');
+        return $builder->andWhere('app.free = 1');
     }
 }

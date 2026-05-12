@@ -24,12 +24,12 @@ abstract class RollingRanking extends DefaultRanking
         $this->date = $date;
     }
 
-    public function customizeQuery(QueryBuilder $builder): void
+    public function customizeQuery(QueryBuilder $builder): ?QueryBuilder
     {
         $time = strtotime($this->date);
         $now = time();
 
-        $builder
+        return $builder
             ->andWhere("app.release_date > $time")
             // Some publishers list future dates.
             ->andWhere("app.release_date <= $now")
