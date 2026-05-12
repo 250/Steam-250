@@ -5,11 +5,11 @@ namespace ScriptFUSION\Steam250\SiteGenerator\Page;
 
 use Doctrine\DBAL\ArrayParameterType;
 use Doctrine\DBAL\Connection;
-use Google\Service\CloudSearch\Rank;
 use ScriptFUSION\Porter\Import\Import;
 use ScriptFUSION\Porter\Porter;
 use ScriptFUSION\Porter\Provider\Steam\Resource\GetAppAssets;
 use ScriptFUSION\Steam250\SiteGenerator\Database\Queries;
+use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\AnnualRanking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\DiscountRanking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\FreeRanking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\GameOfTheDayRanking;
@@ -47,6 +47,7 @@ class HomePage extends Page implements PreviousDatabaseAware
         RollingWeekRanking::class => 'hero_capsule',
         MostPlayedRanking::class => 'hero_capsule',
         HiddenGemsRanking::class => 'hero_capsule',
+        AnnualRanking::class => 'library_capsule',
     ];
 
     public function __construct(

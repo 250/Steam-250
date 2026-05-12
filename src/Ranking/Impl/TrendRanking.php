@@ -29,6 +29,7 @@ class TrendRanking extends Club250Ranking implements CustomRankingFetch
         $builder
             ->addSelect('dev.name developer')
             ->leftJoin('app', 'app_developer', 'dev', 'dev.app_id = app.id')
+            ->groupBy('app.id')
         ;
     }
 }

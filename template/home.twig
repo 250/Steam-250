@@ -73,7 +73,26 @@
                 <span>{{ game.name }} <span>{{ game.release_date|date|adaptive_date }}</span></span>
                 <span>{{ game.total_reviews|number_format }} Reviews</span>
                 {{ _self.meter(game) }}
-                <span>{{ game.keystone_tag }}</span>
+                <span class="keystone">{{ game.keystone_tag }}</span>
+            </a>
+            {% endfor %}
+        </ol>
+    </section>
+
+    {% set ranking = rankings['now'|date('Y')] %}
+    <section class="yr">
+        <header>
+            <h2>Best of {{ ranking.ranking.id }}</h2>
+            <a href="/{{ ranking.ranking.id ~ ext }}" class="button pri">View all This Year</a>
+        </header>
+        <ol>
+            {% for game in ranking.apps %}
+            <li><a href="{{ steam.app_url(game.id) }}">
+                {{ _self.img(game.id, ranking.app_media[game.id]) }}
+                <span>#{{ game.rank }}</span>
+                <span>{{ game.name }}</span>
+                <span class="keystone">{{ game.keystone_tag }}</span>
+                <span>{{ (game.score * 10)|round(2) }}</span>
             </a>
             {% endfor %}
         </ol>
