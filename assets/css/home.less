@@ -279,7 +279,7 @@ main {
     &.gotd {
       max-width: 1596px;
       padding: 24px;
-      flex: 100%;
+      flex: 20 1 600px;
 
       background: #20182a66;
       border-radius: 8px;
@@ -383,7 +383,7 @@ main {
     }
 
     &.wk {
-      flex: 1;
+      flex: 380px;
 
       >header {
         &:after {
@@ -492,6 +492,8 @@ main {
       >ol {
         display: flex;
         gap: 16px;
+        max-width: 100%;
+        overflow: auto;
 
         a {
           display: grid;
@@ -562,7 +564,7 @@ main {
     }
 
     &.\31 \/2 {
-      flex: 0 calc(50% - 16px);
+      flex: calc(50% - 16px);
 
       >header {
         &:after {
@@ -663,7 +665,7 @@ main {
     }
 
     &.\31 \/3 {
-      flex: 0 calc(33.3% - 32px * 2 / 3);
+      flex: calc(33.3% - 32px * 2 / 3);
       gap: 12px;
 
       >header {
@@ -827,7 +829,7 @@ main {
       }
 
       >section {
-        flex: 0 calc(25% - 16px * 3 / 4);
+        flex: calc(25% - 16px * 3 / 4);
 
         >header {
           display: flex;
