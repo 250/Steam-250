@@ -47,6 +47,7 @@ main {
     max-width: 100%;
 
     >header {
+      position: relative;
       display: grid;
       grid-template-columns: 40px 1fr auto;
       gap: 12px;
@@ -69,6 +70,7 @@ main {
         justify-self: center;
 
         background: #e9c176;
+        mask: no-repeat center;
       }
 
       >h2, >p {
@@ -76,9 +78,10 @@ main {
       }
 
       >p {
+        // Do not contribute to flow.
+        position: absolute;
         margin: 25px 0 0;
 
-        //color: #d3beeb9a;
         font-size: 13px;
       }
     }
@@ -445,6 +448,7 @@ main {
           gap: 6px;
 
           background: #20182a;
+          border-radius: 2px;
 
           >* {
             grid-column: 1 / -1;
@@ -497,6 +501,105 @@ main {
             font-size: 14px;
             font-weight: bold;
             letter-spacing: -.5px;
+          }
+        }
+      }
+    }
+
+    &.\31 \/2 {
+      flex: 0 calc(50% - 16px);
+
+      >header {
+        &:after {
+          width: 21px;
+
+          mask-image: url(/svg/players.svg);
+        }
+      }
+
+      >ol {
+        display: flex;
+        flex-flow: column;
+        gap: 8px;
+        // Image height (width * inverse aspect ratio) * 5 items + v-padding + gap.
+        height: calc(54px * 448/374 * 5 + 16px * 5 + 8px * 4);
+        overflow: auto;
+
+        >li {
+          &:first-of-type > a > span:nth-of-type(1) {
+            color: #e9c176;
+          }
+
+          >a {
+            display: grid;
+            grid-template-columns: auto 54px 1fr auto;
+            grid-auto-rows: 50%;
+            padding: 8px 12px;
+            gap: 7px 16px;
+            line-height: .9;
+
+            background: #20182a;
+            border-radius: 2px;
+
+            >:nth-child(-n+2) {
+              grid-row: span 2;
+            }
+
+            img {
+              width: 100%;
+              aspect-ratio: 374/448;
+
+              border-radius: 2px;
+            }
+
+            >span:nth-of-type(1) {
+              align-self: center;
+
+              color: #d3beeb66;
+              font-size: 16px;
+              font-weight: 900;
+            }
+            >span:nth-of-type(2n + 2) {
+              align-self: end;
+            }
+            >span:nth-of-type(2) {
+              display: flex;
+              gap: 8px;
+
+              color: #ebddf7;
+              font-size: 18px;
+              font-weight: bold;
+
+              >span {
+                align-self: center;
+
+                font-size: 11px;
+                font-weight: 500;
+                color: #ebddf7bf;
+              }
+            }
+            >span:nth-of-type(4) {
+              grid-area: 1/4;
+            }
+            >span:nth-of-type(n+4):not(.meter) {
+              color: #d3beeb99;
+              font-size: 12px;
+              font-weight: bold;
+              text-align: right;
+              text-transform: uppercase;
+            }
+            >.meter {
+              --w: 55px;
+            }
+          }
+        }
+      }
+
+      &:nth-child(2 of .\31 \/2) {
+        >header {
+          &:after {
+            mask-image: url(/svg/gem.svg);
+            background: linear-gradient(24deg, #29a5d6, #e976d6 90%);
           }
         }
       }

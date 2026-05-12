@@ -97,6 +97,47 @@
             {% endfor %}
         </ol>
     </section>
+
+    {% set ranking = rankings.most_played %}
+    <section class="1/2">
+        <header>
+            <h2>Most Played Right Now</h2>
+            <p>Games with the most concurrent users in the past 24 hours</p>
+            <a href="/{{ ranking.ranking.id ~ ext }}" class="button pri">View all Most Played</a>
+        </header>
+        <ol>
+            {% for game in ranking.apps %}
+            <li><a href="{{ steam.app_url(game.id) }}">
+                <span>{{ game.rank }}</span>
+                {{ _self.img(game.id, ranking.app_media[game.id]) }}
+                <span>{{ game.name }} <span>{{ game.release_date|date('Y') }}</span></span>
+                <span class="keystone">{{ game.keystone_tag }}</span>
+                <span>{{ game.average_players_1d|number_format }} CCU</span>
+                {{ _self.meter(game) }}
+            </a>
+            {% endfor %}
+        </ol>
+    </section>
+
+    {% set ranking = rankings.hidden_gems %}
+    <section class="1/2">
+        <header>
+            <h2>{{ ranking.ranking.title }}</h2>
+            <a href="/{{ ranking.ranking.id ~ ext }}" class="button pri">View all Gems</a>
+        </header>
+        <ol>
+            {% for game in ranking.apps %}
+            <li><a href="{{ steam.app_url(game.id) }}">
+                <span>{{ game.rank }}</span>
+                {{ _self.img(game.id, ranking.app_media[game.id]) }}
+                <span>{{ game.name }} <span>{{ game.release_date|date('Y') }}</span></span>
+                <span class="keystone">{{ game.keystone_tag }}</span>
+                <span>{{ game.total_reviews|number_format }} Reviews</span>
+                <span class="rating">{{ (game.positive_reviews / game.total_reviews * 100)|round }}% Positive</span>
+            </a>
+            {% endfor %}
+        </ol>
+    </section>
 </main>
 {% endblock %}
 
