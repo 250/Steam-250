@@ -69,7 +69,7 @@ class TagRanking extends DefaultRanking
         ');
     }
 
-    private function fetchTagCategory(): array
+    public function fetchTagCategory(): array
     {
         return $this->database->fetchAssociative(
             'SELECT tag_cat.* FROM tag_cat JOIN tag ON tag.category = tag_cat.short_name AND tag.name = ? LIMIT 1',

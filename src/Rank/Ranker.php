@@ -32,7 +32,7 @@ final class Ranker
         $cursor = Queries::rankList($this->database, $ranking);
         $this->database->executeQuery('PRAGMA synchronous = OFF');
 
-        while (false !== $app = $cursor->fetch()) {
+        while (false !== $app = $cursor->fetchAssociative()) {
             // Insert app rank into database.
             $this->database->executeQuery(
                 'INSERT OR REPLACE INTO rank (list_id, rank, app_id, score, owner) VALUES (?, ?, ?, ?, ?)',

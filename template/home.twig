@@ -196,6 +196,36 @@
             {% endfor %}
         </ol>
     </section>
+
+    <section class="tag">
+        <header>
+            <h2>Popular Tags</h2>
+            <p>Our most popular tags, based on your clicks</p>
+            <a href="{{ club250 }}/tags" class="button pri">View all Tags</a>
+        </header>
+        {% for ranking in rankings|filter((_, k) => k starts with 'tag/') %}
+        <section>
+            <header>
+                <a href="/{{ ranking.ranking.id }}" class="tag {{ ranking.ranking.fetchTagCategory.short_name }}">
+                    {{ ranking.ranking.tag }}
+                </a>
+                <a href="/{{ ranking.ranking.id }}" class="button pri">View all</a>
+            </header>
+            <ol>
+                {% for game in ranking.apps %}
+                <li><a href="{{ steam.app_url(game.id) }}">
+                    {{ steam.app_capsule(game) }}
+                    <span>{{ game.name }} <span>{{ game.release_date|date('Y') }}</span></span>
+                    <span>
+                        {{ game.total_reviews|number_format }}
+                        {{ _self.meter(game) }}
+                    </span>
+                </a>
+                {% endfor %}
+            </ol>
+        </section>
+        {% endfor %}
+    </section>
 </main>
 {% endblock %}
 

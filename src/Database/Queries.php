@@ -6,6 +6,7 @@ namespace ScriptFUSION\Steam250\SiteGenerator\Database;
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\Driver\Statement;
 use Doctrine\DBAL\Query\QueryBuilder;
+use Doctrine\DBAL\Result;
 use ScriptFUSION\StaticClass;
 use ScriptFUSION\Steam250\SiteGenerator\Rank\CustomRankingFetch;
 use ScriptFUSION\Steam250\SiteGenerator\Rank\RankingQueries;
@@ -179,10 +180,8 @@ final class Queries
      *
      * @param Connection $database
      * @param Ranking $ranking List.
-     *
-     * @return Statement
      */
-    public static function rankList(Connection $database, Ranking $ranking): Statement
+    public static function rankList(Connection $database, Ranking $ranking): Result
     {
         $query = self::createScorer($database, $ranking)
             ->orderBy('score', SortDirection::DESC)
@@ -191,7 +190,7 @@ final class Queries
 
         $ranking->customizeQuery($query);
 
-        return $query->execute();
+        return $query->executeQuery();
     }
 
     public static function createScorer(Connection $database, Ranking $ranking): QueryBuilder
