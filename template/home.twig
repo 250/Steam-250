@@ -138,6 +138,64 @@
             {% endfor %}
         </ol>
     </section>
+
+    {% set ranking = rankings.discounts %}
+    <section class="1/3">
+        <header>
+            <h2>Top Discounted Games</h2>
+            <a href="/{{ ranking.ranking.id ~ ext }}" class="button pri">View all</a>
+        </header>
+        <ol>
+            {% for game in ranking.apps %}
+            <li><a href="{{ steam.app_url(game.id) }}">
+                {{ steam.app_capsule(game) }}
+                <span>#{{ game.rank }}</span>
+                <span>{{ game.name }} <span>{{ game.release_date|date('Y') }}</span></span>
+                <span class="keystone">{{ game.keystone_tag }}</span>
+                <span>${{ game.price / 100 }}</span>
+                <span>${{ game.discount_price / 100 }}</span>
+            </a>
+            {% endfor %}
+        </ol>
+    </section>
+
+    {% set ranking = rankings['price/under5'] %}
+    <section class="1/3">
+        <header>
+            <h2>Best Under $5</h2>
+            <a href="/{{ ranking.ranking.id ~ ext }}" class="button pri">View all</a>
+        </header>
+        <ol>
+            {% for game in ranking.apps %}
+            <li><a href="{{ steam.app_url(game.id) }}">
+                {{ steam.app_capsule(game) }}
+                <span>#{{ game.rank }}</span>
+                <span>{{ game.name }} <span>{{ game.release_date|date('Y') }}</span></span>
+                <span class="keystone">{{ game.keystone_tag }}</span>
+                <span>${{ game.price / 100 }}</span>
+            </a>
+            {% endfor %}
+        </ol>
+    </section>
+
+    {% set ranking = rankings['price/free'] %}
+    <section class="1/3">
+        <header>
+            <h2>Top Free Games</h2>
+            <a href="/{{ ranking.ranking.id ~ ext }}" class="button pri">View all</a>
+        </header>
+        <ol>
+            {% for game in ranking.apps %}
+            <li><a href="{{ steam.app_url(game.id) }}">
+                {{ steam.app_capsule(game) }}
+                <span>#{{ game.rank }}</span>
+                <span>{{ game.name }} <span>{{ game.release_date|date('Y') }}</span></span>
+                <span class="keystone">{{ game.keystone_tag }}</span>
+                <span>Free</span>
+            </a>
+            {% endfor %}
+        </ol>
+    </section>
 </main>
 {% endblock %}
 
