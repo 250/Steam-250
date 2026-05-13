@@ -4,6 +4,8 @@ declare(strict_types=1);
 namespace ScriptFUSION\Steam250\SiteGenerator\Ranking;
 
 use Joomla\DI\Container;
+use Monolog\Logger;
+use Psr\Log\LoggerInterface;
 use ScriptFUSION\Porter\Porter;
 use ScriptFUSION\Steam250\SiteGenerator\Database\Queries;
 use ScriptFUSION\Steam250\SiteGenerator\Page\HomePage;
@@ -63,6 +65,7 @@ final class PageContainerFactory
                 $parent->get('db'),
                 $container->get('app media cache'),
                 $container->get(Porter::class),
+                $container->get(LoggerInterface::class),
                 array_map(fn ($name) => $container->buildObject($name), HomePage::getRankings()),
                 $counter
             )

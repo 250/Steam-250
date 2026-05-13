@@ -4,7 +4,6 @@ declare(strict_types=1);
 namespace ScriptFUSION\Steam250\SiteGenerator\Database;
 
 use Doctrine\DBAL\Connection;
-use Doctrine\DBAL\Driver\Statement;
 use Doctrine\DBAL\Query\QueryBuilder;
 use Doctrine\DBAL\Result;
 use ScriptFUSION\StaticClass;
@@ -40,6 +39,7 @@ final class Queries
                 library_hero TEXT,
                 hero_capsule TEXT,
                 library_capsule TEXT,
+                blurb TEXT,
                 PRIMARY KEY(app_id)
             )'
         );

@@ -5,6 +5,7 @@ namespace ScriptFUSION\Steam250\SiteGenerator\Page;
 
 use Doctrine\DBAL\ArrayParameterType;
 use Doctrine\DBAL\Connection;
+use Psr\Log\LoggerInterface;
 use ScriptFUSION\Porter\Import\Import;
 use ScriptFUSION\Porter\Porter;
 use ScriptFUSION\Porter\Provider\Steam\Resource\GetAppAssets;
@@ -28,8 +29,6 @@ class HomePage extends Page implements PreviousDatabaseAware
 {
     use PreviousDatabase;
 
-    private Connection $database;
-
     /** @var Ranking[] */
     private array $rankings;
 
@@ -45,15 +44,15 @@ class HomePage extends Page implements PreviousDatabaseAware
     ];
 
     public function __construct(
-        Connection $database,
+        private readonly Connection $database,
         private readonly Connection $appMediaCache,
         private readonly Porter $porter,
+        private readonly LoggerInterface $logger,
         array $rankings,
         int $rankingCount,
     ) {
         parent::__construct($database, 'index');
 
-        $this->database = $database;
         $this->rankings = $rankings;
         $this->rankingCount = $rankingCount;
 
@@ -80,6 +79,7 @@ class HomePage extends Page implements PreviousDatabaseAware
             [
                 'total_games' => Queries::countGames($this->database),
                 'total_rankings' => $this->rankingCount,
+                'total_days' => new \DateTimeImmutable('Nov 25 2017')->diff(new \DateTime())->days,
             ]
         ;
     }
@@ -95,9 +95,26 @@ class HomePage extends Page implements PreviousDatabaseAware
 
     private function applyBlurb($apps): array
     {
-        $result = $this->porter->importOne(new Import(new ScrapeAppDetails($apps[0]['id'])));
+        // Fetch cached blurb if available.
+        if (!$blurb = $this->appMediaCache->executeQuery(
+            'SELECT blurb FROM app_media WHERE app_id = ?',
+            [$appId = $apps[0]['id']]
+        )->fetchOne()) {
+            $this->logger->info("Fetching blurb for #$appId.", ['page' => $this]);
+            $result = $this->porter->importOne(new Import(new ScrapeAppDetails($appId = $apps[0]['id'])));
 
-        $apps[0]['blurb'] = $result['blurb'];
+            $blurb = $result['blurb'];
+
+            $this->appMediaCache->executeStatement("
+                INSERT INTO app_media (app_id, blurb) VALUES (?, ?)
+                    ON CONFLICT (app_id) DO UPDATE SET
+                        blurb = excluded.blurb
+                ",
+                [$appId, $blurb]
+            );
+        }
+
+        $apps[0]['blurb'] = $blurb;
 
         return $apps;
     }
@@ -118,13 +135,22 @@ class HomePage extends Page implements PreviousDatabaseAware
         )->fetchAllKeyValue();
 
         if ($missing = array_diff_key(array_flip($appIds), $cachedMedia)) {
+            $this->logger->info(
+                "Downloading media links for \"{$ranking->getId()}\" ("
+                    . implode(', ', array_keys($missing)) . ').',
+                ['page' => $this]
+            );
+
             // Download media links.
             $response = $this->porter->import(new Import(new GetAppAssets(array_keys($missing))));
 
             // Cache media links.
             foreach ($response as $app) {
-                $this->appMediaCache->executeStatement(
-                    "INSERT OR REPLACE INTO app_media (app_id, $mediaClass) VALUES (?, ?)",
+                $this->appMediaCache->executeStatement("
+                    INSERT INTO app_media (app_id, $mediaClass) VALUES (?, ?)
+                        ON CONFLICT (app_id) DO UPDATE SET
+                            $mediaClass = excluded.$mediaClass
+                    ",
                     [$app['id'], $media[$app['id']] = $app['assets'][$mediaClass]]
                 );
             }

@@ -214,6 +214,7 @@
             <ol>
                 {% for game in ranking.apps %}
                 <li><a href="{{ steam.app_url(game.id) }}">
+                    <span>{{ game.rank }}</span>
                     {{ steam.app_capsule(game) }}
                     <span>{{ game.name }} <span>{{ game.release_date|date('Y') }}</span></span>
                     <span>
@@ -226,6 +227,15 @@
         </section>
         {% endfor %}
     </section>
+
+    <dl>
+        <dt>Steam games</dt>
+        <dd>{{ total_games|number_format }}</dd>
+        <dt>Rankings</dt>
+        <dd>{{ total_rankings|number_format }}+</dd>
+        <dt>Daily updates</dt>
+        <dd>{{ total_days|number_format }}</dd>
+    </dl>
 </main>
 {% endblock %}
 
