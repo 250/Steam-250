@@ -54,6 +54,7 @@ main {
 
   >section {
     --bg-hov: var(--frm-ctrl-hard-brdr);
+    --bg-hov-plus: color-mix(var(--bg-hov), #fff 8%);
 
     display: flex;
     flex-flow: column;
@@ -131,7 +132,7 @@ main {
           transition: border-color .2s;
 
           &:has(> a:hover) {
-            border-color: color-mix(var(--bg-hov), #fff 10%);
+            border-color: var(--bg-hov-plus)
           }
 
           >a {
@@ -141,12 +142,18 @@ main {
 
             &:hover {
               img {
-                scale: 1.2;
+                scale: 1.15;
 
-                transition: scale 2.5s ease-out;
+                transition: scale 3s ease-out;
 
                 &:where(footer > img) {
-                  scale: 1.2 -1.2;
+                  scale: 1.15 -1.15;
+                }
+              }
+
+              footer {
+                &:before {
+                  background: var(--bg-hov-plus);
                 }
               }
             }
@@ -206,6 +213,8 @@ main {
 
               background: #3a3145;
               opacity: .9;
+
+              transition: background-color .2s;
             }
 
             >img {
@@ -304,7 +313,11 @@ main {
         border-radius: 4px;
         border: 2px solid #3A3145;
 
+        transition: border-color .2s;
+
         &:hover {
+          border-color: var(--bg-hov-plus);
+
           >img {
             scale: 1.05;
 
@@ -342,12 +355,12 @@ main {
           }
         }
 
-        >span {
+        >.button {
           margin: 0;
           padding: 9px 12px;
           justify-self: start;
 
-          &:last-of-type {
+          &:nth-last-child(1 of .button) {
             color: #e9c176;
             background: #ffffff1a;
 
@@ -355,13 +368,24 @@ main {
             box-shadow: inset 0 0 0 1px color-mix(currentColor 10%, transparent);
 
             &:hover {
-              background: #fff2;
+              background: #ffffff28;
             }
 
             ~ * {
               grid-column: 1 / -1;
             }
           }
+        }
+
+        >span:last-of-type {
+          margin: 1ex 0 -1em;
+
+          opacity: .8;
+          color: #ebddf7;
+          font-size: 10px;
+          font-weight: bold;
+          letter-spacing: 1px;
+          text-transform: uppercase;
         }
 
         >h3 {
@@ -993,6 +1017,15 @@ main {
 
       &:nth-of-type(3):before {
         mask-image: url(/svg/refresh.svg);
+      }
+    }
+
+    @media (max-width: 500px) {
+      display: flex;
+      flex-flow: column-reverse;
+
+      >dt {
+        margin-bottom: 1em;
       }
     }
   }
