@@ -34,8 +34,8 @@ abstract class Ranking extends Page implements PreviousDatabaseAware
         RankingDependencies $dependencies,
         string $id,
         int $limit,
-        Algorithm $algorithm = null,
-        float $weight = null
+        ?Algorithm $algorithm = null,
+        ?float $weight = null
     ) {
         parent::__construct($dependencies->getDatabase(), $id);
 

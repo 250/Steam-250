@@ -22,7 +22,7 @@ final class SiteGenerator
         $this->pages = $pages;
     }
 
-    public function generate(string $outPath, string $prevDb = null): bool
+    public function generate(string $outPath, ?string $prevDb = null): bool
     {
         foreach ($this->pages->getKeys() as $pageId) {
             /** @var Page $page */

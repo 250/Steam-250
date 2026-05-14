@@ -64,8 +64,8 @@ final class Queries
     public static function fetchRankedList(
         Connection $database,
         Ranking $ranking,
-        string $prevDb = null,
-        int $limit = null
+        ?string $prevDb = null,
+        ?int $limit = null
     ): array {
         $sourceTable = $ranking instanceof Club250Ranking ? '(SELECT *, null owner FROM c250_ranking)' : 'rank';
 
