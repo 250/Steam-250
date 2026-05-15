@@ -25,24 +25,26 @@
             <p>Games with the most reviews in the past 24 hours</p>
             <a href="{{ rankings.TREND.ranking.url }}" class="button pri">View all Trending</a>
         </header>
-        <ol>
-            {% for game in rankings.TREND.apps %}
-            <li><a href="{{ steam.app_url(game.id) }}">
-                <header>
-                    {% set img %}{{ _self.img(game.id, rankings.TREND.app_media[game.id]) }}{% endset %}
-                    {{ img }}
-                    <span>#{{ game.rank }}</span>
-                </header>
-                <footer>
-                    {{ img }}
-                    <span>{{ game.name }} <span>{{ game.release_date|date('Y') }}</span></span>
-                    <span>{{ game.keystone_tag }}  &middot;  {{ game.developer }}</span>
-                    <span>+{{ (game.score ?? 0)|number_format }} Reviews</span>
-                    {{ _self.meter(game) }}
-                </footer>
-            </a>
-            {% endfor %}
-        </ol>
+        <div>
+            <ol>
+                {% for game in rankings.TREND.apps %}
+                <li><a href="{{ steam.app_url(game.id) }}">
+                    <header>
+                        {% set img %}{{ _self.img(game.id, rankings.TREND.app_media[game.id]) }}{% endset %}
+                        {{ img }}
+                        <span>#{{ game.rank }}</span>
+                    </header>
+                    <footer>
+                        {{ img }}
+                        <span>{{ game.name }} <span>{{ game.release_date|date('Y') }}</span></span>
+                        <span>{{ game.keystone_tag }}  &middot;  {{ game.developer }}</span>
+                        <span>+{{ (game.score ?? 0)|number_format }} Reviews</span>
+                        {{ _self.meter(game) }}
+                    </footer>
+                </a>
+                {% endfor %}
+            </ol>
+        </div>
     </section>
 
     {% set ranking = rankings.top250 %}
@@ -90,17 +92,19 @@
             <h2>Best of {{ ranking.ranking.id }}</h2>
             <a href="/{{ ranking.ranking.id ~ ext }}" class="button pri">View all This Year</a>
         </header>
-        <ol>
-            {% for game in ranking.apps %}
-            <li><a href="{{ steam.app_url(game.id) }}">
-                {{ _self.img(game.id, ranking.app_media[game.id]) }}
-                <span>#{{ game.rank }}</span>
-                <span>{{ game.name }}</span>
-                <span class="keystone">{{ game.keystone_tag }}</span>
-                <span>{{ (game.score * 10)|round(2) }}</span>
-            </a>
-            {% endfor %}
-        </ol>
+        <div>
+            <ol>
+                {% for game in ranking.apps %}
+                <li><a href="{{ steam.app_url(game.id) }}">
+                    {{ _self.img(game.id, ranking.app_media[game.id]) }}
+                    <span>#{{ game.rank }}</span>
+                    <span>{{ game.name }}</span>
+                    <span class="keystone">{{ game.keystone_tag }}</span>
+                    <span>{{ (game.score * 10)|round(2) }}</span>
+                </a>
+                {% endfor %}
+            </ol>
+        </div>
     </section>
 
     {% set ranking = rankings.most_played %}
@@ -177,7 +181,8 @@
                 <span>#{{ game.rank }}</span>
                 <span>{{ game.name }} <span>{{ game.release_date|date('Y') }}</span></span>
                 <span class="keystone">{{ game.keystone_tag }}</span>
-                <span>${{ game.price / 100 }}</span>
+                {% if game.discount_price %}<span>${{ game.price / 100 }}</span>{% endif %}
+                <span>${{ (game.discount_price ? game.discount_price : game.price) / 100 }}</span>
             </a>
             {% endfor %}
         </ol>
@@ -251,4 +256,9 @@
 {% block css %}
 {{ parent() }}
 <link rel="stylesheet" href="/c/home.css">
+{% endblock %}
+
+{% block js %}
+{{ parent() }}
+<script src="/c/home.js" defer></script>
 {% endblock %}

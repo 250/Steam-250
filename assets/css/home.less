@@ -114,10 +114,15 @@ main {
         }
       }
 
-      >ol {
+      >div {
+        overflow: hidden;
+
+        cursor: grab;
+      }
+
+      ol {
         display: flex;
         gap: 16px;
-        overflow: auto;
 
         >li {
           width: 420px;
@@ -513,11 +518,16 @@ main {
         }
       }
 
-      >ol {
+      >div {
+        overflow: hidden;
+
+        cursor: grab;
+      }
+
+      ol {
         display: flex;
         gap: 16px;
         max-width: 100%;
-        overflow: auto;
 
         a {
           display: grid;
@@ -814,7 +824,7 @@ main {
       }
 
       &:nth-child(n+2 of .\31 \/3) {
-        a > span:last-of-type {
+        a > span:last-of-type:nth-of-type(4) {
           margin-top: 0;
           grid-row: 1/3;
           align-self: center;

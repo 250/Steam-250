@@ -27,7 +27,7 @@
     "symfony/console": "^6",
     "symfony/dotenv": "^6",
     "twig/twig": "^3",
-    "voku/html-min": "^4"
+    "voku/html-min": "^5"
   },
   "require-dev": {
     "roave/security-advisories": "dev-latest"

@@ -36,6 +36,8 @@ module.exports = {
         ],
         home: [
             './css/home.less',
+
+            './js/home.ts'
         ],
         about: [
             './css/about.less',
