@@ -8,6 +8,13 @@
   }
 }
 
+.carousel-container() {
+  overflow: hidden;
+
+  cursor: grab;
+  user-select: none;
+}
+
 main {
   display: flex;
   flex-flow: wrap;
@@ -115,9 +122,7 @@ main {
       }
 
       >div {
-        overflow: hidden;
-
-        cursor: grab;
+        .carousel-container();
       }
 
       ol {
@@ -519,9 +524,7 @@ main {
       }
 
       >div {
-        overflow: hidden;
-
-        cursor: grab;
+        .carousel-container();
       }
 
       ol {
