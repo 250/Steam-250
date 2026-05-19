@@ -71,8 +71,12 @@ class TagRanking extends DefaultRanking
 
     public function fetchTagCategory(): array
     {
-        return $this->database->fetchAssociative(
-            'SELECT tag_cat.* FROM tag_cat JOIN tag ON tag.category = tag_cat.short_name AND tag.name = ? LIMIT 1',
+        return $this->database->fetchAssociative('
+            SELECT tag_cat.* FROM tag_cat JOIN tag ON tag.category = tag_cat.short_name AND tag.name = ?
+            UNION ALL -- Default when no match.
+            SELECT * FROM tag_cat WHERE id = 0xF
+            LIMIT 1
+        ',
             [$this->tag]
         );
     }
