@@ -357,6 +357,9 @@ b.deck-p {
 }
 
 #body {
+    // Force full height for body's children. This causes the side nav to always grow to 100% height.
+    display: grid;
+    grid-auto-columns: 100%;
     flex: 1 0 auto;
     position: relative;
     padding: 2em 0;
@@ -365,6 +368,7 @@ b.deck-p {
         margin: 0 auto;
         padding: 0 1em;
         box-sizing: border-box;
+        width: 100%;
         max-width: 864px;
         /* Force margins to be enclosed. */
         overflow: hidden;

@@ -17,7 +17,7 @@
     <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
     {% block css %}
-    <link rel="stylesheet" href="/c/250.css">
+        <link rel="stylesheet" href="/c/250.css">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
@@ -25,7 +25,8 @@
         <link rel="stylesheet" href="{{ club250_static }}/c/steam250.css">
     {% endblock %}
 
-    <link rel="shortcut icon" href="/favicon.png" type="image/png">
+    <link rel="shortcut icon" href="{{ CI ? '/favicon.png' : club250_static ~ '/img/favicon debug.png' }}"
+        type="image/png">
 
     <meta property="og:title" content="{{ block('title') }}">
     <meta property="og:site_name" content="Steam 250">

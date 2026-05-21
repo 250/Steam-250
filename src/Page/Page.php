@@ -24,7 +24,7 @@ abstract class Page
         $tags = Queries::fetchPopularTags($this->database);
         $tagCount = Queries::countTags($this->database);
 
-        return compact('tags', 'tagCount');
+        return compact('tags', 'tagCount') + ['CI' => $_SERVER['CI'] ?? false];
     }
 
     public function getId(): string
