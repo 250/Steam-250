@@ -95,14 +95,30 @@ main {
         mask: no-repeat center;
       }
 
-      >h2, >p {
-        grid-area: 1 / 2;
+      // Header wrapper link.
+      >a:only-child {
+        display: grid;
+        grid: auto / 0 1fr auto;
+        grid-column: 2 / -1;
+
+        >.button {
+          grid-column: 3;
+        }
       }
 
-      >p {
+      h2, p {
+        grid-area: 1 / 2;
+
+        >a, a:visited {
+          color: inherit;
+        }
+      }
+
+      p {
         height: 0;
         margin: 25px 0 0;
 
+        color: var(--250-c);
         font-size: 13px;
       }
     }

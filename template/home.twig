@@ -21,9 +21,11 @@
 <main>
     <section class="trend">
         <header>
-            <h2>Trending Now on Steam 250</h2>
-            <p>Games with the most reviews in the past 24 hours</p>
-            <a href="{{ rankings.TREND.ranking.url }}" class="button pri">View all Trending</a>
+            <a href="{{ rankings.TREND.ranking.url }}">
+                <h2>Trending Now on Steam 250</h2>
+                <p>Games with the most reviews in the past 24 hours</p>
+                <span class="button pri">View all Trending</span>
+            </a>
         </header>
         <div>
             <ol>
@@ -50,9 +52,11 @@
     {% set ranking = rankings.top250 %}
     <section class="gotd">
         <header>
-            <h2>Steam Top 250</h2>
-            <p>Highest rated games of all time on Steam</p>
-            <a href="/{{ ranking.ranking.id ~ ext }}" class="button pri">View all Top 250</a>
+            <a href="/{{ ranking.ranking.id ~ ext }}">
+                <h2>Steam Top 250</h2>
+                <p>Highest rated games of all time on Steam</p>
+                <span class="button pri">View all Top 250</span>
+            </a>
         </header>
         {% set game = ranking.apps.0 %}
         <a href="{{ steam.app_url(game.id) }}">
@@ -69,8 +73,10 @@
     {% set ranking = rankings['7day'] %}
     <section class="wk">
         <header>
-            <h2>Best of the Week</h2>
-            <a href="/{{ ranking.ranking.id ~ ext }}" class="button pri">View all</a>
+            <a href="/{{ ranking.ranking.id ~ ext }}">
+                <h2>Best of the Week</h2>
+                <span class="button pri">View all</span>
+            </a>
         </header>
         <ol>
             {% for game in ranking.apps %}
@@ -89,8 +95,10 @@
     {% set ranking = rankings['now'|date('Y')] %}
     <section class="yr">
         <header>
-            <h2>Best of {{ ranking.ranking.id }}</h2>
-            <a href="/{{ ranking.ranking.id ~ ext }}" class="button pri">View all This Year</a>
+            <a href="/{{ ranking.ranking.id ~ ext }}">
+                <h2>Best of {{ ranking.ranking.id }}</h2>
+                <span class="button pri">View all This Year</span>
+            </a>
         </header>
         <div>
             <ol>
@@ -110,9 +118,11 @@
     {% set ranking = rankings.most_played %}
     <section class="1/2">
         <header>
-            <h2>Most Played Right Now</h2>
-            <p>Games with the most concurrent users in the past 24 hours</p>
-            <a href="/{{ ranking.ranking.id ~ ext }}" class="button pri">View all Most Played</a>
+            <a href="/{{ ranking.ranking.id ~ ext }}">
+                <h2>Most Played Right Now</h2>
+                <p>Games with the most concurrent users in the past 24 hours</p>
+                <span class="button pri">View all Most Played</span>
+            </a>
         </header>
         <ol>
             {% for game in ranking.apps %}
@@ -131,8 +141,10 @@
     {% set ranking = rankings.hidden_gems %}
     <section class="1/2">
         <header>
-            <h2>{{ ranking.ranking.title }}</h2>
-            <a href="/{{ ranking.ranking.id ~ ext }}" class="button pri">View all Gems</a>
+            <a href="/{{ ranking.ranking.id ~ ext }}">
+                <h2>{{ ranking.ranking.title }}</h2>
+                <span class="button pri">View all Gems</span>
+            </a>
         </header>
         <ol>
             {% for game in ranking.apps %}
@@ -151,8 +163,10 @@
     {% set ranking = rankings.discounts %}
     <section class="1/3">
         <header>
-            <h2>Top Discounted Games</h2>
-            <a href="/{{ ranking.ranking.id ~ ext }}" class="button pri">View all</a>
+            <a href="/{{ ranking.ranking.id ~ ext }}">
+                <h2>Top Discounted Games</h2>
+                <span class="button pri">View all</span>
+            </a>
         </header>
         <ol>
             {% for game in ranking.apps %}
@@ -171,8 +185,10 @@
     {% set ranking = rankings['price/under5'] %}
     <section class="1/3">
         <header>
-            <h2>Best Under $5</h2>
-            <a href="/{{ ranking.ranking.id ~ ext }}" class="button pri">View all</a>
+            <a href="/{{ ranking.ranking.id ~ ext }}">
+                <h2>Best Under $5</h2>
+                <span class="button pri">View all</span>
+            </a>
         </header>
         <ol>
             {% for game in ranking.apps %}
@@ -191,8 +207,10 @@
     {% set ranking = rankings['price/free'] %}
     <section class="1/3">
         <header>
-            <h2>Top Free Games</h2>
-            <a href="/{{ ranking.ranking.id ~ ext }}" class="button pri">View all</a>
+            <a href="/{{ ranking.ranking.id ~ ext }}">
+                <h2>Top Free Games</h2>
+                <span class="button pri">View all</span>
+            </a>
         </header>
         <ol>
             {% for game in ranking.apps %}
@@ -209,9 +227,11 @@
 
     <section class="tag">
         <header>
-            <h2>Popular Tags</h2>
-            <p>Our most popular tags, based on your clicks</p>
-            <a href="{{ club250 }}/tags" class="button pri">View all Tags</a>
+            <a href="{{ club250 }}/tags">
+                <h2>Popular Tags</h2>
+                <p>Our most popular tags, based on your clicks</p>
+                <span class="button pri">View all Tags</span>
+            </a>
         </header>
         {% for ranking in rankings|filter((_, k) => k starts with 'tag/') %}
         <section>
