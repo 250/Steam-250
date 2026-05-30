@@ -7,6 +7,7 @@
 @import "inc/checkbox";
 @import "inc/button group";
 @import "inc/more button";
+@import "inc/form";
 
 :root {
     // Only affects rem-scaling components since body immediately overrides this.
@@ -194,7 +195,12 @@ h2 {
 
         &:where(button) {
             position: relative;
+            min-width: 0;
+            margin: 0;
+            padding: 0;
             top: -6px;
+
+            box-shadow: none;
 
             &:before, &:after {
                 content: '';
@@ -361,6 +367,8 @@ b.deck-p {
 #body {
     // Force full height for body's children. This causes the side nav to always grow to 100% height.
     display: grid;
+    // Sometimes the body has a former child on C250 with a join link.
+    grid-template-rows: auto 1fr;
     grid-auto-columns: 100%;
     flex: 1 0 auto;
     position: relative;
@@ -631,65 +639,6 @@ tr.a .movement.none:before {
     }
     .movement.neg:before {
         top: 1px;
-    }
-}
-
-.button {
-    margin: 1em .5em;
-    min-width: 6em;
-    padding: .9ex 1ch;
-    box-sizing: border-box;
-    align-content: center;
-
-    font-size: 90%;
-    font-weight: 500;
-    color: var(--frm-ctrl-soft-fg);
-    background: var(--frm-ctrl-soft-bg);
-    border-radius: 4px;
-    @box-shadow: 0 0 0 2px var(--frm-ctrl-soft-border);
-    box-shadow: @box-shadow;
-    text-align: center;
-    outline: none;
-
-    &[disabled] {
-        filter: saturate(20%);
-        cursor: not-allowed;
-    }
-
-    &:not([disabled]) {
-        &:hover {
-            background: var(--frm-ctrl-soft-bg-hov);
-            text-decoration: none;
-        }
-
-        &:active {
-            top: 1px;
-            text-shadow: none;
-        }
-    }
-
-    &.cur, &:has(>:checked) {
-        color: #e9c176;
-        background: var(--frm-ctrl-soft-sel-bg);
-        box-shadow: @box-shadow, inset 0 0 0 1px var(--frm-ctrl-soft-sel-border-in);
-
-        &:hover {
-            background: var(--frm-ctrl-soft-sel-bg-hov);
-        }
-    }
-
-    &.pri {
-        padding: 1ex 2ch;
-
-        font-weight: 600;
-        color: #271900;
-        @background: linear-gradient(180deg, #e9c176, #c7a15a);
-        background: @background;
-        border-radius: 2px;
-
-        &:hover {
-            background: @background;
-        }
     }
 }
 

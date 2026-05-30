@@ -1,0 +1,86 @@
+button, .button {
+  margin: 1em .5em;
+  min-width: 6em;
+  padding: .9ex 1ch;
+  box-sizing: border-box;
+  align-content: center;
+
+  font-size: 90%;
+  font-weight: 500;
+  color: var(--frm-ctrl-soft-fg);
+  background: var(--frm-ctrl-soft-bg);
+  border-radius: 2px;
+  @box-shadow: 0 0 0 2px var(--frm-ctrl-soft-border);
+  box-shadow: @box-shadow;
+  text-align: center;
+  outline: none;
+
+  &:active {
+    box-shadow: inset 3px 3px 3px #0008;
+  }
+
+  &[disabled] {
+    cursor: not-allowed;
+  }
+
+  &:not([disabled]) {
+    &:hover {
+      background: var(--frm-ctrl-soft-bg-hov);
+      text-decoration: none;
+    }
+
+    &:active {
+      top: 1px;
+      text-shadow: none;
+    }
+  }
+
+  &.cur, &:has(>:checked) {
+    color: #e9c176;
+    background: var(--frm-ctrl-soft-sel-bg);
+    box-shadow: @box-shadow, inset 0 0 0 1px var(--frm-ctrl-soft-sel-border-in);
+
+    &:hover {
+      background: var(--frm-ctrl-soft-sel-bg-hov);
+    }
+  }
+
+  // Primary style.
+  &.pri {
+    padding: 1ex 2ch;
+
+    font-weight: 600;
+    color: #271900;
+    @background: linear-gradient(180deg, #e9c176, #c7a15a);
+    background: @background;
+    border-radius: 2px;
+
+    &:hover {
+      background: @background;
+    }
+  }
+
+  // Flat style.
+  &.flat {
+    color: var(--frm-fg);
+    background: var(--frm-ctrl-soft-sel-bg);
+
+    &:hover {
+      background: #443a50;
+    }
+  }
+}
+
+input:not([type]), input[type=url] {
+  padding: 6px 12px;
+
+  font-size: 14px;
+  color: var(--frm-fg);
+  background: var(--frm-ctrl-soft-bg);
+  border: 1px solid #352d40;
+  border-radius: 2px;
+
+  &::placeholder {
+    color: color-mix(var(--frm-fg) 30%, transparent);
+  }
+}

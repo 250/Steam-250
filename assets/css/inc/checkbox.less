@@ -34,7 +34,7 @@ input[type=checkbox].switch {
 
   @checked-colour: var(--frm-ctrl-hi-fg);
   @track-height: 1.8ex;
-  @track-margin: .7ch;
+  @track-margin: 1.4ch;
 
   // Switch UI.
   + span {
@@ -209,17 +209,8 @@ input[type=checkbox].switch {
 
   // Disabled mode (tri-state currently unsupported).
   &:disabled, label.option >&:disabled {
-    + span {
-      background: #202020;
-      border-color: #555;
-
-      &:after {
-        background: #636b6e;
-      }
-
-      + span, + span + span {
-        color: #828282;
-      }
+    ~ span {
+      opacity: .5;
     }
   }
 }
