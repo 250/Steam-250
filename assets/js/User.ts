@@ -41,7 +41,11 @@ export default class User {
         this.postClub250Message('games');
 
         addEventListener('message', message => {
-            if (message.origin !== process.env.CLUB_250_BASE_URL) return;
+            if (message.origin !== process.env.CLUB_250_BASE_URL) {
+                console.debug(`Sync games: ignoring message from: "${message.origin}".`);
+
+                return;
+            }
 
             console.debug('C250:', message.data);
 
@@ -151,6 +155,8 @@ export default class User {
 
     private static postClub250Message(message: any) {
         if (parent !== window) {
+            console.debug('>C250:', message);
+
             parent.postMessage(message, process.env.CLUB_250_BASE_URL!);
         }
     }
