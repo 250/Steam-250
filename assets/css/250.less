@@ -374,6 +374,11 @@ b.deck-p {
     position: relative;
     padding: 2em 0;
 
+    // Consume 100% height.
+    &:has(>:only-child) {
+        grid-template-rows: 1fr;
+    }
+
     >.content {
         margin: 0 auto;
         padding: 0 1em;
