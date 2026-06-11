@@ -86,8 +86,9 @@
                     {% endif -%}
                     {%- if app.total_reviews > 0 %}
                         {% set pct = (app.positive_reviews / app.total_reviews * 100)|round %}
-                        <div class="rating" title="{{ pct }}% positive">
+                        <div class="rating meter">
                             <span style="width: {{ pct }}%"></span>
+                            {{ pct }}%
                         </div>
                     {% endif -%}
                 </div>
