@@ -1,6 +1,10 @@
 aside {
+  display: flex;
+  flex-flow: column;
+  gap: 1.5rem;
+
   h3 {
-    margin: 24px 0 12px;
+    margin-bottom: 12px;
 
     color: #e9c176;
     font-size: 10px;
@@ -8,10 +12,13 @@ aside {
     letter-spacing: 2px;
     text-transform: uppercase;
   }
+  >h3 {
+    margin-bottom: 0;
+  }
 
   nav {
-    >h3:first-child {
-      margin-top: 0;
+    >h3:nth-child(n+2) {
+      margin-top: 1.5rem;
     }
 
     ol {
