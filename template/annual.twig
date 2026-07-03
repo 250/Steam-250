@@ -22,10 +22,10 @@
     <p class="tip">
         Compare with <a href="/reviews/{{ (ranking.year ?? 'old') ~ ext }}">most reviewed games {{ desc }}</a>.
     </p>
-    {{ include('partial/timeline.twig') }}
 {% endblock %}
 
-{% block post %}
+{% block fullwidth %}
+    {{ parent() }}
     {{ include('partial/timeline.twig') }}
 {% endblock %}
 

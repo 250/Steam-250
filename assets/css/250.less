@@ -654,12 +654,13 @@ tr.a .movement.none:before {
     font-size: 90%;
 
     --width: 4em;
-    --primary: #4b6a90;
-    --primary-hi: #5483b3;
-    --highlight: #70c3ff;
-    --current: #3e9473;
-    --current-hi: #67dbb6;
-    --spot: #f0f8ff;
+    --primary: var(--frm-ctrl-soft-sel-bg);
+    --primary-hi: var(--frm-ctrl-soft-sel-bg-hov);
+    --highlight: #d1c5b4;
+    --current: color-mix(var(--frm-ctrl-hi-fg) 85%, #000);
+    --current-hi: var(--frm-ctrl-hi-fg);
+    --spot: var(--frm-fg);
+    --spot-bg: #181022;
     --transition: .1s;
 }
 @media (max-width: 700px) {
@@ -746,7 +747,7 @@ tr.a .movement.none:before {
     transform: translate(0, -50%);
     border-radius: 50%;
 
-    background: #1b2838;
+    background: var(--spot-bg);
 }
 .timeline > ol > li > a:hover:before {
     background: var(--spot);

@@ -20,7 +20,8 @@
     Top {{ games|length }} most reviewed games on Steam released {{ desc }}.
 {% endblock %}
 
-{% block post %}
+{% block fullwidth %}
+    {{ parent() }}
     {{ include('partial/timeline.twig') }}
 {% endblock %}
 

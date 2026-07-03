@@ -39,7 +39,7 @@
                     <footer>
                         {{ img }}
                         <span>{{ game.name }} <span>{{ game.release_date|date('Y') }}</span></span>
-                        <span>{{ game.keystone_tag }}  &middot;  {{ game.developer }}</span>
+                        <span>{{ game.keystone_tag }}  &bull;  {{ game.developer }}</span>
                         <span>+{{ (game.score ?? 0)|number_format }} Reviews</span>
                         {{ _self.meter(game) }}
                     </footer>
