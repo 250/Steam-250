@@ -19,7 +19,7 @@
 
 {% block fullwidth %}
 <main>
-    <section class="trend">
+    <section class="hcards trend">
         <header>
             <a href="{{ rankings.TREND.ranking.url }}">
                 <h2>Trending Now on Steam 250</h2>
@@ -92,8 +92,38 @@
         </ol>
     </section>
 
+    {% set ranking = rankings.global_top_sellers %}
+    <section class="hcards topsell">
+        <header>
+            <h2>Top Sellers</h2>
+            <p>The highest grossing Steam games worldwide today</p>
+        </header>
+        <div>
+            <ol>
+                {% for game in ranking.apps %}
+                <li><a href="{{ steam.app_url(game.id) }}">
+                    <header>
+                        {% set img %}{{ _self.img(game.id, ranking.app_media[game.id]) }}{% endset %}
+                        {{ img }}
+                        <span>#{{ loop.index }}</span>
+                    </header>
+                    <footer>
+                        {{ img }}
+                        <span>{{ game.name }} <span>{{ game.release_date|date('Y') }}</span></span>
+                        <span>{{ game.keystone_tag }}  &bull;  {{ game.developer }}</span>
+                        <span class="price">
+                            {{ game.free ? 'Free' : '$' ~ ((game.discount_price ?: game.price) / 100) }}
+                        </span>
+                        {{ _self.meter(game) }}
+                    </footer>
+                </a>
+                {% endfor %}
+            </ol>
+        </div>
+    </section>
+
     {% set ranking = rankings['now'|date('Y')] %}
-    <section class="yr">
+    <section class="vcards yr">
         <header>
             <a href="/{{ ranking.ranking.id ~ ext }}">
                 <h2>Best of {{ ranking.ranking.id }}</h2>
@@ -143,6 +173,7 @@
         <header>
             <a href="/{{ ranking.ranking.id ~ ext }}">
                 <h2>{{ ranking.ranking.title }}</h2>
+                <p>Highly rated games that few know but many love</p>
                 <span class="button pri">View all Gems</span>
             </a>
         </header>

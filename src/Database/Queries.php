@@ -8,6 +8,7 @@ use Doctrine\DBAL\Query\QueryBuilder;
 use Doctrine\DBAL\Result;
 use ScriptFUSION\StaticClass;
 use ScriptFUSION\Steam250\SiteGenerator\Rank\CustomRankingFetch;
+use ScriptFUSION\Steam250\SiteGenerator\Rank\PrecomputedRankingTable;
 use ScriptFUSION\Steam250\SiteGenerator\Rank\RankingQueries;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Algorithm;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\Club250Ranking;
@@ -67,20 +68,33 @@ final class Queries
         ?string $prevDb = null,
         ?int $limit = null
     ): array {
-        $sourceTable = $ranking instanceof Club250Ranking ? '(SELECT *, null owner FROM c250_ranking)' : 'rank';
+        if ($ranking instanceof PrecomputedRankingTable) {
+            $sourceTable = $ranking->getSourceTable();
+        } elseif ($ranking instanceof Club250Ranking) {
+            $sourceTable = '(SELECT *, null owner FROM c250_ranking)';
+        } else {
+            $sourceTable = 'rank';
+        }
 
         $query = $database->createQueryBuilder()
             ->select('rank.*, app.*, t250.rank as rank_250')
             ->from($sourceTable, 'rank')
             ->join('rank', 'app', 'app', 'app.id = rank.app_id')
             ->leftJoin('rank', 'rank', 't250', 't250.list_id = "top250" AND rank.app_id = t250.app_id')
-            ->where('rank.list_id = :list_id')
-                ->setParameter('list_id', $ranking->getId())
             ->orderBy('rank')
             ->setMaxResults($limit ?? $ranking->getLimit())
         ;
 
-        if ($prevDb) {
+        if (!$ranking instanceof PrecomputedRankingTable) {
+            $query
+                ->where('rank.list_id = :list_id')
+                ->setParameter('list_id', $ranking->getId())
+            ;
+        }
+
+        // Precomputed rankings (e.g. global top sellers) have no meaningful movement, so they skip
+        // the previous-database join entirely.
+        if ($prevDb && !$ranking instanceof PrecomputedRankingTable) {
             $database->executeStatement("ATTACH '$prevDb' AS prev");
 
             $query
@@ -101,7 +115,9 @@ final class Queries
 
         $list = $query->fetchAllAssociative();
 
-        $prevDb && $database->executeStatement('DETACH prev');
+        if ($prevDb && !$ranking instanceof PrecomputedRankingTable) {
+            $database->executeStatement('DETACH prev');
+        }
 
         return $list;
     }

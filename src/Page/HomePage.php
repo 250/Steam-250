@@ -15,6 +15,7 @@ use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\AnnualRanking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\DiscountRanking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\FreeRanking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\GameOfTheDayRanking;
+use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\GlobalTopSellersRanking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\HiddenGemsRanking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\MostPlayedRanking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\RollingWeekRanking;
@@ -37,6 +38,7 @@ class HomePage extends Page implements PreviousDatabaseAware
     private const APP_MEDIA_MAP = [
         TrendRanking::class => 'library_hero',
         GameOfTheDayRanking::class => 'library_hero',
+        GlobalTopSellersRanking::class => 'library_hero',
         RollingWeekRanking::class => 'hero_capsule',
         MostPlayedRanking::class => 'hero_capsule',
         HiddenGemsRanking::class => 'hero_capsule',
@@ -163,6 +165,7 @@ class HomePage extends Page implements PreviousDatabaseAware
     {
         return [
             GameOfTheDayRanking::class,
+            GlobalTopSellersRanking::class,
 			TrendRanking::class,
 			HiddenGemsRanking::class,
 			date('Y'),
