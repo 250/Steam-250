@@ -66,7 +66,22 @@ final class PageContainerFactory
                 $container->get('app media cache'),
                 $container->get(Porter::class),
                 $container->get(LoggerInterface::class),
-                array_map(fn ($name) => $container->buildObject($name), HomePage::getRankings()),
+                array_map(
+                    static function ($name) use ($container) {
+                        $ranking = $container->buildObject($name);
+
+                        /*
+                         * buildObject() returns false when the class name cannot be resolved, which would otherwise
+                         * surface later as a cryptic "Call to a member function getId() on false" error.
+                         */
+                        if ($ranking === false) {
+                            throw new \RuntimeException("Failed to build ranking: \"$name\".");
+                        }
+
+                        return $ranking;
+                    },
+                    HomePage::getRankings()
+                ),
                 $counter
             )
         );

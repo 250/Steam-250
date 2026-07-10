@@ -37,6 +37,10 @@ class GlobalTopSellersRanking extends DefaultRanking implements PrecomputedRanki
     {
         $builder
             ->andWhere("app.type = 'game'")
+            // Exclude free games released over a year ago.
+            ->andWhere(
+                "NOT (app.free = 1 AND app.release_date < strftime('%s', 'now', '-1 year'))"
+            )
             ->addSelect('dev.name developer')
             ->leftJoin('app', 'app_developer', 'dev', 'dev.app_id = app.id')
             ->groupBy('app.id')
