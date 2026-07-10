@@ -64,7 +64,10 @@
             <span class="button pri">Game of the Day</span>
             <span class="button">Top 250 #{{ game.rank }}</span>
 
-            <span>{{ game.keystone_tag }}  &middot;  {{ game.developer }} {{ game.release_date|date('Y') }}</span>
+            <span>
+                {{ game.keystone_tag }}  &bull;  {{ game.developer }}  &bull; 
+                {{ game.release_date|date('Y') }}
+            </span>
             <h3>{{ game.name }}</h3>
             <p>{{ game.blurb }}</p>
         </a>
