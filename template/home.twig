@@ -15,7 +15,13 @@
 </span>
 {% endmacro %}
 
-{% macro meter(game) %}{{ _self.rating(game, meter: true) }}{% endmacro %}
+{% macro meter(game) %}
+    {% if game.total_reviews > 0 %}
+        {{ _self.rating(game, meter: true) }}
+    {% else %}
+        <span>Unreleased</span>
+    {% endif %}
+{% endmacro %}
 
 {% block fullwidth %}
 <main>
