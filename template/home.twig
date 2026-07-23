@@ -104,8 +104,11 @@
     {% set ranking = rankings.global_top_sellers %}
     <section class="hcards topsell">
         <header>
-            <h2>Top Sellers</h2>
-            <p>The highest grossing Steam games worldwide today</p>
+            <a href="{{ ranking.ranking.url }}">
+                <h2>Top Sellers</h2>
+                <p>The highest grossing Steam games worldwide today</p>
+                <span class="button pri">View all Top Sellers</span>
+            </a>
         </header>
         <div>
             <ol>

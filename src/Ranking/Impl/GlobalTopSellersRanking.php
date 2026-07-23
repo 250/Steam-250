@@ -25,7 +25,7 @@ class GlobalTopSellersRanking extends DefaultRanking implements PrecomputedRanki
 
     public function getUrl(): string
     {
-        return "$_ENV[CLUB_250_BASE_URL]/ranking/global-top-sellers";
+        return "$_ENV[CLUB_250_BASE_URL]/ranking/top-sellers";
     }
 
     public function customizeQuery(QueryBuilder $builder): ?QueryBuilder

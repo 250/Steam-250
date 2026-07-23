@@ -147,6 +147,10 @@
                         Trending Now
                         {{ include('@components/micro tier.twig', {tier: 1, benefit: 'trend'}) }}
                     </a>
+                <li><a href="{{ club250 }}/ranking/top-sellers" class="topsell">
+                        Top Sellers
+                        {{ include('@components/micro tier.twig', {tier: 1, benefit: 'topsell'}) }}
+                    </a>
                 <li><a href="/2026{{ ext }}" class="star">Best of 2026</a>
                 <li><a href="/7day{{ ext }}" class="dt7">New This Week</a>
                 <li><a href="/most_played{{ ext }}" class="pad {{ id == 'most_played' ? 'sel' }}">Most Played</a>

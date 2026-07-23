@@ -68,7 +68,12 @@ class HomePage extends Page implements PreviousDatabaseAware
             array_map(
                 fn (Ranking $ranking) =>
                     [
-                        'apps' => $apps = Queries::fetchRankedList($this->database, $ranking, $this->prevDb, 10)
+                        'apps' => $apps = Queries::fetchRankedList(
+                            $this->database,
+                            $ranking,
+                            $this->prevDb,
+                            $ranking instanceof AnnualRanking ? 20 : 10,
+                        )
                             |> (fn ($apps) => $ranking instanceof TagRanking ? $apps : $this->applyKeystoneTag($apps))
                             |> (fn ($apps) => $ranking instanceof Top250Ranking ? $this->applyBlurb($apps) : $apps),
                     ] + compact('ranking')
