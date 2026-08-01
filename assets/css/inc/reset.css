@@ -58,3 +58,6 @@ button {
         pointer-events: none;
     }
 }
+[hidden] {
+    display: none !important;
+}

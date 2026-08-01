@@ -181,6 +181,26 @@ final class Queries
         ")->fetchAllAssociative();
     }
 
+    public static function fetchStories(Connection $database): array
+    {
+        return $database->executeQuery("
+            SELECT s.*, app.name app_name
+            FROM c250_stories s
+                LEFT JOIN app ON app.id = s.app_id
+            ORDER BY CASE s.label
+                WHEN 'Game of the Month' THEN 1
+                WHEN 'New #1' THEN 2
+                WHEN 'Top 10 Entry' THEN 3
+                WHEN 'Instant Hit' THEN 4
+                WHEN 'Streak' THEN 5
+                WHEN 'Biggest Climber' THEN 6
+                WHEN 'Biggest Faller' THEN 7
+                WHEN 'Review Milestone' THEN 8
+                ELSE 9
+            END
+        ")->fetchAllAssociative();
+    }
+
     public static function countGames(Connection $database): int
     {
         return +$database->fetchOne("SELECT count(*) FROM app WHERE type = 'game'");

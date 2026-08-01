@@ -36,13 +36,15 @@ main {
     text-decoration: none;
   }
 
-  #body & .button {
+  .button {
     height: 35px;
     align-self: center;
     margin: 0;
 
     font-size: 10.4px;
-    font-weight: 800;
+    &, &.pri {
+      font-weight: 800;
+    }
     text-transform: uppercase;
     opacity: .9;
 
@@ -82,7 +84,7 @@ main {
         height: 40px;
         width: $height;
 
-        border-radius: 4px;
+        border-radius: 99px;
         background: #e9c1761a;
       }
       &:after {
@@ -118,8 +120,162 @@ main {
         height: 0;
         margin: 25px 0 0;
 
-        color: var(--250-c);
+        color: #d3beeb99;
         font-size: 13px;
+      }
+    }
+
+    &.stories {
+      flex: 1;
+
+      >header {
+        &:after {
+          mask: url(/svg/news.svg);
+        }
+      }
+
+      >div {
+        display: flex;
+        height: 400px;
+        overflow: hidden;
+
+        border: 1px solid #493f52cc;
+        background: #22182b;
+        border-radius: 0 8px 8px;
+        box-shadow: 0 20px 25px -5px #0000001a, 0 8px 10px -6px #0000001a;
+      }
+
+      aside {
+        width: 25%;
+        gap: 0;
+
+        background: #261c3099;
+        border-right: 1px solid #f1bf691a;
+
+        >a {
+          display: flex;
+          flex-direction: column;
+          gap: 4px;
+          padding: 16px;
+
+          border-left: 4px solid transparent;
+
+          transition: background .15s;
+
+          &:hover {
+            background: #3c314680;
+            text-decoration: none;
+          }
+
+          &.active {
+            background: #3c314680;
+            border-left-color: #f1bf69;
+
+            .stories-tab-label {
+              color: #f1bf69;
+            }
+
+            h4 {
+              color: #ebddf7;
+            }
+          }
+        }
+
+        h4 {
+          color: #d7bdef;
+          font-size: 14px;
+          font-weight: 500;
+          line-height: 20px;
+        }
+      }
+
+      .stories-tab-label {
+        color: #d7bdef99;
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+      }
+
+      article {
+        flex: 1;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        padding: 3rem;
+        overflow: hidden;
+
+        background: #130b1d;
+
+        &:before, &:after {
+          content: '';
+          position: absolute;
+          inset: 0;
+          z-index: 1;
+
+          opacity: .6;
+          background: linear-gradient(0deg, #1a1023, #1a1022cc 50%, #1a102300);
+        }
+        &:after {
+          background: linear-gradient(90deg, #1a1023e6, #1a102366 50%, #1a102300);
+        }
+
+        >:not(img) {
+          position: relative;
+          z-index: 2;
+        }
+
+        .label {
+          align-self: flex-start;
+          padding: 4px 12px;
+          margin-bottom: 16px;
+
+          color: #f1bf69;
+          font-size: 10px;
+          font-weight: 900;
+          background: #3b302c33;
+          border: 1px solid #f1bf6980;
+          border-radius: 2px;
+          letter-spacing: 1px;
+          text-transform: uppercase;
+        }
+
+        >img {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          inset: 0;
+
+          object-fit: cover;
+        }
+
+        p {
+          max-width: 587px;
+          margin-bottom: 24px;
+
+          color: #fffc;
+          font-size: 16px;
+          font-weight: 500;
+          line-height: 24px;
+        }
+
+        .button {
+          align-self: start;
+          flex-shrink: 0;
+        }
+      }
+
+      h3 {
+        max-width: 50rem;
+        margin-bottom: 16px;
+
+        color: #fff;
+        font-size: 48px;
+        font-weight: 900;
+        line-height: 48px;
+        letter-spacing: -2.4px;
+        text-transform: uppercase;
       }
     }
 
@@ -225,7 +381,7 @@ main {
               padding: 4px 12px;
               z-index: 1;
 
-              font-size: 20px;
+              font-size: 18px;
               font-weight: 800;
               color: #412d00;
               background: #e9c176;
@@ -504,7 +660,7 @@ main {
               opacity: .9;
               color: #412d00;
               background: #e9c176;
-              font-size: 10px;
+              font-size: 11px;
               font-weight: 900;
               border-radius: 2px;
             }
@@ -605,7 +761,7 @@ main {
             align-self: start;
             justify-self: start;
 
-            font-size: 10px;
+            font-size: 11px;
             font-weight: 900;
             color: #412d00;
             background: #e9c176;

@@ -77,12 +77,16 @@ class HomePage extends Page implements PreviousDatabaseAware
                             |> (fn ($apps) => $ranking instanceof TagRanking ? $apps : $this->applyKeystoneTag($apps))
                             |> (fn ($apps) => $ranking instanceof Top250Ranking ? $this->applyBlurb($apps) : $apps),
                     ] + compact('ranking')
-                    + $this->fetchAppMedia($ranking, $apps),
+                    + $this->fetchAppMedia(self::APP_MEDIA_MAP[$ranking::class] ?? null, $apps, $ranking->getId()),
                 $this->rankings
             )
         );
 
-        return parent::export() + compact('rankings') +
+        $stories = Queries::fetchStories($this->database);
+        $hashes = $this->fetchAppMedia('library_hero', $stories, 'Stories');
+        array_walk($stories, static fn (&$story) => $story['media_hash'] = $hashes['app_media'][$story['app_id']]);
+
+        return parent::export() + compact('rankings', 'stories') +
             [
                 'total_games' => Queries::countGames($this->database),
                 'total_rankings' => $this->rankingCount,
@@ -126,24 +130,22 @@ class HomePage extends Page implements PreviousDatabaseAware
         return $apps;
     }
 
-    private function fetchAppMedia(Ranking $ranking, array $apps): array
+    private function fetchAppMedia(?string $mediaClass, array $apps, string $groupName): array
     {
-        if (!$apps || !isset(self::APP_MEDIA_MAP[$ranking::class])) {
+        if (!$apps || !$mediaClass) {
             return [];
         }
-
-        $mediaClass = self::APP_MEDIA_MAP[$ranking::class];
 
         // Check if media links are already cached.
         $cachedMedia = $this->appMediaCache->executeQuery(
             "SELECT app_id, $mediaClass FROM app_media WHERE app_id IN (?) AND $mediaClass IS NOT NULL",
-            [$appIds = array_map(fn ($app) => $app['id'], $apps)],
+            [$appIds = array_map(fn ($app) => $app['app_id'] ?? $app['id'], $apps)],
             [ArrayParameterType::INTEGER],
         )->fetchAllKeyValue();
 
         if ($missing = array_diff_key(array_flip($appIds), $cachedMedia)) {
             $this->logger->info(
-                "Downloading media links for \"{$ranking->getId()}\" ("
+                "Downloading media links for \"$groupName\" ("
                     . implode(', ', array_keys($missing)) . ').',
                 ['page' => $this]
             );
