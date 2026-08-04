@@ -61,8 +61,9 @@ export default class {
     initVideoLinks(links = document.querySelectorAll<HTMLElement>('[data-video]')) {
         links.forEach(
             a => a.addEventListener('click', e => {
-                // Ignore clicks bubbling up from other link elements.
-                if (e.target instanceof HTMLAnchorElement && e.target !== a) return;
+                // Ignore clicks bubbling up from other link elements or their children.
+                const link = e.target instanceof Element ? e.target.closest('a') : null;
+                if (link && link !== a) return;
 
                 this.loadThumbs(
                     ('href' in a ? <string>a.href : location.pathname).match(/\/app\/(\d+)/)![1],
