@@ -24,7 +24,7 @@ use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\Top250Ranking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\TrendRanking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\UsdUnder5Ranking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Ranking;
-use ScriptFUSION\Steam250\SiteGenerator\Tag\KeystoneTagChooser;
+use ScriptFUSION\Steam250\Shared\Tag\KeystoneTagChooser;
 
 class HomePage extends Page implements PreviousDatabaseAware
 {
