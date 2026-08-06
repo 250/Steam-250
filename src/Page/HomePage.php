@@ -98,7 +98,9 @@ class HomePage extends Page implements PreviousDatabaseAware
     private function applyKeystoneTag(array $apps): array
     {
         foreach ($apps as &$app) {
-            $app['keystone_tag'] = KeystoneTagChooser::choose(Queries::fetchAppTags($this->database, $app['id']));
+            $app['keystone_tag'] = KeystoneTagChooser::choose(
+                Queries::fetchAppTags($this->database, $app['id'])
+            )['name'];
         }
 
         return $apps;

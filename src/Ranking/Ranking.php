@@ -12,7 +12,7 @@ use ScriptFUSION\Steam250\SiteGenerator\Page\Page;
 use ScriptFUSION\Steam250\SiteGenerator\Page\PreviousDatabase;
 use ScriptFUSION\Steam250\SiteGenerator\Page\PreviousDatabaseAware;
 use ScriptFUSION\Steam250\SiteGenerator\Rank\Ranker;
-use ScriptFUSION\Steam250\SiteGenerator\Tag\PrimaryTagChooser;
+use ScriptFUSION\Steam250\Shared\Tag\KeystoneTagChooser;
 
 abstract class Ranking extends Page implements PreviousDatabaseAware
 {
@@ -66,9 +66,9 @@ abstract class Ranking extends Page implements PreviousDatabaseAware
             throw new EmptyRankingException($error);
         }
 
-        // Decorate each game with tags.
+        // Decorate each game with its keystone tag.
         foreach ($games as &$game) {
-            $game['primary_tag'] = PrimaryTagChooser::choose(
+            $game['keystone_tag'] = KeystoneTagChooser::choose(
                 $game['tags'] = Queries::fetchAppTags($this->database, +$game['id'])
             );
         }

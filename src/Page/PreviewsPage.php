@@ -4,8 +4,8 @@ declare(strict_types=1);
 namespace ScriptFUSION\Steam250\SiteGenerator\Page;
 
 use Doctrine\DBAL\Connection;
+use ScriptFUSION\Steam250\Shared\Tag\KeystoneTagChooser;
 use ScriptFUSION\Steam250\SiteGenerator\Database\Queries;
-use ScriptFUSION\Steam250\SiteGenerator\Tag\PrimaryTagChooser;
 
 class PreviewsPage extends Page
 {
@@ -31,9 +31,9 @@ class PreviewsPage extends Page
             'cutoff' => strtotime('30 day'),
         ])->fetchAllAssociative();
 
-        // Decorate each game with tags.
+        // Decorate each game with its keystone tag.
         foreach ($games as &$game) {
-            $game['primary_tag'] = PrimaryTagChooser::choose(
+            $game['keystone_tag'] = KeystoneTagChooser::choose(
                 $game['tags'] = Queries::fetchAppTags($this->database, +$game['id'])
             );
         }
