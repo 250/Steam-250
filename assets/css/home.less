@@ -153,6 +153,8 @@ main {
         border-right: 1px solid #f1bf691a;
 
         >a {
+          position: relative;
+          overflow: hidden;
           display: flex;
           flex-direction: column;
           gap: 4px;
@@ -178,6 +180,35 @@ main {
             h4 {
               color: #ebddf7;
             }
+
+            .tri-bg {
+              opacity: .2;
+            }
+          }
+
+          .tri-bg {
+            position: absolute;
+            pointer-events: none;
+            inset: 0;
+
+            opacity: 0;
+          }
+
+          .tri {
+            position: absolute;
+            top: var(--top);
+            left: 0;
+            width: var(--size);
+            height: var(--size);
+
+            background: var(--c);
+            clip-path: polygon(50% 100%, 100% 0, 0 0);
+            animation: tri-flow var(--dur) ease-in infinite;
+            animation-delay: var(--delay);
+          }
+
+          &:not(.active) .tri {
+            animation-play-state: paused;
           }
         }
 
@@ -1239,5 +1270,25 @@ main {
         margin-bottom: 1em;
       }
     }
+  }
+}
+
+@keyframes tri-flow {
+  0% {
+    transform: translateX(var(--margin)) rotate(var(--r0));
+    opacity: var(--peak);
+  }
+  50% {
+    opacity: var(--peak);
+  }
+  100% {
+    transform: translateX(var(--travel)) rotate(var(--r1));
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tri-bg {
+    display: none;
   }
 }
