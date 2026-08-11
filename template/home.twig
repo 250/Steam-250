@@ -25,33 +25,35 @@
 
 {% block fullwidth %}
 <main>
-    {% if stories %}
     <section class="stories">
         <header>
             <h2>Top Stories</h2>
             <p>Latest news and recognitions from Steam 250</p>
         </header>
-        <div>
-            <aside>
+        {% if not stories %}
+            <p>No new stories today!</p>
+        {% else %}
+            <div>
+                <aside>
+                    {% for story in stories %}
+                    <a href="#" {{ loop.first ? 'class="active"' }}>
+                        <span class="stories-tab-label">{{ story.label }}</span>
+                        <h4>{{ story.headline }}</h4>
+                    </a>
+                    {% endfor %}
+                </aside>
                 {% for story in stories %}
-                <a href="#" {{ loop.first ? 'class="active"' }}>
-                    <span class="stories-tab-label">{{ story.label }}</span>
-                    <h4>{{ story.headline }}</h4>
-                </a>
+                <article {{ not loop.first ? 'hidden' }}>
+                    {{ _self.img(story.app_id, story.media_hash) }}
+                    <span class="label">{{ story.label }}</span>
+                    <h3>{{ story.headline }}</h3>
+                    <p>{{ story.summary }}</p>
+                    <a href="{{ club250 }}/app/{{ story.app_id }}" class="button pri">View Game &rarr;</a>
+                </article>
                 {% endfor %}
-            </aside>
-            {% for story in stories %}
-            <article {{ not loop.first ? 'hidden' }}>
-                {{ _self.img(story.app_id, story.media_hash) }}
-                <span class="label">{{ story.label }}</span>
-                <h3>{{ story.headline }}</h3>
-                <p>{{ story.summary }}</p>
-                <a href="{{ club250 }}/app/{{ story.app_id }}" class="button pri">View Game &rarr;</a>
-            </article>
-            {% endfor %}
-        </div>
+            </div>
+        {% endif %}
     </section>
-    {% endif %}
 
     <section class="hcards trend">
         <header>
