@@ -17,21 +17,64 @@ for (const selector of ['section.hcards > div', 'section.vcards > div']) {
 
 const storiesSection = document.querySelector<HTMLElement>('section.stories');
 if (storiesSection) {
-    const tabs = Array.from(storiesSection.querySelectorAll<HTMLAnchorElement>('aside > a'));
-    const articles = Array.from(storiesSection.querySelectorAll<HTMLElement>('article'));
+    const tabs = [...storiesSection.querySelectorAll<HTMLAnchorElement>('aside > a')];
+    const articles = [...storiesSection.querySelectorAll<HTMLElement>('article')];
+
+    const activate = (index: number) => {
+        for (let i = 0; i < tabs.length; i++) {
+            tabs[i].classList.toggle('active', i === index);
+            articles[i].hidden = i !== index;
+        }
+    };
 
     for (const tab of tabs) {
         tab.addEventListener('click', e => {
-            for (const t of tabs) {
-                t.classList.toggle('active', t === tab);
-            }
-
-            for (const article of articles) {
-                article.hidden = articles.indexOf(article) !== tabs.indexOf(tab);
-            }
+            activate(tabs.indexOf(tab));
 
             e.preventDefault();
         });
+    }
+
+    // Rotate the active story on a 10s timer, driven by the progress bar animation.
+    const progress = storiesSection.querySelector<HTMLElement>('.progress');
+    const storiesBox = storiesSection.querySelector<HTMLElement>(':scope > div');
+    if (progress && storiesBox && tabs.length > 1 && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        let enabled = true;
+        let activeIndex = tabs.findIndex(tab => tab.classList.contains('active'));
+
+        const pause = () => {
+            if (enabled) {
+                progress.style.animationPlayState = 'paused';
+            }
+        };
+        const resume = () => {
+            if (enabled) {
+                progress.style.animationPlayState = 'running';
+            }
+        };
+        const rotate = () => {
+            activeIndex = (activeIndex + 1) % tabs.length;
+            activate(activeIndex);
+        };
+        const disable = () => {
+            enabled = false;
+            progress.style.display = 'none';
+            progress.removeEventListener('animationiteration', rotate);
+            storiesBox.removeEventListener('mouseenter', pause);
+            storiesBox.removeEventListener('mouseleave', resume);
+            storiesBox.removeEventListener('click', disable);
+        };
+
+        progress.addEventListener('animationiteration', rotate);
+        storiesBox.addEventListener('mouseenter', pause);
+        storiesBox.addEventListener('mouseleave', resume);
+        storiesBox.addEventListener('click', disable);
+
+        // If the pointer is already over the box at load, mouseenter never fires —
+        // start paused so hover-pause is consistent from the first frame.
+        if (storiesBox.matches(':hover')) {
+            pause();
+        }
     }
 
     // Waterfall of triangles behind the active tab.

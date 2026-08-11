@@ -135,6 +135,7 @@ main {
       }
 
       >div {
+        position: relative;
         display: flex;
         height: 400px;
         overflow: hidden;
@@ -216,6 +217,20 @@ main {
 
             animation: tri-flow var(--dur) ease-in infinite;
             animation-delay: var(--delay);
+
+            @keyframes tri-flow {
+              0% {
+                transform: translateX(var(--margin)) rotate(var(--r0));
+                opacity: var(--peak);
+              }
+              50% {
+                opacity: var(--peak);
+              }
+              100% {
+                transform: translateX(var(--travel)) rotate(var(--r1));
+                opacity: 0;
+              }
+            }
           }
 
           &:not(.active) .tri {
@@ -332,6 +347,27 @@ main {
         line-height: 48px;
         letter-spacing: -2.4px;
         text-transform: uppercase;
+      }
+
+      .progress {
+        position: absolute;
+        height: 2px;
+        left: 0;
+        bottom: 0;
+        z-index: 2;
+
+        background: #d7bdef99;
+
+        animation: story-progress 10s linear infinite;
+
+        @keyframes story-progress {
+          0% {
+            width: 0;
+          }
+          to {
+            width: 100%;
+          }
+        }
       }
     }
 
@@ -1298,22 +1334,8 @@ main {
   }
 }
 
-@keyframes tri-flow {
-  0% {
-    transform: translateX(var(--margin)) rotate(var(--r0));
-    opacity: var(--peak);
-  }
-  50% {
-    opacity: var(--peak);
-  }
-  100% {
-    transform: translateX(var(--travel)) rotate(var(--r1));
-    opacity: 0;
-  }
-}
-
 @media (prefers-reduced-motion: reduce) {
-  .tri-bg {
+  .tri-bg, .progress {
     display: none;
   }
 }

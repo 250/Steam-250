@@ -51,6 +51,9 @@
                     <a href="{{ club250 }}/app/{{ story.app_id }}" class="button pri">View Game &rarr;</a>
                 </article>
                 {% endfor %}
+                {% if stories|length > 1 %}
+                    <div class="progress" role="progressbar" aria-label="Story rotation"></div>
+                {% endif %}
             </div>
         {% endif %}
     </section>
