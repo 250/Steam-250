@@ -6,13 +6,13 @@ namespace ScriptFUSION\Steam250\SiteGenerator\Ranking;
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\Query\QueryBuilder;
 use Psr\Log\LoggerInterface;
+use ScriptFUSION\Steam250\Shared\Tag\KeystoneTagChooser;
 use ScriptFUSION\Steam250\SiteGenerator\Database\Queries;
 use ScriptFUSION\Steam250\SiteGenerator\Generate\CustomizeGames;
 use ScriptFUSION\Steam250\SiteGenerator\Page\Page;
 use ScriptFUSION\Steam250\SiteGenerator\Page\PreviousDatabase;
 use ScriptFUSION\Steam250\SiteGenerator\Page\PreviousDatabaseAware;
 use ScriptFUSION\Steam250\SiteGenerator\Rank\Ranker;
-use ScriptFUSION\Steam250\Shared\Tag\KeystoneTagChooser;
 
 abstract class Ranking extends Page implements PreviousDatabaseAware
 {
@@ -32,12 +32,11 @@ abstract class Ranking extends Page implements PreviousDatabaseAware
 
     public function __construct(
         RankingDependencies $dependencies,
-        string $id,
         int $limit,
         ?Algorithm $algorithm = null,
         ?float $weight = null
     ) {
-        parent::__construct($dependencies->getDatabase(), $id);
+        parent::__construct($dependencies->getDatabase());
 
         $this->ranker = $dependencies->getRanker();
         $this->database = $dependencies->getDatabase();

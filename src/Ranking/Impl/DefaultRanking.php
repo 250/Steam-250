@@ -12,8 +12,8 @@ use ScriptFUSION\Steam250\SiteGenerator\Ranking\RankingDependencies;
  */
 abstract class DefaultRanking extends Ranking
 {
-    public function __construct(RankingDependencies $dependencies, string $id, int $limit = 250)
+    public function __construct(RankingDependencies $dependencies, int $limit = 250)
     {
-        parent::__construct($dependencies, $id, $limit, Algorithm::LAPLACE_LOG(), 10);
+        parent::__construct($dependencies, $limit, Algorithm::LAPLACE_LOG(), 10);
     }
 }

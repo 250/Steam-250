@@ -5,23 +5,29 @@ namespace ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl;
 
 use Doctrine\DBAL\Query\QueryBuilder;
 use ScriptFUSION\Steam250\SiteGenerator\Database\SortDirection;
+use ScriptFUSION\Steam250\SiteGenerator\Page\StaticId;
 use ScriptFUSION\Steam250\SiteGenerator\Rank\CustomRankingFetch;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\AllowEmptyRanking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Ranking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\RankingDependencies;
 
-class MostPlayedRanking extends Ranking implements CustomRankingFetch
+class MostPlayedRanking extends Ranking implements CustomRankingFetch, StaticId
 {
     use AllowEmptyRanking;
 
     public function __construct(RankingDependencies $dependencies)
     {
-        parent::__construct($dependencies, 'most_played', 250);
+        parent::__construct($dependencies, 250);
 
         $this->setTitle('Most Played');
         $this->setDescription(
             'Top 250 most played Steam games, based on average number of concurrent players in the last seven days.'
         );
+    }
+
+    public static function getStaticId(): string
+    {
+        return 'most_played';
     }
 
     public function customizeQuery(QueryBuilder $builder): ?QueryBuilder

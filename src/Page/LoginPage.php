@@ -5,10 +5,15 @@ namespace ScriptFUSION\Steam250\SiteGenerator\Page;
 
 use Doctrine\DBAL\Connection;
 
-class LoginPage extends Page
+class LoginPage extends StaticPage
 {
     public function __construct(Connection $database)
     {
-        parent::__construct($database, 'sync-login');
+        parent::__construct($database);
+    }
+
+    public static function getStaticId(): string
+    {
+        return 'sync-login';
     }
 }

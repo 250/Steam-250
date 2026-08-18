@@ -32,9 +32,16 @@ final class SiteGenerator
                 $page->setPrevDb($prevDb);
             }
 
+            // Skip duplicate keys that resolve to the same page, e.g. a ranking's alias and URL name.
+            if (isset($generated[$page->getId()])) {
+                continue;
+            }
+
             if (!$this->generator->generate($page, $outPath)) {
                 return false;
             }
+
+            $generated[$page->getId()] = true;
         }
 
         return true;

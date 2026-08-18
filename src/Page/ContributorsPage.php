@@ -5,10 +5,15 @@ namespace ScriptFUSION\Steam250\SiteGenerator\Page;
 
 use Doctrine\DBAL\Connection;
 
-class ContributorsPage extends Page
+class ContributorsPage extends StaticPage
 {
     public function __construct(Connection $database)
     {
-        parent::__construct($database, 'contributors');
+        parent::__construct($database);
+    }
+
+    public static function getStaticId(): string
+    {
+        return 'contributors';
     }
 }

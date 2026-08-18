@@ -12,13 +12,12 @@ abstract class RollingRanking extends DefaultRanking
 
     public function __construct(
         RankingDependencies $dependencies,
-        string $id,
         string $date,
         protected(set) string $periodName,
         protected(set) int $days,
         int $limit = 250,
     ) {
-        parent::__construct($dependencies, $id, $limit);
+        parent::__construct($dependencies, $limit);
 
         $this->setTemplate('rolling');
         $this->date = $date;

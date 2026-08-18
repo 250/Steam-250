@@ -12,9 +12,9 @@ abstract class PriceRangeRanking extends DefaultRanking
     private int $max;
     protected(set) string $windowTitle;
 
-    public function __construct(RankingDependencies $dependencies, string $id, int $min, int $max)
+    public function __construct(RankingDependencies $dependencies, int $min, int $max)
     {
-        parent::__construct($dependencies, $id);
+        parent::__construct($dependencies);
 
         $this->setTemplate('price/price_range');
 

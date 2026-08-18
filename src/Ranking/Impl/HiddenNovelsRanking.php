@@ -10,7 +10,12 @@ class HiddenNovelsRanking extends HiddenGemsRanking
 {
     public function __construct(RankingDependencies $dependencies)
     {
-        parent::__construct($dependencies, 'hidden_novels');
+        parent::__construct($dependencies);
+    }
+
+    public static function getStaticId(): string
+    {
+        return 'hidden_novels';
     }
 
     public function customizeQuery(QueryBuilder $builder): ?QueryBuilder

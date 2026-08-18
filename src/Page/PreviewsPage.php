@@ -7,15 +7,20 @@ use Doctrine\DBAL\Connection;
 use ScriptFUSION\Steam250\Shared\Tag\KeystoneTagChooser;
 use ScriptFUSION\Steam250\SiteGenerator\Database\Queries;
 
-class PreviewsPage extends Page
+class PreviewsPage extends StaticPage
 {
     private Connection $database;
 
     public function __construct(Connection $database)
     {
-        parent::__construct($database, 'previews');
+        parent::__construct($database);
 
         $this->database = $database;
+    }
+
+    public static function getStaticId(): string
+    {
+        return 'previews';
     }
 
 

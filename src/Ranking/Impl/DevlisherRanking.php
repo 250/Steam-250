@@ -18,9 +18,9 @@ abstract class DevlisherRanking extends Ranking implements CustomRankingFetch
     // More weight prefers more games.
     private float $bayesianWeight;
 
-    public function __construct(RankingDependencies $dependencies, string $mode, float $bayesianWeight)
+    public function __construct(RankingDependencies $dependencies, float $bayesianWeight)
     {
-        parent::__construct($this->dependencies = $dependencies, $mode, 250, Algorithm::LAPLACE_LOG(), 2.);
+        parent::__construct($this->dependencies = $dependencies, 250, Algorithm::LAPLACE_LOG(), 2.);
 
         $this->bayesianWeight = $bayesianWeight;
         $this->spin = 1;

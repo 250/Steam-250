@@ -4,18 +4,24 @@ declare(strict_types=1);
 namespace ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl;
 
 use Doctrine\DBAL\Query\QueryBuilder;
+use ScriptFUSION\Steam250\SiteGenerator\Page\StaticId;
 use ScriptFUSION\Steam250\SiteGenerator\Rank\CustomRankingFetch;
 use ScriptFUSION\Steam250\SiteGenerator\Rank\PrecomputedRankingTable;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\RankingDependencies;
 
-class GlobalTopSellersRanking extends DefaultRanking implements PrecomputedRankingTable, CustomRankingFetch
+class GlobalTopSellersRanking extends DefaultRanking implements PrecomputedRankingTable, CustomRankingFetch, StaticId
 {
-    public function __construct(RankingDependencies $dependencies, $id = 'global_top_sellers', $limit = 100)
+    public function __construct(RankingDependencies $dependencies, $limit = 100)
     {
-        parent::__construct($dependencies, $id, $limit);
+        parent::__construct($dependencies, $limit);
 
         $this->setTitle('Global Top Sellers');
         $this->setDescription('Top selling games worldwide right now.');
+    }
+
+    public static function getStaticId(): string
+    {
+        return 'global_top_sellers';
     }
 
     public function getSourceTable(): string

@@ -4,11 +4,12 @@ declare(strict_types=1);
 namespace ScriptFUSION\Steam250\SiteGenerator\Ranking;
 
 use Joomla\DI\Container;
-use Monolog\Logger;
 use Psr\Log\LoggerInterface;
 use ScriptFUSION\Porter\Porter;
 use ScriptFUSION\Steam250\SiteGenerator\Database\Queries;
 use ScriptFUSION\Steam250\SiteGenerator\Page\HomePage;
+use ScriptFUSION\Steam250\SiteGenerator\Page\StaticId;
+use ScriptFUSION\Steam250\SiteGenerator\Page\StaticPage;
 use ScriptFUSION\Steam250\SiteGenerator\Page\StaticPageName;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\AnnualRanking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\EarlyAccessRanking;
@@ -24,11 +25,16 @@ final class PageContainerFactory
         $counter = 0;
 
         foreach (StaticPageName::members() as $name) {
-            $container->alias($name->getAlias(), $name->getClassName());
+            $container->alias($name->getAlias(), $class = $name->getClassName());
+            assert(is_a($class, StaticPage::class, true));
+            $container->alias($class::getStaticId(), $class);
         }
 
         foreach (RankingName::members() as $name) {
-            $container->alias($name->getAlias(), $name->getClassName());
+            $container->alias($name->getAlias(), $class = $name->getClassName());
+            if (is_a($class, StaticId::class, true)) {
+                $container->alias($class::getStaticId(), $class);
+            }
             ++$counter;
         }
 

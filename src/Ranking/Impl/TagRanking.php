@@ -19,8 +19,9 @@ class TagRanking extends DefaultRanking
         private readonly ?int $tagId = null
     ) {
         $tagNameId = Tag::convertTagToId($tag);
-        parent::__construct($dependencies, "tag/$tagNameId", 150);
+        parent::__construct($dependencies, 150);
 
+        $this->setId("tag/$tagNameId");
         $this->database = $dependencies->getDatabase();
 
         $this->setTemplate('tag');

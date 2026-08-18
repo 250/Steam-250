@@ -9,6 +9,11 @@ class BuyersRemorseRanking extends Bottom100Ranking
 {
     public function __construct(RankingDependencies $dependencies)
     {
-        parent::__construct($dependencies, 'buyers_remorse', 25);
+        parent::__construct($dependencies, 25);
+    }
+
+    public static function getStaticId(): string
+    {
+        return 'buyers_remorse';
     }
 }

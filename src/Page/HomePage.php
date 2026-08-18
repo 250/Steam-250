@@ -10,6 +10,7 @@ use ScriptFUSION\Porter\Import\Import;
 use ScriptFUSION\Porter\Porter;
 use ScriptFUSION\Porter\Provider\Steam\Resource\GetAppAssets;
 use ScriptFUSION\Porter\Provider\Steam\Resource\ScrapeAppDetails;
+use ScriptFUSION\Steam250\Shared\Tag\KeystoneTagChooser;
 use ScriptFUSION\Steam250\SiteGenerator\Database\Queries;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\AnnualRanking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\DiscountRanking;
@@ -24,9 +25,8 @@ use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\Top250Ranking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\TrendRanking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Impl\UsdUnder5Ranking;
 use ScriptFUSION\Steam250\SiteGenerator\Ranking\Ranking;
-use ScriptFUSION\Steam250\Shared\Tag\KeystoneTagChooser;
 
-class HomePage extends Page implements PreviousDatabaseAware
+class HomePage extends StaticPage implements PreviousDatabaseAware
 {
     use PreviousDatabase;
 
@@ -53,12 +53,17 @@ class HomePage extends Page implements PreviousDatabaseAware
         array $rankings,
         int $rankingCount,
     ) {
-        parent::__construct($database, 'index');
+        parent::__construct($database);
 
         $this->rankings = $rankings;
         $this->rankingCount = $rankingCount;
 
         $this->setTemplate('home');
+    }
+
+    public static function getStaticId(): string
+    {
+        return 'index';
     }
 
     public function export(): array

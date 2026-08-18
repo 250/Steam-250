@@ -12,10 +12,9 @@ abstract class Page
     private string $id;
     private string $template;
 
-    public function __construct(Connection $database, string $id)
+    public function __construct(Connection $database)
     {
         $this->database = $database;
-        $this->id = $id;
         $this->useDefaultTemplate();
     }
 
@@ -29,7 +28,12 @@ abstract class Page
 
     public function getId(): string
     {
-        return $this->id;
+        return $this->id ??= $this instanceof StaticId
+            ? static::getStaticId()
+            : throw new \LogicException(
+                static::class . ' has no ID: implement ' . StaticId::class . ' or call setId().'
+            )
+        ;
     }
 
     protected function setId(string $id): void
@@ -39,7 +43,7 @@ abstract class Page
 
     public function getTemplate(): string
     {
-        return $this->template ?: $this->id;
+        return $this->template ?: $this->getId();
     }
 
     protected function setTemplate(string $template): void

@@ -13,9 +13,13 @@ class ReviewsOldRanking extends OldRanking
     {
         parent::__construct($dependencies);
 
-        $this->setId("reviews/old");
         $this->setTemplate('reviews');
         $this->setAlgorithm(null);
+    }
+
+    public static function getStaticId(): string
+    {
+        return 'reviews/old';
     }
 
     public function customizeQuery(QueryBuilder $builder): ?QueryBuilder
