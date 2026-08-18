@@ -17,6 +17,7 @@
 <h3>Steam Top 250</h3>
 <ol>
     <li><a href="/top250{{ ext }}" class="cup sel">Today</a>
-    <li><a href="{{ club250 }}/ranking/250/history/20190417" class="cup">History</a>
+    <li><a href="{{ club250 }}/ranking/250/history/20190417" class="cup">History
+        {{ include('@components/micro tier.twig', {tier: 1, benefit: 'hist250'}) }}</a>
 </ol>
 {% endblock %}

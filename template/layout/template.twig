@@ -24,7 +24,10 @@
                                 <a href="/hidden_novels{{ ext }}">Novels</a>
                             </div>
                             <div>
-                                <a href="{{ club250 }}/ranking/trending-now" class="trend">Trending now</a>
+                                <span class="pair">
+                                    <a href="{{ club250 }}/ranking/trending-now" class="trend">Trending now</a>
+                                    {{ include('@components/micro tier.twig', {tier: 1, benefit: 'rankings'}) }}
+                                </span>
                                 <a href="{{ club250 }}/ranking/new-and-trending">New</a>
                                 <span class="middot"></span>
                                 <a href="{{ club250 }}/ranking/trending">All time</a>
@@ -33,8 +36,14 @@
 
                         <div>
                             <div>
-                                <a href="{{ club250 }}/ranking/custom" class="custom">Custom Ranking</a>
-                                <a href="{{ club250 }}/ranking/top-sellers" class="topsell">Top Sellers</a>
+                                <span class="pair">
+                                    <a href="{{ club250 }}/ranking/custom" class="custom">Custom Ranking</a>
+                                    {{ include('@components/micro tier.twig', {tier: 1, benefit: 'cranking'}) }}
+                                </span>
+                                <span class="pair">
+                                    <a href="{{ club250 }}/ranking/top-sellers" class="topsell">Top Sellers</a>
+                                    {{ include('@components/micro tier.twig', {tier: 1, benefit: 'rankings'}) }}
+                                </span>
                                 <a href="/most_played{{ ext }}" class="pad">Most played</a>
                                 <a href="/previews{{ ext }}" class="preview">Previews</a>
                                 <a href="/bottom100{{ ext }}" class="bottom">Bottom 100</a>

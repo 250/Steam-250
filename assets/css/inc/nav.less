@@ -215,7 +215,7 @@
 
         // Sibling or sub-links.
         >div > div {
-          >a:first-child ~ a, >a.sub {
+          >:first-child ~ a, >a.sub {
             color: @2;
             font-size: 15px;
 
@@ -361,6 +361,16 @@
           margin-left: .5ch;
 
           font-size: 11px;
+          line-height: 1.4;
+        }
+
+        .pair {
+          display: flex;
+          grid-column: 1 / -1;
+          align-items: center;
+          gap: .5ch;
+
+          color: inherit;
         }
       }
 
@@ -384,14 +394,14 @@
               &:nth-of-type(2) > a {
                 margin-bottom: -.05em;
               }
-              &:nth-of-type(3) > a {
+              &:nth-of-type(3) > .pair {
                 margin: calc(5/7 / 2 * -.5em) 0;
               }
 
-              >a:nth-of-type(1) {
+              >:nth-child(1) {
                 line-height: 1;
               }
-              >a:nth-of-type(2) {
+              >a:nth-child(2) {
                 .sub-indent(17);
               }
             }
@@ -402,6 +412,8 @@
             // Key links.
             >:nth-of-type(1) {
               display: grid;
+              // All children span both columns; min-content sizing under-estimates them, allowing content to bleed.
+              min-width: max-content;
               grid-template-columns: min-content 1fr;
               grid-auto-rows: min-content;
               gap: .6ex;
@@ -412,6 +424,8 @@
                 grid-column: 1 / -1;
 
                 color: @1;
+              }
+              a {
                 font-size: 16px;
               }
             }
