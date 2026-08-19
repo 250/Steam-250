@@ -1,0 +1,111 @@
+.timeline {
+  --width: 4em;
+  --primary: var(--frm-ctrl-soft-sel-bg);
+  --primary-hi: var(--frm-ctrl-soft-sel-bg-hov);
+  --highlight: #d1c5b4;
+  --current: color-mix(var(--frm-ctrl-hi-fg) 85%, #000);
+  --current-hi: var(--frm-ctrl-hi-fg);
+  --spot: var(--frm-fg);
+  --spot-bg: #181022;
+  --transition: .1s;
+
+  line-height: 1;
+  margin: 1.5em auto;
+
+  font-size: 90%;
+
+  @media (max-width: 700px) {
+    --width: 4em;
+  }
+
+  >ol {
+    display: flex;
+    flex-flow: wrap;
+    justify-content: center;
+
+    >li {
+      display: flex;
+      align-items: center;
+      width: var(--width);
+      height: 78px;
+
+      transform: rotate(-90deg);
+
+      /* Track */
+      &:before, &:after {
+        content: '';
+        position: absolute;
+        background: var(--primary);
+        height: calc(var(--width) - 3px);
+        width: .25em;
+
+        transition: background var(--transition);
+      }
+      &:before {
+        left: .2em;
+        transform: skew(0, -45deg);
+      }
+      &:after {
+        transform: skew(0, 45deg);
+      }
+      &:hover:before, &:hover:after {
+        background: var(--primary-hi);
+      }
+      &.cur:before, &.cur:after {
+        background: var(--current);
+      }
+
+      /* Text and pole */
+      >a {
+        display: flex;
+        flex-wrap: wrap;
+        flex-grow: 1;
+        align-content: center;
+        height: var(--width);
+        padding-left: 2em;
+        position: relative;
+        z-index: 1;
+
+        color: inherit;
+        background: linear-gradient(transparent 47%, var(--primary) 47%, var(--primary) 53%, transparent 53%)
+        no-repeat 1px 51%;
+        background-size: 1.6em 2.9em;
+
+        transition: color var(--transition);
+
+        &:hover {
+          text-decoration: none;
+          color: var(--highlight);
+          background-image: linear-gradient(transparent 47%, var(--primary-hi) 47%, var(--primary-hi) 53%, transparent 53%);
+        }
+
+        /* Spot */
+        &:before {
+          content: '';
+          position: absolute;
+          width: 5px;
+          height: 5px;
+          display: block;
+          left: 1px;
+          top: 50%;
+          transform: translate(0, -50%);
+          border-radius: 50%;
+
+          background: var(--spot-bg);
+        }
+        &:hover:before {
+          background: var(--spot);
+          box-shadow: 0 0 0 3px var(--primary-hi);
+        }
+      }
+      &.cur > a, &.cur > a:hover {
+        color: var(--current-hi);
+        background-image: linear-gradient(transparent 47%, var(--current) 47%, var(--current) 53%, transparent 53%);
+      }
+      &.cur > a:before, &.cur > a:hover:before {
+        background: var(--spot);
+        box-shadow: 0 0 0 3px var(--current), 0 0 3px 3px #0003;
+      }
+    }
+  }
+}
