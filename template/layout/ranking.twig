@@ -27,7 +27,7 @@
             </header>
             {% for app in games %}
             <div {% if app.rank is defined %} id="{{ app.rank }}"{% endif %}>
-                <div>
+                <div class="rank">
                     {% if app.movement is defined %}
                         {% if app.movement is null %}
                             <span title="New entry">New</span>
@@ -39,7 +39,7 @@
                     {% endif %}
                     {{ app.rank ?? loop.index }}
                 </div>
-                <div>{# Capsule image. #}
+                <div class="img">{# Capsule image. #}
                     <a href="{{ steam.app_url(app.id) }}"
                         {{ steam.video_attr(app.name, app.videos, app.video_manifest_hashes) }}
                     >
@@ -50,7 +50,7 @@
                         {{ steam.app_capsule(app) }}
                     </a>
                 </div>
-                <div>{# Title. #}
+                <div class="title">{# Title. #}
                     <div>
                         {% block app_title %}
                             <a href="{{ steam.app_url(app.id) }}" title="{{ app.name }}">{{ app.name }}</a>
@@ -75,12 +75,12 @@
                         {{ macro.tag(app.keystone_tag, tags) }}
                     </div>
                 </div>
-                <div>
+                <div class="stat score">
                     {%- if block('score_heading') %}
                         <span>{% block score %}{{ (app.score * 10)|number_format(2) }}{% endblock %}</span>
                     {% endif -%}
                 </div>
-                <div>
+                <div class="stat reviews">
                     {%- if block('rating_heading') %}
                         <span class="votes">{{ app.total_reviews|number_format }}</span>
                     {% endif -%}
@@ -92,7 +92,7 @@
                         </div>
                     {% endif -%}
                 </div>
-                <div>
+                <div class="stat price">
                     {%- if block('price_heading') %}
                         {% if app.price is same as(0) %}
                             <a href="/tag/free_to_play{{ ext }}" class="free">Free</a>
@@ -106,7 +106,7 @@
                         {% endif %}
                     {% endif -%}
                 </div>
-                <div>
+                <div class="stat actions">
                     {# Actions. #}
                     <a href="{{ steam.store_url(app.id) }}" class="store" title="Steam store" target="_blank"></a>
                     {% if app.demo_id %}
