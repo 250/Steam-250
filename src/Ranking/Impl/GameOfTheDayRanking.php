@@ -18,8 +18,7 @@ class GameOfTheDayRanking extends Top250Ranking implements CustomRankingFetch
             ->andWhere('rank.rank = :rank')
                 ->setParameter('rank', $randomizer->getInt(1, $this->getLimit()))
 
-            ->addSelect('dev.name developer')
-            ->leftJoin('app', 'app_developer', 'dev', 'dev.app_id = app.id')
+            ->addSelect('(SELECT name FROM app_developer WHERE app_id = app.id ORDER BY "order" LIMIT 1) developer')
             ->groupBy('app.id')
         ;
     }

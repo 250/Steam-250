@@ -47,8 +47,7 @@ class GlobalTopSellersRanking extends DefaultRanking implements PrecomputedRanki
             ->andWhere(
                 "NOT (app.free = 1 AND app.release_date < strftime('%s', 'now', '-1 year'))"
             )
-            ->addSelect('dev.name developer')
-            ->leftJoin('app', 'app_developer', 'dev', 'dev.app_id = app.id')
+            ->addSelect('(SELECT name FROM app_developer WHERE app_id = app.id ORDER BY "order" LIMIT 1) developer')
             ->groupBy('app.id')
         ;
     }
