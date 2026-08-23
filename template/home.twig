@@ -69,10 +69,10 @@
         <div>
             <ol>
                 {% for game in rankings.TREND.apps %}
-                <li><a href="{{ steam.app_url(game.id) }}">
+                <li><a href="{{ steam.app_url(game.id) }}" {{ steam.video_attr(game.name, game.videos, game.video_manifest_hashes) }}>
                     <header>
                         {% set img %}{{ _self.img(game.id, rankings.TREND.app_media[game.id]) }}{% endset %}
-                        {{ img }}
+                        <figure>{{ img }}</figure>
                         <span>#{{ game.rank }}</span>
                     </header>
                     <footer>
@@ -122,8 +122,8 @@
         </header>
         <ol>
             {% for game in ranking.apps %}
-            <li><a href="{{ steam.app_url(game.id) }}">
-                {{ _self.img(game.id, ranking.app_media[game.id]) }}
+            <li><a href="{{ steam.app_url(game.id) }}" {{ steam.video_attr(game.name, game.videos, game.video_manifest_hashes) }}>
+                <figure>{{ _self.img(game.id, ranking.app_media[game.id]) }}</figure>
                 <span>#{{ game.rank }}</span>
                 <span>{{ game.name }} <span>{{ game.release_date|date|adaptive_date }}</span></span>
                 <span>{{ game.total_reviews|number_format }} Reviews</span>
@@ -146,10 +146,10 @@
         <div>
             <ol>
                 {% for game in ranking.apps %}
-                <li><a href="{{ steam.app_url(game.id) }}">
+                <li><a href="{{ steam.app_url(game.id) }}" {{ steam.video_attr(game.name, game.videos, game.video_manifest_hashes) }}>
                     <header>
                         {% set img %}{{ _self.img(game.id, ranking.app_media[game.id]) }}{% endset %}
-                        {{ img }}
+                        <figure>{{ img }}</figure>
                         <span>#{{ loop.index }}</span>
                     </header>
                     <footer>
@@ -178,8 +178,8 @@
         <div>
             <ol>
                 {% for game in ranking.apps %}
-                <li><a href="{{ steam.app_url(game.id) }}">
-                    {{ _self.img(game.id, ranking.app_media[game.id]) }}
+                <li><a href="{{ steam.app_url(game.id) }}" {{ steam.video_attr(game.name, game.videos, game.video_manifest_hashes) }}>
+                    <figure>{{ _self.img(game.id, ranking.app_media[game.id]) }}</figure>
                     <span>#{{ game.rank }}</span>
                     <span>{{ game.name }}</span>
                     <span class="keystone">{{ game.keystone_tag }}</span>
@@ -201,9 +201,9 @@
         </header>
         <ol>
             {% for game in ranking.apps %}
-            <li><a href="{{ steam.app_url(game.id) }}">
+            <li><a href="{{ steam.app_url(game.id) }}" {{ steam.video_attr(game.name, game.videos, game.video_manifest_hashes) }}>
                 <span>{{ game.rank }}</span>
-                {{ _self.img(game.id, ranking.app_media[game.id]) }}
+                <figure>{{ _self.img(game.id, ranking.app_media[game.id]) }}</figure>
                 <span>{{ game.name }} <span>{{ game.release_date|date('Y') }}</span></span>
                 <span class="keystone">{{ game.keystone_tag }}</span>
                 <span>{{ game.average_players_1d|number_format }} CCU</span>
@@ -224,9 +224,9 @@
         </header>
         <ol>
             {% for game in ranking.apps %}
-            <li><a href="{{ steam.app_url(game.id) }}">
+            <li><a href="{{ steam.app_url(game.id) }}" {{ steam.video_attr(game.name, game.videos, game.video_manifest_hashes) }}>
                 <span>{{ game.rank }}</span>
-                {{ _self.img(game.id, ranking.app_media[game.id]) }}
+                <figure>{{ _self.img(game.id, ranking.app_media[game.id]) }}</figure>
                 <span>{{ game.name }} <span>{{ game.release_date|date('Y') }}</span></span>
                 <span class="keystone">{{ game.keystone_tag }}</span>
                 <span>{{ game.total_reviews|number_format }} Reviews</span>
@@ -246,8 +246,8 @@
         </header>
         <ol>
             {% for game in ranking.apps %}
-            <li><a href="{{ steam.app_url(game.id) }}">
-                {{ steam.app_capsule(game) }}
+            <li><a href="{{ steam.app_url(game.id) }}" {{ steam.video_attr(game.name, game.videos, game.video_manifest_hashes) }}>
+                <figure>{{ steam.app_capsule(game) }}</figure>
                 <span>#{{ game.rank }}</span>
                 <span>{{ game.name }} <span>{{ game.release_date|date('Y') }}</span></span>
                 <span class="keystone">{{ game.keystone_tag }}</span>
@@ -268,8 +268,8 @@
         </header>
         <ol>
             {% for game in ranking.apps %}
-            <li><a href="{{ steam.app_url(game.id) }}">
-                {{ steam.app_capsule(game) }}
+            <li><a href="{{ steam.app_url(game.id) }}" {{ steam.video_attr(game.name, game.videos, game.video_manifest_hashes) }}>
+                <figure>{{ steam.app_capsule(game) }}</figure>
                 <span>#{{ game.rank }}</span>
                 <span>{{ game.name }} <span>{{ game.release_date|date('Y') }}</span></span>
                 <span class="keystone">{{ game.keystone_tag }}</span>
@@ -290,8 +290,8 @@
         </header>
         <ol>
             {% for game in ranking.apps %}
-            <li><a href="{{ steam.app_url(game.id) }}">
-                {{ steam.app_capsule(game) }}
+            <li><a href="{{ steam.app_url(game.id) }}" {{ steam.video_attr(game.name, game.videos, game.video_manifest_hashes) }}>
+                <figure>{{ steam.app_capsule(game) }}</figure>
                 <span>#{{ game.rank }}</span>
                 <span>{{ game.name }} <span>{{ game.release_date|date('Y') }}</span></span>
                 <span class="keystone">{{ game.keystone_tag }}</span>
@@ -319,9 +319,9 @@
             </header>
             <ol>
                 {% for game in ranking.apps %}
-                <li><a href="{{ steam.app_url(game.id) }}">
+                <li><a href="{{ steam.app_url(game.id) }}" {{ steam.video_attr(game.name, game.videos, game.video_manifest_hashes) }}>
                     <span>{{ game.rank }}</span>
-                    {{ steam.app_capsule(game) }}
+                    <figure>{{ steam.app_capsule(game) }}</figure>
                     <span>{{ game.name }} <span>{{ game.release_date|date('Y') }}</span></span>
                     <span>
                         {{ game.total_reviews|number_format }}

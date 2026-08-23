@@ -61,9 +61,17 @@ export default class {
     initVideoLinks(links = document.querySelectorAll<HTMLElement>('[data-video]')) {
         links.forEach(
             a => a.addEventListener('click', e => {
-                // Ignore clicks bubbling up from other link elements or their children.
-                const link = e.target instanceof Element ? e.target.closest('a') : null;
-                if (link && link !== a) return;
+                const target = e.target instanceof Element ? e.target : null;
+
+                if (a instanceof HTMLAnchorElement) {
+                    // When data-video is on an <a> (home page, rankings, etc.),
+                    // only intercept clicks on image elements — text clicks navigate.
+                    if (!target?.closest('figure, img')) return;
+                } else {
+                    // When data-video is on a non-link container (app_banner),
+                    // ignore clicks bubbling from nested links.
+                    if (target?.closest('a')) return;
+                }
 
                 this.loadThumbs(
                     ('href' in a ? <string>a.href : location.pathname).match(/\/app\/(\d+)/)![1],

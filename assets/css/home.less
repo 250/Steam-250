@@ -427,16 +427,6 @@ main {
             height: 100%;
 
             &:hover {
-              img {
-                scale: 1.15;
-
-                transition: scale 3s ease-out;
-
-                &:where(footer > img) {
-                  scale: 1.15 -1.15;
-                }
-              }
-
               footer {
                 &:before {
                   background: var(--bg-hov-plus);
@@ -450,8 +440,6 @@ main {
             height: 141px;
 
             object-fit: cover;
-
-            transition: scale .15s;
           }
 
           header {
@@ -460,10 +448,14 @@ main {
             flex-shrink: 0;
             overflow: hidden;
 
-            >img {
-              z-index: 1;
-
+            >figure {
+              display: flex;
               border-radius: 2px 2px 0 0;
+              overflow: hidden;
+
+              >img {
+                z-index: 1;
+              }
             }
 
             >span {
@@ -471,6 +463,7 @@ main {
               top: 12px;
               left: $top;
               padding: 4px 12px;
+              pointer-events: none;
               z-index: 1;
 
               font-size: 18px;
@@ -640,8 +633,6 @@ main {
           width: 100%;
           object-fit: cover;
 
-          border-radius: inherit;
-
           transition: scale .15s;
 
           ~ * {
@@ -735,13 +726,17 @@ main {
             grid-template-columns: auto auto auto 1fr;
             padding: 8px;
 
-            >img {
-              height: 110px;
-              aspect-ratio: 374/448;
+            >figure {
+              display: flex;
               grid-row: span 3;
               margin-right: 16px;
-
               border-radius: 2px;
+              overflow: hidden;
+
+              >img {
+                height: 110px;
+                aspect-ratio: 374/448;
+              }
             }
 
             >span:nth-of-type(1) {
@@ -838,12 +833,18 @@ main {
             grid-column: 1 / -1;
           }
 
-          >img {
-            width: inherit;
+          >figure {
+            display: flex;
             aspect-ratio: 2/3;
             grid-row: 1;
-
             border-radius: 2px;
+            overflow: hidden;
+
+            >img {
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+            }
           }
 
           >span:nth-of-type(1) {
@@ -852,6 +853,8 @@ main {
             padding: 2px 6px;
             align-self: start;
             justify-self: start;
+            pointer-events: none;
+            z-index: 1;
 
             font-size: 11px;
             font-weight: 900;
@@ -931,11 +934,16 @@ main {
               grid-row: span 2;
             }
 
+            figure {
+              align-self: start;
+              border-radius: 2px;
+              overflow: hidden;
+            }
+
             img {
+              display: block;
               width: 100%;
               aspect-ratio: 374/448;
-
-              border-radius: 2px;
             }
 
             >span:nth-of-type(1) {
@@ -1037,11 +1045,16 @@ main {
 
             .bg-hov();
 
+            figure {
+              display: flex;
+              align-items: start;
+              border-radius: 2px;
+              overflow: hidden;
+            }
+
             img {
               width: 100%;
               aspect-ratio: 231/87;
-
-              border-radius: 2px;
             }
 
             >:nth-child(-n+2) {
@@ -1056,6 +1069,8 @@ main {
               padding: 0 4px;
               align-self: start;
               justify-self: start;
+              pointer-events: none;
+              z-index: 1;
 
               font-size: 8px;
               font-weight: 900;
@@ -1200,13 +1215,17 @@ main {
 
               .bg-hov();
 
-              img {
+              figure {
+                display: flex;
                 grid-row: span 2;
+                margin-right: 8px;
+                border-radius: 2px;
+                overflow: hidden;
+              }
+
+              img {
                 height: 38px;
                 aspect-ratio: 231/87;
-                margin-right: 8px;
-
-                border-radius: 2px;
               }
 
               .meter {
@@ -1330,6 +1349,23 @@ main {
       >dt {
         margin-bottom: 1em;
       }
+    }
+  }
+
+  a[data-video] {
+    figure {
+      margin: 0;
+
+      &:hover {
+        background: #121214;
+      }
+    }
+
+    img:hover {
+      // Stretch the mask vertically: our boxes vary around the SVG's native aspect.
+      mask: url(/svg/film.svg) 0 0 / 100% 150%;
+
+      animation: film .5s linear infinite;
     }
   }
 }
