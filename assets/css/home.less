@@ -97,23 +97,16 @@ main {
         mask: no-repeat center;
       }
 
-      // Header wrapper link.
-      >a:only-child {
-        display: grid;
-        grid: auto / 0 1fr auto;
-        grid-column: 2 / -1;
-
-        >.button {
-          grid-column: 3;
-        }
-      }
-
       h2, p {
         grid-area: 1 / 2;
 
         >a, a:visited {
           color: inherit;
         }
+      }
+
+      >.button {
+        grid-area: 1 / 3;
       }
 
       p {
