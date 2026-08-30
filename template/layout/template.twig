@@ -144,13 +144,21 @@
                             <div>
                                 <a href="{{ club250 }}/join" class="join">Join Club 250</a>
                                 <p>Discover more with a Club 250 membership</p>
+                                <a href="{{ club250 }}/members" class="members">Club Members</a>
                             </div>
                             <div>
+                                <div>
+                                    <a href="{{ club250 }}/stories" class="stories">Stories</a>
+                                    {{ include('@components/micro tier.twig', {tier: 1, benefit: 'story'}) }}
+                                </div>
                                 <div>
                                     <a href="{{ club250 }}/ranking/my-games" class="myrank">My Games</a>
                                     {{ include('@components/micro tier.twig', {tier: 2, benefit: 'myrank'}) }}
                                 </div>
-                                <a href="{{ club250 }}/members" class="members">Club Members</a>
+                                <div>
+                                    <a href="{{ club250 }}/gotm" class="gotm">Games of the Month</a>
+                                    {{ include('@components/micro tier.twig', {tier: 1, benefit: 'gotm'}) }}
+                                </div>
                             </div>
                         </div>
 
