@@ -75,6 +75,10 @@ main {
       grid-template-columns: auto 1fr auto;
       gap: 12px;
 
+      &:has(> .micro.tier) {
+        grid-template-columns: auto 1fr auto auto;
+      }
+
       &:before, &:after {
         grid-area: 1 / 1;
         align-self: center;
@@ -105,8 +109,13 @@ main {
         }
       }
 
-      >.button {
+      >.micro.tier {
         grid-area: 1 / 3;
+        align-self: center;
+      }
+
+      >.button {
+        grid-area: 1 / 4;
       }
 
       p {

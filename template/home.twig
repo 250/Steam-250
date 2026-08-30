@@ -29,6 +29,7 @@
         <header>
             <h2><a href="{{ club250 }}/stories">Top Stories</a></h2>
             <p>Latest news and recognitions from Steam 250</p>
+            {{ include('@components/micro tier.twig', {tier: 1, benefit: 'story'}) }}
             <a href="{{ club250 }}/stories" class="button pri">View all Stories</a>
         </header>
         {% if not stories %}
@@ -63,6 +64,7 @@
         <header>
             <h2><a href="{{ rankings.TREND.ranking.url }}">Trending Now on Steam 250</a></h2>
             <p>Games with the most reviews in the past 24 hours</p>
+            {{ include('@components/micro tier.twig', {tier: 1, benefit: 'rankings'}) }}
             <a href="{{ rankings.TREND.ranking.url }}" class="button pri">View all Trending</a>
         </header>
         <div>
@@ -134,6 +136,7 @@
         <header>
             <h2><a href="{{ ranking.ranking.url }}">Top Sellers</a></h2>
             <p>The highest grossing Steam games worldwide today</p>
+            {{ include('@components/micro tier.twig', {tier: 1, benefit: 'rankings'}) }}
             <a href="{{ ranking.ranking.url }}" class="button pri">View all Top Sellers</a>
         </header>
         <div>
