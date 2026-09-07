@@ -78,10 +78,14 @@
                     </header>
                     <footer>
                         {{ img }}
-                        <span>{{ game.name }} <span>{{ game.release_date|date('Y') }}</span></span>
-                        <span>{{ game.keystone_tag }}  &bull;  {{ game.developer }}</span>
-                        <span>+{{ (game.score ?? 0)|number_format }} Reviews</span>
-                        {{ _self.meter(game) }}
+                        <div class="title-row">
+                            <span>{{ game.name }} <span>{{ game.release_date|date('Y') }}</span></span>
+                            <span>+{{ (game.score ?? 0)|number_format }} Reviews</span>
+                        </div>
+                        <div class="details-row">
+                            <span>{{ game.keystone_tag }}  &bull;  {{ game.developer }}</span>
+                            {{ _self.meter(game) }}
+                        </div>
                     </footer>
                 </a>
                 {% endfor %}
@@ -99,8 +103,8 @@
         {% set game = ranking.apps.0 %}
         <a href="{{ steam.app_url(game.id) }}">
             {{ _self.img(game.id, ranking.app_media[game.id]) }}
-            <span class="button pri">Game of the Day</span>
-            <span class="button">Top 250 #{{ game.rank }}</span>
+            <span class="button">Game of the Day</span>
+            <span class="button pri ranking-label">Steam Top 250 #{{ game.rank }}</span>
 
             <span>
                 {{ game.keystone_tag }}  &bull;  {{ game.developer }}  &bull; 
@@ -150,12 +154,16 @@
                     </header>
                     <footer>
                         {{ img }}
-                        <span>{{ game.name }} <span>{{ game.release_date|date('Y') }}</span></span>
-                        <span>{{ game.keystone_tag }}  &bull;  {{ game.developer }}</span>
-                        <span class="price">
-                            {{ game.free ? 'Free' : '$' ~ ((game.discount_price ?: game.price) / 100) }}
-                        </span>
-                        {{ _self.meter(game) }}
+                        <div class="title-row">
+                            <span>{{ game.name }} <span>{{ game.release_date|date('Y') }}</span></span>
+                            <span class="price">
+                                {{ game.free ? 'Free' : '$' ~ ((game.discount_price ?: game.price) / 100) }}
+                            </span>
+                        </div>
+                        <div class="details-row">
+                            <span>{{ game.keystone_tag }}  &bull;  {{ game.developer }}</span>
+                            {{ _self.meter(game) }}
+                        </div>
                     </footer>
                 </a>
                 {% endfor %}

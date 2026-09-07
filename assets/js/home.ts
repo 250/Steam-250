@@ -7,6 +7,9 @@ for (const selector of ['section.hcards > div', 'section.vcards > div']) {
             viewportNode,
             {
                 dragFree: true,
+                breakpoints: {
+                    '(max-width: 48rem)': {active: false},
+                },
             },
             [
                 EmblaCarouselLimitOverdrag({maxOverdragFraction: .05}),
@@ -20,11 +23,21 @@ if (storiesSection) {
     const tabs = [...storiesSection.querySelectorAll<HTMLAnchorElement>('aside > a')];
     const articles = [...storiesSection.querySelectorAll<HTMLElement>('article')];
 
+    // Scroll only the tab strip, never the page, when a story rotates or the viewport resizes.
+    const scrollTabIntoView = (tab: HTMLAnchorElement) => {
+        const tabList = tab.parentElement!;
+        if (tabList.scrollWidth > tabList.clientWidth) {
+            tabList.scrollLeft = tab.offsetLeft - (tabList.clientWidth - tab.clientWidth) / 2;
+        }
+    };
+
     const activate = (index: number) => {
         for (let i = 0; i < tabs.length; i++) {
             tabs[i].classList.toggle('active', i === index);
             articles[i].hidden = i !== index;
         }
+
+        scrollTabIntoView(tabs[index]);
     };
 
     for (const tab of tabs) {
@@ -63,12 +76,14 @@ if (storiesSection) {
             storiesBox.removeEventListener('mouseenter', pause);
             storiesBox.removeEventListener('mouseleave', resume);
             storiesBox.removeEventListener('click', disable);
+            storiesBox.removeEventListener('focusin', disable);
         };
 
         progress.addEventListener('animationiteration', rotate);
         storiesBox.addEventListener('mouseenter', pause);
         storiesBox.addEventListener('mouseleave', resume);
         storiesBox.addEventListener('click', disable);
+        storiesBox.addEventListener('focusin', disable);
 
         // If the pointer is already over the box at load, mouseenter never fires —
         // start paused so hover-pause is consistent from the first frame.
@@ -124,5 +139,11 @@ if (storiesSection) {
         }
     };
     updateTravel();
-    new ResizeObserver(updateTravel).observe(storiesSection);
+    new ResizeObserver(() => {
+        updateTravel();
+        const activeTab = tabs.find(tab => tab.classList.contains('active'));
+        if (activeTab) {
+            scrollTabIntoView(activeTab);
+        }
+    }).observe(storiesSection);
 }
