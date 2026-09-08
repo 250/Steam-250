@@ -451,6 +451,10 @@ main {
             overflow: hidden;
 
             >figure {
+              --film-layer-height: 266.9603%;
+              --film-mask-height: 62.5412%;
+              --film-travel: -62.5412%;
+
               display: flex;
               border-radius: 2px 2px 0 0;
               overflow: hidden;
@@ -757,6 +761,11 @@ main {
             padding: 8px;
 
             >figure {
+              --film-layer-height: 200%;
+              --film-mask: url(/svg/film-vertical.svg);
+              --film-mask-height: 50%;
+              --film-travel: -50%;
+
               display: flex;
               grid-row: span 3;
               margin-right: 16px;
@@ -864,6 +873,11 @@ main {
           }
 
           >figure {
+            --film-layer-height: 200%;
+            --film-mask: url(/svg/film-vertical.svg);
+            --film-mask-height: 50%;
+            --film-travel: -50%;
+
             display: flex;
             aspect-ratio: 2/3;
             grid-row: 1;
@@ -965,6 +979,11 @@ main {
             }
 
             figure {
+              --film-layer-height: 200%;
+              --film-mask: url(/svg/film-vertical.svg);
+              --film-mask-height: 50%;
+              --film-travel: -50%;
+
               align-self: start;
               border-radius: 2px;
               overflow: hidden;
@@ -1700,6 +1719,11 @@ main {
 
   a[data-video] {
     figure {
+      --film-layer-height: 248.825%;
+      --film-mask: url(/svg/film.svg);
+      --film-mask-height: 59.8111%;
+      --film-travel: -59.8111%;
+
       margin: 0;
 
       &:hover {
@@ -1712,15 +1736,16 @@ main {
           position: absolute;
           top: 0;
           left: 0;
-          width: 100%;
-          height: 250%;
+          // Force Firefox to round up.
+          width: 100.5%;
+          height: var(--film-layer-height);
           z-index: 2;
           pointer-events: none;
 
           background: #121214;
-          mask-image: linear-gradient(#fff 0 0), url(/svg/film.svg);
+          mask-image: linear-gradient(#fff 0 0), var(--film-mask);
           mask-position: 0;
-          mask-size: 100% 100%, 100% 60%;
+          mask-size: 100% 100%, 100% var(--film-mask-height);
           mask-repeat: no-repeat, repeat-y;
           mask-composite: exclude;
           will-change: transform;
@@ -1731,11 +1756,6 @@ main {
     }
   }
 
-  @keyframes film-overlay {
-    to {
-      transform: translateY(-60%);
-    }
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
