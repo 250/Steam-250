@@ -51,6 +51,19 @@ main {
     &:hover {
       opacity: 1;
     }
+
+    &.\32 nd {
+      padding: 9px 12px;
+
+      color: #e9c176;
+      background: #ffffff1a;
+      border-radius: 2px;
+      box-shadow: inset 0 0 0 1px color-mix(currentColor 10%, transparent);
+
+      &:hover {
+        background: #ffffff28;
+      }
+    }
   }
 
   .keystone {
@@ -336,6 +349,27 @@ main {
         .button {
           align-self: start;
           flex-shrink: 0;
+
+          &.pri {
+            display: flex;
+            align-items: center;
+            gap: .5ch;
+
+            &:after {
+              content: '';
+              width: 1.15em;
+              aspect-ratio: 1;
+
+              background: currentColor;
+              mask: 0 100%/120%;
+              #icons.arrow();
+            }
+          }
+        }
+
+        >div {
+          display: flex;
+          gap: 1rem;
         }
       }
 
@@ -670,24 +704,6 @@ main {
         }
 
         >.button {
-          margin: 0;
-          padding: 9px 12px;
-          justify-self: start;
-
-          box-shadow: none;
-
-          &:not(.pri) {
-            color: #e9c176;
-            background: #ffffff1a;
-
-            border-radius: 2px;
-            box-shadow: inset 0 0 0 1px color-mix(currentColor 10%, transparent);
-
-            &:hover {
-              background: #ffffff28;
-            }
-          }
-
           &.ranking-label {
             position: absolute;
             top: var(--inset);

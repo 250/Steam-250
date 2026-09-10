@@ -50,7 +50,10 @@
                     <span class="label">{{ story.label }}</span>
                     <h3>{{ story.headline }}</h3>
                     <p>{{ story.summary }}</p>
-                    <a href="{{ club250 }}/app/{{ story.app_id }}" class="button pri">View Game &rarr;</a>
+                    <div>
+                        <a href="{{ club250 }}/go/story/{{ story.slug }}" class="button pri">Read Story</a>
+                        <a href="{{ club250 }}/app/{{ story.app_id }}" class="button 2nd">View Game</a>
+                    </div>
                 </article>
                 {% endfor %}
                 {% if stories|length > 1 %}
@@ -103,7 +106,7 @@
         {% set game = ranking.apps.0 %}
         <a href="{{ steam.app_url(game.id) }}">
             {{ _self.img(game.id, ranking.app_media[game.id]) }}
-            <span class="button">Game of the Day</span>
+            <span class="button 2nd">Game of the Day</span>
             <span class="button pri ranking-label">Steam Top 250 #{{ game.rank }}</span>
 
             <span>
