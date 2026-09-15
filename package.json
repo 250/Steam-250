@@ -40,7 +40,7 @@
     "dayjs": "^1.10.4",
     "embla-carousel": "^8.6.0",
     "posthog-js": "^1.212.1",
-    "shaka-player": "^4.16.15",
+    "shaka-player": "^5.2.10",
     "vanilla-lazyload": "^17.3.1"
   },
   "packageManager": "pnpm@10.0.0+sha512.b8fef5494bd3fe4cbd4edabd0745df2ee5be3e4b0b8b08fa643aa3e4c6702ccc0f00d68fa8a8c9858a735a0032485a44990ed2810526c875e416f001b17df12b"
