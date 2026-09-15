@@ -43,19 +43,55 @@ export default class {
         this.video.muted = volume.muted;
 
         this.video.addEventListener('volumechange', _ => this.saveVolumeState());
-        this.video.addEventListener('resize', _ => {
-            // Restore video dimensions to auto.
-            this.video.removeAttribute('width');
-            this.video.removeAttribute('height');
-
-            // Keep child elements in sync with video width.
-            this.syncFooterSize();
-        });
-        addEventListener('resize', () => this.syncFooterSize());
+        this.video.addEventListener('resize', _ => this.syncFooterSize());
+        addEventListener('resize', () => this.syncVideoSize());
     }
 
     syncFooterSize() {
         this.footer.style.maxWidth = `${this.video.clientWidth}px`;
+    }
+
+    syncVideoSize() {
+        const width = this.video.width;
+        const height = this.video.height;
+        const availableHeight = innerHeight - this.footer.offsetHeight;
+
+        if (width <= 0 || height <= 0 || availableHeight <= 0) {
+            return;
+        }
+
+        const scale = Math.min(1, innerWidth / width, availableHeight / height);
+        this.video.style.width = `${width * scale}px`;
+        this.syncFooterSize();
+    }
+
+    setVideoSizeToLargestTrack(player: shaka.Player) {
+        let width = 0;
+        let height = 0;
+        let area = 0;
+
+        for (const track of player.getVariantTracks()) {
+            const trackWidth = track.width;
+            const trackHeight = track.height;
+
+            if (trackWidth !== null && trackHeight !== null
+                && trackWidth > 0 && trackHeight > 0 && trackWidth * trackHeight > area) {
+                width = trackWidth;
+                height = trackHeight;
+                area = width * height;
+            }
+        }
+
+        if (area === 0) {
+            width = this.video.videoWidth;
+            height = this.video.videoHeight;
+        }
+
+        if (width > 0 && height > 0) {
+            this.video.width = width;
+            this.video.height = height;
+            this.video.style.aspectRatio = `${width} / ${height}`;
+        }
     }
 
     initVideoLinks(links = document.querySelectorAll<HTMLElement>('[data-video]')) {
@@ -185,13 +221,11 @@ export default class {
 
         player.addEventListener('adaptation', (event: any) => this.header.dataset.res = event.newTrack.height + 'p');
 
-        // Prevent video resizing between loads because it looks glitchy. Restored when next video loads.
-        this.video.width = this.video.clientWidth;
-        this.video.height = this.video.clientHeight;
-
         await this.loadCompatibleMedia(player, appId, hash);
+        this.setVideoSizeToLargestTrack(player);
 
         this.activate();
+        this.syncVideoSize();
     }
 
     async loadCompatibleMedia(player: shaka.Player, appId: string, hash: string) {
