@@ -1,22 +1,22 @@
-import {Args, Meta, Story} from '@storybook/html';
+import type {Meta, StoryObj} from '@storybook/html-vite';
 
-export default {
+type ButtonArgs = {
+    caption: string;
+    disabled: boolean;
+};
+
+const meta = {
     title: 'Form/Button',
-} as Meta;
+} satisfies Meta<ButtonArgs>;
 
-const Template: Story = (args, {loaded: {html}}) => html;
+export default meta;
 
-const createLoaders = () => [
-    async (args: Args) => {
-        return {
-            html: `<button class="button"${args.args.disabled ? 'disabled' : ''}>${args.args.caption}</button>`,
-        }
+type Story = StoryObj<ButtonArgs>;
+
+export const Button: Story = {
+    render: args => `<button class="button"${args.disabled ? ' disabled' : ''}>${args.caption}</button>`,
+    args: {
+        caption: 'Click me',
+        disabled: false,
     },
-];
-
-export const Button = Template.bind({});
-Button.loaders = createLoaders();
-Button.args = {
-    caption: 'Click me',
-    disabled: false,
 };

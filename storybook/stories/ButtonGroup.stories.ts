@@ -1,23 +1,15 @@
-import {Args, Meta, Story} from '@storybook/html';
+import type {Meta, StoryObj} from '@storybook/html-vite';
 
-export default {
+const meta = {
     title: 'Form/Button group',
-} as Meta;
+} satisfies Meta;
 
-const Template: Story = (args, {loaded: {html}}) => html;
+export default meta;
 
-const createLoaders = () => [
-    async (ctx: Args) => {
-        return {
-            html: ctx.parameters.html,
-        }
-    },
-];
+type Story = StoryObj;
 
-export const Linear = Template.bind({});
-Linear.loaders = createLoaders();
-Linear.parameters = {
-    html: `
+export const Linear: Story = {
+    render: () => `
         <div class="button-group">
             <a class="button">Button 1</a>
             <a class="button">Button 2</a>
@@ -25,12 +17,10 @@ Linear.parameters = {
             <a class="button">Button 4</a>
         </div>
     `,
-}
+};
 
-export const Wrapped = Template.bind({});
-Wrapped.loaders = createLoaders();
-Wrapped.parameters = {
-    html: `
+export const Wrapped: Story = {
+    render: () => `
         <div class="button-group wrap" style="max-width: 30em">
             <a class="button">Button 1</a>
             <a class="button">Button 2</a>
@@ -42,12 +32,10 @@ Wrapped.parameters = {
             <a class="button">Button 8</a>
         </div>
     `,
-}
+};
 
-export const MultiGroup = Template.bind({});
-MultiGroup.loaders = createLoaders();
-MultiGroup.parameters = {
-    html: `
+export const MultiGroup: Story = {
+    render: () => `
         <div class="button-group wrap" style="max-width: 30em">
             <a class="button">Button 1</a>
             <a class="button">Button 2</a>
@@ -58,4 +46,4 @@ MultiGroup.parameters = {
             <a class="button">None</a>
         </div>
     `,
-}
+};

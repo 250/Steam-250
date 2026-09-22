@@ -1,11 +1,16 @@
-import {Args, Meta, Story} from '@storybook/html';
-import template from '@components/checkbox.twig';
+import type {Meta, StoryContext, StoryObj} from '@storybook/html-vite';
 import Checkbox from '../../assets/js/Checkbox';
+import {renderTemplate} from '../twig';
 
-// Only respond to Storybook emulated DOM loaded event to prevent double-loading.
-addEventListener('DOMContentLoaded', e => e.isTrusted || Checkbox.initCheckboxes());
+type CheckboxArgs = {
+    caption_off?: string;
+    caption_on: string;
+    disabled: boolean;
+    enlarge: boolean;
+    negative?: boolean;
+};
 
-export default {
+const meta = {
     title: 'Form/Checkbox',
     args: {
         enlarge: true,
@@ -22,44 +27,56 @@ export default {
         },
     },
     decorators: [
-        (Story, ctx) => `<form ${ctx.args.enlarge && 'style="font-size: 200%"'}>${Story()}</form>`,
+        (Story, {args}) => `<form${args.enlarge ? ' style="font-size: 200%"' : ''}>${Story()}</form>`,
     ],
-} as Meta;
+} satisfies Meta<CheckboxArgs>;
 
-const Template: Story = (args, {loaded: {html}}) => html;
+export default meta;
 
-const createLoaders = () => [
-    async (ctx: Args) => {
-        return {
-            html: await template({...ctx.args, ...ctx.parameters}),
-        }
+type Story = StoryObj<CheckboxArgs>;
+
+const loadCheckbox = async ({args, parameters}: StoryContext<CheckboxArgs>) => ({
+    html: await renderTemplate('@components/checkbox.twig', {
+        ...args,
+        ...(parameters.tri ? {tri: true, name: parameters.name} : {}),
+    }),
+});
+const renderCheckbox: Story['render'] = (_args, {loaded: {html}}) => {
+    requestAnimationFrame(() => Checkbox.initCheckboxes());
+
+    return html;
+};
+
+export const OnOff: Story = {
+    name: 'On/Off',
+    loaders: [loadCheckbox],
+    render: renderCheckbox,
+    args: {
+        caption_on: 'Click me',
+        negative: false,
     },
-];
-
-export const OnOff = Template.bind({});
-OnOff.loaders = createLoaders();
-OnOff.storyName = 'On/Off';
-OnOff.args = {
-    caption_on: 'Click me',
-    negative: false,
 };
 
-export const AB = Template.bind({});
-AB.loaders = createLoaders();
-AB.storyName = 'A/B';
-AB.args = {
-    caption_on: 'Option A',
-    caption_off: 'Option B',
+export const AB: Story = {
+    name: 'A/B',
+    loaders: [loadCheckbox],
+    render: renderCheckbox,
+    args: {
+        caption_on: 'Option A',
+        caption_off: 'Option B',
+    },
 };
 
-export const Tri = Template.bind({});
-Tri.loaders = createLoaders();
-Tri.storyName = 'Tri-state';
-Tri.args = {
-    caption_on: 'Include',
-    caption_off: 'Exclude',
+export const Tri: Story = {
+    name: 'Tri-state',
+    loaders: [loadCheckbox],
+    render: renderCheckbox,
+    args: {
+        caption_on: 'Include',
+        caption_off: 'Exclude',
+    },
+    parameters: {
+        tri: true,
+        name: 'foo',
+    },
 };
-Tri.parameters = {
-    tri: true,
-    name: 'foo',
-}

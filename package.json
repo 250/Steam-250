@@ -4,14 +4,12 @@
     "@dotenvx/dotenvx": "^1.51.0",
     "@rspack/cli": "^2.1.9",
     "@rspack/core": "^2.1.9",
-    "@storybook/addon-actions": "^6.5.15",
-    "@storybook/addon-essentials": "^6.5.15",
-    "@storybook/addon-links": "^6.5.15",
-    "@storybook/html": "^6.5.15",
+    "@storybook/html": "10.6.0",
+    "@storybook/html-vite": "10.6.0",
     "@tsconfig/recommended": "^1.0.1",
     "@types/chroma-js": "^2.4.4",
     "@types/node": "^22.12.0",
-    "@whitespace/storybook-addon-html": "5.0.0",
+    "@whitespace/storybook-addon-html": "9.0.0",
     "autoprefixer": "^10.2.5",
     "baseline-browser-mapping": "^2.9.15",
     "clean-webpack-plugin": "^3.0.0",
@@ -24,16 +22,17 @@
     "postcss": "^8.2.7",
     "postcss-loader": "^4.3.0",
     "postcss-pxtorem": "^6.1.0",
-    "style-loader": "^2.0.0",
-    "twing": "^5.0.2",
-    "twing-loader": "^4.0.0",
-    "typescript": "^6.0.3"
+    "prettier": "3.8.1",
+    "storybook": "10.6.0",
+    "twing": "^7.3.1",
+    "typescript": "^6.0.3",
+    "vite": "8.3.0"
   },
   "scripts": {
     "watch": "dotenvx run -f webpack/.env.local -f webpack/.env -- rspack --config webpack/webpack.config.mjs --watch",
     "build": "dotenvx run -f webpack/.env -- rspack --config webpack/webpack.config.mjs --mode production",
-    "storybook": "NODE_OPTIONS=--openssl-legacy-provider dotenvx run -f webpack/.env -- start-storybook --config-dir storybook --port 6006 --ci",
-    "build-storybook": "NODE_OPTIONS=--openssl-legacy-provider dotenvx run -f webpack/.env -- build-storybook --config-dir storybook"
+    "storybook": "dotenvx run -f webpack/.env -- storybook dev --config-dir storybook --port 6006 --ci",
+    "build-storybook": "dotenvx run -f webpack/.env -- storybook build --config-dir storybook"
   },
   "dependencies": {
     "chroma-js": "^2.4.2",

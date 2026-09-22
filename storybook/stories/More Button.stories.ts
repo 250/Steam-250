@@ -1,25 +1,38 @@
-import {Args, Meta, Story} from '@storybook/html';
-import template from 'T/component/more button.twig';
+import type {Meta, StoryContext, StoryObj} from '@storybook/html-vite';
+import {renderTemplate} from '../twig';
 
-// Only respond to Storybook emulated DOM loaded event to prevent double-loading.
-addEventListener('DOMContentLoaded', e => e.isTrusted || S250.initChevrons());
+type MoreButtonArgs = {
+    caption: string;
+};
 
-export default {
+const meta = {
     title: 'Form/More Button',
-} as Meta;
+} satisfies Meta<MoreButtonArgs>;
 
-const Template: Story = (args, {loaded: {html}}) => html;
+export default meta;
 
-const createLoaders = () => [
-    async (args: Args) => {
-        return {
-            html: await template(args.args),
-        }
+type Story = StoryObj<MoreButtonArgs>;
+
+export const MoreButton: Story = {
+    name: 'More Button',
+    loaders: [
+        async ({args}: StoryContext<MoreButtonArgs>) => ({
+            html: await renderTemplate('component/more button.twig', args),
+        }),
+    ],
+    render: (_args, {loaded: {html}}) => {
+        requestAnimationFrame(() => {
+            document.querySelectorAll('.more-button').forEach(link => {
+                if (link.children.length !== 2) return;
+
+                const chevron = link.lastElementChild!;
+                link.append(chevron.cloneNode(), chevron.cloneNode());
+            });
+        });
+
+        return html;
     },
-];
-
-export const More_Button = Template.bind({});
-More_Button.loaders = createLoaders();
-More_Button.args = {
-    caption: 'More',
+    args: {
+        caption: 'More',
+    },
 };
