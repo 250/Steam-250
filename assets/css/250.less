@@ -88,16 +88,14 @@ a {
 }
 
 h1 {
+  position: relative;
   margin-left: auto;
 
-  transition: filter .12s ease-in;
-
-  &:hover {
-    filter: drop-shadow(0 0 9px #00000040) drop-shadow(0 0 3px #a34da9);
-    transition-timing-function: ease-out;
-  }
+  isolation: isolate;
 
   >a {
+    position: relative;
+    z-index: 2;
     display: block;
     width: 69px;
     height: 72px;
@@ -106,7 +104,31 @@ h1 {
     background: url(/img/logo.webp) no-repeat 50%/68px;
     text-indent: -99vw;
   }
+
+  >.logo-sparkler, >.logo-sparkler-front, >.logo-refraction {
+    position: absolute;
+
+    pointer-events: none;
+    mix-blend-mode: screen;
+
+    &:is(.logo-sparkler) {
+      z-index: 1;
+    }
+    &:is(.logo-refraction) {
+      z-index: 3;
+    }
+    &:is(.logo-sparkler-front) {
+      z-index: 4;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    &:hover, &:focus-within {
+      filter: drop-shadow(0 0 9px #00000040) drop-shadow(0 0 3px #a34da9);
+    }
+  }
 }
+
 h2 {
   color: #ebddf7;
   font-size: 36px;

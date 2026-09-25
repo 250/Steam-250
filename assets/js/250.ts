@@ -4,6 +4,7 @@ import Checkbox from './Checkbox';
 import chroma from 'chroma-js';
 import posthog from 'posthog-js';
 import VideoPlayer from './VideoPlayer';
+import LogoSparkler from './LogoSparkler';
 
 type S250_static = typeof S250;
 
@@ -45,6 +46,7 @@ class S250 {
         // Fancy stuff.
         S250.initRankingHoverItems();
         S250.player = new VideoPlayer();
+        LogoSparkler.init(document.getElementById('header')!);
     }
 
     initLogInOut() {
