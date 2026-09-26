@@ -1483,6 +1483,16 @@ main {
         }
       }
 
+      // Let the whole page scroll; never trap it inside capped subsection lists.
+      &.wk >ol,
+      &.\31 \/2 >ol,
+      &.\31 \/3 >ol,
+      &.tag >section >ol {
+        height: auto;
+        max-height: none;
+        overflow: visible;
+      }
+
       &.hcards, &.vcards {
         >div {
           overflow: visible;
@@ -1498,14 +1508,8 @@ main {
       }
 
       &.hcards ol {
-        // Five cards: image ((viewport - main padding - borders) * 141/420), footer, borders and four gaps.
+        // Card height: image ((viewport - main padding - borders) * 141/420), footer and borders.
         --card-height: calc(33.571428571vw + 5.160714286rem + 5.314285714px);
-
-        height: calc(
-          var(--card-height) + var(--card-height) + var(--card-height) + var(--card-height) +
-          var(--card-height) + 3rem
-        );
-        overflow-y: auto;
       }
 
       &.hcards ol >li {
@@ -1536,12 +1540,6 @@ main {
             object-fit: cover;
           }
         }
-      }
-
-      &.vcards ol {
-        // Ten 9rem rows and nine .75rem gaps.
-        height: 96.75rem;
-        overflow-y: auto;
       }
 
       &.vcards ol a {
