@@ -15,7 +15,8 @@
     </p>
     <p class="note">
         This is the free version of this page.
-        <a href="{{ club250 }}/tag/{{ ranking.tagId }}">An enhanced version of this tag is available on Club 250</a>.
+        <a href="{{ club250 }}/tag/{{ ranking.tagId }}">An enhanced version of this tag is available to
+            {{ include('@components/micro tier.twig', {tier: 1, benefit: 'tag'}) }} members</a>.
         The enhanced version includes 250 results, an extensive tag description and a map of correlated tags.
     </p>
 {% endblock %}
