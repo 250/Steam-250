@@ -1,11 +1,12 @@
 @import "inc/reset.css";
-@import "inc/title.css";
 
 body {
     background: #403321;
 }
 
 .collage {
+    display: flex;
+    flex-flow: wrap;
     width: 1500px;
     height: 396px;
     line-height: 0;
@@ -24,12 +25,4 @@ section {
     display: inline-block;
     position: relative;
     margin-top: 58px;
-}
-
-#header {
-    position: absolute;
-    z-index: 1;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -55%);
 }

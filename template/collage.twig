@@ -1,22 +1,17 @@
 {% extends 'layout/skeleton.twig' %}
+{% import 'macro/steam.twig' as steam %}
 
 {% block title %}Collage{% endblock %}
 
 {% block css %}
     <link rel="stylesheet" href="css/collage.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster">
 {% endblock %}
 
 {% block body %}
 <section>
-    <div id="header">
-        <div class="title" data-title="Steam 250">
-            <h1>Steam 250</h1>
-        </div>
-    </div>
     <div class="collage">
     {% for game in games -%}
-        <img src="http://cdn.akamai.steamstatic.com/steam/apps/{{ game.id }}/capsule_sm_120.jpg">
+        {{ steam.app_capsule(game, false) }}
     {%- endfor %}
     </div>
 </section>
