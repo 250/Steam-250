@@ -19,7 +19,11 @@ export default class BuildMonitor {
         // Build is overdue.
         if (this.nextBuild <= now) {
             // Estimate next build based on time of last successful build, even though the last scheduled build failed.
-            this.nextBuild = this.nextBuild.add(dayjs.duration(now.diff(this.nextBuild)).days() + 1, 'days');
+            // NB: Duration.days() is only the days component after subtracting whole months, so advance by whole
+            // days until the estimate lands in the future (also immune to DST rounding in total-day arithmetic).
+            while (this.nextBuild <= now) {
+                this.nextBuild = this.nextBuild.add(1, 'day');
+            }
         }
 
         // Time remains on the clock.
