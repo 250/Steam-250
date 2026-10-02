@@ -163,7 +163,7 @@
                         <div class="title-row">
                             <span>{{ game.name }} <span>{{ game.release_date|date('Y') }}</span></span>
                             <span class="price">
-                                {{ game.free ? 'Free' : '$' ~ ((game.discount_price ?: game.price) / 100) }}
+                                {{ (game.free or game.price is same as(0)) ? 'Free' : '$' ~ ((game.discount_price ?: game.price) / 100) }}
                             </span>
                         </div>
                         <div class="details-row">
