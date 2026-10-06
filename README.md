@@ -71,6 +71,13 @@ php -S localhost:8113 -t '/path/to/Steam 250/site'
 
 Then we can simply visit `localhost:8113` in our favourite web browser. Feel free to change the port to whatever you want and remember to set the path correctly to point to the same directory the site was generated in.
 
+Paired agent worktrees
+----------------------
+
+Club 250's `bin/wt add <task>` creates a matched Steam 250 worktree at `../Steam 250-agents/<task>`, copies the main checkout's generated site, symlinks its entire `db` directory, and rebuilds its development assets. The generated `webpack/.env.local` points at `https://<task>.club.dev.steam250.com`, while the paired Club 250 bundle points at `https://<task>.dev.steam250.com`. Caddy rewrites the copied HTML's Club 250 links to the paired host, preserving the exact fixed-origin login, logout and games synchronization protocol without regenerating every ranking during setup. Database storage is deliberately shared: site generation writes ranking tables into the main checkout's snapshot, so do not run concurrent generators against it.
+
+Run setup, listing and removal through Club 250's `bin/wt`; it manages both repositories as one pair. Edit and commit Steam 250 changes in the matched Steam 250 worktree, never in the main checkout.
+
   [Build]: https://github.com/250/Steam-250/actions/workflows/Build.yml
   [Build image]: https://github.com/250/Steam-250/actions/workflows/Build.yml/badge.svg "Build status"
   [Snapshots]: https://github.com/250/Steam-250/releases/tag/snapshots

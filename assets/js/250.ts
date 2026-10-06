@@ -46,14 +46,14 @@ class S250 {
         // Fancy stuff.
         S250.initRankingHoverItems();
         S250.player = new VideoPlayer();
-        LogoSparkler.init(document.getElementById('header')!);
+        LogoSparkler.init(document.getElementById('header') ?? document);
     }
 
     initLogInOut() {
         const form = document.querySelector<HTMLFormElement>('#lout form');
 
         if (!form) {
-            console.debug('Steam user area unavailable: skipped.');
+            console.debug('Steam 250 user area unavailable: skipped.');
             return;
         }
 
