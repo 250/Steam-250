@@ -46,7 +46,7 @@ class S250 {
         // Fancy stuff.
         S250.initRankingHoverItems();
         S250.player = new VideoPlayer();
-        LogoSparkler.init(document.getElementById('header')!);
+        LogoSparkler.init(document.getElementById('header') ?? document);
     }
 
     initLogInOut() {

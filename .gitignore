@@ -4,6 +4,6 @@
 /site/
 /node_modules/
 /headless/
-/db/
+/db
 *.local
 /app media cache.db
