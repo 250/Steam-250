@@ -3,6 +3,17 @@
 {% import 'macro/ranking.twig' as macro %}
 
 {% block class %}ranking{% endblock %}
+{% block score_heading %}Score{% endblock %}
+{% block rating_heading %}Reviews{% endblock %}
+{% block price_heading %}Price{% endblock %}
+
+{% set score_heading = block('score_heading') %}
+{% set rating_heading = block('rating_heading') %}
+{% set price_heading = block('price_heading') %}
+{% set windows = constant('ScriptFUSION\\Steam250\\Shared\\Platform::WINDOWS') %}
+{% set linux = constant('ScriptFUSION\\Steam250\\Shared\\Platform::LINUX') %}
+{% set mac = constant('ScriptFUSION\\Steam250\\Shared\\Platform::MAC') %}
+
 
 {% block css %}
 {{ parent() }}
@@ -20,10 +31,15 @@
             <header>
                 <span>{% block rank_heading %}Rank{% endblock %}</span>
                 <span>Game</span>
-                <span>{% block score_heading %}Score{% endblock %}</span>
-                <span>{% block rating_heading %}Reviews{% endblock %}</span>
-                <span>{% block price_heading %}Price{% endblock %}</span>
-                <span>Actions</span>
+                {% if score_heading %}<span>{{ score_heading }}</span>{% endif %}
+                {% if score_heading and rating_heading %}
+                    <span class="reviews">{{ rating_heading }}</span>
+                {% else %}
+                    <span>{{ rating_heading }}</span>
+                {% endif %}
+                <span class="platforms" hidden>Platforms</span>
+                {% if price_heading %}<span class="price">{{ price_heading }}</span>{% endif %}
+                <span class="actions">Actions</span>
             </header>
             {% for app in games %}
             <div {% if app.rank is defined %} id="{{ app.rank }}"{% endif %}>
@@ -75,13 +91,13 @@
                         {{ macro.tag(app.keystone_tag, tags) }}
                     </div>
                 </div>
+                {% if score_heading %}
                 <div class="stat score">
-                    {%- if block('score_heading') %}
-                        <span>{% block score %}{{ (app.score * 10)|number_format(2) }}{% endblock %}</span>
-                    {% endif -%}
+                    <span>{% block score %}{{ (app.score * 10)|number_format(2) }}{% endblock %}</span>
                 </div>
+                {% endif %}
                 <div class="stat reviews">
-                    {%- if block('rating_heading') %}
+                    {%- if rating_heading %}
                         <span class="votes">{{ app.total_reviews|number_format }}</span>
                     {% endif -%}
                     {%- if app.total_reviews > 0 %}
@@ -92,20 +108,47 @@
                         </div>
                     {% endif -%}
                 </div>
-                <div class="stat price">
-                    {%- if block('price_heading') %}
-                        {% if app.price is same as(0) %}
-                            <a href="/tag/free_to_play{{ ext }}" class="free">Free</a>
-                        {% else %}
-                            <span>
-                                ${{ ((app.discount_price ? app.discount_price : app.price) / 100)|number_format(2) }}
-                            </span>
-                            {% if app.discount > 0 %}
-                                <span>${{ (app.price / 100)|number_format(2) }}</span>
-                            {% endif %}
-                        {% endif %}
-                    {% endif -%}
+                <div class="stat platforms" hidden>
+                    {% if app.platforms b-and windows %}<span class="windows" title="Windows"></span>{% endif %}
+                    {% if app.platforms b-and mac %}
+                        <a
+                            href="/mac250{{ ext }}"
+                            class="mac"
+                            title="macOS"
+                            aria-label="macOS ranking"
+                        ></a>
+                    {% endif %}
+                    {% if app.platforms b-and linux %}
+                        <a
+                            href="/linux250{{ ext }}"
+                            class="linux"
+                            title="Linux"
+                            aria-label="Linux ranking"
+                        ></a>
+                    {% endif %}
+                    {% if app.steam_deck >= 2 %}
+                        <a
+                            href="/steam_deck_playable{{ ext }}"
+                            class="deck"
+                            title="Steam Deck"
+                            aria-label="Steam Deck ranking"
+                        ></a>
+                    {% endif %}
                 </div>
+                {% if price_heading %}
+                <div class="stat price">
+                    {% if app.price is same as(0) %}
+                        <a href="/tag/free_to_play{{ ext }}" class="free">Free</a>
+                    {% else %}
+                        <span>
+                            ${{ ((app.discount_price ? app.discount_price : app.price) / 100)|number_format(2) }}
+                        </span>
+                        {% if app.discount > 0 %}
+                            <span>${{ (app.price / 100)|number_format(2) }}</span>
+                        {% endif %}
+                    {% endif %}
+                </div>
+                {% endif %}
                 <div class="stat actions">
                     {# Actions. #}
                     <a href="{{ steam.store_url(app.id) }}" class="store" title="Steam store" target="_blank"></a>

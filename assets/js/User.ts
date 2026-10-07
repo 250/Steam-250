@@ -1,3 +1,8 @@
+interface RankingColumnsMessage {
+    message: 'ranking columns';
+    state: string | null;
+}
+
 export default class User {
     static isLoggedIn() {
         return localStorage.hasOwnProperty('user') // S250.
@@ -41,7 +46,7 @@ export default class User {
         this.postClub250Message('games');
 
         addEventListener('message', message => {
-            if (message.origin !== process.env.CLUB_250_BASE_URL) {
+            if (message.source !== parent || message.origin !== process.env.CLUB_250_BASE_URL) {
                 console.debug(`Sync games: ignoring message from: "${message.origin}".`);
 
                 return;
@@ -59,6 +64,37 @@ export default class User {
         if (!localStorage.getItem('games.date')) {
             localStorage.removeItem('games');
         }
+    }
+
+    static syncRankingColumns() {
+        const storageKey = 'ranking.columns';
+        const postState = () => {
+            const state = localStorage.getItem(storageKey);
+
+            this.postClub250Message({message: 'ranking columns', state} satisfies RankingColumnsMessage);
+        };
+
+        this.postClub250Message('ranking columns');
+
+        addEventListener('message', message => {
+            if (message.source !== parent || message.origin !== process.env.CLUB_250_BASE_URL) {
+                console.debug(`Sync ranking columns: ignoring message from: "${message.origin}".`);
+
+                return;
+            }
+
+            if (this.isRankingColumnsMessage(message.data) && message.data.state !== null) {
+                const remoteModified = this.readRankingColumnsModified(message.data.state);
+                const localModified = this.readRankingColumnsModified(localStorage.getItem(storageKey));
+
+                if (remoteModified !== null && (localModified === null || remoteModified >= localModified)) {
+                    localStorage.setItem(storageKey, message.data.state);
+                }
+            }
+        });
+        addEventListener('storage', event => event.key === storageKey && postState());
+
+        postState();
     }
 
     static syncLoginUi() {
@@ -148,12 +184,39 @@ export default class User {
         return JSON.parse(userJson);
     }
 
+    private static isRankingColumnsMessage(message: unknown): message is RankingColumnsMessage {
+        if (typeof message !== 'object' || message === null) {
+            return false;
+        }
+
+        const candidate = message as Partial<RankingColumnsMessage>;
+
+        return candidate.message === 'ranking columns'
+            && (typeof candidate.state === 'string' || candidate.state === null);
+    }
+
+    private static readRankingColumnsModified(state: string | null): number | null {
+        if (state === null) {
+            return 0;
+        }
+
+        try {
+            const parsed = JSON.parse(state) as {modified?: unknown};
+
+            return typeof parsed.modified === 'number' && Number.isFinite(parsed.modified) && parsed.modified >= 0
+                ? parsed.modified
+                : null;
+        } catch {
+            return null;
+        }
+    }
+
     private static formatTimePlayed(minutes: number) {
         return minutes < 60 ? minutes + ' minute' + (minutes !== 1 ? 's' : '')
             : (minutes / 60).toFixed(1) + ' hour' + (minutes !== 60 ? 's' : '');
     }
 
-    private static postClub250Message(message: any) {
+    private static postClub250Message(message: unknown) {
         if (parent !== window) {
             console.debug('>C250:', message);
 

@@ -205,6 +205,10 @@ class S250 {
         User.syncGames();
     }
 
+    static syncRankingColumns() {
+        User.syncRankingColumns();
+    }
+
     static showAds() {
         const userJson = localStorage.getItem('user');
 

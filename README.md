@@ -61,6 +61,10 @@ bin/generate site db/steam561.sqlite --prev-db db/steam560.sqlite
 
 It will take a few minutes to generate the entire site because not only are there almost 150 pages but the ranking algorithm has to process the entire catalogue of games to calculate each ranking, too!
 
+### Building front-end assets
+
+Run `pnpm watch` locally to watch assets for changes and recompile automatically.
+
 ### Viewing the site
 
 To view the generated website we need to run a local web server so absolute paths are resolved correctly. Fortunately, we can do this easily with the PHP built-in web server by running a command similar to the following.

@@ -17,6 +17,7 @@ final class StaticPageName extends AbstractEnumeration
     public const LOGIN = 'LOGIN';
     public const LOGOUT = 'LOGOUT';
     public const SYNC_GAMES = 'SYNC_GAMES';
+    public const SYNC_RANKING_COLUMNS = 'SYNC_RANKING_COLUMNS';
 
     private static array $classes = [
         self::PREVIEWS => PreviewsPage::class,
@@ -29,6 +30,7 @@ final class StaticPageName extends AbstractEnumeration
         self::LOGIN => LoginPage::class,
         self::LOGOUT => LogoutPage::class,
         self::SYNC_GAMES => SyncGamesPage::class,
+        self::SYNC_RANKING_COLUMNS => SyncRankingColumnsPage::class,
     ];
 
     private static array $aliases = [
@@ -42,6 +44,7 @@ final class StaticPageName extends AbstractEnumeration
         self::LOGIN => 'login',
         self::LOGOUT => 'logout',
         self::SYNC_GAMES => 'sync-games',
+        self::SYNC_RANKING_COLUMNS => 'sync-ranking-columns',
     ];
 
     public function getAlias(): string
