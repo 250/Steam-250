@@ -38,7 +38,7 @@
     "chroma-js": "^2.4.2",
     "dayjs": "^1.10.4",
     "embla-carousel": "^8.6.0",
-    "posthog-js": "^1.212.1",
+    "posthog-js": "^1.438.2",
     "shaka-player": "^5.2.10",
     "vanilla-lazyload": "^17.3.1"
   },
