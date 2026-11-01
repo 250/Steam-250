@@ -27,6 +27,7 @@
         {% block main %}{% endblock %}
 
         {% if games is defined %}
+        {{ include('@components/component slot.twig', {name: 'ranking-toolbar'}) }}
         <section class="applist compact">
             <header>
                 <span>{% block rank_heading %}Rank{% endblock %}</span>
