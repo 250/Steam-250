@@ -104,8 +104,7 @@
         }
 
         >div {
-          // Ostensibly 306.5.
-          max-height: 320px;
+          max-height: 330px;
           // Originally 25px 23px 15px.
           padding: 1.55rem 1.44rem 15px;
 
@@ -310,12 +309,24 @@
             aspect-ratio: 18/17;
           }
 
-          &.myrank:before {
+          &.stories:before {
             width: 1.1em;
             margin-left: -.1em;
           }
+          &.myrank:before {
+            width: 1.15em;
+            margin-left: -.15em;
+          }
           &.members:before {
             width: .9em;
+          }
+          &.gotm:before {
+            width: 1.1em;
+            margin-left: -.1em;
+          }
+          &.goty:before {
+            width: 1.1em;
+            margin-left: -.1em;
           }
 
           &.discord:before {
@@ -604,7 +615,7 @@
             flex-flow: column;
 
             &:nth-of-type(2) {
-              gap: 5px;
+              gap: 3px;
             }
 
             // Micro tier pairs.
@@ -781,6 +792,9 @@ nav {
   }
   .gotm:before {
     #icons.gotm();
+  }
+  .goty:before {
+    #icons.goty();
   }
   .myrank:before {
     #icons.myrank();
