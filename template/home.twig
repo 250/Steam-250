@@ -107,10 +107,12 @@
             <a href="/{{ ranking.ranking.id ~ ext }}" class="button pri">View all Top 250</a>
         </header>
         {% set game = ranking.apps.0 %}
-        <a href="{{ steam.app_url(game.id) }}">
+        <div>
             {{ _self.img(game.id, ranking.app_media[game.id]) }}
-            <span class="button 2nd">Game of the Day</span>
-            <span class="button pri ranking-label">Steam Top 250 #{{ game.rank }}</span>
+            <a href="{{ steam.app_url(game.id) }}" class="button 2nd">Game of the Day</a>
+            <a href="/{{ ranking.ranking.id ~ ext }}#{{ game.rank }}" class="button pri ranking-label">
+                Steam Top 250 #{{ game.rank }}
+            </a>
 
             <span>
                 {{ game.keystone_tag }}  &bull;  {{ game.developer }}  &bull; 
@@ -118,7 +120,8 @@
             </span>
             <h3>{{ game.name }}</h3>
             <p>{{ game.blurb }}</p>
-        </a>
+            <a class="app-link" href="{{ steam.app_url(game.id) }}" aria-label="View {{ game.name }}"></a>
+        </div>
     </section>
 
     {% set ranking = rankings['7day'] %}

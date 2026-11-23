@@ -153,7 +153,7 @@ export default class User {
             const match = new RegExp('^https://[^/]+/(top250|hidden_gems)\\b').exec(a.href);
 
             if (match) {
-                a.href = `${process.env.CLUB_250_BASE_URL}/ranking/${match[1] === 'top250' ? '250' : 'gems'}`;
+                a.href = `${process.env.CLUB_250_BASE_URL}/ranking/${match[1] === 'top250' ? '250' : 'gems'}${a.hash}`;
             }
         });
     }

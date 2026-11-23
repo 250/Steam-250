@@ -648,7 +648,7 @@ main {
         }
       }
 
-      >a {
+      >div {
         --inset: 32px;
 
         position: relative;
@@ -703,7 +703,15 @@ main {
           }
         }
 
+        >.app-link {
+          position: absolute;
+          inset: 0;
+          z-index: 1;
+        }
+
         >.button {
+          z-index: 2;
+
           &.ranking-label {
             position: absolute;
             top: var(--inset);
@@ -1679,7 +1687,7 @@ main {
       &.gotd {
         padding: 1.25rem;
 
-        >a {
+        >div {
           --inset: 1.5rem;
 
           grid-template-columns: repeat(2, minmax(0, 1fr));
