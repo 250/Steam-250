@@ -1,5 +1,5 @@
 // 04 · Top highlight: shared by Steam 250 and Club 250.
-button, .button {
+button:where(:not([data-select-trigger])), .button:where(:not([data-select-trigger])) {
   --button-light: #50347a;
   --button-base: #472e6c;
   --button-deep: #3e285e;
@@ -153,7 +153,7 @@ button, .button {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  button, .button {
+  button:where(:not([data-select-trigger])), .button:where(:not([data-select-trigger])) {
     transition: none;
   }
 }
