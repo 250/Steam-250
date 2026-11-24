@@ -680,17 +680,24 @@
 
       // Search.
       >button {
-        overflow: hidden;
-        text-indent: 200%;
-        width: 19px;
-        height: $width;
-        margin: 0;
-        line-height: 0;
+        display: block;
+        width: 1.1875rem;
         min-width: 0;
+        aspect-ratio: 1;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+
+        text-indent: 200%;
+        line-height: 0;
 
         color: inherit;
         background: currentColor;
         mask: url(/svg/search.svg);
+        border: 0;
+        box-shadow: none;
+        filter: none;
+        transform: none;
 
         &:hover {
           background: #d2c8e0;
