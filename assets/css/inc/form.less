@@ -11,7 +11,7 @@ button:where(:not([data-select-trigger])), .button:where(:not([data-select-trigg
   --button-focus: #bda5d5;
   --button-hover-brightness: 1.18;
   --button-hover-depth: 0 .125rem .375rem #0005;
-  --button-padding-inline: .92em;
+  --button-padding-inline: calc(.92em + .0625rem);
   --button-face: linear-gradient(180deg, var(--button-glint), transparent 42%, #0000000a),
     radial-gradient(ellipse at 50% 100%, #00000008, transparent 80%),
     linear-gradient(var(--button-light), var(--button-base) 52%, var(--button-deep));
@@ -21,7 +21,7 @@ button:where(:not([data-select-trigger])), .button:where(:not([data-select-trigg
   display: inline-flex;
   min-width: 0;
   margin: 1em .5em;
-  padding: .9ex var(--button-padding-inline);
+  padding: calc(.9ex + .0625rem) var(--button-padding-inline);
   box-sizing: border-box;
   justify-content: center;
   align-items: center;
