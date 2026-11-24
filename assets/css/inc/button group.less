@@ -1,28 +1,28 @@
 .button-group {
+  --radius: 2px;
+  --button-padding-inline: .92em;
+
   display: flex;
   justify-content: center;
   margin: 1.5em 0;
-
-  --radius: 4px;
-  --padding: 2vw;
-
-  @media (min-width: 1200px) {
-    --padding: 24px;
-  }
 
   &.wrap {
     flex-flow: wrap;
     gap: 1ex 0;
   }
 
-  >.button {
-    min-width: 3.5em;
-    margin: 0;
-    padding-left: var(--padding);
-    padding-right: var(--padding);
-    border-radius: 0;
+  &.vert {
+    flex-flow: column;
+  }
 
-    &:first-child, &.start, &.endgrp + .button {
+  >:is(button, .button) {
+    min-width: 0;
+    margin: 0;
+    padding-inline: var(--button-padding-inline);
+    border-radius: 0;
+    box-shadow: none;
+
+    &:first-child, &.start, &.endgrp + :is(button, .button) {
       border-top-left-radius: var(--radius);
       border-bottom-left-radius: var(--radius);
     }
@@ -32,10 +32,40 @@
     }
 
     &.endgrp {
-      + .button,
+      + :is(button, .button),
       + .button-group {
         margin-left: 2ch;
       }
+    }
+  }
+
+  // Shared borders, not negative margins: no control can paint over its neighbour.
+  &:not(.vert) >:is(button, .button) {
+    &:not(.end, .endgrp) + :is(button, .button):not(.start) {
+      border-left-width: 0;
+      padding-left: calc(var(--button-padding-inline) + 1px);
+    }
+
+    &:not(.end, .endgrp):has(+ :is(button, .button):not(.start)) {
+      border-right-color: var(--button-edge-shade);
+    }
+  }
+
+  >:is(button, .button):where(:not([disabled], .disabled, [aria-disabled=true])) {
+    &:hover {
+      box-shadow: inset 0 .0625rem 0 var(--button-edge-soft), inset 0 -.125rem .25rem #00000010;
+      filter: brightness(var(--button-hover-brightness));
+    }
+
+    &:active {
+      box-shadow: inset 0 .0625rem .125rem #0005;
+      filter: brightness(.97);
+      transform: none;
+    }
+
+    &:focus-visible {
+      outline-width: .125rem;
+      outline-offset: -.125rem;
     }
   }
 
