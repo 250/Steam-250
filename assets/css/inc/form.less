@@ -70,20 +70,29 @@ button, .button {
   }
 
   &.flat {
+    --button-light: #514559;
+    --button-base: #4c4054;
+    --button-deep: #493d51;
+    --button-edge-light: #e4d4f526;
+    --button-edge-soft: #d9c8ed0d;
+    --button-edge-shade: #21192933;
+    --button-glint: #ffffff04;
     --button-face: linear-gradient(var(--button-light), var(--button-base));
     --button-shadow: none;
     --button-hover-shadow: none;
     --button-hover-brightness: 1.15;
     --button-hover-depth: 0 .0625rem .1875rem #0004;
 
-    &:where(:not(.cur, :has(>:checked), [aria-pressed=true])) {
-      --button-light: #514559;
-      --button-base: #4c4054;
-      --button-deep: #493d51;
-      --button-edge-light: #e4d4f526;
-      --button-edge-soft: #d9c8ed0d;
-      --button-edge-shade: #21192933;
-      --button-glint: #ffffff04;
+    &.cur, &:has(>:checked), &[aria-pressed=true] {
+      --button-light: #67576f;
+      --button-base: #605068;
+      --button-deep: #594a61;
+      --button-edge-light: #ecddff3d;
+      --button-edge-soft: #d9c8ed14;
+      --button-edge-shade: #30233840;
+      --button-ink: #f1e9f5;
+      --button-focus: #cdb8da;
+      --button-hover-brightness: 1.12;
     }
   }
 
