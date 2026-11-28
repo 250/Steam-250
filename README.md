@@ -65,8 +65,6 @@ It will take a few minutes to generate the entire site because not only are ther
 
 Run `pnpm watch` locally to watch assets for changes and recompile automatically.
 
-The shared button foundation is **04 · Top highlight**, used by Steam 250 and Club 250. `assets/css/inc/form.less` defines default, `.cur`, `.pri`, `.flat`, `.mono` and `.mono.cur` presentations; `.cur`, a directly checked input or `aria-pressed="true"` selects a control. Disabled controls use `.5` opacity and `saturate(.6)`. `assets/css/inc/button group.less` owns joined edges, wrapping, subgroup breaks and vertical groups, with inset hover/press/focus effects that cannot overlap neighbours. Coordinate changes to these rules with the paired Club 250 checkout; its Storybook **Form → Button → All Presentations** renders the production styles.
-
 ### Viewing the site
 
 To view the generated website we need to run a local web server so absolute paths are resolved correctly. Fortunately, we can do this easily with the PHP built-in web server by running a command similar to the following.
